@@ -24,7 +24,7 @@ public class DragSelectEvent : SelectEvent
     private readonly Point previousPickPoint;
 
     public DragSelectEvent(object source, string eventAction, MouseEvent mouseEvent, PickedObjectList pickedObjects,
-        Point previousPickPoint) : base( source, eventAction, mouseEvent, pickedObjects );
+        Point previousPickPoint) : base( source, eventAction, mouseEvent, pickedObjects )
     {
         this.previousPickPoint = previousPickPoint;
     }

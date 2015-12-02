@@ -3,7 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util;
+
+using System.Collections.Generic;
+using System.Linq;
+
 namespace SharpEarth.pick{
 
 
@@ -11,39 +14,25 @@ namespace SharpEarth.pick{
  * @author tag
  * @version $Id: PickedObjectList.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PickedObjectList extends ArrayList<PickedObject>
+public class PickedObjectList : List<PickedObject>
 {
     public PickedObjectList()
     {
+
     }
 
-    public PickedObjectList(PickedObjectList list) // clone a shallow copy
+    public PickedObjectList(PickedObjectList list) : base(list)// clone a shallow copy
     {
-        super(list);
     }
 
     public PickedObject getTopPickedObject()
     {
-        int size = this.size();
-
-        if (1 < size)
-        {
-            for (PickedObject po : this)
-            {
-                if (po.isOnTop())
-                    return po;
-            }
-        }
-
-        if (0 < size)
-        {   // if we are here, then no objects were mark as 'top'
-            return this.get(0);
-        }
-
-        return null;
+      if (Count == 1)
+        return this[0];
+      return this.FirstOrDefault( po => po.isOnTop() );
     }
 
-    public Object getTopObject()
+    public object getTopObject()
     {
         PickedObject po = this.getTopPickedObject();
         return po != null ? po.getObject() : null;
@@ -51,18 +40,12 @@ public class PickedObjectList extends ArrayList<PickedObject>
 
     public PickedObject getTerrainObject()
     {
-        for (PickedObject po : this)
-        {
-            if (po.isTerrain())
-                return po;
-        }
-
-        return null;
+      return this.FirstOrDefault( po => po.isTerrain() );
     }
 
     public PickedObject getMostRecentPickedObject()
     {
-        return this.size() > 0 ? this.get(this.size() - 1) : null;
+      return this.LastOrDefault();
     }
 
     /**
@@ -75,13 +58,15 @@ public class PickedObjectList extends ArrayList<PickedObject>
     {
         List<PickedObject> list = null; // Lazily create the list to avoid unnecessary allocations.
 
-        for (PickedObject po : this)
+
+
+        foreach (PickedObject po in this)
         {
             if (po.isOnTop())
             {
                 if (list == null)
-                    list = new ArrayList<PickedObject>();
-                list.add(po);
+                    list = new List<PickedObject>();
+                list.Add(po);
             }
         }
 
@@ -95,17 +80,17 @@ public class PickedObjectList extends ArrayList<PickedObject>
      * @return a new list of the objects associated with a picked object marked as on top, or <code>null</code> if
      *         nothing is marked as on top.
      */
-    public List<?> getAllTopObjects()
+    public List<object> getAllTopObjects()
     {
-        List<Object> list = null; // Lazily create the list to avoid unnecessary allocations.
+        List<object> list = null; // Lazily create the list to avoid unnecessary allocations.
 
-        for (PickedObject po : this)
+        foreach (PickedObject po in this)
         {
             if (po.isOnTop())
             {
                 if (list == null)
-                    list = new ArrayList<Object>();
-                list.add(po.getObject());
+                    list = new List<object>();
+                list.Add(po.getObject());
             }
         }
 
@@ -114,7 +99,7 @@ public class PickedObjectList extends ArrayList<PickedObject>
 
     public bool hasNonTerrainObjects()
     {
-        return this.size() > 1 || (this.size() == 1 && this.getTerrainObject() == null);
+        return this.Count > 1 || (this.Count == 1 && this.getTerrainObject() == null);
     }
 }
 }

@@ -69,7 +69,7 @@ public class PickedObject : AVListImpl
         return this.colorCode;
     }
 
-    public Object getObject()
+    public object getObject()
     {
         return userObject;
     }

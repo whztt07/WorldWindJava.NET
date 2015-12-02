@@ -3,10 +3,14 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
-using java.awt.event;
-using java.awt;
-using SharpEarth.util.Logging;
+
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.Text;
+using java.awt.events;
+using SharpEarth.util;
 using SharpEarth.pick;
 namespace SharpEarth.events{
 
@@ -43,33 +47,32 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: SelectEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-@SuppressWarnings({"StringEquality"})
-public class SelectEvent extends WWEvent
+public class SelectEvent : WWEvent
 {
     /** The user clicked the left mouse button while the cursor was over picked object. */
-    public static final String LEFT_CLICK = "gov.nasa.worldwind.SelectEvent.LeftClick";
+    public static readonly string LEFT_CLICK = "gov.nasa.worldwind.SelectEvent.LeftClick";
     /** The user double-clicked the left mouse button while the cursor was over picked object. */
-    public static final String LEFT_DOUBLE_CLICK = "gov.nasa.worldwind.SelectEvent.LeftDoubleClick";
+    public static readonly string LEFT_DOUBLE_CLICK = "gov.nasa.worldwind.SelectEvent.LeftDoubleClick";
     /** The user clicked the right mouse button while the cursor was over picked object. */
-    public static final String RIGHT_CLICK = "gov.nasa.worldwind.SelectEvent.RightClick";
+    public static readonly string RIGHT_CLICK = "gov.nasa.worldwind.SelectEvent.RightClick";
     /** The user pressed the left mouse button while the cursor was over picked object. */
-    public static final String LEFT_PRESS = "gov.nasa.worldwind.SelectEvent.LeftPress";
+    public static readonly string LEFT_PRESS = "gov.nasa.worldwind.SelectEvent.LeftPress";
     /** The user pressed the right mouse button while the cursor was over picked object. */
-    public static final String RIGHT_PRESS = "gov.nasa.worldwind.SelectEvent.RightPress";
+    public static readonly string RIGHT_PRESS = "gov.nasa.worldwind.SelectEvent.RightPress";
     /**
      * The cursor has moved over the picked object and become stationary, or has moved off the object of the most recent
      * <code>HOVER</code> event. In the latter case, the picked object will be null.
      */
-    public static final String HOVER = "gov.nasa.worldwind.SelectEvent.Hover";
+    public static readonly string HOVER = "gov.nasa.worldwind.SelectEvent.Hover";
     /**
      * The cursor has moved over the object or has moved off the object most recently rolled over. In the latter case
      * the picked object will be null.
      */
-    public static final String ROLLOVER = "gov.nasa.worldwind.SelectEvent.Rollover";
+    public static readonly string ROLLOVER = "gov.nasa.worldwind.SelectEvent.Rollover";
     /** The user is attempting to drag the picked object. */
-    public static final String DRAG = "gov.nasa.worldwind.SelectEvent.Drag";
+    public static readonly string DRAG = "gov.nasa.worldwind.SelectEvent.Drag";
     /** The user has stopped dragging the picked object. */
-    public static final String DRAG_END = "gov.nasa.worldwind.SelectEvent.DragEnd";
+    public static readonly string DRAG_END = "gov.nasa.worldwind.SelectEvent.DragEnd";
     /**
      * The user has selected one or more of objects using a selection box. A box rollover event is generated every frame
      * if one or more objects intersect the box, in which case the event's pickedObjects list contain the selected
@@ -77,56 +80,51 @@ public class SelectEvent extends WWEvent
      * pickedObjects is <code>null</code>. In either case, the event's pickRect contains the selection box bounds in AWT
      * screen coordinates.
      */
-    public static final String BOX_ROLLOVER = "gov.nasa.worldwind.SelectEvent.BoxRollover";
+    public static readonly string BOX_ROLLOVER = "gov.nasa.worldwind.SelectEvent.BoxRollover";
 
-    private final String eventAction;
-    private final Point pickPoint;
-    private final Rectangle pickRect;
-    private final MouseEvent mouseEvent;
-    private final PickedObjectList pickedObjects;
+    private readonly string eventAction;
+    private readonly Point pickPoint;
+    private readonly Rectangle pickRect;
+    private readonly MouseEvent mouseEvent;
+    private readonly PickedObjectList pickedObjects;
 
-    public SelectEvent(Object source, String eventAction, MouseEvent mouseEvent, PickedObjectList pickedObjects)
+    public SelectEvent(object source, string eventAction, MouseEvent mouseEvent, PickedObjectList pickedObjects) : base(source)
     {
-        super(source);
         this.eventAction = eventAction;
         this.pickPoint = mouseEvent != null ? mouseEvent.getPoint() : null;
-        this.pickRect = null;
+        this.pickRect = default(Rectangle);
         this.mouseEvent = mouseEvent;
         this.pickedObjects = pickedObjects;
     }
 
-    public SelectEvent(Object source, String eventAction, Point pickPoint, PickedObjectList pickedObjects)
+    public SelectEvent(Object source, String eventAction, Point pickPoint, PickedObjectList pickedObjects) : base(source)
     {
-        super(source);
         this.eventAction = eventAction;
         this.pickPoint = pickPoint;
-        this.pickRect = null;
+        this.pickRect = default( Rectangle );
         this.mouseEvent = null;
         this.pickedObjects = pickedObjects;
     }
 
-    public SelectEvent(Object source, String eventAction, Rectangle pickRectangle, PickedObjectList pickedObjects)
+    public SelectEvent(Object source, String eventAction, Rectangle pickRectangle, PickedObjectList pickedObjects) : base(source)
     {
-        super(source);
         this.eventAction = eventAction;
-        this.pickPoint = null;
+        this.pickPoint = default( Point);
         this.pickRect = pickRectangle;
         this.mouseEvent = null;
         this.pickedObjects = pickedObjects;
     }
 
-    @Override
-    public void consume()
+    public new void consume()
     {
-        super.consume();
-
+        base.consume();
         if (this.getMouseEvent() != null)
             this.getMouseEvent().consume();
     }
 
     public String getEventAction()
     {
-        return this.eventAction != null ? this.eventAction : "gov.nasa.worldwind.SelectEvent.UnknownEventAction";
+        return this.eventAction ?? "gov.nasa.worldwind.SelectEvent.UnknownEventAction";
     }
 
     public Point getPickPoint()
@@ -146,7 +144,7 @@ public class SelectEvent extends WWEvent
 
     public bool hasObjects()
     {
-        return this.pickedObjects != null && this.pickedObjects.size() > 0;
+        return this.pickedObjects != null && this.pickedObjects.Count > 0;
     }
 
     public PickedObjectList getObjects()
@@ -185,7 +183,7 @@ public class SelectEvent extends WWEvent
      * @return a new list of the objects associated with a picked object marked as on top, or <code>null</code> if
      *         nothing is marked as on top.
      */
-    public List<?> getAllTopObjects()
+    public List<object> getAllTopObjects()
     {
         return this.hasObjects() ? this.pickedObjects.getAllTopObjects() : null;
     }
@@ -240,13 +238,12 @@ public class SelectEvent extends WWEvent
         return this.getEventAction() == BOX_ROLLOVER;
     }
 
-    @Override
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder(this.GetType().Name + " "
             + (this.eventAction != null ? this.eventAction : Logging.getMessage("generic.Unknown")));
         if (this.pickedObjects != null && this.pickedObjects.getTopObject() != null)
-            sb.append(", ").append(this.pickedObjects.getTopObject().GetType().Name);
+            sb.Append(", ").Append( this.pickedObjects.getTopObject().GetType().Name);
 
         return sb.ToString();
     }

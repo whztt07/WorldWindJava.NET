@@ -3,31 +3,31 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+
 namespace SharpEarth.exception{
 
 /**
  * @author Tom Gaskins
  * @version $Id: WWRuntimeException.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WWRuntimeException extends RuntimeException
+public class WWRuntimeException : Exception
 {
     public WWRuntimeException()
     {
     }
 
-    public WWRuntimeException(String s)
+    public WWRuntimeException(string s) : base(s)
     {
-        super(s);
     }
 
-    public WWRuntimeException(String s, Throwable throwable)
+    public WWRuntimeException(string s, Exception innerException) : base(s, innerException)
     {
-        super(s, throwable);
     }
 
-    public WWRuntimeException(Throwable throwable)
+    public WWRuntimeException(Exception innerException ) : base("", innerException )
     {
-        super(throwable);
     }
 }
 }

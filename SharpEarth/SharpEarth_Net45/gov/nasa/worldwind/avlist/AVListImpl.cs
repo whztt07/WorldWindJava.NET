@@ -3,11 +3,18 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.logging;
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using java.util;
 using java.beans;
 using SharpEarth.util;
 using SharpEarth.exception;
+using SharpEarth.view.orbit;
+
 namespace SharpEarth.avlist{
 
 
@@ -27,10 +34,10 @@ namespace SharpEarth.avlist{
 public class AVListImpl : AVList
 {
     // Identifies the property change support instance in the avlist
-    private static final String PROPERTY_CHANGE_SUPPORT = "avlist.PropertyChangeSupport";
+    private static readonly string PROPERTY_CHANGE_SUPPORT = "avlist.PropertyChangeSupport";
 
     // To avoid unnecessary overhead, this object's hash map is created only if needed.
-    private Map<String, Object> avList;
+    private Dictionary<string, object> _avList;
 
     /** Creates an empty attribute-value list. */
     public AVListImpl()
@@ -42,95 +49,99 @@ public class AVListImpl : AVList
      *
      * @param sourceBean The bean to be given as the source for any events.
      */
-    public AVListImpl(Object sourceBean)
+    public AVListImpl(object sourceBean)
     {
         if (sourceBean != null)
             this.setValue(PROPERTY_CHANGE_SUPPORT, new PropertyChangeSupport(sourceBean));
     }
 
     private bool hasAvList()
-    {
-        return this.avList != null;
+    {      
+      return this._avList != null;
     }
 
-    private Map<String, Object> createAvList()
+    private Dictionary<string,object> createAvList()
     {
         if (!this.hasAvList())
         {
             // The map type used must accept null values. java.util.concurrent.ConcurrentHashMap does not.
-            this.avList = new java.util.HashMap<String, Object>(1);
+            this._avList = new Dictionary<string, object>(1);
         }
-
-        return this.avList;
+        return this._avList;
     }
 
-    private Map<String, Object> avList(boolean createIfNone)
+    private Dictionary<string, object> avList(bool createIfNone)
     {
-        if (createIfNone && !this.hasAvList())
-            this.createAvList();
+        if (createIfNone && !hasAvList())
+            createAvList();
 
-        return this.avList;
+        return _avList;
     }
 
-    synchronized public Object getValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public object getValue(string key)
     {
         if (key == null)
         {
-            String message = Logging.getMessage("nullValue.AttributeKeyIsNull");
+            string message = Logging.getMessage("nullValue.AttributeKeyIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        if (this.hasAvList())
-            return this.avList.get(key);
+      if ( hasAvList() )
+        return _avList[key];
 
         return null;
     }
 
-    synchronized public Collection<Object> getValues()
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public IEnumerable<object> getValues()
     {
-        return this.hasAvList() ? this.avList.values() : this.createAvList().values();
+      return avList( true ).Values.AsEnumerable();
     }
 
-    synchronized public Set<Map.Entry<String, Object>> getEntries()
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public Dictionary<string,object> getEntries()
     {
-        return this.hasAvList() ? this.avList.entrySet() : this.createAvList().entrySet();
+      return avList( true );
     }
 
-    synchronized public String getStringValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public string getStringValue(string key)
     {
         if (key == null)
         {
-            String msg = Logging.getMessage("nullValue.AttributeKeyIsNull");
+            string msg = Logging.getMessage("nullValue.AttributeKeyIsNull");
             Logging.logger().severe(msg);
-            throw new IllegalStateException(msg);
+            throw new ArgumentNullException(msg);
         }
-        try
-        {
-            Object value = this.getValue(key);
-            return value != null ? value.ToString() : null;
-        }
-        catch (ClassCastException e)
-        {
-            String msg = Logging.getMessage("AVAAccessibleImpl.AttributeValueForKeyIsNotAString", key);
-            Logging.logger().severe(msg);
-            throw new WWRuntimeException(msg, e);
-        }
+
+      string value = this.getValue( key ) as string;
+      if ( value != null )
+        return value;
+      string message = Logging.getMessage( "AVAAccessibleImpl.AttributeValueForKeyIsNotAString", key );
+      Logging.logger().severe( message );
+      throw new WWRuntimeException( message, new InvalidCastException() );
     }
 
-    synchronized public Object setValue(String key, Object value)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public object setValue(string key, object value)
     {
         if (key == null)
         {
-            String message = Logging.getMessage("nullValue.AttributeKeyIsNull");
+            string message = Logging.getMessage("nullValue.AttributeKeyIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        return this.avList(true).put(key, value);
+      object prevObject;
+      this.avList( true ).TryGetValue( key, out prevObject );
+      this.avList( true )[key] = value;
+      return prevObject;
     }
 
-    synchronized public AVList setValues(AVList list)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public AVList setValues(AVList list)
     {
         if (list == null)
         {
@@ -139,16 +150,28 @@ public class AVListImpl : AVList
             throw new ArgumentException(message);
         }
 
-        Set<Map.Entry<String, Object>> entries = list.getEntries();
-        for (Map.Entry<String, Object> entry : entries)
-        {
-            this.setValue(entry.getKey(), entry.getValue());
-        }
-
-        return this;
+      var entries = list.getEntries();
+      foreach (var entry in entries)
+      {
+        setValue(entry.Key, entry.Value);
+      }
+      return this;
     }
 
-    synchronized public bool hasKey(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public bool hasKey(string key)
+    {
+        if (key == null)
+        {
+            string message = Logging.getMessage("nullValue.KeyIsNull");
+            Logging.logger().severe(message);
+            throw new ArgumentException(message);
+        }
+        return hasAvList() && _avList.ContainsKey( key );
+    }
+
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public object removeKey(string key)
     {
         if (key == null)
         {
@@ -157,42 +180,36 @@ public class AVListImpl : AVList
             throw new ArgumentException(message);
         }
 
-        return this.hasAvList() && this.avList.containsKey(key);
+
+      object value = null;
+      if ( hasAvList() && _avList.TryGetValue( key, out value ) )
+        _avList.Remove( key );
+      return value;
     }
 
-    synchronized public Object removeKey(String key)
-    {
-        if (key == null)
-        {
-            String message = Logging.getMessage("nullValue.KeyIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        return this.hasKey(key) ? this.avList.remove(key) : null;
-    }
-
-    synchronized public AVList copy()
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public AVList copy()
     {
         AVListImpl clone = new AVListImpl();
-
-        if (this.avList != null)
+        if (hasAvList())
         {
-            clone.createAvList();
-            clone.avList.putAll(this.avList);
+          clone.createAvList();
+          foreach ( var entry in _avList )
+            clone._avList.Add( entry.Key, entry.Value );
         }
-
         return clone;
     }
 
-    synchronized public AVList clearList()
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public AVList clearList()
     {
-        if (this.hasAvList())
-            this.avList.clear();
-        return this;
+      if ( hasAvList() )
+        _avList.Clear();
+      return this;
     }
 
-    synchronized protected PropertyChangeSupport getChangeSupport()
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    protected PropertyChangeSupport getChangeSupport()
     {
         Object pcs = this.getValue(PROPERTY_CHANGE_SUPPORT);
         if (pcs == null || !(pcs instanceof PropertyChangeSupport))
@@ -204,7 +221,8 @@ public class AVListImpl : AVList
         return (PropertyChangeSupport) pcs;
     }
 
-    synchronized public void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener)
     {
         if (propertyName == null)
         {
@@ -221,7 +239,8 @@ public class AVListImpl : AVList
         this.getChangeSupport().addPropertyChangeListener(propertyName, listener);
     }
 
-    synchronized public void removePropertyChangeListener(String propertyName,
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public void removePropertyChangeListener(String propertyName,
         java.beans.PropertyChangeListener listener)
     {
         if (propertyName == null)
@@ -239,7 +258,8 @@ public class AVListImpl : AVList
         this.getChangeSupport().removePropertyChangeListener(propertyName, listener);
     }
 
-    synchronized public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
     {
         if (listener == null)
         {
@@ -250,7 +270,8 @@ public class AVListImpl : AVList
         this.getChangeSupport().addPropertyChangeListener(listener);
     }
 
-    synchronized public void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
     {
         if (listener == null)
         {
@@ -417,28 +438,32 @@ public class AVListImpl : AVList
         return v != null ? v : defaultValue;
     }
 
-    public static Boolean getBooleanValue(AVList avList, String key)
+    public static bool? getBooleanValue(AVList avList, string key)
     {
-        Object o = avList.getValue(key);
+        object o = avList.getValue(key);
         if (o == null)
-            return null;
-
-        if (o instanceof Boolean)
-            return (Boolean) o;
-
-        String v = getStringValue(avList, key);
-        if (v == null)
-            return null;
-
-        try
         {
-            return Boolean.parseBoolean(v);
+          return null;
         }
-        catch (NumberFormatException e)
+            
+        if(o is bool)
         {
-            Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
-            return null;
+          return (bool)o;
         }
+
+        if ( !( o is string ) )
+        {
+          return null;
+        }
+
+      string text = (string)o;
+      bool result;
+      if(bool.TryParse(text, out result))
+      {
+        return result;
+      }
+      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", new NumberFormatException() );
+      return null;
     }
 }
 }
