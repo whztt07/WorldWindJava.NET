@@ -68,7 +68,7 @@ public class VPFBoundingBox
             (this.ymax > boundingBox.ymax) ? this.ymax : boundingBox.ymax);
     }
 
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
 

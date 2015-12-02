@@ -269,7 +269,7 @@ public abstract class SurfaceTileRenderer implements Disposable
         catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE,
-                Logging.getMessage("generic.ExceptionWhileRenderingLayer", this.GetType().getName()), e);
+                Logging.getMessage("generic.ExceptionWhileRenderingLayer", this.GetType().Name), e);
         }
         finally
         {

@@ -1023,13 +1023,13 @@ public class WWUtil
         if (!WWUtil.isEmpty(message))
             sb.append(message);
 
-        String messageClass = t.GetType().getName();
+        String messageClass = t.GetType().Name;
 
         Throwable cause = t.getCause();
         if (null != cause && cause != t)
         {
             String causeMessage = cause.getMessage();
-            String causeClass = cause.GetType().getName();
+            String causeClass = cause.GetType().Name;
 
             if (!WWUtil.isEmpty(messageClass) && !WWUtil.isEmpty(causeClass) && !messageClass.equals(causeClass))
             {

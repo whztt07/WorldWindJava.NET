@@ -73,7 +73,7 @@ public class KMLListStyle extends KMLAbstractSubStyle
     {
         if (!(sourceValues instanceof KMLListStyle))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

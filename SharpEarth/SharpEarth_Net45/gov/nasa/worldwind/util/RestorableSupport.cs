@@ -237,7 +237,7 @@ public class RestorableSupport
      *
      * @return an XML state document string.
      */
-    public String toString()
+    public override string ToString()
     {
         return getStateAsXml();
     }

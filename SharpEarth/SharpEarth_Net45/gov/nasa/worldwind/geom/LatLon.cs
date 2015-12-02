@@ -1643,7 +1643,7 @@ public class LatLon
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         String las = String.Format("Lat %7.4f\u00B0", this.getLatitude().getDegrees());
         String los = String.Format("Lon %7.4f\u00B0", this.getLongitude().getDegrees());

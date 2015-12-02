@@ -32,7 +32,7 @@ public abstract class KMLAbstractTimePrimitive extends KMLAbstractObject
     {
         if (!(sourceValues instanceof KMLAbstractTimePrimitive))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

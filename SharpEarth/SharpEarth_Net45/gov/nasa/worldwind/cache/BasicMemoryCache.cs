@@ -42,7 +42,7 @@ public class BasicMemoryCache implements MemoryCache
             return this.lastUsed < that.lastUsed ? -1 : this.lastUsed == that.lastUsed ? 0 : 1;
         }
 
-        public String toString()
+        public override string ToString()
         {
             return key.ToString() + " " + clientObject.ToString() + " " + lastUsed + " " + clientObjectSize;
         }
@@ -403,7 +403,7 @@ public class BasicMemoryCache implements MemoryCache
      * @return a <code>String</code> representation of this object.
      */
     @Override
-    public String toString()
+    public override string ToString()
     {
         return "MemoryCache " + this.name + " max size = " + this.getCapacity() + " current size = "
             + this.currentUsedCapacity.get() + " number of items: " + this.getNumObjects();

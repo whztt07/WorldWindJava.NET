@@ -66,7 +66,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         this.setValue(AVKey.DISPLAY_NAME, name);
     }
 
-    public String toString()
+    public override string ToString()
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 

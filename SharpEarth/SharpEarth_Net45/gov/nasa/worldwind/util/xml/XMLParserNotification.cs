@@ -128,7 +128,7 @@ public class XMLParserNotification extends PropertyChangeEvent
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         String msg;
 

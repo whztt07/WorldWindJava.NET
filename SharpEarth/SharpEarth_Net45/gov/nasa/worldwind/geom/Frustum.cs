@@ -169,7 +169,7 @@ public class Frustum
         return result;
     }
 
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append("(");

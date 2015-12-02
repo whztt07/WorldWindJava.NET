@@ -266,7 +266,7 @@ public class UTMCoord
         return this.northing;
     }
 
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append(zone);

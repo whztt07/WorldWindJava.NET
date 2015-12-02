@@ -179,7 +179,7 @@ public class BasicLayerFactory extends BasicFactory
                     }
                     else
                     {
-                        String msg = Logging.getMessage("LayerFactory.UnexpectedTypeForLayer", o.GetType().getName());
+                        String msg = Logging.getMessage("LayerFactory.UnexpectedTypeForLayer", o.GetType().Name);
                         Logging.logger().log(java.util.logging.Level.WARNING, msg);
                     }
 
@@ -282,7 +282,7 @@ public class BasicLayerFactory extends BasicFactory
 
             if (!(o instanceof Layer))
             {
-                String msg = Logging.getMessage("LayerFactory.UnexpectedTypeForLayer", o.GetType().getName());
+                String msg = Logging.getMessage("LayerFactory.UnexpectedTypeForLayer", o.GetType().Name);
                 throw new WWRuntimeException(msg);
             }
 

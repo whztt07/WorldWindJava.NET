@@ -198,7 +198,7 @@ public class OGCContactInformation extends AbstractXMLEventParser
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
 

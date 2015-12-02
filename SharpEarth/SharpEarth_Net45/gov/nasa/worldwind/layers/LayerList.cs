@@ -541,7 +541,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         String r = "";
         for (Layer l : this)

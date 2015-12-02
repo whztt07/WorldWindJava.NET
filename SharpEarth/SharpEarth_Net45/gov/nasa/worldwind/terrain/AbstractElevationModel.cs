@@ -47,7 +47,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
         this.setValue(AVKey.DISPLAY_NAME, name);
     }
 
-    public String toString()
+    public override string ToString()
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 

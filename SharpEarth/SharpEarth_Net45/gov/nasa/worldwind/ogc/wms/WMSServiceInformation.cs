@@ -92,7 +92,7 @@ public class WMSServiceInformation extends OGCServiceInformation
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder(super.ToString());
 

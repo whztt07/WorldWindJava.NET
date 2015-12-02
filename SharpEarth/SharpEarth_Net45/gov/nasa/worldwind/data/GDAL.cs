@@ -295,7 +295,7 @@ public class GDAL
         }
 
         @Override
-        public String toString()
+        public override string ToString()
         {
             StringBuffer sb = new StringBuffer("Area { ");
             for (java.awt.geom.Point2D corner : this.corners)

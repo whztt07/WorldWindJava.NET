@@ -749,7 +749,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(GetType().getName(), "export", e);
+                Logging.logger().throwing(GetType().Name, "export", e);
                 throw new IOException(e);
             }
         }

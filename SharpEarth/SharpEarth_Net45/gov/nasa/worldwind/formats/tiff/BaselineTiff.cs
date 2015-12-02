@@ -119,7 +119,7 @@ class BaselineTiff
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         StringBuffer sb = new StringBuffer("{ ");
         sb.append("width=").append(this.width).append(", ");

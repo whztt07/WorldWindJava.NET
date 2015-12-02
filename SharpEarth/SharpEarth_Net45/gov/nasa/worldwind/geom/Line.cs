@@ -115,7 +115,7 @@ public sealed class Line// Instances are immutable
         return result;
     }
 
-    public String toString()
+    public override string ToString()
     {
         return "Origin: " + this.origin + ", Direction: " + this.direction;
     }

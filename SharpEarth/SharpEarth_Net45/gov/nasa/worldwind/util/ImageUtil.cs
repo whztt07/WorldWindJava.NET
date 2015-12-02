@@ -1840,7 +1840,7 @@ public class ImageUtil
         }
         else
         {
-            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
+            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().Name);
             Logging.logger().severe(msg);
             throw new WWRuntimeException(msg);
         }
@@ -1916,7 +1916,7 @@ public class ImageUtil
         }
         else
         {
-            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
+            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().Name);
             Logging.logger().severe(msg);
             throw new WWRuntimeException(msg);
         }

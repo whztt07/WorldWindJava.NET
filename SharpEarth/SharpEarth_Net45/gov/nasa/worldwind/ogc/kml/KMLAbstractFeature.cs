@@ -390,7 +390,7 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
     {
         if (!(sourceValues instanceof KMLAbstractFeature))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

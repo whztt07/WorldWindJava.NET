@@ -77,7 +77,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
             String message;
             if (null != source)
             {
-                message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().getName());
+                message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().Name);
             }
             else
             {
@@ -1227,7 +1227,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         return "GDALDataRaster " + convertAVListToString(this);
     }

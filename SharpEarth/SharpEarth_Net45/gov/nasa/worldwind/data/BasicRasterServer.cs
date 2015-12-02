@@ -99,7 +99,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
 
 //        if (null == rootElement)
 //        {
-//            String message = Logging.getMessage("generic.UnexpectedObjectType", o.GetType().getName());
+//            String message = Logging.getMessage("generic.UnexpectedObjectType", o.GetType().Name);
 //            Logging.logger().severe(message);
 //            throw new ArgumentException(message);
 //        }
@@ -563,7 +563,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
             }
             else
             {
-                String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
+                String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().Name);
                 Logging.logger().severe(msg);
                 throw new WWRuntimeException(msg);
             }

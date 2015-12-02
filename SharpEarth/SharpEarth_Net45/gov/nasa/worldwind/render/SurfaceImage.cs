@@ -543,7 +543,7 @@ public class SurfaceImage extends WWObjectImpl
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(GetType().getName(), "export", e);
+                Logging.logger().throwing(GetType().Name, "export", e);
                 throw new IOException(e);
             }
         }
@@ -613,7 +613,7 @@ public class SurfaceImage extends WWObjectImpl
         else
         {
             String message = Logging.getMessage("Export.UnableToExportImageSource",
-                (imgSource != null ? imgSource.GetType().getName() : "null"));
+                (imgSource != null ? imgSource.GetType().Name : "null"));
             Logging.logger().info(message);
         }
 

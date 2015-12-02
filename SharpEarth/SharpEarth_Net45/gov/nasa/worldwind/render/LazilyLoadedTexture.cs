@@ -590,7 +590,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
             return (this.wwTexture != null ? this.wwTexture.hashCode() : 0);
         }
 
-        public String toString()
+        public override string ToString()
         {
             return this.wwTexture.getImageSource().ToString();
         }

@@ -41,7 +41,7 @@ public class GeotiffImageReader extends ImageReader
     {
         if (imageIndex < 0 || imageIndex >= getNumImages(true))
             throw new ArgumentException(
-                this.GetType().getName() + ".getWidth(): illegal imageIndex: " + imageIndex);
+                this.GetType().Name + ".getWidth(): illegal imageIndex: " + imageIndex);
 
         if (ifds.size() == 0)
             readIFDs();
@@ -55,7 +55,7 @@ public class GeotiffImageReader extends ImageReader
     {
         if (imageIndex < 0 || imageIndex >= getNumImages(true))
             throw new ArgumentException(
-                this.GetType().getName() + ".getHeight(): illegal imageIndex: " + imageIndex);
+                this.GetType().Name + ".getHeight(): illegal imageIndex: " + imageIndex);
 
         if (ifds.size() == 0)
             readIFDs();
@@ -92,7 +92,7 @@ public class GeotiffImageReader extends ImageReader
         // TODO: more generally, the following test should reflect that more than one image is possible in a Tiff.
         if (imageIndex != 0)
             throw new ArgumentException(
-                this.GetType().getName() + ".read(): illegal imageIndex: " + imageIndex);
+                this.GetType().Name + ".read(): illegal imageIndex: " + imageIndex);
 
         readIFDs();
 
@@ -154,7 +154,7 @@ public class GeotiffImageReader extends ImageReader
         if (widthEntry == null || lengthEntry == null || samplesPerPixelEntry == null || photoInterpEntry == null ||
             stripOffsetsEntry == null || stripCountsEntry == null || rowsPerStripEntry == null
             || planarConfigEntry == null)
-            throw new IIOException(this.GetType().getName() + ".read(): unable to decipher image organization");
+            throw new IIOException(this.GetType().Name + ".read(): unable to decipher image organization");
 
         int width = (int) widthEntry.asLong();
         int height = (int) lengthEntry.asLong();
@@ -213,7 +213,7 @@ public class GeotiffImageReader extends ImageReader
             for (int bits : bitsPerSample)
             {
                 if (bits != 8)
-                    throw new IIOException(this.GetType().getName() + ".read(): only expecting 8 bits/sample; found " +
+                    throw new IIOException(this.GetType().Name + ".read(): only expecting 8 bits/sample; found " +
                         bits);
             }
 
@@ -241,7 +241,7 @@ public class GeotiffImageReader extends ImageReader
                     // indexed...
                     if (colorMapEntry == null)
                         throw new IIOException(
-                            this.GetType().getName() + ".read(): no ColorMap found for indexed image type");
+                            this.GetType().Name + ".read(): no ColorMap found for indexed image type");
                     byte[][] cmap = readColorMap(colorMapEntry);
                     colorModel = new IndexColorModel(bitsPerSample[0], (int) colorMapEntry.count / 3, cmap[0], cmap[1],
                         cmap[2]);
@@ -333,7 +333,7 @@ public class GeotiffImageReader extends ImageReader
 
         if (super.input == null || !(super.input instanceof ImageInputStream))
         {
-            throw new IIOException(this.GetType().getName() + ": null/invalid ImageInputStream");
+            throw new IIOException(this.GetType().Name + ": null/invalid ImageInputStream");
         }
         this.theStream = (ImageInputStream) super.input;
 
@@ -357,7 +357,7 @@ public class GeotiffImageReader extends ImageReader
         }
         catch (IOException ex)
         {
-            throw new IIOException(this.GetType().getName() + ": error reading signature");
+            throw new IIOException(this.GetType().Name + ": error reading signature");
         }
 
         // skip the magic number and get offset to first (and likely only) ImageFileDirectory...

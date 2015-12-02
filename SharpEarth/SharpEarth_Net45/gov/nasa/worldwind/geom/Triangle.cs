@@ -1248,7 +1248,7 @@ public class Triangle
         return d0 * d1 > 0 && d0 * d2 > 0;
     }
 
-    public String toString()
+    public override string ToString()
     {
         return "Triangle (" + a + ", " + b + ", " + c + ")";
     }

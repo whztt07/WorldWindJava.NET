@@ -1555,7 +1555,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      * @return A string indicating the sector's angles.
      */
     @Override
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append("(");

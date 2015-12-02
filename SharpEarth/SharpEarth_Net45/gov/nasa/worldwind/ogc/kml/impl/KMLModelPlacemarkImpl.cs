@@ -403,7 +403,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
         }
 
         @Override
-        public String toString()
+        public override string ToString()
         {
             return this.address;
         }

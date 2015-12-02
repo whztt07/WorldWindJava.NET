@@ -231,7 +231,7 @@ public abstract class Request
         return queryString.ToString();
     }
 
-    public String toString()
+    public override string ToString()
     {
         String errorMessage = "Error converting wms-request URI to string.";
         try

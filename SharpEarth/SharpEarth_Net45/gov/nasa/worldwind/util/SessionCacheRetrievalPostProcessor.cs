@@ -276,7 +276,7 @@ public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcesso
      *
      * @return String representation of this post processor.
      */
-    public String toString()
+    public override string ToString()
     {
         if (this.getName() != null)
             return this.getName();

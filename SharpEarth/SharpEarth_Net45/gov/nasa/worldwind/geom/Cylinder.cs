@@ -965,7 +965,7 @@ public class Cylinder implements Extent, Renderable
         return result;
     }
 
-    public String toString()
+    public override string ToString()
     {
         return this.cylinderRadius + ", " + this.bottomCenter.ToString() + ", " + this.topCenter.ToString() + ", "
             + this.axisUnitDirection.ToString();

@@ -368,7 +368,7 @@ public class WMSCapabilities extends OGCCapabilities
     }
 
     @Override
-    public String toString() // TODO: Complete this method
+    public override string ToString() // TODO: Complete this method
     {
         StringBuilder sb = new StringBuilder(super.ToString());
 

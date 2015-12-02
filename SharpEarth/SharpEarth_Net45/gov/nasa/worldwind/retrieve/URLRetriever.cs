@@ -610,7 +610,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         return this.getName() != null ? this.getName() : super.ToString();
     }

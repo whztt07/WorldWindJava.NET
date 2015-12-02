@@ -238,7 +238,7 @@ public sealed class Intersection // Instances are immutable
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         String pt = "Intersection Point: " + this.intersectionPoint;
         String tang = this.isTangent ? " is a tangent." : " not a tangent";

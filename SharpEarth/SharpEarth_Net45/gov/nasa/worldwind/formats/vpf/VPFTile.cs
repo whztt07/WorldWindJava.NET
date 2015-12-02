@@ -95,7 +95,7 @@ public class VPFTile implements ExtentHolder
         return result;
     }
 
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append(this.id);

@@ -564,7 +564,7 @@ public class TextureTile extends Tile implements SurfaceTile
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         return this.getSector().ToString();
     }

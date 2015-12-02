@@ -229,7 +229,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
     {
         if (!(sourceValues instanceof KMLAbstractContainer))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

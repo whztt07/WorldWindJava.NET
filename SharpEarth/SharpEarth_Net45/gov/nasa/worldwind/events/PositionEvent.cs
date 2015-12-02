@@ -3,7 +3,11 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.geom.Position;
+
+using System;
+using System.Drawing;
+using SharpEarth.geom;
+
 namespace SharpEarth.events{
 
 
@@ -11,21 +15,20 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: PositionEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PositionEvent extends WWEvent
+public class PositionEvent : WWEvent
 {
-    private final java.awt.Point screenPoint;
-    private final Position position;
-    private final Position previousPosition;
+    private readonly Point screenPoint;
+    private readonly Position position;
+    private readonly Position previousPosition;
 
-    public PositionEvent(Object source, java.awt.Point screenPoint, Position previousPosition, Position position)
+    public PositionEvent(object source, Point screenPoint, Position previousPosition, Position position) : base(source)
     {
-        super(source);
         this.screenPoint = screenPoint;
         this.position = position;
         this.previousPosition = previousPosition;
     }
 
-    public java.awt.Point getScreenPoint()
+    public Point getScreenPoint()
     {
         return screenPoint;
     }
@@ -40,13 +43,12 @@ public class PositionEvent extends WWEvent
         return previousPosition;
     }
 
-    @Override
-    public String toString()
-    {
-        return this.GetType().getName() + " "
-            + (this.previousPosition != null ? this.previousPosition : "null")
+  public override string ToString()
+  {
+        return this.GetType().Name + " "
+            + (this.previousPosition != null ? this.previousPosition.ToString() : "null")
             + " --> "
-            + (this.position != null ? this.position : "null");
+            + (this.position != null ? this.position.ToString() : "null");
     }
 }
 }

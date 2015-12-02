@@ -2120,7 +2120,7 @@ public class WWXML
             {
                 // Warn that the image source property cannot be written to the document.
                 String message = Logging.getMessage("generic.UnrecognizedImageSourceType",
-                    (imageSource != null) ? imageSource.GetType().getName() : null);
+                    (imageSource != null) ? imageSource.GetType().Name : null);
                 Logging.logger().warning(message);
             }
 

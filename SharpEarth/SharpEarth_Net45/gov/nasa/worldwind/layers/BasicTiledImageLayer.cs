@@ -303,7 +303,7 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
             return (tile != null ? tile.hashCode() : 0);
         }
 
-        public String toString()
+        public override string ToString()
         {
             return this.tile.ToString();
         }

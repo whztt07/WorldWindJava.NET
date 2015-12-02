@@ -1802,7 +1802,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(GetType().getName(), "export", e);
+                Logging.logger().throwing(GetType().Name, "export", e);
                 throw new IOException(e);
             }
         }

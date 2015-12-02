@@ -403,7 +403,7 @@ public class GDALUtils
                 return null;
             }
 
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().getName());
+            String message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().Name);
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }

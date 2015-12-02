@@ -97,7 +97,7 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
         return result;
     }
 
-    public String toString()
+    public override string ToString()
     {
         return this.displayString + " " + this.value.ToString();
     }

@@ -31,7 +31,7 @@ public class Earth extends EllipsoidalGlobe
                 "config/Earth/EarthElevations2.xml"));
     }
 
-    public String toString()
+    public override string ToString()
     {
         return "Earth";
     }

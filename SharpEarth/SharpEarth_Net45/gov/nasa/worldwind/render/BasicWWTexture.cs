@@ -326,7 +326,7 @@ public class BasicWWTexture implements WWTexture
         else
         {
             Logging.logger().log(java.util.logging.Level.SEVERE, "generic.UnrecognizedImageSourceType",
-                imageSource.GetType().getName());
+                imageSource.GetType().Name);
             this.textureInitializationFailed = true;
             return null;
         }
@@ -334,7 +334,7 @@ public class BasicWWTexture implements WWTexture
         if (t == null) // In case JOGL TextureIO returned null
         {
             Logging.logger().log(java.util.logging.Level.SEVERE, "generic.TextureUnreadable",
-                imageSource instanceof String ? imageSource : imageSource.GetType().getName());
+                imageSource instanceof String ? imageSource : imageSource.GetType().Name);
             this.textureInitializationFailed = true;
             return null;
         }

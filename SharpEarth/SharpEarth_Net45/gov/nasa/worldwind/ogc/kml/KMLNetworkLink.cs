@@ -571,7 +571,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
             return result;
         }
 
-        public String toString()
+        public override string ToString()
         {
             return this.address;
         }

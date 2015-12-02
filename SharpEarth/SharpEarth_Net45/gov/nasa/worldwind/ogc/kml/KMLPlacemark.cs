@@ -237,7 +237,7 @@ public class KMLPlacemark extends KMLAbstractFeature
     {
         if (!(sourceValues instanceof KMLPlacemark))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

@@ -439,7 +439,7 @@ public sealed class Sphere implements Extent, Renderable
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         return "Sphere: center = " + this.center.ToString() + " radius = " + Double.ToString(this.radius);
     }

@@ -1218,7 +1218,7 @@ public class SurfaceObjectTileBuilder
     protected String uniqueCacheName()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.GetType().getName());
+        sb.append(this.GetType().Name);
         sb.append("/");
         sb.append(nextUniqueId++);
 

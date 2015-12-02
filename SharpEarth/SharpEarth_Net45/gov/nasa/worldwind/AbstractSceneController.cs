@@ -588,7 +588,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                     catch (Exception e)
                     {
                         String message = Logging.getMessage("SceneController.ExceptionWhilePreRenderingLayer",
-                            (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
+                            (layer != null ? layer.GetType().Name : Logging.getMessage("term.unknown")));
                         Logging.logger().log(Level.SEVERE, message, e);
                         // Don't abort; continue on to the next layer.
                     }
@@ -660,7 +660,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                 catch (Exception e)
                 {
                     String message = Logging.getMessage("SceneController.ExceptionWhilePickingInLayer",
-                        (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
+                        (layer != null ? layer.GetType().Name : Logging.getMessage("term.unknown")));
                     Logging.logger().log(Level.SEVERE, message, e);
                     // Don't abort; continue on to the next layer.
                 }
@@ -898,7 +898,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                     catch (Exception e)
                     {
                         String message = Logging.getMessage("SceneController.ExceptionWhileRenderingLayer",
-                            (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
+                            (layer != null ? layer.GetType().Name : Logging.getMessage("term.unknown")));
                         Logging.logger().log(Level.SEVERE, message, e);
                         // Don't abort; continue on to the next layer.
                     }

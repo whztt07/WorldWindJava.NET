@@ -174,7 +174,7 @@ abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
 
