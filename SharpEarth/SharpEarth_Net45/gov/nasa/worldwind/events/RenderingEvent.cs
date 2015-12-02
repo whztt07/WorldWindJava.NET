@@ -30,8 +30,7 @@ public class RenderingEvent : WWEvent
         return this.stage ?? "gov.nasa.worldwind.RenderingEvent.UnknownStage";
     }
 
-    @Override
-    public String toString()
+    public override string ToString()
     {
         return this.GetType().Name + " "
             + (this.stage ?? Logging.getMessage("generic.Unknown"));

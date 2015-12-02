@@ -241,12 +241,12 @@ public class SelectEvent extends WWEvent
     }
 
     @Override
-    public String toString()
+    public override string ToString()
     {
-        StringBuilder sb = new StringBuilder(this.GetType().getName() + " "
+        StringBuilder sb = new StringBuilder(this.GetType().Name + " "
             + (this.eventAction != null ? this.eventAction : Logging.getMessage("generic.Unknown")));
         if (this.pickedObjects != null && this.pickedObjects.getTopObject() != null)
-            sb.append(", ").append(this.pickedObjects.getTopObject().GetType().getName());
+            sb.append(", ").append(this.pickedObjects.getTopObject().GetType().Name);
 
         return sb.ToString();
     }

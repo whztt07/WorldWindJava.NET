@@ -54,7 +54,7 @@ namespace java.util
      * @return  A a String representation of this EventObject.
      */
 
-    public string toString()
+    public override string ToString()
     {
       return this.GetType().Name + "[source=" + source + "]";
     }
