@@ -73,7 +73,7 @@ public class KMLBalloonStyle extends KMLAbstractSubStyle
      *
      * @return True if at least one of the BalloonStyle fields is set (text, displayMode, bgColor, etc).
      */
-    public boolean hasStyleFields()
+    public bool hasStyleFields()
     {
         return this.hasField("text")
             || this.hasField("bgColor")

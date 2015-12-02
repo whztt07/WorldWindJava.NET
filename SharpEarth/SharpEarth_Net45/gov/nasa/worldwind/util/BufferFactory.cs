@@ -22,7 +22,7 @@ namespace SharpEarth.util{
  */
 public abstract class BufferFactory
 {
-    private final boolean allocateDirect;
+    private final bool allocateDirect;
 
     /**
      * Constructs a new BufferFactory with the specified buffer allocation policy.
@@ -48,7 +48,7 @@ public abstract class BufferFactory
      * @return true if this factory allocates and returns BufferWrappers backed by direct buffers, and false if it
      *         allocates and return BufferWrappers backed by non-direct buffers.
      */
-    public boolean isAllocateDirect()
+    public bool isAllocateDirect()
     {
         return this.allocateDirect;
     }

@@ -128,11 +128,11 @@ public class WWUtil
     }
 
     /**
-     * Converts a specified string to a boolean value. Returns null if the string cannot be converted.
+     * Converts a specified string to a bool value. Returns null if the string cannot be converted.
      *
      * @param s the string to convert.
      *
-     * @return boolean value of the string, or null if the string cannot be converted.
+     * @return bool value of the string, or null if the string cannot be converted.
      *
      * @throws ArgumentException if the string is null.
      */
@@ -166,11 +166,11 @@ public class WWUtil
     }
 
     /**
-     * Converts a specified string to a boolean value. Returns null if the string cannot be converted.
+     * Converts a specified string to a bool value. Returns null if the string cannot be converted.
      *
      * @param s the string to convert.
      *
-     * @return boolean value of the string, or null if the string cannot be converted.
+     * @return bool value of the string, or null if the string cannot be converted.
      *
      * @throws ArgumentException if the string is null.
      */
@@ -577,7 +577,7 @@ public class WWUtil
             | (color.getGreen() & 0xFF) << 16
             | (color.getBlue() & 0xFF) << 8
             | (color.getAlpha() & 0xFF);
-        return String.format("%#08X", rgba);
+        return String.Format("%#08X", rgba);
     }
 
     /**
@@ -605,7 +605,7 @@ public class WWUtil
             | (color.getGreen() & 0xFF) << 8
             | (color.getBlue() & 0xFF) << 16
             | (color.getAlpha() & 0xFF) << 24;
-        return String.format("%#08X", rgba);
+        return String.Format("%#08X", rgba);
     }
 
     /**
@@ -719,7 +719,7 @@ public class WWUtil
      *
      * @return true if the reference is null or is a zero-length {@link String}.
      */
-    public static boolean isEmpty(Object s)
+    public static bool isEmpty(Object s)
     {
         return s == null || (s instanceof String && ((String) s).length() == 0);
     }
@@ -731,7 +731,7 @@ public class WWUtil
      *
      * @return true if the list is null or zero-length.
      */
-    public static boolean isEmpty(java.util.List<?> list)
+    public static bool isEmpty(java.util.List<?> list)
     {
         return list == null || list.size() == 0;
     }
@@ -887,7 +887,7 @@ public class WWUtil
 
         try // String arg
         {
-            Method method = parent.getClass().getMethod(methodName, new Class[] {String.class});
+            Method method = parent.GetType().getMethod(methodName, new Class[] {String.class});
             return method != null ? method.invoke(parent, propertyValue) : null;
         }
         catch (NoSuchMethodException e)
@@ -900,7 +900,7 @@ public class WWUtil
             Double d = WWUtil.makeDouble(propertyValue);
             if (d != null)
             {
-                Method method = parent.getClass().getMethod(methodName, new Class[] {double.class});
+                Method method = parent.GetType().getMethod(methodName, new Class[] {double.class});
                 return method != null ? method.invoke(parent, d) : null;
             }
         }
@@ -914,7 +914,7 @@ public class WWUtil
             Integer i = WWUtil.makeInteger(propertyValue);
             if (i != null)
             {
-                Method method = parent.getClass().getMethod(methodName, new Class[] {int.class});
+                Method method = parent.GetType().getMethod(methodName, new Class[] {int.class});
                 return method != null ? method.invoke(parent, i) : null;
             }
         }
@@ -923,12 +923,12 @@ public class WWUtil
             // skip to next arg type
         }
 
-        try // boolean arg
+        try // bool arg
         {
             Boolean b = WWUtil.convertStringToBoolean(propertyValue);
             if (b != null)
             {
-                Method method = parent.getClass().getMethod(methodName, new Class[] {boolean.class});
+                Method method = parent.GetType().getMethod(methodName, new Class[] {boolean.class});
                 return method != null ? method.invoke(parent, b) : null;
             }
         }
@@ -942,7 +942,7 @@ public class WWUtil
             Long l = WWUtil.makeLong(propertyValue);
             if (l != null)
             {
-                Method method = parent.getClass().getMethod(methodName, new Class[] {long.class});
+                Method method = parent.GetType().getMethod(methodName, new Class[] {long.class});
                 return method != null ? method.invoke(parent, l) : null;
             }
         }
@@ -964,7 +964,7 @@ public class WWUtil
      * @param forceOverwrite Allow overwrite existing values in the destination list
      * @param keys           Array of <code>keys</code >
      */
-    public static void copyValues(AVList srcList, AVList destList, String[] keys, boolean forceOverwrite)
+    public static void copyValues(AVList srcList, AVList destList, String[] keys, bool forceOverwrite)
     {
         if (WWUtil.isEmpty(srcList) || WWUtil.isEmpty(destList) || WWUtil.isEmpty(keys) || keys.length == 0)
         {
@@ -1023,13 +1023,13 @@ public class WWUtil
         if (!WWUtil.isEmpty(message))
             sb.append(message);
 
-        String messageClass = t.getClass().getName();
+        String messageClass = t.GetType().getName();
 
         Throwable cause = t.getCause();
         if (null != cause && cause != t)
         {
             String causeMessage = cause.getMessage();
-            String causeClass = cause.getClass().getName();
+            String causeClass = cause.GetType().getName();
 
             if (!WWUtil.isEmpty(messageClass) && !WWUtil.isEmpty(causeClass) && !messageClass.equals(causeClass))
             {
@@ -1046,7 +1046,7 @@ public class WWUtil
             sb.append(messageClass);
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -1063,7 +1063,7 @@ public class WWUtil
         return s;
     }
 
-    protected static boolean isKMLTimeShift(String timeString)
+    protected static bool isKMLTimeShift(String timeString)
     {
         return Pattern.matches(".*[+-]+\\d\\d:\\d\\d$", timeString.trim());
     }

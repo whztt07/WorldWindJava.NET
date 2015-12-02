@@ -170,7 +170,7 @@ public class BasicGpuResourceCache implements GpuResourceCache
         return this.resources.getFreeCapacity();
     }
 
-    public boolean contains(Object key)
+    public bool contains(Object key)
     {
         return this.resources.contains(key);
     }

@@ -23,10 +23,10 @@ public class KMLSurfaceImageImpl extends SurfaceImage implements KMLRenderable
 {
     protected KMLGroundOverlay parent;
 
-    protected boolean attributesResolved;
+    protected bool attributesResolved;
 
     /** Indicates that the source texture has been resolved and loaded. */
-    protected boolean textureResolved;
+    protected bool textureResolved;
     /** Indicates the time at which the image source was specified. */
     protected long iconRetrievalTime;
 
@@ -34,7 +34,7 @@ public class KMLSurfaceImageImpl extends SurfaceImage implements KMLRenderable
      * Flag to indicate the rotation must be applied to the SurfaceImage. Rotation is applied the first time that the
      * image is rendered.
      */
-    protected boolean mustApplyRotation;
+    protected bool mustApplyRotation;
 
     /**
      * Create an screen image.
@@ -117,7 +117,7 @@ public class KMLSurfaceImageImpl extends SurfaceImage implements KMLRenderable
 
         // Set the Icon's expiration time the first time that the image is rendered after the texture has been retrieved.
         // The expiration time comes from the HTTP headers, so we can't do this until the resource is available.
-        boolean mustSetExpiration = !this.textureResolved && this.sourceTexture != null
+        bool mustSetExpiration = !this.textureResolved && this.sourceTexture != null
             && this.sourceTexture.isTextureCurrent(dc);
         if (mustSetExpiration)
         {
@@ -147,7 +147,7 @@ public class KMLSurfaceImageImpl extends SurfaceImage implements KMLRenderable
      *
      * @return True if the image source must be resolved.
      */
-    protected boolean mustResolveHref()
+    protected bool mustResolveHref()
     {
         KMLIcon icon = this.parent.getIcon();
         //noinspection SimplifiableIfStatement

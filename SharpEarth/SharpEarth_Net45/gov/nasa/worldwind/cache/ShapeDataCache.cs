@@ -68,7 +68,7 @@ public class ShapeDataCache implements Iterable<ShapeDataCache.ShapeDataCacheEnt
          *
          * @return true if the shape is valid, otherwise false.
          */
-        public boolean isValid(DrawContext dc)
+        public bool isValid(DrawContext dc)
         {
             return this.verticalExaggeration == dc.getVerticalExaggeration()
                 && (this.globeStateKey != null && globeStateKey.equals(dc.getGlobe().getGlobeStateKey(dc)));
@@ -81,7 +81,7 @@ public class ShapeDataCache implements Iterable<ShapeDataCache.ShapeDataCacheEnt
          *
          * @return true if the entry has expired, otherwise false.
          */
-        public boolean isExpired(DrawContext dc)
+        public bool isExpired(DrawContext dc)
         {
             return dc != null ? timer.isExpired(dc) : timer.isExpired(System.currentTimeMillis());
         }

@@ -40,7 +40,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static ByteBuffer newByteBuffer(int size, boolean allocateDirect)
+    public static ByteBuffer newByteBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -63,7 +63,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static ShortBuffer newShortBuffer(int size, boolean allocateDirect)
+    public static ShortBuffer newShortBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -86,7 +86,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static IntBuffer newIntBuffer(int size, boolean allocateDirect)
+    public static IntBuffer newIntBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -109,7 +109,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static FloatBuffer newFloatBuffer(int size, boolean allocateDirect)
+    public static FloatBuffer newFloatBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -132,7 +132,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static DoubleBuffer newDoubleBuffer(int size, boolean allocateDirect)
+    public static DoubleBuffer newDoubleBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -156,7 +156,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static CharBuffer newCharBuffer(int size, boolean allocateDirect)
+    public static CharBuffer newCharBuffer(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -180,7 +180,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static BufferWrapper newByteBufferWrapper(int size, boolean allocateDirect)
+    public static BufferWrapper newByteBufferWrapper(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -205,7 +205,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static BufferWrapper newShortBufferWrapper(int size, boolean allocateDirect)
+    public static BufferWrapper newShortBufferWrapper(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -230,7 +230,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static BufferWrapper newIntBufferWrapper(int size, boolean allocateDirect)
+    public static BufferWrapper newIntBufferWrapper(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -255,7 +255,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static BufferWrapper newFloatBufferWrapper(int size, boolean allocateDirect)
+    public static BufferWrapper newFloatBufferWrapper(int size, bool allocateDirect)
     {
         if (size < 0)
         {
@@ -280,7 +280,7 @@ public class WWBufferUtil
      *
      * @throws ArgumentException if size is negative.
      */
-    public static BufferWrapper newDoubleBufferWrapper(int size, boolean allocateDirect)
+    public static BufferWrapper newDoubleBufferWrapper(int size, bool allocateDirect)
     {
         if (size < 0)
         {

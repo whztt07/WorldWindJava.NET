@@ -55,7 +55,7 @@ public class WWMath
      */
     public static double logBase2(double value)
     {
-        return Math.log(value) / Math.log(2d);
+        return Math.Log(value) / Math.Log(2d);
     }
 
     /**
@@ -65,7 +65,7 @@ public class WWMath
      *
      * @return true if power of 2, else false
      */
-    public static boolean isPowerOfTwo(int value)
+    public static bool isPowerOfTwo(int value)
     {
         return (value == powerOfTwoCeiling(value));
     }
@@ -79,7 +79,7 @@ public class WWMath
      */
     public static int powerOfTwoCeiling(int reference)
     {
-        int power = (int) Math.ceil(Math.log(reference) / Math.log(2d));
+        int power = (int) Math.ceil(Math.Log(reference) / Math.Log(2d));
         return (int) Math.pow(2d, power);
     }
 
@@ -92,7 +92,7 @@ public class WWMath
      */
     public static int powerOfTwoFloor(int reference)
     {
-        int power = (int) Math.floor(Math.log(reference) / Math.log(2d));
+        int power = (int) Math.Floor(Math.Log(reference) / Math.Log(2d));
         return (int) Math.pow(2d, power);
     }
 
@@ -964,7 +964,7 @@ public class WWMath
      *
      * @throws ArgumentException if the locations are null.
      */
-    public static boolean isPolygonClosed(Iterable<? extends LatLon> locations)
+    public static bool isPolygonClosed(Iterable<? extends LatLon> locations)
     {
         if (locations == null)
         {
@@ -1001,7 +1001,7 @@ public class WWMath
      *
      * @throws ArgumentException if the points are null.
      */
-    public static boolean isPolygonClosed2(Iterable<? extends Vec4> points)
+    public static bool isPolygonClosed2(Iterable<? extends Vec4> points)
     {
         if (points == null)
         {
@@ -1037,7 +1037,7 @@ public class WWMath
      *
      * @return true if the location is inside the polygon.
      */
-    public static boolean isLocationInside(LatLon location, Iterable<? extends LatLon> locations)
+    public static bool isLocationInside(LatLon location, Iterable<? extends LatLon> locations)
     {
         if (location == null)
         {
@@ -1053,7 +1053,7 @@ public class WWMath
         }
 
         // Test for even/odd number of intersections with a constant latitude line going through the given location.
-        boolean result = false;
+        bool result = false;
         LatLon p1 = iter.next();
         while (iter.hasNext())
         {
@@ -1101,7 +1101,7 @@ public class WWMath
      *
      * @throws ArgumentException if <code>p0</code>, <code>p1</code>, or <code>p2</code> is null
      */
-    public static boolean computeCircleThroughPoints(Vec4 p0, Vec4 p1, Vec4 p2, Vec4[] centerOut, Vec4[] axisOut,
+    public static bool computeCircleThroughPoints(Vec4 p0, Vec4 p1, Vec4 p2, Vec4[] centerOut, Vec4[] axisOut,
         double[] radiusOut)
     {
         if (p0 == null || p1 == null || p2 == null)
@@ -1193,7 +1193,7 @@ public class WWMath
 
         double fMax = -Double.MaxValue;
         double bMin = Double.MaxValue;
-        boolean isTangent = false;
+        bool isTangent = false;
 
         Vec4 u = line.getDirection();
         Vec4 p = line.getOrigin();
@@ -1575,7 +1575,7 @@ public class WWMath
     {
         List<Point> points = new ArrayList<Point>(Math.Abs(x1 - x0 + 1));
 
-        boolean steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
+        bool steep = Math.Abs(y1 - y0) > Math.Abs(x1 - x0);
         if (steep)
         {
             int t = x0;

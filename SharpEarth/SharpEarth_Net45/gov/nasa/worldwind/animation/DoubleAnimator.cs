@@ -72,7 +72,7 @@ public class DoubleAnimator extends BasicAnimator
        if (newValue == null)
            return;
 
-       boolean success = this.propertyAccessor.setDouble(newValue);
+       bool success = this.propertyAccessor.setDouble(newValue);
        if (!success)
        {
            this.flagLastStateInvalid();

@@ -240,7 +240,7 @@ public class AbsentResourceList
      *
      * @return true if the resource is considered absent, otherwise false.
      */
-    public final boolean isResourceAbsent(long resourceID)
+    public final bool isResourceAbsent(long resourceID)
     {
         return this.isResourceAbsent(Long.toString(resourceID));
     }
@@ -278,7 +278,7 @@ public class AbsentResourceList
      *
      * @return true if the resource is considered absent, otherwise false.
      */
-    synchronized public final boolean isResourceAbsent(String resourceID)
+    synchronized public final bool isResourceAbsent(String resourceID)
     {
         AbsentResourceEntry entry = (AbsentResourceEntry) this.possiblyAbsent.get(resourceID);
         if (entry == null)

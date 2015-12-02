@@ -65,7 +65,7 @@ public class NITFSUtil
         return (short) (0xFFFF & Integer.parseInt(s));
     }
 
-    public static boolean getBoolean(java.nio.ByteBuffer buffer)
+    public static bool getBoolean(java.nio.ByteBuffer buffer)
     {
         return !((byte) 0 == buffer.get()); // 0 = false, non-zero = true
     }

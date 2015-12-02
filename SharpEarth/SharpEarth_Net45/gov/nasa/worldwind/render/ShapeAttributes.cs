@@ -43,7 +43,7 @@ public interface ShapeAttributes extends Exportable
      *
      * @see #setUnresolved(boolean)
      */
-    boolean isUnresolved();
+    bool isUnresolved();
 
     /**
      * Specifies whether some of the shape's attributes are unresolved. This can be used to denote that a shape's
@@ -65,7 +65,7 @@ public interface ShapeAttributes extends Exportable
      *
      * @see #setDrawInterior(boolean)
      */
-    boolean isDrawInterior();
+    bool isDrawInterior();
 
     /**
      * Specifies whether to draw the shape's interior geometry.
@@ -83,7 +83,7 @@ public interface ShapeAttributes extends Exportable
      *
      * @see #setDrawOutline(boolean)
      */
-    boolean isDrawOutline();
+    bool isDrawOutline();
 
     /**
      * Specifies whether to draw the shape's outline geometry.
@@ -101,7 +101,7 @@ public interface ShapeAttributes extends Exportable
      *
      * @see #setEnableAntialiasing(boolean)
      */
-    boolean isEnableAntialiasing();
+    bool isEnableAntialiasing();
 
     /**
      * Specifies whether the shape should be rendered with smooth lines and edges.
@@ -119,7 +119,7 @@ public interface ShapeAttributes extends Exportable
      *
      * @see #setEnableLighting(boolean)
      */
-    boolean isEnableLighting();
+    bool isEnableLighting();
 
     /**
      * Specifies whether to apply lighting to the shape. By default, the shape is lit using the

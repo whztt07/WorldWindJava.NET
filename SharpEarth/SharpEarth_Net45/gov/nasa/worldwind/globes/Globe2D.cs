@@ -33,7 +33,7 @@ public interface Globe2D
      * @return <code>true</code> if it makes sense to treat the associated projection as continuous, otherwise
      *         <code>false</code>.
      */
-    boolean isContinuous();
+    bool isContinuous();
 
     int getOffset();
 

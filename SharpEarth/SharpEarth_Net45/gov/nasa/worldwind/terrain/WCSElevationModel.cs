@@ -175,7 +175,7 @@ public class WCSElevationModel extends BasicElevationModel
         int tileSize = (Integer) parameters.getValue(AVKey.TILE_WIDTH);
         LatLon level0Delta = (LatLon) parameters.getValue(AVKey.LEVEL_ZERO_TILE_DELTA);
 
-        double n = Math.log(level0Delta.getLatitude().degrees / (dataResolution * tileSize)) / Math.log(2);
+        double n = Math.Log(level0Delta.getLatitude().degrees / (dataResolution * tileSize)) / Math.Log(2);
         parameters.setValue(AVKey.NUM_LEVELS, (int) (Math.ceil(n) + 1));
     }
 
@@ -246,7 +246,7 @@ public class WCSElevationModel extends BasicElevationModel
             {
                 sb = new StringBuffer(tile.getLevel().getService());
 
-                if (!sb.toString().toLowerCase().contains("service=wcs"))
+                if (!sb.ToString().toLowerCase().contains("service=wcs"))
                     sb.append("service=WCS");
                 sb.append("&request=GetCoverage");
                 sb.append("&version=");
@@ -260,7 +260,7 @@ public class WCSElevationModel extends BasicElevationModel
                 else
                     sb.append(altImageFormat);
 
-                this.URLTemplate = sb.toString();
+                this.URLTemplate = sb.ToString();
             }
             else
             {
@@ -284,7 +284,7 @@ public class WCSElevationModel extends BasicElevationModel
 
             sb.append("&"); // terminate the query string
 
-            return new java.net.URL(sb.toString().replace(" ", "%20"));
+            return new java.net.URL(sb.ToString().replace(" ", "%20"));
         }
     }
 

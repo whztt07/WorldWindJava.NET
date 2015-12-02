@@ -95,20 +95,20 @@ public class NITFSImageSegment extends NITFSSegment
     private int     transparentOutputPixelCode;
     private int[]   subFrameOffsets = null;
 
-    private boolean hasTransparentPixels = false;
-    private boolean hasMaskedSubframes = false;
+    private bool hasTransparentPixels = false;
+    private bool hasMaskedSubframes = false;
 
     public static String[] getSupportedFormats()
     {
         return SupportedFormats;
     }
 
-    public boolean hasTransparentPixels()
+    public bool hasTransparentPixels()
     {
         return this.hasTransparentPixels;
     }
 
-    public boolean hasMaskedSubframes()
+    public bool hasMaskedSubframes()
     {
         return this.hasMaskedSubframes;
     }
@@ -548,7 +548,7 @@ public class NITFSImageSegment extends NITFSSegment
             throw new NITFSRuntimeException("NITFSReader.UnexpectedSegmentType", this.partType);
 
         this.imageID = NITFSUtil.getString(buffer, 10);
-        boolean isSupportedFormat = false;
+        bool isSupportedFormat = false;
         for(String s : SupportedFormats)
         {
             if(0 == s.compareTo(this.imageID))

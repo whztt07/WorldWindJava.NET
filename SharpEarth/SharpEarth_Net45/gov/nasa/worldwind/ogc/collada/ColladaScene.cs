@@ -20,7 +20,7 @@ namespace SharpEarth.ogc.collada{
 public class ColladaScene extends ColladaAbstractObject implements ColladaRenderable
 {
     /** Flag to indicate that the scene has been fetched from the hash map. */
-    protected boolean sceneFetched = false;
+    protected bool sceneFetched = false;
     /** Cached value of the <i>instance_visual_scene</i> field. */
     protected ColladaInstanceVisualScene instanceVisualScene;
 

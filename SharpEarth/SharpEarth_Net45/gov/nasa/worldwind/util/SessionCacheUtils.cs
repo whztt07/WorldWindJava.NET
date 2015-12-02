@@ -72,7 +72,7 @@ public class SessionCacheUtils
 
         SessionCacheRetrievalPostProcessor postProcessor = new SessionCacheRetrievalPostProcessor(cache, cacheKey,
             absentResourceList, resourceID, propertyListener, propertyName);
-        postProcessor.setName(url.toString());
+        postProcessor.setName(url.ToString());
 
         Retriever retriever = URLRetriever.createRetriever(url, postProcessor);
         try
@@ -81,7 +81,7 @@ public class SessionCacheUtils
         }
         catch (Exception e)
         {
-            String message = Logging.getMessage("layers.TiledImageLayer.ExceptionRetrievingResources", url.toString());
+            String message = Logging.getMessage("layers.TiledImageLayer.ExceptionRetrievingResources", url.ToString());
             Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
         }
     }
@@ -163,14 +163,14 @@ public class SessionCacheUtils
             throw new ArgumentException(message);
         }
 
-        WMSCapabilities caps = getSessionCapabilities(cache, cacheKey, url.toString());
+        WMSCapabilities caps = getSessionCapabilities(cache, cacheKey, url.ToString());
         if (caps != null)
             return caps;
 
         retrieveSessionData(url, cache, cacheKey, absentResourceList, resourceID, propertyListener, propertyName);
 
         // Try to get the caps after the retrieval attempt.
-        return getSessionCapabilities(cache, cacheKey, url.toString());
+        return getSessionCapabilities(cache, cacheKey, url.ToString());
     }
 }
 }

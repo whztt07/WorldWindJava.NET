@@ -786,7 +786,7 @@ public abstract class BufferWrapper
 
         protected abstract BufferWrapper doGetSubBuffer();
 
-        protected abstract boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length);
+        protected abstract bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length);
     }
 
     public static class ByteBufferWrapper extends BufferWrapper.AbstractBufferWrapper<ByteBuffer>
@@ -977,7 +977,7 @@ public abstract class BufferWrapper
             return new ByteBufferWrapper(this.buffer.slice());
         }
 
-        protected boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
+        protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
             if (that instanceof ByteBuffer)
@@ -1198,7 +1198,7 @@ public abstract class BufferWrapper
             return new ShortBufferWrapper(this.buffer.slice());
         }
 
-        protected boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
+        protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
             if (that instanceof ShortBuffer)
@@ -1419,7 +1419,7 @@ public abstract class BufferWrapper
             return new IntBufferWrapper(this.buffer.slice());
         }
 
-        protected boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
+        protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
             if (that instanceof IntBuffer)
@@ -1640,7 +1640,7 @@ public abstract class BufferWrapper
             return new FloatBufferWrapper(this.buffer.slice());
         }
 
-        protected boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
+        protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
             if (that instanceof FloatBuffer)
@@ -1861,7 +1861,7 @@ public abstract class BufferWrapper
             return new DoubleBufferWrapper(this.buffer.slice());
         }
 
-        protected boolean doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
+        protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
             if (that instanceof DoubleBuffer)

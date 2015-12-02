@@ -46,7 +46,7 @@ public class DataConfigurationUtils
      *
      * @throws ArgumentException if the document is null.
      */
-    public static boolean isDataConfig(Element domElement)
+    public static bool isDataConfig(Element domElement)
     {
         if (domElement == null)
         {
@@ -331,7 +331,7 @@ public class DataConfigurationUtils
      *
      * @throws ArgumentException if either the file store or file name are null.
      */
-    public static boolean hasDataConfigFile(FileStore fileStore, String fileName, boolean removeIfExpired,
+    public static bool hasDataConfigFile(FileStore fileStore, String fileName, bool removeIfExpired,
         long expiryTime)
     {
         if (fileStore == null)
@@ -1103,21 +1103,21 @@ public class DataConfigurationUtils
         // No preferred formats specified; just use the first in the caps list.
         if (formatOrderPreference == null || formatOrderPreference.length == 0)
         {
-            return formats[0].toString();
+            return formats[0].ToString();
         }
 
         for (String s : formatOrderPreference)
         {
             for (Object f : formats)
             {
-                if (f.toString().equalsIgnoreCase(s))
+                if (f.ToString().equalsIgnoreCase(s))
                 {
-                    return f.toString();
+                    return f.ToString();
                 }
             }
         }
 
-        return formats[0].toString(); // No preferred formats recognized; just use the first in the caps list.
+        return formats[0].ToString(); // No preferred formats recognized; just use the first in the caps list.
     }
 
     protected static String makeTitle(WMSCapabilities caps, String layerNames, String styleNames)
@@ -1155,7 +1155,7 @@ public class DataConfigurationUtils
             sb.append(styleTitle != null ? styleTitle : styleName);
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     //protected static int[] getLayerFixedWidthAndHeight(Capabilities caps, Element layer)
@@ -1207,8 +1207,8 @@ public class DataConfigurationUtils
 
     //protected static int computeLayerNumLevels(Angle minDelta, Angle maxDelta)
     //{
-    //    double log2MinDelta = WWMath.logBase2(minDelta.getDegrees());
-    //    double log2MaxDelta = WWMath.logBase2(maxDelta.getDegrees());
+    //    double log2MinDelta = WWMath.LogBase2(minDelta.getDegrees());
+    //    double log2MaxDelta = WWMath.LogBase2(maxDelta.getDegrees());
     //    return 1 + (int) Math.Round(log2MaxDelta - log2MinDelta);
     //}
 
@@ -1627,7 +1627,7 @@ public class DataConfigurationUtils
             }
         }
 
-        return (sb.length() > 0) ? sb.toString() : null;
+        return (sb.length() > 0) ? sb.ToString() : null;
     }
 
     //**************************************************************//
@@ -1643,7 +1643,7 @@ public class DataConfigurationUtils
      *
      * @throws ArgumentException if document is null.
      */
-    public static boolean isInstalledDataDescriptorConfigDocument(Element domElement)
+    public static bool isInstalledDataDescriptorConfigDocument(Element domElement)
     {
         if (domElement == null)
         {
@@ -1822,7 +1822,7 @@ public class DataConfigurationUtils
         // DataDescriptor documents always describe an offline pyramid of tiled imagery or elevations in the file
         // store. Therefore we can safely assume that network retrieval should be disabled.
 
-        // Optional boolean properties.
+        // Optional bool properties.
         WWXML.appendBoolean(outElem, "NetworkRetrievalEnabled", false);
     }
 
@@ -1892,7 +1892,7 @@ public class DataConfigurationUtils
      *
      * @throws ArgumentException if document is null.
      */
-    public static boolean isWWDotNetLayerSetConfigDocument(Element domElement)
+    public static bool isWWDotNetLayerSetConfigDocument(Element domElement)
     {
         if (domElement == null)
         {
@@ -1917,7 +1917,7 @@ public class DataConfigurationUtils
      *
      * @throws ArgumentException if the event is null.
      */
-    public static boolean isWWDotNetLayerSetConfigEvent(XMLEvent event)
+    public static bool isWWDotNetLayerSetConfigEvent(XMLEvent event)
     {
         if (event == null)
         {
@@ -2030,7 +2030,7 @@ public class DataConfigurationUtils
         // mime type, then use it to populate the IMAGE_FORMAT and AVAILABLE_IMAGE_FORMAT properties.
         if (params.getValue(AVKey.FORMAT_SUFFIX) != null)
         {
-            String s = WWIO.makeMimeTypeForSuffix(params.getValue(AVKey.FORMAT_SUFFIX).toString());
+            String s = WWIO.makeMimeTypeForSuffix(params.getValue(AVKey.FORMAT_SUFFIX).ToString());
             if (s != null)
             {
                 if (params.getValue(AVKey.IMAGE_FORMAT) == null)

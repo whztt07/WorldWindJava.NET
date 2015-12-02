@@ -39,8 +39,8 @@ public class SurfaceImage extends WWObjectImpl
     private Sector sector;
     private Position referencePosition;
     private double opacity = 1.0;
-    private boolean pickEnabled = true;
-    protected boolean alwaysOnTop = false;
+    private bool pickEnabled = true;
+    protected bool alwaysOnTop = false;
     protected PickSupport pickSupport;
     protected Layer pickLayer;
 
@@ -50,7 +50,7 @@ public class SurfaceImage extends WWObjectImpl
     protected List<LatLon> corners;
     protected WWTexture previousSourceTexture;
     protected WWTexture previousGeneratedTexture;
-    protected boolean generatedTextureExpired;
+    protected bool generatedTextureExpired;
 
     /**
      * A list that contains only a reference to this instance. Used as an argument to the surface tile renderer to
@@ -140,7 +140,7 @@ public class SurfaceImage extends WWObjectImpl
         initializeGeometry(corners);
     }
 
-    public boolean isPickEnabled()
+    public bool isPickEnabled()
     {
         return this.pickEnabled;
     }
@@ -157,7 +157,7 @@ public class SurfaceImage extends WWObjectImpl
      *
      * @see #setAlwaysOnTop(boolean)
      */
-    public boolean isAlwaysOnTop()
+    public bool isAlwaysOnTop()
     {
         return this.alwaysOnTop;
     }
@@ -240,12 +240,12 @@ public class SurfaceImage extends WWObjectImpl
         return Sector.computeBoundingCylinder(dc.getGlobe(), dc.getVerticalExaggeration(), this.getSector());
     }
 
-    public boolean bind(DrawContext dc)
+    public bool bind(DrawContext dc)
     {
         return this.generatedTexture != null && this.generatedTexture.bind(dc);
     }
 
-    public void applyInternalTransform(DrawContext dc, boolean textureIdentityActive)
+    public void applyInternalTransform(DrawContext dc, bool textureIdentityActive)
     {
         if (this.generatedTexture != null)
             this.generatedTexture.applyInternalTransform(dc);
@@ -465,12 +465,12 @@ public class SurfaceImage extends WWObjectImpl
         this.referencePosition = referencePosition;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
 
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         SurfaceImage that = (SurfaceImage) o;
@@ -484,7 +484,7 @@ public class SurfaceImage extends WWObjectImpl
         return this.getImageSource().equals(that.getImageSource()) && this.getSector().equals(that.getSector());
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = this.getImageSource() != null ? this.getImageSource().hashCode() : 0;
@@ -543,7 +543,7 @@ public class SurfaceImage extends WWObjectImpl
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -569,7 +569,7 @@ public class SurfaceImage extends WWObjectImpl
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -599,7 +599,7 @@ public class SurfaceImage extends WWObjectImpl
         String imgSourceStr = null;
         Object imgSource = this.getImageSource();
         if (imgSource instanceof String || imgSource instanceof URL)
-            imgSourceStr = imgSource.toString();
+            imgSourceStr = imgSource.ToString();
 
         if (imgSourceStr != null)
         {
@@ -613,7 +613,7 @@ public class SurfaceImage extends WWObjectImpl
         else
         {
             String message = Logging.getMessage("Export.UnableToExportImageSource",
-                (imgSource != null ? imgSource.getClass().getName() : "null"));
+                (imgSource != null ? imgSource.GetType().getName() : "null"));
             Logging.logger().info(message);
         }
 
@@ -643,19 +643,19 @@ public class SurfaceImage extends WWObjectImpl
     {
         xmlWriter.writeStartElement("LatLonBox");
         xmlWriter.writeStartElement("north");
-        xmlWriter.writeCharacters(Double.toString(this.sector.getMaxLatitude().getDegrees()));
+        xmlWriter.writeCharacters(Double.ToString(this.sector.getMaxLatitude().getDegrees()));
         xmlWriter.writeEndElement();
 
         xmlWriter.writeStartElement("south");
-        xmlWriter.writeCharacters(Double.toString(this.sector.getMinLatitude().getDegrees()));
+        xmlWriter.writeCharacters(Double.ToString(this.sector.getMinLatitude().getDegrees()));
         xmlWriter.writeEndElement(); // south
 
         xmlWriter.writeStartElement("east");
-        xmlWriter.writeCharacters(Double.toString(this.sector.getMinLongitude().getDegrees()));
+        xmlWriter.writeCharacters(Double.ToString(this.sector.getMinLongitude().getDegrees()));
         xmlWriter.writeEndElement();
 
         xmlWriter.writeStartElement("west");
-        xmlWriter.writeCharacters(Double.toString(this.sector.getMaxLongitude().getDegrees()));
+        xmlWriter.writeCharacters(Double.ToString(this.sector.getMaxLongitude().getDegrees()));
         xmlWriter.writeEndElement(); // west
         xmlWriter.writeEndElement(); // LatLonBox
     }
@@ -667,9 +667,9 @@ public class SurfaceImage extends WWObjectImpl
 
         for (LatLon ll : this.corners)
         {
-            xmlWriter.writeCharacters(Double.toString(ll.getLongitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(ll.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");
-            xmlWriter.writeCharacters(Double.toString(ll.getLatitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(ll.getLatitude().getDegrees()));
             xmlWriter.writeCharacters(" ");
         }
 

@@ -125,8 +125,8 @@ namespace SharpEarth.render{
  */
 public abstract class AbstractAnnotation extends AVListImpl implements Annotation
 {
-    protected boolean alwaysOnTop;
-    protected boolean pickEnabled;
+    protected bool alwaysOnTop;
+    protected bool pickEnabled;
     protected String text;
     protected AnnotationAttributes attributes;
     // Child annotation properties.
@@ -154,7 +154,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         this.textBoundsMap = new java.util.HashMap<Object, java.awt.Rectangle>();
     }
 
-    public boolean isAlwaysOnTop()
+    public bool isAlwaysOnTop()
     {
         return alwaysOnTop;
     }
@@ -164,7 +164,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         this.alwaysOnTop = alwaysOnTop;
     }
 
-    public boolean isPickEnabled()
+    public bool isPickEnabled()
     {
         return this.pickEnabled;
     }
@@ -245,7 +245,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         this.childList.add(annotation);
     }
 
-    public boolean removeChild(Annotation annotation)
+    public bool removeChild(Annotation annotation)
     {
         if (annotation == null)
         {
@@ -836,7 +836,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
     protected void drawText(DrawContext dc, int x, int y, int lineHeight, double opacity, Object pickObject,
         Position pickPosition, String text)
     {
-        boolean isHTML = MultiLineTextRenderer.containsHTML(text);
+        bool isHTML = MultiLineTextRenderer.containsHTML(text);
         if (isHTML)
         {
             this.drawHTML(dc, x, y, lineHeight, opacity, pickObject, pickPosition, text);
@@ -953,7 +953,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         gl.glColor3ub((byte) color.getRed(), (byte) color.getGreen(), (byte) color.getBlue());
     }
 
-    protected void drawCallout(DrawContext dc, int mode, int width, int height, boolean useTexCoords)
+    protected void drawCallout(DrawContext dc, int mode, int width, int height, bool useTexCoords)
     {
         String shape = this.getAttributes().getFrameShape();
         if (shape == null)
@@ -993,7 +993,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         }
     }
 
-    protected void applyColor(DrawContext dc, java.awt.Color color, double opacity, boolean premultiplyColors)
+    protected void applyColor(DrawContext dc, java.awt.Color color, double opacity, bool premultiplyColors)
     {
         if (dc.isPickingMode())
             return;
@@ -1145,11 +1145,11 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
             this.align = align;
         }
 
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             TextCacheKey that = (TextCacheKey) o;
@@ -1160,7 +1160,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
                 && (this.font != null ? this.font.equals(that.font) : that.font == null);
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = this.width;
             result = 31 * result + this.height;

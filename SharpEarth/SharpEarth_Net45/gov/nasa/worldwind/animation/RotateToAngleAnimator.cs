@@ -35,7 +35,7 @@ public class RotateToAngleAnimator extends AngleAnimator
         Angle newValue = this.nextAngle(interpolant);
         if (newValue == null)
            return;
-        boolean success = this.propertyAccessor.setAngle(newValue);
+        bool success = this.propertyAccessor.setAngle(newValue);
         if (!success)
         {
            flagLastStateInvalid();
@@ -53,7 +53,7 @@ public class RotateToAngleAnimator extends AngleAnimator
         Angle curAngle = this.propertyAccessor.getAngle();
 
         double difference = Math.Abs(nextAngle.subtract(curAngle).degrees);
-        boolean stopMoving = difference < this.minEpsilon;
+        bool stopMoving = difference < this.minEpsilon;
 
         if (stopMoving)
         {

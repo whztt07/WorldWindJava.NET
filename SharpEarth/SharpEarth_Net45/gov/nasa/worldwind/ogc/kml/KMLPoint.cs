@@ -43,7 +43,7 @@ public class KMLPoint extends KMLAbstractGeometry
             super.doAddEventContent(o, ctx, event, args);
     }
 
-    public boolean isExtrude()
+    public bool isExtrude()
     {
         return this.getExtrude() == Boolean.TRUE;
     }

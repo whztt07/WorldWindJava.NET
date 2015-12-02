@@ -21,11 +21,11 @@ public interface RetrievalService extends WWObject
 
     int getRetrieverPoolSize();
 
-    boolean hasActiveTasks();
+    bool hasActiveTasks();
 
-    boolean isAvailable();
+    bool isAvailable();
 
-    boolean contains(Retriever retriever);
+    bool contains(Retriever retriever);
 
     int getNumRetrieversPending();
 

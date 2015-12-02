@@ -25,7 +25,7 @@ public interface OutlinedShape
      *
      * @return true if the shape's outline should be drawn, otherwise false.
      */
-    boolean isDrawOutline(DrawContext dc, Object shape);
+    bool isDrawOutline(DrawContext dc, Object shape);
 
     /**
      * Indicates whether the shape's faces are drawn.
@@ -35,7 +35,7 @@ public interface OutlinedShape
      *
      * @return true if the shape's faces should be drawn, otherwise false.
      */
-    boolean isDrawInterior(DrawContext dc, Object shape);
+    bool isDrawInterior(DrawContext dc, Object shape);
 
     /**
      * Indicates whether the shape's depth should be adjusted to give its filled faces priority over coincident items
@@ -46,7 +46,7 @@ public interface OutlinedShape
      *
      * @return true if the shape should have priority, otherwise false.
      */
-    boolean isEnableDepthOffset(DrawContext dc, Object shape);
+    bool isEnableDepthOffset(DrawContext dc, Object shape);
 
     /**
      * Draws the shape's outline.

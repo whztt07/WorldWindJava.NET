@@ -63,17 +63,17 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
     protected Vec4 modelScale;
 
     /** Flag to indicate that the scene has been retrieved from the hash map. */
-    protected boolean sceneFetched = false;
+    protected bool sceneFetched = false;
     /** Cached COLLADA scene. */
     protected ColladaScene scene;
 
     /** Flag to indicate that the scale has been computed. */
-    protected boolean scaleFetched = false;
+    protected bool scaleFetched = false;
     /** Scale applied to the model. Determined by the COLLADA/asset/unit element. */
     protected double scale;
 
     /** Indicates whether or not the COLLADA model is highlighted. */
-    protected boolean highlighted;
+    protected bool highlighted;
 
     /**
      * Transform matrix computed from the document's scale and orientation. This matrix is computed and cached during
@@ -245,7 +245,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
         if (colladaRoot == null)
         {
             String message = Logging.getMessage("generic.UnrecognizedSourceTypeOrUnavailableSource",
-                docSource.toString());
+                docSource.ToString());
             throw new ArgumentException(message);
         }
 
@@ -448,7 +448,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
     }
 
     /** {@inheritDoc} */
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return this.highlighted;
     }
@@ -564,7 +564,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
 
             // Determine whether the file is a COLLADA document. If not, just return the file path.
             if (!WWIO.isContentType(file, ColladaConstants.COLLADA_MIME_TYPE))
-                return file.toURI().toString();
+                return file.toURI().ToString();
 
             // Attempt to open and parse the COLLADA file.
             ColladaRoot refRoot = ColladaRoot.createAndParse(file);
@@ -665,7 +665,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
      *
      * @return {@code true} if {@code mimeType} can be parsed as COLLADA.
      */
-    protected boolean canParseContentType(String mimeType)
+    protected bool canParseContentType(String mimeType)
     {
         return ColladaConstants.COLLADA_MIME_TYPE.equals(mimeType)
             || "text/plain".equals(mimeType) || "text/xml".equals(mimeType);

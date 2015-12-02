@@ -3,7 +3,12 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+using System;
 using SharpEarth.util;
+using System;
+using System.Text;
+using System.Collections.Generic;
+
 namespace SharpEarth.geom{
 
 
@@ -13,80 +18,80 @@ namespace SharpEarth.geom{
  */
 public class Vec4
 {
-    public static final Vec4 INFINITY =
-        new Vec4(Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY, 0);
-    public static final Vec4 ZERO = new Vec4(0, 0, 0, 1);
-    public static final Vec4 ONE = new Vec4(1, 1, 1, 1);
-    public static final Vec4 UNIT_X = new Vec4(1, 0, 0, 0);
-    public static final Vec4 UNIT_NEGATIVE_X = new Vec4(-1, 0, 0, 0);
-    public static final Vec4 UNIT_Y = new Vec4(0, 1, 0, 0);
-    public static final Vec4 UNIT_NEGATIVE_Y = new Vec4(0, -1, 0, 0);
-    public static final Vec4 UNIT_Z = new Vec4(0, 0, 1, 0);
-    public static final Vec4 UNIT_NEGATIVE_Z = new Vec4(0, 0, -1, 0);
-    public static final Vec4 UNIT_W = new Vec4(0, 0, 0, 1);
-    public static final Vec4 UNIT_NEGATIVE_W = new Vec4(0, 0, 0, -1);
+    public static readonly Vec4 INFINITY =
+        new Vec4(Double.PositiveInfinity, Double.PositiveInfinity, Double.PositiveInfinity, 0);
+    public static readonly Vec4 ZERO = new Vec4(0, 0, 0, 1);
+    public static readonly Vec4 ONE = new Vec4(1, 1, 1, 1);
+    public static readonly Vec4 UNIT_X = new Vec4(1, 0, 0, 0);
+    public static readonly Vec4 UNIT_NEGATIVE_X = new Vec4(-1, 0, 0, 0);
+    public static readonly Vec4 UNIT_Y = new Vec4(0, 1, 0, 0);
+    public static readonly Vec4 UNIT_NEGATIVE_Y = new Vec4(0, -1, 0, 0);
+    public static readonly Vec4 UNIT_Z = new Vec4(0, 0, 1, 0);
+    public static readonly Vec4 UNIT_NEGATIVE_Z = new Vec4(0, 0, -1, 0);
+    public static readonly Vec4 UNIT_W = new Vec4(0, 0, 0, 1);
+    public static readonly Vec4 UNIT_NEGATIVE_W = new Vec4(0, 0, 0, -1);
 
-    public final double x;
-    public final double y;
-    public final double z;
-    public final double w;
+    public readonly double _x;
+    public readonly double _y;
+    public readonly double _z;
+    public readonly double _w;
 
     // Default W-component will be 1 to handle Matrix transformation.
-    private static final double DEFAULT_W = 1.0;
+    private static readonly double DEFAULT_W = 1.0;
     // Cached computations.
     private int hashCode;
 
     public Vec4(double value)
+      : this( value, value, value )
     {
-        this(value, value, value);
     }
 
     public Vec4(double x, double y)
+        : this(x, y, 0, DEFAULT_W)
     {
-        this(x, y, 0, DEFAULT_W);
     }
 
     public Vec4(double x, double y, double z)
+        : this(x, y, z, DEFAULT_W)
     {
-        this(x, y, z, DEFAULT_W);
     }
 
     public Vec4(double x, double y, double z, double w)
     {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-        this.w = w;
+        this._x = x;
+        this._y = y;
+        this._z = z;
+        this._w = w;
     }
 
-    public final boolean equals(Object obj)
+    public override bool Equals(Object obj)
     {
         if (this == obj)
             return true;
-        if (obj == null || obj.getClass() != this.getClass())
+        if (obj == null || obj.GetType() != this.GetType())
             return false;
 
         Vec4 that = (Vec4) obj;
-        return (this.x == that.x)
-            && (this.y == that.y)
-            && (this.z == that.z)
-            && (this.w == that.w);
+        return (this._x == that.x())
+            && (this._y == that.y())
+            && (this._z == that.z())
+            && (this._w == that.w());
     }
 
-    public final int hashCode()
+    public override int GetHashCode()
     {
         if (this.hashCode == 0)
         {
             int result;
-            long tmp;
-            tmp = Double.doubleToLongBits(this.x);
-            result = (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.y);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.z);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.w);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
+            ulong tmp;
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._x);
+            result = (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._y);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._z);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._w);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
             this.hashCode = result;
         }
         return this.hashCode;
@@ -132,9 +137,9 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        if (array.length < offset + length)
+        if (array.Length < offset + length)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.Length );
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -191,9 +196,9 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        if (array.length < offset + length)
+        if (array.Length < offset + length)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.Length );
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -306,7 +311,7 @@ public class Vec4
      * @throws ArgumentException if the array is null, if offset is negative, if length is less than 1, or if the
      *                                  array's capacity is less than <code>offset + length</code>.
      */
-    public final double[] toDoubleArray(double[] array, int offset, int length)
+    public double[] toDoubleArray(double[] array, int offset, int length)
     {
         if (array == null)
         {
@@ -329,21 +334,21 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        if (array.length < offset + length)
+        if (array.Length < offset + length)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
 
-        array[offset] = this.x;
+        array[offset] = this._x;
 
         if (length > 1)
-            array[offset + 1] = this.y;
+            array[offset + 1] = this._y;
         if (length > 2)
-            array[offset + 2] = this.z;
+            array[offset + 2] = this._z;
         if (length > 3)
-            array[offset + 3] = this.w;
+            array[offset + 3] = this._w;
 
         return array;
     }
@@ -366,7 +371,7 @@ public class Vec4
      * @throws ArgumentException if the array is null, if offset is negative, if length is less than 1, or if the
      *                                  array's capacity is less than <code>offset + length</code>.
      */
-    public final float[] toFloatArray(float[] array, int offset, int length)
+    public float[] toFloatArray(float[] array, int offset, int length)
     {
         if (array == null)
         {
@@ -389,20 +394,20 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        if (array.length < offset + length)
+        if (array.Length < offset + length)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", array.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
 
-        array[offset] = (float) this.x;
-        array[offset + 1] = (float) this.y;
+        array[offset] = (float) this._x;
+        array[offset + 1] = (float) this._y;
 
         if (length > 2)
-            array[offset + 2] = (float) this.z;
+            array[offset + 2] = (float) this._z;
         if (length > 3)
-            array[offset + 3] = (float) this.w;
+            array[offset + 3] = (float) this._w;
 
         return array;
     }
@@ -421,7 +426,7 @@ public class Vec4
      * @throws ArgumentException if the array is null, if offset is negative, or if the array's capacity is less
      *                                  than <code>offset + 2</code>.
      */
-    public final double[] toArray2(double[] array, int offset)
+    public double[] toArray2(double[] array, int offset)
     {
         if (array == null)
         {
@@ -447,7 +452,7 @@ public class Vec4
      * @throws ArgumentException if the array is null, if offset is negative, or if the array's capacity is less
      *                                  than <code>offset + 3</code>.
      */
-    public final double[] toArray3(double[] array, int offset)
+    public double[] toArray3(double[] array, int offset)
     {
         if (array == null)
         {
@@ -474,7 +479,7 @@ public class Vec4
      * @throws ArgumentException if the array is null, if offset is negative, or if the array's capacity is less
      *                                  than <code>offset + 4</code>.
      */
-    public final double[] toArray4(double[] array, int offset)
+    public double[] toArray4(double[] array, int offset)
     {
         if (array == null)
         {
@@ -502,10 +507,10 @@ public class Vec4
         // For a discussion of homogeneous coordinates, see "Mathematics for 3D Game Programming and Computer Graphics,
         // Second Edition" by Eric Lengyel, Section 3.4 (pages 81-84).
 
-        if (this.w == 1.0)
+        if (this._w == 1.0)
             return this;
 
-        return new Vec4(this.x, this.y, this.z, 1.0);
+        return new Vec4(this._x, this._y, this._z, 1.0);
     }
 
     /**
@@ -524,62 +529,62 @@ public class Vec4
         // For a discussion of homogeneous coordinates, see "Mathematics for 3D Game Programming and Computer Graphics, 
         // Second Edition" by Eric Lengyel, Section 3.4 (pages 81-84).
 
-        if (this.w == 0.0)
+        if (this._w == 0.0)
             return this;
 
-        return new Vec4(this.x, this.y, this.z, 0.0);
+        return new Vec4(this._x, this._y, this._z, 0.0);
     }
 
-    public final String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        sb.append(this.x).append(", ");
-        sb.append(this.y).append(", ");
-        sb.append(this.z).append(", ");
-        sb.append(this.w);
-        sb.append(")");
-        return sb.toString();
+        sb.Append("(");
+        sb.Append(this._x).Append(", ");
+        sb.Append(this._y).Append(", ");
+        sb.Append(this._z).Append(", ");
+        sb.Append(this._w);
+        sb.Append(")");
+        return sb.ToString();
     }
 
-    public final double getX()
+    public double getX()
     {
-        return this.x;
+        return this._x;
     }
 
-    public final double getY()
+    public double getY()
     {
-        return this.y;
+        return this._y;
     }
 
-    public final double getZ()
+    public double getZ()
     {
-        return this.z;
+        return this._z;
     }
 
-    public final double getW()
+    public double getW()
     {
-        return this.w;
+        return this._w;
     }
 
-    public final double x()
+    public double x()
     {
-        return this.x;
+        return this._x;
     }
 
-    public final double y()
+    public double y()
     {
-        return this.y;
+        return this._y;
     }
 
-    public final double z()
+    public double z()
     {
-        return this.z;
+        return this._z;
     }
 
-    public final double w()
+    public double w()
     {
-        return this.w;
+        return this._w;
     }
 
     // ============== Factory Functions ======================= //
@@ -596,9 +601,9 @@ public class Vec4
         }
 
         return new Vec4(
-            origin.x + (direction.x * t),
-            origin.y + (direction.y * t),
-            origin.z + (direction.z * t));
+            origin.x() + (direction.x() * t),
+            origin.y() + (direction.y() * t),
+            origin.z() + (direction.z() * t));
 
 //        return fromLine3(
 //            origin.x, origin.y, origin.z,
@@ -611,7 +616,7 @@ public class Vec4
 //        double px, double py, double pz,
 //        double dx, double dy, double dz,
 //        double t,
-//        boolean normalize)
+//        bool normalize)
 //    {
 //        if (normalize)
 //        {
@@ -634,7 +639,7 @@ public class Vec4
     // ============== Arithmetic Functions ======================= //
     // ============== Arithmetic Functions ======================= //
 
-    public final Vec4 add3(Vec4 vec4)
+    public Vec4 add3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -644,48 +649,18 @@ public class Vec4
         }
 
         return new Vec4(
-            this.x + vec4.x,
-            this.y + vec4.y,
-            this.z + vec4.z,
-            this.w);
+            this._x + vec4.x(),
+            this._y + vec4.y(),
+            this._z + vec4.z(),
+            this._w);
     }
 
-    public final Vec4 add3(double x, double y, double z)
+    public Vec4 add3(double x, double y, double z)
     {
-        return new Vec4(this.x + x, this.y + y, this.z + z, this.w);
+        return new Vec4(this._x + x, this._y + y, this._z + z, this._w);
     }
 
-    public final Vec4 subtract3(Vec4 vec4)
-    {
-        if (vec4 == null)
-        {
-            String msg = Logging.getMessage("nullValue.Vec4IsNull");
-            Logging.logger().severe(msg);
-            throw new ArgumentException(msg);
-        }
-
-        return new Vec4(
-            this.x - vec4.x,
-            this.y - vec4.y,
-            this.z - vec4.z,
-            this.w);
-    }
-
-    public final Vec4 subtract3(double x, double y, double z)
-    {
-        return new Vec4(this.x - x, this.y - y, this.z - z, this.w);
-    }
-
-    public final Vec4 multiply3(double value)
-    {
-        return new Vec4(
-            this.x * value,
-            this.y * value,
-            this.z * value,
-            this.w);
-    }
-
-    public final Vec4 multiply3(Vec4 vec4)
+    public Vec4 subtract3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -695,13 +670,43 @@ public class Vec4
         }
 
         return new Vec4(
-            this.x * vec4.x,
-            this.y * vec4.y,
-            this.z * vec4.z,
-            this.w);
+            this._x - vec4.x(),
+            this._y - vec4.y(),
+            this._z - vec4.z(),
+            this._w);
     }
 
-    public final Vec4 divide3(double value)
+    public Vec4 subtract3(double x, double y, double z)
+    {
+        return new Vec4(this._x - x, this._y - y, this._z - z, this._w);
+    }
+
+    public Vec4 multiply3(double value)
+    {
+        return new Vec4(
+            this._x * value,
+            this._y * value,
+            this._z * value,
+            this._w);
+    }
+
+    public Vec4 multiply3(Vec4 vec4)
+    {
+        if (vec4 == null)
+        {
+            String msg = Logging.getMessage("nullValue.Vec4IsNull");
+            Logging.logger().severe(msg);
+            throw new ArgumentException(msg);
+        }
+
+        return new Vec4(
+            this._x * vec4.x(),
+            this._y * vec4.y(),
+            this._z * vec4.z(),
+            this._w);
+    }
+
+    public Vec4 divide3(double value)
     {
         if (value == 0)
         {
@@ -711,13 +716,13 @@ public class Vec4
         }
 
         return new Vec4(
-            this.x / value,
-            this.y / value,
-            this.z / value,
-            this.w);
+            this._x / value,
+            this._y / value,
+            this._z / value,
+            this._w);
     }
 
-    public final Vec4 divide3(Vec4 vec4)
+    public Vec4 divide3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -727,43 +732,43 @@ public class Vec4
         }
 
         return new Vec4(
-            this.x / vec4.x,
-            this.y / vec4.y,
-            this.z / vec4.z,
-            this.w);
+            this._x / vec4.x(),
+            this._y / vec4.y(),
+            this._z / vec4.z(),
+            this._w);
     }
 
-    public final Vec4 getNegative3()
+    public Vec4 getNegative3()
     {
         return new Vec4(
-            0.0 - this.x,
-            0.0 - this.y,
-            0.0 - this.z,
-            this.w);
+            0.0 - this._x,
+            0.0 - this._y,
+            0.0 - this._z,
+            this._w);
     }
 
-    public final Vec4 getAbs3()
+    public Vec4 getAbs3()
     {
-        return new Vec4(Math.Abs(this.x), Math.Abs(this.y), Math.Abs(this.z));
+        return new Vec4(Math.Abs(this._x), Math.Abs(this._y), Math.Abs(this._z));
     }
 
     // ============== Geometric Functions ======================= //
     // ============== Geometric Functions ======================= //
     // ============== Geometric Functions ======================= //
 
-    public final double getLength3()
+    public double getLength3()
     {
         return Math.Sqrt(this.getLengthSquared3());
     }
 
-    public final double getLengthSquared3()
+    public double getLengthSquared3()
     {
-        return (this.x * this.x)
-            + (this.y * this.y)
-            + (this.z * this.z);
+        return (this._x * this._x)
+            + (this._y * this._y)
+            + (this._z * this._z);
     }
 
-    public final Vec4 normalize3()
+    public Vec4 normalize3()
     {
         double length = this.getLength3();
         // Vector has zero length.
@@ -774,13 +779,13 @@ public class Vec4
         else
         {
             return new Vec4(
-                this.x / length,
-                this.y / length,
-                this.z / length);
+                this._x / length,
+                this._y / length,
+                this._z / length);
         }
     }
 
-    public final double distanceTo2(Vec4 vec4)
+    public double distanceTo2(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -789,12 +794,12 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        double dx = vec4.x - this.x;
-        double dy = vec4.y - this.y;
+        double dx = vec4.x() - this._x;
+        double dy = vec4.y() - this._y;
         return Math.Sqrt(dx * dx + dy * dy);
     }
 
-    public final double distanceTo3(Vec4 vec4)
+    public double distanceTo3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -806,7 +811,7 @@ public class Vec4
         return Math.Sqrt(this.distanceToSquared3(vec4));
     }
 
-    public final double distanceToSquared3(Vec4 vec4)
+    public double distanceToSquared3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -817,16 +822,16 @@ public class Vec4
 
         double tmp;
         double result = 0.0;
-        tmp = this.x - vec4.x;
+        tmp = this._x - vec4.x();
         result += tmp * tmp;
-        tmp = this.y - vec4.y;
+        tmp = this._y - vec4.y();
         result += tmp * tmp;
-        tmp = this.z - vec4.z;
+        tmp = this._z - vec4.z();
         result += tmp * tmp;
         return result;
     }
 
-    public final double dot3(Vec4 vec4)
+    public double dot3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -835,10 +840,10 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        return (this.x * vec4.x) + (this.y * vec4.y) + (this.z * vec4.z);
+        return (this._x * vec4.x()) + (this._y * vec4.y()) + (this._z * vec4.z());
     }
 
-    public final double dot4(Vec4 vec4)
+    public double dot4(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -847,20 +852,20 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        return (this.x * vec4.x) + (this.y * vec4.y) + (this.z * vec4.z) + (this.w * vec4.w);
+        return (this._x * vec4.x()) + (this._y * vec4.y()) + (this._z * vec4.z()) + (this._w * vec4.w());
     }
 
-    public final double dotSelf3()
+    public double dotSelf3()
     {
         return this.dot3(this);
     }
 
-    public final double dotSelf4()
+    public double dotSelf4()
     {
         return this.dot4(this);
     }
 
-    public final Vec4 cross3(Vec4 vec4)
+    public Vec4 cross3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -870,12 +875,12 @@ public class Vec4
         }
 
         return new Vec4(
-            (this.y * vec4.z) - (this.z * vec4.y),
-            (this.z * vec4.x) - (this.x * vec4.z),
-            (this.x * vec4.y) - (this.y * vec4.x));
+            (this._y * vec4.z()) - (this._z * vec4.y()),
+            (this._z * vec4.x()) - (this._x * vec4.z()),
+            (this._x * vec4.y()) - (this._y * vec4.x()));
     }
 
-    public final Angle angleBetween3(Vec4 vec4)
+    public Angle angleBetween3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -932,19 +937,19 @@ public class Vec4
         // Compute rotation angle
         Vec4 u1 = v1.normalize3();
         Vec4 u0 = v2.normalize3();
-        Angle angle = Angle.fromRadians(Math.Acos(u0.x * u1.x + u0.y * u1.y + u0.z * u1.z));
+        Angle angle = Angle.fromRadians(Math.Acos(u0.x() * u1.x() + u0.y() * u1.y() + u0.z() * u1.z() ) );
 
         // Compute rotation axis
-        double A = (u0.y * u1.z) - (u0.z * u1.y);
-        double B = (u0.z * u1.x) - (u0.x * u1.z);
-        double C = (u0.x * u1.y) - (u0.y * u1.x);
+        double A = (u0.y() * u1.z()) - (u0.z() * u1.y());
+      double B = (u0.z() * u1.x()) - (u0.x() * u1.z());
+      double C = (u0.x() * u1.y()) - (u0.y() * u1.x());
         double L = Math.Sqrt(A * A + B * B + C * C);
         result[0] = new Vec4(A / L, B / L, C / L);
 
         return angle;
     }
 
-    public final Vec4 projectOnto3(Vec4 vec4)
+    public Vec4 projectOnto3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -961,7 +966,7 @@ public class Vec4
         return vec4.multiply3(dot);
     }
 
-    public final Vec4 perpendicularTo3(Vec4 vec4)
+    public Vec4 perpendicularTo3(Vec4 vec4)
     {
         if (vec4 == null)
         {
@@ -983,14 +988,14 @@ public class Vec4
         // For the first vector, use the direction of the least component of this, which indicates the more
         // orthogonal axis to this.
         Vec4 v = this;
-        Vec4 v1 = v.x <= v.y && v.x <= v.z ? Vec4.UNIT_X : v.y <= v.x && v.y <= v.z ? Vec4.UNIT_Y : Vec4.UNIT_Z;
+        Vec4 v1 = v.x() <= v.y() && v.x() <= v.z() ? Vec4.UNIT_X : v.y() <= v.x() && v.y() <= v.z() ? Vec4.UNIT_Y : Vec4.UNIT_Z;
         Vec4 va = v.cross3(v1).normalize3();
         Vec4 vb = v.cross3(va).normalize3();
 
         return new Vec4[] {va, vb};
     }
 
-    public final Vec4 transformBy3(Matrix matrix)
+    public Vec4 transformBy3(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -1000,12 +1005,12 @@ public class Vec4
         }
 
         return new Vec4(
-            (matrix.m11 * this.x) + (matrix.m12 * this.y) + (matrix.m13 * this.z),
-            (matrix.m21 * this.x) + (matrix.m22 * this.y) + (matrix.m23 * this.z),
-            (matrix.m31 * this.x) + (matrix.m32 * this.y) + (matrix.m33 * this.z));
+            (matrix.m11 * this._x) + (matrix.m12 * this._y) + (matrix.m13 * this._z),
+            (matrix.m21 * this._x) + (matrix.m22 * this._y) + (matrix.m23 * this._z),
+            (matrix.m31 * this._x) + (matrix.m32 * this._y) + (matrix.m33 * this._z));
     }
 
-    public final Vec4 transformBy3(Quaternion quaternion)
+    public Vec4 transformBy3(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -1014,13 +1019,13 @@ public class Vec4
             throw new ArgumentException(msg);
         }
 
-        Quaternion tmp = new Quaternion(this.x, this.y, this.z, 0.0);
+        Quaternion tmp = new Quaternion(this._x, this._y, this._z, 0.0);
         tmp = quaternion.multiply(tmp);
         tmp = tmp.multiply(quaternion.getInverse());
-        return new Vec4(tmp.x, tmp.y, tmp.z, 0.0);
+        return new Vec4(tmp.x(), tmp.y(), tmp.z(), 0.0);
     }
 
-    public final Vec4 transformBy4(Matrix matrix)
+    public Vec4 transformBy4(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -1030,10 +1035,10 @@ public class Vec4
         }
 
         return new Vec4(
-            (matrix.m11 * this.x) + (matrix.m12 * this.y) + (matrix.m13 * this.z) + (matrix.m14 * this.w),
-            (matrix.m21 * this.x) + (matrix.m22 * this.y) + (matrix.m23 * this.z) + (matrix.m24 * this.w),
-            (matrix.m31 * this.x) + (matrix.m32 * this.y) + (matrix.m33 * this.z) + (matrix.m34 * this.w),
-            (matrix.m41 * this.x) + (matrix.m42 * this.y) + (matrix.m43 * this.z) + (matrix.m44 * this.w));
+            (matrix.m11 * this._x) + (matrix.m12 * this._y) + (matrix.m13 * this._z) + (matrix.m14 * this._w),
+            (matrix.m21 * this._x) + (matrix.m22 * this._y) + (matrix.m23 * this._z) + (matrix.m24 * this._w),
+            (matrix.m31 * this._x) + (matrix.m32 * this._y) + (matrix.m33 * this._z) + (matrix.m34 * this._w),
+            (matrix.m41 * this._x) + (matrix.m42 * this._y) + (matrix.m43 * this._z) + (matrix.m44 * this._w));
     }
 
     // ============== Mixing Functions ======================= //
@@ -1050,9 +1055,9 @@ public class Vec4
         }
 
         return new Vec4(
-            (value1.x < value2.x) ? value1.x : value2.x,
-            (value1.y < value2.y) ? value1.y : value2.y,
-            (value1.z < value2.z) ? value1.z : value2.z);
+            (value1.x() < value2.x()) ? value1.x() : value2.x(),
+            (value1.y() < value2.y()) ? value1.y() : value2.y(),
+            (value1.z() < value2.z()) ? value1.z() : value2.z() );
     }
 
     public static Vec4 max3(Vec4 value1, Vec4 value2)
@@ -1065,9 +1070,9 @@ public class Vec4
         }
 
         return new Vec4(
-            (value1.x > value2.x) ? value1.x : value2.x,
-            (value1.y > value2.y) ? value1.y : value2.y,
-            (value1.z > value2.z) ? value1.z : value2.z);
+            (value1.x() > value2.x()) ? value1.x() : value2.x(),
+            (value1.y() > value2.y()) ? value1.y() : value2.y(),
+            (value1.z() > value2.z()) ? value1.z() : value2.z() );
     }
 
     public static Vec4 clamp3(Vec4 vec4, double min, double max)
@@ -1080,9 +1085,9 @@ public class Vec4
         }
 
         return new Vec4(
-            (vec4.x < min) ? min : ((vec4.x > max) ? max : vec4.x),
-            (vec4.y < min) ? min : ((vec4.y > max) ? max : vec4.y),
-            (vec4.z < min) ? min : ((vec4.z > max) ? max : vec4.z));
+            (vec4.x() < min) ? min : ((vec4.x() > max) ? max : vec4.x()),
+            (vec4.y() < min) ? min : ((vec4.y() > max) ? max : vec4.y()),
+            (vec4.z() < min) ? min : ((vec4.z() > max) ? max : vec4.z()));
     }
 
     public static Vec4 mix3(double amount, Vec4 value1, Vec4 value2)
@@ -1101,9 +1106,9 @@ public class Vec4
 
         double t1 = 1.0 - amount;
         return new Vec4(
-            (value1.x * t1) + (value2.x * amount),
-            (value1.y * t1) + (value2.y * amount),
-            (value1.z * t1) + (value2.z * amount));
+            (value1.x() * t1) + (value2.x() * amount),
+            (value1.y() * t1) + (value2.y() * amount),
+            (value1.z() * t1) + (value2.z() * amount));
     }
 
     /**
@@ -1117,7 +1122,7 @@ public class Vec4
      *
      * @throws ArgumentException if the Iterable is null.
      */
-    public static Vec4 computeAveragePoint(Iterable<? extends Vec4> points)
+    public static Vec4 computeAveragePoint(IEnumerable<Vec4> points)
     {
         if (points == null)
         {
@@ -1132,16 +1137,16 @@ public class Vec4
         double z = 0d;
         double w = 0d;
 
-        for (Vec4 vec : points)
+        foreach (Vec4 vec in points)
         {
             if (vec == null)
                 continue;
 
             count++;
-            x += vec.x;
-            y += vec.y;
-            z += vec.z;
-            w += vec.w;
+            x += vec.x();
+            y += vec.y();
+            z += vec.z();
+            w += vec.w();
         }
 
         if (count == 0)
@@ -1205,7 +1210,7 @@ public class Vec4
         return new Vec4(x / (double) count, y / (double) count, z / (double) count);
     }
 
-    public static double getAverageDistance(Iterable<? extends Vec4> points)
+    public static double getAverageDistance(IEnumerable<Vec4> points)
     {
         if ((points == null))
         {
@@ -1217,9 +1222,9 @@ public class Vec4
         double totalDistance = 0.0;
         int count = 0;
 
-        for (Vec4 p1 : points)
+        foreach (Vec4 p1 in points)
         {
-            for (Vec4 p2 : points)
+            foreach (Vec4 p2 in points)
             {
                 if (p1 != p2)
                 {
@@ -1245,7 +1250,7 @@ public class Vec4
      *
      * @throws ArgumentException if <code>points</code> is null
      */
-    public static Vec4[] computeExtrema(Vec4 points[])
+    public static Vec4[] computeExtrema(Vec4[] points)
     {
         if (points == null)
         {
@@ -1254,19 +1259,19 @@ public class Vec4
             throw new ArgumentException(message);
         }
 
-        if (points.length == 0)
+        if (points.Length == 0)
             return null;
 
-        double xmin = points[0].x;
-        double ymin = points[0].y;
-        double zmin = points[0].z;
+        double xmin = points[0].x();
+        double ymin = points[0].y();
+        double zmin = points[0].z();
         double xmax = xmin;
         double ymax = ymin;
         double zmax = zmin;
 
-        for (int i = 1; i < points.length; i++)
+        for (int i = 1; i < points.Length; i++)
         {
-            double x = points[i].x;
+            double x = points[i].x();
             if (x > xmax)
             {
                 xmax = x;
@@ -1276,7 +1281,7 @@ public class Vec4
                 xmin = x;
             }
 
-            double y = points[i].y;
+            double y = points[i].y();
             if (y > ymax)
             {
                 ymax = y;
@@ -1286,7 +1291,7 @@ public class Vec4
                 ymin = y;
             }
 
-            double z = points[i].z;
+            double z = points[i].z();
             if (z > zmax)
             {
                 zmax = z;
@@ -1366,7 +1371,7 @@ public class Vec4
      *
      * @throws ArgumentException if any argument is null.
      */
-    public static boolean areColinear(Vec4 a, Vec4 b, Vec4 c)
+    public static bool areColinear(Vec4 a, Vec4 b, Vec4 c)
     {
         if (a == null || b == null || c == null)
         {

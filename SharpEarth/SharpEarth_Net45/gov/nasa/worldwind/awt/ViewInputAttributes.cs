@@ -86,7 +86,7 @@ public class ViewInputAttributes
         public static final int NO_MODIFIER = 0;
         private double minValue;
         private double maxValue;
-        private boolean enableSmoothing;
+        private bool enableSmoothing;
         private double smoothingValue;
         private int keyCodeModifier;
         private java.util.List keyActions;
@@ -97,7 +97,7 @@ public class ViewInputAttributes
 
         public ActionAttributes(ActionAttributes.KeyAction[] keyActions, ActionTrigger trigger,
             int modifier, double minValue, double maxValue,
-            boolean enableSmoothing, double smoothingValue)
+            bool enableSmoothing, double smoothingValue)
         {
             this.setValues(minValue, maxValue);
             this.setEnableSmoothing(enableSmoothing);
@@ -109,7 +109,7 @@ public class ViewInputAttributes
         }
 
         public ActionAttributes(ActionAttributes.MouseAction[] mouseActions, ActionTrigger trigger,
-            double minValue, double maxValue, boolean enableSmoothing, double smoothingValue)
+            double minValue, double maxValue, bool enableSmoothing, double smoothingValue)
         {
             this.setValues(minValue, maxValue);
             this.setEnableSmoothing(enableSmoothing);
@@ -119,7 +119,7 @@ public class ViewInputAttributes
             keyActions = null;
         }
 
-        public ActionAttributes(double minValue, double maxValue, boolean enableSmoothing, double smoothingValue)
+        public ActionAttributes(double minValue, double maxValue, bool enableSmoothing, double smoothingValue)
         {
             this.setValues(minValue, maxValue);
             this.setEnableSmoothing(enableSmoothing);
@@ -172,7 +172,7 @@ public class ViewInputAttributes
             this.setValues(value, value);
         }
 
-        public boolean isEnableSmoothing()
+        public bool isEnableSmoothing()
         {
             return this.enableSmoothing;
         }
@@ -542,9 +542,9 @@ public class ViewInputAttributes
             DEFAULT_ROTATE_PITCHDOWN_KEY_PAGE_ACT
         };
 
-    public static final boolean DEFAULT_MOVE_TO_SMOOTHING_ENABLED = true;
-    public static final boolean DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_ENABLED = true;
-    public static final boolean DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_ENABLED = true;
+    public static final bool DEFAULT_MOVE_TO_SMOOTHING_ENABLED = true;
+    public static final bool DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_ENABLED = true;
+    public static final bool DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_ENABLED = true;
     public static final double DEFAULT_MOVE_TO_SMOOTHING_VALUE = 0.0; // [0, 1] smoothing value
     public static final double DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_VALUE = 0.4; // [0, 1] smoothing value
     public static final double DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_VALUE = 0.85; // [0, 1] smoothing value
@@ -572,9 +572,9 @@ public class ViewInputAttributes
     public static final double DEFAULT_MOUSE_WHEEL_SENSITIVITY = 1.0; // Scalar multiplier
     public static final double DEFAULT_SLOW_VALUE = 0.25; // Scalar multiplier
 
-    public static final boolean DEFAULT_ROTATE_SMOOTHING_ENABLED = true;
+    public static final bool DEFAULT_ROTATE_SMOOTHING_ENABLED = true;
     public static final double DEFAULT_ROTATE_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
-    public static final boolean DEFAULT_ROLL_SMOOTHING_ENABLED = true;
+    public static final bool DEFAULT_ROLL_SMOOTHING_ENABLED = true;
     public static final double DEFAULT_ROLL_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
 
     // Keyboard/Action calibration values.
@@ -811,7 +811,7 @@ public class ViewInputAttributes
 
     public void setMouseActionAttributes(String actionName, int modifier, ActionAttributes.ActionTrigger trigger,
         ActionAttributes.MouseAction[] mouseActions,
-        double minValue, double maxValue, boolean smoothingEnabled, double smoothingValue)
+        double minValue, double maxValue, bool smoothingEnabled, double smoothingValue)
     {
         ActionAttributes actionAttrs = this.getActionAttributes(DEVICE_MOUSE, actionName);
         if (actionAttrs != null)

@@ -53,7 +53,7 @@ public interface SessionCache
      *
      * @return true if the cache contains the key; false otherwise.
      */
-    boolean contains(Object key);
+    bool contains(Object key);
 
     /**
      * Returns a reference to an entry's value in the cache corresponding to a specified key, or null if no entry with

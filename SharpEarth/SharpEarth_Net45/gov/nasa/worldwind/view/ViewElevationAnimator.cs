@@ -25,7 +25,7 @@ public class ViewElevationAnimator extends DoubleAnimator
     protected int altitudeMode;
 
     protected double midZoom;
-    protected boolean useMidZoom = true;
+    protected bool useMidZoom = true;
     protected double trueEndZoom;
 
     /**
@@ -84,7 +84,7 @@ public class ViewElevationAnimator extends DoubleAnimator
      * and maximum zoom (3* the radius of the globe).
      * @return whether this Animator is using midZoom.
      */
-    public boolean getUseMidZoom()
+    public bool getUseMidZoom()
     {
         return useMidZoom;
     }
@@ -185,7 +185,7 @@ public class ViewElevationAnimator extends DoubleAnimator
         // the end position, so recalculating the elevation as we go ensures that the animation will end at the
         // correct altitude.
         double endElevation = 0.0;
-        boolean overrideEndElevation = false;
+        bool overrideEndElevation = false;
 
         if (this.globe != null && this.altitudeMode == WorldWind.CLAMP_TO_GROUND)
         {
@@ -212,7 +212,7 @@ public class ViewElevationAnimator extends DoubleAnimator
        if (newValue == null)
            return;
 
-       boolean success = this.propertyAccessor.setDouble(newValue);
+       bool success = this.propertyAccessor.setDouble(newValue);
        if (!success)
        {
            this.flagLastStateInvalid();
@@ -246,7 +246,7 @@ public class ViewElevationAnimator extends DoubleAnimator
      * @param midZoom the elevation at the middle of the animation
      * @return true if it is appropriate to use the midZoom value.
      */
-    protected boolean useMidZoom(double beginZoom, double endZoom, double midZoom)
+    protected bool useMidZoom(double beginZoom, double endZoom, double midZoom)
     {
         double a = Math.Abs(endZoom - beginZoom);
         double b = Math.Abs(midZoom - Math.max(beginZoom, endZoom));

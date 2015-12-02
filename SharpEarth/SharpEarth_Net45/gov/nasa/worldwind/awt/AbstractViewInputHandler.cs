@@ -29,11 +29,11 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
     protected ViewInputAttributes.DeviceModifierMap mouseModsActionMap;
     protected ViewInputAttributes.DeviceModifierMap mouseWheelModsActionMap;
     // Optional behaviors.
-    protected boolean enableSmoothing;
-    protected boolean lockHeading;
-    protected boolean stopOnFocusLost;
+    protected bool enableSmoothing;
+    protected bool lockHeading;
+    protected bool stopOnFocusLost;
     // AWT event support.
-    protected boolean wwdFocusOwner;
+    protected bool wwdFocusOwner;
     protected Point mouseDownPoint;
     protected Point lastMousePoint;
     protected Point mousePoint;
@@ -174,7 +174,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
      *
      * @return true if the view will movements are smoothed; false otherwise.
      */
-    public boolean isEnableSmoothing()
+    public bool isEnableSmoothing()
     {
         return this.enableSmoothing;
     }
@@ -196,7 +196,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
      *
      * @return true if the view's heading will stay the same unless explicity changed; false otherwise.
      */
-    public boolean isLockHeading()
+    public bool isLockHeading()
     {
         return this.lockHeading;
     }
@@ -218,7 +218,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
      *
      * @return true if the view will stop when the WorldWindow looses focus; false otherwise.
      */
-    public boolean isStopOnFocusLost()
+    public bool isStopOnFocusLost()
     {
         return this.stopOnFocusLost;
     }
@@ -290,7 +290,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
     //********************  AWT Event Support  *********************//
     //**************************************************************//
 
-    protected boolean isWorldWindowFocusOwner()
+    protected bool isWorldWindowFocusOwner()
     {
         return this.wwdFocusOwner;
     }
@@ -695,17 +695,17 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
     // then the the key state will generate any appropriate view change events. If the target is KEY_POLL_QUERY_EVENTS,
     // then the key state will not generate events, and this will return whether or not any view change events would
     // have been generated.
-    protected boolean handlePerFrameKeyState(KeyEventState keys, String target)
+    protected bool handlePerFrameKeyState(KeyEventState keys, String target)
     {
         return false;
     }
 
-    protected boolean handlePerFrameMouseState(KeyEventState keys, String target)
+    protected bool handlePerFrameMouseState(KeyEventState keys, String target)
     {
         return false;
     }
 
-    protected boolean handlePerFrameAnimation(String target)
+    protected bool handlePerFrameAnimation(String target)
     {
         return false;
     }
@@ -837,7 +837,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
     }
 
     protected double getScaleValue(double minValue, double maxValue,
-        double value, double range, boolean isExp)
+        double value, double range, bool isExp)
     {
         double t = value / range;
         t = t < 0 ? 0 : (t > 1 ? 1 : t);

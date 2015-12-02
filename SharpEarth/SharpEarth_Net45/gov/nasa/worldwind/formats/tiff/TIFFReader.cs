@@ -24,7 +24,7 @@ class TIFFReader
     private static final int CLEAR_CODE = 256;
     private static final int EOI_CODE = 257;
 
-    private static final int DOUBLE_SIZEOF = Double.SIZE / Byte.SIZE;
+    private static final int DOUBLE_SIZEOF = sizeof(double) / Byte.SIZE;
     private static final int FLOAT_SIZEOF = Float.SIZE / Byte.SIZE;
     private static final int INTEGER_SIZEOF = Integer.SIZE / Byte.SIZE;
     private static final int SHORT_SIZEOF = Short.SIZE / Byte.SIZE;
@@ -60,7 +60,7 @@ class TIFFReader
     *
     */
     public byte[] readLZWCompressed(int width, int height, long offset, int samplesPerPixel,
-        boolean differencing, long[] stripOffsets, long[] stripCounts)
+        bool differencing, long[] stripOffsets, long[] stripCounts)
         throws IOException
     {
         this.theChannel.position(offset);
@@ -518,7 +518,7 @@ class TIFFReader
             0x000F, 0x001F, 0x003F, 0x007F};
         private int[] frontMask = new int[] {0x0000, 0x0080, 0x00C0, 0x00E0,
             0x00F0, 0x00F8, 0x00FC, 0x00FE};
-        private boolean atEof;
+        private bool atEof;
 
         public CodeReader(byte[] byteBuffer)
         {

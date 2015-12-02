@@ -36,7 +36,7 @@ abstract class GDALAbstractFileFilter implements java.io.FileFilter
         listFolders.clear();
     }
 
-    protected boolean isHidden(String path)
+    protected bool isHidden(String path)
     {
         if (!WWUtil.isEmpty(path))
         {

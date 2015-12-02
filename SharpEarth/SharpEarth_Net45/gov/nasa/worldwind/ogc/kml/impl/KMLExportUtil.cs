@@ -98,8 +98,8 @@ public class KMLExportUtil
         if (offset != null)
         {
             xmlWriter.writeStartElement(tagName);
-            xmlWriter.writeAttribute("x", Double.toString(offset.getX()));
-            xmlWriter.writeAttribute("y", Double.toString(offset.getY()));
+            xmlWriter.writeAttribute("x", Double.ToString(offset.getX()));
+            xmlWriter.writeAttribute("y", Double.ToString(offset.getY()));
             xmlWriter.writeAttribute("xunits", KMLUtil.wwUnitsToKMLUnits(offset.getXUnits()));
             xmlWriter.writeAttribute("yunits", KMLUtil.wwUnitsToKMLUnits(offset.getYUnits()));
             xmlWriter.writeEndElement();
@@ -155,7 +155,7 @@ public class KMLExportUtil
             xmlWriter.writeAttribute(axes, "0");
         else if (Size.EXPLICIT_DIMENSION.equals(sizeMode))
         {
-            xmlWriter.writeAttribute(axes, Double.toString(size));
+            xmlWriter.writeAttribute(axes, Double.ToString(size));
             xmlWriter.writeAttribute(axes + "units", KMLUtil.wwUnitsToKMLUnits(units));
         }
         else
@@ -196,16 +196,16 @@ public class KMLExportUtil
         String altitudeString = null;
         if (altitude != null)
         {
-            altitudeString = Double.toString(altitude);
+            altitudeString = Double.ToString(altitude);
         }
 
         xmlWriter.writeStartElement("LinearRing");
         xmlWriter.writeStartElement("coordinates");
         for (LatLon location : boundary)
         {
-            xmlWriter.writeCharacters(Double.toString(location.getLongitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(location.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");
-            xmlWriter.writeCharacters(Double.toString(location.getLatitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(location.getLatitude().getDegrees()));
 
             if (altitudeString != null)
             {
@@ -220,7 +220,7 @@ public class KMLExportUtil
     }
 
     /**
-     * Convert a boolean to binary string "1" or "0".
+     * Convert a bool to binary string "1" or "0".
      *
      * @param value Value to convert.
      *

@@ -20,7 +20,7 @@ namespace SharpEarth.data{
  */
 public abstract class AbstractDataRasterReader extends AVListImpl implements DataRasterReader
 {
-    protected abstract boolean doCanRead(Object source, AVList parameters);
+    protected abstract bool doCanRead(Object source, AVList parameters);
 
     protected abstract DataRaster[] doRead(Object source, AVList parameters) throws java.io.IOException;
 
@@ -71,7 +71,7 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
     }
 
     /** {@inheritDoc} */
-    public boolean canRead(Object source, AVList parameters)
+    public bool canRead(Object source, AVList parameters)
     {
         if (source == null)
             return false;
@@ -83,7 +83,7 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
         return this.doCanRead(source, parameters);
     }
 
-    protected boolean canReadSuffix(Object source)
+    protected bool canReadSuffix(Object source)
     {
         // If the source has no path, we cannot return failure, so return that the test passed.
         String path = WWIO.getSourcePath(source);
@@ -92,7 +92,7 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
 
         // If the source has a suffix, then we return success if this reader supports the suffix.
         String pathSuffix = WWIO.getSuffix(path);
-        boolean matchesAny = false;
+        bool matchesAny = false;
         for (String suffix : suffixes)
         {
             if (suffix.equalsIgnoreCase(pathSuffix))
@@ -157,11 +157,11 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
         if (sb.length() == 0)
             return null;
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /** {@inheritDoc} */
-    public boolean isImageryRaster(Object source, AVList parameters)
+    public bool isImageryRaster(Object source, AVList parameters)
     {
         if (params != null && AVKey.IMAGE.equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
             return true;
@@ -178,7 +178,7 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
     }
 
     /** {@inheritDoc} */
-    public boolean isElevationsRaster(Object source, AVList parameters)
+    public bool isElevationsRaster(Object source, AVList parameters)
     {
         if (params != null && AVKey.ELEVATION.equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
             return true;
@@ -207,7 +207,7 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
                 sb.append(", ");
             sb.append("*.").append(suffix.toLowerCase());
         }
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

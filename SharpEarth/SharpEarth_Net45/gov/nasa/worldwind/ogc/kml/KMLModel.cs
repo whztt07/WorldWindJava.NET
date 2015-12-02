@@ -15,7 +15,7 @@ namespace SharpEarth.ogc.kml{
 public class KMLModel extends KMLAbstractGeometry
 {
     /** Flag to indicate that the link has been fetched from the hash map. */
-    protected boolean linkFetched = false;
+    protected bool linkFetched = false;
     protected KMLLink link;
 
     /**

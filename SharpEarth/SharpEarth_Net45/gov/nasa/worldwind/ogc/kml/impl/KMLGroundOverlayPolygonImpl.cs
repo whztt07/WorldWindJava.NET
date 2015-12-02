@@ -27,7 +27,7 @@ public class KMLGroundOverlayPolygonImpl extends Polygon implements KMLRenderabl
 {
     protected final KMLGroundOverlay parent;
 
-    protected boolean attributesResolved;
+    protected bool attributesResolved;
 
     /**
      * Create an instance.
@@ -109,7 +109,7 @@ public class KMLGroundOverlayPolygonImpl extends Polygon implements KMLRenderabl
         // Intentionally left blank; KML polygon does nothing during the preRender phase.
     }
 
-    protected boolean mustResolveHref()
+    protected bool mustResolveHref()
     {
         return this.getTextureImageSource() == null
             && this.parent.getIcon() != null
@@ -141,7 +141,7 @@ public class KMLGroundOverlayPolygonImpl extends Polygon implements KMLRenderabl
     }
 
     /** {@inheritDoc} */
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return false;
     }

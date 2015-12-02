@@ -414,7 +414,7 @@ public interface View extends WWObject, Restorable
      *
      * @return true if there are active animations, false otherwise.
      */
-    boolean isAnimating();
+    bool isAnimating();
 
     /**
      * Get the {@link ViewPropertyLimits} for this view.

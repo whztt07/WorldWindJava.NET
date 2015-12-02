@@ -79,7 +79,7 @@ public interface AVList
      *
      * @throws NullPointerException if <code>key</code> is <code>null</code>.
      */
-    boolean hasKey(String key);
+    bool hasKey(String key);
 
     /**
      * Removes a specified key from the collection if the key exists, otherwise returns without affecting the

@@ -42,9 +42,9 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
 
     private GLAutoDrawable drawable;
     private DashboardController dashboard;
-    private boolean shuttingDown = false;
+    private bool shuttingDown = false;
     private Timer redrawTimer;
-    private boolean firstInit = true;
+    private bool firstInit = true;
     /** Time in milliseconds that the view must remain unchanged before the {@link View#VIEW_STOPPED} message is sent. */
     protected long viewStopTime = DEFAULT_VIEW_STOP_TIME;
     /**
@@ -55,7 +55,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
     protected long lastViewID;
     /** Schedule task to send the {@link View#VIEW_STOPPED} message after the view stop time elapses. */
     protected ScheduledFuture viewRefreshTask;
-    protected boolean enableGpuCacheReinitialization = true;
+    protected bool enableGpuCacheReinitialization = true;
 
     /** Construct a new <code>WorldWindowGLCanvas</code> for a specified {@link GLDrawable}. */
     public WorldWindowGLAutoDrawable()
@@ -104,7 +104,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
     }
 
     @Override
-    public boolean isEnableGpuCacheReinitialization()
+    public bool isEnableGpuCacheReinitialization()
     {
         return enableGpuCacheReinitialization;
     }
@@ -174,7 +174,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
         return this.drawable.getContext();
     }
 
-    protected boolean isGLContextCompatible(GLContext context)
+    protected bool isGLContextCompatible(GLContext context)
     {
         return context != null && context.isGL2();
     }

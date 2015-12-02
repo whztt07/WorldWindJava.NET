@@ -20,7 +20,7 @@ namespace SharpEarth.events{
 public class WWEvent extends EventObject
 {
     /** Denotes whether or not the event has been consumed. Initially {@code false}. */
-    protected boolean consumed;
+    protected bool consumed;
 
     /**
      * Creates a new WWEvent with the object that originated the event.
@@ -51,7 +51,7 @@ public class WWEvent extends EventObject
      *
      * @return {@code true} if the event has been consumed, and {@code false} otherwise.
      */
-    public boolean isConsumed()
+    public bool isConsumed()
     {
         return this.consumed;
     }

@@ -34,7 +34,7 @@ public interface GeographicProjection
      * @return <code>true</code> if it makes sense to treat this projection as continuous, otherwise
      *         <code>false</code>.
      */
-    boolean isContinuous();
+    bool isContinuous();
 
     /**
      * Indicates the latitude limits for this projection.

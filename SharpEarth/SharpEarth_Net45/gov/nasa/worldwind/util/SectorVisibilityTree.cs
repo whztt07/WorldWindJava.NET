@@ -71,7 +71,7 @@ public class SectorVisibilityTree
     protected DecisionTree<Sector, Context> tree = new DecisionTree<Sector, Context>(
         new DecisionTree.Controller<Sector, Context>()
         {
-            public boolean isTerminal(Sector s, Context context)
+            public bool isTerminal(Sector s, Context context)
             {
                 if (s.getDeltaLat().degrees > context.sectorSize)
                     return false;
@@ -85,7 +85,7 @@ public class SectorVisibilityTree
                 return s.subdivide();
             }
 
-            public boolean isVisible(Sector s, Context c)
+            public bool isVisible(Sector s, Context c)
             {
                 Extent extent = prevExtents.get(s);
                 if (extent == null)

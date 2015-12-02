@@ -79,8 +79,8 @@ public class DXT1Compressor implements DXTCompressor
         int width = image.getWidth();
         int height = image.getHeight();
 
-        boolean imageHasAlpha = image.getColorModel().hasAlpha();
-        boolean enableAlpha = attributes.isEnableDXT1Alpha();
+        bool imageHasAlpha = image.getColorModel().hasAlpha();
+        bool enableAlpha = attributes.isEnableDXT1Alpha();
         int alphaThreshold = attributes.getDXT1AlphaThreshold();
 
         for (int j = 0; j < height; j += 4)
@@ -105,7 +105,7 @@ public class DXT1Compressor implements DXTCompressor
         }
     }
 
-    protected boolean blockHasDXT1Alpha(ColorBlock4x4 colorBlock, int alphaThreshold)
+    protected bool blockHasDXT1Alpha(ColorBlock4x4 colorBlock, int alphaThreshold)
     {
         // DXT1 provides support for binary alpha. Therefore we determine treat a color block as needing alpha support
         // if any of the alpha values are less than a certain threshold.

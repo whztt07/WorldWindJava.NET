@@ -13,7 +13,7 @@ public interface VPFRecord
 {
     int getId();
 
-    boolean hasValue(String parameterName);
+    bool hasValue(String parameterName);
 
     Object getValue(String parameterName);
 }

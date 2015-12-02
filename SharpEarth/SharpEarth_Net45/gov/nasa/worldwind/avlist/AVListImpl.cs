@@ -48,7 +48,7 @@ public class AVListImpl implements AVList
             this.setValue(PROPERTY_CHANGE_SUPPORT, new PropertyChangeSupport(sourceBean));
     }
 
-    private boolean hasAvList()
+    private bool hasAvList()
     {
         return this.avList != null;
     }
@@ -108,7 +108,7 @@ public class AVListImpl implements AVList
         try
         {
             Object value = this.getValue(key);
-            return value != null ? value.toString() : null;
+            return value != null ? value.ToString() : null;
         }
         catch (ClassCastException e)
         {
@@ -148,7 +148,7 @@ public class AVListImpl implements AVList
         return this;
     }
 
-    synchronized public boolean hasKey(String key)
+    synchronized public bool hasKey(String key)
     {
         if (key == null)
         {
@@ -408,7 +408,7 @@ public class AVListImpl implements AVList
             throw new ArgumentException(message);
         }
 
-        rs.addStateValueAsString(context, key, value.toString());
+        rs.addStateValueAsString(context, key, value.ToString());
     }
 
     public static Boolean getBooleanValue(AVList avList, String key, Boolean defaultValue)

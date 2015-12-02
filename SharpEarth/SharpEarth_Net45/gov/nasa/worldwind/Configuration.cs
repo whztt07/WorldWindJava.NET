@@ -183,7 +183,7 @@ public class Configuration // Singleton
         java.util.TimeZone tz = java.util.Calendar.getInstance().getTimeZone();
         if (tz != null)
             defaults.setProperty(AVKey.INITIAL_LONGITUDE,
-                Double.toString(
+                Double.ToString(
                     Angle.fromDegrees(180.0 * tz.getOffset(System.currentTimeMillis()) / (12.0 * 3.6e6)).degrees));
         return defaults;
     }
@@ -213,7 +213,7 @@ public class Configuration // Singleton
 
             if (propsStream == null)
             {
-                propsStream = this.getClass().getResourceAsStream("/" + configFileName);
+                propsStream = this.GetType().getResourceAsStream("/" + configFileName);
             }
 
             if (propsStream != null)
@@ -256,7 +256,7 @@ public class Configuration // Singleton
     public static synchronized String getStringValue(String key)
     {
         Object o = getInstance().properties.getProperty(key);
-        return o != null ? o.toString() : null;
+        return o != null ? o.ToString() : null;
     }
 
     /**
@@ -436,7 +436,7 @@ public class Configuration // Singleton
      *
      * @return true if the key exists, otherwise false.
      */
-    public static synchronized boolean hasKey(String key)
+    public static synchronized bool hasKey(String key)
     {
         return getInstance().properties.contains(key);
     }
@@ -460,7 +460,7 @@ public class Configuration // Singleton
      */
     public static synchronized void setValue(String key, Object value)
     {
-        getInstance().properties.put(key, value.toString());
+        getInstance().properties.put(key, value.ToString());
     }
 
     // OS, user, and run-time specific system properties. //
@@ -539,7 +539,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Mac operating system, otherwise false.
      */
-    public static boolean isMacOS()
+    public static bool isMacOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("mac");
@@ -550,7 +550,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Windows operating system, otherwise false.
      */
-    public static boolean isWindowsOS()
+    public static bool isWindowsOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("windows");
@@ -561,7 +561,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Windows XP operating system, otherwise false.
      */
-    public static boolean isWindowsXPOS()
+    public static bool isWindowsXPOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("windows") && osName.contains("xp");
@@ -572,7 +572,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Windows Vista operating system, otherwise false.
      */
-    public static boolean isWindowsVistaOS()
+    public static bool isWindowsVistaOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("windows") && osName.contains("vista");
@@ -583,7 +583,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Windows Vista operating system, otherwise false.
      */
-    public static boolean isWindows7OS()
+    public static bool isWindows7OS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("windows") && osName.contains("7");
@@ -594,7 +594,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Linux operating system, otherwise false.
      */
-    public static boolean isLinuxOS()
+    public static bool isLinuxOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("linux");
@@ -605,7 +605,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Unix operating system, otherwise false.
      */
-    public static boolean isUnixOS()
+    public static bool isUnixOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("unix");
@@ -616,7 +616,7 @@ public class Configuration // Singleton
      *
      * @return true if the operating system is a Solaris operating system, otherwise false.
      */
-    public static boolean isSolarisOS()
+    public static bool isSolarisOS()
     {
         String osName = System.getProperty("os.name");
         return osName != null && osName.toLowerCase().contains("solaris");

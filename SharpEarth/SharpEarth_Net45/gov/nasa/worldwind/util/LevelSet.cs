@@ -100,7 +100,7 @@ public class LevelSet extends WWObjectImpl
 
         if (sb.length() > 0)
         {
-            String message = Logging.getMessage("layers.LevelSet.InvalidLevelDescriptorFields", sb.toString());
+            String message = Logging.getMessage("layers.LevelSet.InvalidLevelDescriptorFields", sb.ToString());
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -140,7 +140,7 @@ public class LevelSet extends WWObjectImpl
                     sb.append(tile.getRow());
 
                     // Convention for NASA WWN tiles is to request them with common dataset name but without dds.
-                    return new URL(altImageFormat == null ? sb.toString() : sb.toString().replace("dds", ""));
+                    return new URL(altImageFormat == null ? sb.ToString() : sb.ToString().replace("dds", ""));
                 }
             });
         }
@@ -340,12 +340,12 @@ public class LevelSet extends WWObjectImpl
         return level;
     }
 
-    public final boolean isFinalLevel(int levelNum)
+    public final bool isFinalLevel(int levelNum)
     {
         return levelNum == this.getNumLevels() - 1;
     }
 
-    public final boolean isLevelEmpty(int levelNumber)
+    public final bool isLevelEmpty(int levelNumber)
     {
         return this.levels.get(levelNumber).isEmpty();
     }
@@ -396,7 +396,7 @@ public class LevelSet extends WWObjectImpl
      *
      * @throws ArgumentException if <code>tile</code> is null
      */
-    public final boolean isResourceAbsent(TileKey tileKey)
+    public final bool isResourceAbsent(TileKey tileKey)
     {
         if (tileKey == null)
         {
@@ -418,7 +418,7 @@ public class LevelSet extends WWObjectImpl
      *
      * @throws ArgumentException if <code>tile</code> is null
      */
-    public final boolean isResourceAbsent(Tile tile)
+    public final bool isResourceAbsent(Tile tile)
     {
         if (tile == null)
         {

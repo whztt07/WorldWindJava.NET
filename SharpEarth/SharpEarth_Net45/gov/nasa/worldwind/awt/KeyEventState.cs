@@ -54,7 +54,7 @@ public class KeyEventState implements KeyListener, MouseListener
     {
     }
 
-    public boolean isKeyDown(int keyCode)
+    public bool isKeyDown(int keyCode)
     {
         InputState state = this.getKeyState(keyCode);
         return state != null && state.getEventType() == KeyEvent.KEY_PRESSED;

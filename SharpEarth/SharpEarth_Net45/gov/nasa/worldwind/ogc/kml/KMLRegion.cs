@@ -133,7 +133,7 @@ public class KMLRegion extends KMLAbstractObject
         /** Identifies the frame used to determine if this entry's Region is active. Initially -1. */
         protected long activeFrameNumber = -1;
         /** Identifies whether this entry's Region is active. Initially <code>false</code>. */
-        protected boolean isActive;
+        protected bool isActive;
         /**
          * Indicates the vertical datum against which the altitudes values in this entry's Region are interpreted. One
          * of <code>WorldWind.ABSOLUTE</code>, <code>WorldWind.CLAMP_TO_GROUND</code>, or
@@ -210,7 +210,7 @@ public class KMLRegion extends KMLAbstractObject
          *
          * @return <code>true</code> if this entry's Region is active, otherwise <code>false</code>.
          */
-        public boolean isActive()
+        public bool isActive()
         {
             return this.isActive;
         }
@@ -382,7 +382,7 @@ public class KMLRegion extends KMLAbstractObject
      * @throws ArgumentException if either the <code>KMLTraversalContext</code> or the <code>DrawContext</code>
      *                                  is <code>null</code>.
      */
-    public boolean isActive(KMLTraversalContext tc, DrawContext dc)
+    public bool isActive(KMLTraversalContext tc, DrawContext dc)
     {
         if (tc == null)
         {
@@ -484,7 +484,7 @@ public class KMLRegion extends KMLAbstractObject
      *
      * @return <code>true</code> if this Region's data must be regenerated, otherwise <code>false</code>.
      */
-    protected boolean mustRegenerateData(DrawContext dc)
+    protected bool mustRegenerateData(DrawContext dc)
     {
         return this.getCurrentData().isExpired(dc) || !this.getCurrentData().isValid(dc);
     }
@@ -644,7 +644,7 @@ public class KMLRegion extends KMLAbstractObject
      *
      * @return {@code true} if {@code sector} is with [-90, 90] latitude and [-180, 180] longitude.
      */
-    protected boolean isSectorSupported(Sector sector)
+    protected bool isSectorSupported(Sector sector)
     {
         return sector.isWithinLatLonLimits();
     }
@@ -660,7 +660,7 @@ public class KMLRegion extends KMLAbstractObject
      *
      * @return <code>true</code> if this Region is active; otherwise <code>false</code>.
      */
-    protected boolean isRegionActive(KMLTraversalContext tc, DrawContext dc)
+    protected bool isRegionActive(KMLTraversalContext tc, DrawContext dc)
     {
         return this.isRegionVisible(dc) && this.meetsLodCriteria(tc, dc);
     }
@@ -676,7 +676,7 @@ public class KMLRegion extends KMLAbstractObject
      *
      * @return <code>true</code> if this Region is visible, otherwise <code>false</code>.
      */
-    protected boolean isRegionVisible(DrawContext dc)
+    protected bool isRegionVisible(DrawContext dc)
     {
         // If this Region's altitude mode is clampToGround and it has a non-null sector, compare its sector against the
         // DrawContext's visible sector to determine if the Region is visible. In this case the sector can be used to
@@ -712,7 +712,7 @@ public class KMLRegion extends KMLAbstractObject
      * @return <code>true</code> if this Region's bounding box intersects the <code>DrawContext's</code> frustum,
      *         otherwise <code>false</code>.
      */
-    protected boolean intersectsFrustum(DrawContext dc)
+    protected bool intersectsFrustum(DrawContext dc)
     {
         Extent extent = this.getCurrentData().getExtent();
         //noinspection SimplifiableIfStatement
@@ -737,7 +737,7 @@ public class KMLRegion extends KMLAbstractObject
      * @return <code>true</code> if the <code>DrawContext's</code> meets this Region's level of detail criteria,
      *         otherwise <code>false</code>.
      */
-    protected boolean meetsLodCriteria(KMLTraversalContext tc, DrawContext dc)
+    protected bool meetsLodCriteria(KMLTraversalContext tc, DrawContext dc)
     {
         KMLLod lod = this.getLod();
         if (lod == null)
@@ -778,7 +778,7 @@ public class KMLRegion extends KMLAbstractObject
      * @return <code>true</code> if the <code>DrawContext's</code> meets this Region's level of detail criteria,
      *         otherwise <code>false</code>.
      */
-    protected boolean meetsClampToGroundLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
+    protected bool meetsClampToGroundLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
     {
         // Neither the OGC KML specification nor the Google KML reference specify how to compute a clampToGround
         // Region's projected screen area. However, the Google Earth outreach tutorials, and an official post from a
@@ -864,7 +864,7 @@ public class KMLRegion extends KMLAbstractObject
      *         otherwise <code>false</code>.
      */
     @SuppressWarnings({"UnusedDeclaration"})
-    protected boolean meetsRelativeToGroundLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
+    protected bool meetsRelativeToGroundLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
     {
         return this.meetsScreenAreaCriteria(dc, lod);
     }
@@ -882,7 +882,7 @@ public class KMLRegion extends KMLAbstractObject
      *         otherwise <code>false</code>.
      */
     @SuppressWarnings({"UnusedDeclaration"})
-    protected boolean meetsAbsoluteLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
+    protected bool meetsAbsoluteLodCriteria(KMLTraversalContext tc, DrawContext dc, KMLLod lod)
     {
         return this.meetsScreenAreaCriteria(dc, lod);
     }
@@ -897,7 +897,7 @@ public class KMLRegion extends KMLAbstractObject
      * @return <code>true</code> if this Region's screen area meets the level of detail criteria, otherwise
      *         <code>false</code>.
      */
-    protected boolean meetsScreenAreaCriteria(DrawContext dc, KMLLod lod)
+    protected bool meetsScreenAreaCriteria(DrawContext dc, KMLLod lod)
     {
         // The DrawContext does not meet this region's minLodPixels criteria if minLodPixels is specified and this
         // region's projected screen pixel count is less than minLodPixels.
@@ -917,7 +917,7 @@ public class KMLRegion extends KMLAbstractObject
         // inside the extent, or if part of the extent is behind the eye point. In either case we do not take the square
         // root, and leave the value as positive infinity.
         double numPixels = extent.getProjectedArea(dc.getView());
-        if (numPixels != Double.POSITIVE_INFINITY)
+        if (numPixels != Double.PositiveInfinity)
             numPixels = Math.Sqrt(numPixels);
 
         // This Region's level of detail criteria are met if the number of pixels is greater than or equal to

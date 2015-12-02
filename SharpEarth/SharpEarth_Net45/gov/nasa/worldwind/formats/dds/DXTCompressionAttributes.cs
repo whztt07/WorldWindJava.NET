@@ -15,10 +15,10 @@ public class DXTCompressionAttributes
     public static final String COLOR_BLOCK_COMPRESSION_EUCLIDEAN_DISTANCE = "ColorBlockCompressionEuclideanDistance";
     public static final String COLOR_BLOCK_COMPRESSION_LUMINANCE_DISTANCE = "ColorBlockCompressionLuminanceDistance";
 
-    private boolean buildMipmaps;
-    private boolean premultiplyAlpha;
+    private bool buildMipmaps;
+    private bool premultiplyAlpha;
     private int dxtFormat;
-    private boolean enableDXT1Alpha;
+    private bool enableDXT1Alpha;
     private int dxt1AlphaThreshold;
     private String colorBlockCompressionType;
 
@@ -34,7 +34,7 @@ public class DXTCompressionAttributes
         this.colorBlockCompressionType = COLOR_BLOCK_COMPRESSION_EUCLIDEAN_DISTANCE;
     }
 
-    public boolean isBuildMipmaps()
+    public bool isBuildMipmaps()
     {
         return this.buildMipmaps;
     }
@@ -44,7 +44,7 @@ public class DXTCompressionAttributes
         this.buildMipmaps = buildMipmaps;
     }
 
-    public boolean isPremultiplyAlpha()
+    public bool isPremultiplyAlpha()
     {
         return this.premultiplyAlpha;
     }
@@ -64,7 +64,7 @@ public class DXTCompressionAttributes
         this.dxtFormat = format;
     }
 
-    public boolean isEnableDXT1Alpha()
+    public bool isEnableDXT1Alpha()
     {
         return this.enableDXT1Alpha;
     }

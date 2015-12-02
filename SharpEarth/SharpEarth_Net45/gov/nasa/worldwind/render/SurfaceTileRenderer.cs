@@ -26,8 +26,8 @@ public abstract class SurfaceTileRenderer implements Disposable
 
     protected Texture alphaTexture;
     protected Texture outlineTexture;
-    protected boolean showImageTileOutlines = false;
-    protected boolean useImageTilePickColors = false;
+    protected bool showImageTileOutlines = false;
+    protected bool useImageTilePickColors = false;
 
     /**
      * Free internal resources held by this surface tile renderer. A GL context must be current when this method is
@@ -51,7 +51,7 @@ public abstract class SurfaceTileRenderer implements Disposable
         this.outlineTexture = null;
     }
 
-    public boolean isShowImageTileOutlines()
+    public bool isShowImageTileOutlines()
     {
         return showImageTileOutlines;
     }
@@ -69,7 +69,7 @@ public abstract class SurfaceTileRenderer implements Disposable
      * @return true if image tile RGB colors are drawn during picking, false if image tile RGB colors are replaced by
      *         the current RGB color.
      */
-    public boolean isUseImageTilePickColors()
+    public bool isUseImageTilePickColors()
     {
         return this.useImageTilePickColors;
     }
@@ -135,7 +135,7 @@ public abstract class SurfaceTileRenderer implements Disposable
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         int alphaTextureUnit = GL.GL_TEXTURE1;
-        boolean showOutlines = this.showImageTileOutlines && dc.getGLRuntimeCapabilities().getNumTextureUnits() > 2;
+        bool showOutlines = this.showImageTileOutlines && dc.getGLRuntimeCapabilities().getNumTextureUnits() > 2;
 
         gl.glPushAttrib(GL2.GL_COLOR_BUFFER_BIT // for alpha func
             | GL2.GL_ENABLE_BIT
@@ -269,7 +269,7 @@ public abstract class SurfaceTileRenderer implements Disposable
         catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE,
-                Logging.getMessage("generic.ExceptionWhileRenderingLayer", this.getClass().getName()), e);
+                Logging.getMessage("generic.ExceptionWhileRenderingLayer", this.GetType().getName()), e);
         }
         finally
         {

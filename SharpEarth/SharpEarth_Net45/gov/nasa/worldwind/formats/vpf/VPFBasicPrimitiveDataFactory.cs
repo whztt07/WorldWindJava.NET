@@ -83,7 +83,7 @@ public class VPFBasicPrimitiveDataFactory implements VPFPrimitiveDataFactory
             this.buildNodePrimitives(connectedNodeTable, VPFConstants.CONNECTED_NODE_PRIMITIVE_TABLE, primitiveData);
     }
 
-    protected boolean buildNodePrimitives(VPFBufferedRecordData table, String name, VPFPrimitiveData primitiveData)
+    protected bool buildNodePrimitives(VPFBufferedRecordData table, String name, VPFPrimitiveData primitiveData)
     {
         int numNodes = table.getNumRecords();
         VPFPrimitiveData.BasicPrimitiveInfo[] nodeInfo = new VPFPrimitiveData.BasicPrimitiveInfo[numNodes];
@@ -254,7 +254,7 @@ public class VPFBasicPrimitiveDataFactory implements VPFPrimitiveDataFactory
         // for each edge.
         traverser.traverseRing(faceId, startEdgeId, edgeInfoArray, new VPFWingedEdgeTraverser.EdgeTraversalListener()
         {
-            public void nextEdge(int index, int primitiveId, boolean reverseCoordinates)
+            public void nextEdge(int index, int primitiveId, bool reverseCoordinates)
             {
                 idArray[index] = primitiveId;
                 orientationArray[index] = reverseCoordinates ? -1 : 1;
@@ -295,10 +295,10 @@ public class VPFBasicPrimitiveDataFactory implements VPFPrimitiveDataFactory
         // Append the primitive table name.
         sb.append(tableName);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
-    protected static boolean isEdgeOnTileBoundary(VPFRecord record)
+    protected static bool isEdgeOnTileBoundary(VPFRecord record)
     {
         VPFTripletId id = null;
 

@@ -1109,7 +1109,7 @@ public class VecBuffer
             this.accessor = accessor;
         }
 
-        public boolean hasNext()
+        public bool hasNext()
         {
             return this.position < (this.size - 1);
         }
@@ -1145,7 +1145,7 @@ public class VecBuffer
             this.accessor = accessor;
         }
 
-        public boolean hasNext()
+        public bool hasNext()
         {
             return this.position > 0;
         }

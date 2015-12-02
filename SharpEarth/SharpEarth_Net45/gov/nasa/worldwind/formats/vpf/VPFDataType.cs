@@ -78,7 +78,7 @@ public enum VPFDataType
         return this.length;
     }
 
-    public boolean isVariableLength()
+    public bool isVariableLength()
     {
         return this.length == -1;
     }

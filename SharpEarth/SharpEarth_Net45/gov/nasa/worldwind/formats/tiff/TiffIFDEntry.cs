@@ -270,7 +270,7 @@ public class TiffIFDEntry implements Comparable<TiffIFDEntry> {
             return null;
 
         CharBuffer cbuf = ((ByteBuffer) this.data.rewind()).asCharBuffer();
-        return cbuf.toString();
+        return cbuf.ToString();
     }
 
 //  1 = BYTE 8-bit unsigned integer.

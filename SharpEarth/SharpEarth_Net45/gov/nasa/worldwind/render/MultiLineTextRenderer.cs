@@ -84,7 +84,7 @@ public class MultiLineTextRenderer
     protected Color linkColor = Color.BLUE;
 
     // HTML Picking
-    protected boolean isPicking = false;
+    protected bool isPicking = false;
     protected DrawContext drawContext;
     protected PickSupport pickSupport;
     protected Object pickObject;
@@ -567,7 +567,7 @@ public class MultiLineTextRenderer
         // between lines - not at the end
         // Checks for height limit.
         int currentHeight = 0;
-        boolean heightExceeded = false;
+        bool heightExceeded = false;
         double maxLineHeight = getMaxLineHeight(this.textRenderer);
         for (int i = 0; i < lines.length && !heightExceeded; i++)
         {
@@ -596,7 +596,7 @@ public class MultiLineTextRenderer
                 wrappedText.deleteCharAt(wrappedText.length() - 1); // Remove excess new line
             wrappedText.append(this.continuationString);
         }
-        return wrappedText.toString();
+        return wrappedText.ToString();
     }
 
     // Wrap one line to fit the given width
@@ -656,7 +656,7 @@ public class MultiLineTextRenderer
             // Line doesn't need to be wrapped
             wrappedText.append(source);
         }
-        return wrappedText.toString();
+        return wrappedText.ToString();
     }
 
     //** Very very simple html support *******************************************
@@ -674,7 +674,7 @@ public class MultiLineTextRenderer
      *
      * @return true if the string contains sgml or html tags
      */
-    public static boolean containsHTML(String text)
+    public static bool containsHTML(String text)
     {
         if (text == null)
         {
@@ -906,9 +906,9 @@ public class MultiLineTextRenderer
         }
 
         if (height > 0)
-            return trimTextHTML(wrappedText.toString(), height, savedState);
+            return trimTextHTML(wrappedText.ToString(), height, savedState);
 
-        return wrappedText.toString();
+        return wrappedText.ToString();
     }
 
     protected String trimTextHTML(String text, double height, DrawState ds)
@@ -933,7 +933,7 @@ public class MultiLineTextRenderer
             }
         }
 
-        return wrappedText.toString();
+        return wrappedText.ToString();
     }
 
     protected String wrapLineHTML(String line, double width, DrawState ds)
@@ -971,7 +971,7 @@ public class MultiLineTextRenderer
             }
         }
 
-        return wrappedText.toString();
+        return wrappedText.ToString();
     }
 
     /**
@@ -1142,7 +1142,7 @@ public class MultiLineTextRenderer
         int start = 0;
         String part;
         Rectangle2D partBounds;
-        boolean expandStart = true;
+        bool expandStart = true;
         Matcher matcher = SGMLOrSpacePattern.matcher(word);  // html tags or spaces
         while (matcher.find())
         {
@@ -1172,7 +1172,7 @@ public class MultiLineTextRenderer
     }
 
     protected void pickWordPartHTML(String word, double x, double y, Rectangle2D partBounds, DrawState ds,
-        boolean expandStart)
+        bool expandStart)
     {
         String hyperlink = ds.getDrawAttributes().hyperlink;
         // Extend pick rectangle width to fill a bit more then half a space before and after the word.
@@ -1271,7 +1271,7 @@ public class MultiLineTextRenderer
                 words.add(word);
         }
 
-        public boolean hasNext()
+        public bool hasNext()
         {
             return this.nextWord != -1 && this.nextWord < words.size();
         }
@@ -1338,7 +1338,7 @@ public class MultiLineTextRenderer
             return OGLTextRenderer.getOrCreateTextRenderer(this.renderers, font);
         }
 
-        protected Font getFont(Font font, boolean isBold, boolean isItalic)
+        protected Font getFont(Font font, bool isBold, bool isItalic)
         {
             int fontStyle = isBold ? (isItalic ? Font.BOLD | Font.ITALIC : Font.BOLD)
                 : (isItalic ? Font.ITALIC : Font.PLAIN);
@@ -1346,7 +1346,7 @@ public class MultiLineTextRenderer
         }
 
         // Update DrawState from html text
-        public void updateFromHTMLText(String text, boolean startStopRendering)
+        public void updateFromHTMLText(String text, bool startStopRendering)
         {
             Matcher matcher = SGMLPattern.matcher(text);
             while (matcher.find())
@@ -1356,10 +1356,10 @@ public class MultiLineTextRenderer
         }
 
         // Update DrawState from html tag
-        public void updateFromHTMLTag(String tag, boolean startStopRendering)
+        public void updateFromHTMLTag(String tag, bool startStopRendering)
         {
             DrawAttributes da = getDrawAttributes();
-            boolean fontChanged = false;
+            bool fontChanged = false;
 
             if (tag.equalsIgnoreCase("<b>"))
             {

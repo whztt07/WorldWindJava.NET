@@ -44,7 +44,7 @@ public class PickSupport
         this.minAndMaxColorCodes = null; // Reset the min and max color codes.
     }
 
-    public void addPickableObject(int colorCode, Object o, Position position, boolean isTerrain)
+    public void addPickableObject(int colorCode, Object o, Position position, bool isTerrain)
     {
         this.getPickableObjects().put(colorCode, new PickedObject(colorCode, o, position, isTerrain));
         this.adjustExtremeColorCodes(colorCode);
@@ -260,7 +260,7 @@ public class PickSupport
         return this.pickableObjectRanges;
     }
 
-    protected boolean hasPickableObjects()
+    protected bool hasPickableObjects()
     {
         return this.getPickableObjects().size() > 0 || this.getPickableObjectRanges().size() > 0;
     }
@@ -313,7 +313,7 @@ public class PickSupport
      *
      * @return true if both objects are not null and they refer to the same user object, otherwise false.
      */
-    public static boolean areSelectionsTheSame(PickedObject a, PickedObject b)
+    public static bool areSelectionsTheSame(PickedObject a, PickedObject b)
     {
         return a != null && b != null && a.getObject() == b.getObject();
     }

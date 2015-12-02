@@ -187,7 +187,7 @@ public sealed class Plane
 
         double t = this.intersectDistance(line);
 
-        if (Double.isNaN(t))
+        if (Double.IsNaN(t))
             return null;
 
         if (Double.isInfinite(t))
@@ -221,7 +221,7 @@ public sealed class Plane
         {
             double ldots = this.n.dot4(line.getOrigin());
             if (ldots == 0)
-                return Double.POSITIVE_INFINITY; // line is coincident with the plane
+                return Double.PositiveInfinity; // line is coincident with the plane
             else
                 return Double.NaN; // line is not coincident with the plane
         }
@@ -267,7 +267,7 @@ public sealed class Plane
             if (Double.isInfinite(t))
                 return Vec4.INFINITY;
 
-            if (Double.isNaN(t) || t < 0 || t > 1)
+            if (Double.IsNaN(t) || t < 0 || t > 1)
                 return null;
 
             return l.getPointAt(t);
@@ -449,7 +449,7 @@ public sealed class Plane
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
@@ -462,15 +462,15 @@ public sealed class Plane
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         return n != null ? n.hashCode() : 0;
     }
 
     @Override
-    public final String toString()
+    public override string ToString()
     {
-        return this.n.toString();
+        return this.n.ToString();
     }
 }
 }

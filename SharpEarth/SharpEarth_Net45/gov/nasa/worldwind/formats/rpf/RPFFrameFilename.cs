@@ -128,11 +128,11 @@ public class RPFFrameFilename
         dest[11] = frameFilename.zoneCode;
     }
 
-    public final boolean equals(Object o)
+    public final bool equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || o.getClass() != this.getClass())
+        if (o == null || o.GetType() != this.GetType())
             return false;
 
         final RPFFrameFilename that = (RPFFrameFilename) o;
@@ -187,7 +187,7 @@ public class RPFFrameFilename
         return this.zoneCode;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         if (this.hashCode < 0)
             this.hashCode = this.computeHash();
@@ -206,7 +206,7 @@ public class RPFFrameFilename
         return hash;
     }
 
-    public static boolean isFilename(String str)
+    public static bool isFilename(String str)
     {
         if (str == null)
         {
@@ -237,7 +237,7 @@ public class RPFFrameFilename
         return true;
     }
 
-    public final String toString()
+    public override string ToString()
     {
         return this.getFilename();
     }

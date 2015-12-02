@@ -217,7 +217,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
     //**************************************************************//
 
     protected Object getPrimitiveIds(VPFFeatureClass featureClass, VPFRecord featureRow,
-        VPFBufferedRecordData joinTable, int[] primitiveIds, boolean query)
+        VPFBufferedRecordData joinTable, int[] primitiveIds, bool query)
     {
         // Although a direct link between feature and primitive(s) is provided by the primitive_id column in the join
         // table, a sequential search of the feature_id column must still be performed to find all primitives associated
@@ -306,7 +306,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         sb.append(File.separator);
         sb.append(featureClass.getFeatureTableName());
 
-        return VPFUtils.readTable(new File(sb.toString()));
+        return VPFUtils.readTable(new File(sb.ToString()));
     }
 
     protected VPFBufferedRecordData createJoinTable(VPFFeatureClass featureClass)
@@ -318,7 +318,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         sb.append(File.separator);
         sb.append(featureClass.getJoinTableName());
 
-        return VPFUtils.readTable(new File(sb.toString()));
+        return VPFUtils.readTable(new File(sb.ToString()));
     }
 
     protected VPFRelation getFeatureToPrimitiveRelation(VPFFeatureClass featureClass)
@@ -353,7 +353,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         return null;
     }
 
-    protected static boolean matchesTile(VPFRecord row, VPFTile tile)
+    protected static bool matchesTile(VPFRecord row, VPFTile tile)
     {
         Object fk = row.getValue("tile_id");
         return (fk != null) && (tile.getId() == asInt(fk));

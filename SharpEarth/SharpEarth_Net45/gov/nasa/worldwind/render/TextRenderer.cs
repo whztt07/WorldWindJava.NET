@@ -125,7 +125,7 @@ namespace SharpEarth.render{
     @author Kenneth Russell
 */
 public class TextRenderer {
-    private static final boolean DEBUG;
+    private static final bool DEBUG;
 
     static {
         Debug.initSingleton();
@@ -133,8 +133,8 @@ public class TextRenderer {
     }
 
     // These are occasionally useful for more in-depth debugging
-    private static boolean DISABLE_GLYPH_CACHE = false;
-    private static final boolean DRAW_BBOXES = false;
+    private static bool DISABLE_GLYPH_CACHE = false;
+    private static final bool DRAW_BBOXES = false;
     static
     {
         String arg = System.getProperty("gov.nasa.worldwind.textrender.useglyphcache");
@@ -163,13 +163,13 @@ public class TextRenderer {
     static final int kSizeInBytes_OneVertices_VertexData = kCoordsPerVertVerts * 4;
     static final int kSizeInBytes_OneVertices_TexData = kCoordsPerVertTex * 4;
     private final Font font;
-    private final boolean antialiased;
-    private final boolean useFractionalMetrics;
+    private final bool antialiased;
+    private final bool useFractionalMetrics;
 
     // Whether we're attempting to use automatic mipmap generation support
-    private boolean mipmap;
+    private bool mipmap;
     private RectanglePacker packer;
-    private boolean haveMaxSize;
+    private bool haveMaxSize;
     private final RenderDelegate renderDelegate;
     private TextureRenderer cachedBackingStore;
     private Graphics2D cachedGraphics;
@@ -182,37 +182,37 @@ public class TextRenderer {
     // Need to keep track of whether we're in a beginRendering() /
     // endRendering() cycle so we can re-enter the exact same state if
     // we have to reallocate the backing store
-    private boolean inBeginEndPair;
-    private boolean isOrthoMode;
+    private bool inBeginEndPair;
+    private bool isOrthoMode;
     private int beginRenderingWidth;
     private int beginRenderingHeight;
-    private boolean beginRenderingDepthTestDisabled;
+    private bool beginRenderingDepthTestDisabled;
 
     // For resetting the color after disposal of the old backing store
-    private boolean haveCachedColor;
+    private bool haveCachedColor;
     private float cachedR;
     private float cachedG;
     private float cachedB;
     private float cachedA;
     private Color cachedColor;
-    private boolean needToResetColor;
+    private bool needToResetColor;
 
     // For debugging only
     private Frame dbgFrame;
 
     // Debugging purposes only
-    private boolean debugged;
+    private bool debugged;
     Pipelined_QuadRenderer mPipelinedQuadRenderer;
 
-    //emzic: added boolean flag
-    private boolean useVertexArrays = true;
+    //emzic: added bool flag
+    private bool useVertexArrays = true;
 
-    //emzic: added boolean flag
-    private boolean isExtensionAvailable_GL_VERSION_1_5;
-    private boolean checkFor_isExtensionAvailable_GL_VERSION_1_5;
+    //emzic: added bool flag
+    private bool isExtensionAvailable_GL_VERSION_1_5;
+    private bool checkFor_isExtensionAvailable_GL_VERSION_1_5;
 
     // Whether GL_LINEAR filtering is enabled for the backing store
-    private boolean smoothing = true;
+    private bool smoothing = true;
 
     /** Creates a new TextRenderer with the given font, using no
         antialiasing or fractional metrics, and the default
@@ -235,7 +235,7 @@ public class TextRenderer {
         @param font the font to render with
         @param mipmap whether to attempt use of automatic mipmap generation
     */
-    public TextRenderer(Font font, boolean mipmap) {
+    public TextRenderer(Font font, bool mipmap) {
         this(font, false, false, null, mipmap);
     }
 
@@ -252,8 +252,8 @@ public class TextRenderer {
         @param useFractionalMetrics whether to use fractional font
         metrics at the Java 2D level
     */
-    public TextRenderer(Font font, boolean antialiased,
-                        boolean useFractionalMetrics) {
+    public TextRenderer(Font font, bool antialiased,
+                        bool useFractionalMetrics) {
         this(font, antialiased, useFractionalMetrics, null, false);
     }
 
@@ -271,8 +271,8 @@ public class TextRenderer {
         @param renderDelegate the render delegate to use to draw the
         text's bitmap, or null to use the default one
     */
-    public TextRenderer(Font font, boolean antialiased,
-                        boolean useFractionalMetrics, RenderDelegate renderDelegate) {
+    public TextRenderer(Font font, bool antialiased,
+                        bool useFractionalMetrics, RenderDelegate renderDelegate) {
         this(font, antialiased, useFractionalMetrics, renderDelegate, false);
     }
 
@@ -293,9 +293,9 @@ public class TextRenderer {
         text's bitmap, or null to use the default one
         @param mipmap whether to attempt use of automatic mipmap generation
     */
-    public TextRenderer(Font font, boolean antialiased,
-                        boolean useFractionalMetrics, RenderDelegate renderDelegate,
-                        boolean mipmap) {
+    public TextRenderer(Font font, bool antialiased,
+                        bool useFractionalMetrics, RenderDelegate renderDelegate,
+                        bool mipmap) {
         this.font = font;
         this.antialiased = antialiased;
         this.useFractionalMetrics = useFractionalMetrics;
@@ -408,7 +408,7 @@ public class TextRenderer {
         @param disableDepthTest whether to disable the depth test
         @throws GLException If an OpenGL context is not current when this method is called
     */
-    public void beginRendering(int width, int height, boolean disableDepthTest)
+    public void beginRendering(int width, int height, bool disableDepthTest)
         throws GLException {
         beginRendering(true, width, height, disableDepthTest);
     }
@@ -436,7 +436,7 @@ public class TextRenderer {
         @throws GLException If an OpenGL context is not current when this method is called
     */
     public void setColor(Color color) throws GLException {
-        boolean noNeedForFlush = (haveCachedColor && (cachedColor != null) &&
+        bool noNeedForFlush = (haveCachedColor && (cachedColor != null) &&
                                   color.equals(cachedColor));
 
         if (!noNeedForFlush) {
@@ -465,7 +465,7 @@ public class TextRenderer {
     */
     public void setColor(float r, float g, float b, float a)
         throws GLException {
-        boolean noNeedForFlush = (haveCachedColor && (cachedColor == null) &&
+        bool noNeedForFlush = (haveCachedColor && (cachedColor == null) &&
                                   (r == cachedR) && (g == cachedG) && (b == cachedB) &&
                                   (a == cachedA));
 
@@ -590,8 +590,8 @@ public class TextRenderer {
         // Also give ourselves a little slop around the reported
         // bounds of glyphs because it looks like neither the visual
         // nor the pixel bounds works perfectly well
-        int minX = (int) Math.floor(src.getMinX()) - 1;
-        int minY = (int) Math.floor(src.getMinY()) - 1;
+        int minX = (int) Math.Floor(src.getMinX()) - 1;
+        int minY = (int) Math.Floor(src.getMinY()) - 1;
         int maxX = (int) Math.ceil(src.getMaxX()) + 1;
         int maxY = (int) Math.ceil(src.getMaxY()) + 1;
         return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
@@ -608,8 +608,8 @@ public class TextRenderer {
         // heuristically, 1.5% of the font's height
         int boundary = (int) Math.max(1, 0.015 * font.getSize());
 
-        return new Rectangle2D.Double((int) Math.floor(src.getMinX() - boundary),
-                                      (int) Math.floor(src.getMinY() - boundary),
+        return new Rectangle2D.Double((int) Math.Floor(src.getMinX() - boundary),
+                                      (int) Math.Floor(src.getMinY() - boundary),
                                       (int) Math.ceil(src.getWidth() + 2 * boundary),
                                       (int) Math.ceil(src.getHeight()) + 2 * boundary);
     }
@@ -654,7 +654,7 @@ public class TextRenderer {
     }
 
     private void beginRendering(boolean ortho, int width, int height,
-                                boolean disableDepthTestForOrtho) {
+                                bool disableDepthTestForOrtho) {
         GL2 gl = GLContext.getCurrentGL().getGL2();
 
         if (DEBUG && !debugged) {
@@ -827,7 +827,7 @@ public class TextRenderer {
         if (str instanceof String) {
             curStr = (String) str;
         } else {
-            curStr = str.toString();
+            curStr = str.ToString();
         }
 
         // Look up the string on the backing store
@@ -946,7 +946,7 @@ public class TextRenderer {
     public static interface RenderDelegate {
         /** Indicates whether the backing store of this TextRenderer
             should be intensity-only (the default) or full-color. */
-        public boolean intensityOnly();
+        public bool intensityOnly();
 
         /** Computes the bounds of the given String relative to the
             origin. */
@@ -1109,7 +1109,7 @@ public class TextRenderer {
         // equivalent to the origin above.
         private final Rectangle2D origRect;
 
-        private boolean used; // Whether this text was used recently
+        private bool used; // Whether this text was used recently
 
         TextData(String str, Point origin, Rectangle2D origRect, int unicodeID) {
             this.str = str;
@@ -1140,7 +1140,7 @@ public class TextRenderer {
             return origRect;
         }
 
-        boolean used() {
+        bool used() {
             return used;
         }
 
@@ -1185,7 +1185,7 @@ public class TextRenderer {
         }
 
         @Override
-        public boolean preExpand(Rect cause, int attemptNumber) {
+        public bool preExpand(Rect cause, int attemptNumber) {
             // Only try this one time; clear out potentially obsolete entries
             // NOTE: this heuristic and the fact that it clears the used bit
             // of all entries seems to cause cycling of entries in some
@@ -1221,7 +1221,7 @@ public class TextRenderer {
         }
 
         @Override
-        public boolean additionFailed(Rect cause, int attemptNumber) {
+        public bool additionFailed(Rect cause, int attemptNumber) {
             // Heavy hammer -- might consider doing something different
             packer.clear();
             stringLocations.clear();
@@ -1240,7 +1240,7 @@ public class TextRenderer {
         }
 
         @Override
-        public boolean canCompact() {
+        public bool canCompact() {
             return true;
         }
 
@@ -1338,7 +1338,7 @@ public class TextRenderer {
 
     public static class DefaultRenderDelegate implements RenderDelegate {
         @Override
-        public boolean intensityOnly() {
+        public bool intensityOnly() {
             return true;
         }
 
@@ -1415,7 +1415,7 @@ public class TextRenderer {
         private String str;
         // Whether we need a valid advance when rendering this string
         // (i.e., whether it has other single glyphs coming after it)
-        private boolean needAdvance;
+        private bool needAdvance;
 
         // Creates a Glyph representing an individual Unicode character
         public Glyph(int unicodeID,
@@ -1433,7 +1433,7 @@ public class TextRenderer {
         // Creates a Glyph representing a sequence of characters, with
         // an indication of whether additional single glyphs are being
         // rendered after it
-        public Glyph(String str, boolean needAdvance) {
+        public Glyph(String str, bool needAdvance) {
             this.str = str;
             this.needAdvance = needAdvance;
         }
@@ -1607,16 +1607,16 @@ public class TextRenderer {
         public List<Glyph> getGlyphs(CharSequence inString) {
             glyphsOutput.clear();
             GlyphVector fullRunGlyphVector;
-            fullRunGlyphVector = fullGlyphVectorCache.get(inString.toString());
+            fullRunGlyphVector = fullGlyphVectorCache.get(inString.ToString());
             if (fullRunGlyphVector == null) {
                 iter.initFromCharSequence(inString);
                 fullRunGlyphVector = font.createGlyphVector(getFontRenderContext(), iter);
-                fullGlyphVectorCache.put(inString.toString(), fullRunGlyphVector);
+                fullGlyphVectorCache.put(inString.ToString(), fullRunGlyphVector);
             }
-            boolean complex = (fullRunGlyphVector.getLayoutFlags() != 0);
+            bool complex = (fullRunGlyphVector.getLayoutFlags() != 0);
             if (complex || DISABLE_GLYPH_CACHE) {
                 // Punt to the robust version of the renderer
-                glyphsOutput.add(new Glyph(inString.toString(), false));
+                glyphsOutput.add(new Glyph(inString.ToString(), false));
                 return glyphsOutput;
             }
 
@@ -1641,7 +1641,7 @@ public class TextRenderer {
                            getGlyph(inString, fullRunGlyphVector.getGlyphMetrics(i), i) == null) {
                         buf.append(inString.charAt(i++));
                     }
-                    glyphsOutput.add(new Glyph(buf.toString(),
+                    glyphsOutput.add(new Glyph(buf.ToString(),
                                                // Any more glyphs after this run?
                                                i < lengthInGlyphs));
                 }
@@ -1767,7 +1767,7 @@ public class TextRenderer {
         int mOutstandingGlyphsVerticesPipeline = 0;
         FloatBuffer mTexCoords;
         FloatBuffer mVertCoords;
-        boolean usingVBOs;
+        bool usingVBOs;
         int mVBO_For_ResuableTileVertices;
         int mVBO_For_ResuableTileTexCoords;
 
@@ -1967,7 +1967,7 @@ public class TextRenderer {
         }
 
         public void displayChanged(GLAutoDrawable drawable,
-                                   boolean modeChanged, boolean deviceChanged) {
+                                   bool modeChanged, bool deviceChanged) {
         }
     }
 
@@ -1987,7 +1987,7 @@ public class TextRenderer {
      * rendering, or whether text is rendered using the OpenGL
      * immediate mode commands. Defaults to true.
      */
-    public final boolean getUseVertexArrays() {
+    public final bool getUseVertexArrays() {
         return useVertexArrays;
     }
 
@@ -2008,11 +2008,11 @@ public class TextRenderer {
      * not behave well when this is enabled, resulting in fuzzy text.
      * Defaults to true.
      */
-    public boolean getSmoothing() {
+    public bool getSmoothing() {
         return smoothing;
     }
 
-    private final boolean is15Available(GL gl) {
+    private final bool is15Available(GL gl) {
         if (!checkFor_isExtensionAvailable_GL_VERSION_1_5) {
             isExtensionAvailable_GL_VERSION_1_5 = gl.isExtensionAvailable(GLExtensions.VERSION_1_5);
             checkFor_isExtensionAvailable_GL_VERSION_1_5 = true;

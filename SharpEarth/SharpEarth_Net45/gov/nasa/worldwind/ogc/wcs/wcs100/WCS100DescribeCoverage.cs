@@ -42,7 +42,7 @@ public class WCS100DescribeCoverage extends AbstractXMLEventParser
             }
         };
 
-        return new WCS100DescribeCoverage(request.toString());
+        return new WCS100DescribeCoverage(request.ToString());
     }
 
     public WCS100DescribeCoverage(Object docSource)

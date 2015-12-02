@@ -127,23 +127,23 @@ public class VPFTableReader
             return this.numElements * type.getFieldLength();
         }
 
-        public boolean isVariableLengthField()
+        public bool isVariableLengthField()
         {
             VPFDataType type = VPFDataType.fromTypeName(this.dataType);
             return (this.numElements < 0) || type.isVariableLength();
         }
 
-        public boolean isPrimaryKey()
+        public bool isPrimaryKey()
         {
             return this.keyType.equals(VPFConstants.PRIMARY_KEY);
         }
 
-        public boolean isUniqueKey()
+        public bool isUniqueKey()
         {
             return this.keyType.equals(VPFConstants.UNIQUE_KEY);
         }
 
-        public boolean isNonUniqueKey()
+        public bool isNonUniqueKey()
         {
             return this.keyType.equals(VPFConstants.NON_UNIQUE_KEY);
         }
@@ -396,7 +396,7 @@ public class VPFTableReader
      */
     protected static String getRecordIndexFilename(String tableName)
     {
-        boolean isFcs = tableName.equalsIgnoreCase(VPFConstants.FEATURE_CLASS_SCHEMA_TABLE);
+        bool isFcs = tableName.equalsIgnoreCase(VPFConstants.FEATURE_CLASS_SCHEMA_TABLE);
 
         StringBuilder sb = new StringBuilder();
 
@@ -404,7 +404,7 @@ public class VPFTableReader
         sb.append(tableName, 0, (len > 0) ? (len - 1) : len);
         sb.append(isFcs ? "z" : "x");
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     protected RecordIndex readRecordIndex(File file)

@@ -140,7 +140,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
 
     public final String getName()
     {
-        return this.url.toString();
+        return this.url.ToString();
     }
 
     public final URL getURL()
@@ -271,7 +271,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
             if (!(e instanceof java.net.SocketTimeoutException))
             {
                 Logging.logger().log(Level.SEVERE,
-                    Logging.getMessage("URLRetriever.ErrorAttemptingToRetrieve", this.url.toString()), e);
+                    Logging.getMessage("URLRetriever.ErrorAttemptingToRetrieve", this.url.ToString()), e);
             }
             throw e;
         }
@@ -290,12 +290,12 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         this.firePropertyChange(AVKey.RETRIEVER_STATE, oldState, this.state);
     }
 
-    protected boolean interrupted()
+    protected bool interrupted()
     {
         if (Thread.currentThread().isInterrupted())
         {
             this.setState(RETRIEVER_STATE_INTERRUPTED);
-            String message = Logging.getMessage("URLRetriever.RetrievalInterruptedFor", this.url.toString());
+            String message = Logging.getMessage("URLRetriever.RetrievalInterruptedFor", this.url.ToString());
             Logging.logger().fine(message);
             return true;
         }
@@ -315,7 +315,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         catch (java.io.IOException e)
         {
             Logging.logger().log(Level.SEVERE,
-                Logging.getMessage("URLRetriever.ErrorOpeningConnection", this.url.toString()), e);
+                Logging.getMessage("URLRetriever.ErrorOpeningConnection", this.url.ToString()), e);
             throw e;
         }
 
@@ -356,7 +356,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         {
             this.setState(RETRIEVER_STATE_ERROR);
             Logging.logger().log(Level.SEVERE,
-                Logging.getMessage("Retriever.ErrorPostProcessing", this.url.toString()), e);
+                Logging.getMessage("Retriever.ErrorPostProcessing", this.url.ToString()), e);
             throw e;
         }
     }
@@ -376,7 +376,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
                 || e instanceof SocketException))
             {
                 Logging.logger().log(Level.SEVERE,
-                    Logging.getMessage("URLRetriever.ErrorReadingFromConnection", this.url.toString()), e);
+                    Logging.getMessage("URLRetriever.ErrorReadingFromConnection", this.url.ToString()), e);
             }
             throw e;
         }
@@ -427,7 +427,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         }
         finally
         {
-            WWIO.closeStream(inputStream, connection.getURL().toString());
+            WWIO.closeStream(inputStream, connection.getURL().ToString());
         }
 
         return buffer;
@@ -587,22 +587,22 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final URLRetriever that = (URLRetriever) o;
 
         // Retrievers are considered identical if they are for the same URL. This convention is used by the
         // retrieval service to filter out duplicate retrieval requests.
-        return !(url != null ? !url.toString().contentEquals(that.url.toString()) : that.url != null);
+        return !(url != null ? !url.ToString().contentEquals(that.url.ToString()) : that.url != null);
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = (url != null ? url.hashCode() : 0);
@@ -612,7 +612,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
     @Override
     public String toString()
     {
-        return this.getName() != null ? this.getName() : super.toString();
+        return this.getName() != null ? this.getName() : super.ToString();
     }
 }
 }

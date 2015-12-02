@@ -161,7 +161,7 @@ public class GeotiffReader implements Disposable
         throw new IOException(message);
     }
 
-    public boolean isGeotiff(int imageIndex) throws IOException
+    public bool isGeotiff(int imageIndex) throws IOException
     {
         AVList values = this.metadata.get(imageIndex);
         return (null != values && values.hasKey(AVKey.COORDINATE_SYSTEM));
@@ -179,7 +179,7 @@ public class GeotiffReader implements Disposable
         byte[][] cmap = null;
         long[] stripCounts = null;
 
-        boolean tiffDifferencing = false;
+        bool tiffDifferencing = false;
 
         TiffIFDEntry[] ifd = this.tiffIFDs.get(imageIndex);
 
@@ -262,7 +262,7 @@ public class GeotiffReader implements Disposable
             }
             catch (IOException e)
             {
-                Logging.logger().finest(e.toString());
+                Logging.logger().finest(e.ToString());
             }
         }
 
@@ -281,7 +281,7 @@ public class GeotiffReader implements Disposable
         }
 
         TiffIFDEntry notToday = getByTag(ifd, Tiff.Tag.COMPRESSION);
-        boolean lzwCompressed = false;
+        bool lzwCompressed = false;
         if (notToday != null && notToday.asLong() == Tiff.Compression.LZW)
         {
             lzwCompressed = true;
@@ -359,7 +359,7 @@ public class GeotiffReader implements Disposable
             }
             else
             {
-                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.toString());
+                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.ToString());
                 Logging.logger().severe(message);
                 throw new IOException(message);
             }
@@ -427,7 +427,7 @@ public class GeotiffReader implements Disposable
 
             if (null == grayImage)
             {
-                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.toString());
+                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.ToString());
                 Logging.logger().severe(message);
                 throw new IOException(message);
             }
@@ -457,7 +457,7 @@ public class GeotiffReader implements Disposable
             if (tiff.photometric == Tiff.Photometric.Color_RGB)
             {
                 int transparency = Transparency.OPAQUE;
-                boolean hasAlpha = false;
+                bool hasAlpha = false;
 
                 if (tiff.samplesPerPixel == Tiff.SamplesPerPixel.RGB)
                 {
@@ -540,7 +540,7 @@ public class GeotiffReader implements Disposable
 
             if (null == colorImage)
             {
-                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.toString());
+                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.ToString());
                 Logging.logger().severe(message);
                 throw new IOException(message);
             }
@@ -549,7 +549,7 @@ public class GeotiffReader implements Disposable
             return BufferedImageRaster.wrap(colorImage, values);
         }
 
-        String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.toString());
+        String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.ToString());
         Logging.logger().severe(message);
         throw new IOException(message);
     }
@@ -686,7 +686,7 @@ public class GeotiffReader implements Disposable
 
             if (!values.hasKey(AVKey.PIXEL_FORMAT) || !values.hasKey(AVKey.DATA_TYPE))
             {
-                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.toString());
+                String message = Logging.getMessage("Geotiff.UnsupportedDataTypeRaster", tiff.ToString());
                 Logging.logger().severe(message);
 //                throw new IOException(message);
             }
@@ -738,7 +738,7 @@ public class GeotiffReader implements Disposable
                 }
                 catch (Exception e)
                 {
-                    Logging.logger().finest(e.toString());
+                    Logging.logger().finest(e.ToString());
                 }
             }
 

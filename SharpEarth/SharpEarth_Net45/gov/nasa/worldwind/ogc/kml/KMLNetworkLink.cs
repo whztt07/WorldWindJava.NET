@@ -46,14 +46,14 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
     protected AtomicLong firstRetrievalTime;
 
     /** Flag to indicate that the Link has been fetched from the hash map. */
-    protected boolean linkFetched = false;
+    protected bool linkFetched = false;
     protected KMLLink link;
 
     /**
      * Flag that is raised if the link retrieves a files that is not a KML document. In this case, do not attempt to
      * retrieve the resource again until the link changes. If the link changes then target file may also have changed.
      */
-    protected boolean invalidTarget;
+    protected bool invalidTarget;
 
     /**
      * Cache the root of this network link. Accessing the root by climbing up a deep network link tree can be a
@@ -170,7 +170,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
      * prevents retrieving network links in inactive regions.
      */
     @Override
-    protected boolean isFeatureActive(KMLTraversalContext tc, DrawContext dc)
+    protected bool isFeatureActive(KMLTraversalContext tc, DrawContext dc)
     {
         if (this.getVisibility() != null && !this.getVisibility())
             return false;
@@ -182,7 +182,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
         return region == null || region.isActive(tc, dc);
     }
 
-    protected boolean hasNetworkLinkControl()
+    protected bool hasNetworkLinkControl()
     {
         return this.getRoot().getNetworkLinkControl() != null;
     }
@@ -306,7 +306,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
      * @return <code>true</code> if this <code>KMLNetworkLink</code> must retrieve its network resource, otherwise
      *         <code>false</code>.
      */
-    protected boolean mustRetrieveNetworkResource()
+    protected bool mustRetrieveNetworkResource()
     {
         KMLLink link = this.getLinkOrUrl();
         if (link == null)
@@ -453,7 +453,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
      * @return <code>true</code> if this link's network resource can should be stored in a cache, or <code>false</code>
      *         if it should be stored in a temporary location.
      */
-    public boolean isLinkCacheable()
+    public bool isLinkCacheable()
     {
         KMLLink link = this.getLinkOrUrl();
         return link != null
@@ -545,11 +545,11 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             RequestTask that = (RequestTask) o;
@@ -564,7 +564,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = link.hashCode();
             result = 31 * result + address.hashCode();

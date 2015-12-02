@@ -248,7 +248,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
 
         Object o = this.parent.getRoot().resolveReference(path);
         if (o instanceof URL || o instanceof String)
-            return o.toString();
+            return o.ToString();
 
         return null;
     }
@@ -259,7 +259,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
      *
      * @return <code>true</code> if this placemark must retrieve its model resource, otherwise <code>false</code>.
      */
-    protected boolean mustRetrieveResource()
+    protected bool mustRetrieveResource()
     {
         KMLLink link = this.model.getLink();
         if (link == null)
@@ -376,11 +376,11 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             RequestTask that = (RequestTask) o;
@@ -395,7 +395,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = placemark.hashCode();
             result = 31 * result + address.hashCode();

@@ -61,7 +61,7 @@ public class ViewPropertyAccessor
             return this.view.getHeading();
         }
 
-        public final boolean setAngle(Angle value)
+        public final bool setAngle(Angle value)
         {
             //noinspection SimplifiableIfStatement
             if (this.view == null || value == null)
@@ -96,7 +96,7 @@ public class ViewPropertyAccessor
             return view.getPitch();
         }
 
-        public final boolean setAngle(Angle value)
+        public final bool setAngle(Angle value)
         {
             //noinspection SimplifiableIfStatement
             if (this.view == null || value == null)
@@ -131,7 +131,7 @@ public class ViewPropertyAccessor
             return view.getRoll();
         }
 
-        public final boolean setAngle(Angle value)
+        public final bool setAngle(Angle value)
         {
             //noinspection SimplifiableIfStatement
             if (this.view == null || value == null)
@@ -168,7 +168,7 @@ public class ViewPropertyAccessor
             return this.view.getEyePosition();
         }
 
-        public boolean setPosition(Position value)
+        public bool setPosition(Position value)
         {
             //noinspection SimplifiableIfStatement
             if (this.view == null || value == null)
@@ -204,7 +204,7 @@ public class ViewPropertyAccessor
             return this.view.getEyePosition().getElevation();
         }
 
-        public boolean setDouble(Double value)
+        public bool setDouble(Double value)
         {
             //noinspection SimplifiableIfStatement
             if (this.view == null || value == null)

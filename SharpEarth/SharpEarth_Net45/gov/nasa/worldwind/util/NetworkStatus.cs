@@ -60,14 +60,14 @@ public interface NetworkStatus extends AVList
      *
      * @return true if the host is marked as unavailable, otherwise false.
      */
-    boolean isHostUnavailable(URL url);
+    bool isHostUnavailable(URL url);
 
     /**
      * Indicates whether a public network can be reached or has been reached in the previous five seconds.
      *
      * @return false if the network can be reached or has been reached in the previous five seconds, otherwise true.
      */
-    boolean isNetworkUnavailable();
+    bool isNetworkUnavailable();
 
     /**
      * Indicates whether a public network can be reached or has been reached in a specified previous amount of time.
@@ -77,14 +77,14 @@ public interface NetworkStatus extends AVList
      *
      * @return false if the network can be reached or has been reached in a specified time, otherwise true.
      */
-    boolean isNetworkUnavailable(long checkInterval);
+    bool isNetworkUnavailable(long checkInterval);
 
     /**
      * Indicates whether the NASA World Wind servers can be reached.
      *
      * @return false if the servers can be reached, otherwise true.
      */
-    boolean isWorldWindServerUnavailable();
+    bool isWorldWindServerUnavailable();
 
     /**
      * Returns the number of times a host must be logged as unavailable before it is marked unavailable in this class.
@@ -106,7 +106,7 @@ public interface NetworkStatus extends AVList
      *
      * @return <code>true</code> if World Wind is in off-line mode, <code>false</code> if not.
      */
-    boolean isOfflineMode();
+    bool isOfflineMode();
 
     /**
      * Indicates whether World Wind should attempt to connect to the network to retrieve data or for other reasons. The

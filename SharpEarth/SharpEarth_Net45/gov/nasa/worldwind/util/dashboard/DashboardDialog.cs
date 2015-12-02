@@ -23,7 +23,7 @@ namespace SharpEarth.util.dashboard{
 public class DashboardDialog extends JDialog
 {
     private WorldWindow wwd;
-    private boolean runContinuously = false;
+    private bool runContinuously = false;
 
     public DashboardDialog(Frame parent, WorldWindow wwd) throws HeadlessException
     {
@@ -138,8 +138,8 @@ public class DashboardDialog extends JDialog
         {
             public void actionPerformed(ActionEvent e)
             {
-                boolean tris = triangleButton.isSelected();
-                boolean skirts = skirtsButton.isSelected();
+                bool tris = triangleButton.isSelected();
+                bool skirts = skirtsButton.isSelected();
 
                 if (tris && e.getSource() == triangleButton)
                 {
@@ -169,7 +169,7 @@ public class DashboardDialog extends JDialog
 //        {
 //            public void actionPerformed(ActionEvent e)
 //            {
-//                boolean tf = ((JRadioButton)e.getSource()).isSelected();
+//                bool tf = ((JRadioButton)e.getSource()).isSelected();
 //                if (tf)
 //                    triangleButton.setSelected(false);
 //                wwd.getModel().setShowWireframeInterior(tf);

@@ -47,7 +47,7 @@ public abstract class RPFFrameTransform
 
     private static RPFFrameTransform newFrameTransform(char zoneCode, String rpfDataType, double resolution)
     {
-        boolean isNonpolarZone = !RPFZone.isPolarZone(zoneCode);
+        bool isNonpolarZone = !RPFZone.isPolarZone(zoneCode);
         if (isNonpolarZone)
         {
             return RPFNonpolarFrameTransform.createNonpolarFrameTransform(zoneCode, rpfDataType, resolution);

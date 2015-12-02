@@ -25,7 +25,7 @@ namespace SharpEarth.render{
  */
 public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
 {
-    protected boolean closed;
+    protected bool closed;
     protected Iterable<? extends LatLon> locations;
 
     /** Constructs a new surface polyline with the default attributes and no locations. */
@@ -105,7 +105,7 @@ public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
         this.locations = iterable;
     }
 
-    public boolean isClosed()
+    public bool isClosed()
     {
         return this.closed;
     }
@@ -203,7 +203,7 @@ public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
 
     /** {@inheritDoc} Overridden to treat the shape as an open path if the polyline is not closed. */
     @Override
-    protected boolean canContainPole()
+    protected bool canContainPole()
     {
         return this.isClosed();
     }
@@ -263,7 +263,7 @@ public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -346,9 +346,9 @@ public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
         xmlWriter.writeStartElement("coordinates");
         for (LatLon position : this.getLocations())
         {
-            xmlWriter.writeCharacters(Double.toString(position.getLongitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(position.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");
-            xmlWriter.writeCharacters(Double.toString(position.getLatitude().getDegrees()));
+            xmlWriter.writeCharacters(Double.ToString(position.getLatitude().getDegrees()));
             xmlWriter.writeCharacters(" ");
         }
         xmlWriter.writeEndElement(); // coordinates

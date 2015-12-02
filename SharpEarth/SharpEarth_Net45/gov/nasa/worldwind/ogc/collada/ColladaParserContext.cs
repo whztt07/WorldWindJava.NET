@@ -51,7 +51,7 @@ public class ColladaParserContext extends BasicXMLEventParserContext
         };
 
     /**
-     * The names of elements that contain merely boolean integer (0 or 1) data and can be parsed by a generic boolean
+     * The names of elements that contain merely bool integer (0 or 1) data and can be parsed by a generic boolean
      * integer parser.
      */
     protected static final String[] BooleanFields = new String[]

@@ -24,7 +24,7 @@ public class DeclutterableText implements Declutterable
     protected Vec4 point;
     protected double eyeDistance;
     protected DeclutteringTextRenderer textRenderer;
-    protected boolean enableDecluttering = true;
+    protected bool enableDecluttering = true;
     protected Rectangle2D textBounds; // cached text bounds
     protected Font boundsFont; // font used by cached text bounds
 
@@ -49,7 +49,7 @@ public class DeclutterableText implements Declutterable
      *
      * @return true (the default) if it should participate, otherwise false.
      */
-    public boolean isEnableDecluttering()
+    public bool isEnableDecluttering()
     {
         return this.enableDecluttering;
     }

@@ -285,11 +285,11 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
                 this.tile.getPriority() < that.tile.getPriority() ? -1 : 1;
         }
 
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             final RequestTask that = (RequestTask) o;
@@ -298,18 +298,18 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
             return !(tile != null ? !tile.equals(that.tile) : that.tile != null);
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
             return (tile != null ? tile.hashCode() : 0);
         }
 
         public String toString()
         {
-            return this.tile.toString();
+            return this.tile.ToString();
         }
     }
 
-    protected boolean isTextureFileExpired(TextureTile tile, java.net.URL textureURL, FileStore fileStore)
+    protected bool isTextureFileExpired(TextureTile tile, java.net.URL textureURL, FileStore fileStore)
     {
         if (!WWIO.isFileOutOfDate(textureURL, tile.getLevel().getExpiryTime()))
             return false;
@@ -321,7 +321,7 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         return true;
     }
 
-    protected boolean loadTexture(TextureTile tile, java.net.URL textureURL)
+    protected bool loadTexture(TextureTile tile, java.net.URL textureURL)
     {
         TextureData textureData;
 
@@ -357,13 +357,13 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
      *
      * @return TextureData the texture data from the specified URL, in the specified format and with mip-maps.
      */
-    protected TextureData readTexture(java.net.URL url, String textureFormat, boolean useMipMaps)
+    protected TextureData readTexture(java.net.URL url, String textureFormat, bool useMipMaps)
     {
         try
         {
             // If the caller has enabled texture compression, and the texture data is not a DDS file, then use read the
             // texture data and convert it to DDS.
-            if ("image/dds".equalsIgnoreCase(textureFormat) && !url.toString().toLowerCase().endsWith("dds"))
+            if ("image/dds".equalsIgnoreCase(textureFormat) && !url.ToString().toLowerCase().endsWith("dds"))
             {
                 // Configure a DDS compressor to generate mipmaps based according to the 'useMipMaps' parameter, and
                 // convert the image URL to a compressed DDS format.
@@ -577,7 +577,7 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         if (retriever == null)
         {
             Logging.logger().severe(
-                Logging.getMessage("layers.TextureLayer.UnknownRetrievalProtocol", url.toString()));
+                Logging.getMessage("layers.TextureLayer.UnknownRetrievalProtocol", url.ToString()));
             return;
         }
         retriever.setValue(URLRetriever.EXTRACT_ZIP_ENTRY, "true"); // supports legacy layers
@@ -721,10 +721,10 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         WMSCapabilities caps;
         if (this.isNetworkRetrievalEnabled())
             caps = SessionCacheUtils.getOrRetrieveSessionCapabilities(url, WorldWind.getSessionCache(),
-                url.toString(), null, RESOURCE_ID_OGC_CAPABILITIES, null, null);
+                url.ToString(), null, RESOURCE_ID_OGC_CAPABILITIES, null, null);
         else
-            caps = SessionCacheUtils.getSessionCapabilities(WorldWind.getSessionCache(), url.toString(),
-                url.toString());
+            caps = SessionCacheUtils.getSessionCapabilities(WorldWind.getSessionCache(), url.ToString(),
+                url.ToString());
 
         // The OGC Capabilities resource retrieval is either currently running in another thread, or has failed. In
         // either case, return null indicating that that the retrieval was not successful, and we should try again
@@ -785,13 +785,13 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
     }
 
     /**
-     * Returns a boolean value indicating if this Layer should retrieve any non-tile resources, either online or in the
+     * Returns a bool value indicating if this Layer should retrieve any non-tile resources, either online or in the
      * local filesystem, and initialize itself using those resources.
      *
      * @return <code>true</code> if this Layer should retrieve any non-tile resources, and <code>false</code>
      *         otherwise.
      */
-    protected boolean isRetrieveResources()
+    protected bool isRetrieveResources()
     {
         AVList parameters = (AVList) this.getValue(AVKey.CONSTRUCTION_PARAMETERS);
         if (params == null)
@@ -884,8 +884,8 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         Logging.logger().fine(message);
     }
 
-    protected boolean needsConfigurationFile(FileStore fileStore, String fileName, AVList parameters,
-        boolean removeIfExpired)
+    protected bool needsConfigurationFile(FileStore fileStore, String fileName, AVList parameters,
+        bool removeIfExpired)
     {
         long expiryTime = this.getExpiryTime();
         if (expiryTime <= 0)

@@ -74,8 +74,8 @@ public class AnnotationAttributes implements Restorable
     private int cornerRadius = -1;                          // Use default (-1)
     private String adjustWidthToText;                       // Use default (null)
     private Point drawOffset;                               // Use default (null)
-    private boolean isHighlighted = false;
-    private boolean isVisible = true;
+    private bool isHighlighted = false;
+    private bool isVisible = true;
     private double highlightScale = -1;                     // Use default (-1)
     private Font font;                                      // Use default (null)
     private String textAlign;                               // Use default (null)
@@ -97,7 +97,7 @@ public class AnnotationAttributes implements Restorable
     private double distanceMaxScale = -1;                   // Use default (-1)
     private double distanceMinOpacity = -1;                 // Use default (-1)
     private String effect;                                  // Use default (null)
-    protected boolean unresolved;
+    protected bool unresolved;
 
     //** Public properties **********************************************************************
 
@@ -148,7 +148,7 @@ public class AnnotationAttributes implements Restorable
      *
      * @return true if highlighted.
      */
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return isHighlighted;
     }
@@ -484,7 +484,7 @@ public class AnnotationAttributes implements Restorable
      *
      * @return true if the annotation is visible and should be rendered.
      */
-    public boolean isVisible()
+    public bool isVisible()
     {
         return isVisible;
     }
@@ -838,7 +838,7 @@ public class AnnotationAttributes implements Restorable
      *
      * @return true if there are unresolved fields, false if no fields remain unresolved.
      */
-    public boolean isUnresolved()
+    public bool isUnresolved()
     {
         return unresolved;
     }

@@ -168,7 +168,7 @@ public class Path extends AbstractShape
          */
         protected ArrayList<Integer> splitPositions;
         /** Indicates whether the rendered path has extrusion points in addition to path points. */
-        protected boolean hasExtrusionPoints; // true when the rendered path contains extrusion points
+        protected bool hasExtrusionPoints; // true when the rendered path contains extrusion points
         /**
          * Indicates the offset in number of floats to the first RGBA color tuple in <code>renderedPath</code>. This is
          * <code>0</code> if <code>renderedPath</code> has no RGBA color tuples.
@@ -282,7 +282,7 @@ public class Path extends AbstractShape
          *
          * @return true if the path is extruded and the extrusion points are computed, otherwise false.
          */
-        public boolean isHasExtrusionPoints()
+        public bool isHasExtrusionPoints()
         {
             return this.hasExtrusionPoints;
         }
@@ -659,15 +659,15 @@ public class Path extends AbstractShape
     protected static ByteBuffer pickPositionColors; // defines the colors used to resolve position point picking.
 
     protected String pathType = DEFAULT_PATH_TYPE;
-    protected boolean followTerrain; // true if altitude mode indicates terrain following
-    protected boolean extrude;
+    protected bool followTerrain; // true if altitude mode indicates terrain following
+    protected bool extrude;
     protected double terrainConformance = DEFAULT_TERRAIN_CONFORMANCE;
     protected int numSubsegments = DEFAULT_NUM_SUBSEGMENTS;
-    protected boolean drawVerticals = true;
-    protected boolean showPositions = false;
+    protected bool drawVerticals = true;
+    protected bool showPositions = false;
     protected double showPositionsThreshold = DEFAULT_DRAW_POSITIONS_THRESHOLD;
     protected double showPositionsScale = DEFAULT_DRAW_POSITIONS_SCALE;
-    protected boolean positionsSpanDateline;
+    protected bool positionsSpanDateline;
 
     /** Creates a path with no positions. */
     public Path()
@@ -867,7 +867,7 @@ public class Path extends AbstractShape
      *
      * @see #setExtrude(boolean)
      */
-    public boolean isExtrude()
+    public bool isExtrude()
     {
         return extrude;
     }
@@ -891,7 +891,7 @@ public class Path extends AbstractShape
      *
      * @see #setFollowTerrain(boolean)
      */
-    public boolean isFollowTerrain()
+    public bool isFollowTerrain()
     {
         return this.followTerrain;
     }
@@ -1001,7 +1001,7 @@ public class Path extends AbstractShape
      *
      * @see #setDrawVerticals(boolean)
      */
-    public boolean isDrawVerticals()
+    public bool isDrawVerticals()
     {
         return drawVerticals;
     }
@@ -1022,7 +1022,7 @@ public class Path extends AbstractShape
      *
      * @return true if dots are drawn, otherwise false.
      */
-    public boolean isShowPositions()
+    public bool isShowPositions()
     {
         return showPositions;
     }
@@ -1092,24 +1092,24 @@ public class Path extends AbstractShape
     }
 
     @Override
-    protected boolean mustDrawInterior()
+    protected bool mustDrawInterior()
     {
         return super.mustDrawInterior() && this.getCurrentPathData().hasExtrusionPoints;
     }
 
     @Override
-    protected boolean mustApplyLighting(DrawContext dc, ShapeAttributes activeAttrs)
+    protected bool mustApplyLighting(DrawContext dc, ShapeAttributes activeAttrs)
     {
         return false; // TODO: Lighting; need to compute normals
     }
 
     @Override
-    protected boolean mustApplyTexture(DrawContext dc)
+    protected bool mustApplyTexture(DrawContext dc)
     {
         return false;
     }
 
-    protected boolean mustRegenerateGeometry(DrawContext dc)
+    protected bool mustRegenerateGeometry(DrawContext dc)
     {
         if (this.getCurrentPathData() == null || this.getCurrentPathData().renderedPath == null)
             return true;
@@ -1129,7 +1129,7 @@ public class Path extends AbstractShape
         return super.mustRegenerateGeometry(dc);
     }
 
-    protected boolean shouldUseVBOs(DrawContext dc)
+    protected bool shouldUseVBOs(DrawContext dc)
     {
         return this.getCurrentPathData().tessellatedPositions.size() > VBO_THRESHOLD && super.shouldUseVBOs(dc);
     }
@@ -1142,7 +1142,7 @@ public class Path extends AbstractShape
      * @return <code>true</code> if this Path's positions and the positions in between are located on the underlying
      * terrain, and <code>false</code> otherwise.
      */
-    protected boolean isSurfacePath(DrawContext dc)
+    protected bool isSurfacePath(DrawContext dc)
     {
         return (this.getAltitudeMode() == WorldWind.CLAMP_TO_GROUND && this.isFollowTerrain()) || dc.is2DGlobe();
     }
@@ -1151,7 +1151,7 @@ public class Path extends AbstractShape
     protected void determineActiveAttributes()
     {
         // When the interior is drawn the vertex buffer has a different layout, so it may need to be rebuilt.
-        boolean isDrawInterior = this.activeAttributes != null && this.activeAttributes.isDrawInterior();
+        bool isDrawInterior = this.activeAttributes != null && this.activeAttributes.isDrawInterior();
 
         super.determineActiveAttributes();
 
@@ -1175,7 +1175,7 @@ public class Path extends AbstractShape
     }
 
     @Override
-    protected boolean doMakeOrderedRenderable(DrawContext dc)
+    protected bool doMakeOrderedRenderable(DrawContext dc)
     {
         // currentData must be set prior to calling this method
         PathData pathData = this.getCurrentPathData();
@@ -1255,7 +1255,7 @@ public class Path extends AbstractShape
     }
 
     @Override
-    protected boolean isOrderedRenderableValid(DrawContext dc)
+    protected bool isOrderedRenderableValid(DrawContext dc)
     {
         return this.getCurrentPathData().renderedPath != null && this.getCurrentPathData().vertexCount >= 2;
     }
@@ -1273,7 +1273,7 @@ public class Path extends AbstractShape
     @Override
     protected void doDrawOutline(DrawContext dc)
     {
-        boolean projectionOffsetPushed = false; // keep track for error recovery
+        bool projectionOffsetPushed = false; // keep track for error recovery
 
         try
         {
@@ -1315,7 +1315,7 @@ public class Path extends AbstractShape
         {
             int stride = pathData.hasExtrusionPoints ? 2 * pathData.vertexStride : pathData.vertexStride;
             int count = pathData.hasExtrusionPoints ? pathData.vertexCount / 2 : pathData.vertexCount;
-            boolean useVertexColors = !dc.isPickingMode() && pathData.tessellatedColors != null;
+            bool useVertexColors = !dc.isPickingMode() && pathData.tessellatedColors != null;
 
             // Convert stride from number of elements to number of bytes.
             gl.glBindBuffer(GL.GL_ARRAY_BUFFER, vboIds[0]);
@@ -1361,7 +1361,7 @@ public class Path extends AbstractShape
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         int stride = pathData.hasExtrusionPoints ? 2 * pathData.vertexStride : pathData.vertexStride;
         int count = pathData.hasExtrusionPoints ? pathData.vertexCount / 2 : pathData.vertexCount;
-        boolean useVertexColors = !dc.isPickingMode() && pathData.tessellatedColors != null;
+        bool useVertexColors = !dc.isPickingMode() && pathData.tessellatedColors != null;
 
         // Convert stride from number of elements to number of bytes.
         gl.glVertexPointer(3, GL.GL_FLOAT, 4 * stride, pathData.renderedPath.rewind());
@@ -1657,7 +1657,7 @@ public class Path extends AbstractShape
     protected FloatBuffer computePointsRelativeToTerrain(DrawContext dc, List<Position> positions,
         Double altitude, FloatBuffer path, PathData pathData)
     {
-        boolean extrudeIt = this.isExtrude() && !(altitude != null && altitude == 0);
+        bool extrudeIt = this.isExtrude() && !(altitude != null && altitude == 0);
         int numPoints = extrudeIt ? 2 * positions.size() : positions.size();
         int elemsPerPoint = (pathData.tessellatedColors != null ? 7 : 3);
         Iterator<Color> colorIter = (pathData.tessellatedColors != null ? pathData.tessellatedColors.iterator() : null);
@@ -2143,7 +2143,7 @@ public class Path extends AbstractShape
      *
      * @return true if the segment is visible relative to the current view frustum, otherwise false.
      */
-    protected boolean isSegmentVisible(DrawContext dc, Position posA, Position posB, Vec4 ptA, Vec4 ptB)
+    protected bool isSegmentVisible(DrawContext dc, Position posA, Position posB, Vec4 ptA, Vec4 ptB)
     {
         Frustum f = dc.getView().getFrustumInModelCoordinates();
 
@@ -2189,7 +2189,7 @@ public class Path extends AbstractShape
         // This method does not add the first position of the segment to the position list. It adds only the
         // subsequent positions, including the segment's last position.
 
-        boolean straightLine = this.getPathType() == AVKey.LINEAR && !this.isSurfacePath(dc);
+        bool straightLine = this.getPathType() == AVKey.LINEAR && !this.isSurfacePath(dc);
 
         double arcLength;
         if (straightLine)
@@ -2545,7 +2545,7 @@ public class Path extends AbstractShape
         }
     }
 
-    protected boolean isSmall(DrawContext dc, Vec4 ptA, Vec4 ptB, int numPixels)
+    protected bool isSmall(DrawContext dc, Vec4 ptA, Vec4 ptB, int numPixels)
     {
         return ptA.distanceTo3(ptB) <= numPixels * dc.getView().computePixelSizeAtDistance(
             dc.getView().getEyePoint().distanceTo3(ptA));
@@ -2573,7 +2573,7 @@ public class Path extends AbstractShape
         xmlWriter.writeStartElement("coordinates");
         for (Position position : this.positions)
         {
-            xmlWriter.writeCharacters(String.format(Locale.US, "%f,%f,%f ",
+            xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                 position.getLongitude().getDegrees(),
                 position.getLatitude().getDegrees(),
                 position.getElevation()));

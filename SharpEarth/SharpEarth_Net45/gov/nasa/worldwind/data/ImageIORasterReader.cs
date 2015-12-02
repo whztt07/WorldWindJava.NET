@@ -26,7 +26,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         javax.imageio.spi.IIORegistry.getDefaultInstance().registerServiceProvider(GeotiffImageReaderSpi.inst());
     }
 
-    private boolean generateMipMaps;
+    private bool generateMipMaps;
 
     public ImageIORasterReader(boolean generateMipMaps)
     {
@@ -39,7 +39,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         this(false);
     }
 
-    public boolean isGenerateMipMaps()
+    public bool isGenerateMipMaps()
     {
         return this.generateMipMaps;
     }
@@ -49,7 +49,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         this.generateMipMaps = generateMipMaps;
     }
 
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         // Determine whether or not the data source can be read.
         //if (!this.canReadImage(source))
@@ -126,7 +126,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         }
     }
 
-    //private boolean canReadImage(DataSource source)
+    //private bool canReadImage(DataSource source)
     //{
     //    javax.imageio.stream.ImageInputStream iis = null;
     //    javax.imageio.ImageReader reader = null;
@@ -160,7 +160,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
     //    return true;
     //}
 
-    private boolean canReadWorldFiles(Object source)
+    private bool canReadWorldFiles(Object source)
     {
         if (!(source instanceof java.io.File))
         {
@@ -259,7 +259,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         }
         else if (source instanceof CharSequence)
         {
-            input = openInputStream(source.toString());
+            input = openInputStream(source.ToString());
         }
 
         return javax.imageio.ImageIO.createImageInputStream(input);

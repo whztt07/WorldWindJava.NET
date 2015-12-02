@@ -79,7 +79,7 @@ public class PositionAnimator extends BasicAnimator
         if (newValue == null)
            return;
 
-        boolean success = this.propertyAccessor.setPosition(newValue);
+        bool success = this.propertyAccessor.setPosition(newValue);
         if (!success)
         {
            this.flagLastStateInvalid();

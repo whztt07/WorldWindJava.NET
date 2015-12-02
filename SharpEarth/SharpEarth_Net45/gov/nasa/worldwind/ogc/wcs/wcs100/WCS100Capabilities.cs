@@ -45,7 +45,7 @@ public class WCS100Capabilities extends AbstractXMLEventParser
             CapabilitiesRequest request = new CapabilitiesRequest(uri, "WCS");
             request.setVersion("1.0.0");
 
-            return new WCS100Capabilities(request.toString());
+            return new WCS100Capabilities(request.ToString());
         }
         catch (URISyntaxException e)
         {

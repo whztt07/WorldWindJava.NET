@@ -63,7 +63,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         new java.util.concurrent.ConcurrentHashMap<TileKey, ElevationTile>();
     protected MemoryCache memoryCache;
     protected int extremesLevel = -1;
-    protected boolean extremesCachingEnabled = true;
+    protected bool extremesCachingEnabled = true;
     protected BufferWrapper extremes = null;
     protected MemoryCache extremesLookupCache;
     // Model resource properties.
@@ -342,7 +342,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         return this.levels.getSector().intersects(sector) ? 1 : -1;
     }
 
-    public boolean contains(Angle latitude, Angle longitude)
+    public bool contains(Angle latitude, Angle longitude)
     {
         if (latitude == null || longitude == null)
         {
@@ -361,7 +361,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
     }
 
     @Override
-    public boolean isExtremesCachingEnabled()
+    public bool isExtremesCachingEnabled()
     {
         return this.extremesCachingEnabled;
     }
@@ -452,16 +452,16 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             catch (Exception e)
             {
                 String msg = Logging.getMessage("ElevationModel.ExceptionRequestingElevations",
-                    this.tileKey.toString());
+                    this.tileKey.ToString());
                 Logging.logger().log(java.util.logging.Level.FINE, msg, e);
             }
         }
 
-        public final boolean equals(Object o)
+        public final bool equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             final RequestTask that = (RequestTask) o;
@@ -473,18 +473,18 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             return true;
         }
 
-        public final int hashCode()
+        public override int GetHashCode()
         {
             return (this.tileKey != null ? this.tileKey.hashCode() : 0);
         }
 
-        public final String toString()
+        public override string ToString()
         {
-            return this.tileKey.toString();
+            return this.tileKey.ToString();
         }
     }
 
-    protected boolean isFileExpired(Tile tile, java.net.URL fileURL, FileStore fileStore)
+    protected bool isFileExpired(Tile tile, java.net.URL fileURL, FileStore fileStore)
     {
         if (!WWIO.isFileOutOfDate(fileURL, tile.getLevel().getExpiryTime()))
             return false;
@@ -498,7 +498,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
     // Reads a tile's elevations from the file cache and adds the tile to the memory cache.
 
-    protected boolean loadElevations(ElevationTile tile, java.net.URL url) throws Exception
+    protected bool loadElevations(ElevationTile tile, java.net.URL url) throws Exception
     {
         BufferWrapper elevations = this.readElevations(url);
         if (elevations == null || elevations.length() == 0)
@@ -519,7 +519,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             this.getMemoryCache().add(tile.getTileKey(), tile, elevations.getSizeInBytes());
     }
 
-    protected boolean areElevationsInMemory(TileKey key)
+    protected bool areElevationsInMemory(TileKey key)
     {
         // An elevation tile is considered to be in memory if it:
         // * Exists in the memory cache.
@@ -552,7 +552,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         catch (Exception e)
         {
             Logging.logger().log(java.util.logging.Level.SEVERE,
-                "ElevationModel.ExceptionReadingElevationFile", url.toString());
+                "ElevationModel.ExceptionReadingElevationFile", url.ToString());
             throw e;
         }
     }
@@ -904,7 +904,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         }
 
         @Override
-        protected boolean overwriteExistingFile()
+        protected bool overwriteExistingFile()
         {
             return true;
         }
@@ -1254,7 +1254,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         catch (Exception e)
         {
             String msg = Logging.getMessage("ElevationModel.ExceptionRequestingElevations",
-                tileKey.toString());
+                tileKey.ToString());
             Logging.logger().log(java.util.logging.Level.FINE, msg, e);
         }
 
@@ -1274,7 +1274,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
     }
 
     protected double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
-        double[] buffer, boolean mapMissingData)
+        double[] buffer, bool mapMissingData)
     {
         if (sector == null)
         {
@@ -1501,7 +1501,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         InputStream is = null;
         try
         {
-            is = this.getClass().getResourceAsStream("/" + extremesFileName);
+            is = this.GetType().getResourceAsStream("/" + extremesFileName);
             if (is == null)
             {
                 // Look directly in the file system
@@ -1664,12 +1664,12 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             }
         }
 
-        public boolean isElevationsExpired()
+        public bool isElevationsExpired()
         {
             return this.isElevationsExpired(this.getLevel().getExpiryTime());
         }
 
-        public boolean isElevationsExpired(long expiryTime)
+        public bool isElevationsExpired(long expiryTime)
         {
             return this.updateTime > 0 && this.updateTime < expiryTime;
         }
@@ -1762,8 +1762,8 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         });
         ArrayList<TileKey> requested = new ArrayList<TileKey>();
 
-        boolean missingTargetTiles = false;
-        boolean missingLevelZeroTiles = false;
+        bool missingTargetTiles = false;
+        bool missingLevelZeroTiles = false;
         for (int row = seRow; row <= nwRow; row++)
         {
             for (int col = nwCol; col <= seCol; col++)
@@ -2026,10 +2026,10 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         WMSCapabilities caps;
         if (this.isNetworkRetrievalEnabled())
             caps = SessionCacheUtils.getOrRetrieveSessionCapabilities(url, WorldWind.getSessionCache(),
-                url.toString(), null, RESOURCE_ID_OGC_CAPABILITIES, null, null);
+                url.ToString(), null, RESOURCE_ID_OGC_CAPABILITIES, null, null);
         else
-            caps = SessionCacheUtils.getSessionCapabilities(WorldWind.getSessionCache(), url.toString(),
-                url.toString());
+            caps = SessionCacheUtils.getSessionCapabilities(WorldWind.getSessionCache(), url.ToString(),
+                url.ToString());
 
         // The OGC Capabilities resource retrieval is either currently running in another thread, or has failed. In
         // either case, return null indicating that that the retrieval was not successful, and we should try again
@@ -2091,13 +2091,13 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
     }
 
     /**
-     * Returns a boolean value indicating if this ElevationModel should retrieve any non-tile resources, either online
+     * Returns a bool value indicating if this ElevationModel should retrieve any non-tile resources, either online
      * or in the local filesystem, and initialize itself using those resources.
      *
      * @return <code>true</code> if this ElevationModel should retrieve any non-tile resources, and <code>false</code>
      * otherwise.
      */
-    protected boolean isRetrieveResources()
+    protected bool isRetrieveResources()
     {
         AVList parameters = (AVList) this.getValue(AVKey.CONSTRUCTION_PARAMETERS);
         if (params == null)
@@ -2415,8 +2415,8 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         Logging.logger().fine(message);
     }
 
-    protected boolean needsConfigurationFile(FileStore fileStore, String fileName, AVList parameters,
-        boolean removeIfExpired)
+    protected bool needsConfigurationFile(FileStore fileStore, String fileName, AVList parameters,
+        bool removeIfExpired)
     {
         long expiryTime = this.getExpiryTime();
         if (expiryTime <= 0)
@@ -2712,7 +2712,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
         if (sb.length() > 0)
         {
-            String message = Logging.getMessage("BasicElevationModel.InvalidDescriptorFields", sb.toString());
+            String message = Logging.getMessage("BasicElevationModel.InvalidDescriptorFields", sb.ToString());
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -2766,7 +2766,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         return numLocalTiles > 0 ? numLocalTiles / (double) (numLocalTiles + numMissingTiles) : 0d;
     }
 
-    protected boolean isTileLocalOrAbsent(Tile tile)
+    protected bool isTileLocalOrAbsent(Tile tile)
     {
         if (this.getLevels().isResourceAbsent(tile))
             return true;  // tile is absent

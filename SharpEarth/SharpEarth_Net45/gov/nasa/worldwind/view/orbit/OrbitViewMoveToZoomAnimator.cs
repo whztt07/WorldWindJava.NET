@@ -15,10 +15,10 @@ namespace SharpEarth.view.orbit{
 public class OrbitViewMoveToZoomAnimator  extends MoveToDoubleAnimator
 {
     BasicOrbitView orbitView;
-    boolean endCenterOnSurface;
+    bool endCenterOnSurface;
 
     OrbitViewMoveToZoomAnimator(BasicOrbitView orbitView, Double end, double smoothing,
-        PropertyAccessor.DoubleAccessor propertyAccessor, boolean endCenterOnSurface)
+        PropertyAccessor.DoubleAccessor propertyAccessor, bool endCenterOnSurface)
     {
         super(end, smoothing, propertyAccessor);
         this.orbitView = orbitView;

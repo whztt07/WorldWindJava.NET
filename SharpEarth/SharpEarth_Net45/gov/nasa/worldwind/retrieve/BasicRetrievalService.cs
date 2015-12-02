@@ -102,11 +102,11 @@ public sealed class BasicRetrievalService extends WWObjectImpl
             return this.priority == that.priority ? 0 : this.priority < that.priority ? -1 : 1;
         }
 
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             final RetrievalTask that = (RetrievalTask) o;
@@ -116,7 +116,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
             // Priority and submit time are not factors in equality
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
             return this.retriever.getName().hashCode();
         }
@@ -408,7 +408,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
         return this.executor.getCorePoolSize();
     }
 
-    private boolean hasRetrievers()
+    private bool hasRetrievers()
     {
         Thread[] threads = new Thread[Thread.activeCount()];
         int numThreads = Thread.enumerate(threads);
@@ -420,12 +420,12 @@ public sealed class BasicRetrievalService extends WWObjectImpl
         return false;
     }
 
-    public boolean hasActiveTasks()
+    public bool hasActiveTasks()
     {
         return this.hasRetrievers();
     }
 
-    public boolean isAvailable()
+    public bool isAvailable()
     {
         return this.executor.getQueue().size() < this.queueSize;
 //            && !WorldWind.getNetworkStatus().isNetworkUnavailable();
@@ -444,7 +444,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
      *
      * @throws ArgumentException if <code>retriever</code> is null
      */
-    public boolean contains(Retriever retriever)
+    public bool contains(Retriever retriever)
     {
         if (retriever == null)
         {

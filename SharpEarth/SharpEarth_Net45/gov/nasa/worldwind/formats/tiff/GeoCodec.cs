@@ -236,7 +236,7 @@ class GeoCodec
     /*
      * Returns true if the given key is a GeoKey in this file; false otherwise.
      */
-    public boolean hasGeoKey(int key)
+    public bool hasGeoKey(int key)
     {
         return (this.geoKeys != null && this.geoKeys.get(key) != null);
     }

@@ -54,7 +54,7 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean intersects(Rectangle rect)
+    public final bool intersects(Rectangle rect)
     {
         if (rect == null)
         {
@@ -76,7 +76,7 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean contains(double x, double y)
+    public final bool contains(double x, double y)
     {
         return this.screenRect.contains(x, y);
     }
@@ -90,7 +90,7 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean contains(Point point)
+    public final bool contains(Point point)
     {
         if (point == null)
         {

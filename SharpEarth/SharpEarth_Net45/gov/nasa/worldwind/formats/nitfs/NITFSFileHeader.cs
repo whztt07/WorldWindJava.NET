@@ -17,7 +17,7 @@ public class NITFSFileHeader
     private String  specialType;
     private int     headerLength;
     private int     fileLength;
-    private boolean isVersion0210;
+    private bool isVersion0210;
     private short   complexityLevel ;
     private String  originationStationId;
     private String  dateTime;
@@ -110,7 +110,7 @@ public class NITFSFileHeader
         return this.version;
     }
 
-    public boolean isVersion0210()
+    public bool isVersion0210()
     {
         return this.isVersion0210;
     }

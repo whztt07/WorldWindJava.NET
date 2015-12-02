@@ -39,7 +39,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty.
      */
-    void addLocation(String newPath, boolean isInstall);
+    void addLocation(String newPath, bool isInstall);
 
     /**
      * Adds a location to search when files are requested from the file store and specifies its location in the search
@@ -52,7 +52,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty or the specified index is less than 0.
      */
-    void addLocation(int index, String newPath, boolean isInstall);
+    void addLocation(int index, String newPath, bool isInstall);
 
     /**
      * Remove a specified read location from the file store. The current write location cannot be removed.
@@ -73,7 +73,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty.
      */
-    boolean isInstallLocation(String path);
+    bool isInstallLocation(String path);
 
     /**
      * Indicates whether the file store contains a specified file.
@@ -83,7 +83,7 @@ public interface FileStore extends WWObject
      * @return true if the file store contains the file, false if the file store does not contain the file or the
      *         specified path is null.
      */
-    boolean containsFile(String fileName);
+    bool containsFile(String fileName);
 
     /**
      * Searches the file store for a specified file and returns a reference to it if it is.
@@ -96,7 +96,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null.
      */
-    java.net.URL findFile(String fileName, boolean checkClassPath);
+    java.net.URL findFile(String fileName, bool checkClassPath);
 
     /**
      * Creates a new, empty file in the file store.
@@ -236,6 +236,6 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the <code>address</code> is <code>null</code>.
      */
-    URL requestFile(String address, boolean cacheRemoteFile);
+    URL requestFile(String address, bool cacheRemoteFile);
 }
 }

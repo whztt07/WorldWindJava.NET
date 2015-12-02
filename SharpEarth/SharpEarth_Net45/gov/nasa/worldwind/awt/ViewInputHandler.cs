@@ -62,7 +62,7 @@ public interface ViewInputHandler
      *
      * @return true if the view will movements are smoothed; false otherwise.
      */
-    boolean isEnableSmoothing();
+    bool isEnableSmoothing();
 
     /**
      * Sets whether the ViewInputHandler should smooth view movements in response to input events. A value of true
@@ -78,7 +78,7 @@ public interface ViewInputHandler
      *
      * @return true if the view's heading will stay the same unless explicity changed; false otherwise.
      */
-    boolean isLockHeading();
+    bool isLockHeading();
 
     /**
      * Sets whether the view's heading should stay the same unless explicitly changed. For example, moving forward
@@ -94,7 +94,7 @@ public interface ViewInputHandler
      *
      * @return true if the view will stop when the WorldWindow looses focus; false otherwise.
      */
-    boolean isStopOnFocusLost();
+    bool isStopOnFocusLost();
 
     /**
      * Sets whether the view should stop when the WorldWindow looses focus.
@@ -159,7 +159,7 @@ public interface ViewInputHandler
      * Determine if there are any animations active in the <code>View</code>.
      * @return true if there are active animations, false otherwise.
      */
-    boolean isAnimating();
+    bool isAnimating();
 
     /**
      * Add an {@link SharpEarth.animation.Animator} to this <code>ViewInputHandler</code>.

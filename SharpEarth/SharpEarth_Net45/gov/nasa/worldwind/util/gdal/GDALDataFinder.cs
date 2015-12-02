@@ -19,7 +19,7 @@ class GDALDataFinder extends GDALAbstractFileFilter
         super("gdal_datum.csv");
     }
 
-    public boolean accept(File pathname)
+    public bool accept(File pathname)
     {
         String filename;
         String dir;

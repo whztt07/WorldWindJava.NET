@@ -44,11 +44,11 @@ public class VPFRelation
         return this.table2Key;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         VPFRelation that = (VPFRelation) o;
@@ -66,7 +66,7 @@ public class VPFRelation
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = this.table1 != null ? this.table1.hashCode() : 0;
         result = 31 * result + (this.table1Key != null ? this.table1Key.hashCode() : 0);

@@ -33,7 +33,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
     protected static class ShapeData
     {
         public int vertexStride;
-        public boolean hasTexCoords;
+        public bool hasTexCoords;
         public FloatBuffer vertices;
         public IntBuffer interiorIndices;
         public IntBuffer outlineIndices;
@@ -43,7 +43,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
     {
         public double u;
         public double v;
-        public boolean edgeFlag = true;
+        public bool edgeFlag = true;
 
         public Vertex(LatLon location)
         {
@@ -549,7 +549,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         List<Vertex> result = new ArrayList<Vertex>();
         Vertex prev = null;
         Angle offset = null;
-        boolean applyOffset = false;
+        bool applyOffset = false;
 
         for (Vertex cur : contour)
         {
@@ -854,7 +854,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {

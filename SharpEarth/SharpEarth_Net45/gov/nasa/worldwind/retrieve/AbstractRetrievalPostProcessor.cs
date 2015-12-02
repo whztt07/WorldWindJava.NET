@@ -136,7 +136,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      * @return true if the response code is the OK value for the protocol, e.g., ({@link HttpURLConnection#HTTP_OK} for
      *         HTTP protocol), otherwise false.
      */
-    protected boolean validateResponseCode()
+    protected bool validateResponseCode()
     {
         //noinspection SimplifiableIfStatement
         if (this.getRetriever() instanceof HTTPRetriever)
@@ -155,7 +155,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @return true if the response code is {@link HttpURLConnection#HTTP_OK}, otherwise false.
      */
-    protected boolean validateHTTPResponseCode()
+    protected bool validateHTTPResponseCode()
     {
         HTTPRetriever htr = (HTTPRetriever) this.getRetriever();
 
@@ -168,7 +168,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @return true if the response code is {@link HttpURLConnection#HTTP_OK}, otherwise false.
      */
-    protected boolean validateJarResponseCode()
+    protected bool validateJarResponseCode()
     {
         JarRetriever htr = (JarRetriever) this.getRetriever();
 
@@ -210,7 +210,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @throws IOException if an IO error occurs while attempting to save the buffer.
      */
-    protected boolean saveBuffer() throws IOException
+    protected bool saveBuffer() throws IOException
     {
         return this.saveBuffer(null);
     }
@@ -226,7 +226,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @throws IOException if an IO error occurred when attempting to save the buffer.
      */
-    protected boolean saveBuffer(ByteBuffer buffer) throws IOException
+    protected bool saveBuffer(ByteBuffer buffer) throws IOException
     {
         File outFile = this.getOutputFile();
 
@@ -265,7 +265,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @return true if an existing file should be overwritten, otherwise false.
      */
-    protected boolean overwriteExistingFile()
+    protected bool overwriteExistingFile()
     {
         return false;
     }
@@ -278,7 +278,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      *
      * @return true if the output file's delete-on-exit flag should be set, otherwise false.
      */
-    protected boolean isDeleteOnExit(File outFile)
+    protected bool isDeleteOnExit(File outFile)
     {
         return !outFile.exists() && this.avList != null && this.avList.getValue(AVKey.DELETE_CACHE_ON_EXIT) != null;
     }
@@ -295,7 +295,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
         return this;
     }
 
-    protected boolean isPrimaryContentType(String typeOfContent, String contentType)
+    protected bool isPrimaryContentType(String typeOfContent, String contentType)
     {
         if (WWUtil.isEmpty(contentType) || WWUtil.isEmpty(typeOfContent))
             return false;
@@ -303,7 +303,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
         return contentType.trim().toLowerCase().startsWith(typeOfContent);
     }
 
-    protected boolean isWMSException()
+    protected bool isWMSException()
     {
         String contentType = this.getRetriever().getContentType();
 
@@ -509,7 +509,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
 
         sb.append("\n");
         sb.append(WWIO.byteBufferToString(this.getRetriever().getBuffer(), 2048, null));
-        Logging.logger().warning(sb.toString());
+        Logging.logger().warning(sb.ToString());
 
         return null;
     }

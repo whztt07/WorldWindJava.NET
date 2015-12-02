@@ -101,7 +101,7 @@ public class BarycentricTriangle implements BarycentricPlanarShape
         return this.getBarycentricCoords(new Vec4(location.getLongitude().radians, location.getLatitude().radians, 0));
     }
 
-    public boolean contains(Vec4 p)
+    public bool contains(Vec4 p)
     {
         return this.getBarycentricCoords(p)[0] >= 0;
     }

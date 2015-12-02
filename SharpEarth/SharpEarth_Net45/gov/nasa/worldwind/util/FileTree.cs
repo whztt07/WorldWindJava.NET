@@ -101,7 +101,7 @@ public class FileTree implements Iterable<File>
             this.mode = mode;
         }
 
-        public boolean hasNext() {
+        public bool hasNext() {
             if (this.files.peek() == null)
                 expandUntilFilesFound();
             return this.files.peek() != null;
@@ -144,7 +144,7 @@ public class FileTree implements Iterable<File>
                 {
                     if (child != null)
                     {
-                        boolean isDir = child.isDirectory();
+                        bool isDir = child.isDirectory();
                         if (isDir)
                         {
                             outDirs.offer(child);
@@ -163,22 +163,22 @@ public class FileTree implements Iterable<File>
         }
     }
 
-    private static boolean isDirectory(File file)
+    private static bool isDirectory(File file)
     {
         return file != null && file.exists() && file.isDirectory();
     }
 
-    private static boolean isDisplayFiles(int mode)
+    private static bool isDisplayFiles(int mode)
     {
         return mode == FILES_ONLY || mode == FILES_AND_DIRECTORIES;
     }
 
-    private static boolean isDisplayDirectories(int mode)
+    private static bool isDisplayDirectories(int mode)
     {
         return mode == DIRECTORIES_ONLY || mode == FILES_AND_DIRECTORIES;
     }
 
-    private static boolean validate(int mode)
+    private static bool validate(int mode)
     {
         return mode == FILES_ONLY
             || mode == DIRECTORIES_ONLY

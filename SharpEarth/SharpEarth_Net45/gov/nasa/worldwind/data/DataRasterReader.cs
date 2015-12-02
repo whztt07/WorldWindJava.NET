@@ -33,7 +33,7 @@ public interface DataRasterReader extends AVList
      *
      * @return true if this reader can read the data source, otherwise false.
      */
-    boolean canRead(Object source, AVList parameters);
+    bool canRead(Object source, AVList parameters);
 
     /**
      * Reads and returns the DataRaster instances from a data source.
@@ -94,7 +94,7 @@ public interface DataRasterReader extends AVList
      *
      * @return true if the source is imagery, otherwise false.
      */
-    boolean isImageryRaster(Object source, AVList parameters);
+    bool isImageryRaster(Object source, AVList parameters);
 
     /**
      * Indicates whether a data source is elevation data.
@@ -114,6 +114,6 @@ public interface DataRasterReader extends AVList
      *
      * @return true if the source is elevation data, otherwise false.
      */
-    boolean isElevationsRaster(Object source, AVList parameters);
+    bool isElevationsRaster(Object source, AVList parameters);
 }
 }

@@ -27,7 +27,7 @@ public abstract class KMLAbstractView extends KMLAbstractObject
     {
         if (!(sourceValues instanceof KMLAbstractView))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.getClass().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

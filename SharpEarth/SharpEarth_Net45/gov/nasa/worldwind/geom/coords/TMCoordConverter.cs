@@ -272,7 +272,7 @@ class TMCoordConverter
             c3 = c2 * c;
             c5 = c3 * c2;
             c7 = c5 * c2;
-            t = Math.tan(Latitude);
+            t = Math.Tan(Latitude);
             tan2 = t * t;
             tan3 = tan2 * t;
             tan4 = tan3 * t;
@@ -447,7 +447,7 @@ class TMCoordConverter
             c = Math.Cos(ftphi);
 
             /* Tangent Value  */
-            t = Math.tan(ftphi);
+            t = Math.Tan(ftphi);
             tan2 = t * t;
             tan4 = tan2 * tan2;
             eta = TranMerc_ebs * Math.pow(c, 2);

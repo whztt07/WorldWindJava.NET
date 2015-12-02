@@ -316,7 +316,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if the frustum is null.
      */
-    public final boolean intersects(Frustum frustum)
+    public final bool intersects(Frustum frustum)
     {
         if (frustum == null)
         {
@@ -359,7 +359,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if <code>line</code> is null
      */
-    public boolean intersects(Line line)
+    public bool intersects(Line line)
     {
         if (line == null)
         {
@@ -379,7 +379,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if <code>plane</code> is null
      */
-    public boolean intersects(Plane plane)
+    public bool intersects(Plane plane)
     {
         if (plane == null)
         {
@@ -441,15 +441,15 @@ public sealed class Sphere implements Extent, Renderable
     @Override
     public String toString()
     {
-        return "Sphere: center = " + this.center.toString() + " radius = " + Double.toString(this.radius);
+        return "Sphere: center = " + this.center.ToString() + " radius = " + Double.ToString(this.radius);
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final SharpEarth.geom.Sphere sphere = (gov.nasa.worldwind.geom.Sphere) o;
@@ -464,17 +464,17 @@ public sealed class Sphere implements Extent, Renderable
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         long temp;
         result = center.hashCode();
-        temp = radius != +0.0d ? Double.doubleToLongBits(radius) : 0L;
+        temp = radius != +0.0d ? BitConverter.DoubleToInt64Bits(radius) : 0L;
         result = 29 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
-//    public final boolean intersects(Line line)
+//    public final bool intersects(Line line)
 //    {
 //        if (line == null)
 //        {

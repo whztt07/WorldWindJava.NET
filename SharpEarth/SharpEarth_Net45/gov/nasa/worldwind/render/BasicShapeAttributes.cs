@@ -25,15 +25,15 @@ namespace SharpEarth.render{
 public class BasicShapeAttributes implements ShapeAttributes
 {
     /** Indicates whether or not some of the shape's attributes are unresolved. Initially <code>false</code>. */
-    protected boolean unresolved;
+    protected bool unresolved;
     /** Indicates whether or not the shape's interior is drawn. Initially <code>false</code>. */
-    protected boolean drawInterior;
+    protected bool drawInterior;
     /** Indicates whether or not the shape's outline is drawn. Initially <code>false</code>. */
-    protected boolean drawOutline;
+    protected bool drawOutline;
     /** Indicates whether or not the shape should be rendered with smooth lines and edges. Initially <code>false</code>. */
-    protected boolean enableAntialiasing;
+    protected bool enableAntialiasing;
     /** Indicates whether lighting is applied to the shape. Initially <code>false</code>. */
-    protected boolean enableLighting;
+    protected bool enableLighting;
     /** Indicates the material properties of the shape's interior. Initially <code>null</code>. */
     protected Material interiorMaterial;
     /** Indicates the material properties of the shape's outline. Initially <code>null</code>. */
@@ -145,7 +145,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public boolean isUnresolved()
+    public bool isUnresolved()
     {
         return unresolved;
     }
@@ -157,7 +157,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public boolean isDrawInterior()
+    public bool isDrawInterior()
     {
         return this.drawInterior;
     }
@@ -169,7 +169,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public boolean isDrawOutline()
+    public bool isDrawOutline()
     {
         return this.drawOutline;
     }
@@ -181,7 +181,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public boolean isEnableAntialiasing()
+    public bool isEnableAntialiasing()
     {
         return this.enableAntialiasing;
     }
@@ -193,7 +193,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public boolean isEnableLighting()
+    public bool isEnableLighting()
     {
         return enableLighting;
     }
@@ -464,11 +464,11 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         BasicShapeAttributes that = (BasicShapeAttributes) o;
@@ -509,7 +509,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         long temp;
@@ -521,16 +521,16 @@ public class BasicShapeAttributes implements ShapeAttributes
         result = 31 * result + (this.enableLighting ? 1 : 0);
         result = 31 * result + (this.interiorMaterial != null ? this.interiorMaterial.hashCode() : 0);
         result = 31 * result + (this.outlineMaterial != null ? this.outlineMaterial.hashCode() : 0);
-        temp = this.interiorOpacity != +0.0d ? Double.doubleToLongBits(this.interiorOpacity) : 0L;
+        temp = this.interiorOpacity != +0.0d ? BitConverter.DoubleToInt64Bits(this.interiorOpacity) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = this.outlineOpacity != +0.0d ? Double.doubleToLongBits(this.outlineOpacity) : 0L;
+        temp = this.outlineOpacity != +0.0d ? BitConverter.DoubleToInt64Bits(this.outlineOpacity) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = this.outlineWidth != +0.0d ? Double.doubleToLongBits(this.outlineWidth) : 0L;
+        temp = this.outlineWidth != +0.0d ? BitConverter.DoubleToInt64Bits(this.outlineWidth) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + this.outlineStippleFactor;
         result = 31 * result + (int) this.outlineStipplePattern;
         result = 31 * result + (this.imageSource != null ? this.imageSource.hashCode() : 0);
-        temp = this.imageScale != +0.0d ? Double.doubleToLongBits(this.imageScale) : 0L;
+        temp = this.imageScale != +0.0d ? BitConverter.DoubleToInt64Bits(this.imageScale) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
 
         return result;
@@ -570,7 +570,7 @@ public class BasicShapeAttributes implements ShapeAttributes
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -595,7 +595,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -639,7 +639,7 @@ public class BasicShapeAttributes implements ShapeAttributes
         if (lineWidth != null)
         {
             xmlWriter.writeStartElement("width");
-            xmlWriter.writeCharacters(Double.toString(lineWidth));
+            xmlWriter.writeCharacters(Double.ToString(lineWidth));
             xmlWriter.writeEndElement();
         }
 

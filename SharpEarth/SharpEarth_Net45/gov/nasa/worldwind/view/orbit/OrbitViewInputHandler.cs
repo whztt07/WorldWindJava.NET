@@ -43,7 +43,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     public class ResetRollActionListener extends ViewInputActionHandler
     {
         @Override
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
             onResetRoll(viewAction);
@@ -92,7 +92,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         actionAttrs.setMouseActionListener(new ResetRollActionListener());
     }
 
-    protected boolean isNonContinous2DGlobe()
+    protected bool isNonContinous2DGlobe()
     {
         Globe globe = this.getWorldWindow().getModel().getGlobe();
         return globe instanceof Globe2D && !((Globe2D) globe).isContinuous();
@@ -855,7 +855,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
 
     protected static double computeNewZoom(OrbitView view, double curZoom, double change)
     {
-        double logCurZoom = curZoom != 0 ? Math.log(curZoom) : 0;
+        double logCurZoom = curZoom != 0 ? Math.Log(curZoom) : 0;
         double newZoom = Math.exp(logCurZoom + change);
         return view.getOrbitViewLimits().limitZoom(view, newZoom);
     }
@@ -913,7 +913,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
          *
          * @return true if the pitch property was successfully set, and false otherwise.
          */
-        public boolean setAngle(Angle value)
+        public bool setAngle(Angle value)
         {
             if (value == null)
                 return false;
@@ -1011,7 +1011,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     public void addPanToAnimator(Position beginCenterPos, Position endCenterPos,
         Angle beginHeading, Angle endHeading,
         Angle beginPitch, Angle endPitch,
-        double beginZoom, double endZoom, long timeToMove, boolean endCenterOnSurface)
+        double beginZoom, double endZoom, long timeToMove, bool endCenterOnSurface)
     {
         int altitudeMode = endCenterOnSurface ? WorldWind.CLAMP_TO_GROUND : WorldWind.ABSOLUTE;
 
@@ -1027,7 +1027,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     public void addPanToAnimator(Position beginCenterPos, Position endCenterPos,
         Angle beginHeading, Angle endHeading,
         Angle beginPitch, Angle endPitch,
-        double beginZoom, double endZoom, boolean endCenterOnSurface)
+        double beginZoom, double endZoom, bool endCenterOnSurface)
     {
         int altitudeMode = endCenterOnSurface ? WorldWind.CLAMP_TO_GROUND : WorldWind.ABSOLUTE;
 
@@ -1047,7 +1047,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     }
 
     public void addPanToAnimator(Position centerPos, Angle heading, Angle pitch, double zoom,
-        long timeToMove, boolean endCenterOnSurface)
+        long timeToMove, bool endCenterOnSurface)
     {
         OrbitView view = (OrbitView) this.getView();
         addPanToAnimator(view.getCenterPosition(), centerPos,
@@ -1057,7 +1057,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     }
 
     public void addPanToAnimator(Position centerPos, Angle heading, Angle pitch, double zoom,
-        boolean endCenterOnSurface)
+        bool endCenterOnSurface)
     {
         OrbitView view = (OrbitView) this.getView();
         addPanToAnimator(view.getCenterPosition(), centerPos,
@@ -1178,7 +1178,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         }
     }
 
-    public void addCenterAnimator(Position begin, Position end, boolean smoothed)
+    public void addCenterAnimator(Position begin, Position end, bool smoothed)
     {
         if (begin == null || end == null)
         {
@@ -1196,7 +1196,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         }
     }
 
-    public void addCenterAnimator(Position begin, Position end, long lengthMillis, boolean smoothed)
+    public void addCenterAnimator(Position begin, Position end, long lengthMillis, bool smoothed)
     {
         if (begin == null || end == null)
         {
@@ -1239,7 +1239,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         this.gotoAnimControl.stopAnimations();
     }
 
-    public boolean isAnimating()
+    public bool isAnimating()
     {
         return (this.uiAnimControl.hasActiveAnimation() || this.gotoAnimControl.hasActiveAnimation());
     }

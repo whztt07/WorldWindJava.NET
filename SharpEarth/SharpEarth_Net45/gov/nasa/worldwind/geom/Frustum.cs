@@ -140,11 +140,11 @@ public class Frustum
         return this.allPlanes;
     }
 
-    public boolean equals(Object obj)
+    public override bool Equals(Object obj)
     {
         if (this == obj)
             return true;
-        if (obj == null || getClass() != obj.getClass())
+        if (obj == null || GetType() != obj.GetType())
             return false;
 
         Frustum that = (Frustum) obj;
@@ -156,7 +156,7 @@ public class Frustum
             && this.far.equals(that.far);
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = this.left.hashCode();
@@ -180,7 +180,7 @@ public class Frustum
         sb.append(", near=").append(this.near);
         sb.append(", far=").append(this.far);
         sb.append(")");
-        return sb.toString();
+        return sb.ToString();
     }
 
     // ============== Factory Functions ======================= //
@@ -406,7 +406,7 @@ public class Frustum
      *
      * @throws ArgumentException if the extent is null.
      */
-    public boolean intersects(Extent extent)
+    public bool intersects(Extent extent)
     {
         if (extent == null)
         {
@@ -428,7 +428,7 @@ public class Frustum
      *
      * @throws ArgumentException if either point is null.
      */
-    public boolean intersectsSegment(Vec4 pa, Vec4 pb)
+    public bool intersectsSegment(Vec4 pa, Vec4 pb)
     {
         if (pa == null || pb == null)
         {
@@ -467,7 +467,7 @@ public class Frustum
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean contains(Extent extent)
+    public final bool contains(Extent extent)
     {
         // TODO: This method should be implemented in the concrete extent classes and those implementing methods
         // invoked here, as is done above for intersects(Frustum).
@@ -512,7 +512,7 @@ public class Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean contains(Vec4 point)
+    public final bool contains(Vec4 point)
     {
         if (point == null)
         {

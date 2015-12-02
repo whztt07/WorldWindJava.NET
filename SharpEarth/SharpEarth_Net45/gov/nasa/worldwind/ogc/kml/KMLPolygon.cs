@@ -51,7 +51,7 @@ public class KMLPolygon extends KMLAbstractGeometry
         this.innerBoundaries.add(o);
     }
 
-    public boolean isExtrude()
+    public bool isExtrude()
     {
         return this.getExtrude() == Boolean.TRUE;
     }

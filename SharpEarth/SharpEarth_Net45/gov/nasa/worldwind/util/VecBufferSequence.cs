@@ -324,7 +324,7 @@ public class VecBufferSequence extends CompoundVecBuffer
         }
     }
 
-    protected boolean haveMultiDrawArrays(DrawContext dc)
+    protected bool haveMultiDrawArrays(DrawContext dc)
     {
         return dc.getGL().isFunctionAvailable("glMultiDrawArrays");
     }

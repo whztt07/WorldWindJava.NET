@@ -72,7 +72,7 @@ public class ColladaInputStream implements ColladaDoc
         {
             URI remoteFile = uri.resolve(path);
             if (remoteFile != null)
-                return remoteFile.toString();
+                return remoteFile.ToString();
         }
         return null;
     }

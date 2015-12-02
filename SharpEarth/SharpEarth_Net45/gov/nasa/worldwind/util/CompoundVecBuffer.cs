@@ -30,7 +30,7 @@ namespace SharpEarth.util{
 public abstract class CompoundVecBuffer
 {
     protected static final int DEFAULT_INITIAL_CAPACITY = 16;
-    protected static final boolean ALLOCATE_DIRECT_BUFFERS = true;
+    protected static final bool ALLOCATE_DIRECT_BUFFERS = true;
 
     protected int count;
     protected int capacity;
@@ -520,7 +520,7 @@ public abstract class CompoundVecBuffer
             this.subBufferIterable = subBufferIterable;
         }
 
-        public boolean hasNext()
+        public bool hasNext()
         {
             this.updateSubIterator();
 

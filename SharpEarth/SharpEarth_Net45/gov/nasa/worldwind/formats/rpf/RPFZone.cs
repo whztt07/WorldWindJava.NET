@@ -41,7 +41,7 @@ public enum RPFZone
         this.zoneCode = zoneCode;
     }
 
-    public static boolean isZoneCode(char c)
+    public static bool isZoneCode(char c)
     {
         char upperChar = Character.toUpperCase(c);
         return ((upperChar >= '1' && upperChar <= '9')
@@ -72,13 +72,13 @@ public enum RPFZone
         return index;
     }
 
-    static boolean isZoneInUpperHemisphere(char zoneCode)
+    static bool isZoneInUpperHemisphere(char zoneCode)
     {
         char upperChar = Character.toUpperCase(zoneCode);
         return (upperChar >= '1' && upperChar <= '9');
     }
 
-    static boolean isPolarZone(char zoneCode)
+    static bool isPolarZone(char zoneCode)
     {
         char upperChar = Character.toUpperCase(zoneCode);
         return (upperChar == '9') || (upperChar == 'J');

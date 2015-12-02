@@ -30,9 +30,9 @@ public class AWTInputHandler extends WWObjectImpl
     protected java.awt.Point mousePoint = new java.awt.Point();
     protected PickedObjectList hoverObjects;
     protected PickedObjectList objectsAtButtonPress;
-    protected boolean isHovering = false;
-    protected boolean isDragging = false;
-    protected boolean forceRedrawOnMousePressed = Configuration.getBooleanValue(AVKey.REDRAW_ON_MOUSE_PRESSED, false);
+    protected bool isHovering = false;
+    protected bool isDragging = false;
+    protected bool forceRedrawOnMousePressed = Configuration.getBooleanValue(AVKey.REDRAW_ON_MOUSE_PRESSED, false);
     protected javax.swing.Timer hoverTimer = new javax.swing.Timer(600, new ActionListener()
     {
         public void actionPerformed(ActionEvent actionEvent)
@@ -153,7 +153,7 @@ public class AWTInputHandler extends WWObjectImpl
         return this.hoverTimer.getDelay();
     }
 
-    public boolean isSmoothViewChanges()
+    public bool isSmoothViewChanges()
     {
         return this.wwd.getView().getViewInputHandler().isEnableSmoothing();
     }
@@ -163,7 +163,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.wwd.getView().getViewInputHandler().setEnableSmoothing(smoothViewChanges);
     }
 
-    public boolean isLockViewHeading()
+    public bool isLockViewHeading()
     {
         return this.wwd.getView().getViewInputHandler().isLockHeading();
     }
@@ -173,7 +173,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.wwd.getView().getViewInputHandler().setLockHeading(lockHeading);
     }
 
-    public boolean isStopViewOnFocusLost()
+    public bool isStopViewOnFocusLost()
     {
         return this.wwd.getView().getViewInputHandler().isStopOnFocusLost();
     }
@@ -198,7 +198,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.mousePoint = mousePoint;
     }
 
-    protected boolean isHovering()
+    protected bool isHovering()
     {
         return isHovering;
     }
@@ -228,7 +228,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.objectsAtButtonPress = objectsAtButtonPress;
     }
 
-    public boolean isForceRedrawOnMousePressed()
+    public bool isForceRedrawOnMousePressed()
     {
         return forceRedrawOnMousePressed;
     }
@@ -373,7 +373,7 @@ public class AWTInputHandler extends WWObjectImpl
 
         // Determine if the mouse point has changed since the last mouse move event. This can happen if user switches to
         // another window, moves the mouse, and then switches back to the World Wind window.
-        boolean mousePointChanged = !mouseEvent.getPoint().equals(this.mousePoint);
+        bool mousePointChanged = !mouseEvent.getPoint().equals(this.mousePoint);
 
         this.mousePoint = mouseEvent.getPoint();
         this.cancelHover();
@@ -616,7 +616,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.wwd.getView().getViewInputHandler().focusLost(focusEvent);
     }
 
-    protected boolean isPickListEmpty(PickedObjectList pickList)
+    protected bool isPickListEmpty(PickedObjectList pickList)
     {
         return pickList == null || pickList.size() < 1;
     }
@@ -669,7 +669,7 @@ public class AWTInputHandler extends WWObjectImpl
         this.hoverTimer.stop();
     }
 
-    protected boolean pickMatches(PickedObjectList pickedObjects)
+    protected bool pickMatches(PickedObjectList pickedObjects)
     {
         if (this.isPickListEmpty(this.wwd.getObjectsAtCurrentPosition()) || this.isPickListEmpty(pickedObjects))
         {

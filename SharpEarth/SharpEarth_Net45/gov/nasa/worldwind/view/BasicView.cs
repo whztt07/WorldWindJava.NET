@@ -49,8 +49,8 @@ public class BasicView extends WWObjectImpl implements View
     protected ViewPropertyLimits viewLimits;
 
     protected DrawContext dc;
-    protected boolean detectCollisions = true;
-    protected boolean hadCollisions;
+    protected bool detectCollisions = true;
+    protected bool hadCollisions;
     protected ViewInputHandler viewInputHandler;
     protected Globe globe;
     protected Position eyePosition = Position.ZERO;
@@ -116,7 +116,7 @@ public class BasicView extends WWObjectImpl implements View
         this.viewInputHandler = viewInputHandler;
     }
 
-    public boolean isDetectCollisions()
+    public bool isDetectCollisions()
     {
         return this.detectCollisions;
     }
@@ -126,9 +126,9 @@ public class BasicView extends WWObjectImpl implements View
         this.detectCollisions = detectCollisions;
     }
 
-    public boolean hadCollisions()
+    public bool hadCollisions()
     {
-        boolean result = this.hadCollisions;
+        bool result = this.hadCollisions;
         this.hadCollisions = false;
         return result;
     }
@@ -556,7 +556,7 @@ public class BasicView extends WWObjectImpl implements View
         viewInputHandler.stopAnimators();
     }
 
-    public boolean isAnimating()
+    public bool isAnimating()
     {
         return viewInputHandler.isAnimating();
     }

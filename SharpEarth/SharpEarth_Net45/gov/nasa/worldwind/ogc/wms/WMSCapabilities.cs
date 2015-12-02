@@ -94,7 +94,7 @@ public class WMSCapabilities extends OGCCapabilities
         return OGCConstants.WMS_NAMESPACE_URI;
     }
 
-    public boolean isRootElementName(QName candidate)
+    public bool isRootElementName(QName candidate)
     {
         return this.getParserContext().isSameName(candidate, ROOT_ELEMENT_NAME_1_1_1)
             || this.getParserContext().isSameName(candidate, ROOT_ELEMENT_NAME_1_3_0);
@@ -341,7 +341,7 @@ public class WMSCapabilities extends OGCCapabilities
      * @throws ArgumentException if the layer names array is null or empty or the specified coordinate system is
      *                                  null or the empty string.
      */
-    public boolean layerHasCoordinateSystem(String[] layerNames, String coordSys)
+    public bool layerHasCoordinateSystem(String[] layerNames, String coordSys)
     {
         if (layerNames == null || layerNames.length == 0)
         {
@@ -370,16 +370,16 @@ public class WMSCapabilities extends OGCCapabilities
     @Override
     public String toString() // TODO: Complete this method
     {
-        StringBuilder sb = new StringBuilder(super.toString());
+        StringBuilder sb = new StringBuilder(super.ToString());
 
         sb.append("LAYERS\n");
 
         for (WMSLayerCapabilities layerCaps : this.getNamedLayers())
         {
-            sb.append(layerCaps.toString()).append("\n");
+            sb.append(layerCaps.ToString()).append("\n");
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

@@ -113,7 +113,7 @@ public class BasicSessionCache implements SessionCache
      *
      * @throws ArgumentException if the key is null.
      */
-    public synchronized boolean contains(Object key)
+    public synchronized bool contains(Object key)
     {
         if (key == null)
         {

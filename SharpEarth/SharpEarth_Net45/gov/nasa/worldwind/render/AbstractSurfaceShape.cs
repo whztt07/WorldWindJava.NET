@@ -68,7 +68,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
     }
 
     // Public interface properties.
-    protected boolean highlighted;
+    protected bool highlighted;
     protected ShapeAttributes normalAttrs;
     protected ShapeAttributes highlightAttrs;
     protected ShapeAttributes activeAttrs = this.createActiveAttributes(); // re-determined each frame
@@ -123,7 +123,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
     }
 
     /** {@inheritDoc} */
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return this.highlighted;
     }
@@ -348,7 +348,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         return sectors;
     }
 
-    protected static boolean isSectorEmpty(Sector sector)
+    protected static bool isSectorEmpty(Sector sector)
     {
         if (sector == null)
             return true;
@@ -435,7 +435,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         return areaMeasurer.getArea(globe);
     }
 
-    public double getArea(Globe globe, boolean terrainConformant)
+    public double getArea(Globe globe, bool terrainConformant)
     {
         if (globe == null)
         {
@@ -807,7 +807,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
      * @return True if the shape is a closed polygon that can contain a pole, or false if it is treated as an open path
      *         that cannot contain a pole.
      */
-    protected boolean canContainPole()
+    protected bool canContainPole()
     {
         return true;
     }
@@ -1214,7 +1214,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
     //**************************************************************//
 
     protected void generateIntermediateLocations(Iterable<? extends LatLon> iterable, double edgeIntervalsPerDegree,
-        boolean makeClosedPath, List<LatLon> locations)
+        bool makeClosedPath, List<LatLon> locations)
     {
         LatLon firstLocation = null;
         LatLon lastLocation = null;
@@ -1667,11 +1667,11 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
 
         @Override
         @SuppressWarnings({"SimplifiableIfStatement"})
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             SurfaceShapeStateKey that = (SurfaceShapeStateKey) o;
@@ -1682,7 +1682,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = super.hashCode();
             result = 31 * result + (this.attributes != null ? this.attributes.hashCode() : 0);
@@ -1719,11 +1719,11 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             GeometryKey that = (GeometryKey) o;
@@ -1731,10 +1731,10 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int hash = this.globe.hashCode();
-            long temp = this.edgeIntervalsPerDegree != +0.0d ? Double.doubleToLongBits(this.edgeIntervalsPerDegree)
+            long temp = this.edgeIntervalsPerDegree != +0.0d ? BitConverter.DoubleToInt64Bits(this.edgeIntervalsPerDegree)
                 : 0L;
             return 31 * hash + (int) (temp ^ (temp >>> 32));
         }
@@ -1802,7 +1802,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }

@@ -120,12 +120,12 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
         return this.fields != null ? this.fields.getValue(keyName) : null;
     }
 
-    public boolean hasField(QName keyName)
+    public bool hasField(QName keyName)
     {
         return this.hasField(keyName.getLocalPart());
     }
 
-    public boolean hasField(String keyName)
+    public bool hasField(String keyName)
     {
         return this.fields != null && this.fields.hasKey(keyName);
     }
@@ -136,7 +136,7 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
             this.fields.removeKey(keyName);
     }
 
-    public boolean hasFields()
+    public bool hasFields()
     {
         return this.fields != null;
     }
@@ -189,7 +189,7 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
     {
         try
         {
-            return this.getClass().getConstructor(parameterTypes);
+            return this.GetType().getConstructor(parameterTypes);
         }
         catch (NoSuchMethodException e)
         {
@@ -280,7 +280,7 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
                 {
                     StringBuilder sb = (StringBuilder) this.getField(CHARACTERS_CONTENT);
                     if (sb != null && sb.length() > 0)
-                        this.setField(CHARACTERS_CONTENT, sb.toString());
+                        this.setField(CHARACTERS_CONTENT, sb.ToString());
                     else
                         this.removeField(CHARACTERS_CONTENT);
                 }
@@ -412,7 +412,7 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
         for (XMLEvent event = ctx.nextEvent(); event != null; event = ctx.nextEvent())
         {
             if (ctx.isEndElement(event, stringEvent))
-                return value.length() > 0 ? value.toString() : null;
+                return value.length() > 0 ? value.ToString() : null;
 
             if (event.isCharacters())
             {

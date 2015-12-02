@@ -35,7 +35,7 @@ public class DTEDRasterReader extends AbstractDataRasterReader
     }
 
     @Override
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         File file = this.getFile(source);
         if (null == file)
@@ -52,7 +52,7 @@ public class DTEDRasterReader extends AbstractDataRasterReader
             return true;
         }
 
-        boolean canRead = false;
+        bool canRead = false;
         try
         {
             AVList metadata = DTED.readMetadata(file);

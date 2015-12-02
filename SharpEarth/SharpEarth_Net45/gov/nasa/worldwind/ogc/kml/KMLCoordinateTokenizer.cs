@@ -46,8 +46,8 @@ public class KMLCoordinateTokenizer
 
     protected StringBuilder nextWord = new StringBuilder();
 
-    protected boolean inWord;
-    protected boolean afterComma = false;
+    protected bool inWord;
+    protected bool afterComma = false;
 
     /**
      * Create a tokenizer to read coordinates from a string.
@@ -64,7 +64,7 @@ public class KMLCoordinateTokenizer
      *
      * @return True if there are more coordinates to read from the string.
      */
-    public boolean hasMoreTokens()
+    public bool hasMoreTokens()
     {
         return i < buffer.length;
     }
@@ -131,7 +131,7 @@ public class KMLCoordinateTokenizer
     protected void wordBoundary()
     {
         this.inWord = false;
-        this.words.add(this.nextWord.toString());
+        this.words.add(this.nextWord.ToString());
         this.nextWord = new StringBuilder();
     }
 }

@@ -13,11 +13,11 @@ namespace SharpEarth.util{
  */
 public class OGLStackHandler
 {
-    private boolean attribsPushed;
-    private boolean clientAttribsPushed;
-    private boolean modelviewPushed;
-    private boolean projectionPushed;
-    private boolean texturePushed;
+    private bool attribsPushed;
+    private bool clientAttribsPushed;
+    private bool modelviewPushed;
+    private bool projectionPushed;
+    private bool texturePushed;
 
     public void clear()
     {
@@ -28,7 +28,7 @@ public class OGLStackHandler
         this.texturePushed = false;
     }
 
-    public boolean isActive()
+    public bool isActive()
     {
         return this.attribsPushed || this.clientAttribsPushed || this.modelviewPushed || this.projectionPushed
             || this.texturePushed;

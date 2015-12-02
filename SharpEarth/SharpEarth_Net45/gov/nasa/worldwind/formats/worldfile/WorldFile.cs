@@ -64,7 +64,7 @@ public class WorldFile
 
         return dir.listFiles(new FilenameFilter()
         {
-            public boolean accept(File dir, String name)
+            public bool accept(File dir, String name)
             {
                 int length = base.length() + 4;
                 name = name.trim();
@@ -449,7 +449,7 @@ public class WorldFile
      * @return true if the values are between the normal limits of latitude, [-90, 90], and longitude, [-180, 180],
      *         othewise false.
      */
-    public static boolean worldFileValuesAppearGeographic(AVList values)
+    public static bool worldFileValuesAppearGeographic(AVList values)
     {
         double xLocation;
         double yLocation;
@@ -564,7 +564,7 @@ public class WorldFile
         if (!values.hasKey("BYTEORDER"))
             return null;
 
-        String s = values.getValue("BYTEORDER").toString();
+        String s = values.getValue("BYTEORDER").ToString();
         return (s.equalsIgnoreCase("I") || s.equalsIgnoreCase("LSBFIRST")) ? AVKey.LITTLE_ENDIAN : AVKey.BIG_ENDIAN;
     }
 
@@ -906,7 +906,7 @@ public class WorldFile
      *
      * @return TRUE if there is a world file for the source, otherwise returns FALSE
      */
-    public static boolean hasWorldFiles(Object source)
+    public static bool hasWorldFiles(Object source)
     {
         try
         {

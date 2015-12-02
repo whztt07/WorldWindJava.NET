@@ -93,7 +93,7 @@ public interface GeographicText
      *
      * @return {@code true} if the text is visible, otherwise {@code false}.
      */
-    boolean isVisible();
+    bool isVisible();
 
     /**
      * Specifies whether or not the text is visible. The text will not be drawn when the visibility is set to {@code

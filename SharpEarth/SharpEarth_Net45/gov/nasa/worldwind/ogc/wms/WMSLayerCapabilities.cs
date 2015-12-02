@@ -157,7 +157,7 @@ public class WMSLayerCapabilities extends AbstractXMLEventParser
         return ctx.allocate(event, defaultParser);
     }
 
-    public boolean isLeaf()
+    public bool isLeaf()
     {
         return this.getLayers().size() == 0;
     }
@@ -1211,7 +1211,7 @@ public class WMSLayerCapabilities extends AbstractXMLEventParser
         }
     }
 
-    public boolean hasCoordinateSystem(String coordSys)
+    public bool hasCoordinateSystem(String coordSys)
     {
         if (coordSys == null)
             return false;
@@ -1238,7 +1238,7 @@ public class WMSLayerCapabilities extends AbstractXMLEventParser
             sb.append(this.getName()).append(": ");
         sb.append("queryable = ").append(this.isQueryable());
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

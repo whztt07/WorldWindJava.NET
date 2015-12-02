@@ -33,9 +33,9 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
     public static QName INTEGER = new QName("Integer");
     /** The parser name of the default string parser. */
     public static QName STRING = new QName("String");
-    /** The parser name of the default boolean parser. */
+    /** The parser name of the default bool parser. */
     public static QName BOOLEAN = new QName("Boolean");
-    /** The parser name of the default boolean integer parser. */
+    /** The parser name of the default bool integer parser. */
     public static QName BOOLEAN_INTEGER = new QName("BooleanInteger");
     /** The parser name of the unrecognized-element parser. */
     public static QName UNRECOGNIZED = new QName(UNRECOGNIZED_ELEMENT_PARSER);
@@ -118,7 +118,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
                 String msg;
                 if (notification.getEvent() != null)
                 {
-                    msg = Logging.getMessage(notification.getMessage(), notification.getEvent().toString(),
+                    msg = Logging.getMessage(notification.getMessage(), notification.getEvent().ToString(),
                         notification.getEvent().getLocation().getLineNumber(),
                         notification.getEvent().getLocation().getColumnNumber(),
                         notification.getEvent().getLocation().getCharacterOffset());
@@ -253,7 +253,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
             this.getIdTable().put(id, o);
     }
 
-    public boolean hasNext()
+    public bool hasNext()
     {
         return this.getEventReader().hasNext();
     }
@@ -372,7 +372,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
     }
 
     @SuppressWarnings({"SimplifiableIfStatement"})
-    public boolean isSameName(QName qa, QName qb)
+    public bool isSameName(QName qa, QName qb)
     {
         if (qa.equals(qb))
             return true;
@@ -390,12 +390,12 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
     }
 
     @SuppressWarnings({"SimplifiableIfStatement"})
-    public boolean isSameAttributeName(QName qa, QName qb)
+    public bool isSameAttributeName(QName qa, QName qb)
     {
         return qa != null && qb != null && qa.getLocalPart() != null && qa.getLocalPart().equals(qb.getLocalPart());
     }
 
-    public boolean isStartElement(XMLEvent event, QName elementName)
+    public bool isStartElement(XMLEvent event, QName elementName)
     {
         if (event == null)
         {
@@ -414,7 +414,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         return (event.isStartElement() && this.isSameName(event.asStartElement().getName(), elementName));
     }
 
-    public boolean isStartElement(XMLEvent event, String elementName)
+    public bool isStartElement(XMLEvent event, String elementName)
     {
         if (event == null)
         {
@@ -433,7 +433,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         return (event.isStartElement() && event.asStartElement().getName().getLocalPart().equals(elementName));
     }
 
-    public boolean isEndElement(XMLEvent event, XMLEvent startElement)
+    public bool isEndElement(XMLEvent event, XMLEvent startElement)
     {
         if (event == null || startElement == null)
         {
@@ -445,7 +445,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         return isEndElementEvent(event, startElement);
     }
 
-    public static boolean isEndElementEvent(XMLEvent event, XMLEvent startElement)
+    public static bool isEndElementEvent(XMLEvent event, XMLEvent startElement)
     {
         if (event == null || startElement == null)
         {
@@ -519,12 +519,12 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         }
     }
 
-    protected static boolean isNullNamespace(String namespaceURI)
+    protected static bool isNullNamespace(String namespaceURI)
     {
         return namespaceURI == null || XMLConstants.NULL_NS_URI.equals(namespaceURI);
     }
 
-    public boolean isDefaultNamespace(String namespaceURI)
+    public bool isDefaultNamespace(String namespaceURI)
     {
         return this.getDefaultNamespaceURI() != null && this.getDefaultNamespaceURI().equals(namespaceURI);
     }

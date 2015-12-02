@@ -68,11 +68,11 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
         return this.displayString == null ? -1 : 1;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         PerformanceStatistic that = (PerformanceStatistic) o;
@@ -88,7 +88,7 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = (key != null ? key.hashCode() : 0);
@@ -99,7 +99,7 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
 
     public String toString()
     {
-        return this.displayString + " " + this.value.toString();
+        return this.displayString + " " + this.value.ToString();
     }
 }
 }

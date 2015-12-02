@@ -43,12 +43,12 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
             this.attemptLimit = attemptLimit;
         }
 
-        protected boolean isUnavailable()
+        protected bool isUnavailable()
         {
             return this.logCount.get() >= this.attemptLimit;
         }
 
-        protected boolean isTimeToTryAgain()
+        protected bool isTimeToTryAgain()
         {
             return System.currentTimeMillis() - this.lastLogTime.get() >= this.tryAgainInterval;
         }
@@ -58,7 +58,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
     private CopyOnWriteArrayList<String> networkTestSites = new CopyOnWriteArrayList<String>();
     private AtomicLong tryAgainInterval = new AtomicLong(DEFAULT_TRY_AGAIN_INTERVAL);
     private AtomicInteger attemptLimit = new AtomicInteger(DEFAULT_ATTEMPT_LIMIT);
-    private boolean offlineMode;
+    private bool offlineMode;
 
     // Fields for determining and remembering overall network status.
     protected ConcurrentHashMap<String, HostInfo> hostMap = new ConcurrentHashMap<String, HostInfo>();
@@ -112,7 +112,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
     }
 
     /** {@inheritDoc} */
-    public boolean isOfflineMode()
+    public bool isOfflineMode()
     {
         return offlineMode;
     }
@@ -238,7 +238,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
     }
 
     /** {@inheritDoc} */
-    public synchronized boolean isHostUnavailable(URL url)
+    public synchronized bool isHostUnavailable(URL url)
     {
         if (this.offlineMode)
             return true;
@@ -265,13 +265,13 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
     }
 
     /** {@inheritDoc} */
-    public boolean isNetworkUnavailable()
+    public bool isNetworkUnavailable()
     {
         return this.offlineMode || this.isNetworkUnavailable(10000L);
     }
 
     /** {@inheritDoc} */
-    public synchronized boolean isNetworkUnavailable(long checkInterval)
+    public synchronized bool isNetworkUnavailable(long checkInterval)
     {
         if (this.offlineMode)
             return true;
@@ -328,7 +328,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
     }
 
     /** {@inheritDoc} */
-    public boolean isWorldWindServerUnavailable()
+    public bool isWorldWindServerUnavailable()
     {
         return this.offlineMode || !isHostReachable("worldwind.arc.nasa.gov");
     }
@@ -342,7 +342,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
      * @return {@code true} if a the host is reachable, {@code false} if the host name cannot be resolved, or if opening
      *         a connection to the host fails.
      */
-    protected static boolean isHostReachable(String hostName)
+    protected static bool isHostReachable(String hostName)
     {
         try
         {
@@ -401,7 +401,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
 //        try
 //        {
 //            NetworkStatus ns = new BasicNetworkStatus();
-//            boolean tf = ns.isWorlWindServerUnavailable();
+//            bool tf = ns.isWorlWindServerUnavailable();
 //            tf = ns.isNetworkUnavailable();
 //        }
 //        catch (Exception e)

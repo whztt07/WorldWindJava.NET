@@ -102,11 +102,11 @@ public class SurfaceObjectTileBuilder
     /** The surface tile OpenGL texture format. 0 indicates the default format is used. */
     protected int tileTextureFormat;
     /** Controls if surface tiles are rendered using a linear filter or a nearest-neighbor filter. */
-    protected boolean useLinearFilter = true;
+    protected bool useLinearFilter = true;
     /** Controls if mip-maps are generated for surface tile textures. */
-    protected boolean useMipmaps = true;
+    protected bool useMipmaps = true;
     /** Controls if tiles are forced to update during {@link #buildTiles(DrawContext, Iterable)}. */
-    protected boolean forceTileUpdates;
+    protected bool forceTileUpdates;
     /** Controls the tile resolution as distance changes between the globe's surface and the eye point. */
     protected double splitScale = DEFAULT_SPLIT_SCALE;
     /**
@@ -141,8 +141,8 @@ public class SurfaceObjectTileBuilder
      *
      * @throws ArgumentException if the tile dimension is null.
      */
-    public SurfaceObjectTileBuilder(Dimension tileTextureDimension, int tileTextureFormat, boolean useLinearFilter,
-        boolean useMipmaps)
+    public SurfaceObjectTileBuilder(Dimension tileTextureDimension, int tileTextureFormat, bool useLinearFilter,
+        bool useMipmaps)
     {
         if (tileTextureDimension == null)
         {
@@ -233,7 +233,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if linear filtering is used; false if nearest-neighbor filtering is used.
      */
-    public boolean isUseLinearFilter()
+    public bool isUseLinearFilter()
     {
         return useLinearFilter;
     }
@@ -253,7 +253,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if mip-maps are generated; false otherwise.
      */
-    public boolean isUseMipmaps()
+    public bool isUseMipmaps()
     {
         return this.useMipmaps;
     }
@@ -276,7 +276,7 @@ public class SurfaceObjectTileBuilder
      * @return true if tile textures always update their contents, false if tile textures only update when the surface
      * renderables change.
      */
-    public boolean isForceTileUpdates()
+    public bool isForceTileUpdates()
     {
         return this.forceTileUpdates;
     }
@@ -814,7 +814,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if the DrawContext's has a non-zero viewport; false otherwise.
      */
-    protected boolean canAssembleTiles(DrawContext dc)
+    protected bool canAssembleTiles(DrawContext dc)
     {
         Rectangle viewport = dc.getView().getViewport();
         return viewport.getWidth() > 0 && viewport.getHeight() > 0;
@@ -1054,7 +1054,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if the tile intersects the draw context's frustum; false otherwise.
      */
-    protected boolean intersectsFrustum(DrawContext dc, TextureTile tile)
+    protected bool intersectsFrustum(DrawContext dc, TextureTile tile)
     {
         Extent extent = tile.getExtent(dc);
         if (extent == null)
@@ -1075,7 +1075,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if the tile intersects the draw context's visible sector; false otherwise.
      */
-    protected boolean intersectsVisibleSector(DrawContext dc, TextureTile tile)
+    protected bool intersectsVisibleSector(DrawContext dc, TextureTile tile)
     {
         return dc.getVisibleSector() != null && dc.getVisibleSector().intersects(tile.getSector());
     }
@@ -1090,7 +1090,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if the tile meets the rendering criteria; false otherwise.
      */
-    protected boolean meetsRenderCriteria(DrawContext dc, LevelSet levelSet, Tile tile)
+    protected bool meetsRenderCriteria(DrawContext dc, LevelSet levelSet, Tile tile)
     {
         return levelSet.isFinalLevel(tile.getLevel().getLevelNumber()) || !this.needToSplit(dc, tile);
     }
@@ -1105,7 +1105,7 @@ public class SurfaceObjectTileBuilder
      *
      * @return true if the tile must be split; false otherwise.
      */
-    protected boolean needToSplit(DrawContext dc, Tile tile)
+    protected bool needToSplit(DrawContext dc, Tile tile)
     {
         // Compute the height in meters of a texel from the specified tile. Take care to convert from the radians to
         // meters by multiplying by the globe's radius, not the length of a Cartesian point. Using the length of a
@@ -1218,11 +1218,11 @@ public class SurfaceObjectTileBuilder
     protected String uniqueCacheName()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append(this.getClass().getName());
+        sb.append(this.GetType().getName());
         sb.append("/");
         sb.append(nextUniqueId++);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     protected static class TileInfoKey
@@ -1239,11 +1239,11 @@ public class SurfaceObjectTileBuilder
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             TileInfoKey that = (TileInfoKey) o;
@@ -1253,7 +1253,7 @@ public class SurfaceObjectTileBuilder
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = this.globeOffset;
             result = 31 * result + this.tileWidth;
@@ -1400,7 +1400,7 @@ public class SurfaceObjectTileBuilder
          * @return {@code true} if the list of surface renderables intersecting this tile has elements, and {@code
          * false} otherwise.
          */
-        public boolean hasObjects()
+        public bool hasObjects()
         {
             return this.intersectingObjects != null && !this.intersectingObjects.isEmpty();
         }
@@ -1517,11 +1517,11 @@ public class SurfaceObjectTileBuilder
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             // Compare the tile keys and each state key in the array. The state keys are equal if the tile keys are
@@ -1533,7 +1533,7 @@ public class SurfaceObjectTileBuilder
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = this.tileKey != null ? this.tileKey.hashCode() : 0;
             result = 31 * result + Arrays.hashCode(this.intersectingObjectKeys); // Correctly handles a null reference.

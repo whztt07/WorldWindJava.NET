@@ -21,7 +21,7 @@ public interface Declutterable extends OrderedRenderable
      *
      * @return true if the object participates, otherwise false.
      */
-    boolean isEnableDecluttering();
+    bool isEnableDecluttering();
 
     Rectangle2D getBounds(DrawContext dc);
 }

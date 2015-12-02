@@ -140,7 +140,7 @@ public class ThreadedTaskService extends WWObjectImpl implements TaskService, Th
         }
     }
 
-    public synchronized boolean contains(Runnable runnable)
+    public synchronized bool contains(Runnable runnable)
     {
         //noinspection SimplifiableIfStatement
         if (runnable == null)
@@ -172,12 +172,12 @@ public class ThreadedTaskService extends WWObjectImpl implements TaskService, Th
         this.executor.execute(runnable);
     }
 
-    public boolean isFull()
+    public bool isFull()
     {
         return this.executor.getQueue().remainingCapacity() == 0;
     }
 
-    public boolean hasActiveTasks()
+    public bool hasActiveTasks()
     {
         Thread[] threads = new Thread[Thread.activeCount()];
         int numThreads = Thread.enumerate(threads);

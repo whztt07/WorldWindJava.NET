@@ -2681,7 +2681,7 @@ public class GeometryBuilder
     }
 
     public void makeDiskVertices(Terrain terrain, LatLon center, double innerRadius, double outerRadius,
-        double altitude, boolean terrainConformant, int slices, int loops, Vec4 refPoint, float[] dest)
+        double altitude, bool terrainConformant, int slices, int loops, Vec4 refPoint, float[] dest)
     {
         int numPoints = this.getDiskVertexCount(slices, loops);
         int numCoords = 3 * numPoints;
@@ -2742,7 +2742,7 @@ public class GeometryBuilder
     }
 
     public void makeDiskVertices(Terrain terrain, LatLon center, double[] radii, Angle heading,
-        double altitude, boolean terrainConformant, int slices, int loops, Vec4 refPoint, float[] dest)
+        double altitude, bool terrainConformant, int slices, int loops, Vec4 refPoint, float[] dest)
     {
         int numPoints = this.getDiskVertexCount(slices, loops);
         int numCoords = 3 * numPoints;
@@ -3211,7 +3211,7 @@ public class GeometryBuilder
     }
 
     public void makePartialDiskVertices(Terrain terrain, LatLon center, double innerRadius, double outerRadius,
-        double altitude, boolean terrainConformant, int slices, int loops, double start, double sweep, Vec4 refPoint,
+        double altitude, bool terrainConformant, int slices, int loops, double start, double sweep, Vec4 refPoint,
         float[] dest)
     {
         int numPoints = this.getPartialDiskVertexCount(slices, loops);
@@ -4491,7 +4491,7 @@ public class GeometryBuilder
     }
 
     public void makeLongDiskVertices(Terrain terrain, LatLon center1, LatLon center2, double innerRadius,
-        double outerRadius, double altitude, boolean terrainConformant, int arcSlices, int lengthSlices, int loops,
+        double outerRadius, double altitude, bool terrainConformant, int arcSlices, int lengthSlices, int loops,
         Vec4 refPoint, float[] dest)
     {
         int numPoints = this.getLongDiskVertexCount(arcSlices, lengthSlices, loops);
@@ -5784,15 +5784,15 @@ public class GeometryBuilder
             y2 = itb.vertices.get(3 * vertex2 + 1);
 
             // compute phi of each of the three vertices of the face
-            phi0 = Math.ATan2(y0, x0);
+            phi0 = Math.Atan2(y0, x0);
             if (phi0 < 0.0d)
                 phi0 += 2.0d * Math.PI;
 
-            phi1 = Math.ATan2(y1, x1);
+            phi1 = Math.Atan2(y1, x1);
             if (phi1 < 0.0d)
                 phi1 += 2.0d * Math.PI;
 
-            phi2 = Math.ATan2(y2, x2);
+            phi2 = Math.Atan2(y2, x2);
             if (phi2 < 0.0d)
                 phi2 += 2.0d * Math.PI;
 
@@ -5966,7 +5966,7 @@ public class GeometryBuilder
             y = vertices.get(3 * i + 1);
             z = vertices.get(3 * i + 2);
 
-            phi = Math.ATan2(y, x);
+            phi = Math.Atan2(y, x);
             theta = Math.Acos(z);
 
             if (phi < 0.0d)
@@ -6978,11 +6978,11 @@ public class GeometryBuilder
             this.b = b;
         }
 
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             // Compares a non directed edge between two points. Therefore we must treat edge equivalence as
@@ -6992,7 +6992,7 @@ public class GeometryBuilder
                 || (this.a == that.b && this.b == that.a);
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
             // Represents the hash for a a non directed edge between two points. Therefore we use a non-commutative
             // hash so that hash(ab)=hash(ba).
@@ -8632,7 +8632,7 @@ public class GeometryBuilder
         return i;
     }
 
-    private void append(Terrain terrain, LatLon ll, double altitude, boolean terrainConformant, Vec4 refPoint,
+    private void append(Terrain terrain, LatLon ll, double altitude, bool terrainConformant, Vec4 refPoint,
         FloatBuffer dest)
     {
         Vec4 point = terrainConformant ?

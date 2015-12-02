@@ -180,7 +180,7 @@ public sealed class WorldWind
      *
      * @see NetworkStatus
      */
-    public static boolean isOfflineMode()
+    public static bool isOfflineMode()
     {
         return getNetworkStatus().isOfflineMode();
     }
@@ -289,7 +289,7 @@ public sealed class WorldWind
         return instance.wwo.getStringValue(key);
     }
 
-    public static boolean hasKey(String key)
+    public static bool hasKey(String key)
     {
         return instance.wwo.hasKey(key);
     }

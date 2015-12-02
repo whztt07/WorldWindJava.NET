@@ -133,7 +133,7 @@ public class AngleAnimator extends BasicAnimator
         Angle newValue = this.nextAngle(interpolant);
         if (newValue == null)
            return;
-        boolean success = this.propertyAccessor.setAngle(newValue);
+        bool success = this.propertyAccessor.setAngle(newValue);
         if (!success)
         {
            flagLastStateInvalid();

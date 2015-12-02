@@ -29,7 +29,7 @@ public class KMLPolyStyle extends KMLAbstractColorStyle
         return (Boolean) this.getField("fill");
     }
 
-    public boolean isFill()
+    public bool isFill()
     {
         return this.getFill() == null || this.getFill();
     }
@@ -39,7 +39,7 @@ public class KMLPolyStyle extends KMLAbstractColorStyle
         return (Boolean) this.getField("outline");
     }
 
-    public boolean isOutline()
+    public bool isOutline()
     {
         return this.getOutline() == null || this.getOutline();
     }

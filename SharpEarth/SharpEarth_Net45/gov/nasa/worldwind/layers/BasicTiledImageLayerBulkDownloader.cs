@@ -348,7 +348,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
             int row = 0;
             int col = 0;
 
-            public boolean hasNext()
+            public bool hasNext()
             {
                 return row < div;
             }
@@ -401,7 +401,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         return tiles;
     }
 
-    protected boolean isTileLocalOrAbsent(TextureTile tile)
+    protected bool isTileLocalOrAbsent(TextureTile tile)
     {
         if (this.layer.getLevels().isResourceAbsent(tile))
             return true;  // tile is absent
@@ -432,7 +432,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         {
             File[] rowDirs = cacheRoot.listFiles(new FileFilter()
             {
-                public boolean accept(File file)
+                public bool accept(File file)
                 {
                     return file.isDirectory();
                 }

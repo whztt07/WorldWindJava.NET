@@ -34,26 +34,26 @@ public abstract class TiledImageLayer extends AbstractLayer
     protected static final LevelComparer levelComparer = new LevelComparer();
     protected final LevelSet levels;
     protected ArrayList<TextureTile> topLevels;
-    protected boolean forceLevelZeroLoads = false;
-    protected boolean levelZeroLoaded = false;
-    protected boolean retainLevelZeroTiles = false;
+    protected bool forceLevelZeroLoads = false;
+    protected bool levelZeroLoaded = false;
+    protected bool retainLevelZeroTiles = false;
     protected String tileCountName;
     protected double detailHintOrigin = 2.8;
     protected double detailHint = 0;
-    protected boolean useMipMaps = true;
-    protected boolean useTransparentTextures = false;
+    protected bool useMipMaps = true;
+    protected bool useTransparentTextures = false;
     protected ArrayList<String> supportedImageFormats = new ArrayList<String>();
     protected String textureFormat;
 
     // Diagnostic flags
-    protected boolean drawTileBoundaries = false;
-    private boolean drawTileIDs = false;
-    protected boolean drawBoundingVolumes = false;
+    protected bool drawTileBoundaries = false;
+    private bool drawTileIDs = false;
+    protected bool drawBoundingVolumes = false;
 
     // Stuff computed each frame
     protected ArrayList<TextureTile> currentTiles = new ArrayList<TextureTile>();
     protected TextureTile currentResourceTile;
-    protected boolean atMaxResolution = false;
+    protected bool atMaxResolution = false;
     protected PriorityBlockingQueue<Runnable> requestQ = new PriorityBlockingQueue<Runnable>(200);
 
     abstract protected void requestTexture(DrawContext dc, TextureTile tile);
@@ -101,7 +101,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.tileCountName = this.getName() + " Tiles";
     }
 
-    public boolean isForceLevelZeroLoads()
+    public bool isForceLevelZeroLoads()
     {
         return this.forceLevelZeroLoads;
     }
@@ -111,7 +111,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.forceLevelZeroLoads = forceLevelZeroLoads;
     }
 
-    public boolean isRetainLevelZeroTiles()
+    public bool isRetainLevelZeroTiles()
     {
         return retainLevelZeroTiles;
     }
@@ -121,7 +121,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.retainLevelZeroTiles = retainLevelZeroTiles;
     }
 
-    public boolean isDrawTileIDs()
+    public bool isDrawTileIDs()
     {
         return drawTileIDs;
     }
@@ -131,7 +131,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.drawTileIDs = drawTileIDs;
     }
 
-    public boolean isDrawTileBoundaries()
+    public bool isDrawTileBoundaries()
     {
         return drawTileBoundaries;
     }
@@ -141,7 +141,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.drawTileBoundaries = drawTileBoundaries;
     }
 
-    public boolean isDrawBoundingVolumes()
+    public bool isDrawBoundingVolumes()
     {
         return drawBoundingVolumes;
     }
@@ -197,13 +197,13 @@ public abstract class TiledImageLayer extends AbstractLayer
     }
 
     @Override
-    public boolean isMultiResolution()
+    public bool isMultiResolution()
     {
         return this.getLevels() != null && this.getLevels().getNumLevels() > 1;
     }
 
     @Override
-    public boolean isAtMaxResolution()
+    public bool isAtMaxResolution()
     {
         return this.atMaxResolution;
     }
@@ -232,7 +232,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.textureFormat = textureFormat;
     }
 
-    public boolean isUseMipMaps()
+    public bool isUseMipMaps()
     {
         return useMipMaps;
     }
@@ -242,7 +242,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.useMipMaps = useMipMaps;
     }
 
-    public boolean isUseTransparentTextures()
+    public bool isUseTransparentTextures()
     {
         return this.useTransparentTextures;
     }
@@ -468,13 +468,13 @@ public abstract class TiledImageLayer extends AbstractLayer
         this.currentTiles.add(tile);
     }
 
-    protected boolean isTileVisible(DrawContext dc, TextureTile tile)
+    protected bool isTileVisible(DrawContext dc, TextureTile tile)
     {
         return tile.getExtent(dc).intersects(dc.getView().getFrustumInModelCoordinates()) &&
             (dc.getVisibleSector() == null || dc.getVisibleSector().intersects(tile.getSector()));
     }
 
-    protected boolean meetsRenderCriteria(DrawContext dc, TextureTile tile)
+    protected bool meetsRenderCriteria(DrawContext dc, TextureTile tile)
     {
         return this.levels.isFinalLevel(tile.getLevelNumber()) || !needToSplit(dc, tile.getSector(), tile.getLevel());
     }
@@ -484,7 +484,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         return this.detailHintOrigin + this.getDetailHint();
     }
 
-    protected boolean needToSplit(DrawContext dc, Sector sector, Level level)
+    protected bool needToSplit(DrawContext dc, Sector sector, Level level)
     {
         // Compute the height in meters of a texel from the specified level. Take care to convert from the radians to
         // meters by multiplying by the globe's radius, not the length of a Cartesian point. Using the length of a
@@ -555,7 +555,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         return null;
     }
 
-    protected boolean atMaxLevel(DrawContext dc)
+    protected bool atMaxLevel(DrawContext dc)
     {
         Position vpc = dc.getViewportCenterPosition();
         if (dc.getView() == null || this.getLevels() == null || vpc == null)
@@ -695,7 +695,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         }
     }
 
-    public boolean isLayerInView(DrawContext dc)
+    public bool isLayerInView(DrawContext dc)
     {
         if (dc == null)
         {
@@ -1068,7 +1068,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         return new ArrayList<String>(this.supportedImageFormats);
     }
 
-    public boolean isImageFormatAvailable(String imageFormat)
+    public bool isImageFormatAvailable(String imageFormat)
     {
         return imageFormat != null && this.supportedImageFormats.contains(imageFormat);
     }
@@ -1172,7 +1172,7 @@ public abstract class TiledImageLayer extends AbstractLayer
             throw new RuntimeException(message);
         }
 
-        Logging.logger().log(java.util.logging.Level.FINE, "Retrieving " + resourceURL.toString());
+        Logging.logger().log(java.util.logging.Level.FINE, "Retrieving " + resourceURL.ToString());
         retriever.setConnectTimeout(10000);
         retriever.setReadTimeout(timeout);
         retriever.call();
@@ -1237,7 +1237,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         }
 
         Logging.logger().fine(Logging.getMessage("layers.TiledImageLayer.LevelSelection",
-            targetLevel.getLevelNumber(), Double.toString(targetLevel.getTexelSize())));
+            targetLevel.getLevelNumber(), Double.ToString(targetLevel.getTexelSize())));
         return targetLevel.getLevelNumber();
     }
 
@@ -1274,7 +1274,7 @@ public abstract class TiledImageLayer extends AbstractLayer
      * java.awt.image.BufferedImage, java.awt.image.BufferedImage)  ;
      */
     public BufferedImage composeImageForSector(Sector sector, int canvasWidth, int canvasHeight, double aspectRatio,
-        int levelNumber, String mimeType, boolean abortOnError, BufferedImage image, int timeout) throws Exception
+        int levelNumber, String mimeType, bool abortOnError, BufferedImage image, int timeout) throws Exception
     {
         if (sector == null)
         {
@@ -1509,13 +1509,13 @@ public abstract class TiledImageLayer extends AbstractLayer
         }
 
         @Override
-        protected boolean isDeleteOnExit(File outFile)
+        protected bool isDeleteOnExit(File outFile)
         {
             return outFile.getPath().contains(WWIO.DELETE_ON_EXIT_PREFIX);
         }
 
         @Override
-        protected boolean overwriteExistingFile()
+        protected bool overwriteExistingFile()
         {
             return true;
         }

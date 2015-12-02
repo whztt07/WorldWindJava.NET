@@ -83,7 +83,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
      *
      * @return true, if the DataRaster list is not empty
      */
-    public boolean hasDataRasters()
+    public bool hasDataRasters()
     {
         return (this.dataRasterList.size() > 0);
     }
@@ -99,7 +99,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
 
 //        if (null == rootElement)
 //        {
-//            String message = Logging.getMessage("generic.UnexpectedObjectType", o.getClass().getName());
+//            String message = Logging.getMessage("generic.UnexpectedObjectType", o.GetType().getName());
 //            Logging.logger().severe(message);
 //            throw new ArgumentException(message);
 //        }
@@ -182,11 +182,11 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
      * @return TRUE, if all raster sources are available, FALSE otherwise
      *
      */
-    protected boolean readRasterSources(RasterServerConfiguration config)
+    protected bool readRasterSources(RasterServerConfiguration config)
     {
         long startTime = System.currentTimeMillis();
 
-        boolean hasUnavailableRasterSources = false;
+        bool hasUnavailableRasterSources = false;
 
         int numSources = 0;
         Sector extent = null;
@@ -563,7 +563,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
             }
             else
             {
-                String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.getClass().getName());
+                String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
                 Logging.logger().severe(msg);
                 throw new WWRuntimeException(msg);
             }

@@ -37,11 +37,11 @@ public class VPFFeatureClassSchema
         return this.featureTableName;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         VPFFeatureClassSchema that = (VPFFeatureClassSchema) o;
@@ -58,7 +58,7 @@ public class VPFFeatureClassSchema
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = this.className != null ? this.className.hashCode() : 0;
         result = 31 * result + (this.type != null ? this.type.hashCode() : 0);

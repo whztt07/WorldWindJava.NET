@@ -230,7 +230,7 @@ public class OGCServiceInformation extends AbstractXMLEventParser
         sb.append("OnlineResource: ").append(this.onlineResource != null ? this.onlineResource : "none").append("\n");
         sb.append(this.contactInformation != null ? this.contactInformation : "none").append("\n");
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     protected void keywordsToString(StringBuilder sb)

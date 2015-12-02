@@ -75,21 +75,21 @@ public interface Model extends WWObject
      *
      * @return true if it is to be drawn, otherwise false.
      */
-    boolean isShowWireframeInterior();
+    bool isShowWireframeInterior();
 
     /**
      * Indicates whether the globe surface's exterior geometry is to be drawn.
      *
      * @return true if it is to be drawn, otherwise false.
      */
-    boolean isShowWireframeExterior();
+    bool isShowWireframeExterior();
 
     /**
      * Indicates whether the bounding volumes of the tessellated globe's surface geometry should be displayed.
      *
      * @return true if the bounding volumes are to be drawn, otherwise false.
      */
-    boolean isShowTessellationBoundingVolumes();
+    bool isShowTessellationBoundingVolumes();
 
     /**
      * Specifies whether the bounding volumes of the globes tessellated surface geometry is to be drawn.

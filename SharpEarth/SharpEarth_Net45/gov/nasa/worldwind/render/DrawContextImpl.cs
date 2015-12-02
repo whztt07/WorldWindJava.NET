@@ -62,8 +62,8 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
      * HashSet.
      */
     protected IntSet uniquePixelColors = new IntSet();
-    protected boolean pickingMode = false;
-    protected boolean deepPickingMode = false;
+    protected bool pickingMode = false;
+    protected bool deepPickingMode = false;
     /**
      * Indicates the current pick point in AWT screen coordinates, or <code>null</code> to indicate that there is no
      * pick point. Initially <code>null</code>.
@@ -74,8 +74,8 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
      * pick rectangle. Initially <code>null</code>.
      */
     protected Rectangle pickRect = null;
-    protected boolean isOrderedRenderingMode = false;
-    protected boolean preRenderMode = false;
+    protected bool isOrderedRenderingMode = false;
+    protected bool preRenderMode = false;
     protected Point viewportCenterScreenPoint = null;
     protected Position viewportCenterPosition = null;
     protected SurfaceTileRenderer geographicSurfaceTileRenderer = new GeographicSurfaceTileRenderer();
@@ -619,7 +619,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         return array;
     }
 
-    public boolean isPickingMode()
+    public bool isPickingMode()
     {
         return this.pickingMode;
     }
@@ -634,7 +634,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         this.pickingMode = false;
     }
 
-    public boolean isDeepPickingEnabled()
+    public bool isDeepPickingEnabled()
     {
         return this.deepPickingMode;
     }
@@ -644,7 +644,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         this.deepPickingMode = tf;
     }
 
-    public boolean isPreRenderMode()
+    public bool isPreRenderMode()
     {
         return preRenderMode;
     }
@@ -654,7 +654,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         this.preRenderMode = preRenderMode;
     }
 
-    public boolean isOrderedRenderingMode()
+    public bool isOrderedRenderingMode()
     {
         return this.isOrderedRenderingMode;
     }
@@ -670,13 +670,13 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
     }
 
     @Override
-    public boolean is2DGlobe()
+    public bool is2DGlobe()
     {
         return this.globe instanceof Globe2D;
     }
 
     @Override
-    public boolean isContinuous2DGlobe()
+    public bool isContinuous2DGlobe()
     {
         return this.globe instanceof Globe2D && ((Globe2D) this.getGlobe()).isContinuous();
     }
@@ -694,7 +694,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
     }
 
     /** {@inheritDoc} */
-    public void addOrderedRenderable(OrderedRenderable orderedRenderable, boolean isBehind)
+    public void addOrderedRenderable(OrderedRenderable orderedRenderable, bool isBehind)
     {
         if (null == orderedRenderable)
         {
@@ -1428,7 +1428,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         }
     }
 
-    public boolean isSmall(Extent extent, int numPixels)
+    public bool isSmall(Extent extent, int numPixels)
     {
         return extent != null && extent.getDiameter() <= numPixels * this.getView().computePixelSizeAtDistance(
             // burkey couldnt we make this minimum dimension

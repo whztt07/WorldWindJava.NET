@@ -72,14 +72,14 @@ public class Polygon extends AbstractShape
          */
         protected IntBuffer interiorIndicesBuffer;
         /** Indicates whether a tessellation error occurred. No more attempts to tessellate will be made if set to true. */
-        protected boolean tessellationError = false; // set to true if the tessellator fails
+        protected bool tessellationError = false; // set to true if the tessellator fails
         /** Indicates whether the index buffer needs to be filled because a new buffer is used or some other reason. */
-        protected boolean refillIndexBuffer = true; // set to true if the index buffer needs to be refilled
+        protected bool refillIndexBuffer = true; // set to true if the index buffer needs to be refilled
         /**
          * Indicates whether the index buffer's VBO needs to be filled because a new buffer is used or some other
          * reason.
          */
-        protected boolean refillIndexVBO = true; // set to true if the index VBO needs to be refilled
+        protected bool refillIndexVBO = true; // set to true if the index VBO needs to be refilled
 
         /**
          * Construct a cache entry using the boundaries of this shape.
@@ -327,7 +327,7 @@ public class Polygon extends AbstractShape
         return this.boundaries.get(0);
     }
 
-    protected boolean isOuterBoundaryValid()
+    protected bool isOuterBoundaryValid()
     {
         return this.boundaries.size() > 0 && this.boundaries.get(0).size() > 2;
     }
@@ -506,7 +506,7 @@ public class Polygon extends AbstractShape
         this.texture = this.makeTexture(imageSource);
 
         // Determine whether the tex-coord list needs to be closed.
-        boolean closeIt = texCoords[0] != texCoords[texCoordCount - 2] || texCoords[1] != texCoords[texCoordCount - 1];
+        bool closeIt = texCoords[0] != texCoords[texCoordCount - 2] || texCoords[1] != texCoords[texCoordCount - 1];
 
         int size = 2 * (texCoordCount + (closeIt ? 1 : 0));
         if (this.textureCoordsBuffer == null || this.textureCoordsBuffer.capacity() < size)
@@ -638,17 +638,17 @@ public class Polygon extends AbstractShape
         return this.sector;
     }
 
-    protected boolean mustApplyTexture(DrawContext dc)
+    protected bool mustApplyTexture(DrawContext dc)
     {
         return this.getTexture() != null && this.textureCoordsBuffer != null;
     }
 
-    protected boolean shouldUseVBOs(DrawContext dc)
+    protected bool shouldUseVBOs(DrawContext dc)
     {
         return this.numPositions > VBO_THRESHOLD && super.shouldUseVBOs(dc);
     }
 
-    protected boolean mustRegenerateGeometry(DrawContext dc)
+    protected bool mustRegenerateGeometry(DrawContext dc)
     {
         if (this.getCurrent().coordBuffer == null)
             return true;
@@ -675,7 +675,7 @@ public class Polygon extends AbstractShape
         super.render(dc);
     }
 
-    protected boolean doMakeOrderedRenderable(DrawContext dc)
+    protected bool doMakeOrderedRenderable(DrawContext dc)
     {
         if (dc.getSurfaceGeometry() == null || !this.isOuterBoundaryValid())
             return false;
@@ -697,7 +697,7 @@ public class Polygon extends AbstractShape
         return true;
     }
 
-    protected boolean isOrderedRenderableValid(DrawContext dc)
+    protected bool isOrderedRenderableValid(DrawContext dc)
     {
         return this.getCurrent().coordBuffer != null && this.isOuterBoundaryValid();
     }
@@ -946,7 +946,7 @@ public class Polygon extends AbstractShape
      * @param skipOuterBoundary true if outer boundaries vertices do not need to be calculated, otherwise false.
      */
     protected void createFullGeometry(DrawContext dc, Terrain terrain, ShapeData shapeData,
-        boolean skipOuterBoundary)
+        bool skipOuterBoundary)
     {
         this.createVertices(terrain, shapeData, skipOuterBoundary);
         this.createGeometry(dc, shapeData);
@@ -965,7 +965,7 @@ public class Polygon extends AbstractShape
      * @param skipOuterBoundary if true, don't calculate the vertices for the outer boundary. This is used when the
      *                          outer boundary vertices were computed as minimal geometry.
      */
-    protected void createVertices(Terrain terrain, ShapeData shapeData, boolean skipOuterBoundary)
+    protected void createVertices(Terrain terrain, ShapeData shapeData, bool skipOuterBoundary)
     {
         for (BoundaryInfo boundary : shapeData)
         {
@@ -1294,7 +1294,7 @@ public class Polygon extends AbstractShape
         shapeData.refillIndexVBO = true;
     }
 
-    protected boolean isSameAsPreviousTerrain(Terrain terrain)
+    protected bool isSameAsPreviousTerrain(Terrain terrain)
     {
         if (terrain == null || this.previousIntersectionTerrain == null || terrain != this.previousIntersectionTerrain)
             return false;
@@ -1576,14 +1576,14 @@ public class Polygon extends AbstractShape
         {
             if (location instanceof Position)
             {
-                xmlWriter.writeCharacters(String.format(Locale.US, "%f,%f,%f ",
+                xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                     location.getLongitude().getDegrees(),
                     location.getLatitude().getDegrees(),
                     ((Position) location).getAltitude()));
             }
             else
             {
-                xmlWriter.writeCharacters(String.format(Locale.US, "%f,%f ",
+                xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f ",
                     location.getLongitude().getDegrees(),
                     location.getLatitude().getDegrees()));
             }

@@ -660,7 +660,7 @@ public class Box implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Frustum frustum)
+    public bool intersects(Frustum frustum)
     {
         // FYI: this code is identical to that in Cylinder.intersects.
 
@@ -743,11 +743,11 @@ public class Box implements Extent, Renderable
     {
         // Test the distance from the first end-point.
         double dq1 = plane.dot(endpoints[0]);
-        boolean bq1 = dq1 <= -effectiveRadius;
+        bool bq1 = dq1 <= -effectiveRadius;
 
         // Test the distance from the possibly reduced second end-point.
         double dq2 = plane.dot(endpoints[1]);
-        boolean bq2 = dq2 <= -effectiveRadius;
+        bool bq2 = dq2 <= -effectiveRadius;
 
         if (bq1 && bq2) // endpoints more distant from plane than effective radius; box is on neg. side of plane
             return -1;
@@ -769,7 +769,7 @@ public class Box implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Plane plane)
+    public bool intersects(Plane plane)
     {
         if (plane == null)
         {
@@ -786,11 +786,11 @@ public class Box implements Extent, Renderable
     {
         // Test the distance from the first end-point.
         double dq1 = plane.dot(this.bottomCenter);
-        boolean bq1 = dq1 <= -effectiveRadius;
+        bool bq1 = dq1 <= -effectiveRadius;
 
         // Test the distance from the top of the box.
         double dq2 = plane.dot(this.topCenter);
-        boolean bq2 = dq2 <= -effectiveRadius;
+        bool bq2 = dq2 <= -effectiveRadius;
 
         if (bq1 && bq2) // both beyond effective radius; box is on negative side of plane
             return -1;
@@ -808,7 +808,7 @@ public class Box implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Line line)
+    public bool intersects(Line line)
     {
         if (line == null)
         {
@@ -845,7 +845,7 @@ public class Box implements Extent, Renderable
         // Index 0 indicates that the view is inside this Box. Return positive infinity, indicating that this Box does
         // not have a finite area in the viewport.
         if (lookupCode == 0)
-            return Double.POSITIVE_INFINITY;
+            return Double.PositiveInfinity;
 
         if (lookupCode < 0 || lookupCode >= ProjectionHullTable.length)
             return 0; // This should never happen, but we check anyway.
@@ -868,7 +868,7 @@ public class Box implements Extent, Renderable
         {
             Vec4 eyeVertex = vertices[indices[i]].transformBy4(view.getModelviewMatrix());
             if (eyeVertex.z >= 0)
-                return Double.POSITIVE_INFINITY;
+                return Double.PositiveInfinity;
         }
 
         for (int i = 0; i < indices.length; i++)
@@ -941,7 +941,7 @@ public class Box implements Extent, Renderable
 //
 //        double fMax = -Double.MaxValue;
 //        double bMin = Double.MaxValue;
-//        boolean isTangent = false;
+//        bool isTangent = false;
 //
 //        Vec4 u = line.getDirection();
 //        Vec4 p = line.getOrigin();
@@ -1102,7 +1102,7 @@ public class Box implements Extent, Renderable
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
@@ -1125,7 +1125,7 @@ public class Box implements Extent, Renderable
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = center != null ? center.hashCode() : 0;
         result = 31 * result + (r != null ? r.hashCode() : 0);

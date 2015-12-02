@@ -169,10 +169,10 @@ public class OGCRequestDescription extends AbstractXMLEventParser
         sb.append("\n\tDCPTypes:\n");
         for (OGCDCType dcpt : this.getDCPTypes())
         {
-            sb.append("\t\t").append(dcpt.toString()).append("\n");
+            sb.append("\t\t").append(dcpt.ToString()).append("\n");
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

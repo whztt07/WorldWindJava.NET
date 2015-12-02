@@ -126,7 +126,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
      *
      * @throws ArgumentException If a key/value is missing and throwException is set to TRUE
      */
-    protected boolean hasRequiredMetadata(AVList parameters, ErrorHandlerMode throwException)
+    protected bool hasRequiredMetadata(AVList parameters, ErrorHandlerMode throwException)
         throws ArgumentException
     {
         String[] keys = this.getRequiredKeysList();
@@ -380,7 +380,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
 
         sb.append(WWUtil.extractExceptionReason(t));
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     protected long getSizeInBytes(DataRaster[] rasters)

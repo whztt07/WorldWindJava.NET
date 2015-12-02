@@ -221,27 +221,27 @@ public class DTED
                 // 0123456789
                 // DD MM SS H
                 sb.insert(2, " ").insert(5, " ").insert(8, " ");
-                return Angle.fromDMS(sb.toString());
+                return Angle.fromDMS(sb.ToString());
 
             case 8:
                 // 01234567890
                 // DDD MM SS H
                 sb.insert(3, " ").insert(6, " ").insert(9, " ");
-                return Angle.fromDMS(sb.toString());
+                return Angle.fromDMS(sb.ToString());
 
             case 9:
                 // 012345678901
                 // DD MM SS.S H
                 sb.insert(2, " ").insert(5, " ").insert(10, " ");
                 sb.delete(8, 10);  // remove ".S" part, DTED spec not uses it anyway
-                return Angle.fromDMS(sb.toString());
+                return Angle.fromDMS(sb.ToString());
 
             case 10:
                 // 0123456789012
                 // DDD MM SS.S H
                 sb.insert(3, " ").insert(6, " ").insert(11, " ");
                 sb.delete(9, 11);   // remove ".S" part, DTED spec not uses it anyway
-                return Angle.fromDMS(sb.toString());
+                return Angle.fromDMS(sb.ToString());
         }
 
         return null;

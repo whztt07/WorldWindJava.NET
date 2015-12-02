@@ -46,17 +46,17 @@ public class StereoOptionSceneController extends BasicSceneController implements
     /** The angle between eyes. Larger angles give increased 3D effect. */
     protected Angle focusAngle = Angle.fromDegrees(DEFAULT_FOCUS_ANGLE);
     /** Indicates whether left and right eye positions are swapped. */
-    protected boolean swapEyes = false;
+    protected bool swapEyes = false;
     /** Indicates the GL drawable capabilities. Non-null only after this scene controller draws once. */
     protected GLCapabilitiesImmutable capabilities;
     /** Indicates whether hardware device stereo is available. Valid only after this scene controller draws once. */
-    protected boolean hardwareStereo = false;
+    protected bool hardwareStereo = false;
     /**
      * Indicates whether stereo is being applied, either because a stereo device is being used or a stereo mode is in
      * effect. This field is included because the question is asked every frame, and tracking the answer via a boolean
      * avoids the overhead of more complicated logic that determines the stereo-drawing implementation to call.
      */
-    protected boolean inStereo = false;
+    protected bool inStereo = false;
 
     /** Constructs an instance and initializes its stereo mode to */
     public StereoOptionSceneController()
@@ -102,12 +102,12 @@ public class StereoOptionSceneController extends BasicSceneController implements
         this.swapEyes = swapEyes;
     }
 
-    public boolean isSwapEyes()
+    public bool isSwapEyes()
     {
         return this.swapEyes;
     }
 
-    public boolean isHardwareStereo()
+    public bool isHardwareStereo()
     {
         return this.hardwareStereo;
     }
@@ -119,7 +119,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
      * returns true even if the stereo mode is {@link AVKey#STEREO_MODE_NONE}. In this case, individual stereo images
      * are drawn for left and right eyes in order to prevent a blurred scene.
      */
-    public boolean isInStereo()
+    public bool isInStereo()
     {
         return this.inStereo;
     }

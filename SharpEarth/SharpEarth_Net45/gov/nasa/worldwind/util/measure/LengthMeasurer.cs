@@ -37,7 +37,7 @@ public class LengthMeasurer implements MeasurableLength
 
     private ArrayList<? extends Position> positions;
     private ArrayList<? extends Position> subdividedPositions;
-    private boolean followTerrain = false;
+    private bool followTerrain = false;
     private int pathType = Polyline.GREAT_CIRCLE;
     private double maxSegmentLength = DEFAULT_MAX_SEGMENT_LENGTH;
     private Sector sector;
@@ -100,7 +100,7 @@ public class LengthMeasurer implements MeasurableLength
         clearCachedValues();
     }
 
-    public boolean isFollowTerrain()
+    public bool isFollowTerrain()
     {
         return this.followTerrain;
     }
@@ -185,7 +185,7 @@ public class LengthMeasurer implements MeasurableLength
      *
      * @return true if the current position list describe a closed path.
      */
-    public boolean isClosedShape()
+    public bool isClosedShape()
     {
         return this.positions != null
             && this.positions.size() > 1
@@ -250,7 +250,7 @@ public class LengthMeasurer implements MeasurableLength
 
     // *** Computing length *****************************************************************************
 
-    protected double computeLength(Globe globe, boolean followTerrain)
+    protected double computeLength(Globe globe, bool followTerrain)
     {
         if (this.positions == null || this.positions.size() < 2)
             return -1;
@@ -317,7 +317,7 @@ public class LengthMeasurer implements MeasurableLength
      */
     protected static ArrayList<? extends Position> subdividePositions(Globe globe,
         ArrayList<? extends Position> positions,
-        double maxLength, boolean followTerrain, int pathType)
+        double maxLength, bool followTerrain, int pathType)
     {
         return subdividePositions(globe, positions, maxLength, followTerrain, pathType, 0, positions.size());
     }
@@ -341,7 +341,7 @@ public class LengthMeasurer implements MeasurableLength
      */
     protected static ArrayList<? extends Position> subdividePositions(Globe globe,
         ArrayList<? extends Position> positions,
-        double maxLength, boolean followTerrain, int pathType,
+        double maxLength, bool followTerrain, int pathType,
         int start, int count)
     {
         if (positions == null || positions.size() < start + count)

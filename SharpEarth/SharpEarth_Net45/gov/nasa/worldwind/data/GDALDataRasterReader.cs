@@ -51,7 +51,7 @@ public class GDALDataRasterReader extends AbstractDataRasterReader
     }
 
     @Override
-    public boolean canRead(Object source, AVList parameters)
+    public bool canRead(Object source, AVList parameters)
     {
         // RPF imagery cannot be identified by a small set of suffixes or mime types, so we override the standard
         // suffix comparison behavior here.
@@ -59,7 +59,7 @@ public class GDALDataRasterReader extends AbstractDataRasterReader
     }
 
     @Override
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         if (WWUtil.isEmpty(source))
         {
@@ -77,7 +77,7 @@ public class GDALDataRasterReader extends AbstractDataRasterReader
             return GDALUtils.canOpen(file);
         }
 
-        boolean canOpen = false;
+        bool canOpen = false;
         GDALDataRaster raster = null;
         try
         {
@@ -127,7 +127,7 @@ public class GDALDataRasterReader extends AbstractDataRasterReader
         }
     }
 
-    protected GDALDataRaster readDataRaster(Object source, boolean quickReadingMode) throws IOException
+    protected GDALDataRaster readDataRaster(Object source, bool quickReadingMode) throws IOException
     {
         if (null == source)
         {

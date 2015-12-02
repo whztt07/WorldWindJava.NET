@@ -94,12 +94,12 @@ public class WMSServiceInformation extends OGCServiceInformation
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder(super.toString());
+        StringBuilder sb = new StringBuilder(super.ToString());
 
         sb.append("Max width = ").append(this.getMaxWidth());
         sb.append(" Max height = ").append(this.getMaxHeight()).append("\n");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

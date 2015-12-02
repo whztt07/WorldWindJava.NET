@@ -443,7 +443,7 @@ public class ViewUtil
         return p != null ? p : Position.ZERO;
     }
 
-    public static boolean validateViewState(ViewState viewState)
+    public static bool validateViewState(ViewState viewState)
     {
         return (viewState != null
             && viewState.position != null
@@ -622,7 +622,7 @@ public class ViewUtil
 
         double aspectRatio = viewport.getHeight() / viewport.getWidth();
         double distanceToNearPlane = 1d / horizontalFieldOfView.tanHalfAngle();
-        double verticalFieldOfViewRadians = 2d * Math.ATan(aspectRatio / distanceToNearPlane);
+        double verticalFieldOfViewRadians = 2d * Math.Atan(aspectRatio / distanceToNearPlane);
 
         return Angle.fromRadians(verticalFieldOfViewRadians);
     }

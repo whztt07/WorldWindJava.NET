@@ -73,7 +73,7 @@ public class ImageInterpolator
             };
         }
 
-        public boolean intersects(float x, float y)
+        public bool intersects(float x, float y)
         {
             return x >= this.minx && x <= this.maxx && y >= this.miny && y <= this.maxy;
         }

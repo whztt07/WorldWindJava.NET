@@ -21,7 +21,7 @@ namespace SharpEarth.util{
  * <code>stateObject</code> elements.
  * <p/>
  * For example, this document stores four states: the string "Hello World!", the largest value an unsigned byte can
- * hold, the value of PI to six digits, and a boolean "true". <code>
+ * hold, the value of PI to six digits, and a bool "true". <code>
  * <pre>
  * {@literal <?xml version="1.0" encoding="UTF-8"?>}
  * {@literal <restorableState>}
@@ -215,7 +215,7 @@ public class RestorableSupport
                 new javax.xml.transform.dom.DOMSource(this.doc),
                 new javax.xml.transform.stream.StreamResult(stringWriter));
             // If successful, return the StringWriter contents as a String.
-            return stringWriter.toString();
+            return stringWriter.ToString();
         }
         catch (javax.xml.transform.TransformerConfigurationException e)
         {
@@ -379,7 +379,7 @@ public class RestorableSupport
         }
 
         // Search for the state element with the specified name.
-        String expression = String.format("%s[@name=\"%s\"]", getStateObjectTagName(), name);
+        String expression = String.Format("%s[@name=\"%s\"]", getStateObjectTagName(), name);
         try
         {
             Object result = this.xpath.evaluate(
@@ -413,9 +413,9 @@ public class RestorableSupport
         // Search for the state elements beneath the context with the specified name.
         String expression;
         if (name.length() != 0)
-            expression = String.format("%s[@name=\"%s\"]", getStateObjectTagName(), name);
+            expression = String.Format("%s[@name=\"%s\"]", getStateObjectTagName(), name);
         else
-            expression = String.format("%s//.", getStateObjectTagName());
+            expression = String.Format("%s//.", getStateObjectTagName());
 
         try
         {
@@ -482,7 +482,7 @@ public class RestorableSupport
         return createStateObject(context, name, value, false);
     }
 
-    protected StateObject createStateObject(org.w3c.dom.Element context, String name, String value, boolean escapeValue)
+    protected StateObject createStateObject(org.w3c.dom.Element context, String name, String value, bool escapeValue)
     {
         org.w3c.dom.Element elem = this.doc.createElement(getStateObjectTagName());
 
@@ -508,7 +508,7 @@ public class RestorableSupport
         return new StateObject(elem);
     }
 
-    protected boolean containsElement(org.w3c.dom.Element elem)
+    protected bool containsElement(org.w3c.dom.Element elem)
     {
         if (elem == null)
         {
@@ -1618,7 +1618,7 @@ public class RestorableSupport
      *
      * @throws ArgumentException If either <code>name</code> or <code>value</code> is null.
      */
-    public void addStateValueAsString(String name, String value, boolean escapeValue)
+    public void addStateValueAsString(String name, String value, bool escapeValue)
     {
         addStateValueAsString(null, name, value, escapeValue);
     }
@@ -1660,7 +1660,7 @@ public class RestorableSupport
      * @throws ArgumentException If either <code>name</code> or <code>value</code> is null, or if
      *                                  <code>context</code> is not null and does not belong to this RestorableSupport.
      */
-    public void addStateValueAsString(StateObject context, String name, String value, boolean escapeValue)
+    public void addStateValueAsString(StateObject context, String name, String value, bool escapeValue)
     {
         if (context != null && !containsElement(context.elem))
         {
@@ -1767,7 +1767,7 @@ public class RestorableSupport
             throw new ArgumentException(message);
         }
 
-        addStateValueAsString(context, name, Double.toString(doubleValue));
+        addStateValueAsString(context, name, Double.ToString(doubleValue));
     }
 
     /**
@@ -1779,7 +1779,7 @@ public class RestorableSupport
      *
      * @throws ArgumentException If <code>name</code> is null.
      */
-    public void addStateValueAsBoolean(String name, boolean booleanValue)
+    public void addStateValueAsBoolean(String name, bool booleanValue)
     {
         addStateValueAsBoolean(null, name, booleanValue);
     }
@@ -1798,7 +1798,7 @@ public class RestorableSupport
      * @throws ArgumentException If <code>name</code> is null, or if <code>context</code> is not null and does
      *                                  not belong to this RestorableSupport.
      */
-    public void addStateValueAsBoolean(StateObject context, String name, boolean booleanValue)
+    public void addStateValueAsBoolean(StateObject context, String name, bool booleanValue)
     {
         if (context != null && !containsElement(context.elem))
         {
@@ -2042,7 +2042,7 @@ public class RestorableSupport
             if (imageSources.get(i) == null)
                 addStateValueAsString(stateObject, "imageSource", "null");
             else
-                addStateValueAsString(stateObject, "imageSource", imageSources.get(i).toString());
+                addStateValueAsString(stateObject, "imageSource", imageSources.get(i).ToString());
         }
     }
 
@@ -2140,7 +2140,7 @@ public class RestorableSupport
             | (color.getGreen() & 0xFF) << 16
             | (color.getBlue() & 0xFF) << 8
             | (color.getAlpha() & 0xFF);
-        return String.format("%#08X", rgba);
+        return String.Format("%#08X", rgba);
     }
 
     /**

@@ -23,7 +23,7 @@ namespace SharpEarth.formats.vpf{
 public class VPFCoverage extends AVListImpl
 {
     private VPFLibrary library;
-    private boolean tiled;
+    private bool tiled;
     private VPFBufferedRecordData featureClassSchemaTable;
     private VPFBufferedRecordData featureClassAttributeTable;
     private VPFBufferedRecordData characterValueDescriptionTable;
@@ -143,10 +143,10 @@ public class VPFCoverage extends AVListImpl
         StringBuilder sb = new StringBuilder(this.library.getFilePath());
         sb.append(File.separator);
         sb.append(this.getName());
-        return sb.toString();
+        return sb.ToString();
     }
 
-    public boolean isReferenceCoverage()
+    public bool isReferenceCoverage()
     {
         String name = this.getName();
         return name.equalsIgnoreCase(VPFConstants.DATA_QUALITY_COVERAGE)
@@ -155,7 +155,7 @@ public class VPFCoverage extends AVListImpl
             || name.equalsIgnoreCase(VPFConstants.TILE_REFERENCE_COVERAGE);
     }
 
-    public boolean isTiled()
+    public bool isTiled()
     {
         return this.tiled;
     }

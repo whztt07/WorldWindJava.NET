@@ -44,7 +44,7 @@ public class BasicMemoryCache implements MemoryCache
 
         public String toString()
         {
-            return key.toString() + " " + clientObject.toString() + " " + lastUsed + " " + clientObjectSize;
+            return key.ToString() + " " + clientObject.ToString() + " " + lastUsed + " " + clientObjectSize;
         }
     }
 
@@ -199,7 +199,7 @@ public class BasicMemoryCache implements MemoryCache
      *
      * @throws ArgumentException if <code>key</code> is null.
      */
-    public boolean contains(Object key)
+    public bool contains(Object key)
     {
         if (key == null)
         {
@@ -224,7 +224,7 @@ public class BasicMemoryCache implements MemoryCache
      *
      * @return returns true if clientObject was added, false otherwise.
      */
-    public boolean add(Object key, Object clientObject, long clientObjectSize)
+    public bool add(Object key, Object clientObject, long clientObjectSize)
     {
         long cap = this.capacity.get();
 
@@ -267,7 +267,7 @@ public class BasicMemoryCache implements MemoryCache
         return true;
     }
 
-    public boolean add(Object key, Cacheable clientObject)
+    public bool add(Object key, Cacheable clientObject)
     {
         return this.add(key, clientObject, clientObject.getSizeInBytes());
     }

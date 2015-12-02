@@ -21,15 +21,15 @@ class NITFSImageBand
     // public int[]  lookupTablesOffset; // one byte per entry per band
     private byte[][] lut;
 
-    private boolean isGrayImage;
-    private boolean hasTransparentEntry;
+    private bool isGrayImage;
+    private bool hasTransparentEntry;
 
-    public boolean isGrayImage()
+    public bool isGrayImage()
     {
         return this.isGrayImage;
     }
 
-    public boolean isHasTransparentEntry()
+    public bool isHasTransparentEntry()
     {
         return this.hasTransparentEntry;
     }
@@ -77,7 +77,7 @@ class NITFSImageBand
      *
      * @return true of the color code is a reserved color code, and false otherwise.
      */
-    public final boolean isReservedApplicationCode(int colorIndex)
+    public final bool isReservedApplicationCode(int colorIndex)
     {
         // The color code is an application-specific reserved code if exceeds the color lookup table size.
         return colorIndex >= this.numOfLookupTableEntries;

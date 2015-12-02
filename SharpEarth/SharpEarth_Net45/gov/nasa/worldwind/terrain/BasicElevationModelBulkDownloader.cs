@@ -313,7 +313,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         {
             File[] rowDirs = cacheRoot.listFiles(new FileFilter()
             {
-                public boolean accept(File file)
+                public bool accept(File file)
                 {
                     return file.isDirectory();
                 }
@@ -562,7 +562,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
             int row = 0;
             int col = 0;
 
-            public boolean hasNext()
+            public bool hasNext()
             {
                 return row < div;
             }
@@ -595,7 +595,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         };
     }
 
-    protected boolean isTileLocalOrAbsent(Tile tile)
+    protected bool isTileLocalOrAbsent(Tile tile)
     {
         if (this.elevationModel.getLevels().isResourceAbsent(tile))
             return true;  // tile is absent

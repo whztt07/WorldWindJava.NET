@@ -66,7 +66,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
      * @throws ArgumentException if the source is null
      * @throws FileNotFoundException    if the source (File) does not exist
      */
-    public GDALDataRaster(Object source, boolean quickReadingMode)
+    public GDALDataRaster(Object source, bool quickReadingMode)
         throws ArgumentException, FileNotFoundException
     {
         super();
@@ -77,7 +77,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
             String message;
             if (null != source)
             {
-                message = Logging.getMessage("generic.UnrecognizedSourceType", source.getClass().getName());
+                message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().getName());
             }
             else
             {
@@ -291,7 +291,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
      * @param quickReadingMode if quick reading mode is enabled GDAL will not spend much time on heavy calculations,
      *                         like for example calculating Min/Max for entire elevation raster
      */
-    protected void init(Dataset ds, boolean quickReadingMode)
+    protected void init(Dataset ds, bool quickReadingMode)
     {
         String srcWKT = null;
 
@@ -441,7 +441,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         if (null != this.srcFile)
             sb.append(this.srcFile);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     public void dispose()
@@ -579,7 +579,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         double[] gt = new double[6];
         this.dsVRT.GetGeoTransform(gt);
 
-        boolean isNorthUpRaster = (gt[GDAL.GT_2_ROTATION_X] == 0d && gt[GDAL.GT_4_ROTATION_Y] == 0d);
+        bool isNorthUpRaster = (gt[GDAL.GT_2_ROTATION_X] == 0d && gt[GDAL.GT_4_ROTATION_Y] == 0d);
 
         int bestOverviewIdx = -1;
 
@@ -631,8 +631,8 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
                 for (int i = 0; true; i++)
                 {
                     double scale = Math.pow(2, i);
-                    double h = Math.floor(this.getHeight() / scale);
-                    double w = Math.floor(this.getWidth() / scale);
+                    double h = Math.Floor(this.getHeight() / scale);
+                    double w = Math.Floor(this.getWidth() / scale);
                     double ovWidthRes = Math.Abs(extent.getDeltaLonDegrees() / w);
                     double ovHeightRes = Math.Abs(extent.getDeltaLatDegrees() / h);
                     if (ovHeightRes <= reqHeightRes && ovWidthRes <= reqWidthRes)
@@ -701,10 +701,10 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         geoPoint.setLocation(cropArea.getMaxX(), cropArea.getMinY());
         geoToRaster.transform(geoPoint, lr);
 
-        int clipXoff = (int) Math.floor(ul.getX());
-        int clipYoff = (int) Math.floor(ul.getY());
-        int clipWidth = (int) Math.floor(lr.getX() - ul.getX());
-        int clipHeight = (int) Math.floor(lr.getY() - ul.getY());
+        int clipXoff = (int) Math.Floor(ul.getX());
+        int clipYoff = (int) Math.Floor(ul.getY());
+        int clipWidth = (int) Math.Floor(lr.getX() - ul.getX());
+        int clipHeight = (int) Math.Floor(lr.getY() - ul.getY());
 
         clipWidth = (clipWidth > srcWidth) ? srcWidth : clipWidth;
         clipHeight = (clipHeight > srcHeight) ? srcHeight : clipHeight;
@@ -1223,7 +1223,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         }
         sb.append("\n};");
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     @Override
@@ -1232,7 +1232,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         return "GDALDataRaster " + convertAVListToString(this);
     }
 
-    protected boolean intersects(Sector reqSector)
+    protected bool intersects(Sector reqSector)
     {
         if (null != reqSector)
         {

@@ -85,11 +85,11 @@ public class ScreenCreditImage extends ScreenImage implements ScreenCredit
 
     @SuppressWarnings({"RedundantIfStatement"})
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         ScreenCreditImage that = (ScreenCreditImage) o;
@@ -101,7 +101,7 @@ public class ScreenCreditImage extends ScreenImage implements ScreenCredit
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         return name != null ? name.hashCode() : 0;
     }

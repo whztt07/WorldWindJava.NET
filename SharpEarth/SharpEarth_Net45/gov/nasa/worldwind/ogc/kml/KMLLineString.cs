@@ -21,7 +21,7 @@ public class KMLLineString extends KMLAbstractGeometry
         super(namespaceURI);
     }
 
-    public boolean isExtrude()
+    public bool isExtrude()
     {
         return this.getExtrude() == Boolean.TRUE;
     }
@@ -31,7 +31,7 @@ public class KMLLineString extends KMLAbstractGeometry
         return (Boolean) this.getField("extrude");
     }
 
-    public boolean isTessellate()
+    public bool isTessellate()
     {
         return this.getTessellate() == Boolean.TRUE;
     }

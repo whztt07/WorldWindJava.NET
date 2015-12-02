@@ -243,7 +243,7 @@ public interface WorldWindow extends AVList
      *
      * @return <code>true</code> if reinitialization is enabled, otherwise <code>false</code>.
      */
-    boolean isEnableGpuCacheReinitialization();
+    bool isEnableGpuCacheReinitialization();
 
     /**
      * Specifies whether to reinitialize the GPU resource cache when this window is reinitialized. A value of

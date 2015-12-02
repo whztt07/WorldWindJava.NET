@@ -35,7 +35,7 @@ public interface SurfaceObject extends OrderedRenderable, SurfaceRenderable, Pre
      *
      * @return true if the object is to be drawn, otherwise false.
      */
-    boolean isVisible();
+    bool isVisible();
 
     /**
      * Specifies whether the surface object should be drawn during rendering.
@@ -51,7 +51,7 @@ public interface SurfaceObject extends OrderedRenderable, SurfaceRenderable, Pre
      *
      * @see #setEnableBatchPicking(boolean)
      */
-    boolean isEnableBatchPicking();
+    bool isEnableBatchPicking();
 
     /**
      * Specifies whether adjacent SurfaceObjects in the DrawContext's ordered surface renderable list may be rendered

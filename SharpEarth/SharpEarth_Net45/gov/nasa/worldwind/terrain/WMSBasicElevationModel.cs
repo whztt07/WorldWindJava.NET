@@ -200,7 +200,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
             {
                 sb = new StringBuffer(tile.getLevel().getService());
 
-                if (!sb.toString().toLowerCase().contains("service=wms"))
+                if (!sb.ToString().toLowerCase().contains("service=wms"))
                     sb.append("service=WMS");
                 sb.append("&request=GetMap");
                 sb.append("&version=");
@@ -216,7 +216,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
                 else
                     sb.append(altImageFormat);
 
-                this.URLTemplate = sb.toString();
+                this.URLTemplate = sb.ToString();
             }
             else
             {
@@ -256,7 +256,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
 
             sb.append("&"); // terminate the query string
 
-            return new java.net.URL(sb.toString().replace(" ", "%20"));
+            return new java.net.URL(sb.ToString().replace(" ", "%20"));
         }
     }
 
@@ -338,7 +338,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
         // Compute the internal pixel type from the image format.
         if (params.getValue(AVKey.DATA_TYPE) == null && parameters.getValue(AVKey.IMAGE_FORMAT) != null)
         {
-            String s = WWIO.makeDataTypeForMimeType(params.getValue(AVKey.IMAGE_FORMAT).toString());
+            String s = WWIO.makeDataTypeForMimeType(params.getValue(AVKey.IMAGE_FORMAT).ToString());
             if (s != null)
                 parameters.setValue(AVKey.DATA_TYPE, s);
         }
@@ -495,13 +495,13 @@ public class WMSBasicElevationModel extends BasicElevationModel
         }
 
         @Override
-        protected boolean overwriteExistingFile()
+        protected bool overwriteExistingFile()
         {
             return true;
         }
 
         @Override
-        protected boolean isDeleteOnExit(File outFile)
+        protected bool isDeleteOnExit(File outFile)
         {
             return outFile.getPath().contains(WWIO.DELETE_ON_EXIT_PREFIX);
         }

@@ -95,7 +95,7 @@ public class RPFImageFile extends RPFFile
         return bimage;
     }
 
-    public boolean hasTransparentAreas()
+    public bool hasTransparentAreas()
     {
         //noinspection SimplifiableIfStatement
         if(null != this.imageSegment)

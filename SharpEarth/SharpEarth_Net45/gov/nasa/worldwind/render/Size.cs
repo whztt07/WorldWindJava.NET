@@ -469,11 +469,11 @@ public class Size
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         Size that = (Size) o;
@@ -496,13 +496,13 @@ public class Size
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         long temp;
-        temp = this.widthParam != +0.0d ? Double.doubleToLongBits(this.widthParam) : 0L;
+        temp = this.widthParam != +0.0d ? BitConverter.DoubleToInt64Bits(this.widthParam) : 0L;
         result = (int) (temp ^ (temp >>> 32));
-        temp = this.heightParam != +0.0d ? Double.doubleToLongBits(this.heightParam) : 0L;
+        temp = this.heightParam != +0.0d ? BitConverter.DoubleToInt64Bits(this.heightParam) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (this.widthUnits != null ? this.widthUnits.hashCode() : 0);
         result = 31 * result + (this.heightUnits != null ? this.heightUnits.hashCode() : 0);

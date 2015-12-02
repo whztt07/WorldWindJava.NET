@@ -15,9 +15,9 @@ namespace SharpEarth.animation{
  */
 public class BasicAnimator implements Animator
 {
-    private boolean stopOnInvalidState = false;
-    private boolean lastStateValid = true;
-    private boolean hasNext = true;
+    private bool stopOnInvalidState = false;
+    private bool lastStateValid = true;
+    private bool hasNext = true;
 
     /**
      * Used to drive the animators next value based on the interpolant returned by the
@@ -75,7 +75,7 @@ public class BasicAnimator implements Animator
      *
      * @return <code>true</code> if the <code>Animator</code> has more elements
      */
-    public boolean hasNext()
+    public bool hasNext()
     {
         return this.hasNext;
     }
@@ -112,7 +112,7 @@ public class BasicAnimator implements Animator
        this.stopOnInvalidState = stop;
     }
 
-    public boolean isStopOnInvalidState()
+    public bool isStopOnInvalidState()
     {
        return this.stopOnInvalidState;
     }
@@ -122,7 +122,7 @@ public class BasicAnimator implements Animator
        this.lastStateValid = false;
     }
 
-    protected boolean isLastStateValid()
+    protected bool isLastStateValid()
     {
        return this.lastStateValid;
     }

@@ -59,7 +59,7 @@ public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
 
         }
 
-        public boolean setPosition(Position value)
+        public bool setPosition(Position value)
         {
              //noinspection SimplifiableIfStatement
             if (this.orbitView == null || value == null)
@@ -97,7 +97,7 @@ public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
 
         }
 
-        public final boolean setDouble(Double value)
+        public final bool setDouble(Double value)
         {
             //noinspection SimplifiableIfStatement
             if (this.orbitView == null || value == null)
@@ -126,7 +126,7 @@ public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
     //        return orbitView.getRotation();
     //    }
     //
-    //    public final boolean setQuaternion(OrbitView orbitView, Quaternion value)
+    //    public final bool setQuaternion(OrbitView orbitView, Quaternion value)
     //    {
     //        if (orbitView == null || value == null)
     //            return false;

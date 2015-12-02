@@ -116,7 +116,7 @@ public class Triangle
      *
      * @return true if the point is on the triangle, otherwise false.
      */
-    public boolean contains(Vec4 p)
+    public bool contains(Vec4 p)
     {
         if (p == null)
             return false;
@@ -1117,7 +1117,7 @@ public class Triangle
         return intersection;
     }
 
-    protected static boolean coplanarTriangles(Vec4 n, Vec4[] v, Vec4[] u)
+    protected static bool coplanarTriangles(Vec4 n, Vec4[] v, Vec4[] u)
     {
         // First project onto an axis-aligned plane that maximizes the are of the triangles.
         int i0;
@@ -1160,7 +1160,7 @@ public class Triangle
         double[] u1 = new double[] {u[1].x, u[1].y, u[1].z};
         double[] u2 = new double[] {u[2].x, u[2].y, u[2].z};
 
-        boolean tf = triangleEdgeTest(v0, v1, u0, u1, u2, i0, i1);
+        bool tf = triangleEdgeTest(v0, v1, u0, u1, u2, i0, i1);
         if (tf)
             return true;
 
@@ -1180,14 +1180,14 @@ public class Triangle
         return pointInTri(u0, v0, v1, v2, i0, i1);
     }
 
-    protected static boolean triangleEdgeTest(double[] v0, double[] v1, double[] u0, double[] u1, double[] u2, int i0,
+    protected static bool triangleEdgeTest(double[] v0, double[] v1, double[] u0, double[] u1, double[] u2, int i0,
         int i1)
     {
         double ax = v1[i0] - v0[i0];
         double ay = v1[i1] - v0[i1];
 
         // Test edge u0:u1 against v0:v1
-        boolean tf = edgeEdgeTest(v0, u0, u1, i0, i1, ax, ay);
+        bool tf = edgeEdgeTest(v0, u0, u1, i0, i1, ax, ay);
         if (tf)
             return true;
 
@@ -1200,7 +1200,7 @@ public class Triangle
         return edgeEdgeTest(v0, u2, u0, i0, i1, ax, ay);
     }
 
-    protected static boolean edgeEdgeTest(double[] v0, double[] u0, double[] u1, int i0, int i1, double ax, double ay)
+    protected static bool edgeEdgeTest(double[] v0, double[] u0, double[] u1, int i0, int i1, double ax, double ay)
     {
         double bx = u0[i0] - u1[i0];
         double by = u0[i1] - u1[i1];
@@ -1228,7 +1228,7 @@ public class Triangle
         return false;
     }
 
-    protected static boolean pointInTri(double[] v0, double[] u0, double[] u1, double[] u2, int i0, int i1)
+    protected static bool pointInTri(double[] v0, double[] u0, double[] u1, double[] u2, int i0, int i1)
     {
         double a = u1[i1] - u0[i1];
         double b = -(u1[i0] - u0[i0]);

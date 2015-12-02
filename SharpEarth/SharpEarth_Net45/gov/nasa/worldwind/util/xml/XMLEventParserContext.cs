@@ -60,7 +60,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @return true if the event is a start event for the named event type.
      */
-    boolean isStartElement(XMLEvent event, QName elementName);
+    bool isStartElement(XMLEvent event, QName elementName);
 
     /**
      * Determines whether an event is a start event for a specific event type indicated by its local name.
@@ -70,7 +70,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @return true if the event is a start event for the named event type.
      */
-    boolean isStartElement(XMLEvent event, String elementName);
+    bool isStartElement(XMLEvent event, String elementName);
 
     /**
      * Determines whether an event is the corresponding end element for a specified start event.
@@ -83,7 +83,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @return true if the event is the corresponding end event to the specified start event, otherwise false.
      */
-    boolean isEndElement(XMLEvent event, XMLEvent startElement);
+    bool isEndElement(XMLEvent event, XMLEvent startElement);
 
     /**
      * Returns the text associated with the event.
@@ -111,14 +111,14 @@ public interface XMLEventParserContext extends AVList
     /**
      * Returns the default parser for a simple boolean.
      *
-     * @return a boolean parser.
+     * @return a bool parser.
      */
     BooleanXMLEventParser getBooleanParser();
 
     /**
-     * Returns the default parser for a simple boolean integer (0 or 1).
+     * Returns the default parser for a simple bool integer (0 or 1).
      *
-     * @return a boolean integer parser.
+     * @return a bool integer parser.
      */
     BooleanIntegerXMLEventParser getBooleanIntegerParser();
 
@@ -145,7 +145,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @see javax.xml.stream.XMLEventReader#hasNext()
      */
-    boolean hasNext();
+    bool hasNext();
 
     /**
      * Returns the next event in the event stream associated with this context.
@@ -186,7 +186,7 @@ public interface XMLEventParserContext extends AVList
      * @return true if both names have the same namespace (or no namespace) and local name, or if either name has no
      *         namespace but the namespace of the other is the context's default namespace.
      */
-    boolean isSameName(QName qa, QName qb);
+    bool isSameName(QName qa, QName qb);
 
     /**
      * Create a parser for a specified event's element name, if a parser for that name is registered with the context.
@@ -215,7 +215,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @return true if the names are the same, otherwise false.
      */
-    boolean isSameAttributeName(QName qa, QName qb);
+    bool isSameAttributeName(QName qa, QName qb);
 
     /**
      * Returns the table associating objects with their <i>id</i> attribute as specified in the object's KML file.
@@ -270,7 +270,7 @@ public interface XMLEventParserContext extends AVList
      *
      * @return true if the specified namespace is the default namespace, otherwise false.
      */
-    boolean isDefaultNamespace(String namespaceURI);
+    bool isDefaultNamespace(String namespaceURI);
 
     /**
      * Returns a parser to handle unrecognized elements. The default unrecognized event parser is {@link
@@ -305,7 +305,7 @@ public interface XMLEventParserContext extends AVList
     void addIntegerParsers(String namespace, String[] integerFields);
 
     /**
-     * Add boolean parsers for a list of element types and qualified for a specified namespace.
+     * Add bool parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace     the namespace URI.
      * @param booleanFields the string parsers.
@@ -313,7 +313,7 @@ public interface XMLEventParserContext extends AVList
     void addBooleanParsers(String namespace, String[] booleanFields);
 
     /**
-     * Add boolean integer parsers for a list of element types and qualified for a specified namespace.
+     * Add bool integer parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace            the namespace URI.
      * @param booleanIntegerFields the string parser.

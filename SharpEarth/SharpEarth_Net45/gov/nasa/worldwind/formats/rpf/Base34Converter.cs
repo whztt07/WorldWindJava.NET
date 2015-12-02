@@ -85,7 +85,7 @@ class Base34Converter
         return i;
     }
 
-    public static boolean isBase34(char[] src, int offset, int count)
+    public static bool isBase34(char[] src, int offset, int count)
     {
         if (src == null)
         {

@@ -54,11 +54,11 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      */
     protected double detailHint;
     /** Flag to indicate that the feature has been fetched from the hash map. */
-    protected boolean featureFetched = false;
+    protected bool featureFetched = false;
     protected KMLAbstractFeature feature;
 
     /** Flag to indicate that the network link control element has been fetched from the hash map. */
-    protected boolean linkControlFetched = false;
+    protected bool linkControlFetched = false;
     protected KMLNetworkLinkControl networkLinkControl;
 
     protected AbsentResourceList absentResourceList = new AbsentResourceList();
@@ -98,7 +98,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the source is null.
      * @throws IOException              if an error occurs while reading the source.
      */
-    public static KMLRoot create(Object docSource, boolean namespaceAware) throws IOException
+    public static KMLRoot create(Object docSource, bool namespaceAware) throws IOException
     {
         if (docSource == null)
         {
@@ -155,7 +155,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
         if (kmlRoot == null)
         {
             String message = Logging.getMessage("generic.UnrecognizedSourceTypeOrUnavailableSource",
-                docSource.toString());
+                docSource.ToString());
             throw new ArgumentException(message);
         }
 
@@ -199,7 +199,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the document source is null.
      * @throws IOException              if an error occurs while reading the KML document.
      */
-    public KMLRoot(KMLDoc docSource, boolean namespaceAware) throws IOException
+    public KMLRoot(KMLDoc docSource, bool namespaceAware) throws IOException
     {
         super(KMLConstants.KML_NAMESPACE);
 
@@ -238,7 +238,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the document source is null.
      * @throws IOException              if an error occurs while reading the KML document.
      */
-    public KMLRoot(File docSource, boolean namespaceAware) throws IOException
+    public KMLRoot(File docSource, bool namespaceAware) throws IOException
     {
         super(KMLConstants.KML_NAMESPACE);
 
@@ -300,7 +300,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the document source is null.
      * @throws IOException              if an error occurs while reading the KML document.
      */
-    public KMLRoot(InputStream docSource, String contentType, boolean namespaceAware) throws IOException
+    public KMLRoot(InputStream docSource, String contentType, bool namespaceAware) throws IOException
     {
         super(KMLConstants.KML_NAMESPACE);
 
@@ -356,7 +356,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the document source is null.
      * @throws IOException              if an error occurs while reading the document.
      */
-    public KMLRoot(URL docSource, String contentType, boolean namespaceAware) throws IOException
+    public KMLRoot(URL docSource, String contentType, bool namespaceAware) throws IOException
     {
         super(KMLConstants.KML_NAMESPACE);
 
@@ -411,7 +411,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws ArgumentException if the document source is null.
      * @throws java.io.IOException      if an I/O error occurs attempting to open the document source.
      */
-    public KMLRoot(String namespaceURI, KMLDoc docSource, boolean namespaceAware) throws IOException
+    public KMLRoot(String namespaceURI, KMLDoc docSource, bool namespaceAware) throws IOException
     {
         super(namespaceURI);
 
@@ -455,7 +455,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      *
      * @return a new event reader, or null if the source type cannot be determined.
      */
-    protected XMLEventReader createReader(Object docSource, boolean namespaceAware)
+    protected XMLEventReader createReader(Object docSource, bool namespaceAware)
     {
         return WWXML.openEventReader(docSource, namespaceAware);
     }
@@ -618,7 +618,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      *
      * @throws ArgumentException if the <code>link</code> is <code>null</code>.
      */
-    public Object resolveReference(String link, boolean cacheRemoteFile)
+    public Object resolveReference(String link, bool cacheRemoteFile)
     {
         if (link == null)
         {
@@ -793,7 +793,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      *
      * @throws ArgumentException if the {@code linkBase} is null.
      */
-    public Object resolveRemoteReference(String linkBase, String linkRef, boolean cacheRemoteFile)
+    public Object resolveRemoteReference(String linkBase, String linkRef, bool cacheRemoteFile)
     {
         if (linkBase == null)
         {
@@ -884,7 +884,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      *
      * @throws ArgumentException if the {@code link} is null.
      */
-    public Object resolveNetworkLink(String link, boolean cacheRemoteFile, long updateTime)
+    public Object resolveNetworkLink(String link, bool cacheRemoteFile, long updateTime)
     {
         if (link == null)
         {
@@ -1019,7 +1019,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      *
      * @return {@code true} if {@code mimeType} can be parsed as KML.
      */
-    protected boolean canParseContentType(String mimeType)
+    protected bool canParseContentType(String mimeType)
     {
         return KMLConstants.KML_MIME_TYPE.equals(mimeType) || KMLConstants.KMZ_MIME_TYPE.equals(mimeType)
             || "text/plain".equals(mimeType) || "text/xml".equals(mimeType);
@@ -1038,7 +1038,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      * @throws IOException        if an I/O error occurs during opening and parsing.
      * @throws XMLStreamException if a server parsing error is encountered.
      */
-    protected KMLRoot parseCachedKMLFile(URL url, String linkBase, String contentType, boolean namespaceAware)
+    protected KMLRoot parseCachedKMLFile(URL url, String linkBase, String contentType, bool namespaceAware)
         throws IOException, XMLStreamException
     {
         KMLDoc kmlDoc;

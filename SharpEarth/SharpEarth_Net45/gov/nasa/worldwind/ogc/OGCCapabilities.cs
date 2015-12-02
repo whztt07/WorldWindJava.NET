@@ -52,7 +52,7 @@ abstract public class OGCCapabilities extends AbstractXMLEventParser
      *
      * @return true if the name is the schema's root element, otherwise false.
      */
-    abstract public boolean isRootElementName(QName name); // implement to test name of root element
+    abstract public bool isRootElementName(QName name); // implement to test name of root element
 
     /**
      * Create a new capabilities parser.
@@ -267,7 +267,7 @@ abstract public class OGCCapabilities extends AbstractXMLEventParser
             ? this.getCapabilityInformation() : "Capability Information: none");
         sb.append("\n");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

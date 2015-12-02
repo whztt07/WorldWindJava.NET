@@ -11,9 +11,9 @@ namespace SharpEarth.awt{
  */
 public interface KeyInputActionHandler
 {
-    public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
+    public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
         ViewInputAttributes.ActionAttributes viewAction);
-    public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
+    public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
         ViewInputAttributes.ActionAttributes viewAction);
 
 }

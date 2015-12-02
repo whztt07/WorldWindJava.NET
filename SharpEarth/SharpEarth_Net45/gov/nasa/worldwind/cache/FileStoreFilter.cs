@@ -21,6 +21,6 @@ public interface FileStoreFilter
      *
      * @return true if the file name should be accepted; false otherwise.
      */
-    boolean accept(FileStore fileStore, String fileName);
+    bool accept(FileStore fileStore, String fileName);
 }
 }

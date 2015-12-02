@@ -154,7 +154,7 @@ public abstract class BulkRetrievalThread extends Thread
             this.retrievalListeners.remove(BulkRetrievalListener.class, listener);
     }
 
-    protected boolean hasRetrievalListeners()
+    protected bool hasRetrievalListeners()
     {
         return this.retrievalListeners.getListenerCount() > 0;
     }

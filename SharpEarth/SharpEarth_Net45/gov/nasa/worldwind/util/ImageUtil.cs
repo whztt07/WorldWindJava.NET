@@ -117,11 +117,11 @@ public class ImageUtil
                 Vec4 vec = new Vec4(dx, dy, 1).transformBy3(canvasToImageTransform);
                 if (vec.x >= 0 && vec.y >= 0 && vec.x <= (sourceWidth - 1) && vec.y <= (sourceHeight - 1))
                 {
-                    int x0 = (int) Math.floor(vec.x);
+                    int x0 = (int) Math.Floor(vec.x);
                     int x1 = (int) Math.ceil(vec.x);
                     double xf = vec.x - x0;
 
-                    int y0 = (int) Math.floor(vec.y);
+                    int y0 = (int) Math.Floor(vec.y);
                     int y1 = (int) Math.ceil(vec.y);
                     double yf = vec.y - y0;
 
@@ -823,8 +823,8 @@ public class ImageUtil
             throw new ArgumentException(message);
         }
 
-        int widthLevels = (int) WWMath.logBase2(width);
-        int heightLevels = (int) WWMath.logBase2(height);
+        int widthLevels = (int) WWMath.LogBase2(width);
+        int heightLevels = (int) WWMath.LogBase2(height);
         return Math.max(widthLevels, heightLevels);
     }
 
@@ -842,7 +842,7 @@ public class ImageUtil
      *
      * @throws ArgumentException if <code>image</code> is null.
      */
-    public static BufferedImage convertToPowerOfTwoImage(BufferedImage image, boolean scaleToFit)
+    public static BufferedImage convertToPowerOfTwoImage(BufferedImage image, bool scaleToFit)
     {
         if (image == null)
         {
@@ -929,7 +929,7 @@ public class ImageUtil
             case java.awt.image.DataBuffer.TYPE_BYTE:
                 return (Byte.SIZE / 8);
             case java.awt.image.DataBuffer.TYPE_DOUBLE:
-                return (Double.SIZE / 8);
+                return (sizeof(double) / 8);
             case java.awt.image.DataBuffer.TYPE_FLOAT:
                 return (Float.SIZE / 8);
             case java.awt.image.DataBuffer.TYPE_INT:
@@ -1288,8 +1288,8 @@ public class ImageUtil
                 {
                     double rxD = distFromCornerX / Math.Abs(xPixelSize);
                     double ryD = distFromCornerY / Math.Abs(yPixelSize);
-                    int iX = (int) Math.floor(rxD);
-                    int iY = (int) Math.floor(ryD);
+                    int iX = (int) Math.Floor(rxD);
+                    int iY = (int) Math.Floor(ryD);
                     double dx = rxD - iX;
                     double dy = ryD - iY;
                     if ((iX > 0) && (iY > 0))
@@ -1663,7 +1663,7 @@ public class ImageUtil
 //        return gc.createCompatibleImage(width, height, transparency);
     }
 
-    protected static boolean isCompatibleImage(BufferedImage image)
+    protected static bool isCompatibleImage(BufferedImage image)
     {
         if (java.awt.GraphicsEnvironment.isHeadless())
             return false;
@@ -1840,7 +1840,7 @@ public class ImageUtil
         }
         else
         {
-            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.getClass().getName());
+            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
             Logging.logger().severe(msg);
             throw new WWRuntimeException(msg);
         }
@@ -1916,7 +1916,7 @@ public class ImageUtil
         }
         else
         {
-            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.getClass().getName());
+            String msg = Logging.getMessage("generic.UnexpectedRasterType", raster.GetType().getName());
             Logging.logger().severe(msg);
             throw new WWRuntimeException(msg);
         }
@@ -2009,7 +2009,7 @@ public class ImageUtil
         final int ALPHA_TRANSLUCENT = (short) 0;
 
         int i = 0;
-        boolean hasVoids = false;
+        bool hasVoids = false;
         double norm = (max != min) ? Math.Abs(65534d / (max - min)) : 0d;
         for (int y = 0; y < height; y++)
         {

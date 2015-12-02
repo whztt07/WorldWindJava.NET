@@ -22,14 +22,14 @@ namespace SharpEarth.ogc.kml.impl{
 public class KMLSurfacePolygonImpl extends SurfacePolygon implements KMLRenderable
 {
     protected final KMLAbstractFeature parent;
-    protected boolean highlightAttributesResolved = false;
-    protected boolean normalAttributesResolved = false;
+    protected bool highlightAttributesResolved = false;
+    protected bool normalAttributesResolved = false;
 
     /**
      * Flag to indicate the rotation must be applied to the SurfaceImage. Rotation is applied the first time that the
      * image is rendered.
      */
-    protected boolean mustApplyRotation = false;
+    protected bool mustApplyRotation = false;
 
     /**
      * Create an instance.

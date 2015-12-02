@@ -20,7 +20,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return true if the layer is enabled, else false.
      */
-    boolean isEnabled();
+    bool isEnabled();
 
     /**
      * Controls whether the layer is enabled for rendering and selection.
@@ -76,7 +76,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return <code>true</code> if picking is enabled, else <code>false</code>.
      */
-    boolean isPickEnabled();
+    bool isPickEnabled();
 
     /**
      * Controls whether the layer should perform picking.
@@ -121,14 +121,14 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return <code>true</code> if the layer is at maximum resolution, otherwise <code>false</code>.
      */
-    boolean isAtMaxResolution();
+    bool isAtMaxResolution();
 
     /**
      * Indicates whether the layer provides multiple resolutions of imagery or other data.
      *
      * @return <code>true</code> if the layer provides multiple resolutions, else <code>false</code>.
      */
-    boolean isMultiResolution();
+    bool isMultiResolution();
 
     /**
      * Returns the map scale, in terms of the ratio of 1 to the value returned, e.g., 1:24000.
@@ -143,7 +143,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return <code>true</code> if the layer is enabled to retrieve network data, else <code>false</code>.
      */
-    boolean isNetworkRetrievalEnabled();
+    bool isNetworkRetrievalEnabled();
 
     /**
      * Controls whether the layer is allowed to retrieve data from the network. Many layers have no need for data from
@@ -208,7 +208,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return <code>true</code> if the layer is in the view, <code>false</code> otherwise.
      */
-    boolean isLayerInView(DrawContext dc);
+    bool isLayerInView(DrawContext dc);
 
     /**
      * Indicates whether the layer is active based on arbitrary criteria. The method implemented here is a default
@@ -219,7 +219,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return <code>true</code> if the layer is active, <code>false</code> otherwise.
      */
-    boolean isLayerActive(DrawContext dc);
+    bool isLayerActive(DrawContext dc);
 
     /**
      * Indicates the altitude above which this layer likely has low value or is not expected to be active. This value is

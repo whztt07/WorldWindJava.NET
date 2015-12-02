@@ -40,7 +40,7 @@ public interface WWTexture
      *
      * @return true if the texture was bound, otherwise false.
      */
-    public boolean bind(DrawContext dc);
+    public bool bind(DrawContext dc);
 
     /**
      * Applies any necessary transformations to the texture prior to its being rendered. A common transformation is
@@ -61,7 +61,7 @@ public interface WWTexture
      *
      * @throws ArgumentException if the draw context is null.
      */
-    boolean isTextureCurrent(DrawContext dc);
+    bool isTextureCurrent(DrawContext dc);
 
     /**
      * Returns the texture's width.
@@ -95,6 +95,6 @@ public interface WWTexture
      *
      * @return true if texture initialization failed, otherwise false.
      */
-    boolean isTextureInitializationFailed();
+    bool isTextureInitializationFailed();
 }
 }

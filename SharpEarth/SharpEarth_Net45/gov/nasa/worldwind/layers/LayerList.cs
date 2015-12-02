@@ -121,7 +121,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return getListDifference(newList, oldList);
     }
 
-    public boolean add(Layer layer)
+    public bool add(Layer layer)
     {
         if (layer == null)
         {
@@ -185,7 +185,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return layer;
     }
 
-    public boolean moveLower(Layer targetLayer)
+    public bool moveLower(Layer targetLayer)
     {
         int index = this.indexOf(targetLayer);
         if (index <= 0)
@@ -197,7 +197,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return true;
     }
 
-    public boolean moveHigher(Layer targetLayer)
+    public bool moveHigher(Layer targetLayer)
     {
         int index = this.indexOf(targetLayer);
         if (index < 0)
@@ -230,7 +230,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return oldLayer;
     }
 
-    public boolean remove(Object o)
+    public bool remove(Object o)
     {
         for (Layer layer : this)
         {
@@ -239,14 +239,14 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean removed = super.remove(o);
+        bool removed = super.remove(o);
         if (removed)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
         return removed;
     }
 
-    public boolean addIfAbsent(Layer layer)
+    public bool addIfAbsent(Layer layer)
     {
         for (Layer l : this)
         {
@@ -257,14 +257,14 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         layer.addPropertyChangeListener(this);
 
         LayerList copy = makeShallowCopy(this);
-        boolean added = super.addIfAbsent(layer);
+        bool added = super.addIfAbsent(layer);
         if (added)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
         return added;
     }
 
-    public boolean removeAll(Collection<?> objects)
+    public bool removeAll(Collection<?> objects)
     {
         for (Layer layer : this)
         {
@@ -272,7 +272,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean removed = super.removeAll(objects);
+        bool removed = super.removeAll(objects);
         if (removed)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
@@ -284,7 +284,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return removed;
     }
 
-    public boolean removeAll()
+    public bool removeAll()
     {
         for (Layer layer : this)
         {
@@ -292,7 +292,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean removed = super.retainAll(new ArrayList<Layer>()); // retain no layers
+        bool removed = super.retainAll(new ArrayList<Layer>()); // retain no layers
         if (removed)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
@@ -315,7 +315,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return numAdded;
     }
 
-    public boolean addAll(Collection<? extends Layer> layers)
+    public bool addAll(Collection<? extends Layer> layers)
     {
         for (Layer layer : layers)
         {
@@ -323,14 +323,14 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean added = super.addAll(layers);
+        bool added = super.addAll(layers);
         if (added)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
         return added;
     }
 
-    public boolean addAll(int i, Collection<? extends Layer> layers)
+    public bool addAll(int i, Collection<? extends Layer> layers)
     {
         for (Layer layer : layers)
         {
@@ -338,7 +338,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean added = super.addAll(i, layers);
+        bool added = super.addAll(i, layers);
         if (added)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
@@ -346,7 +346,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
     }
 
     @SuppressWarnings( {"SuspiciousMethodCalls"})
-    public boolean retainAll(Collection<?> objects)
+    public bool retainAll(Collection<?> objects)
     {
         for (Layer layer : this)
         {
@@ -355,7 +355,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         }
 
         LayerList copy = makeShallowCopy(this);
-        boolean added = super.retainAll(objects);
+        bool added = super.retainAll(objects);
         if (added)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
@@ -422,7 +422,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
 
         for (Layer l : this)
         {
-            if (l.getClass().equals(classToFind))
+            if (l.GetType().equals(classToFind))
                 layers.add(l);
         }
 
@@ -459,7 +459,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         return wwo.setValues(avList);
     }
 
-    public boolean hasKey(String key)
+    public bool hasKey(String key)
     {
         return wwo.hasKey(key);
     }
@@ -546,7 +546,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
         String r = "";
         for (Layer l : this)
         {
-            r += l.toString() + ", ";
+            r += l.ToString() + ", ";
         }
         return r;
     }

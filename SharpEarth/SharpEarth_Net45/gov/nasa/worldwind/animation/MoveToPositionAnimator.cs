@@ -17,7 +17,7 @@ public class MoveToPositionAnimator extends PositionAnimator
 
     protected double positionMinEpsilon = 1e-9;
     protected double smoothing = .9;
-    protected boolean useSmoothing = true;
+    protected bool useSmoothing = true;
 
     public MoveToPositionAnimator(
         Position begin,
@@ -43,7 +43,7 @@ public class MoveToPositionAnimator extends PositionAnimator
 
         double latlonDifference = LatLon.greatCircleDistance(nextPosition, curCenter).degrees;
         double elevDifference = Math.Abs(nextPosition.getElevation() - curCenter.getElevation());
-        boolean stopMoving = Math.max(latlonDifference, elevDifference) < this.positionMinEpsilon;
+        bool stopMoving = Math.max(latlonDifference, elevDifference) < this.positionMinEpsilon;
         if (!stopMoving)
         {
             interpolant = 1 - this.smoothing;

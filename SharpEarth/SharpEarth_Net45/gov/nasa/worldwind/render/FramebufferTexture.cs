@@ -82,7 +82,7 @@ public class FramebufferTexture implements WWTexture
         return corners;
     }
 
-    public boolean isTextureCurrent(DrawContext dc)
+    public bool isTextureCurrent(DrawContext dc)
     {
         return dc.getTextureCache().getTexture(this) != null;
     }
@@ -97,12 +97,12 @@ public class FramebufferTexture implements WWTexture
         return this.textureCoords;
     }
 
-    public boolean isTextureInitializationFailed()
+    public bool isTextureInitializationFailed()
     {
         return this.sourceTexture != null && this.sourceTexture.isTextureInitializationFailed();
     }
 
-    public boolean bind(DrawContext dc)
+    public bool bind(DrawContext dc)
     {
         if (dc == null)
         {
@@ -176,7 +176,7 @@ public class FramebufferTexture implements WWTexture
         return t;
     }
 
-    protected boolean generateTexture(DrawContext dc, int width, int height)
+    protected bool generateTexture(DrawContext dc, int width, int height)
     {
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         OGLStackHandler ogsh = new OGLStackHandler();

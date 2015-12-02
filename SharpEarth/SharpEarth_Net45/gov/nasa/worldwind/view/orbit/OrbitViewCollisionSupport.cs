@@ -61,7 +61,7 @@ public class OrbitViewCollisionSupport
         this.numIterations = numIterations;
     }
 
-    public boolean isColliding(OrbitView orbitView, double nearDistance, DrawContext dc)
+    public bool isColliding(OrbitView orbitView, double nearDistance, DrawContext dc)
     {
         if (orbitView == null)
         {
@@ -229,7 +229,7 @@ public class OrbitViewCollisionSupport
     private double computeViewHeightAboveSurface(DrawContext dc, Matrix modelviewInv,
         Angle fieldOfView, java.awt.Rectangle viewport, double nearDistance)
     {
-        double height = Double.POSITIVE_INFINITY;
+        double height = Double.PositiveInfinity;
         if (dc != null && modelviewInv != null && fieldOfView != null && viewport != null && nearDistance >= 0)
         {
             Vec4 eyePoint = getEyePoint(modelviewInv);
@@ -253,7 +253,7 @@ public class OrbitViewCollisionSupport
 
     private double computePointHeightAboveSurface(DrawContext dc, Vec4 point)
     {
-        double height = Double.POSITIVE_INFINITY;
+        double height = Double.PositiveInfinity;
         if (dc != null && dc.getGlobe() != null && point != null)
         {
             Globe globe = dc.getGlobe();

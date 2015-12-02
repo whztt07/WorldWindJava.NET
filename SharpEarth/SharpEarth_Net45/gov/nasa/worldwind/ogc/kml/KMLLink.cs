@@ -173,7 +173,7 @@ public class KMLLink extends KMLAbstractObject
             return;
 
         // Determine if the refresh interval has elapsed since the last refresh task was scheduled.
-        boolean intervalElapsed = System.currentTimeMillis() > refreshTime;
+        bool intervalElapsed = System.currentTimeMillis() > refreshTime;
 
         // If the refresh interval has already elapsed then the link needs to refresh immediately.
         if (intervalElapsed)
@@ -353,7 +353,7 @@ public class KMLLink extends KMLAbstractObject
             // Create a new URL, with the full query string.
             URL newUrl = new URL(this.hrefURL.getProtocol(), this.hrefURL.getHost(), this.hrefURL.getPort(),
                 this.hrefURL.getPath() + queryString);
-            return newUrl.toString();
+            return newUrl.ToString();
         }
         catch (MalformedURLException e)
         {
@@ -368,7 +368,7 @@ public class KMLLink extends KMLAbstractObject
      *
      * @return <code>true</code> if the <code>url</code> specifies a local resource, otherwise <code>false</code>.
      */
-    protected boolean isLocalReference(URL url)
+    protected bool isLocalReference(URL url)
     {
         return url.getProtocol() == null || "file".equals(url.getProtocol()) || "jar".equals(url.getProtocol());
     }
@@ -416,10 +416,10 @@ public class KMLLink extends KMLAbstractObject
             {
                 Sector viewBounds = this.computeVisibleBounds(dc);
                 //noinspection ConstantConditions
-                s = s.replaceAll("\\[bboxWest\\]", Double.toString(viewBounds.getMinLongitude().degrees));
-                s = s.replaceAll("\\[bboxSouth\\]", Double.toString(viewBounds.getMinLatitude().degrees));
-                s = s.replaceAll("\\[bboxEast\\]", Double.toString(viewBounds.getMaxLongitude().degrees));
-                s = s.replaceAll("\\[bboxNorth\\]", Double.toString(viewBounds.getMaxLatitude().degrees));
+                s = s.replaceAll("\\[bboxWest\\]", Double.ToString(viewBounds.getMinLongitude().degrees));
+                s = s.replaceAll("\\[bboxSouth\\]", Double.ToString(viewBounds.getMinLatitude().degrees));
+                s = s.replaceAll("\\[bboxEast\\]", Double.ToString(viewBounds.getMaxLongitude().degrees));
+                s = s.replaceAll("\\[bboxNorth\\]", Double.ToString(viewBounds.getMaxLatitude().degrees));
 
                 View view = dc.getView();
 
@@ -428,28 +428,28 @@ public class KMLLink extends KMLAbstractObject
                 {
                     // Use the view's center position as the "look at" position.
                     Position centerPosition = view.getGlobe().computePositionFromPoint(centerPoint);
-                    s = s.replaceAll("\\[lookatLat\\]", Double.toString(centerPosition.getLatitude().degrees));
-                    s = s.replaceAll("\\[lookatLon\\]", Double.toString(centerPosition.getLongitude().degrees));
-                    s = s.replaceAll("\\[lookatAlt\\]", Double.toString(centerPosition.getAltitude()));
+                    s = s.replaceAll("\\[lookatLat\\]", Double.ToString(centerPosition.getLatitude().degrees));
+                    s = s.replaceAll("\\[lookatLon\\]", Double.ToString(centerPosition.getLongitude().degrees));
+                    s = s.replaceAll("\\[lookatAlt\\]", Double.ToString(centerPosition.getAltitude()));
 
                     double range = centerPoint.distanceTo3(view.getEyePoint());
-                    s = s.replaceAll("\\[lookatRange\\]", Double.toString(range));
+                    s = s.replaceAll("\\[lookatRange\\]", Double.ToString(range));
 
-                    s = s.replaceAll("\\[lookatHeading\\]", Double.toString(view.getHeading().degrees));
-                    s = s.replaceAll("\\[lookatTilt\\]", Double.toString(view.getPitch().degrees));
+                    s = s.replaceAll("\\[lookatHeading\\]", Double.ToString(view.getHeading().degrees));
+                    s = s.replaceAll("\\[lookatTilt\\]", Double.ToString(view.getPitch().degrees));
 
                     // TODO make sure that these terrain fields really should be treated the same as the fields above
-                    s = s.replaceAll("\\[lookatTerrainLat\\]", Double.toString(centerPosition.getLatitude().degrees));
-                    s = s.replaceAll("\\[lookatTerrainLon\\]", Double.toString(centerPosition.getLongitude().degrees));
-                    s = s.replaceAll("\\[lookatTerrainAlt\\]", Double.toString(centerPosition.getAltitude()));
+                    s = s.replaceAll("\\[lookatTerrainLat\\]", Double.ToString(centerPosition.getLatitude().degrees));
+                    s = s.replaceAll("\\[lookatTerrainLon\\]", Double.ToString(centerPosition.getLongitude().degrees));
+                    s = s.replaceAll("\\[lookatTerrainAlt\\]", Double.ToString(centerPosition.getAltitude()));
                 }
 
                 Position eyePosition = view.getCurrentEyePosition();
-                s = s.replaceAll("\\[cameraLat\\]", Double.toString(eyePosition.getLatitude().degrees));
-                s = s.replaceAll("\\[cameraLon\\]", Double.toString(eyePosition.getLongitude().degrees));
-                s = s.replaceAll("\\[cameraAlt\\]", Double.toString(eyePosition.getAltitude()));
+                s = s.replaceAll("\\[cameraLat\\]", Double.ToString(eyePosition.getLatitude().degrees));
+                s = s.replaceAll("\\[cameraLon\\]", Double.ToString(eyePosition.getLongitude().degrees));
+                s = s.replaceAll("\\[cameraAlt\\]", Double.ToString(eyePosition.getAltitude()));
 
-                s = s.replaceAll("\\[horizFOV\\]", Double.toString(view.getFieldOfView().degrees));
+                s = s.replaceAll("\\[horizFOV\\]", Double.ToString(view.getFieldOfView().degrees));
 
                 Rectangle viewport = view.getViewport();
                 s = s.replaceAll("\\[horizPixels\\]", Integer.toString(viewport.width));
@@ -487,7 +487,7 @@ public class KMLLink extends KMLAbstractObject
         if (queryString.length() > 0 && queryString.charAt(0) != '?')
             queryString.insert(0, '?');
 
-        return queryString.length() > 0 ? queryString.toString() : null;
+        return queryString.length() > 0 ? queryString.ToString() : null;
     }
 
     /**

@@ -72,7 +72,7 @@ public interface GpuResourceCache
      *
      * @return true if the resource is in the cache, otherwise false.
      */
-    boolean contains(Object key);
+    bool contains(Object key);
 
     /**
      * Finds and returns a texture resource from this cache.

@@ -122,7 +122,7 @@ public class CompoundStringBuilder
         }
 
         CharSequence cs = this.subSequence(index);
-        return cs != null ? cs.toString() : null;
+        return cs != null ? cs.ToString() : null;
     }
 
     /**

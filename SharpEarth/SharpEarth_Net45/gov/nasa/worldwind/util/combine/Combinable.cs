@@ -6,15 +6,15 @@
 namespace SharpEarth.util.combine{
 
 /**
- * Interface for shapes that can be combined into a complex set of contours by using boolean operations. Combinable
+ * Interface for shapes that can be combined into a complex set of contours by using bool operations. Combinable
  * shapes implement the single method combine(CombineContext). This method is typically called by a controller that
- * operates on one or more combinable shapes and implements the boolean operation that is applied to those shapes, such
+ * operates on one or more combinable shapes and implements the bool operation that is applied to those shapes, such
  * as {@link SharpEarth.util.combine.ShapeCombiner}. When combine is called, the Combinable draws its contours
  * using the GLU tessellator attached to the provided CombineContext. When the CombineContext is in bounding sector
  * mode, the Combinable adds its geographic bounding sector to the CombineContext's bounding sector list.
  * <p/>
  * <h2>Drawing Contours</h2> Shapes are combined into a complex set of contours by drawing their individual contours
- * using the GLU tessellator attached to a CombineContext. A controller that implements the boolean operation configures
+ * using the GLU tessellator attached to a CombineContext. A controller that implements the bool operation configures
  * the CombineContext then calls combine on each shape. It is the responsibility of the controller to configure the GLU
  * tessellator and define the beginning and end of a polygon. Shapes define the contours and vertices that represent the
  * shape's geometry. Each vertex must be a 3-tuple in geographic coordinates ordered as (longitude, latitude, 0). The

@@ -51,7 +51,7 @@ public class BarycentricQuadrilateral extends BarycentricTriangle
     }
 
     @Override
-    public boolean contains(Vec4 p)
+    public bool contains(Vec4 p)
     {
         return this.invertBilinear(p) != null;
     }

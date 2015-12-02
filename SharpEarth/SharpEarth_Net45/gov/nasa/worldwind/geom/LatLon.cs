@@ -376,9 +376,9 @@ public class LatLon
         double a = Math.Sin((lat2 - lat1) / 2.0);
         double b = Math.Sin((lon2 - lon1) / 2.0);
         double c = a * a + +Math.Cos(lat1) * Math.Cos(lat2) * b * b;
-        double distanceRadians = 2.0 * Math.ASin(Math.Sqrt(c));
+        double distanceRadians = 2.0 * Math.Asin(Math.Sqrt(c));
 
-        return Double.isNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
+        return Double.IsNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
     }
 
     /**
@@ -416,9 +416,9 @@ public class LatLon
         // The atan2() function is used in place of the traditional atan(y/x) to simplify the case when x==0.
         double y = Math.Cos(lat2) * Math.Sin(lon2 - lon1);
         double x = Math.Cos(lat1) * Math.Sin(lat2) - Math.Sin(lat1) * Math.Cos(lat2) * Math.Cos(lon2 - lon1);
-        double azimuthRadians = Math.ATan2(y, x);
+        double azimuthRadians = Math.Atan2(y, x);
 
-        return Double.isNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
+        return Double.IsNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
     }
 
     /**
@@ -455,13 +455,13 @@ public class LatLon
             return p;
 
         // Taken from "Map Projections - A Working Manual", page 31, equation 5-5 and 5-6.
-        double endLatRadians = Math.ASin(Math.Sin(lat) * Math.Cos(distance)
+        double endLatRadians = Math.Asin(Math.Sin(lat) * Math.Cos(distance)
             + Math.Cos(lat) * Math.Sin(distance) * Math.Cos(azimuth));
-        double endLonRadians = lon + Math.ATan2(
+        double endLonRadians = lon + Math.Atan2(
             Math.Sin(distance) * Math.Sin(azimuth),
             Math.Cos(lat) * Math.Cos(distance) - Math.Sin(lat) * Math.Sin(distance) * Math.Cos(azimuth));
 
-        if (Double.isNaN(endLatRadians) || Double.isNaN(endLonRadians))
+        if (Double.IsNaN(endLatRadians) || Double.IsNaN(endLonRadians))
             return p;
 
         return new LatLon(
@@ -543,8 +543,8 @@ public class LatLon
         // d1 = c + 90
         // d2 = c - 90
 
-        double tanDistance = -Math.tan(lat0) / Math.Cos(az);
-        double distance = Math.ATan(tanDistance);
+        double tanDistance = -Math.Tan(lat0) / Math.Cos(az);
+        double distance = Math.Atan(tanDistance);
 
         Angle extremeDistance1 = Angle.fromRadians(distance + (Math.PI / 2.0));
         Angle extremeDistance2 = Angle.fromRadians(distance - (Math.PI / 2.0));
@@ -719,9 +719,9 @@ public class LatLon
         // Taken from http://www.movable-type.co.uk/scripts/latlong.html
         double dLat = lat2 - lat1;
         double dLon = lon2 - lon1;
-        double dPhi = Math.log(Math.tan(lat2 / 2.0 + Math.PI / 4.0) / Math.tan(lat1 / 2.0 + Math.PI / 4.0));
+        double dPhi = Math.Log(Math.Tan(lat2 / 2.0 + Math.PI / 4.0) / Math.Tan(lat1 / 2.0 + Math.PI / 4.0));
         double q = dLat / dPhi;
-        if (Double.isNaN(dPhi) || Double.isNaN(q))
+        if (Double.IsNaN(dPhi) || Double.IsNaN(q))
         {
             q = Math.Cos(lat1);
         }
@@ -733,7 +733,7 @@ public class LatLon
 
         double distanceRadians = Math.Sqrt(dLat * dLat + q * q * dLon * dLon);
 
-        return Double.isNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
+        return Double.IsNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
     }
 
     /**
@@ -765,15 +765,15 @@ public class LatLon
 
         // Taken from http://www.movable-type.co.uk/scripts/latlong.html
         double dLon = lon2 - lon1;
-        double dPhi = Math.log(Math.tan(lat2 / 2.0 + Math.PI / 4.0) / Math.tan(lat1 / 2.0 + Math.PI / 4.0));
+        double dPhi = Math.Log(Math.Tan(lat2 / 2.0 + Math.PI / 4.0) / Math.Tan(lat1 / 2.0 + Math.PI / 4.0));
         // If lonChange over 180 take shorter rhumb across 180 meridian.
         if (Math.Abs(dLon) > Math.PI)
         {
             dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
         }
-        double azimuthRadians = Math.ATan2(dLon, dPhi);
+        double azimuthRadians = Math.Atan2(dLon, dPhi);
 
-        return Double.isNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
+        return Double.IsNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
     }
 
     /**
@@ -812,9 +812,9 @@ public class LatLon
 
         // Taken from http://www.movable-type.co.uk/scripts/latlong.html
         double lat2 = lat1 + distance * Math.Cos(azimuth);
-        double dPhi = Math.log(Math.tan(lat2 / 2.0 + Math.PI / 4.0) / Math.tan(lat1 / 2.0 + Math.PI / 4.0));
+        double dPhi = Math.Log(Math.Tan(lat2 / 2.0 + Math.PI / 4.0) / Math.Tan(lat1 / 2.0 + Math.PI / 4.0));
         double q = (lat2 - lat1) / dPhi;
-        if (Double.isNaN(dPhi) || Double.isNaN(q) || Double.isInfinite(q))
+        if (Double.IsNaN(dPhi) || Double.IsNaN(q) || Double.isInfinite(q))
         {
             q = Math.Cos(lat1);
         }
@@ -826,7 +826,7 @@ public class LatLon
         }
         double lon2 = (lon1 + dLon + Math.PI) % (2 * Math.PI) - Math.PI;
 
-        if (Double.isNaN(lat2) || Double.isNaN(lon2))
+        if (Double.IsNaN(lat2) || Double.IsNaN(lon2))
             return p;
 
         return new LatLon(
@@ -897,7 +897,7 @@ public class LatLon
 
         double distanceRadians = Math.hypot(dLat, dLon);
 
-        return Double.isNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
+        return Double.IsNaN(distanceRadians) ? Angle.ZERO : Angle.fromRadians(distanceRadians);
     }
 
     /**
@@ -933,9 +933,9 @@ public class LatLon
         {
             dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
         }
-        double azimuthRadians = Math.ATan2(dLon, dLat);
+        double azimuthRadians = Math.Atan2(dLon, dLat);
 
-        return Double.isNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
+        return Double.IsNaN(azimuthRadians) ? Angle.ZERO : Angle.fromRadians(azimuthRadians);
     }
 
     /**
@@ -981,7 +981,7 @@ public class LatLon
         }
         double lon2 = (lon1 + distance * Math.Sin(azimuth) + Math.PI) % (2 * Math.PI) - Math.PI;
 
-        if (Double.isNaN(lat2) || Double.isNaN(lon2))
+        if (Double.IsNaN(lat2) || Double.IsNaN(lon2))
             return p;
 
         return new LatLon(
@@ -1220,7 +1220,7 @@ public class LatLon
         return new LatLon(lat, lon);
     }
 
-    public static boolean locationsCrossDateLine(Iterable<? extends LatLon> locations)
+    public static bool locationsCrossDateLine(Iterable<? extends LatLon> locations)
     {
         if (locations == null)
         {
@@ -1249,7 +1249,7 @@ public class LatLon
         return false;
     }
 
-    public static boolean locationsCrossDateline(LatLon p1, LatLon p2)
+    public static bool locationsCrossDateline(LatLon p1, LatLon p2)
     {
         if (p1 == null || p2 == null)
         {
@@ -1294,7 +1294,7 @@ public class LatLon
         // Determine how many times the path crosses the dateline. Shapes that include a pole will cross an odd number
         // of times.
         // TODO handle locations that contain both poles.
-        boolean containsPole = false;
+        bool containsPole = false;
 
         double minLatitude = 90.0;
         double maxLatitude = -90.0;
@@ -1363,7 +1363,7 @@ public class LatLon
 
         LatLon prev = null;
         double lonOffset = 0;
-        boolean applyLonOffset = false;
+        bool applyLonOffset = false;
 
         List<LatLon> locationsA = new ArrayList<LatLon>();
         list.add(locationsA);
@@ -1645,17 +1645,17 @@ public class LatLon
     @Override
     public String toString()
     {
-        String las = String.format("Lat %7.4f\u00B0", this.getLatitude().getDegrees());
-        String los = String.format("Lon %7.4f\u00B0", this.getLongitude().getDegrees());
+        String las = String.Format("Lat %7.4f\u00B0", this.getLatitude().getDegrees());
+        String los = String.Format("Lon %7.4f\u00B0", this.getLongitude().getDegrees());
         return "(" + las + ", " + los + ")";
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final SharpEarth.geom.LatLon latLon = (gov.nasa.worldwind.geom.LatLon) o;
@@ -1669,13 +1669,13 @@ public class LatLon
         return true;
     }
 
-    public static boolean equals(LatLon a, LatLon b)
+    public static bool equals(LatLon a, LatLon b)
     {
         return a.getLatitude().equals(b.getLatitude()) && a.getLongitude().equals(b.getLongitude());
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = latitude.hashCode();
@@ -1707,11 +1707,11 @@ public class LatLon
         final double f = (equatorialRadius - polarRadius) / equatorialRadius; // flattening
 
         // Calculate reduced latitudes and related sines/cosines
-        final double U1 = Math.ATan((1.0 - f) * Math.tan(p1.latitude.radians));
+        final double U1 = Math.Atan((1.0 - f) * Math.Tan(p1.latitude.radians));
         final double cU1 = Math.Cos(U1);
         final double sU1 = Math.Sin(U1);
 
-        final double U2 = Math.ATan((1.0 - f) * Math.tan(p2.latitude.radians));
+        final double U2 = Math.Atan((1.0 - f) * Math.Tan(p2.latitude.radians));
         final double cU2 = Math.Cos(U2);
         final double sU2 = Math.Sin(U2);
 
@@ -1736,7 +1736,7 @@ public class LatLon
             double sSigma = Math.Sqrt(Math.pow(cU2 * sLambda, 2)
                 + Math.pow(cU1 * sU2 - sU1 * cU2 * cLambda, 2));
             double cSigma = sU1 * sU2 + cU1 * cU2 * cLambda;
-            double sigma = Math.ATan2(sSigma, cSigma);
+            double sigma = Math.Atan2(sSigma, cSigma);
             double sAlpha = cU1 * cU2 * sLambda / sSigma;
             double cAlpha2 = 1 - sAlpha * sAlpha; // trig identity
             // As cAlpha2 approaches zeros, set cSigmam2 to zero to converge on a solution
@@ -1756,7 +1756,7 @@ public class LatLon
             cLambda = Math.Cos(lambda);
         }
 
-        return Angle.fromRadians(Math.ATan2(cU2 * sLambda, cU1 * sU2 - sU1 * cU2 * cLambda));
+        return Angle.fromRadians(Math.Atan2(cU2 * sLambda, cU1 * sU2 - sU1 * cU2 * cLambda));
     }
 
     // TODO: Need method to compute end position from initial position, azimuth and distance. The companion to the
@@ -1854,7 +1854,7 @@ public class LatLon
             TU2 = BAZ - SU1 * CU2 * CX;
             SY = Math.Sqrt(TU1 * TU1 + TU2 * TU2);
             CY = S * CX + FAZ;
-            Y = Math.ATan2(SY, CY);
+            Y = Math.Atan2(SY, CY);
             SA = S * SX / SY;
             C2A = -SA * SA + 1.;
             CZ = FAZ + FAZ;
@@ -1873,8 +1873,8 @@ public class LatLon
         }
         while (Math.Abs(D - X) > EPS && iterCount <= 10);
 
-        //FAZ = Math.ATan2(TU1, TU2);
-        //BAZ = Math.ATan2(CU1 * SX, BAZ * CX - SU1 * CU2) + Math.PI;
+        //FAZ = Math.Atan2(TU1, TU2);
+        //BAZ = Math.Atan2(CU1 * SX, BAZ * CX - SU1 * CU2) + Math.PI;
         X = Math.Sqrt((1. / R / R - 1.) * C2A + 1.) + 1.;
         X = (X - 2.) / X;
         C = 1. - X;

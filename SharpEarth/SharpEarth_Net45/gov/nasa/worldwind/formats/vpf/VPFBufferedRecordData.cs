@@ -25,7 +25,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
             this.dataBuffer = dataBuffer;
         }
 
-        public boolean hasIndex()
+        public bool hasIndex()
         {
             return this.recordIndex != null;
         }
@@ -56,7 +56,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
             return index;
         }
 
-        public boolean updateIndex(int startIndex, int endIndex)
+        public bool updateIndex(int startIndex, int endIndex)
         {
             if (this.recordIndex == null)
                 this.recordIndex = new HashMap<Object, Integer>();
@@ -165,7 +165,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
             private int id = 0;
             private int maxId = numRecords;
 
-            public boolean hasNext()
+            public bool hasNext()
             {
                 return this.id < this.maxId;
             }
@@ -182,7 +182,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
         };
     }
 
-    public boolean buildRecordIndex(String parameterName)
+    public bool buildRecordIndex(String parameterName)
     {
         if (parameterName == null)
         {
@@ -218,7 +218,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
             return this.id;
         }
 
-        public boolean hasValue(String parameterName)
+        public bool hasValue(String parameterName)
         {
             VPFDataBuffer dataBuffer = getRecordData(parameterName);
             return (dataBuffer != null) && dataBuffer.hasValue(this.id);

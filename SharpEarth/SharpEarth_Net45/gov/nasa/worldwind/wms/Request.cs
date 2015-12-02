@@ -62,7 +62,7 @@ public abstract class Request
             }
             catch (URISyntaxException e)
             {
-                Logging.logger().fine(Logging.getMessage("generic.URIInvalid", uri.toString()));
+                Logging.logger().fine(Logging.getMessage("generic.URIInvalid", uri.ToString()));
                 throw e;
             }
         }
@@ -128,7 +128,7 @@ public abstract class Request
         }
         catch (URISyntaxException e)
         {
-            String message = Logging.getMessage("generic.URIInvalid", uri.toString());
+            String message = Logging.getMessage("generic.URIInvalid", uri.ToString());
             Logging.logger().fine(message);
             throw e;
         }
@@ -196,7 +196,7 @@ public abstract class Request
         }
         catch (URISyntaxException e)
         {
-            String message = Logging.getMessage("generic.URIInvalid", uri.toString());
+            String message = Logging.getMessage("generic.URIInvalid", uri.ToString());
             Logging.logger().fine(message);
             throw e;
         }
@@ -228,7 +228,7 @@ public abstract class Request
                 queryString.deleteCharAt(trailingAmpersandPosition);
         }
 
-        return queryString.toString();
+        return queryString.ToString();
     }
 
     public String toString()
@@ -237,7 +237,7 @@ public abstract class Request
         try
         {
             java.net.URI fullUri = this.getUri();
-            return fullUri != null ? fullUri.toString() : errorMessage;
+            return fullUri != null ? fullUri.ToString() : errorMessage;
         }
         catch (URISyntaxException e)
         {

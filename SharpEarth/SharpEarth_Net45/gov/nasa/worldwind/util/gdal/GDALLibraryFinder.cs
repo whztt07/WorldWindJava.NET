@@ -30,7 +30,7 @@ class GDALLibraryFinder extends GDALAbstractFileFilter
         super(searchPattern);
     }
 
-    public boolean accept(File pathname)
+    public bool accept(File pathname)
     {
         String filename;
         String dir;
@@ -61,7 +61,7 @@ class GDALLibraryFinder extends GDALAbstractFileFilter
      *
      * @return TRUE if the file is loadable library
      */
-    protected boolean canLoad(String pathToLibrary)
+    protected bool canLoad(String pathToLibrary)
     {
         try
         {

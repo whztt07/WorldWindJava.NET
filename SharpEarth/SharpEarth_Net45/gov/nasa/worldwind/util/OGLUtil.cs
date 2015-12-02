@@ -53,7 +53,7 @@ public class OGLUtil
      *
      * @throws ArgumentException if the GL is null.
      */
-    public static void applyBlending(GL2 gl, boolean havePremultipliedColors)
+    public static void applyBlending(GL2 gl, bool havePremultipliedColors)
     {
         if (gl == null)
         {
@@ -77,7 +77,7 @@ public class OGLUtil
             // So we use GL_EXT_blend_func_separate to specify different blending factors for source color and source
             // alpha.
 
-            boolean haveExtBlendFuncSeparate = gl.isExtensionAvailable(GL_EXT_BLEND_FUNC_SEPARATE);
+            bool haveExtBlendFuncSeparate = gl.isExtensionAvailable(GL_EXT_BLEND_FUNC_SEPARATE);
             if (haveExtBlendFuncSeparate)
             {
                 gl.glBlendFuncSeparate(
@@ -105,7 +105,7 @@ public class OGLUtil
      * @throws ArgumentException if the GL is null, if the Color is null, if the opacity is less than 0, or if
      *                                  the opacity is greater than 1.
      */
-    public static void applyColor(GL2 gl, java.awt.Color color, double opacity, boolean premultiplyColors)
+    public static void applyColor(GL2 gl, java.awt.Color color, double opacity, bool premultiplyColors)
     {
         if (gl == null)
         {
@@ -155,7 +155,7 @@ public class OGLUtil
      * @throws ArgumentException if the GL is null, if the Color is null, if the opacity is less than 0, or if
      *                                  the opacity is greater than 1.
      */
-    public static void applyColor(GL2 gl, java.awt.Color color, boolean premultiplyColors)
+    public static void applyColor(GL2 gl, java.awt.Color color, bool premultiplyColors)
     {
         if (gl == null)
         {
@@ -394,7 +394,7 @@ public class OGLUtil
      *
      * @throws ArgumentException if either the width or height is less than or equal to zero.
      */
-    public static int estimateTextureMemorySize(int internalFormat, int width, int height, boolean includeMipmaps)
+    public static int estimateTextureMemorySize(int internalFormat, int width, int height, bool includeMipmaps)
     {
         if (width < 0)
         {
@@ -415,7 +415,7 @@ public class OGLUtil
         // Add the number of pixels from each level in the mipmap chain to the total number of pixels.
         if (includeMipmaps)
         {
-            int maxLevel = Math.max((int) WWMath.logBase2(width), (int) WWMath.logBase2(height));
+            int maxLevel = Math.max((int) WWMath.LogBase2(width), (int) WWMath.LogBase2(height));
             for (int level = 1; level <= maxLevel; level++)
             {
                 int w = Math.max(width >> level, 1);
@@ -520,7 +520,7 @@ public class OGLUtil
      *
      * @throws IOException if an error occurred while reading the URL
      */
-    public static TextureData newTextureData(GLProfile glp, URL url, boolean useMipMaps) throws IOException
+    public static TextureData newTextureData(GLProfile glp, URL url, bool useMipMaps) throws IOException
     {
         InputStream stream = new BufferedInputStream(url.openStream());
         try
@@ -546,7 +546,7 @@ public class OGLUtil
      *
      * @throws IOException if an error occurred while reading the URL
      */
-    public static TextureData newTextureData(GLProfile glp, InputStream stream, boolean useMipMaps) throws IOException
+    public static TextureData newTextureData(GLProfile glp, InputStream stream, bool useMipMaps) throws IOException
     {
         // Wrap stream in BufferedInputStream so that DDS detection will work. This is a work around for JOGL issue 4764639/4892246.
         if (!(stream instanceof BufferedInputStream))
@@ -554,7 +554,7 @@ public class OGLUtil
             stream = new BufferedInputStream(stream);
         }
 
-        boolean ddsFormat = DDSImage.isDDSImage(stream);
+        bool ddsFormat = DDSImage.isDDSImage(stream);
 
         // If the image is not in DDS format, attempt to load it using ImageIO. This works around an issue with the
         // JOGL PNG reader (WWJ-369). However, ImageIO does not support DDS, so in this case just send the image to
@@ -582,9 +582,9 @@ public class OGLUtil
      *
      * @throws IOException if an error occurred while reading the URL
      */
-    public static TextureData newTextureData(GLProfile glp, File file, boolean useMipMaps) throws IOException
+    public static TextureData newTextureData(GLProfile glp, File file, bool useMipMaps) throws IOException
     {
-        boolean ddsFormat = "dds".equalsIgnoreCase(WWIO.getSuffix(file.getPath()));
+        bool ddsFormat = "dds".equalsIgnoreCase(WWIO.getSuffix(file.getPath()));
 
         // If the image is not in DDS format, attempt to load it using ImageIO. This works around an issue with the
         // JOGL PNG reader (WWJ-369). However, ImageIO does not support DDS, so in this case just send the image to

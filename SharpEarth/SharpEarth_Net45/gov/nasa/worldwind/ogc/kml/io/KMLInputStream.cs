@@ -106,7 +106,7 @@ public class KMLInputStream implements KMLDoc
         {
             URI remoteFile = uri.resolve(path);
             if (remoteFile != null)
-                return remoteFile.toString();
+                return remoteFile.ToString();
         }
         return null;
     }

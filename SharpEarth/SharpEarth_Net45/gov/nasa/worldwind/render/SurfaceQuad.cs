@@ -344,11 +344,11 @@ public class SurfaceQuad extends AbstractSurfaceShape implements Exportable
 
         double[] cornerAngles = new double[]
             {
-                Math.ATan2(-hh, -hw),
-                Math.ATan2(-hh, hw),
-                Math.ATan2(hh, hw),
-                Math.ATan2(hh, -hw),
-                Math.ATan2(-hh, -hw),
+                Math.Atan2(-hh, -hw),
+                Math.Atan2(-hh, hw),
+                Math.Atan2(hh, hw),
+                Math.Atan2(hh, -hw),
+                Math.Atan2(-hh, -hw),
             };
 
         LatLon[] locations = new LatLon[cornerAngles.length];
@@ -447,7 +447,7 @@ public class SurfaceQuad extends AbstractSurfaceShape implements Exportable
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {

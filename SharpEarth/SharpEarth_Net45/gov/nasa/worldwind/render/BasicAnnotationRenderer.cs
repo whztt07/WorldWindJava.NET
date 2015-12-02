@@ -34,7 +34,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
     protected HashSet<Annotation> currentPickAnnotations = new HashSet<Annotation>();
     protected HashSet<Annotation> currentDrawAnnotations = new HashSet<Annotation>();
 
-    protected static boolean isAnnotationValid(Annotation annotation, boolean checkPosition)
+    protected static bool isAnnotationValid(Annotation annotation, bool checkPosition)
     {
         if (annotation == null || annotation.getText() == null)
             return false;
@@ -264,7 +264,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
         }
     }
 
-    protected boolean isAtPickRange(DrawContext dc, Annotation annotation)
+    protected bool isAtPickRange(DrawContext dc, Annotation annotation)
     {
         Rectangle screenBounds = annotation.getBounds(dc);
         return screenBounds != null && dc.getPickFrustums().intersectsAny(screenBounds);
@@ -507,7 +507,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
 //    }
 //
 //    // Test if a rectangle intersects one of the previously used rectangles
-//    private boolean rectangleIntersectsUsed(Rectangle r)
+//    private bool rectangleIntersectsUsed(Rectangle r)
 //    {
 //        for(Rectangle ur : this.usedRectangles)
 //            if(r.intersects(ur))

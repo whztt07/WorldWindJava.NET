@@ -27,11 +27,11 @@ public class VPFSymbolKey implements Comparable<VPFSymbolKey>
         return this.symbolCode;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         VPFSymbolKey that = (VPFSymbolKey) o;
@@ -39,7 +39,7 @@ public class VPFSymbolKey implements Comparable<VPFSymbolKey>
         return this.symbolCode == that.symbolCode;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         return this.symbolCode;
     }

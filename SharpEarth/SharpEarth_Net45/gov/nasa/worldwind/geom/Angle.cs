@@ -3,8 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.regex;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
+using System;
+using System.Text.RegularExpressions;
+
 namespace SharpEarth.geom{
 
 
@@ -16,42 +18,42 @@ namespace SharpEarth.geom{
  * @author Tom Gaskins
  * @version $Id: Angle.java 2419 2014-11-08 04:44:55Z tgaskins $
  */
-public class Angle implements Comparable<Angle>
+public class Angle : IComparable<Angle>
 {
     // Angle format
-    public final static String ANGLE_FORMAT_DD = "gov.nasa.worldwind.Geom.AngleDD";
-    public final static String ANGLE_FORMAT_DM = "gov.nasa.worldwind.Geom.AngleDM";
-    public final static String ANGLE_FORMAT_DMS = "gov.nasa.worldwind.Geom.AngleDMS";
+    public readonly static String ANGLE_FORMAT_DD = "gov.nasa.worldwind.Geom.AngleDD";
+    public readonly static String ANGLE_FORMAT_DM = "gov.nasa.worldwind.Geom.AngleDM";
+    public readonly static String ANGLE_FORMAT_DMS = "gov.nasa.worldwind.Geom.AngleDMS";
 
     /** Represents an angle of zero degrees */
-    public final static Angle ZERO = Angle.fromDegrees(0);
+    public readonly static Angle ZERO = fromDegrees(0);
 
     /** Represents a right angle of positive 90 degrees */
-    public final static Angle POS90 = Angle.fromDegrees(90);
+    public readonly static Angle POS90 = fromDegrees(90);
 
     /** Represents a right angle of negative 90 degrees */
-    public final static Angle NEG90 = Angle.fromDegrees(-90);
+    public readonly static Angle NEG90 = fromDegrees(-90);
 
     /** Represents an angle of positive 180 degrees */
-    public final static Angle POS180 = Angle.fromDegrees(180);
+    public readonly static Angle POS180 = fromDegrees(180);
 
     /** Represents an angle of negative 180 degrees */
-    public final static Angle NEG180 = Angle.fromDegrees(-180);
+    public readonly static Angle NEG180 = fromDegrees(-180);
 
     /** Represents an angle of positive 360 degrees */
-    public final static Angle POS360 = Angle.fromDegrees(360);
+    public readonly static Angle POS360 = fromDegrees(360);
 
     /** Represents an angle of negative 360 degrees */
-    public final static Angle NEG360 = Angle.fromDegrees(-360);
+    public readonly static Angle NEG360 = fromDegrees(-360);
 
     /** Represents an angle of 1 minute */
-    public final static Angle MINUTE = Angle.fromDegrees(1d / 60d);
+    public readonly static Angle MINUTE = fromDegrees(1d / 60d);
 
     /** Represents an angle of 1 second */
-    public final static Angle SECOND = Angle.fromDegrees(1d / 3600d);
+    public readonly static Angle SECOND = fromDegrees(1d / 3600d);
 
-    private final static double DEGREES_TO_RADIANS = Math.PI / 180d;
-    private final static double RADIANS_TO_DEGREES = 180d / Math.PI;
+    private readonly static double DEGREES_TO_RADIANS = Math.PI / 180d;
+    private readonly static double RADIANS_TO_DEGREES = 180d / Math.PI;
 
     /**
      * Obtains an angle from a specified number of degrees.
@@ -77,7 +79,7 @@ public class Angle implements Comparable<Angle>
         return new Angle(RADIANS_TO_DEGREES * radians, radians);
     }
 
-    private static final double PIOver2 = Math.PI / 2;
+    private static readonly double PIOver2 = Math.PI / 2;
 
     public static Angle fromDegreesLatitude(double degrees)
     {
@@ -125,7 +127,7 @@ public class Angle implements Comparable<Angle>
      */
     public static Angle fromXY(double x, double y)
     {
-        double radians = Math.ATan2(y, x);
+        double radians = Math.Atan2(y, x);
         return new Angle(RADIANS_TO_DEGREES * radians, radians);
     }
 
@@ -156,7 +158,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(Math.Sign(degrees) * (Math.Abs(degrees) + minutes / 60d + seconds / 3600d));
+        return fromDegrees(Math.Sign(degrees) * (Math.Abs(degrees) + minutes / 60d + seconds / 3600d));
     }
 
     public static Angle fromDMdS(int degrees, double minutes)
@@ -168,7 +170,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(Math.Sign(degrees) * (Math.Abs(degrees) + minutes / 60d));
+        return fromDegrees(Math.Sign(degrees) * (Math.Abs(degrees) + minutes / 60d));
     }
 
     /**
@@ -196,49 +198,48 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
         // Check for string format validity
-        String regex = "([-|\\+]?\\d{1,3}[d|D|\u00B0|\\s](\\s*\\d{1,2}['|\u2019|\\s])?"
+        string regex = "([-|\\+]?\\d{1,3}[d|D|\u00B0|\\s](\\s*\\d{1,2}['|\u2019|\\s])?"
             + "(\\s*\\d{1,2}[\"|\u201d|\\s])?\\s*([N|n|S|s|E|e|W|w])?\\s?)";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(dmsString + " ");
-        if (!matcher.matches())
-        {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", dmsString);
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-        // Replace degree, min and sec signs with space
-        dmsString = dmsString.replaceAll("[D|d|\u00B0|'|\u2019|\"|\u201d]", " ");
-        // Replace multiple spaces with single ones
-        dmsString = dmsString.replaceAll("\\s+", " ");
-        dmsString = dmsString.trim();
+      Regex matcher = new Regex( regex );
+      if ( !matcher.IsMatch( dmsString + " " ) )
+      {
+        string message = Logging.getMessage( "generic.ArgumentOutOfRange", dmsString );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
+      // Replace degree, min and sec signs with space
+      dmsString = dmsString.Replace( "[D|d|\u00B0|'|\u2019|\"|\u201d]", " " );
+      // Replace multiple spaces with single ones
+      dmsString = dmsString.Replace( "\\s+", " " );
+      dmsString = dmsString.Trim();
 
-        // Check for sign prefix and suffix
-        int sign = 1;
-        char suffix = dmsString.toUpperCase().charAt(dmsString.length() - 1);
-        if (!Character.isDigit(suffix))
-        {
-            sign = (suffix == 'S' || suffix == 'W') ? -1 : 1;
-            dmsString = dmsString.substring(0, dmsString.length() - 1);
-            dmsString = dmsString.trim();
-        }
-        char prefix = dmsString.charAt(0);
-        if (!Character.isDigit(prefix))
-        {
-            sign *= (prefix == '-') ? -1 : 1;
-            dmsString = dmsString.substring(1, dmsString.length());
-        }
+      // Check for sign prefix and suffix
+      int sign = 1;
+      char suffix = dmsString.ToUpper()[dmsString.Length - 1];
+      if ( !Char.IsDigit( suffix ) )
+      {
+        sign = (suffix == 'S' || suffix == 'W') ? -1 : 1;
+        dmsString = dmsString.Substring( 0, dmsString.Length - 1 );
+        dmsString = dmsString.Trim();
+      }
+      char prefix = dmsString[0];
+      if ( !Char.IsDigit( prefix ) )
+      {
+        sign *= (prefix == '-') ? -1 : 1;
+        dmsString = dmsString.Substring( 1, dmsString.Length );
+      }
 
-        // Extract degrees, minutes and seconds
-        String[] DMS = dmsString.split(" ");
-        int d = Integer.parseInt(DMS[0]);
-        int m = DMS.length > 1 ? Integer.parseInt(DMS[1]) : 0;
-        int s = DMS.length > 2 ? Integer.parseInt(DMS[2]) : 0;
+      // Extract degrees, minutes and seconds
+      String[] DMS = dmsString.Split( ' ' );
+      int d = Int32.Parse( DMS[0] );
+      int m = DMS.Length > 1 ? Int32.Parse( DMS[1] ) : 0;
+      int s = DMS.Length > 2 ? Int32.Parse( DMS[2] ) : 0;
 
-        return fromDMS(d, m, s).multiply(sign);
+      return fromDMS( d, m, s ).multiply( sign );
     }
 
-    public final double degrees;
-    public final double radians;
+    public readonly double degrees;
+    public readonly double radians;
 
     public Angle(Angle angle)
     {
@@ -258,7 +259,7 @@ public class Angle implements Comparable<Angle>
      *
      * @return the size of this angle in degrees.
      */
-    public final double getDegrees()
+    public double getDegrees()
     {
         return this.degrees;
     }
@@ -270,7 +271,7 @@ public class Angle implements Comparable<Angle>
      *
      * @return the size of this angle in radians.
      */
-    public final double getRadians()
+    public double getRadians()
     {
         return this.radians;
     }
@@ -286,7 +287,7 @@ public class Angle implements Comparable<Angle>
      *
      * @throws ArgumentException if angle is null.
      */
-    public final Angle add(Angle angle)
+    public Angle add(Angle angle)
     {
         if (angle == null)
         {
@@ -295,7 +296,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(this.degrees + angle.degrees);
+        return fromDegrees(this.degrees + angle.degrees);
     }
 
     /**
@@ -308,7 +309,7 @@ public class Angle implements Comparable<Angle>
      *
      * @throws ArgumentException if angle is null.
      */
-    public final Angle subtract(Angle angle)
+    public Angle subtract(Angle angle)
     {
         if (angle == null)
         {
@@ -317,7 +318,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(this.degrees - angle.degrees);
+        return fromDegrees(this.degrees - angle.degrees);
     }
 
     /**
@@ -328,9 +329,9 @@ public class Angle implements Comparable<Angle>
      *
      * @return a new angle whose size equals this angle's size multiplied by <code>multiplier</code>.
      */
-    public final Angle multiply(double multiplier)
+    public Angle multiply(double multiplier)
     {
-        return Angle.fromDegrees(this.degrees * multiplier);
+        return fromDegrees(this.degrees * multiplier);
     }
 
     /**
@@ -343,7 +344,7 @@ public class Angle implements Comparable<Angle>
      *
      * @throws ArgumentException if angle is null.
      */
-    public final double divide(Angle angle)
+    public double divide(Angle angle)
     {
         if (angle == null)
         {
@@ -361,14 +362,14 @@ public class Angle implements Comparable<Angle>
         return this.degrees / angle.degrees;
     }
 
-    public final Angle addDegrees(double degrees)
+    public  Angle addDegrees(double degrees)
     {
-        return Angle.fromDegrees(this.degrees + degrees);
+        return fromDegrees(this.degrees + degrees);
     }
 
-    public final Angle subtractDegrees(double degrees)
+    public  Angle subtractDegrees(double degrees)
     {
-        return Angle.fromDegrees(this.degrees - degrees);
+        return fromDegrees(this.degrees - degrees);
     }
 
     /**
@@ -379,19 +380,19 @@ public class Angle implements Comparable<Angle>
      *
      * @return a new angle equivalent to this angle divided by <code>divisor</code>.
      */
-    public final Angle divide(double divisor)
+    public Angle divide(double divisor)
     {
-        return Angle.fromDegrees(this.degrees / divisor);
+        return fromDegrees(this.degrees / divisor);
     }
 
-    public final Angle addRadians(double radians)
+    public Angle addRadians(double radians)
     {
-        return Angle.fromRadians(this.radians + radians);
+        return fromRadians(this.radians + radians);
     }
 
-    public final Angle subtractRadians(double radians)
+    public Angle subtractRadians(double radians)
     {
-        return Angle.fromRadians(this.radians - radians);
+        return fromRadians(this.radians - radians);
     }
 
     /**
@@ -417,7 +418,7 @@ public class Angle implements Comparable<Angle>
             differenceDegrees -= 360;
 
         double absAngle = Math.Abs(differenceDegrees);
-        return Angle.fromDegrees(absAngle);
+        return fromDegrees(absAngle);
     }
 
     /**
@@ -425,24 +426,24 @@ public class Angle implements Comparable<Angle>
      *
      * @return the trigonometric sine of this angle.
      */
-    public final double sin()
+    public double sin()
     {
         return Math.Sin(this.radians);
     }
 
-    public final double sinHalfAngle()
+    public double sinHalfAngle()
     {
         return Math.Sin(0.5 * this.radians);
     }
 
     public static Angle asin(double sine)
     {
-        return Angle.fromRadians(Math.ASin(sine));
+        return fromRadians(Math.Asin(sine));
     }
 
     public static double arctanh(double radians)
     {
-        return 0.5 * Math.log((1 + radians) / (1 - radians));
+        return 0.5 * Math.Log((1 + radians) / (1 - radians));
     }
 
     /**
@@ -450,19 +451,19 @@ public class Angle implements Comparable<Angle>
      *
      * @return the trigonometric cosine of this angle.
      */
-    public final double cos()
+    public double cos()
     {
         return Math.Cos(this.radians);
     }
 
-    public final double cosHalfAngle()
+    public double cosHalfAngle()
     {
         return Math.Cos(0.5 * this.radians);
     }
 
     public static Angle acos(double cosine)
     {   //Tom: this method is not used, should we delete it? (13th Dec 06)
-        return Angle.fromRadians(Math.Acos(cosine));
+        return fromRadians(Math.Acos(cosine));
     }
 
     /**
@@ -470,14 +471,14 @@ public class Angle implements Comparable<Angle>
      *
      * @return the trigonometric tangent of half of this angle.
      */
-    public final double tanHalfAngle()
+    public double tanHalfAngle()
     {
-        return Math.tan(0.5 * this.radians);
+        return Math.Tan(0.5 * this.radians);
     }
 
     public static Angle atan(double tan)
     {   //Tom: this method is not used, should we delete it? (13th Dec 06)
-        return Angle.fromRadians(Math.ATan(tan));
+        return fromRadians(Math.Atan(tan));
     }
 
     /**
@@ -499,7 +500,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(0.5 * (a1.degrees + a2.degrees));
+        return fromDegrees(0.5 * (a1.degrees + a2.degrees));
     }
 
     /**
@@ -521,7 +522,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees(0.5 * (a.degrees + b.degrees));
+        return fromDegrees(0.5 * (a.degrees + b.degrees));
     }
 
     /**
@@ -544,7 +545,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(message);
         }
 
-        return Angle.fromDegrees((a.degrees + b.degrees + c.degrees) / 3);
+        return fromDegrees((a.degrees + b.degrees + c.degrees) / 3);
     }
 
     /**
@@ -604,7 +605,7 @@ public class Angle implements Comparable<Angle>
             Quaternion.fromAxisAngle(value2, Vec4.UNIT_X));
 
         Angle angle = quat.getRotationX();
-        if (Double.isNaN(angle.degrees))
+        if (Double.IsNaN(angle.degrees))
             return null;
 
         return angle;
@@ -620,7 +621,7 @@ public class Angle implements Comparable<Angle>
      *
      * @throws ArgumentException if angle is null.
      */
-    public final int compareTo(Angle angle)
+    public int compareTo(Angle angle)
     {
         if (angle == null)
         {
@@ -665,7 +666,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(msg);
         }
 
-        return Angle.fromDegrees(normalizedDegrees(unnormalizedAngle.degrees));
+        return fromDegrees(normalizedDegrees(unnormalizedAngle.degrees));
     }
 
     public static Angle normalizedLatitude(Angle unnormalizedAngle)
@@ -677,7 +678,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(msg);
         }
 
-        return Angle.fromDegrees(normalizedDegreesLatitude(unnormalizedAngle.degrees));
+        return fromDegrees(normalizedDegreesLatitude(unnormalizedAngle.degrees));
     }
 
     public static Angle normalizedLongitude(Angle unnormalizedAngle)
@@ -689,7 +690,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(msg);
         }
 
-        return Angle.fromDegrees(normalizedDegreesLongitude(unnormalizedAngle.degrees));
+        return fromDegrees(normalizedDegreesLongitude(unnormalizedAngle.degrees));
     }
 
     public Angle normalize()
@@ -707,7 +708,7 @@ public class Angle implements Comparable<Angle>
         return normalizedLongitude(this);
     }
 
-    public static boolean crossesLongitudeBoundary(Angle angleA, Angle angleB)
+    public static bool crossesLongitudeBoundary(Angle angleA, Angle angleB)
     {
         if (angleA == null || angleB == null)
         {
@@ -722,12 +723,12 @@ public class Angle implements Comparable<Angle>
             && (Math.Abs(angleA.degrees - angleB.degrees) > 180);
     }
 
-    public static boolean isValidLatitude(double value)
+    public static bool isValidLatitude(double value)
     {
         return value >= -90 && value <= 90;
     }
 
-    public static boolean isValidLongitude(double value)
+    public static bool isValidLongitude(double value)
     {
         return value >= -180 && value <= 180;
     }
@@ -747,10 +748,9 @@ public class Angle implements Comparable<Angle>
      *
      * @return the value of this angle in degrees and as a <code>String</code>.
      */
-    @Override
-    public final String toString()
+    public override string ToString()
     {
-        return Double.toString(this.degrees) + '\u00B0';
+        return degrees.ToString() + '\u00B0';
     }
 
     /**
@@ -762,7 +762,7 @@ public class Angle implements Comparable<Angle>
      *         decimal point. The string is padded with trailing zeros to fill the number of post-decimal point
      *         positions requested.
      */
-    public final String toDecimalDegreesString(int digits)
+    public String toDecimalDegreesString(int digits)
     {
         if ((digits < 0) || (digits > 15))
         {
@@ -771,7 +771,7 @@ public class Angle implements Comparable<Angle>
             throw new ArgumentException(msg);
         }
 
-        return String.format("%." + digits + "f\u00B0", this.degrees);
+        return String.Format("%." + digits + "f\u00B0", this.degrees);
     }
 
     /**
@@ -780,14 +780,14 @@ public class Angle implements Comparable<Angle>
      *
      * @return the value of this angle in degrees, minutes, seconds as a string.
      */
-    public final String toDMSString()
+    public String toDMSString()
     {
         double temp = this.degrees;
         int sign = (int) Math.Sign(temp);
         temp *= sign;
-        int d = (int) Math.floor(temp);
+        int d = (int) Math.Floor(temp);
         temp = (temp - d) * 60d;
-        int m = (int) Math.floor(temp);
+        int m = (int) Math.Floor(temp);
         temp = (temp - m) * 60d;
         int s = (int) Math.Round(temp);
 
@@ -810,14 +810,14 @@ public class Angle implements Comparable<Angle>
      *
      * @return the value of this angle in degrees and decimal minutes as a string.
      */
-    public final String toDMString()
+    public String toDMString()
     {
         double temp = this.degrees;
         int sign = (int) Math.Sign(temp);
         temp *= sign;
-        int d = (int) Math.floor(temp);
+        int d = (int) Math.Floor(temp);
         temp = (temp - d) * 60d;
-        int m = (int) Math.floor(temp);
+        int m = (int) Math.Floor(temp);
         temp = (temp - m) * 60d;
         int s = (int) Math.Round(temp);
 
@@ -834,20 +834,20 @@ public class Angle implements Comparable<Angle>
 
         double mf = s == 0 ? m : m + s / 60.0;
 
-        return (sign == -1 ? "-" : "") + d + '\u00B0' + ' ' + String.format("%5.2f", mf) + '\u2019';
+        return (sign == -1 ? "-" : "") + d + '\u00B0' + ' ' + String.Format("%5.2f", mf) + '\u2019';
     }
 
-    public final String toFormattedDMSString()
+    public String toFormattedDMSString()
     {
         double temp = this.degrees;
         int sign = (int) Math.Sign(temp);
 
         temp *= sign;
-        int d = (int) Math.floor(temp);
+        int d = (int) Math.Floor(temp);
         temp = (temp - d) * 60d;
-        int m = (int) Math.floor(temp);
+        int m = (int) Math.Floor(temp);
         temp = (temp - m) * 60d;
-        double s = Math.rint(temp * 100) / 100;  // keep two decimals for seconds
+        double s = Math.Round(temp * 100) / 100;  // keep two decimals for seconds
 
         if (s == 60)
         {
@@ -860,20 +860,20 @@ public class Angle implements Comparable<Angle>
             m = 0;
         }
 
-        return String.format("%4d\u00B0 %2d\u2019 %5.2f\u201d", sign * d, m, s);
+        return String.Format("%4d\u00B0 %2d\u2019 %5.2f\u201d", sign * d, m, s);
     }
 
-    public final double[] toDMS()
+    public double[] toDMS()
     {
         double temp = this.degrees;
         int sign = (int) Math.Sign(temp);
 
         temp *= sign;
-        int d = (int) Math.floor(temp);
+        int d = (int) Math.Floor(temp);
         temp = (temp - d) * 60d;
-        int m = (int) Math.floor(temp);
+        int m = (int) Math.Floor(temp);
         temp = (temp - m) * 60d;
-        double s = Math.rint(temp * 100) / 100;  // keep two decimals for seconds
+        double s = Math.Round(temp * 100) / 100;  // keep two decimals for seconds
 
         if (s == 60)
         {
@@ -896,14 +896,14 @@ public class Angle implements Comparable<Angle>
      */
     public long getSizeInBytes()
     {
-        return Double.SIZE / 8;
+        return sizeof(double) / 8;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         Angle angle = (Angle) o;
@@ -915,10 +915,15 @@ public class Angle implements Comparable<Angle>
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
-        long temp = degrees != +0.0d ? Double.doubleToLongBits(degrees) : 0L;
-        return (int) (temp ^ (temp >>> 32));
+        ulong temp = (ulong)( degrees != +0.0d ? BitConverter.DoubleToInt64Bits(degrees) : 0L);
+        return (int) (temp ^ (temp >> 32));
     }
-}
+
+    public int CompareTo( Angle other )
+    {
+      return this.degrees.CompareTo( other.getDegrees() );
+    }
+  }
 }

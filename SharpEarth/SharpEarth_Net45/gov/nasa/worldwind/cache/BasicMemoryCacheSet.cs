@@ -18,7 +18,7 @@ public class BasicMemoryCacheSet implements MemoryCacheSet
 {
     private ConcurrentHashMap<String, MemoryCache> caches = new ConcurrentHashMap<String, MemoryCache>();
 
-    public synchronized boolean containsCache(String key)
+    public synchronized bool containsCache(String key)
     {
         return this.caches.containsKey(key);
     }

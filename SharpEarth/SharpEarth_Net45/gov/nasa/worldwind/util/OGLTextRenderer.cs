@@ -25,31 +25,31 @@ public class OGLTextRenderer extends TextRenderer
     //   compatibility.
 
     protected static final java.awt.Font DEFAULT_FONT = java.awt.Font.decode("Arial-PLAIN-12");
-    protected static final boolean DEFAULT_ANTIALIAS = true;
-    protected static final boolean DEFAULT_USE_FRACTIONAL_METRICS = false;
-    protected static final boolean DEFAULT_MIPMAP = true;
-    protected static final boolean DEFAULT_SMOOTHING = true;
-    protected static final boolean DEFAULT_USE_VERTEX_ARRAYS = false;
+    protected static final bool DEFAULT_ANTIALIAS = true;
+    protected static final bool DEFAULT_USE_FRACTIONAL_METRICS = false;
+    protected static final bool DEFAULT_MIPMAP = true;
+    protected static final bool DEFAULT_SMOOTHING = true;
+    protected static final bool DEFAULT_USE_VERTEX_ARRAYS = false;
 
-    public OGLTextRenderer(java.awt.Font font, boolean antialiased, boolean useFractionalMetrics,
-        RenderDelegate renderDelegate, boolean mipmap)
+    public OGLTextRenderer(java.awt.Font font, bool antialiased, bool useFractionalMetrics,
+        RenderDelegate renderDelegate, bool mipmap)
     {
         super(font, antialiased, useFractionalMetrics, renderDelegate, mipmap);
         this.initialize();
     }
 
-    public OGLTextRenderer(java.awt.Font font, boolean antialiased, boolean useFractionalMetrics,
+    public OGLTextRenderer(java.awt.Font font, bool antialiased, bool useFractionalMetrics,
         RenderDelegate renderDelegate)
     {
         this(font, antialiased, useFractionalMetrics, renderDelegate, DEFAULT_MIPMAP);
     }
 
-    public OGLTextRenderer(java.awt.Font font, boolean antialiased, boolean useFractionalMetrics)
+    public OGLTextRenderer(java.awt.Font font, bool antialiased, bool useFractionalMetrics)
     {
         this(font, antialiased, useFractionalMetrics, null, DEFAULT_MIPMAP);
     }
 
-    public OGLTextRenderer(java.awt.Font font, boolean mipmap)
+    public OGLTextRenderer(java.awt.Font font, bool mipmap)
     {
         this(font, DEFAULT_ANTIALIAS, DEFAULT_USE_FRACTIONAL_METRICS, null, mipmap);
     }
@@ -79,7 +79,7 @@ public class OGLTextRenderer extends TextRenderer
 //                modifiersField.setAccessible(true);
 //                modifiersField.setInt(field, field.getModifiers() & ~Modifier.FINAL);
 //                field.setBoolean(TextRenderer.class, true);
-//                boolean tf = field.getBoolean(this);
+//                bool tf = field.getBoolean(this);
 //                System.out.println(tf);
 //            }
 //            catch (Exception e)
@@ -94,7 +94,7 @@ public class OGLTextRenderer extends TextRenderer
     //**************************************************************//
 
     public static TextRenderer getOrCreateTextRenderer(TextRendererCache cache,
-        java.awt.Font font, boolean antialiased, boolean useFractionalMetrics, boolean mipmap)
+        java.awt.Font font, bool antialiased, bool useFractionalMetrics, bool mipmap)
     {
         if (cache == null)
         {

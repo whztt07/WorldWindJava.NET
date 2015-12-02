@@ -112,7 +112,7 @@ public class PickedObjectList extends ArrayList<PickedObject>
         return list;
     }
 
-    public boolean hasNonTerrainObjects()
+    public bool hasNonTerrainObjects()
     {
         return this.size() > 1 || (this.size() == 1 && this.getTerrainObject() == null);
     }

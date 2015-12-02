@@ -373,7 +373,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @return true if the scene controller is picking, otherwise false
      */
-    boolean isPickingMode();
+    bool isPickingMode();
 
     /** Specifies that the scene controller has ended its pick traversal. */
     void disablePickingMode();
@@ -390,7 +390,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @return true if all items under the cursor are picked, otherwise false
      */
-    boolean isDeepPickingEnabled();
+    bool isDeepPickingEnabled();
 
     /**
      * Adds an {@link SharpEarth.render.OrderedRenderable} to the draw context's ordered renderable list.
@@ -414,7 +414,7 @@ public interface DrawContext extends WWObject, Disposable
      *                          renderables, or <code>false</code> to interpret the ordered renderable according to its
      *                          eye distance.
      */
-    void addOrderedRenderable(OrderedRenderable orderedRenderable, boolean isBehind);
+    void addOrderedRenderable(OrderedRenderable orderedRenderable, bool isBehind);
 
     /**
      * Adds an {@link SharpEarth.render.OrderedRenderable} to the draw context's ordered surface renderable
@@ -846,7 +846,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @return true if the scene controller is currently rendering its ordered renderables, otherwise false.
      */
-    boolean isOrderedRenderingMode();
+    bool isOrderedRenderingMode();
 
     /**
      * Called by the {@link SharpEarth.SceneController} to indicate whether it is currently drawing the draw
@@ -917,7 +917,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @return true if the projected extent is smaller than the specified number of pixels, otherwise false.
      */
-    boolean isSmall(Extent extent, int numPixels);
+    bool isSmall(Extent extent, int numPixels);
 
     /**
      * This is a diagnostic method to display normal vectors.
@@ -968,7 +968,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @see PreRenderable
      */
-    boolean isPreRenderMode();
+    bool isPreRenderMode();
 
     /**
      * Specifies whether the scene controller is pre-rendering.
@@ -1021,8 +1021,8 @@ public interface DrawContext extends WWObject, Disposable
      */
     ClutterFilter getClutterFilter();
 
-    boolean is2DGlobe();
+    bool is2DGlobe();
 
-    boolean isContinuous2DGlobe();
+    bool isContinuous2DGlobe();
 }
 }

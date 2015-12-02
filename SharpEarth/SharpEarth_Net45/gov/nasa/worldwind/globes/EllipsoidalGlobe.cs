@@ -112,11 +112,11 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
 
         @SuppressWarnings({"RedundantIfStatement"})
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             StateKey stateKey = (StateKey) o;
@@ -135,13 +135,13 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result;
             long temp;
             result = globe != null ? globe.hashCode() : 0;
             result = 31 * result + (tessellator != null ? tessellator.hashCode() : 0);
-            temp = verticalExaggeration != +0.0d ? Double.doubleToLongBits(verticalExaggeration) : 0L;
+            temp = verticalExaggeration != +0.0d ? BitConverter.DoubleToInt64Bits(verticalExaggeration) : 0L;
             result = 31 * result + (int) (temp ^ (temp >>> 32));
             result = 31 * result + (elevationModel != null ? elevationModel.hashCode() : 0);
             return result;
@@ -297,7 +297,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         return this.getRadius();
     }
 
-    public boolean intersects(Frustum frustum)
+    public bool intersects(Frustum frustum)
     {
         if (frustum == null)
         {
@@ -374,9 +374,9 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         if (t == null)
             return null;
 
-        boolean bA = isPointAboveElevation(t.getA(), elevation);
-        boolean bB = isPointAboveElevation(t.getB(), elevation);
-        boolean bC = isPointAboveElevation(t.getC(), elevation);
+        bool bA = isPointAboveElevation(t.getA(), elevation);
+        bool bB = isPointAboveElevation(t.getB(), elevation);
+        bool bC = isPointAboveElevation(t.getC(), elevation);
 
         if (!(bA ^ bB) && !(bB ^ bC))
             return null; // all triangle points are either above or below the given elevation
@@ -407,7 +407,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         return inter;
     }
 
-    public boolean intersects(Line line)
+    public bool intersects(Line line)
     {
         //noinspection SimplifiableIfStatement
         if (line == null)
@@ -416,7 +416,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         return line.distanceTo(this.center) <= this.equatorialRadius;
     }
 
-    public boolean intersects(Plane plane)
+    public bool intersects(Plane plane)
     {
         if (plane == null)
             return false;
@@ -1006,9 +1006,9 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
 //        double w = e2 * (u + v - q) / (2 * v);
 //        double k = Math.Sqrt(u + v + w * w) - w;
 //        double D = k * sqrtXXpYY / (k + e2);
-//        double lon = 2 * Math.ATan2(Y, X + sqrtXXpYY);
+//        double lon = 2 * Math.Atan2(Y, X + sqrtXXpYY);
 //        double sqrtDDpZZ = Math.Sqrt(D * D + Z * Z);
-//        double lat = 2 * Math.ATan2(Z, D + sqrtDDpZZ);
+//        double lat = 2 * Math.Atan2(Z, D + sqrtDDpZZ);
 //        double elevation = (k + e2 - 1) * sqrtDDpZZ / k;
 //
 //        return Position.fromRadians(lat, lon, elevation);
@@ -1102,7 +1102,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
                 double rad1 = Math.Sqrt(-evoluteBorderTest);
                 double rad2 = Math.Sqrt(-8 * r * r * r);
                 double rad3 = Math.Sqrt(e4 * p * q);
-                double atan = 2 * Math.ATan2(rad3, rad1 + rad2) / 3;
+                double atan = 2 * Math.Atan2(rad3, rad1 + rad2) / 3;
 
                 u = -4 * r * Math.Sin(atan) * Math.Cos(Math.PI / 6 + atan);
             }
@@ -1114,7 +1114,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
             double sqrtDDpZZ = Math.Sqrt(D * D + Z * Z);
 
             h = (k + e2 - 1) * sqrtDDpZZ / k;
-            phi = 2 * Math.ATan2(Z, sqrtDDpZZ + D);
+            phi = 2 * Math.Atan2(Z, sqrtDDpZZ + D);
         }
         else
         {
@@ -1133,18 +1133,18 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         if ((s2 - 1) * Y < sqrtXXpYY + X)
         {
             // case 1 - -135deg < lambda < 135deg
-            lambda = 2 * Math.ATan2(Y, sqrtXXpYY + X);
+            lambda = 2 * Math.Atan2(Y, sqrtXXpYY + X);
         }
         else if (sqrtXXpYY + Y < (s2 + 1) * X)
         {
             // case 2 - -225deg < lambda < 45deg
-            lambda = -Math.PI * 0.5 + 2 * Math.ATan2(X, sqrtXXpYY - Y);
+            lambda = -Math.PI * 0.5 + 2 * Math.Atan2(X, sqrtXXpYY - Y);
         }
         else
         {
             // if (sqrtXXpYY-Y<(s2=1)*X) {  // is the test, if needed, but it's not
             // case 3: - -45deg < lambda < 225deg
-            lambda = Math.PI * 0.5 - 2 * Math.ATan2(X, sqrtXXpYY + Y);
+            lambda = Math.PI * 0.5 - 2 * Math.Atan2(X, sqrtXXpYY + Y);
         }
 
         return Position.fromRadians(phi, lambda, h);
@@ -1317,7 +1317,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
      *
      * @return true if the given point is above the given elevation.
      */
-    public boolean isPointAboveElevation(Vec4 point, double elevation)
+    public bool isPointAboveElevation(Vec4 point, double elevation)
     {
         //noinspection SimplifiableIfStatement
         if (point == null)

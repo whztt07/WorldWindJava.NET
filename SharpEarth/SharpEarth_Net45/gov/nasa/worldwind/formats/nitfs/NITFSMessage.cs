@@ -128,7 +128,7 @@ public class NITFSMessage
                     break;
 
                 default:
-                    throw new NITFSRuntimeException("NITFSReader.UnknownOrUnsupportedSegment", segType.toString());
+                    throw new NITFSRuntimeException("NITFSReader.UnknownOrUnsupportedSegment", segType.ToString());
 
             }
             this.segments.add(segment);

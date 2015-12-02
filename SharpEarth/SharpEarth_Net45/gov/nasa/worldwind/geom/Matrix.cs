@@ -50,7 +50,7 @@ public class Matrix
     // 16 values in a 4x4 matrix.
     private static final int NUM_ELEMENTS = 16;
     // True when this matrix represents a 3D transform.
-    private final boolean isOrthonormalTransform;
+    private final bool isOrthonormalTransform;
     // Cached computations.
     private int hashCode;
 
@@ -83,7 +83,7 @@ public class Matrix
         double m21, double m22, double m23, double m24,
         double m31, double m32, double m33, double m34,
         double m41, double m42, double m43, double m44,
-        boolean isOrthonormalTransform)
+        bool isOrthonormalTransform)
     {
         this.m11 = m11;
         this.m12 = m12;
@@ -104,11 +104,11 @@ public class Matrix
         this.isOrthonormalTransform = isOrthonormalTransform;
     }
 
-    public final boolean equals(Object obj)
+    public final bool equals(Object obj)
     {
         if (this == obj)
             return true;
-        if (obj == null || obj.getClass() != this.getClass())
+        if (obj == null || obj.GetType() != this.GetType())
             return false;
 
         Matrix that = (Matrix) obj;
@@ -118,50 +118,50 @@ public class Matrix
             && (this.m41 == that.m41) && (this.m42 == that.m42) && (this.m43 == that.m43) && (this.m44 == that.m44);
     }
 
-    public final int hashCode()
+    public override int GetHashCode()
     {
         if (this.hashCode == 0)
         {
             int result;
             long tmp;
-            tmp = Double.doubleToLongBits(this.m11);
+            tmp = BitConverter.DoubleToInt64Bits(this.m11);
             result = (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m12);
+            tmp = BitConverter.DoubleToInt64Bits(this.m12);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m13);
+            tmp = BitConverter.DoubleToInt64Bits(this.m13);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m14);
+            tmp = BitConverter.DoubleToInt64Bits(this.m14);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m21);
+            tmp = BitConverter.DoubleToInt64Bits(this.m21);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m22);
+            tmp = BitConverter.DoubleToInt64Bits(this.m22);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m23);
+            tmp = BitConverter.DoubleToInt64Bits(this.m23);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m24);
+            tmp = BitConverter.DoubleToInt64Bits(this.m24);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m31);
+            tmp = BitConverter.DoubleToInt64Bits(this.m31);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m32);
+            tmp = BitConverter.DoubleToInt64Bits(this.m32);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m33);
+            tmp = BitConverter.DoubleToInt64Bits(this.m33);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m34);
+            tmp = BitConverter.DoubleToInt64Bits(this.m34);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m41);
+            tmp = BitConverter.DoubleToInt64Bits(this.m41);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m42);
+            tmp = BitConverter.DoubleToInt64Bits(this.m42);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m43);
+            tmp = BitConverter.DoubleToInt64Bits(this.m43);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.m44);
+            tmp = BitConverter.DoubleToInt64Bits(this.m44);
             result = 29 * result + (int) (tmp ^ (tmp >>> 32));
             this.hashCode = result;
         }
         return this.hashCode;
     }
 
-    public static Matrix fromArray(double[] compArray, int offset, boolean rowMajor)
+    public static Matrix fromArray(double[] compArray, int offset, bool rowMajor)
     {
         if (compArray == null)
         {
@@ -228,7 +228,7 @@ public class Matrix
         }
     }
 
-    public final double[] toArray(double[] compArray, int offset, boolean rowMajor)
+    public final double[] toArray(double[] compArray, int offset, bool rowMajor)
     {
         if (compArray == null)
         {
@@ -295,7 +295,7 @@ public class Matrix
         return compArray;
     }
 
-    public final String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
@@ -307,7 +307,7 @@ public class Matrix
         sb.append(", \r\n");
         sb.append(this.m41).append(", ").append(this.m42).append(", ").append(this.m43).append(", ").append(this.m44);
         sb.append(")");
-        return sb.toString();
+        return sb.ToString();
     }
 
     public final double getM11()
@@ -553,7 +553,7 @@ public class Matrix
         return fromAxisAngle(angle, axisX, axisY, axisZ, true);
     }
 
-    private static Matrix fromAxisAngle(Angle angle, double axisX, double axisY, double axisZ, boolean normalize)
+    private static Matrix fromAxisAngle(Angle angle, double axisX, double axisY, double axisZ, bool normalize)
     {
         if (angle == null)
         {
@@ -610,7 +610,7 @@ public class Matrix
         return fromQuaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w, true);
     }
 
-    private static Matrix fromQuaternion(double x, double y, double z, double w, boolean normalize)
+    private static Matrix fromQuaternion(double x, double y, double z, double w, bool normalize)
     {
         if (normalize)
         {
@@ -795,10 +795,10 @@ public class Matrix
         }
         else
         {
-            if (Math.Abs(Math.tan(theta.getRadians())) > EPSILON)
-                cotTheta = 1 / Math.tan(theta.getRadians());
-            if (Math.Abs(Math.tan(phi.getRadians())) > EPSILON)
-                cotPhi = 1 / Math.tan(phi.getRadians());
+            if (Math.Abs(Math.Tan(theta.getRadians())) > EPSILON)
+                cotTheta = 1 / Math.Tan(theta.getRadians());
+            if (Math.Abs(Math.Tan(phi.getRadians())) > EPSILON)
+                cotPhi = 1 / Math.Tan(phi.getRadians());
         }
 
         return new Matrix(
@@ -2298,7 +2298,7 @@ public class Matrix
 
     public final Angle getRotationX()
     {
-        double yRadians = Math.ASin(this.m13);
+        double yRadians = Math.Asin(this.m13);
         double cosY = Math.Cos(yRadians);
         if (isZero(cosY))
             return null;
@@ -2307,7 +2307,7 @@ public class Matrix
         // No Gimball lock.
         if (Math.Abs(cosY) > 0.005)
         {
-            xRadians = Math.ATan2(-this.m23 / cosY, this.m33 / cosY);
+            xRadians = Math.Atan2(-this.m23 / cosY, this.m33 / cosY);
         }
         // Gimball lock has occurred. Rotation around X axis becomes rotation around Z axis.
         else
@@ -2315,7 +2315,7 @@ public class Matrix
             xRadians = 0;
         }
 
-        if (Double.isNaN(xRadians))
+        if (Double.IsNaN(xRadians))
             return null;
 
         return Angle.fromRadians(xRadians);
@@ -2323,8 +2323,8 @@ public class Matrix
 
     public final Angle getRotationY()
     {
-        double yRadians = Math.ASin(this.m13);
-        if (Double.isNaN(yRadians))
+        double yRadians = Math.Asin(this.m13);
+        if (Double.IsNaN(yRadians))
             return null;
 
         return Angle.fromRadians(yRadians);
@@ -2332,7 +2332,7 @@ public class Matrix
 
     public final Angle getRotationZ()
     {
-        double yRadians = Math.ASin(this.m13);
+        double yRadians = Math.Asin(this.m13);
         double cosY = Math.Cos(yRadians);
         if (isZero(cosY))
             return null;
@@ -2341,15 +2341,15 @@ public class Matrix
         // No Gimball lock.
         if (Math.Abs(cosY) > 0.005)
         {
-            zRadians = Math.ATan2(-this.m12 / cosY, this.m11 / cosY);
+            zRadians = Math.Atan2(-this.m12 / cosY, this.m11 / cosY);
         }
         // Gimball lock has occurred. Rotation around X axis becomes rotation around Z axis.
         else
         {
-            zRadians = Math.ATan2(this.m21, this.m22);
+            zRadians = Math.Atan2(this.m21, this.m22);
         }
 
-        if (Double.isNaN(zRadians))
+        if (Double.IsNaN(zRadians))
             return null;
 
         return Angle.fromRadians(zRadians);
@@ -2357,8 +2357,8 @@ public class Matrix
 
     public final Angle getKMLRotationX()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.ASin(-this.m23);
-        if (Double.isNaN(xRadians))
+        double xRadians = Math.Asin(-this.m23);
+        if (Double.IsNaN(xRadians))
             return null;
 
         return Angle.fromRadians(-xRadians);    // negate to make angle CW
@@ -2366,8 +2366,8 @@ public class Matrix
 
     public final Angle getKMLRotationY()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.ASin(-this.m23);
-        if (Double.isNaN(xRadians))
+        double xRadians = Math.Asin(-this.m23);
+        if (Double.IsNaN(xRadians))
             return null;
 
         double yRadians;
@@ -2375,19 +2375,19 @@ public class Matrix
         {
             if (xRadians > -Math.PI / 2)
             {
-                yRadians = Math.ATan2(this.m13, this.m33);
+                yRadians = Math.Atan2(this.m13, this.m33);
             }
             else
             {
-                yRadians = -Math.ATan2(-this.m12, this.m11);
+                yRadians = -Math.Atan2(-this.m12, this.m11);
             }
         }
         else
         {
-            yRadians = Math.ATan2(-this.m12, this.m11);
+            yRadians = Math.Atan2(-this.m12, this.m11);
         }
 
-        if (Double.isNaN(yRadians))
+        if (Double.IsNaN(yRadians))
             return null;
 
         return Angle.fromRadians(-yRadians);    // negate angle to make it CW
@@ -2395,21 +2395,21 @@ public class Matrix
 
     public final Angle getKMLRotationZ()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.ASin(-this.m23);
-        if (Double.isNaN(xRadians))
+        double xRadians = Math.Asin(-this.m23);
+        if (Double.IsNaN(xRadians))
             return null;
 
         double zRadians;
         if (xRadians < Math.PI / 2 && xRadians > -Math.PI / 2)
         {
-            zRadians = Math.ATan2(this.m21, this.m22);
+            zRadians = Math.Atan2(this.m21, this.m22);
         }
         else
         {
             zRadians = 0;
         }
 
-        if (Double.isNaN(zRadians))
+        if (Double.IsNaN(zRadians))
             return null;
 
         return Angle.fromRadians(-zRadians);    // negate angle to make it CW
@@ -2526,13 +2526,13 @@ public class Matrix
 
         double ct = m.m33;
         double st = Math.Sqrt(m.m13 * m.m13 + m.m23 * m.m23);
-        double tilt = Math.ATan2(st, ct);
+        double tilt = Math.Atan2(st, ct);
 
         double cr = Math.Cos(roll.radians);
         double sr = Math.Sin(roll.radians);
         double ch = cr * m.m11 - sr * m.m21;
         double sh = sr * m.m22 - cr * m.m12;
-        double heading = Math.ATan2(sh, ch);
+        double heading = Math.Atan2(sh, ch);
 
         AVList parameters = new AVListImpl();
         parameters.setValue(AVKey.ORIGIN, originPos);
@@ -2552,7 +2552,7 @@ public class Matrix
 
     private static final Double NEGATIVE_ZERO = -0.0d;
 
-    private static boolean isZero(double value)
+    private static bool isZero(double value)
     {
         return (POSITIVE_ZERO.compareTo(value) == 0)
             || (NEGATIVE_ZERO.compareTo(value) == 0);

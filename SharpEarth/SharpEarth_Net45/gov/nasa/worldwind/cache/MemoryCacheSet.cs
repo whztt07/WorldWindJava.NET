@@ -15,7 +15,7 @@ namespace SharpEarth.cache{
  */
 public interface MemoryCacheSet
 {
-    boolean containsCache(String key);
+    bool containsCache(String key);
 
     MemoryCache getCache(String cacheKey);
 

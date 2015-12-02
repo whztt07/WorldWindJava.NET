@@ -26,8 +26,8 @@ namespace SharpEarth.ogc.kml.impl{
 public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderable
 {
     protected final KMLPlacemark parent;
-    protected boolean highlightAttributesResolved = false;
-    protected boolean normalAttributesResolved = false;
+    protected bool highlightAttributesResolved = false;
+    protected bool normalAttributesResolved = false;
 
     /** Indicates the time at which the image source was specified. */
     protected long iconRetrievalTime;
@@ -181,7 +181,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
             {
                 // Evict the resource from the file store if there is a cached resource older than the icon update
                 // time. This prevents fetching a stale resource out of the cache when the Icon is updated.
-                boolean highlighted = this.isHighlighted();
+                bool highlighted = this.isHighlighted();
                 this.parent.getRoot().evictIfExpired(path,
                     highlighted ? this.highlightIconRetrievalTime : this.iconRetrievalTime);
                 this.textures.remove(path);
@@ -194,7 +194,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
      *
      * @return True if the icon has expired and must be refreshed.
      */
-    protected boolean mustRefreshIcon()
+    protected bool mustRefreshIcon()
     {
         String mode;
         long retrievalTime;
@@ -261,7 +261,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
      * @return True if the label must be drawn.
      */
     @Override
-    protected boolean mustDrawLabel()
+    protected bool mustDrawLabel()
     {
         double labelScale = this.getActiveAttributes().getLabelScale() != null
             ? this.getActiveAttributes().getLabelScale() : PointPlacemarkAttributes.DEFAULT_LABEL_SCALE;
@@ -281,9 +281,9 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
      */
     protected PointPlacemarkAttributes makeAttributesCurrent(String attrType)
     {
-        boolean hasLineStyle = false;
-        boolean hasIconStyle = false;
-        boolean hasLabelStyle = false;
+        bool hasLineStyle = false;
+        bool hasIconStyle = false;
+        bool hasLabelStyle = false;
 
         PointPlacemarkAttributes attrs = this.getInitialAttributes(
             this.isHighlighted() ? KMLConstants.HIGHLIGHT : KMLConstants.NORMAL);

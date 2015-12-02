@@ -97,7 +97,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if texture should be applied, otherwise false.
      */
-    abstract protected boolean mustApplyTexture(DrawContext dc);
+    abstract protected bool mustApplyTexture(DrawContext dc);
 
     /**
      * Produces the geometry and other state necessary to represent this shape as an ordered renderable. Places this
@@ -114,7 +114,7 @@ public abstract class AbstractShape extends WWObjectImpl
      * @see #pick(DrawContext, java.awt.Point)
      * @see #render(DrawContext)
      */
-    abstract protected boolean doMakeOrderedRenderable(DrawContext dc);
+    abstract protected bool doMakeOrderedRenderable(DrawContext dc);
 
     /**
      * Determines whether this shape's ordered renderable state is valid and can be rendered. Called by {@link
@@ -124,7 +124,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if this shape is ready to be rendered as an ordered renderable.
      */
-    abstract protected boolean isOrderedRenderableValid(DrawContext dc);
+    abstract protected bool isOrderedRenderableValid(DrawContext dc);
 
     /**
      * Draws this shape's outline. Called immediately after calling {@link #prepareToDrawOutline(DrawContext,
@@ -186,19 +186,19 @@ public abstract class AbstractShape extends WWObjectImpl
      */
     protected ShapeAttributes activeAttributes = new BasicShapeAttributes(); // re-determined each frame
 
-    protected boolean highlighted;
-    protected boolean visible = true;
+    protected bool highlighted;
+    protected bool visible = true;
     protected int altitudeMode = DEFAULT_ALTITUDE_MODE;
-    protected boolean enableBatchRendering = true;
-    protected boolean enableBatchPicking = true;
-    protected boolean enableDepthOffset;
+    protected bool enableBatchRendering = true;
+    protected bool enableBatchPicking = true;
+    protected bool enableDepthOffset;
     protected int outlinePickWidth = DEFAULT_OUTLINE_PICK_WIDTH;
     protected Sector sector; // the shape's bounding sector
     protected Position referencePosition; // the location/position to use as the shape's reference point
     protected Object delegateOwner; // for app use to identify an owner of this shape other than the current layer
     protected long maxExpiryTime = DEFAULT_GEOMETRY_GENERATION_INTERVAL;
     protected long minExpiryTime = Math.max(DEFAULT_GEOMETRY_GENERATION_INTERVAL - 500, 0);
-    protected boolean viewDistanceExpiration = true;
+    protected bool viewDistanceExpiration = true;
     protected SurfaceShape surfaceShape;
 
     // Volatile values used only during frame generation.
@@ -295,17 +295,17 @@ public abstract class AbstractShape extends WWObjectImpl
     /** Outlined shapes are drawn as {@link SharpEarth.render.OutlinedShape}s. */
     protected OutlinedShape outlineShapeRenderer = new OutlinedShape()
     {
-        public boolean isDrawOutline(DrawContext dc, Object shape)
+        public bool isDrawOutline(DrawContext dc, Object shape)
         {
             return ((AbstractShape) shape).mustDrawOutline();
         }
 
-        public boolean isDrawInterior(DrawContext dc, Object shape)
+        public bool isDrawInterior(DrawContext dc, Object shape)
         {
             return ((AbstractShape) shape).mustDrawInterior();
         }
 
-        public boolean isEnableDepthOffset(DrawContext dc, Object shape)
+        public bool isEnableDepthOffset(DrawContext dc, Object shape)
         {
             return ((AbstractShape) shape).isEnableDepthOffset();
         }
@@ -409,7 +409,7 @@ public abstract class AbstractShape extends WWObjectImpl
             this.surfaceShape.setHighlightAttributes(highlightAttrs);
     }
 
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return highlighted;
     }
@@ -426,7 +426,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @see #setVisible(boolean)
      */
-    public boolean isVisible()
+    public bool isVisible()
     {
         return visible;
     }
@@ -486,7 +486,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @see #setEnableBatchRendering(boolean).
      */
-    public boolean isEnableBatchRendering()
+    public bool isEnableBatchRendering()
     {
         return enableBatchRendering;
     }
@@ -510,7 +510,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @see #setEnableBatchPicking(boolean).
      */
-    public boolean isEnableBatchPicking()
+    public bool isEnableBatchPicking()
     {
         return enableBatchPicking;
     }
@@ -569,7 +569,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if depth offset is applied, otherwise false.
      */
-    public boolean isEnableDepthOffset()
+    public bool isEnableDepthOffset()
     {
         return this.enableDepthOffset;
     }
@@ -735,7 +735,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if this shape's geometry must be regenerated, otherwise false.
      */
-    protected boolean mustRegenerateGeometry(DrawContext dc)
+    protected bool mustRegenerateGeometry(DrawContext dc)
     {
         return this.getCurrentData().isExpired(dc) || !this.getCurrentData().isValid(dc);
     }
@@ -747,7 +747,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if this shape should use vertex buffer objects, otherwise false.
      */
-    protected boolean shouldUseVBOs(DrawContext dc)
+    protected bool shouldUseVBOs(DrawContext dc)
     {
         return dc.getGLRuntimeCapabilities().isUseVertexBufferObject();
     }
@@ -757,7 +757,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if an interior must be drawn, otherwise false.
      */
-    protected boolean mustDrawInterior()
+    protected bool mustDrawInterior()
     {
         return this.getActiveAttributes().isDrawInterior();
     }
@@ -767,7 +767,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if the outline should be drawn, otherwise false.
      */
-    protected boolean mustDrawOutline()
+    protected bool mustDrawOutline()
     {
         return this.getActiveAttributes().isDrawOutline();
     }
@@ -780,7 +780,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if lighting must be applied, otherwise false.
      */
-    protected boolean mustApplyLighting(DrawContext dc)
+    protected bool mustApplyLighting(DrawContext dc)
     {
         return this.mustApplyLighting(dc, null);
     }
@@ -795,7 +795,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if lighting must be applied, otherwise false.
      */
-    protected boolean mustApplyLighting(DrawContext dc, ShapeAttributes activeAttrs)
+    protected bool mustApplyLighting(DrawContext dc, ShapeAttributes activeAttrs)
     {
         return activeAttrs != null ? activeAttrs.isEnableLighting() : this.activeAttributes.isEnableLighting();
     }
@@ -808,7 +808,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if normal vectors must be computed, otherwise false.
      */
-    protected boolean mustCreateNormals(DrawContext dc)
+    protected bool mustCreateNormals(DrawContext dc)
     {
         return this.mustCreateNormals(dc, null);
     }
@@ -824,7 +824,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if normal vectors must be computed, otherwise false.
      */
-    protected boolean mustCreateNormals(DrawContext dc, ShapeAttributes activeAttrs)
+    protected bool mustCreateNormals(DrawContext dc, ShapeAttributes activeAttrs)
     {
         return this.mustApplyLighting(dc, activeAttrs);
     }
@@ -1026,7 +1026,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if this shape's geometry depends on the terrain, otherwise false.
      */
-    protected boolean isTerrainDependent()
+    protected bool isTerrainDependent()
     {
         return this.getAltitudeMode() != WorldWind.ABSOLUTE;
     }
@@ -1039,7 +1039,7 @@ public abstract class AbstractShape extends WWObjectImpl
      * @return true if the terrain dependent geometry is updated as the eye distance changes, otherwise false. The
      * default is true.
      */
-    public boolean isViewDistanceExpiration()
+    public bool isViewDistanceExpiration()
     {
         return viewDistanceExpiration;
     }
@@ -1093,7 +1093,7 @@ public abstract class AbstractShape extends WWObjectImpl
      *
      * @return true if this shape intersects the frustum, otherwise false.
      */
-    protected boolean intersectsFrustum(DrawContext dc)
+    protected bool intersectsFrustum(DrawContext dc)
     {
         if (this.getExtent() == null)
             return true; // don't know the visibility, shape hasn't been computed yet
@@ -1142,7 +1142,7 @@ public abstract class AbstractShape extends WWObjectImpl
 
         if (!dc.isPickingMode())
         {
-            while (nextItem != null && nextItem.getClass() == this.getClass())
+            while (nextItem != null && nextItem.GetType() == this.GetType())
             {
                 AbstractShape shape = (AbstractShape) nextItem;
                 if (!shape.isEnableBatchRendering())
@@ -1156,7 +1156,7 @@ public abstract class AbstractShape extends WWObjectImpl
         }
         else if (this.isEnableBatchPicking())
         {
-            while (nextItem != null && nextItem.getClass() == this.getClass())
+            while (nextItem != null && nextItem.GetType() == this.GetType())
             {
                 AbstractShape shape = (AbstractShape) nextItem;
                 if (!shape.isEnableBatchRendering() || !shape.isEnableBatchPicking())
@@ -1652,7 +1652,7 @@ public abstract class AbstractShape extends WWObjectImpl
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -1678,7 +1678,7 @@ public abstract class AbstractShape extends WWObjectImpl
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {

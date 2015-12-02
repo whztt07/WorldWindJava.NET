@@ -378,7 +378,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
             case java.awt.image.DataBuffer.TYPE_BYTE:
                 return (Byte.SIZE / 8);
             case java.awt.image.DataBuffer.TYPE_DOUBLE:
-                return (Double.SIZE / 8);
+                return (sizeof(double) / 8);
             case java.awt.image.DataBuffer.TYPE_FLOAT:
                 return (Float.SIZE / 8);
             case java.awt.image.DataBuffer.TYPE_INT:
@@ -582,7 +582,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         if (!params.hasKey(AVKey.DATE_TIME))
         {
             // add NUL (\0) termination as required by TIFF v6 spec (20 bytes length)
-            String timestamp = String.format("%1$tY:%1$tm:%1$td %tT\0", Calendar.getInstance());
+            String timestamp = String.Format("%1$tY:%1$tm:%1$td %tT\0", Calendar.getInstance());
             parameters.setValue(AVKey.DATE_TIME, timestamp);
         }
 
@@ -591,7 +591,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
             parameters.setValue(AVKey.VERSION, Version.getVersion());
         }
 
-        boolean hasAlpha = (null != image.getColorModel() && image.getColorModel().hasAlpha());
+        bool hasAlpha = (null != image.getColorModel() && image.getColorModel().hasAlpha());
         parameters.setValue(AVKey.RASTER_HAS_ALPHA, hasAlpha);
 
         return new BufferedImageRaster(sector, image, parameters);

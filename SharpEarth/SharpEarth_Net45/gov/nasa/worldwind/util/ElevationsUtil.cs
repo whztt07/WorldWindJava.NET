@@ -32,7 +32,7 @@ public class ElevationsUtil
     * @return <code>TRUE</code>, if the value is one of the well known "nodata" values
     *
     */
-   public static boolean isKnownMissingSignal(Double value)
+   public static bool isKnownMissingSignal(Double value)
    {
        if( null != value )
        {
@@ -103,7 +103,7 @@ public class ElevationsUtil
        // Allocate a buffer to hold one row of scalar values.
        double[] array = new double[width];
 
-       boolean needsConversion = false;
+       bool needsConversion = false;
        double conversionValue = 1d;
 
        if( raster.hasKey(AVKey.ELEVATION_UNIT) )
@@ -129,12 +129,12 @@ public class ElevationsUtil
            }
        }
 
-       boolean rasterHasVoids = false;
+       bool rasterHasVoids = false;
 
        for (int j = 0; j < height; j++)
        {
            bufferWrapper.getDouble( j * width, array, 0, width );
-           boolean commitChanges = false;
+           bool commitChanges = false;
 
            for (int i = 0; i < width; i++)
            {

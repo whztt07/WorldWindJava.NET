@@ -41,7 +41,7 @@ namespace SharpEarth.util{
  */
 public class OGLRenderToTextureSupport
 {
-    protected boolean isFramebufferObjectEnabled;
+    protected bool isFramebufferObjectEnabled;
     protected Texture colorTarget;
     protected java.awt.Rectangle drawRegion;
     protected OGLStackHandler stackHandler;
@@ -60,7 +60,7 @@ public class OGLRenderToTextureSupport
      *
      * @return true if framebuffer objects are enabled, and false otherwise.
      */
-    public boolean isEnableFramebufferObject()
+    public bool isEnableFramebufferObject()
     {
         return this.isFramebufferObjectEnabled;
     }
@@ -381,7 +381,7 @@ public class OGLRenderToTextureSupport
         }
     }
 
-    protected boolean useFramebufferObject(DrawContext dc)
+    protected bool useFramebufferObject(DrawContext dc)
     {
         return this.isEnableFramebufferObject() && dc.getGLRuntimeCapabilities().isUseFramebufferObject();
     }

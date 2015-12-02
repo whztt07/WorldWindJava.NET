@@ -64,7 +64,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
     }
 
     @Override
-    public boolean add(Object key, Object clientObject, long clientObjectSize)
+    public bool add(Object key, Object clientObject, long clientObjectSize)
     {
         BasicMemoryCache.CacheEntry entry = new BasicMemoryCache.CacheEntry(key, clientObject, clientObjectSize);
 

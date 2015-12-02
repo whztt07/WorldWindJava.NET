@@ -134,7 +134,7 @@ public class XMLParserNotification extends PropertyChangeEvent
 
         if (this.event != null)
         {
-            msg = Logging.getMessage(this.message, this.event.toString(),
+            msg = Logging.getMessage(this.message, this.event.ToString(),
                 this.event.getLocation().getLineNumber(),
                 this.event.getLocation().getColumnNumber(),
                 this.event.getLocation().getCharacterOffset());

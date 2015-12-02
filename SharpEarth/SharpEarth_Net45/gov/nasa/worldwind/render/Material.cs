@@ -278,11 +278,11 @@ public class Material
         return new Material(specular, diffuse, ambient, emission, (float) shininess);
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         Material that = (Material) o;
@@ -302,10 +302,10 @@ public class Material
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
-        long temp = (this.shininess != +0.0d) ? Double.doubleToLongBits(this.shininess) : 0L;
+        long temp = (this.shininess != +0.0d) ? BitConverter.DoubleToInt64Bits(this.shininess) : 0L;
         result = (int) (temp ^ (temp >>> 32));
         result = 31 * result + (this.ambient != null ? this.ambient.hashCode() : 0);
         result = 31 * result + (this.diffuse != null ? this.diffuse.hashCode() : 0);

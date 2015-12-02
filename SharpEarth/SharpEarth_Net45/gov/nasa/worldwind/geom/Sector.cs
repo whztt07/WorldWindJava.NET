@@ -456,7 +456,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
             double az;
             if (Math.Abs(Angle.POS90.radians - halfDeltaLatRadians)
                 > 0.001) // Consider within 1/1000th of a radian to be equal
-                az = Math.Acos(Math.tan(halfDeltaLatRadians) * Math.tan(center.latitude.radians));
+                az = Math.Acos(Math.Tan(halfDeltaLatRadians) * Math.Tan(center.latitude.radians));
             else
                 az = Angle.POS90.radians;
 
@@ -618,13 +618,13 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
         return this.deltaLon.radians;//this.maxLongitude.radians - this.minLongitude.radians;
     }
 
-    public boolean isWithinLatLonLimits()
+    public bool isWithinLatLonLimits()
     {
         return this.minLatitude.degrees >= -90 && this.maxLatitude.degrees <= 90
             && this.minLongitude.degrees >= -180 && this.maxLongitude.degrees <= 180;
     }
 
-    public boolean isSameSector(Iterable<? extends LatLon> corners)
+    public bool isSameSector(Iterable<? extends LatLon> corners)
     {
         if (corners == null)
         {
@@ -642,7 +642,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
     }
 
     @SuppressWarnings({"RedundantIfStatement"})
-    public static boolean isSector(Iterable<? extends LatLon> corners)
+    public static bool isSector(Iterable<? extends LatLon> corners)
     {
         if (corners == null)
         {
@@ -1031,7 +1031,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
             maxElevation);
     }
 
-    public final boolean contains(Angle latitude, Angle longitude)
+    public final bool contains(Angle latitude, Angle longitude)
     {
         if (latitude == null || longitude == null)
         {
@@ -1054,7 +1054,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @throws ArgumentException if <code>latlon</code> is null.
      */
-    public final boolean contains(LatLon latLon)
+    public final bool contains(LatLon latLon)
     {
         if (latLon == null)
         {
@@ -1076,13 +1076,13 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @return <code>true</code> if the position is within the sector, <code>false</code> otherwise.
      */
-    public boolean containsRadians(double radiansLatitude, double radiansLongitude)
+    public bool containsRadians(double radiansLatitude, double radiansLongitude)
     {
         return radiansLatitude >= this.minLatitude.radians && radiansLatitude <= this.maxLatitude.radians
             && radiansLongitude >= this.minLongitude.radians && radiansLongitude <= this.maxLongitude.radians;
     }
 
-    public boolean containsDegrees(double degreesLatitude, double degreesLongitude)
+    public bool containsDegrees(double degreesLatitude, double degreesLongitude)
     {
         return degreesLatitude >= this.minLatitude.degrees && degreesLatitude <= this.maxLatitude.degrees
             && degreesLongitude >= this.minLongitude.degrees && degreesLongitude <= this.maxLongitude.degrees;
@@ -1097,7 +1097,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @return <code>true</code> if this sector fully contains the input sector, otherwise <code>false</code>.
      */
-    public boolean contains(Sector that)
+    public bool contains(Sector that)
     {
         if (that == null)
             return false;
@@ -1125,7 +1125,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @return <code>true</code> if the sectors intersect, otherwise <code>false</code>.
      */
-    public boolean intersects(Sector that)
+    public bool intersects(Sector that)
     {
         if (that == null)
             return false;
@@ -1155,7 +1155,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @see #intersects(Sector)
      */
-    public boolean intersectsInterior(Sector that)
+    public bool intersectsInterior(Sector that)
     {
         if (that == null)
             return false;
@@ -1187,7 +1187,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @throws ArgumentException if either the begin location or the end location is null.
      */
-    public boolean intersectsSegment(LatLon begin, LatLon end)
+    public bool intersectsSegment(LatLon begin, LatLon end)
     {
         if (begin == null)
         {
@@ -1244,7 +1244,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *
      * @throws java.lang.ArgumentException if the iterable is null.
      */
-    public boolean intersectsAny(Iterable<? extends Sector> sectors)
+    public bool intersectsAny(Iterable<? extends Sector> sectors)
     {
         if (sectors == null)
         {
@@ -1559,20 +1559,20 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
     {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
-        sb.append(this.minLatitude.toString());
+        sb.append(this.minLatitude.ToString());
         sb.append(", ");
-        sb.append(this.minLongitude.toString());
+        sb.append(this.minLongitude.ToString());
         sb.append(")");
 
         sb.append(", ");
 
         sb.append("(");
-        sb.append(this.maxLatitude.toString());
+        sb.append(this.maxLatitude.ToString());
         sb.append(", ");
-        sb.append(this.maxLongitude.toString());
+        sb.append(this.maxLongitude.ToString());
         sb.append(")");
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -1643,7 +1643,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
         {
             private int position = 0;
 
-            public boolean hasNext()
+            public bool hasNext()
             {
                 return this.position < 4;
             }
@@ -1754,11 +1754,11 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      *         otherwise.
      */
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final SharpEarth.geom.Sector sector = (gov.nasa.worldwind.geom.Sector) o;
@@ -1782,7 +1782,7 @@ public class Sector implements Cacheable, Comparable<Sector>, Iterable<LatLon>
      * @return a hash code incorporating the sector's four angles.
      */
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = minLatitude.hashCode();

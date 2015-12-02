@@ -44,11 +44,11 @@ public interface Annotation extends Renderable, Disposable, Restorable
     @Deprecated
     public final static String SIZE_FIT_TEXT = AVKey.SIZE_FIT_TEXT;
 
-    boolean isAlwaysOnTop();
+    bool isAlwaysOnTop();
 
     void setAlwaysOnTop(boolean alwaysOnTop);
 
-    boolean isPickEnabled();
+    bool isPickEnabled();
 
     void setPickEnabled(boolean enable);
 
@@ -64,7 +64,7 @@ public interface Annotation extends Renderable, Disposable, Restorable
 
     void addChild(Annotation annotation);
 
-    boolean removeChild(Annotation annotation);
+    bool removeChild(Annotation annotation);
 
     void removeAllChildren();
 

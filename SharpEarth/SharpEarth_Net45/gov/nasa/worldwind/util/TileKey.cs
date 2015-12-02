@@ -176,11 +176,11 @@ public class TileKey implements Comparable<TileKey>
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final TileKey tileKey = (TileKey) o;
@@ -197,7 +197,7 @@ public class TileKey implements Comparable<TileKey>
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         return this.hash;
     }

@@ -173,7 +173,7 @@ public class VPFUtils
             sb.append((char) b);
         }
 
-        return (i < remain) ? sb.toString().trim() : null;
+        return (i < remain) ? sb.ToString().trim() : null;
     }
 
     public static void checkAndSetValue(VPFRecord record, String paramName, String paramKey, AVList parameters)

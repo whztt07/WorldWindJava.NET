@@ -21,7 +21,7 @@ public interface OrbitView extends View
      *
      * @return <code>true</code> If this <code>View</code> will detect collisions; <code>false</code> otherwise.
      */
-    boolean isDetectCollisions();
+    bool isDetectCollisions();
 
     /**
      * Sets whether or not this <code>View</code> will detect collisions with other objects,
@@ -40,7 +40,7 @@ public interface OrbitView extends View
      *
      * @return <code>true</code> if a collision has occurred since the last call; <code>false</code> otherwise.
      */
-    boolean hadCollisions();
+    bool hadCollisions();
 
     /**
      * Get the center position of the OrbitView.  The center position is used as the point about which the
@@ -94,7 +94,7 @@ public interface OrbitView extends View
      * changes to the viewport center intersection with the globe surface via a call to {@link #focusOnViewportCenter}.
      * @return true if the OrbitView implementation can focus on the viewport center.
      **/
-    boolean canFocusOnViewportCenter();
+    bool canFocusOnViewportCenter();
 
     /**
      * Implementations are expected to set the center of rotation for heading and pitch at the intersection of a ray

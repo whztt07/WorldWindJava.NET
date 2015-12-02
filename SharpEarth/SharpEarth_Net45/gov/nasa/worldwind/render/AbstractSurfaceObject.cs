@@ -45,12 +45,12 @@ namespace SharpEarth.render{
 public abstract class AbstractSurfaceObject extends WWObjectImpl implements SurfaceObject
 {
     // Public interface properties.
-    protected boolean visible;
+    protected bool visible;
     protected final long uniqueId;
     protected long lastModifiedTime;
     protected Object delegateOwner;
-    protected boolean enableBatchPicking;
-    protected boolean drawBoundingSectors;
+    protected bool enableBatchPicking;
+    protected bool drawBoundingSectors;
     protected Map<Object, CacheEntry> extentCache = new HashMap<Object, CacheEntry>();
     // Picking properties.
     protected Layer pickLayer;
@@ -101,7 +101,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
     }
 
     /** {@inheritDoc} */
-    public boolean isVisible()
+    public bool isVisible()
     {
         return this.visible;
     }
@@ -144,7 +144,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
      *
      * @see #setDrawBoundingSectors(boolean)
      */
-    public boolean isDrawBoundingSectors()
+    public bool isDrawBoundingSectors()
     {
         return this.drawBoundingSectors;
     }
@@ -165,7 +165,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
 
     /** {@inheritDoc} */
     @Override
-    public boolean isEnableBatchPicking()
+    public bool isEnableBatchPicking()
     {
         return this.enableBatchPicking;
     }
@@ -372,7 +372,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
      *
      * @return true if this SurfaceObject intersects the draw context's frustum; false otherwise.
      */
-    protected boolean intersectsFrustum(DrawContext dc)
+    protected bool intersectsFrustum(DrawContext dc)
     {
         // A null extent indicates an object which has no location.
         Extent extent = this.getExtent(dc);
@@ -394,7 +394,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
      *
      * @return true if this SurfaceObject intersects any of the draw context's pick frustums; false otherwise.
      */
-    protected boolean intersectsPickFrustum(DrawContext dc)
+    protected bool intersectsPickFrustum(DrawContext dc)
     {
         // Test this object's extent against the pick frustum list. A null extent indicates the object has no location.
         Extent extent = this.getExtent(dc);
@@ -409,7 +409,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
      *
      * @return true if this SurfaceObject intersects the draw context's visible sector; false otherwise.
      */
-    protected boolean intersectsVisibleSector(DrawContext dc)
+    protected bool intersectsVisibleSector(DrawContext dc)
     {
         if (dc.getVisibleSector() == null)
             return false;
@@ -634,8 +634,8 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
         // ordered picking mode while the surface object's pickable representation is built. During ordered picking mode
         // the surface objects draws a pickable representation of itself in the surface tile's, and culls tiles against
         // the pick frustum.
-        boolean prevPickingMode = dc.isPickingMode();
-        boolean prevOrderedRenderingMode = dc.isOrderedRenderingMode();
+        bool prevPickingMode = dc.isPickingMode();
+        bool prevOrderedRenderingMode = dc.isOrderedRenderingMode();
         try
         {
             if (!prevPickingMode)
@@ -796,11 +796,11 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
 
         @Override
         @SuppressWarnings({"SimplifiableIfStatement"})
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             SurfaceObjectStateKey that = (SurfaceObjectStateKey) o;
@@ -808,7 +808,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             return 31 * (int) (this.uniqueId ^ (this.uniqueId >>> 32))
                 + (int) (this.modifiedTime ^ (this.modifiedTime >>> 32));

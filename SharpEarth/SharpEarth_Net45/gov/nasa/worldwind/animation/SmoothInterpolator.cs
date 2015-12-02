@@ -11,7 +11,7 @@ namespace SharpEarth.animation{
  */
 public class SmoothInterpolator extends ScheduledInterpolator
 {
-    private boolean useMidZoom = true;
+    private bool useMidZoom = true;
     private final int MAX_SMOOTHING = 3;
     private final double START = this.useMidZoom ? 0.0 : 0.6;
     private final double STOP = 1.0;

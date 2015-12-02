@@ -104,10 +104,10 @@ public class KMLStyle extends KMLAbstractStyleSelector
         if (!this.hasFields())
             return subStyle;
 
-        Class subStyleClass = subStyle.getClass();
+        Class subStyleClass = subStyle.GetType();
         for (Map.Entry<String, Object> field : this.getFields().getEntries())
         {
-            if (field.getValue() != null && field.getValue().getClass().equals(subStyleClass))
+            if (field.getValue() != null && field.getValue().GetType().equals(subStyleClass))
             {
                 this.overrideFields(subStyle, (KMLAbstractSubStyle) field.getValue());
             }
@@ -121,7 +121,7 @@ public class KMLStyle extends KMLAbstractStyleSelector
     {
         if (!(sourceValues instanceof KMLStyle))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.getClass().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

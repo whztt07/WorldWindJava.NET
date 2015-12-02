@@ -144,7 +144,7 @@ public class SelectEvent extends WWEvent
         return this.mouseEvent;
     }
 
-    public boolean hasObjects()
+    public bool hasObjects()
     {
         return this.pickedObjects != null && this.pickedObjects.size() > 0;
     }
@@ -190,52 +190,52 @@ public class SelectEvent extends WWEvent
         return this.hasObjects() ? this.pickedObjects.getAllTopObjects() : null;
     }
 
-    public boolean isRollover()
+    public bool isRollover()
     {
         return this.getEventAction() == ROLLOVER;
     }
 
-    public boolean isHover()
+    public bool isHover()
     {
         return this.getEventAction() == HOVER;
     }
 
-    public boolean isDragEnd()
+    public bool isDragEnd()
     {
         return this.getEventAction() == DRAG_END;
     }
 
-    public boolean isDrag()
+    public bool isDrag()
     {
         return this.getEventAction() == DRAG;
     }
 
-    public boolean isRightPress()
+    public bool isRightPress()
     {
         return this.getEventAction() == RIGHT_PRESS;
     }
 
-    public boolean isRightClick()
+    public bool isRightClick()
     {
         return this.getEventAction() == RIGHT_CLICK;
     }
 
-    public boolean isLeftDoubleClick()
+    public bool isLeftDoubleClick()
     {
         return this.getEventAction() == LEFT_DOUBLE_CLICK;
     }
 
-    public boolean isLeftClick()
+    public bool isLeftClick()
     {
         return this.getEventAction() == LEFT_CLICK;
     }
 
-    public boolean isLeftPress()
+    public bool isLeftPress()
     {
         return this.getEventAction() == LEFT_PRESS;
     }
 
-    public boolean isBoxSelect()
+    public bool isBoxSelect()
     {
         return this.getEventAction() == BOX_ROLLOVER;
     }
@@ -243,12 +243,12 @@ public class SelectEvent extends WWEvent
     @Override
     public String toString()
     {
-        StringBuilder sb = new StringBuilder(this.getClass().getName() + " "
+        StringBuilder sb = new StringBuilder(this.GetType().getName() + " "
             + (this.eventAction != null ? this.eventAction : Logging.getMessage("generic.Unknown")));
         if (this.pickedObjects != null && this.pickedObjects.getTopObject() != null)
-            sb.append(", ").append(this.pickedObjects.getTopObject().getClass().getName());
+            sb.append(", ").append(this.pickedObjects.getTopObject().GetType().getName());
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

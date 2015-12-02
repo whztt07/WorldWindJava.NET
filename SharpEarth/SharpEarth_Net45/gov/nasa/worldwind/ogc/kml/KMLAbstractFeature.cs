@@ -197,12 +197,12 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
         return this.styleSelectors;
     }
 
-    public boolean hasStyleSelectors()
+    public bool hasStyleSelectors()
     {
         return this.getStyleSelectors() != null && this.getStyleSelectors().size() > 0;
     }
 
-    public boolean hasStyle()
+    public bool hasStyle()
     {
         return this.hasStyleSelectors() || this.getStyleUrl() != null;
     }
@@ -310,7 +310,7 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
      *
      * @return <code>true</code> if this feature should be rendered, otherwise <code>false</code>.
      */
-    protected boolean isFeatureActive(KMLTraversalContext tc, DrawContext dc)
+    protected bool isFeatureActive(KMLTraversalContext tc, DrawContext dc)
     {
         if (this.getVisibility() != null && !this.getVisibility())
             return false;
@@ -390,7 +390,7 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
     {
         if (!(sourceValues instanceof KMLAbstractFeature))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.getClass().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

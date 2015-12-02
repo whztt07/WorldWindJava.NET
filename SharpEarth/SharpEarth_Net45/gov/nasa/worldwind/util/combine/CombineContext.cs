@@ -16,8 +16,8 @@ namespace SharpEarth.util.combine{
 
 /**
  * CombineContext provides a suitcase of state used by Combinable shapes to generate a complex set of contours by
- * applying boolean operations to one or more shapes. Instances of CombineContext are typically created and configured
- * by a controller that operates on one or more combinable shapes and implements the boolean operation that is applied
+ * applying bool operations to one or more shapes. Instances of CombineContext are typically created and configured
+ * by a controller that operates on one or more combinable shapes and implements the bool operation that is applied
  * to those shapes, such as {@link SharpEarth.util.combine.ShapeCombiner}. The parameters used by shapes and by
  * the controller are as follows: a globe, a minimum resolution in radians, a region of interest, and a GLU tessellator.
  * The globe is used by shapes that define geometry relative to a globe. The resolution is used to filter shape detail
@@ -122,12 +122,12 @@ public class CombineContext implements Disposable
     protected double resolution;
     /** The GLU tessellator used to draw shape contours. Initalized during construction. */
     protected GLUtessellator tess;
-    /** The list of contours representing the result of a boolean operation on one or more Combinable shapes. */
+    /** The list of contours representing the result of a bool operation on one or more Combinable shapes. */
     protected ContourList contours = new ContourList();
     /** The vertices of the current contour currently being assembled. Used by the tess* methods. */
     protected ArrayList<LatLon> currentContour;
     /** Indicates whether this context is currently operating in bounding sector mode. */
-    protected boolean isBoundingSectorMode;
+    protected bool isBoundingSectorMode;
     /** The shape bounding sectors associated with this context. */
     protected ArrayList<Sector> boundingSectors = new ArrayList<Sector>();
 
@@ -274,7 +274,7 @@ public class CombineContext implements Disposable
     }
 
     /**
-     * Returns the list of contours representing the result of a boolean operation on one or more Combinable shapes.
+     * Returns the list of contours representing the result of a bool operation on one or more Combinable shapes.
      *
      * @return the list of contours associated with this context.
      */
@@ -350,7 +350,7 @@ public class CombineContext implements Disposable
      *
      * @return true if the context is currently in bounding sector mode, otherwise false.
      */
-    public boolean isBoundingSectorMode()
+    public bool isBoundingSectorMode()
     {
         return this.isBoundingSectorMode;
     }

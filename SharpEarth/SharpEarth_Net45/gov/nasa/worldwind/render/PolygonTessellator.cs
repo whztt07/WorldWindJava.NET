@@ -47,11 +47,11 @@ public class PolygonTessellator
         }
     }
 
-    protected boolean enabled = true;
+    protected bool enabled = true;
     protected GLUtessellator tess;
     protected IntBuffer interiorIndices;
     protected IntBuffer boundaryIndices;
-    protected boolean isBoundaryEdge;
+    protected bool isBoundaryEdge;
     protected double[] vertexCoord = new double[3];
 
     public PolygonTessellator()
@@ -68,7 +68,7 @@ public class PolygonTessellator
         this.boundaryIndices = IntBuffer.allocate(10);
     }
 
-    public boolean isEnabled()
+    public bool isEnabled()
     {
         return this.enabled;
     }

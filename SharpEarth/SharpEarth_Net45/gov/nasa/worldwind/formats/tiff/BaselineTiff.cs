@@ -112,7 +112,7 @@ class BaselineTiff
             }
             catch (Exception e)
             {
-                Logging.logger().finest(e.toString());
+                Logging.logger().finest(e.ToString());
             }
         }
         return tiff;
@@ -160,7 +160,7 @@ class BaselineTiff
 
         sb.append(" }");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

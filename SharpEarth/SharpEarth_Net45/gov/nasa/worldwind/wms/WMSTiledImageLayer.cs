@@ -200,7 +200,7 @@ public class WMSTiledImageLayer extends BasicTiledImageLayer
             {
                 sb = new StringBuffer(WWXML.fixGetMapString(tile.getLevel().getService()));
 
-                if (!sb.toString().toLowerCase().contains("service=wms"))
+                if (!sb.ToString().toLowerCase().contains("service=wms"))
                     sb.append("service=WMS");
                 sb.append("&request=GetMap");
                 sb.append("&version=").append(this.wmsVersion);
@@ -211,7 +211,7 @@ public class WMSTiledImageLayer extends BasicTiledImageLayer
                 if (this.backgroundColor != null)
                     sb.append("&bgcolor=").append(this.backgroundColor);
 
-                this.URLTemplate = sb.toString();
+                this.URLTemplate = sb.ToString();
             }
             else
             {
@@ -251,7 +251,7 @@ public class WMSTiledImageLayer extends BasicTiledImageLayer
                 sb.append(s.getMaxLongitude().getDegrees());
             }
 
-            return new java.net.URL(sb.toString().replace(" ", "%20"));
+            return new java.net.URL(sb.ToString().replace(" ", "%20"));
         }
     }
 
@@ -298,7 +298,7 @@ public class WMSTiledImageLayer extends BasicTiledImageLayer
 
     @Override
     public BufferedImage composeImageForSector(Sector sector, int canvasWidth, int canvasHeight, double aspectRatio,
-        int levelNumber, String mimeType, boolean abortOnError, BufferedImage image, int timeout) throws Exception
+        int levelNumber, String mimeType, bool abortOnError, BufferedImage image, int timeout) throws Exception
     {
         if (sector == null)
         {

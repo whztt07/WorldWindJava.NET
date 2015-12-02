@@ -77,7 +77,7 @@ public class VPFBoundingBox
         sb.append("xmax=").append(this.xmax).append(", ");
         sb.append("ymax=").append(this.ymax);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     public static VPFBoundingBox fromVecBuffer(VecBuffer buffer)

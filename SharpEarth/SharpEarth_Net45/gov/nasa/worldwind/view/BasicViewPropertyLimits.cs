@@ -249,12 +249,12 @@ public class BasicViewPropertyLimits implements ViewPropertyLimits
         return Angle.clamp(angle, this.minRoll, this.maxRoll);
     }
 
-    protected boolean is2DGlobe(Globe globe)
+    protected bool is2DGlobe(Globe globe)
     {
         return globe instanceof Globe2D;
     }
 
-    protected boolean isNonContinous2DGlobe(Globe globe)
+    protected bool isNonContinous2DGlobe(Globe globe)
     {
         return globe instanceof Globe2D && !((Globe2D) globe).isContinuous();
     }

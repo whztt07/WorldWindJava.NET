@@ -78,7 +78,7 @@ public class CompoundAnimator extends BasicAnimator
      */
     protected void setImpl(double interpolant)
     {
-        boolean allStopped = true;
+        bool allStopped = true;
         for (Animator a : animators)
         {
             if (a != null)

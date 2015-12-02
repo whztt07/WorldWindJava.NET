@@ -20,7 +20,7 @@ public interface Highlightable
      *
      * @return true to highlight the shape, otherwise false.
      */
-    boolean isHighlighted();
+    bool isHighlighted();
 
     /**
      * Specifies whether to highlight the shape.

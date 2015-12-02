@@ -64,7 +64,7 @@ public interface MemoryCache
      *
      * @return true if the key is found in the cache, false otherwise.
      */
-    boolean contains(Object key);
+    bool contains(Object key);
 
     /**
      * Attempts to add the object <code>clientObject</code>, with size <code>objectSize</code> and referred to by
@@ -82,7 +82,7 @@ public interface MemoryCache
      *
      * @return true if object was added, false otherwise.
      */
-    boolean add(Object key, Object clientObject, long objectSize);
+    bool add(Object key, Object clientObject, long objectSize);
 
     /**
      * Attempts to add the <code>Cacheable</code> object referenced by the key. No explicit size value is required as
@@ -97,7 +97,7 @@ public interface MemoryCache
      *
      * @see Cacheable
      */
-    boolean add(Object key, Cacheable clientObject);
+    bool add(Object key, Cacheable clientObject);
 
     /**
      * Remove an object from the MemoryCache referenced by <code>key</code>. If the object is already absent, this

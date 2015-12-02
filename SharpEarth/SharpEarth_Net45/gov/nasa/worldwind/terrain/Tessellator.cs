@@ -31,7 +31,7 @@ public interface Tessellator extends WWObject
      *
      * @return true if skirts are created, otherwise false.
      */
-    boolean isMakeTileSkirts();
+    bool isMakeTileSkirts();
 
     /**
      * Specifies whether the tessellator creates "skirts" around the tiles in order to hide gaps between adjacent tiles

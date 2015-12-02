@@ -41,10 +41,10 @@ public class PointPlacemarkAttributes implements Exportable
     protected Offset labelOffset;
     protected Material labelMaterial;
     protected Double labelScale;
-    protected boolean usePointAsDefaultImage = false;
-    protected boolean unresolved;
-    protected boolean drawImage = true;
-    protected boolean drawLabel = true;
+    protected bool usePointAsDefaultImage = false;
+    protected bool unresolved;
+    protected bool drawImage = true;
+    protected bool drawLabel = true;
 
     /** The image file to use for the placemark's icon if no image file is specified in the placemark attributes. */
     public static final String DEFAULT_IMAGE_PATH =
@@ -269,7 +269,7 @@ public class PointPlacemarkAttributes implements Exportable
     {
         this.image = image;
 
-        this.setImageAddress(this.image != null ? UUID.randomUUID().toString() : null);
+        this.setImageAddress(this.image != null ? UUID.randomUUID().ToString() : null);
     }
 
     /**
@@ -390,7 +390,7 @@ public class PointPlacemarkAttributes implements Exportable
      *
      * @return true if there are unresolved fields, false if no fields remain unresolved.
      */
-    public boolean isUnresolved()
+    public bool isUnresolved()
     {
         return unresolved;
     }
@@ -512,7 +512,7 @@ public class PointPlacemarkAttributes implements Exportable
      *
      * @see #setUsePointAsDefaultImage(boolean)
      */
-    public boolean isUsePointAsDefaultImage()
+    public bool isUsePointAsDefaultImage()
     {
         return usePointAsDefaultImage;
     }
@@ -545,7 +545,7 @@ public class PointPlacemarkAttributes implements Exportable
      *
      * @return <code>true</code> if the image is drawn, otherwise <code>false</code>.
      */
-    public boolean isDrawImage()
+    public bool isDrawImage()
     {
         return drawImage;
     }
@@ -566,7 +566,7 @@ public class PointPlacemarkAttributes implements Exportable
      *
      * @return <code>true</code> if the label is drawn, otherwise <code>false</code>.
      */
-    public boolean isDrawLabel()
+    public bool isDrawLabel()
     {
         return drawLabel;
     }
@@ -623,7 +623,7 @@ public class PointPlacemarkAttributes implements Exportable
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -648,7 +648,7 @@ public class PointPlacemarkAttributes implements Exportable
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -689,14 +689,14 @@ public class PointPlacemarkAttributes implements Exportable
         }
 
         xmlWriter.writeStartElement("scale");
-        xmlWriter.writeCharacters(Double.toString((this.getScale())));
+        xmlWriter.writeCharacters(Double.ToString((this.getScale())));
         xmlWriter.writeEndElement();
 
         final Double heading = this.getHeading();
         if (heading != null)
         {
             xmlWriter.writeStartElement("heading");
-            xmlWriter.writeCharacters(Double.toString(this.getHeading()));
+            xmlWriter.writeCharacters(Double.ToString(this.getHeading()));
             xmlWriter.writeEndElement();
         }
 
@@ -725,7 +725,7 @@ public class PointPlacemarkAttributes implements Exportable
         if (labelScale != null)
         {
             xmlWriter.writeStartElement("scale");
-            xmlWriter.writeCharacters(Double.toString(labelScale));
+            xmlWriter.writeCharacters(Double.ToString(labelScale));
             xmlWriter.writeEndElement();
         }
 
@@ -750,7 +750,7 @@ public class PointPlacemarkAttributes implements Exportable
         if (lineWidth != null)
         {
             xmlWriter.writeStartElement("width");
-            xmlWriter.writeCharacters(Double.toString(lineWidth));
+            xmlWriter.writeCharacters(Double.ToString(lineWidth));
             xmlWriter.writeEndElement();
         }
 

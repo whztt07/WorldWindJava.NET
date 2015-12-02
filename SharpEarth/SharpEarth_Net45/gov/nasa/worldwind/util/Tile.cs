@@ -293,7 +293,7 @@ public class Tile implements Comparable<Tile>, Cacheable
         sb.append(", ").append(this.getRow());
         sb.append(", ").append(this.getColumn());
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     public int getWidth()
@@ -336,12 +336,12 @@ public class Tile implements Comparable<Tile>, Cacheable
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         // Equality based only on the tile key
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final Tile tile = (Tile) o;
@@ -350,7 +350,7 @@ public class Tile implements Comparable<Tile>, Cacheable
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         return (tileKey != null ? tileKey.hashCode() : 0);
     }

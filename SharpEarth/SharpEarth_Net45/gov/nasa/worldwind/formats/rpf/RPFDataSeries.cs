@@ -153,7 +153,7 @@ public enum RPFDataSeries
         return dataSeries;
     }
 
-    public static boolean isDataSeriesCode(String seriesCode)
+    public static bool isDataSeriesCode(String seriesCode)
     {
         if (seriesCode == null)
         {
@@ -173,7 +173,7 @@ public enum RPFDataSeries
     private static final String CIB_DATA_TYPE = "CIB";
     private static String[] RPF_DATA_TYPES = {"CADRG", "CIB"};
 
-    public static boolean isRPFDataType(String rpfDataType)
+    public static bool isRPFDataType(String rpfDataType)
     {
         if (rpfDataType == null)
         {
@@ -190,7 +190,7 @@ public enum RPFDataSeries
         return false;
     }
 
-    public static boolean isCADRGDataType(String rpfDataType)
+    public static bool isCADRGDataType(String rpfDataType)
     {
         if (rpfDataType == null)
         {
@@ -202,7 +202,7 @@ public enum RPFDataSeries
         return CADRG_DATA_TYPE.equalsIgnoreCase(rpfDataType);
     }
 
-    public static boolean isCIBDataType(String rpfDataType)
+    public static bool isCIBDataType(String rpfDataType)
     {
         if (rpfDataType == null)
         {
@@ -214,7 +214,7 @@ public enum RPFDataSeries
         return CIB_DATA_TYPE.equalsIgnoreCase(rpfDataType);
     }
 
-    public static boolean isCADRGDataSeries(String seriesCode)
+    public static bool isCADRGDataSeries(String seriesCode)
     {
         if (seriesCode == null)
         {
@@ -227,7 +227,7 @@ public enum RPFDataSeries
         return isCADRGDataType(dataSeries.rpfDataType);
     }
 
-    public static boolean isCIBDataSeries(String seriesCode)
+    public static bool isCIBDataSeries(String seriesCode)
     {
         if (seriesCode == null)
         {

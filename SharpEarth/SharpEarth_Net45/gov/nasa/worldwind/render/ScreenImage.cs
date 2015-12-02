@@ -313,7 +313,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
         Object imageSource = this.getImageSource();
         if (imageSource instanceof String || imageSource instanceof URL)
         {
-            URL imageURL = WorldWind.getDataFileStore().requestFile(imageSource.toString());
+            URL imageURL = WorldWind.getDataFileStore().requestFile(imageSource.ToString());
             if (imageURL != null)
             {
                 this.texture = new BasicWWTexture(imageURL, true);
@@ -582,9 +582,9 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
 
-        boolean attribsPushed = false;
-        boolean modelviewPushed = false;
-        boolean projectionPushed = false;
+        bool attribsPushed = false;
+        bool modelviewPushed = false;
+        bool projectionPushed = false;
 
         try
         {
@@ -633,7 +633,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
             if (!dc.isPickingMode())
             {
                 // Draw either an image or a filled rectangle
-                boolean drawImage = this.getTexture() != null;
+                bool drawImage = this.getTexture() != null;
 
                 gl.glEnable(GL.GL_TEXTURE_2D);
                 if (drawImage)
@@ -749,7 +749,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -778,7 +778,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -812,7 +812,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
         if (imageSource instanceof String)
             imgSrcString = (String) imageSource;
         else if (imageSource instanceof URL)
-            imgSrcString = imageSource.toString();
+            imgSrcString = imageSource.ToString();
 
         // We can only export a link to the image if the image source is a path or URL. 
         if (imgSrcString != null)
@@ -842,7 +842,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
         if (rotation != null)
         {
             xmlWriter.writeStartElement("rotation");
-            xmlWriter.writeCharacters(rotation.toString());
+            xmlWriter.writeCharacters(rotation.ToString());
             xmlWriter.writeEndElement();  // rotation
         }
 

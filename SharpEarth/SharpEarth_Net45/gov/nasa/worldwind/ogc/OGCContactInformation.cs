@@ -212,7 +212,7 @@ public class OGCContactInformation extends AbstractXMLEventParser
             this.electronicMailAddress != null ? this.electronicMailAddress : "none").append("\n");
         sb.append(this.contactAddress != null ? this.contactAddress : "none");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

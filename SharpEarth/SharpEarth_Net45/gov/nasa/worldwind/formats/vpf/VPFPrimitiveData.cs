@@ -44,10 +44,10 @@ public class VPFPrimitiveData
         protected int rightFace;
         protected int leftEdge;
         protected int rightEdge;
-        protected boolean isOnTileBoundary;
+        protected bool isOnTileBoundary;
 
         public EdgeInfo(int edgeType, int startNode, int endNode, int leftFace, int rightFace, int leftEdge,
-            int rightEdge, boolean isOnTileBoundary, VPFBoundingBox bounds)
+            int rightEdge, bool isOnTileBoundary, VPFBoundingBox bounds)
         {
             super(bounds);
             this.edgeType = edgeType;
@@ -95,7 +95,7 @@ public class VPFPrimitiveData
             return this.rightEdge;
         }
 
-        public boolean isOnTileBoundary()
+        public bool isOnTileBoundary()
         {
             return this.isOnTileBoundary;
         }

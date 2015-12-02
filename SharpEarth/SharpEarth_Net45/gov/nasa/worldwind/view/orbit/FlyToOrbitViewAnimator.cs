@@ -86,7 +86,7 @@ public class FlyToOrbitViewAnimator extends CompoundAnimator
     {
         Globe globe;
         int altitudeMode;
-        boolean useMidZoom = true;
+        bool useMidZoom = true;
 
         public OnSurfacePositionAnimator(Globe globe, Interpolator interpolator,
             Position begin,
@@ -116,7 +116,7 @@ public class FlyToOrbitViewAnimator extends CompoundAnimator
             // the end position, so recalculating the elevation as we go ensures that the animation will end at the
             // correct altitude.
             double endElevation = 0.0;
-            boolean overrideEndElevation = false;
+            bool overrideEndElevation = false;
 
             if (this.altitudeMode == WorldWind.CLAMP_TO_GROUND)
             {

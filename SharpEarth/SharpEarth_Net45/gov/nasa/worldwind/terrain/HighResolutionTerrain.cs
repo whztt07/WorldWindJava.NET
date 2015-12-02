@@ -820,7 +820,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
     {
         // Turn off elevation min/max caching in the elevation model because searching for the intersecting tiles
         // generates a lot of elevation min/max request that often overflows the elevation model's cache.
-        boolean oldCachingMode = this.getGlobe().getElevationModel().isExtremesCachingEnabled();
+        bool oldCachingMode = this.getGlobe().getElevationModel().isExtremesCachingEnabled();
         this.getGlobe().getElevationModel().setExtremesCachingEnabled(false);
 
         try
@@ -998,7 +998,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * instance uses {@link ElevationModel#getUnmappedLocalSourceElevation(Angle, Angle)} to retrieve elevations.
      * This assumes that the highest-resolution elevations for the elevation model are cached locally.
      */
-    protected boolean useCachedElevationsOnly = false;
+    protected bool useCachedElevationsOnly = false;
 
     /**
      * Indicates whether cached elevations are used exclusively. When this flag is true this high resolution terrain
@@ -1017,7 +1017,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * This assumes that the highest-resolution elevations for the elevation model are cached locally.
      * @return true if cached elevations are forced, otherwise false.
      */
-    public boolean isUseCachedElevationsOnly()
+    public bool isUseCachedElevationsOnly()
     {
         return this.useCachedElevationsOnly;
     }
@@ -1054,7 +1054,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         }
     }
 
-    protected boolean resolutionsMeetCriteria(double[] actualResolution, double[] targetResolution)
+    protected bool resolutionsMeetCriteria(double[] actualResolution, double[] targetResolution)
     {
         for (int i = 0; i < actualResolution.length; i++)
         {

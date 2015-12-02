@@ -33,7 +33,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if the file is null.
      */
-    public boolean accept(java.io.File file)
+    public bool accept(java.io.File file)
     {
         if (file == null)
         {
@@ -49,7 +49,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
         Document doc = null;
         try
         {
-            doc = WWXML.openDocumentFile(file.getPath(), this.getClass());
+            doc = WWXML.openDocumentFile(file.getPath(), this.GetType());
         }
         catch (Exception e)
         {
@@ -70,7 +70,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if the url is null.
      */
-    public boolean accept(java.net.URL url)
+    public bool accept(java.net.URL url)
     {
         if (url == null)
         {
@@ -103,7 +103,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if the input stream is null.
      */
-    public boolean accept(java.io.InputStream inputStream)
+    public bool accept(java.io.InputStream inputStream)
     {
         if (inputStream == null)
         {
@@ -137,7 +137,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if either the file store or the file name are null.
      */
-    public boolean accept(FileStore fileStore, String fileName)
+    public bool accept(FileStore fileStore, String fileName)
     {
         if (fileStore == null)
         {
@@ -177,7 +177,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if the document is null.
      */
-    public boolean accept(Document doc)
+    public bool accept(Document doc)
     {
         if (doc == null)
         {
@@ -205,7 +205,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
      *
      * @throws ArgumentException if the document is null.
      */
-    public boolean accept(Element domElement)
+    public bool accept(Element domElement)
     {
         if (domElement == null)
         {
@@ -217,7 +217,7 @@ public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFil
         return DataConfigurationUtils.isDataConfig(domElement);
     }
 
-    protected boolean acceptFilePath(String filePath)
+    protected bool acceptFilePath(String filePath)
     {
         if (filePath == null)
         {

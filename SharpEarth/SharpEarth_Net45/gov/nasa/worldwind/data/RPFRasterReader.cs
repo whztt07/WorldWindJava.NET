@@ -22,7 +22,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
         super("RPF Imagery");
     }
 
-    public boolean canRead(Object source, AVList parameters)
+    public bool canRead(Object source, AVList parameters)
     {
         if (source == null)
             return false;
@@ -33,7 +33,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
         return this.doCanRead(source, parameters);
     }
 
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         if (!(source instanceof java.io.File))
             return false;
@@ -41,7 +41,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
         java.io.File file = (java.io.File) source;
         String filename = file.getName().toUpperCase();
 
-        boolean canRead = RPFFrameFilename.isFilename(filename);
+        bool canRead = RPFFrameFilename.isFilename(filename);
 
         if (canRead && null != parameters && !params.hasKey(AVKey.PIXEL_FORMAT))
             parameters.setValue(AVKey.PIXEL_FORMAT, AVKey.IMAGE);
@@ -189,7 +189,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
         {
             // Computing the file's coverage failed. Log the condition and return null.
             // This at allows the coverage to be re-computed at a later time.
-            String message = String.format("Exception while computing file sector: %s", file);
+            String message = String.Format("Exception while computing file sector: %s", file);
             Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
             sector = null;
         }
@@ -227,7 +227,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
         {
             // Computing the file's coverage failed. Log the condition and return null.
             // This at allows the coverage to be re-computed at a later time.
-            String message = String.format("Exception while getting file sector: %s", file);
+            String message = String.Format("Exception while getting file sector: %s", file);
             Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
             sector = null;
         }

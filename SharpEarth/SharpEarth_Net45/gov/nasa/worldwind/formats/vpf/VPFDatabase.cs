@@ -102,7 +102,7 @@ public class VPFDatabase extends AVListImpl
         return database;
     }
 
-    public static boolean isDatabase(String filePath)
+    public static bool isDatabase(String filePath)
     {
         if (filePath == null)
         {
@@ -167,7 +167,7 @@ public class VPFDatabase extends AVListImpl
         return this.libraryMap.size();
     }
 
-    public boolean containsLibrary(String name)
+    public bool containsLibrary(String name)
     {
         if (name == null)
         {

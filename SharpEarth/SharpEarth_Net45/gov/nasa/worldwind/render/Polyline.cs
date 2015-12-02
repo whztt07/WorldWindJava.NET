@@ -45,9 +45,9 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
     protected int antiAliasHint = GL.GL_FASTEST;
     protected Color color = Color.WHITE;
     protected double lineWidth = 1;
-    protected boolean filled = false; // makes it a polygon
-    protected boolean closed = false; // connect last point to first
-    protected boolean followTerrain = false;
+    protected bool filled = false; // makes it a polygon
+    protected bool closed = false; // connect last point to first
+    protected bool followTerrain = false;
     protected double offset = 0;
     protected double terrainConformance = 10;
     protected int pathType = GREAT_CIRCLE;
@@ -55,7 +55,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
     protected short stipplePattern = (short) 0xAAAA;
     protected int stippleFactor = 0;
     protected int numSubsegments = 10;
-    protected boolean highlighted = false;
+    protected bool highlighted = false;
     protected Color highlightColor = new Color(1f, 1f, 1f, 0.5f);
     protected Object delegateOwner;
     protected LengthMeasurer measurer = new LengthMeasurer();
@@ -84,7 +84,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             this.globeStateKey = dc.getGlobe().getStateKey(dc);
         }
 
-        protected boolean isValid(DrawContext dc)
+        protected bool isValid(DrawContext dc)
         {
             return this.verticalExaggeration == dc.getVerticalExaggeration() && this.globe == dc.getGlobe()
                 && globeStateKey.equals(dc.getGlobe().getStateKey(dc));
@@ -158,7 +158,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         this.antiAliasHint = hint;
     }
 
-    public boolean isFilled()
+    public bool isFilled()
     {
         return filled;
     }
@@ -231,7 +231,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             : pathType.equals(AVKey.RHUMB_LINE) || pathType.equals(AVKey.LOXODROME) ? RHUMB_LINE : LINEAR);
     }
 
-    public boolean isFollowTerrain()
+    public bool isFollowTerrain()
     {
         return followTerrain;
     }
@@ -381,7 +381,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         this.numSubsegments = numSubsegments;
     }
 
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return highlighted;
     }
@@ -477,7 +477,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         return this.positions;
     }
 
-    public boolean isClosed()
+    public bool isClosed()
     {
         return closed;
     }
@@ -798,7 +798,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         gl.glPushAttrib(attrBits);
         dc.getView().pushReferenceCenter(dc, this.referenceCenterPoint);
 
-        boolean projectionOffsetPushed = false; // keep track for error recovery
+        bool projectionOffsetPushed = false; // keep track for error recovery
 
         try
         {
@@ -916,7 +916,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
      *
      * @return true if the shape is visible, otherwise false.
      */
-    protected boolean intersectsFrustum(DrawContext dc)
+    protected bool intersectsFrustum(DrawContext dc)
     {
         Extent extent = this.getExtent(dc);
         if (extent == null)
@@ -976,7 +976,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             this.currentSpans.add(span);
     }
 
-    protected boolean isSegmentVisible(DrawContext dc, Position posA, Position posB, Vec4 ptA, Vec4 ptB)
+    protected bool isSegmentVisible(DrawContext dc, Position posA, Position posB, Vec4 ptA, Vec4 ptB)
     {
         Frustum f = dc.getView().getFrustumInModelCoordinates();
 
@@ -999,7 +999,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         return cyl.intersects(dc.getView().getFrustumInModelCoordinates());
     }
 
-    protected Vec4 computePoint(DrawContext dc, Position pos, boolean applyOffset)
+    protected Vec4 computePoint(DrawContext dc, Position pos, bool applyOffset)
     {
         if (this.followTerrain)
         {

@@ -34,7 +34,7 @@ public class DeclutteringTextRenderer
     protected final GLU glu = new GLUgl2();
 
     // Flag indicating a JOGL text rendering problem. Set to avoid continual exception logging.
-    protected boolean hasJOGLv111Bug = false;
+    protected bool hasJOGLv111Bug = false;
 
     public Font getDefaultFont()
     {
@@ -314,7 +314,7 @@ public class DeclutteringTextRenderer
         return new Point.Float((float) (screenPoint.x - rect.getWidth() / 2d), (float) (screenPoint.y));
     }
 
-    protected static boolean isTextValid(GeographicText text, boolean checkPosition)
+    protected static bool isTextValid(GeographicText text, bool checkPosition)
     {
         if (text == null || text.getText() == null)
             return false;

@@ -331,7 +331,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
                             Vec4 vy = new Vec4(0, cellHeight, eleNW - eleSW).normalize3();
                             Vec4 normalSW = vx.cross3(vy).normalize3(); // point toward positive Z
                             // Compute slope factor
-                            double tan = Math.tan(Vec4.UNIT_Z.angleBetween3(normalSW).radians);
+                            double tan = Math.Tan(Vec4.UNIT_Z.angleBetween3(normalSW).radians);
                             double slopeFactor = Math.Sqrt(1 + tan * tan);
                             // Create and cache cell
                             cell = new Cell(cellSector, cellArea, cellArea * slopeFactor);

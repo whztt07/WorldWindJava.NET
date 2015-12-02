@@ -170,7 +170,7 @@ public class ColladaAccessor extends ColladaAbstractObject
         throws XMLStreamException
     {
         String localName = attr.getName().getLocalPart();
-        boolean isIntField = "count".equals(localName) || "offset".equals(localName) || "stride".equals(localName);
+        bool isIntField = "count".equals(localName) || "offset".equals(localName) || "stride".equals(localName);
 
         if (isIntField)
             this.setField(localName, WWUtil.makeInteger(attr.getValue()));

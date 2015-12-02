@@ -42,7 +42,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class RotateActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
@@ -86,7 +86,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class HorizontalTransActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             double forwardInput = 0;
@@ -132,7 +132,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class VerticalTransActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             double transInput = 0;
@@ -168,11 +168,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class RotateMouseActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(KeyEventState keys, String target,
+        public bool inputActionPerformed(KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -211,10 +211,10 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
 
 
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -258,11 +258,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class HorizTransMouseActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(
+        public bool inputActionPerformed(
             KeyEventState keys, String target, ViewInputAttributes.ActionAttributes viewAction)
         {
             
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -302,10 +302,10 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             return(true);
         }
 
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -347,10 +347,10 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class VertTransMouseActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (java.lang.Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -386,10 +386,10 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             return true;
         }
 
-        public boolean inputActionPerformed(
+        public bool inputActionPerformed(
             KeyEventState keys, String target, ViewInputAttributes.ActionAttributes viewAction)
         {
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (java.lang.Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -428,10 +428,10 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class MoveToMouseActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
-            boolean handleThisEvent = false;
+            bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
             for (Object b : buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
@@ -458,7 +458,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class ResetHeadingActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
@@ -479,7 +479,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class ResetHeadingPitchActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
@@ -499,7 +499,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class StopViewActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
@@ -520,7 +520,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     public class VertTransMouseWheelActionListener extends ViewInputActionHandler
     {
-        public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+        public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseWheelEvent mouseWheelEvent, ViewInputAttributes.ActionAttributes viewAction)
         {
 
@@ -656,7 +656,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
     protected void handleKeyPressed(KeyEvent e)
     {
 
-        boolean eventHandled = false;
+        bool eventHandled = false;
 
 
         Integer modifier =  e.getModifiersEx();
@@ -685,7 +685,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
     protected void handleMouseClicked(MouseEvent e)
     {
 
-        boolean eventHandled = false;
+        bool eventHandled = false;
 
 
         Integer modifier =  e.getModifiersEx();
@@ -709,7 +709,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     protected void handleMouseWheelMoved(MouseWheelEvent e)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
 
         // TODO : Make this conditional look like handleMouseDragged
         Integer modifier =  e.getModifiersEx();
@@ -766,14 +766,14 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
     // then the the key state will generate any appropriate view change events. If the target is KEY_POLL_QUERY_EVENTS,
     // then the key state will not generate events, and this will return whether or not any view change events would
     // have been generated.
-    protected boolean handlePerFrameKeyState(KeyEventState keys, String target)
+    protected bool handlePerFrameKeyState(KeyEventState keys, String target)
     {
 
         if (keys.getNumKeysDown() == 0)
         {
             return false;
         }
-        boolean isKeyEventTrigger = false;
+        bool isKeyEventTrigger = false;
 
 
         Integer modifier =  keys.getModifiersEx();
@@ -793,9 +793,9 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         return isKeyEventTrigger;
     }
 
-    protected boolean handlePerFrameMouseState(KeyEventState keys, String target)
+    protected bool handlePerFrameMouseState(KeyEventState keys, String target)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
 
         if (keys.getNumButtonsDown() == 0)
         {
@@ -825,11 +825,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     }
 
-    protected boolean callMouseActionListListeners(MouseEvent e,
+    protected bool callMouseActionListListeners(MouseEvent e,
         ViewInputAttributes.ActionAttributes.ActionTrigger trigger,
         ViewInputAttributes.ActionAttributesList actionList)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
         if (actionList != null)
         {
             for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
@@ -849,11 +849,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         return eventHandled;
     }
 
-    protected boolean callMouseWheelActionListListeners(MouseWheelEvent e,
+    protected bool callMouseWheelActionListListeners(MouseWheelEvent e,
         ViewInputAttributes.ActionAttributes.ActionTrigger trigger,
         ViewInputAttributes.ActionAttributesList actionList)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
         if (actionList != null)
         {
             for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
@@ -873,11 +873,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         return eventHandled;
     }
 
-    protected boolean callActionListListeners(KeyEvent e,
+    protected bool callActionListListeners(KeyEvent e,
         ViewInputAttributes.ActionAttributes.ActionTrigger trigger,
         ViewInputAttributes.ActionAttributesList actionList)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
         if (actionList != null)
         {
             for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
@@ -896,11 +896,11 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         return eventHandled;
     }
 
-    protected boolean callActionListListeners(KeyEventState keys, String target,
+    protected bool callActionListListeners(KeyEventState keys, String target,
         ViewInputAttributes.ActionAttributes.ActionTrigger trigger,
         ViewInputAttributes.ActionAttributesList actionList)
     {
-        boolean eventHandled = false;
+        bool eventHandled = false;
         if (actionList != null)
         {
             for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
@@ -921,7 +921,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         return eventHandled;
     }
 
-    protected boolean callActionListener (KeyEventState keys, String target,
+    protected bool callActionListener (KeyEventState keys, String target,
         ViewInputAttributes.ActionAttributes action)
     {
 

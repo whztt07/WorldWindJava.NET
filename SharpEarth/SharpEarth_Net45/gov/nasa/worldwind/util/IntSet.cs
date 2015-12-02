@@ -100,7 +100,7 @@ public class IntSet
      *
      * @return true if the value is added to this set, otherwise false.
      */
-    public boolean add(int value)
+    public bool add(int value)
     {
         int index = value % this.numBuckets;
         Bucket bucket = this.buckets[index];
@@ -139,7 +139,7 @@ public class IntSet
      *
      * @return true of the value is removed from this set, otherwise false.
      */
-    public boolean remove(int value)
+    public bool remove(int value)
     {
         int index = value % this.numBuckets;
         Bucket bucket = this.buckets[index];
@@ -175,7 +175,7 @@ public class IntSet
      *
      * @return true if this set contains the value, otherwise false.
      */
-    public boolean contains(int value)
+    public bool contains(int value)
     {
         int index = value % this.numBuckets;
         Bucket bucket = this.buckets[index];

@@ -28,7 +28,7 @@ public class GeographicImageInterpolator extends ImageInterpolator
     protected static class GeographicCell extends Cell
     {
         /** Denotes if the pixels in this geographic image cell crosses the international dateline. */
-        protected boolean crossesDateline;
+        protected bool crossesDateline;
 
         /**
          * Constructs a new Geographic Cell, but otherwise does nothing.
@@ -64,7 +64,7 @@ public class GeographicImageInterpolator extends ImageInterpolator
          *
          * @return true if this cell crosses the international dateline; false otherwise.
          */
-        public boolean isCrossesDateline()
+        public bool isCrossesDateline()
         {
             return this.crossesDateline;
         }
@@ -79,7 +79,7 @@ public class GeographicImageInterpolator extends ImageInterpolator
          * @return true if the (x, y) point intersects this cell; false otherwise.
          */
         @Override
-        public boolean intersects(float x, float y)
+        public bool intersects(float x, float y)
         {
             // Invoke the superclass functionality if this cell doesn't cross the international dateline.
             if (!this.isCrossesDateline())
@@ -215,7 +215,7 @@ public class GeographicImageInterpolator extends ImageInterpolator
          *
          * @return true if this image cell's crosses the international dateline; false otherwise.
          */
-        protected boolean longitudesCrossDateline(Dimension dim, float[] longitudes)
+        protected bool longitudesCrossDateline(Dimension dim, float[] longitudes)
         {
             Float x1 = null;
 
@@ -251,7 +251,7 @@ public class GeographicImageInterpolator extends ImageInterpolator
          *
          * @return true if any children cross the international dateline; false otherwise.
          */
-        protected boolean childrenCrossDateline()
+        protected bool childrenCrossDateline()
         {
             if (this.children == null || this.children.length == 0)
                 return false;

@@ -29,7 +29,7 @@ public class VPFFeatureTableFilter implements FileFilter
      *
      * @throws ArgumentException if the file is null.
      */
-    public boolean accept(java.io.File file)
+    public bool accept(java.io.File file)
     {
         if (file == null)
         {

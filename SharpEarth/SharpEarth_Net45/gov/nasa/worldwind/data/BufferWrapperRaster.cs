@@ -64,7 +64,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
     {
         if ((row < 0) || (col < 0) || (row > (this.getHeight() - 1)) || (col > (this.getWidth() - 1)))
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", String.format("%d, %d", row, col));
+            String message = Logging.getMessage("generic.ArgumentOutOfRange", String.Format("%d, %d", row, col));
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -76,7 +76,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
     {
         if ((row < 0) || (col < 0) || (row > (this.getHeight() - 1)) || (col > (this.getWidth() - 1)))
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", String.format("%d, %d", row, col));
+            String message = Logging.getMessage("generic.ArgumentOutOfRange", String.Format("%d, %d", row, col));
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -251,7 +251,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
 
         // Compute the range of x-values in this raster that are needed during rendering.
         lut.computeRangeX(xParams);
-        int xParamMin = (int) Math.floor(xParams[0]);
+        int xParamMin = (int) Math.Floor(xParams[0]);
         int xParamMax = (int) Math.ceil(xParams[1]);
         int xParamWidth = xParamMax - xParamMin + 1;
 
@@ -395,7 +395,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
             java.util.Arrays.fill(this.yParams, -1d);
         }
 
-        public final boolean getInterpolantX(int x, double[] parameters)
+        public final bool getInterpolantX(int x, double[] parameters)
         {
             parameters[0] = this.xParams[3 * x];
             parameters[1] = this.xParams[3 * x + 1];
@@ -403,7 +403,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
             return parameters[0] != -1d;
         }
 
-        public final boolean getInterpolantY(int y, double[] parameters)
+        public final bool getInterpolantY(int y, double[] parameters)
         {
             parameters[0] = this.yParams[3 * y];
             parameters[1] = this.yParams[3 * y + 1];
@@ -454,8 +454,8 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
         InterpolantLookupTable lut = new InterpolantLookupTable(width, height);
 
         double threshold = -1e-6; // Numerical roundoff error threshold.
-        boolean haveXParam = false;
-        boolean haveYParam = false;
+        bool haveXParam = false;
+        bool haveYParam = false;
 
         java.awt.geom.Point2D thisPoint = new java.awt.geom.Point2D.Double();
         java.awt.geom.Point2D canvasPoint = new java.awt.geom.Point2D.Double();
@@ -471,7 +471,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
             {
                 x = (x < xMin) ? xMin : ((x > xMax) ? xMax : x);
                 index = 3 * i;
-                lut.xParams[index] = Math.floor(x);
+                lut.xParams[index] = Math.Floor(x);
                 lut.xParams[index + 1] = Math.ceil(x);
                 lut.xParams[index + 2] = x - lut.xParams[index];
 
@@ -488,7 +488,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
             {
                 y = (y < yMin) ? yMin : ((y > yMax) ? yMax : y);
                 index = 3 * j;
-                lut.yParams[index] = Math.floor(y);
+                lut.yParams[index] = Math.Floor(y);
                 lut.yParams[index + 1] = Math.ceil(y);
                 lut.yParams[index + 2] = y - lut.yParams[index];
 

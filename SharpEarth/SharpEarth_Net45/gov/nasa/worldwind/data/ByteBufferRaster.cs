@@ -251,7 +251,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
         if (!params.hasKey(AVKey.DATE_TIME))
         {
             // add NUL (\0) termination as required by TIFF v6 spec (20 bytes length)
-            String timestamp = String.format("%1$tY:%1$tm:%1$td %tT\0", Calendar.getInstance());
+            String timestamp = String.Format("%1$tY:%1$tm:%1$td %tT\0", Calendar.getInstance());
             parameters.setValue(AVKey.DATE_TIME, timestamp);
         }
 

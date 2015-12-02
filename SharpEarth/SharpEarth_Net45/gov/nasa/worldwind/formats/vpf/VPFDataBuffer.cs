@@ -17,7 +17,7 @@ public interface VPFDataBuffer
 
     Object getBackingData();
 
-    boolean hasValue(int index);
+    bool hasValue(int index);
 
     void read(ByteBuffer byteBuffer);
 

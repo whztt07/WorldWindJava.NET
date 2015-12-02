@@ -221,7 +221,7 @@ public class VPFBasicFeatureClassFactory implements VPFFeatureClassFactory
         sb.append(schema.getClassName());
         sb.append(suffix);
 
-        String tableName = sb.toString();
+        String tableName = sb.ToString();
         File file = new File(coverage.getFilePath(), tableName);
 
         return file.exists() ? tableName : null;

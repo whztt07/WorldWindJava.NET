@@ -24,7 +24,7 @@ public class BILRasterReader extends AbstractDataRasterReader
     private static final String[] bilSuffixes = new String[]
         {"bil", "bil16", "bil32", "bil.gz", "bil16.gz", "bil32.gz"};
 
-    private boolean mapLargeFiles = false;
+    private bool mapLargeFiles = false;
     private long largeFileThreshold = 16777216L; // 16 megabytes
 
     public BILRasterReader()
@@ -32,7 +32,7 @@ public class BILRasterReader extends AbstractDataRasterReader
         super(bilMimeTypes, bilSuffixes);
     }
 
-    public boolean isMapLargeFiles()
+    public bool isMapLargeFiles()
     {
         return this.mapLargeFiles;
     }
@@ -59,7 +59,7 @@ public class BILRasterReader extends AbstractDataRasterReader
         this.largeFileThreshold = largeFileThreshold;
     }
 
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         if (!(source instanceof java.io.File) && !(source instanceof java.net.URL))
         {
@@ -163,7 +163,7 @@ public class BILRasterReader extends AbstractDataRasterReader
             return null;
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     private java.nio.ByteBuffer readElevations(Object source) throws java.io.IOException

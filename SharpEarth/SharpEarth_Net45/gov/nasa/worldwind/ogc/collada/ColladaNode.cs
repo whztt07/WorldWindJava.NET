@@ -140,7 +140,7 @@ public class ColladaNode extends ColladaAbstractObject implements ColladaRendera
 
             // Apply the current root position and highlight state to shapes in this node. Do this every frame so that
             // the node will pickup changes in the root's state.
-            boolean highlighted = root.isHighlighted();
+            bool highlighted = root.isHighlighted();
             int altitudeMode = root.getAltitudeMode();
             Position position = root.getPosition();
 

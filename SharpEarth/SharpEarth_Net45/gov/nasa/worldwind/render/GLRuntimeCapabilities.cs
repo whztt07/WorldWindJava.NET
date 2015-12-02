@@ -37,13 +37,13 @@ public class GLRuntimeCapabilities
     protected static final String GL_EXT_TEXTURE_FILTER_ANISOTROPIC_STRING = "GL_EXT_texture_filter_anisotropic";
 
     protected double glVersion;
-    protected boolean isVMwareSVGA3D;
-    protected boolean isAnisotropicTextureFilterAvailable;
-    protected boolean isAnisotropicTextureFilterEnabled;
-    protected boolean isFramebufferObjectAvailable;
-    protected boolean isFramebufferObjectEnabled;
-    protected boolean isVertexBufferObjectAvailable;
-    protected boolean isVertexBufferObjectEnabled;
+    protected bool isVMwareSVGA3D;
+    protected bool isAnisotropicTextureFilterAvailable;
+    protected bool isAnisotropicTextureFilterEnabled;
+    protected bool isFramebufferObjectAvailable;
+    protected bool isFramebufferObjectEnabled;
+    protected bool isVertexBufferObjectAvailable;
+    protected bool isVertexBufferObjectEnabled;
     protected int depthBits;
     protected double maxTextureAnisotropy;
     protected int maxTextureSize;
@@ -187,7 +187,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if the OpenGL implementation is VMware SVGA 3D, and false otherwise.
      */
-    public boolean isVMwareSVGA3D()
+    public bool isVMwareSVGA3D()
     {
         return this.isVMwareSVGA3D;
     }
@@ -198,7 +198,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if anisotropic texture filtering is available and enabled, and false otherwise.
      */
-    public boolean isUseAnisotropicTextureFilter()
+    public bool isUseAnisotropicTextureFilter()
     {
         return this.isAnisotropicTextureFilterAvailable && this.isAnisotropicTextureFilterEnabled;
     }
@@ -209,7 +209,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if framebuffer objects are available and enabled, and false otherwise.
      */
-    public boolean isUseFramebufferObject()
+    public bool isUseFramebufferObject()
     {
         return this.isFramebufferObjectAvailable && this.isFramebufferObjectEnabled;
     }
@@ -220,7 +220,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if vertex buffer objects are available and enabled, and false otherwise.
      */
-    public boolean isUseVertexBufferObject()
+    public bool isUseVertexBufferObject()
     {
         return this.isVertexBufferObjectAvailable && this.isVertexBufferObjectEnabled;
     }
@@ -230,7 +230,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if anisotropic texture filtering is available, and false otherwise.
      */
-    public boolean isAnisotropicTextureFilterAvailable()
+    public bool isAnisotropicTextureFilterAvailable()
     {
         return this.isAnisotropicTextureFilterAvailable;
     }
@@ -251,7 +251,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if anisotropic texture filtering is enabled, and false otherwise.
      */
-    public boolean isAnisotropicTextureFilterEnabled()
+    public bool isAnisotropicTextureFilterEnabled()
     {
         return this.isAnisotropicTextureFilterEnabled;
     }
@@ -271,7 +271,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if framebuffer objects are available, and false otherwise.
      */
-    public boolean isFramebufferObjectAvailable()
+    public bool isFramebufferObjectAvailable()
     {
         return this.isFramebufferObjectAvailable;
     }
@@ -292,7 +292,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if framebuffer objects are enabled, and false otherwise.
      */
-    public boolean isFramebufferObjectEnabled()
+    public bool isFramebufferObjectEnabled()
     {
         return this.isFramebufferObjectEnabled;
     }
@@ -312,7 +312,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if vertex buffer objects are available, and false otherwise.
      */
-    public boolean isVertexBufferObjectAvailable()
+    public bool isVertexBufferObjectAvailable()
     {
         return this.isVertexBufferObjectAvailable;
     }
@@ -333,7 +333,7 @@ public class GLRuntimeCapabilities
      *
      * @return true if anisotropic vertex buffer objects are, and false otherwise.
      */
-    public boolean isVertexBufferObjectEnabled()
+    public bool isVertexBufferObjectEnabled()
     {
         return this.isVertexBufferObjectEnabled;
     }

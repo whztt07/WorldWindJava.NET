@@ -19,9 +19,9 @@ namespace SharpEarth.view.orbit{
 public class OrbitViewCenterAnimator extends MoveToPositionAnimator
 {
     private BasicOrbitView orbitView;
-    boolean endCenterOnSurface;
+    bool endCenterOnSurface;
     public OrbitViewCenterAnimator(BasicOrbitView orbitView, Position startPosition, Position endPosition,
-        double smoothing, PropertyAccessor.PositionAccessor propertyAccessor, boolean endCenterOnSurface)
+        double smoothing, PropertyAccessor.PositionAccessor propertyAccessor, bool endCenterOnSurface)
     {
         super(startPosition, endPosition, smoothing, propertyAccessor);
         this.endCenterOnSurface = endCenterOnSurface;
@@ -35,7 +35,7 @@ public class OrbitViewCenterAnimator extends MoveToPositionAnimator
 
         double latlonDifference = LatLon.greatCircleDistance(nextPosition, curCenter).degrees;
         double elevDifference = Math.Abs(nextPosition.getElevation() - curCenter.getElevation());
-        boolean stopMoving = Math.max(latlonDifference, elevDifference) < this.positionMinEpsilon;
+        bool stopMoving = Math.max(latlonDifference, elevDifference) < this.positionMinEpsilon;
         if (!stopMoving)
         {
             interpolant = 1 - this.smoothing;

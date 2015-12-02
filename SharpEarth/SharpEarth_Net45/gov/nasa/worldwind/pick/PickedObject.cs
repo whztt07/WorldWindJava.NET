@@ -20,8 +20,8 @@ public class PickedObject extends AVListImpl
     private final Point pickPoint;
     private final int colorCode;
     private final Object userObject;
-    private boolean isOnTop = false;
-    private boolean isTerrain = false;
+    private bool isOnTop = false;
+    private bool isTerrain = false;
 
     public PickedObject(int colorCode, Object userObject)
     {
@@ -34,7 +34,7 @@ public class PickedObject extends AVListImpl
         this.isTerrain = false;
     }
 
-    public PickedObject(int colorCode, Object userObject, Position position, boolean isTerrain)
+    public PickedObject(int colorCode, Object userObject, Position position, bool isTerrain)
     {
         super();
 
@@ -47,7 +47,7 @@ public class PickedObject extends AVListImpl
     }
 
     public PickedObject(Point pickPoint, int colorCode, Object userObject, Angle lat, Angle lon, double elev,
-        boolean isTerrain)
+        bool isTerrain)
     {
         super();
 
@@ -79,12 +79,12 @@ public class PickedObject extends AVListImpl
         this.isOnTop = true;
     }
 
-    public boolean isOnTop()
+    public bool isOnTop()
     {
         return this.isOnTop;
     }
 
-    public boolean isTerrain()
+    public bool isTerrain()
     {
         return this.isTerrain;
     }
@@ -109,16 +109,16 @@ public class PickedObject extends AVListImpl
         return (Position) this.getValue(AVKey.POSITION);
     }
 
-    public boolean hasPosition()
+    public bool hasPosition()
     {
         return this.hasKey(AVKey.POSITION);
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         PickedObject that = (PickedObject) o;
@@ -134,7 +134,7 @@ public class PickedObject extends AVListImpl
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = colorCode;

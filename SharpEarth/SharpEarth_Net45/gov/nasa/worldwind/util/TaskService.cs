@@ -13,7 +13,7 @@ public interface TaskService
 {
     void shutdown(boolean immediately);
 
-    boolean contains(Runnable runnable);
+    bool contains(Runnable runnable);
 
     /**
      * Enqueues a task to run.
@@ -23,8 +23,8 @@ public interface TaskService
      */
     void addTask(Runnable runnable);
 
-    boolean isFull();
+    bool isFull();
 
-    boolean hasActiveTasks();
+    bool hasActiveTasks();
 }
 }

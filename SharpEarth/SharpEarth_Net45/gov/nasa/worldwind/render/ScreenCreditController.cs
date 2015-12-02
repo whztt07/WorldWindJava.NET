@@ -28,7 +28,7 @@ public class ScreenCreditController implements Renderable, SelectListener, Dispo
     private double baseOpacity = 0.5;
     private double highlightOpacity = 1;
     private WorldWindow wwd;
-    private boolean enabled = true;
+    private bool enabled = true;
 
     public ScreenCreditController(WorldWindow wwd)
     {
@@ -55,7 +55,7 @@ public class ScreenCreditController implements Renderable, SelectListener, Dispo
             wwd.getSceneController().setScreenCreditController(null);
     }
 
-    public boolean isEnabled()
+    public bool isEnabled()
     {
         return enabled;
     }

@@ -21,7 +21,7 @@ namespace SharpEarth.ogc{
  */
 abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
 {
-    abstract protected boolean isRequestName(XMLEventParserContext ctx, QName name);
+    abstract protected bool isRequestName(XMLEventParserContext ctx, QName name);
 
     protected QName REQUEST;
     protected QName EXCEPTION;
@@ -193,7 +193,7 @@ abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
             sb.append(uds.getKey()).append("=").append(uds.getValue()).append("\n");
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

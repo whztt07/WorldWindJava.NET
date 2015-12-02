@@ -25,7 +25,7 @@ public class GeotiffRasterReader extends AbstractDataRasterReader
         super(geotiffMimeTypes, geotiffSuffixes);
     }
 
-    protected boolean doCanRead(Object source, AVList parameters)
+    protected bool doCanRead(Object source, AVList parameters)
     {
         String path = WWIO.getSourcePath(source);
         if (path == null)
@@ -37,7 +37,7 @@ public class GeotiffRasterReader extends AbstractDataRasterReader
         try
         {
             reader = new GeotiffReader(path);
-            boolean isGeoTiff = reader.isGeotiff(0);
+            bool isGeoTiff = reader.isGeotiff(0);
             if (!isGeoTiff)
             {
                 isGeoTiff = WorldFile.hasWorldFiles(source);
@@ -118,7 +118,7 @@ public class GeotiffRasterReader extends AbstractDataRasterReader
             reader = new GeotiffReader(path);
             reader.copyMetadataTo(params);
 
-            boolean isGeoTiff = reader.isGeotiff(0);
+            bool isGeoTiff = reader.isGeotiff(0);
             if (!isGeoTiff && parameters.hasKey(AVKey.WIDTH) && parameters.hasKey(AVKey.HEIGHT))
             {
                 int[] size = new int[2];

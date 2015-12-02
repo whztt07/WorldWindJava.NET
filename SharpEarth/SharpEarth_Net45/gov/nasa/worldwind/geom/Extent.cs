@@ -47,7 +47,7 @@ public interface Extent
      *
      * @return true if there is an intersection, false otherwise.
      */
-    boolean intersects(Frustum frustum);
+    bool intersects(Frustum frustum);
 
     /**
      * Computes the intersections of this extent with <code>line</code>. The returned array may be either null or of
@@ -71,7 +71,7 @@ public interface Extent
      *
      * @return true if an intersection is found, false otherwise.
      */
-    boolean intersects(gov.nasa.worldwind.geom.Line line);
+    bool intersects(gov.nasa.worldwind.geom.Line line);
 
     /**
      * Calculate whether or not this <code>Extent</code> is intersected by <code>plane</code>.
@@ -80,7 +80,7 @@ public interface Extent
      *
      * @return true if <code>plane</code> is found to intersect this <code>Extent</code>.
      */
-    boolean intersects(gov.nasa.worldwind.geom.Plane plane);
+    bool intersects(gov.nasa.worldwind.geom.Plane plane);
 
     /**
      * Computes the effective radius of the extent relative to a specified plane.
@@ -98,14 +98,14 @@ public interface Extent
      * <code>view's</code> viewport, and portions of this <code>Extent</code> are not clipped by the <code>view's</code>
      * frustum.
      * <p/>
-     * This returns <code>Double.POSITIVE_INFINITY</code> if the <code>view's</code> eye point is inside this
+     * This returns <code>Double.PositiveInfinity</code> if the <code>view's</code> eye point is inside this
      * <code>Extent</code>, or if any portion of this <code>Extent</code> is behind the eye point. In either case, this
      * <code>Extent</code> has no finite projection on the <code>view</code>.
      *
      * @param view the <code>View</code> for which to compute a projected screen area.
      *
      * @return the projected screen area of this <code>Extent</code> in square pixels, or
-     *         <code>Double.POSITIVE_INFINITY</code> if the <code>view's</code> eye point is inside this
+     *         <code>Double.PositiveInfinity</code> if the <code>view's</code> eye point is inside this
      *         <code>Extent</code> or part of this <code>Extent</code> is behind the <code>view's</code> eye point.
      *
      * @throws ArgumentException if the <code>view</code> is <code>null</code>.

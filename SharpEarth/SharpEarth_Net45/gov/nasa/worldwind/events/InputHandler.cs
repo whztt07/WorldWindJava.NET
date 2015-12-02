@@ -54,7 +54,7 @@ public interface InputHandler extends AVList, java.beans.PropertyChangeListener
      *
      * @return true if a redraw is forced when a button is pressed, otherwise false.
      */
-    boolean isForceRedrawOnMousePressed();
+    bool isForceRedrawOnMousePressed();
 
     /**
      * Specifies whether a redraw is forced when the a mouse button is pressed. Touch screen devices require this so

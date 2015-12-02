@@ -243,9 +243,9 @@ public class GLUTessellatorSupport
     public static class VertexData
     {
         public final int index;
-        public final boolean edgeFlag;
+        public final bool edgeFlag;
 
-        public VertexData(int index, boolean edgeFlag)
+        public VertexData(int index, bool edgeFlag)
         {
             this.index = index;
             this.edgeFlag = edgeFlag;
@@ -263,7 +263,7 @@ public class GLUTessellatorSupport
         protected int index = 0;
         protected VertexData[] vertices = {null, null, null};
         protected boolean[] edgeFlags = {true, true, true};
-        protected boolean edgeFlag = true;
+        protected bool edgeFlag = true;
 
         public CollectPrimitivesCallback()
         {

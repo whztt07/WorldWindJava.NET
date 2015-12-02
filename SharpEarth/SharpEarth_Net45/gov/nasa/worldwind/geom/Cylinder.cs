@@ -319,7 +319,7 @@ public class Cylinder implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Line line)
+    public bool intersects(Line line)
     {
         if (line == null)
         {
@@ -333,9 +333,9 @@ public class Cylinder implements Extent, Renderable
 
     // Taken from "Graphics Gems IV", Section V.2, page 356.
 
-    protected boolean intcyl(Vec4 raybase, Vec4 raycos, Vec4 base, Vec4 axis, double radius, double[] tVals)
+    protected bool intcyl(Vec4 raybase, Vec4 raycos, Vec4 base, Vec4 axis, double radius, double[] tVals)
     {
-        boolean hit; // True if ray intersects cyl
+        bool hit; // True if ray intersects cyl
         Vec4 RC; // Ray base to cylinder base
         double d; // Shortest distance between the ray and the cylinder
         double t, s; // Distances along the ray
@@ -352,7 +352,7 @@ public class Cylinder implements Extent, Renderable
             D = RC.subtract3(axis.multiply3(d));
             d = D.getLength3();
             tVals[0] = Double.NEGATIVE_INFINITY;
-            tVals[1] = Double.POSITIVE_INFINITY;
+            tVals[1] = Double.PositiveInfinity;
             // True if ray is in cylinder.
             return d <= radius;
         }
@@ -378,7 +378,7 @@ public class Cylinder implements Extent, Renderable
 
     // Taken from "Graphics Gems IV", Section V.2, page 356.
 
-    protected boolean clipcyl(Vec4 raybase, Vec4 raycos, Vec4 bot, Vec4 top, Vec4 axis, double[] tVals)
+    protected bool clipcyl(Vec4 raybase, Vec4 raycos, Vec4 bot, Vec4 top, Vec4 axis, double[] tVals)
     {
         double dc, dwb, dwt, tb, tt;
         double in, out; // Object intersection distances.
@@ -440,11 +440,11 @@ public class Cylinder implements Extent, Renderable
     {
         // Test the distance from the first cylinder end-point. Assumes that bottomCenter's w-coordinate is 1.
         double dq1 = plane.dot(this.bottomCenter);
-        boolean bq1 = dq1 <= -effectiveRadius;
+        bool bq1 = dq1 <= -effectiveRadius;
 
         // Test the distance from the top of the cylinder. Assumes that topCenter's w-coordinate is 1.
         double dq2 = plane.dot(this.topCenter);
-        boolean bq2 = dq2 <= -effectiveRadius;
+        bool bq2 = dq2 <= -effectiveRadius;
 
         if (bq1 && bq2) // both beyond effective radius; cylinder is on negative side of plane
             return -1;
@@ -459,12 +459,12 @@ public class Cylinder implements Extent, Renderable
     {
         // Test the distance from the first end-point. Assumes that the first end-point's w-coordinate is 1.
         double dq1 = plane.dot(endpoints[0]);
-        boolean bq1 = dq1 <= -effectiveRadius;
+        bool bq1 = dq1 <= -effectiveRadius;
 
         // Test the distance from the possibly reduced second cylinder end-point. Assumes that the second end-point's
         // w-coordinate is 1.
         double dq2 = plane.dot(endpoints[1]);
-        boolean bq2 = dq2 <= -effectiveRadius;
+        bool bq2 = dq2 <= -effectiveRadius;
 
         if (bq1 && bq2) // endpoints more distant from plane than effective radius; cylinder is on neg. side of plane
             return -1;
@@ -500,7 +500,7 @@ public class Cylinder implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Plane plane)
+    public bool intersects(Plane plane)
     {
         if (plane == null)
         {
@@ -514,7 +514,7 @@ public class Cylinder implements Extent, Renderable
     }
 
     /** {@inheritDoc} */
-    public boolean intersects(Frustum frustum)
+    public bool intersects(Frustum frustum)
     {
         if (frustum == null)
         {
@@ -925,7 +925,7 @@ public class Cylinder implements Extent, Renderable
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
@@ -951,24 +951,24 @@ public class Cylinder implements Extent, Renderable
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         long temp;
         result = bottomCenter != null ? bottomCenter.hashCode() : 0;
         result = 31 * result + (topCenter != null ? topCenter.hashCode() : 0);
         result = 31 * result + (axisUnitDirection != null ? axisUnitDirection.hashCode() : 0);
-        temp = cylinderRadius != +0.0d ? Double.doubleToLongBits(cylinderRadius) : 0L;
+        temp = cylinderRadius != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderRadius) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = cylinderHeight != +0.0d ? Double.doubleToLongBits(cylinderHeight) : 0L;
+        temp = cylinderHeight != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderHeight) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
     public String toString()
     {
-        return this.cylinderRadius + ", " + this.bottomCenter.toString() + ", " + this.topCenter.toString() + ", "
-            + this.axisUnitDirection.toString();
+        return this.cylinderRadius + ", " + this.bottomCenter.ToString() + ", " + this.topCenter.ToString() + ", "
+            + this.axisUnitDirection.ToString();
     }
 }
 }

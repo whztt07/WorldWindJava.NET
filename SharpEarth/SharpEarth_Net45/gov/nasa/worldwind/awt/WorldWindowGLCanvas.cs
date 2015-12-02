@@ -215,7 +215,7 @@ public class WorldWindowGLCanvas extends GLCanvas implements WorldWindow, Proper
     }
 
     @Override
-    public boolean isEnableGpuCacheReinitialization()
+    public bool isEnableGpuCacheReinitialization()
     {
         return this.wwd.isEnableGpuCacheReinitialization();
     }
@@ -394,7 +394,7 @@ public class WorldWindowGLCanvas extends GLCanvas implements WorldWindow, Proper
         return this.wwd.getStringValue(key);
     }
 
-    public boolean hasKey(String key)
+    public bool hasKey(String key)
     {
         return this.wwd.hasKey(key);
     }

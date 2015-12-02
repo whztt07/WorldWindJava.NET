@@ -18,7 +18,7 @@ namespace SharpEarth.util{
  */
 public class TimedExpirySupport
 {
-    protected boolean expired = true;
+    protected bool expired = true;
     protected long expiryTime = -1L;
     protected long minExpiryTime;
     protected long maxExpiryTime;
@@ -117,7 +117,7 @@ public class TimedExpirySupport
      *
      * @throws ArgumentException if the draw context is null.
      */
-    public boolean isExpired(DrawContext dc)
+    public bool isExpired(DrawContext dc)
     {
         if (this.expired)
             return true;
@@ -137,7 +137,7 @@ public class TimedExpirySupport
      *
      * @return true if this timer has expired relative to system time, otherwise false.
      */
-    public boolean isExpired(long now)
+    public bool isExpired(long now)
     {
         return this.expired || this.expiryTime < now;
     }

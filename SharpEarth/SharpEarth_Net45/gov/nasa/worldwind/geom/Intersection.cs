@@ -18,7 +18,7 @@ public sealed class Intersection // Instances are immutable
     protected Vec4 intersectionPoint;
     protected Double intersectionLength;
     protected Position intersectionPosition;
-    protected boolean isTangent;
+    protected bool isTangent;
     protected Object object;
 
     /**
@@ -29,7 +29,7 @@ public sealed class Intersection // Instances are immutable
      *
      * @throws ArgumentException if <code>intersectionPoint</code> is null
      */
-    public Intersection(Vec4 intersectionPoint, boolean isTangent)
+    public Intersection(Vec4 intersectionPoint, bool isTangent)
     {
         if (intersectionPoint == null)
         {
@@ -51,14 +51,14 @@ public sealed class Intersection // Instances are immutable
      *
      * @throws ArgumentException if <code>intersectionPoint</code> is null
      */
-    public Intersection(Vec4 intersectionPoint, double intersectionLength, boolean isTangent)
+    public Intersection(Vec4 intersectionPoint, double intersectionLength, bool isTangent)
     {
         this(intersectionPoint, isTangent);
 
         this.intersectionLength = intersectionLength;
     }
 
-    public Intersection(Vec4 intersectionPoint, Position intersectionPosition, boolean isTangent, Object object)
+    public Intersection(Vec4 intersectionPoint, Position intersectionPosition, bool isTangent, Object object)
     {
         if (intersectionPoint == null)
         {
@@ -138,7 +138,7 @@ public sealed class Intersection // Instances are immutable
      *
      * @return true if the intersection is tangent, otherwise false.
      */
-    public boolean isTangent()
+    public bool isTangent()
     {
         return isTangent;
     }
@@ -210,11 +210,11 @@ public sealed class Intersection // Instances are immutable
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final SharpEarth.geom.Intersection that = (gov.nasa.worldwind.geom.Intersection) o;
@@ -229,7 +229,7 @@ public sealed class Intersection // Instances are immutable
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = intersectionPoint.hashCode();

@@ -15,8 +15,8 @@ namespace SharpEarth.render{
  */
 public interface SurfaceTile
 {
-    boolean bind(DrawContext dc);
-    void applyInternalTransform(DrawContext dc, boolean textureIdentityActive);
+    bool bind(DrawContext dc);
+    void applyInternalTransform(DrawContext dc, bool textureIdentityActive);
     Sector getSector();
     Extent getExtent(DrawContext dc);
     List<? extends LatLon> getCorners();

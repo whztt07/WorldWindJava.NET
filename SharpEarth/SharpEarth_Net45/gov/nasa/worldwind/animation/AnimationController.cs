@@ -66,9 +66,9 @@ public class AnimationController extends
      * Stops all <code>Animator</code>s in the map.
      * @return true if any <code>Animator</code> was started, false otherwise
      */
-    public boolean stepAnimators()
+    public bool stepAnimators()
     {
-        boolean didStep = false;
+        bool didStep = false;
         Collection<Animator> animators = this.values();
         for (Animator a : animators)
         {
@@ -87,7 +87,7 @@ public class AnimationController extends
      * 
      * @return true if there are any active animations in this <code>CompountAnimation</code>
      */
-    public boolean hasActiveAnimation()
+    public bool hasActiveAnimation()
     {
 
         Collection<Animator> animators = this.values();

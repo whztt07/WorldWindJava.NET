@@ -72,20 +72,20 @@ public interface StereoSceneController extends SceneController
      *
      * @return true to switch the images, otherwise false
      */
-    public boolean isSwapEyes();
+    public bool isSwapEyes();
 
     /**
      * Indicates whether stereo is being implemented directly by the display device rather than software.
      *
      * @return true if if stereo is being implemented by the display device, otherwise false.
      */
-    public boolean isHardwareStereo();
+    public bool isHardwareStereo();
 
     /**
      * Indicates whether stereo is being applied, either directly by the display device or simulated via software.
      *
      * @return true if stereo is being applied.
      */
-    public boolean isInStereo();
+    public bool isInStereo();
 }
 }

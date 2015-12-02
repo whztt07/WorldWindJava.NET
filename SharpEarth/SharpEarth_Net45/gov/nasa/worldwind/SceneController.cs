@@ -161,7 +161,7 @@ public interface SceneController extends WWObject, Disposable
      *
      * @return true if all items under the cursor are identified during picking, otherwise false.
      */
-    boolean isDeepPickEnabled();
+    bool isDeepPickEnabled();
 
     /**
      * Specifies the GPU Resource cache to use.

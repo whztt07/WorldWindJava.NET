@@ -22,21 +22,21 @@ public class PropertyAccessor
     {
         Angle getAngle();
 
-        boolean setAngle(Angle value);
+        bool setAngle(Angle value);
     }
 
     public static interface DoubleAccessor
     {
         Double getDouble();
 
-        boolean setDouble(Double value);
+        bool setDouble(Double value);
     }
 
     public static interface PositionAccessor
     {
         Position getPosition();
 
-        boolean setPosition(Position value);
+        bool setPosition(Position value);
     }
 }
 }

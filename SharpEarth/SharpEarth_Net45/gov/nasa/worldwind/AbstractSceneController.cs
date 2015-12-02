@@ -62,7 +62,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
      * <code>null</code>.
      */
     protected Rectangle pickRect = null;
-    protected boolean deepPick = false;
+    protected bool deepPick = false;
     protected GpuResourceCache gpuResourceCache;
     protected TextRendererCache textRendererCache = new TextRendererCache();
     protected Set<String> perFrameStatisticsKeys = new HashSet<String>();
@@ -82,7 +82,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
     protected static final String SURFACE_OBJECT_TILE_COUNT_NAME = "Surface Object Tiles";
     protected ClutterFilter clutterFilter = new BasicClutterFilter();
     //protected Map<String, GroupingFilter> groupingFilters = new HashMap<String, GroupingFilter>();
-    protected boolean deferOrderedRendering;
+    protected bool deferOrderedRendering;
 
     public AbstractSceneController()
     {
@@ -222,7 +222,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
         this.deepPick = tf;
     }
 
-    public boolean isDeepPickEnabled()
+    public bool isDeepPickEnabled()
     {
         return this.deepPick;
     }
@@ -379,7 +379,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
 //        }
 //    }
 
-    public boolean isDeferOrderedRendering()
+    public bool isDeferOrderedRendering()
     {
         return deferOrderedRendering;
     }
@@ -588,7 +588,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                     catch (Exception e)
                     {
                         String message = Logging.getMessage("SceneController.ExceptionWhilePreRenderingLayer",
-                            (layer != null ? layer.getClass().getName() : Logging.getMessage("term.unknown")));
+                            (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
                         Logging.logger().log(Level.SEVERE, message, e);
                         // Don't abort; continue on to the next layer.
                     }
@@ -660,7 +660,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                 catch (Exception e)
                 {
                     String message = Logging.getMessage("SceneController.ExceptionWhilePickingInLayer",
-                        (layer != null ? layer.getClass().getName() : Logging.getMessage("term.unknown")));
+                        (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
                     Logging.logger().log(Level.SEVERE, message, e);
                     // Don't abort; continue on to the next layer.
                 }
@@ -858,7 +858,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
             if (pb.isTerrain())
                 continue;
 
-            boolean common = false; // cannot modify listA within its iterator, so use a flag to indicate commonality
+            bool common = false; // cannot modify listA within its iterator, so use a flag to indicate commonality
             for (PickedObject pa : listA)
             {
                 if (pa.isTerrain())
@@ -898,7 +898,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
                     catch (Exception e)
                     {
                         String message = Logging.getMessage("SceneController.ExceptionWhileRenderingLayer",
-                            (layer != null ? layer.getClass().getName() : Logging.getMessage("term.unknown")));
+                            (layer != null ? layer.GetType().getName() : Logging.getMessage("term.unknown")));
                         Logging.logger().log(Level.SEVERE, message, e);
                         // Don't abort; continue on to the next layer.
                     }

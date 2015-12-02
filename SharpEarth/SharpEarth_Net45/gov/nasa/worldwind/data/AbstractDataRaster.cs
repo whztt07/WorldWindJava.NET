@@ -143,8 +143,8 @@ public abstract class AbstractDataRaster extends AVListImpl implements DataRaste
         geoPoint.setLocation(clipSector.getMaxLongitude().degrees, clipSector.getMinLatitude().degrees);
         geographicToRaster.transform(geoPoint, lr);
 
-        int x = (int) Math.floor(ul.getX());
-        int y = (int) Math.floor(ul.getY());
+        int x = (int) Math.Floor(ul.getX());
+        int y = (int) Math.Floor(ul.getY());
         int width = (int) Math.ceil(lr.getX() - ul.getX());
         int height = (int) Math.ceil(lr.getY() - ul.getY());
 

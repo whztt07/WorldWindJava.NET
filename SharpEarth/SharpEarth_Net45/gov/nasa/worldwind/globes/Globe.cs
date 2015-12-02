@@ -575,6 +575,6 @@ public interface Globe extends WWObject, Extent
      *
      * @return true if the given point is above the given elevation, otherwise false.
      */
-    boolean isPointAboveElevation(Vec4 point, double elevation);
+    bool isPointAboveElevation(Vec4 point, double elevation);
 }
 }

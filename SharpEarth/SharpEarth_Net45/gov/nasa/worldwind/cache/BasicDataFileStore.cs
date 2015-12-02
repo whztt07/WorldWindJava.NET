@@ -97,7 +97,7 @@ public class BasicDataFileStore extends AbstractFileStore
 
         if (is == null)
         {
-            is = this.getClass().getClassLoader().getResourceAsStream(configPath);
+            is = this.GetType().getClassLoader().getResourceAsStream(configPath);
         }
 
         if (is == null)
@@ -130,7 +130,7 @@ public class BasicDataFileStore extends AbstractFileStore
         sb.append(directoryPath.getAbsolutePath());
         sb.append("\" create=\"true\"/></writeLocations></dataFileStore>");
 
-        this.initialize(WWIO.getInputStreamFromString(sb.toString()));
+        this.initialize(WWIO.getInputStreamFromString(sb.ToString()));
     }
 
     @Override
@@ -255,7 +255,7 @@ public class BasicDataFileStore extends AbstractFileStore
     }
 
     /** {@inheritDoc} */
-    public synchronized URL requestFile(String address, boolean cacheRemoteFile)
+    public synchronized URL requestFile(String address, bool cacheRemoteFile)
     {
         if (address == null)
         {
@@ -271,7 +271,7 @@ public class BasicDataFileStore extends AbstractFileStore
         if (entry != null)
         {
             long now = System.currentTimeMillis();
-            boolean expired = entry.expiration != 0 && now > entry.expiration;
+            bool expired = entry.expiration != 0 && now > entry.expiration;
 
             // Return the resource if it is local and has not expired.
             if (entry.state == DBEntry.LOCAL && !expired)
@@ -320,7 +320,7 @@ public class BasicDataFileStore extends AbstractFileStore
      *
      * @throws ArgumentException if the specified address is null.
      */
-    protected synchronized URL getLocalFileUrl(String address, URL retrievalUrl, boolean searchLocalCache)
+    protected synchronized URL getLocalFileUrl(String address, URL retrievalUrl, bool searchLocalCache)
     {
         if (address == null)
         {
@@ -427,7 +427,7 @@ public class BasicDataFileStore extends AbstractFileStore
         }
         catch (IOException e)
         {
-            String message = Logging.getMessage("generic.JarOpenFailed", jarUrl.toString());
+            String message = Logging.getMessage("generic.JarOpenFailed", jarUrl.ToString());
             Logging.logger().log(java.util.logging.Level.WARNING, message, e);
 
             return -1;
@@ -443,7 +443,7 @@ public class BasicDataFileStore extends AbstractFileStore
      * @param saveInLocalCache <code>true</code> to add the file to the cache, or <code>false</code> to save it in a
      *                         temporary location.
      */
-    protected synchronized void makeLocal(String address, URL url, boolean saveInLocalCache)
+    protected synchronized void makeLocal(String address, URL url, bool saveInLocalCache)
     {
         if (WorldWind.getNetworkStatus().isHostUnavailable(url) || !WorldWind.getRetrievalService().isAvailable())
             return;
@@ -464,9 +464,9 @@ public class BasicDataFileStore extends AbstractFileStore
         protected URL retrievalUrl;
         protected URL localFileUrl = null;
         protected File outputFile = null;
-        protected boolean saveInLocalCache;
+        protected bool saveInLocalCache;
 
-        public PostProcessor(String address, URL url, boolean saveInLocalCache)
+        public PostProcessor(String address, URL url, bool saveInLocalCache)
         {
             this.address = address;
             this.retrievalUrl = url;
@@ -474,7 +474,7 @@ public class BasicDataFileStore extends AbstractFileStore
         }
 
         @Override
-        protected boolean overwriteExistingFile()
+        protected bool overwriteExistingFile()
         {
             return true;
         }
@@ -519,9 +519,9 @@ public class BasicDataFileStore extends AbstractFileStore
         }
 
         @Override
-        protected boolean saveBuffer() throws IOException
+        protected bool saveBuffer() throws IOException
         {
-            boolean tf = super.saveBuffer();
+            bool tf = super.saveBuffer();
             BasicDataFileStore.this.updateEntry(this.address, this.localFileUrl,
                 this.getRetriever().getExpirationTime());
             return tf;
@@ -663,7 +663,7 @@ public class BasicDataFileStore extends AbstractFileStore
         if (suffix != null)
             sb.append(suffix);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -696,7 +696,7 @@ public class BasicDataFileStore extends AbstractFileStore
         if (suffix != null)
             sb.append(suffix);
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -714,9 +714,9 @@ public class BasicDataFileStore extends AbstractFileStore
         // Use a suffix based on the content type if the content type and the URL's suffix do not match. Otherwise
         // attempt to use the URL's suffix. If neither of these attempts produce a non-null suffix, File.createTmpFile
         // uses the default suffix ".tmp".
-        String suffix = this.makeSuffix(url.toString(), contentType); // null if the URL suffix and content type match.
+        String suffix = this.makeSuffix(url.ToString(), contentType); // null if the URL suffix and content type match.
         if (suffix == null)
-            suffix = WWIO.getSuffix(url.toString());
+            suffix = WWIO.getSuffix(url.ToString());
 
         // Ensure that the suffix starts with the "." character.
         if (!suffix.startsWith("."))

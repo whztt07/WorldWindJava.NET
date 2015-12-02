@@ -27,7 +27,7 @@ public class BrowserOpener
 
         try
         {
-            String urlString = url.toString();
+            String urlString = url.ToString();
             if (Configuration.isMacOS())
                 browseMacOS(urlString);
             else if (Configuration.isWindowsOS())
@@ -37,7 +37,7 @@ public class BrowserOpener
         }
         catch (Exception e)
         {
-            throw new Exception(String.format("Cannot browse URL %s", url), e);
+            throw new Exception(String.Format("Cannot browse URL %s", url), e);
         }
     }
 

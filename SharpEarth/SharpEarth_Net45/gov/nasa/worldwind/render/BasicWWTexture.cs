@@ -33,13 +33,13 @@ namespace SharpEarth.render{
 public class BasicWWTexture implements WWTexture
 {
     private Object imageSource;
-    private boolean useMipMaps;
-    private boolean useAnisotropy = true;
+    private bool useMipMaps;
+    private bool useAnisotropy = true;
 
     protected Integer width;
     protected Integer height;
     protected TextureCoords texCoords;
-    protected boolean textureInitializationFailed = false;
+    protected bool textureInitializationFailed = false;
 
     /**
      * Constructs a texture object from an image source.
@@ -52,7 +52,7 @@ public class BasicWWTexture implements WWTexture
      *
      * @throws ArgumentException if the <code>imageSource</code> is null.
      */
-    public BasicWWTexture(Object imageSource, boolean useMipMaps)
+    public BasicWWTexture(Object imageSource, bool useMipMaps)
     {
         initialize(imageSource, useMipMaps);
     }
@@ -72,7 +72,7 @@ public class BasicWWTexture implements WWTexture
         this(imageSource, false);
     }
 
-    protected void initialize(Object imageSource, boolean useMipMaps)
+    protected void initialize(Object imageSource, bool useMipMaps)
     {
         if (imageSource == null)
         {
@@ -115,7 +115,7 @@ public class BasicWWTexture implements WWTexture
      *
      * @return true if mipmaps are used, false if  not.
      */
-    public boolean isUseMipMaps()
+    public bool isUseMipMaps()
     {
         return useMipMaps;
     }
@@ -125,7 +125,7 @@ public class BasicWWTexture implements WWTexture
         return texCoords;
     }
 
-    public boolean isTextureCurrent(DrawContext dc)
+    public bool isTextureCurrent(DrawContext dc)
     {
         return true;
     }
@@ -135,7 +135,7 @@ public class BasicWWTexture implements WWTexture
      *
      * @return useAnisotropy true if anisotropy is to be applied, otherwise false.
      */
-    public boolean isUseAnisotropy()
+    public bool isUseAnisotropy()
     {
         return useAnisotropy;
     }
@@ -150,12 +150,12 @@ public class BasicWWTexture implements WWTexture
         this.useAnisotropy = useAnisotropy;
     }
 
-    public boolean isTextureInitializationFailed()
+    public bool isTextureInitializationFailed()
     {
         return textureInitializationFailed;
     }
 
-    protected Texture getTexture(DrawContext dc, boolean initialize)
+    protected Texture getTexture(DrawContext dc, bool initialize)
     {
         Texture t = this.getTextureFromCache(dc);
 
@@ -178,7 +178,7 @@ public class BasicWWTexture implements WWTexture
         return t;
     }
 
-    public boolean bind(DrawContext dc)
+    public bool bind(DrawContext dc)
     {
         if (dc == null)
         {
@@ -248,14 +248,14 @@ public class BasicWWTexture implements WWTexture
             return null;
 
         Texture t;
-        boolean haveMipMapData;
+        bool haveMipMapData;
         GL gl = dc.getGL();
 
         if (imageSource instanceof String)
         {
             String path = (String) imageSource;
 
-            Object streamOrException = WWIO.getFileOrResourceAsStream(path, this.getClass());
+            Object streamOrException = WWIO.getFileOrResourceAsStream(path, this.GetType());
             if (streamOrException == null || streamOrException instanceof Exception)
             {
                 Logging.logger().log(java.util.logging.Level.SEVERE, "generic.ExceptionAttemptingToReadImageFile",
@@ -326,7 +326,7 @@ public class BasicWWTexture implements WWTexture
         else
         {
             Logging.logger().log(java.util.logging.Level.SEVERE, "generic.UnrecognizedImageSourceType",
-                imageSource.getClass().getName());
+                imageSource.GetType().getName());
             this.textureInitializationFailed = true;
             return null;
         }
@@ -334,7 +334,7 @@ public class BasicWWTexture implements WWTexture
         if (t == null) // In case JOGL TextureIO returned null
         {
             Logging.logger().log(java.util.logging.Level.SEVERE, "generic.TextureUnreadable",
-                imageSource instanceof String ? imageSource : imageSource.getClass().getName());
+                imageSource instanceof String ? imageSource : imageSource.GetType().getName());
             this.textureInitializationFailed = true;
             return null;
         }
@@ -346,7 +346,7 @@ public class BasicWWTexture implements WWTexture
 
         // Enable the appropriate mip-mapping texture filters if the caller has specified that mip-mapping should be
         // enabled, and the texture itself supports mip-mapping.
-        boolean useMipMapFilter = this.useMipMaps && (haveMipMapData || t.isUsingAutoMipmapGeneration());
+        bool useMipMapFilter = this.useMipMaps && (haveMipMapData || t.isUsingAutoMipmapGeneration());
         gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER,
             useMipMapFilter ? GL.GL_LINEAR_MIPMAP_LINEAR : GL.GL_LINEAR);
         gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MAG_FILTER, GL.GL_LINEAR);

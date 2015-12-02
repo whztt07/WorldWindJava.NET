@@ -47,7 +47,7 @@ public class WWIO
             sb.append(pathPart.replaceAll(ILLEGAL_FILE_PATH_PART_CHARACTERS, "_"));
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     public static String appendPathPart(String firstPart, String secondPart)
@@ -62,7 +62,7 @@ public class WWIO
         sb.append(File.separator);
         sb.append(WWIO.stripLeadingSeparator(secondPart));
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -259,7 +259,7 @@ public class WWIO
     }
 
     @SuppressWarnings({"ResultOfMethodCallIgnored"})
-    public static boolean saveBuffer(ByteBuffer buffer, File file, boolean forceFilesystemWrite) throws IOException
+    public static bool saveBuffer(ByteBuffer buffer, File file, bool forceFilesystemWrite) throws IOException
     {
         if (buffer == null)
         {
@@ -331,14 +331,14 @@ public class WWIO
         }
     }
 
-    public static boolean saveBuffer(ByteBuffer buffer, File file) throws IOException
+    public static bool saveBuffer(ByteBuffer buffer, File file) throws IOException
     {
         // By default, force changes to be written to the underlying storage device.
         return saveBuffer(buffer, file, true);
     }
 
     @SuppressWarnings({"ResultOfMethodCallIgnored"})
-    public static boolean saveBufferToStream(ByteBuffer buffer, OutputStream fos)
+    public static bool saveBufferToStream(ByteBuffer buffer, OutputStream fos)
         throws IOException
     {
         if (buffer == null)
@@ -493,7 +493,7 @@ public class WWIO
      * @throws ArgumentException if the URL is null.
      * @throws IOException              if an I/O error occurs.
      */
-    public static ByteBuffer readURLContentToBuffer(URL url, boolean allocateDirect) throws IOException
+    public static ByteBuffer readURLContentToBuffer(URL url, bool allocateDirect) throws IOException
     {
         if (url == null)
         {
@@ -510,7 +510,7 @@ public class WWIO
         }
         finally
         {
-            WWIO.closeStream(is, url.toString());
+            WWIO.closeStream(is, url.ToString());
         }
     }
 
@@ -582,7 +582,7 @@ public class WWIO
      * @throws ArgumentException if the file is null.
      * @throws IOException              if an I/O error occurs.
      */
-    public static ByteBuffer readFileToBuffer(File file, boolean allocateDirect) throws IOException
+    public static ByteBuffer readFileToBuffer(File file, bool allocateDirect) throws IOException
     {
         if (file == null)
         {
@@ -630,12 +630,12 @@ public class WWIO
         }
     }
 
-    public static boolean saveBufferToGZipFile(ByteBuffer buffer, File file) throws IOException
+    public static bool saveBufferToGZipFile(ByteBuffer buffer, File file) throws IOException
     {
         return saveBufferToStream(buffer, new GZIPOutputStream(new FileOutputStream(file)));
     }
 
-    public static boolean deflateBufferToFile(ByteBuffer buffer, File file) throws IOException
+    public static bool deflateBufferToFile(ByteBuffer buffer, File file) throws IOException
     {
         return saveBufferToStream(buffer, new DeflaterOutputStream(new FileOutputStream(file)));
     }
@@ -842,7 +842,7 @@ public class WWIO
      * @throws ArgumentException if the stream is null.
      * @throws IOException              if an I/O error occurs.
      */
-    public static ByteBuffer readStreamToBuffer(InputStream inputStream, boolean allocateDirect) throws IOException
+    public static ByteBuffer readStreamToBuffer(InputStream inputStream, bool allocateDirect) throws IOException
     {
         if (inputStream == null)
         {
@@ -895,7 +895,7 @@ public class WWIO
      * @throws ArgumentException if the channel is null.
      * @throws IOException              if an I/O error occurs.
      */
-    public static ByteBuffer readChannelToBuffer(ReadableByteChannel channel, boolean allocateDirect) throws IOException
+    public static ByteBuffer readChannelToBuffer(ReadableByteChannel channel, bool allocateDirect) throws IOException
     {
         if (channel == null)
         {
@@ -1022,7 +1022,7 @@ public class WWIO
             sb.append(line);
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     public static ByteBuffer inflateStreamToBuffer(InputStream inputStream) throws IOException
@@ -1134,7 +1134,7 @@ public class WWIO
      *
      * @throws ArgumentException if the path is null.
      */
-    public static boolean makeParentDirs(String path)
+    public static bool makeParentDirs(String path)
     {
         if (path == null)
         {
@@ -1158,7 +1158,7 @@ public class WWIO
             sb.append(pathParts[i]);
         }
 
-        return (new File(sb.toString())).mkdirs();
+        return (new File(sb.ToString())).mkdirs();
     }
 
     /**
@@ -1201,7 +1201,7 @@ public class WWIO
         return outputFile;
     }
 
-    public static boolean isFileOutOfDate(URL url, long expiryTime)
+    public static bool isFileOutOfDate(URL url, long expiryTime)
     {
         if (url == null)
         {
@@ -1267,7 +1267,7 @@ public class WWIO
      * @return true if the file contains a specified content type, false if the file does not contain a specified
      *         content type, the specified file is null, or no content types are specified.
      */
-    public static boolean isContentType(File file, String... mimeTypes)
+    public static bool isContentType(File file, String... mimeTypes)
     {
         if (file == null || mimeTypes == null)
             return false;
@@ -1634,11 +1634,11 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        return (is instanceof BufferedInputStream && BufferedInputStream.class.equals(is.getClass()))
+        return (is instanceof BufferedInputStream && BufferedInputStream.class.equals(is.GetType()))
             ? (BufferedInputStream) is : new BufferedInputStream(is);
     }
 
-    public static boolean isAncestorOf(File file, File ancestor)
+    public static bool isAncestorOf(File file, File ancestor)
     {
         if (file == null)
         {
@@ -1706,7 +1706,7 @@ public class WWIO
         }
     }
 
-    public static void copyDirectory(File source, File destination, boolean copySubDirectories) throws IOException
+    public static void copyDirectory(File source, File destination, bool copySubDirectories) throws IOException
     {
         if (source == null)
         {
@@ -1875,7 +1875,7 @@ public class WWIO
             WWIO.closeStream(reader, file.getPath());
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -1974,7 +1974,7 @@ public class WWIO
             throw new ArgumentException(msg);
         }
 
-        return Charset.forName(encoding != null ? encoding : DEFAULT_CHARACTER_ENCODING).decode(buffer).toString();
+        return Charset.forName(encoding != null ? encoding : DEFAULT_CHARACTER_ENCODING).decode(buffer).ToString();
     }
 
     /**
@@ -2016,7 +2016,7 @@ public class WWIO
             charBuffer.limit(length);
         }
 
-        return charBuffer.toString();
+        return charBuffer.ToString();
     }
 
     /**
@@ -2117,7 +2117,7 @@ public class WWIO
         }
         else if (!(src instanceof String))
         {
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", src.toString());
+            String message = Logging.getMessage("generic.UnrecognizedSourceType", src.ToString());
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -2164,7 +2164,7 @@ public class WWIO
         else if (src instanceof java.net.URL)
             s = ((java.net.URL) src).toExternalForm();
         else if (src instanceof java.net.URI)
-            s = src.toString();
+            s = src.ToString();
         else if (src instanceof String)
             s = (String) src;
 
@@ -2235,8 +2235,8 @@ public class WWIO
         {
             URL url = makeURL(path);
 
-            if (url == null && !WWUtil.isEmpty(path.toString()) && !WWUtil.isEmpty(defaultProtocol))
-                url = new URL(defaultProtocol, null, path.toString());
+            if (url == null && !WWUtil.isEmpty(path.ToString()) && !WWUtil.isEmpty(defaultProtocol))
+                url = new URL(defaultProtocol, null, path.ToString());
 
             return url;
         }
@@ -2366,7 +2366,7 @@ public class WWIO
      *
      * @throws ArgumentException if the file is null.
      */
-    public static String[] listDescendantFilenames(File file, FileFilter filter, boolean recurseAfterMatch)
+    public static String[] listDescendantFilenames(File file, FileFilter filter, bool recurseAfterMatch)
     {
         if (file == null)
         {
@@ -2387,7 +2387,7 @@ public class WWIO
     }
 
     protected static void listDescendantFilenames(File parent, String pathname, FileFilter filter,
-        boolean recurseAfterMatch, Collection<String> matches)
+        bool recurseAfterMatch, Collection<String> matches)
     {
         // Create a file pointing to the file denoted by the parent file and child pathname string. Use the parent file
         // if the pathname string is null. 
@@ -2399,7 +2399,7 @@ public class WWIO
         if (names == null)
             return;
 
-        boolean haveMatch = false;
+        bool haveMatch = false;
 
         // Collect the non-null pathnames which match the specified filter, and collect the non-null directory names
         // in a temporary list.
@@ -2511,7 +2511,7 @@ public class WWIO
      *
      * @return true if the URL refers to a local resource, otherwise false.
      */
-    public static boolean isLocalJarAddress(URL jarUrl)
+    public static bool isLocalJarAddress(URL jarUrl)
     {
         return jarUrl != null && jarUrl.getFile().startsWith("file:");
     }

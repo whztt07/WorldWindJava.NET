@@ -98,7 +98,7 @@ public class StatisticsPanel extends JPanel
         Arrays.sort(pfs);
         for (PerformanceStatistic stat : pfs)
         {
-            JLabel jcb = new JLabel(stat.toString());
+            JLabel jcb = new JLabel(stat.ToString());
             this.statsPanel.add(jcb);
         }
     }

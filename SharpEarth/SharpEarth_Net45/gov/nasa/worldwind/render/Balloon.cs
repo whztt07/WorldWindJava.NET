@@ -23,7 +23,7 @@ public interface Balloon extends Renderable, Highlightable, AVList
      *
      * @return True if the balloon will always render above other items.
      */
-    boolean isAlwaysOnTop();
+    bool isAlwaysOnTop();
 
     /**
      * Set the balloon to always on top or not.
@@ -37,7 +37,7 @@ public interface Balloon extends Renderable, Highlightable, AVList
      *
      * @return True if the balloon can be picked, false if not.
      */
-    boolean isPickEnabled();
+    bool isPickEnabled();
 
     /**
      * Set the balloon to be pick enabled or not.
@@ -128,7 +128,7 @@ public interface Balloon extends Renderable, Highlightable, AVList
      *
      * @return true if the annotation is visible and should be rendered.
      */
-    public boolean isVisible();
+    public bool isVisible();
 
     /**
      * Set whether the balloon is visible and should be rendered.

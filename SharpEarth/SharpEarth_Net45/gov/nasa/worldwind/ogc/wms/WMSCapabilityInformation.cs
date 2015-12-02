@@ -86,7 +86,7 @@ public class WMSCapabilityInformation extends OGCCapabilityInformation
         }
     }
 
-    protected boolean isRequestName(XMLEventParserContext ctx, QName name)
+    protected bool isRequestName(XMLEventParserContext ctx, QName name)
     {
         for (QName requestName : this.requestNames)
         {

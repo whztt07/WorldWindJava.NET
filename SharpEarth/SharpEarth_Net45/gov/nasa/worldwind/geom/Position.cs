@@ -198,7 +198,7 @@ public class Position extends LatLon
         return new Position(latLon, elevation);
     }
 
-    public static boolean positionsCrossDateLine(Iterable<? extends Position> positions)
+    public static bool positionsCrossDateLine(Iterable<? extends Position> positions)
     {
         if (positions == null)
         {
@@ -318,11 +318,11 @@ public class Position extends LatLon
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
         if (!super.equals(o))
             return false;
@@ -337,18 +337,18 @@ public class Position extends LatLon
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = super.hashCode();
         long temp;
-        temp = elevation != +0.0d ? Double.doubleToLongBits(elevation) : 0L;
+        temp = elevation != +0.0d ? BitConverter.DoubleToInt64Bits(elevation) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
 
     public String toString()
     {
-        return "(" + this.latitude.toString() + ", " + this.longitude.toString() + ", " + this.elevation + ")";
+        return "(" + this.latitude.ToString() + ", " + this.longitude.ToString() + ", " + this.elevation + ")";
     }
 }
 }

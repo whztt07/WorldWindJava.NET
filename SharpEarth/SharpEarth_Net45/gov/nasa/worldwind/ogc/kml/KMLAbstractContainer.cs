@@ -80,7 +80,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
      * @return <code>true</code> if this container should be rendered, otherwise <code>false</code>.
      */
     @Override
-    protected boolean isFeatureActive(KMLTraversalContext tc, DrawContext dc)
+    protected bool isFeatureActive(KMLTraversalContext tc, DrawContext dc)
     {
         return this.getVisibility() == null || this.getVisibility();
     }
@@ -229,7 +229,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
     {
         if (!(sourceValues instanceof KMLAbstractContainer))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.getClass().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

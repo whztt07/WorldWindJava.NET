@@ -11,13 +11,13 @@ namespace SharpEarth.awt{
  */
 public interface MouseInputActionHandler
 {
-    public boolean inputActionPerformed(KeyEventState keys, String target,
+    public bool inputActionPerformed(KeyEventState keys, String target,
         ViewInputAttributes.ActionAttributes viewAction);
 
-    public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+    public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
         java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction);
 
-    public boolean inputActionPerformed(AbstractViewInputHandler inputHandler,
+    public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseWheelEvent mouseWheelEvent, ViewInputAttributes.ActionAttributes viewAction);
 }
 }

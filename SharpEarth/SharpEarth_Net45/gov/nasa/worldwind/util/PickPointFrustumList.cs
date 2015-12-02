@@ -34,7 +34,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean containsInAll(Vec4 point)
+    public final bool containsInAll(Vec4 point)
     {
         if (point == null)
         {
@@ -63,7 +63,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean containsInAny(Vec4 point)
+    public final bool containsInAny(Vec4 point)
     {
         if (point == null)
         {
@@ -92,7 +92,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean containsInAll(Point point)
+    public final bool containsInAll(Point point)
     {
         if (point == null)
         {
@@ -122,7 +122,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean containsInAny(double x, double y)
+    public final bool containsInAny(double x, double y)
     {
         for (PickPointFrustum frustum : this)
         {
@@ -144,7 +144,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the point is null.
      */
-    public final boolean containsInAny(Point point)
+    public final bool containsInAny(Point point)
     {
         if (point == null)
         {
@@ -174,7 +174,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean intersectsAll(Extent extent)
+    public final bool intersectsAll(Extent extent)
     {
         if (extent == null)
         {
@@ -203,7 +203,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean intersectsAny(Extent extent)
+    public final bool intersectsAny(Extent extent)
     {
         if (extent == null)
         {
@@ -233,7 +233,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if either point is null.
      */
-    public final boolean intersectsAny(Vec4 pa, Vec4 pb)
+    public final bool intersectsAny(Vec4 pa, Vec4 pb)
     {
         for (PickPointFrustum frustum : this)
         {
@@ -255,7 +255,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean intersectsAll(Rectangle rect)
+    public final bool intersectsAll(Rectangle rect)
     {
         if (rect == null)
         {
@@ -286,7 +286,7 @@ public class PickPointFrustumList extends ArrayList<PickPointFrustum>
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final boolean intersectsAny(Rectangle rect)
+    public final bool intersectsAny(Rectangle rect)
     {
         if (rect == null)
         {

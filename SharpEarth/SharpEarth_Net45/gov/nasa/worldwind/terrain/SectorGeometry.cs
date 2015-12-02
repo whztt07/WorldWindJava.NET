@@ -106,7 +106,7 @@ public interface SectorGeometry extends Renderable
      *
      * @throws ArgumentException if the draw context is null.
      */
-    void renderWireframe(DrawContext dc, boolean interior, boolean exterior);
+    void renderWireframe(DrawContext dc, bool interior, bool exterior);
 
     /**
      * Displays the geometry's bounding volume.
@@ -198,7 +198,7 @@ public interface SectorGeometry extends Renderable
      * @throws ArgumentException if the draw context is null or the number of texture units is less than one.
      * @see #beginRendering(gov.nasa.worldwind.render.DrawContext, int)
      */
-    void renderMultiTexture(DrawContext dc, int numTextureUnits, boolean beginRenderingCalled);
+    void renderMultiTexture(DrawContext dc, int numTextureUnits, bool beginRenderingCalled);
 
     /**
      * Displays the geometry.
@@ -215,7 +215,7 @@ public interface SectorGeometry extends Renderable
      * @throws ArgumentException if the draw context is null or the number of texture units is less than one.
      * @see #beginRendering(gov.nasa.worldwind.render.DrawContext, int)
      */
-    void render(DrawContext dc, boolean beginRenderingCalled);
+    void render(DrawContext dc, bool beginRenderingCalled);
 
     /** An interface for computing texture coordinates for a given location. */
     public interface GeographicTextureCoordinateComputer

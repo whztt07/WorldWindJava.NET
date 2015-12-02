@@ -42,7 +42,7 @@ public class DecisionTree<T, C> // T = type being managed. C = traversal context
          *
          * @return true if the node is active, otherwise false.
          */
-        public boolean isVisible(T o, C context);
+        public bool isVisible(T o, C context);
 
         /**
          * Indicates whether traversal should contine or end at a node.
@@ -53,7 +53,7 @@ public class DecisionTree<T, C> // T = type being managed. C = traversal context
          * @return true if the node is terminal, otherwise false. Traversal continues to descendants if false is
          *         returned. otherwise traversal of the node's branch of the tree stops.
          */
-        public boolean isTerminal(T o, C context);
+        public bool isTerminal(T o, C context);
 
         /**
          * Create a cell's descendant nodes. Called in order to continue traversal down a branch of the tree from the
@@ -104,12 +104,12 @@ public class DecisionTree<T, C> // T = type being managed. C = traversal context
 //    {
 //        DecisionTree<Sector, Sector> tree = new DecisionTree<Sector, Sector>(new Controller<Sector, Sector>()
 //        {
-//            public boolean isVisible(Sector s, Sector context)
+//            public bool isVisible(Sector s, Sector context)
 //            {
 //                return s.intersects(context);
 //            }
 //
-//            public boolean isTerminal(Sector s, Sector context)
+//            public bool isTerminal(Sector s, Sector context)
 //            {
 //                return s.getDeltaLat().degrees < 1d;
 //            }

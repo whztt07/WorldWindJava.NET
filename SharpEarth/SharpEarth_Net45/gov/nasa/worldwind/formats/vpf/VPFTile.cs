@@ -67,11 +67,11 @@ public class VPFTile implements ExtentHolder
         return Sector.computeBoundingCylinder(globe, verticalExaggeration, this.bounds.toSector());
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         VPFTile vpfTile = (VPFTile) o;
@@ -87,7 +87,7 @@ public class VPFTile implements ExtentHolder
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
@@ -101,7 +101,7 @@ public class VPFTile implements ExtentHolder
         sb.append(this.id);
         sb.append(": ");
         sb.append(this.name);
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

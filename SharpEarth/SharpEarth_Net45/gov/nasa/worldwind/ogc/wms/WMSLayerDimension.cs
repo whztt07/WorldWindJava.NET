@@ -100,7 +100,7 @@ public class WMSLayerDimension extends AbstractXMLEventParser
         if (this.dimension == null)
             this.dimension = new StringBuilder();
 
-        return dimension.toString();
+        return dimension.ToString();
     }
 
     public String getName()

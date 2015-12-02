@@ -417,7 +417,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
         }
     }
 
-    private boolean isDatelineSpanningFrame(int frameNumber, PixelTransformer pt)
+    private bool isDatelineSpanningFrame(int frameNumber, PixelTransformer pt)
     {
         // By definition, the center column of the polar frame grid...
         int row = frameNumber / getColumns();
@@ -428,7 +428,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
             return (row <= (getRows()/2) && col == (getColumns() / 2));
     }
 
-    private boolean isCenterFrame(int frameNumber)
+    private bool isCenterFrame(int frameNumber)
     {
         int row = frameNumber / getRows();
         int col = frameNumber % getColumns();

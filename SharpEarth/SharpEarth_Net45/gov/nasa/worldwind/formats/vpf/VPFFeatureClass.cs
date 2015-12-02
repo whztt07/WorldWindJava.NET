@@ -85,11 +85,11 @@ public class VPFFeatureClass extends AVListImpl
         return null;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || this.getClass() != o.getClass())
+        if (o == null || this.GetType() != o.GetType())
             return false;
 
         VPFFeatureClass that = (VPFFeatureClass) o;
@@ -111,7 +111,7 @@ public class VPFFeatureClass extends AVListImpl
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = this.coverage != null ? this.coverage.hashCode() : 0;
         result = 31 * result + (this.schema != null ? this.schema.hashCode() : 0);

@@ -62,7 +62,7 @@ public class XMLEventParserContextFactory
             // Ensure the prototype has a copy constructor
             try
             {
-                prototypeContext.getClass().getConstructor(prototypeContext.getClass());
+                prototypeContext.GetType().getConstructor(prototypeContext.GetType());
             }
             catch (NoSuchMethodException e)
             {
@@ -222,7 +222,7 @@ public class XMLEventParserContextFactory
         throws Exception
     {
         Constructor<? extends XMLEventParserContext> constructor;
-        constructor = prototype.getClass().getConstructor(prototype.getClass());
+        constructor = prototype.GetType().getConstructor(prototype.GetType());
 
         return constructor.newInstance(prototype);
     }

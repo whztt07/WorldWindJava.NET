@@ -38,7 +38,7 @@ public interface Animator
      *
      * @return <code>true</code> if the <code>Animator</code> has more elements.
      */
-    boolean hasNext();
+    bool hasNext();
 
     /**
      * Set the value of the attached property to the value associated with this interpolant value.

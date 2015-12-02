@@ -119,12 +119,12 @@ public class PointPlacemark extends WWObjectImpl
             return this.screenPoint;
         }
 
-        public boolean isEnableBatchRendering()
+        public bool isEnableBatchRendering()
         {
             return PointPlacemark.this.isEnableBatchRendering();
         }
 
-        public boolean isEnableBatchPicking()
+        public bool isEnableBatchPicking()
         {
             return PointPlacemark.this.isEnableBatchPicking();
         }
@@ -152,7 +152,7 @@ public class PointPlacemark extends WWObjectImpl
         }
 
         @Override
-        public boolean isEnableDecluttering()
+        public bool isEnableDecluttering()
         {
             return PointPlacemark.this.isEnableDecluttering();
         }
@@ -187,19 +187,19 @@ public class PointPlacemark extends WWObjectImpl
     protected Map<String, WWTexture> textures = new HashMap<String, WWTexture>(); // holds the textures created
     protected WWTexture activeTexture; // determined each frame
 
-    protected boolean highlighted;
-    protected boolean visible = true;
+    protected bool highlighted;
+    protected bool visible = true;
     protected int altitudeMode = WorldWind.CLAMP_TO_GROUND;
-    protected boolean lineEnabled;
-    protected boolean applyVerticalExaggeration = true;
+    protected bool lineEnabled;
+    protected bool applyVerticalExaggeration = true;
     protected int linePickWidth = 10;
-    protected boolean enableBatchRendering = true;
-    protected boolean enableBatchPicking = true;
+    protected bool enableBatchRendering = true;
+    protected bool enableBatchPicking = true;
     protected Object delegateOwner;
-    protected boolean clipToHorizon = true;
-    protected boolean enableDecluttering = false;
-    protected boolean enableLabelPicking = false;
-    protected boolean alwaysOnTop = false;
+    protected bool clipToHorizon = true;
+    protected bool enableDecluttering = false;
+    protected bool enableLabelPicking = false;
+    protected bool alwaysOnTop = false;
     protected LODSelector LODSelector = null;
 
     // Values computed once per frame and reused during the frame as needed.
@@ -267,7 +267,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return true if the placemark is drawn when in view, otherwise false.
      */
-    public boolean isVisible()
+    public bool isVisible()
     {
         return this.visible;
     }
@@ -321,7 +321,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return true if the line is drawn, otherwise false.
      */
-    public boolean isLineEnabled()
+    public bool isLineEnabled()
     {
         return lineEnabled;
     }
@@ -397,7 +397,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return true if the placemark is drawn highlighted, otherwise false.
      */
-    public boolean isHighlighted()
+    public bool isHighlighted()
     {
         return this.highlighted;
     }
@@ -432,7 +432,7 @@ public class PointPlacemark extends WWObjectImpl
         this.labelText = labelText != null ? labelText.trim() : null;
     }
 
-    public boolean isApplyVerticalExaggeration()
+    public bool isApplyVerticalExaggeration()
     {
         return applyVerticalExaggeration;
     }
@@ -459,7 +459,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @see #setEnableBatchRendering(boolean).
      */
-    public boolean isEnableBatchRendering()
+    public bool isEnableBatchRendering()
     {
         return enableBatchRendering;
     }
@@ -482,7 +482,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @see #setEnableBatchPicking(boolean).
      */
-    public boolean isEnableBatchPicking()
+    public bool isEnableBatchPicking()
     {
         return enableBatchPicking;
     }
@@ -538,7 +538,7 @@ public class PointPlacemark extends WWObjectImpl
      * @return the value of the clip-to-horizon flag. {@code true} if horizon clipping is enabled, otherwise {@code
      * false}. The default value is {@code true}.
      */
-    public boolean isClipToHorizon()
+    public bool isClipToHorizon()
     {
         return clipToHorizon;
     }
@@ -560,7 +560,7 @@ public class PointPlacemark extends WWObjectImpl
      * @return {@code true} if this placemark participates in global text decluttering, otherwise false. The default
      * value is {@code false}. Only the placemark's label is considered during decluttering.
      */
-    public boolean isEnableDecluttering()
+    public bool isEnableDecluttering()
     {
         return enableDecluttering;
     }
@@ -582,7 +582,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return <code>true</code> if this placemark's label is considered during picking, otherwise <code>false</code>.
      */
-    public boolean isEnableLabelPicking()
+    public bool isEnableLabelPicking()
     {
         return enableLabelPicking;
     }
@@ -603,7 +603,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return <code>true</code> if the always-on-top flag is set, otherwise <code>false</code>.
      */
-    public boolean isAlwaysOnTop()
+    public bool isAlwaysOnTop()
     {
         return alwaysOnTop;
     }
@@ -649,7 +649,7 @@ public class PointPlacemark extends WWObjectImpl
      * @return true if a point should be drawn, otherwise false.
      */
     @SuppressWarnings({"UnusedParameters"})
-    protected boolean isDrawPoint(DrawContext dc)
+    protected bool isDrawPoint(DrawContext dc)
     {
         return this.activeTexture == null && this.getActiveAttributes().isUsePointAsDefaultImage()
             && this.getActiveAttributes().isDrawImage();
@@ -769,7 +769,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return true if the image intersects the frustum, otherwise false.
      */
-    protected boolean intersectsFrustum(DrawContext dc, OrderedPlacemark opm)
+    protected bool intersectsFrustum(DrawContext dc, OrderedPlacemark opm)
     {
         View view = dc.getView();
 
@@ -1083,7 +1083,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return True if the label must be drawn.
      */
-    protected boolean mustDrawLabel()
+    protected bool mustDrawLabel()
     {
         return this.getLabelText() != null && this.getActiveAttributes().isDrawLabel();
     }
@@ -1305,7 +1305,7 @@ public class PointPlacemark extends WWObjectImpl
      *
      * @return true if the line should be drawn and it intersects the view frustum, otherwise false.
      */
-    protected boolean isDrawLine(DrawContext dc, OrderedPlacemark opm)
+    protected bool isDrawLine(DrawContext dc, OrderedPlacemark opm)
     {
         if (!this.isLineEnabled() || dc.is2DGlobe() || this.getAltitudeMode() == WorldWind.CLAMP_TO_GROUND
             || opm.terrainPoint == null)
@@ -1769,7 +1769,7 @@ public class PointPlacemark extends WWObjectImpl
             }
             catch (XMLStreamException e)
             {
-                Logging.logger().throwing(getClass().getName(), "export", e);
+                Logging.logger().throwing(GetType().getName(), "export", e);
                 throw new IOException(e);
             }
         }
@@ -1795,7 +1795,7 @@ public class PointPlacemark extends WWObjectImpl
     {
         XMLStreamWriter xmlWriter = null;
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        boolean closeWriterWhenFinished = true;
+        bool closeWriterWhenFinished = true;
 
         if (output instanceof XMLStreamWriter)
         {
@@ -1867,7 +1867,7 @@ public class PointPlacemark extends WWObjectImpl
         xmlWriter.writeCharacters(altitudeMode);
         xmlWriter.writeEndElement();
 
-        final String coordString = String.format(Locale.US, "%f,%f,%f",
+        final String coordString = String.Format(Locale.US, "%f,%f,%f",
             position.getLongitude().getDegrees(),
             position.getLatitude().getDegrees(),
             position.getElevation());

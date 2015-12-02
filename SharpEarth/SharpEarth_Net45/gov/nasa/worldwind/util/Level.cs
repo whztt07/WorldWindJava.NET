@@ -28,7 +28,7 @@ public class Level extends AVListImpl implements Comparable<Level>
     protected String path;
     protected TileUrlBuilder urlBuilder;
     protected long expiryTime = 0;
-    protected boolean active = true;
+    protected bool active = true;
 
     // Absent tiles: A tile is deemed absent if a specified maximum number of attempts have been made to retrieve it.
     // Retrieval attempts are governed by a minimum time interval between successive attempts. If an attempt is made
@@ -143,7 +143,7 @@ public class Level extends AVListImpl implements Comparable<Level>
         if (sb.length() == 0)
             return null;
 
-        return Logging.getMessage("layers.LevelSet.InvalidLevelDescriptorFields", sb.toString());
+        return Logging.getMessage("layers.LevelSet.InvalidLevelDescriptorFields", sb.ToString());
     }
 
     public AVList getParams()
@@ -206,7 +206,7 @@ public class Level extends AVListImpl implements Comparable<Level>
         return this.texelSize;
     }
 
-    public boolean isEmpty()
+    public bool isEmpty()
     {
         return this.levelName == null || this.levelName.equals("") || !this.active;
     }
@@ -217,7 +217,7 @@ public class Level extends AVListImpl implements Comparable<Level>
             this.absentTiles.markResourceAbsent(tileNumber);
     }
 
-    public boolean isResourceAbsent(long tileNumber)
+    public bool isResourceAbsent(long tileNumber)
     {
         return this.absentTiles.isResourceAbsent(tileNumber);
     }
@@ -238,7 +238,7 @@ public class Level extends AVListImpl implements Comparable<Level>
         this.expiryTime = expTime;
     }
 
-    public boolean isActive()
+    public bool isActive()
     {
         return this.active;
     }
@@ -338,11 +338,11 @@ public class Level extends AVListImpl implements Comparable<Level>
         return this.levelNumber < that.levelNumber ? -1 : this.levelNumber == that.levelNumber ? 0 : 1;
     }
 
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final Level level = (Level) o;
@@ -370,7 +370,7 @@ public class Level extends AVListImpl implements Comparable<Level>
         return true;
     }
 
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = levelNumber;

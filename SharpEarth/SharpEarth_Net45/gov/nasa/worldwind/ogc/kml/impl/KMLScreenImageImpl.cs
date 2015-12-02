@@ -111,7 +111,7 @@ public class KMLScreenImageImpl extends ScreenImage implements KMLRenderable
      *
      * @return True if the image source must be resolved.
      */
-    protected boolean mustResolveHref()
+    protected bool mustResolveHref()
     {
         KMLIcon icon = this.parent.getIcon();
         //noinspection SimplifiableIfStatement

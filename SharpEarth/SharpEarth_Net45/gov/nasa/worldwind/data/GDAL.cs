@@ -264,12 +264,12 @@ public class GDAL
             this.makeCorners(minY, maxY, minX, maxX);
         }
 
-        public boolean isGeographic()
+        public bool isGeographic()
         {
             return (null != this.srs && this.srs.IsGeographic() > 0);
         }
 
-        public boolean isProjected()
+        public bool isProjected()
         {
             return (null != this.srs && this.srs.IsProjected() > 0);
         }
@@ -303,7 +303,7 @@ public class GDAL
                 sb.append('(').append(corner.getX()).append(',').append(corner.getY()).append(") ");
             }
             sb.append('}');
-            return sb.toString();
+            return sb.ToString();
         }
 
         public double getMinX()
@@ -356,7 +356,7 @@ public class GDAL
             return new Area(this.srs.Clone(), minY, maxY, minX, maxX);
         }
 
-        public boolean contains(Area that) throws WWRuntimeException
+        public bool contains(Area that) throws WWRuntimeException
         {
             if (null == that)
                 return false;
@@ -423,8 +423,8 @@ public class GDAL
             geoPoint.setLocation(clipArea.getMaxX(), clipArea.getMinY());
             geoToRaster.transform(geoPoint, lr);
 
-            int x = (int) Math.floor(ul.getX());
-            int y = (int) Math.floor(ul.getY());
+            int x = (int) Math.Floor(ul.getX());
+            int y = (int) Math.Floor(ul.getY());
             int width = (int) Math.ceil(lr.getX() - ul.getX());
             int height = (int) Math.ceil(lr.getY() - ul.getY());
 

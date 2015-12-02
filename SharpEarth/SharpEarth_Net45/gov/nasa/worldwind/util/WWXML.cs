@@ -135,7 +135,7 @@ public class WWXML
         }
         else if (!(docSource instanceof String))
         {
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.toString());
+            String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
             throw new ArgumentException(message);
         }
 
@@ -202,7 +202,7 @@ public class WWXML
         }
         catch (IOException e)
         {
-            String message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", url.toString());
+            String message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", url.ToString());
             throw new WWRuntimeException(message, e);
         }
     }
@@ -223,7 +223,7 @@ public class WWXML
         return openDocumentStream(inputStream, true);
     }
 
-    public static Document openDocumentStream(InputStream inputStream, boolean isNamespaceAware)
+    public static Document openDocumentStream(InputStream inputStream, bool isNamespaceAware)
     {
         if (inputStream == null)
         {
@@ -341,7 +341,7 @@ public class WWXML
      * @throws WWRuntimeException       if an exception or error occurs while parsing the stream. The causing exception
      *                                  is included in this exception's {@link Throwable#initCause(Throwable)}
      */
-    public static XMLEventReader openEventReaderStream(InputStream inputStream, boolean isNamespaceAware)
+    public static XMLEventReader openEventReaderStream(InputStream inputStream, bool isNamespaceAware)
     {
         if (inputStream == null)
         {
@@ -402,7 +402,7 @@ public class WWXML
      * @throws WWRuntimeException       if an exception or error occurs while opening and parsing the file. The causing
      *                                  exception is included in this exception's {@link Throwable#initCause(Throwable)}.
      */
-    public static XMLEventReader openEventReaderFile(String filePath, Class c, boolean isNamespaceAware)
+    public static XMLEventReader openEventReaderFile(String filePath, Class c, bool isNamespaceAware)
     {
         if (filePath == null)
         {
@@ -428,7 +428,7 @@ public class WWXML
      * @throws WWRuntimeException       if an exception or error occurs while opening and parsing the url. The causing
      *                                  exception is included in this exception's {@link Throwable#initCause(Throwable)}.
      */
-    public static XMLEventReader openEventReaderURL(URL url, boolean isNamespaceAware)
+    public static XMLEventReader openEventReaderURL(URL url, bool isNamespaceAware)
     {
         if (url == null)
         {
@@ -444,7 +444,7 @@ public class WWXML
         }
         catch (IOException e)
         {
-            String message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", url.toString());
+            String message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", url.ToString());
             throw new WWRuntimeException(message, e);
         }
     }
@@ -475,7 +475,7 @@ public class WWXML
      * @return the source document as a {@link javax.xml.stream.XMLEventReader}, or null if the source object is a
      *         string that does not identify a URL, a file or a resource available on the classpath.
      */
-    public static XMLEventReader openEventReader(Object docSource, boolean isNamespaceAware)
+    public static XMLEventReader openEventReader(Object docSource, bool isNamespaceAware)
     {
         if (docSource == null || WWUtil.isEmpty(docSource))
         {
@@ -503,7 +503,7 @@ public class WWXML
         }
         else if (!(docSource instanceof String))
         {
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.toString());
+            String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -675,7 +675,7 @@ public class WWXML
             Logging.logger().finest(message);
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 
     /**
@@ -1855,7 +1855,7 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        return appendText(context, path, Double.toString(value));
+        return appendText(context, path, Double.ToString(value));
     }
 
     /**
@@ -1921,7 +1921,7 @@ public class WWXML
      *
      * @throws ArgumentException if the context is null.
      */
-    public static Element appendBoolean(Element context, String path, boolean value)
+    public static Element appendBoolean(Element context, String path, bool value)
     {
         if (context == null)
         {
@@ -2120,7 +2120,7 @@ public class WWXML
             {
                 // Warn that the image source property cannot be written to the document.
                 String message = Logging.getMessage("generic.UnrecognizedImageSourceType",
-                    (imageSource != null) ? imageSource.getClass().getName() : null);
+                    (imageSource != null) ? imageSource.GetType().getName() : null);
                 Logging.logger().warning(message);
             }
 
@@ -2192,7 +2192,7 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        setTextAttribute(context, name, Double.toString(value));
+        setTextAttribute(context, name, Double.ToString(value));
     }
 
     /**
@@ -2254,7 +2254,7 @@ public class WWXML
     }
 
     /**
-     * Sets the element's attribute with the specified name to the specified boolean value, converted to a String. If
+     * Sets the element's attribute with the specified name to the specified bool value, converted to a String. If
      * the element already has an attribute with this name, its value is repaced with the specified value.
      *
      * @param context the element on which to set the attribute.
@@ -2263,7 +2263,7 @@ public class WWXML
      *
      * @throws ArgumentException if the context is null, if the name is null, or if the name is empty.
      */
-    public static void setBooleanAttribute(Element context, String name, boolean value)
+    public static void setBooleanAttribute(Element context, String name, bool value)
     {
         if (context == null)
         {

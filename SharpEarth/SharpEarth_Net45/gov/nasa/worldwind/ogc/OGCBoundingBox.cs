@@ -202,7 +202,7 @@ public class OGCBoundingBox extends AbstractXMLEventParser
         sb.append(" resy = ");
         sb.append(this.resy);
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

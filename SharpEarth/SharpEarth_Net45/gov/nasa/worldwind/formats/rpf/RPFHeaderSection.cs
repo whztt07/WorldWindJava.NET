@@ -16,7 +16,7 @@ class RPFHeaderSection
 {
     public static final String DATA_TAG = "RPFHDR";
 
-    public boolean  endianIndicator;
+    public bool  endianIndicator;
     public short    headerLength;
     public String   filename;
     public short    updateIndicator; // new | replacement | update

@@ -154,11 +154,11 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
 
         @SuppressWarnings({"RedundantIfStatement"})
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
                 return false;
 
             LabelAttributes that = (LabelAttributes) o;
@@ -188,14 +188,14 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result;
             long temp;
             result = this.font != null ? this.font.hashCode() : 0;
             result = 31 * result + (this.color != null ? this.color.hashCode() : 0);
             result = 31 * result + (this.backgroundColor != null ? this.backgroundColor.hashCode() : 0);
-            temp = this.offset != +0.0d ? Double.doubleToLongBits(this.offset) : 0L;
+            temp = this.offset != +0.0d ? BitConverter.DoubleToInt64Bits(this.offset) : 0L;
             result = 31 * result + (int) (temp ^ (temp >>> 32));
             result = 31 * result + (this.offsetAngle != null ? this.offsetAngle.hashCode() : 0);
             result = 31 * result + (this.prepend != null ? this.prepend.hashCode() : 0);
@@ -214,7 +214,7 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
     private VPFSymbolKey symbolKey;
     private Object iconImageSource;
     private double iconImageScale;
-    private boolean mipMapIconImage;
+    private bool mipMapIconImage;
     private LabelAttributes[] labelAttributes;
     private double displayPriority;
     private String orientationAttributeName;
@@ -329,7 +329,7 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
         this.iconImageScale = scale;
     }
 
-    public boolean isMipMapIconImage()
+    public bool isMipMapIconImage()
     {
         return this.mipMapIconImage;
     }
@@ -381,11 +381,11 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
 
     @SuppressWarnings({"RedundantIfStatement"})
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
         if (!super.equals(o))
             return false;
@@ -417,18 +417,18 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         int result = super.hashCode();
         long temp;
         result = 31 * result + (this.featureType != null ? this.featureType.hashCode() : 0);
         result = 31 * result + (this.symbolKey != null ? this.symbolKey.hashCode() : 0);
         result = 31 * result + (this.iconImageSource != null ? this.iconImageSource.hashCode() : 0);
-        temp = this.iconImageScale != +0.0d ? Double.doubleToLongBits(this.iconImageScale) : 0L;
+        temp = this.iconImageScale != +0.0d ? BitConverter.DoubleToInt64Bits(this.iconImageScale) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (this.mipMapIconImage ? 1 : 0);
         result = 31 * result + (this.labelAttributes != null ? Arrays.hashCode(this.labelAttributes) : 0);
-        temp = this.displayPriority != +0.0d ? Double.doubleToLongBits(this.displayPriority) : 0L;
+        temp = this.displayPriority != +0.0d ? BitConverter.DoubleToInt64Bits(this.displayPriority) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (this.orientationAttributeName != null ? this.orientationAttributeName.hashCode() : 0);
         result = 31 * result + (this.description != null ? this.description.hashCode() : 0);

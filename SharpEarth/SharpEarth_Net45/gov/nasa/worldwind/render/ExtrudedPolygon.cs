@@ -115,7 +115,7 @@ public class ExtrudedPolygon extends AbstractShape
         /** Slices of <code>capFillIndices</code>, one per boundary. */
         protected List<IntBuffer> capFillIndexBuffers;
         /** Indicates whether a tessellation error occurred. No more attempts to tessellate will be made if set to true. */
-        protected boolean tessellationError = false;
+        protected bool tessellationError = false;
 
         /**
          * Constructs an instance using the boundaries of a specified extruded polygon.
@@ -283,9 +283,9 @@ public class ExtrudedPolygon extends AbstractShape
     /** This shape's cap texture coordinates. */
     protected FloatBuffer capTextureCoords;
     /** Indicates whether the cap should be drawn. */
-    protected boolean enableCap = true;
+    protected bool enableCap = true;
     /** Indicates whether the sides should be drawn. */
-    protected boolean enableSides = true;
+    protected bool enableSides = true;
 
     // Intersection fields
     /** The terrain used in the most recent intersection calculations. */
@@ -493,7 +493,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true if the outer boundary is valid, otherwise false.s
      */
-    protected boolean isOuterBoundaryValid()
+    protected bool isOuterBoundaryValid()
     {
         return this.boundaries.size() > 0 && this.boundaries.get(0).size() > 2;
     }
@@ -739,7 +739,7 @@ public class ExtrudedPolygon extends AbstractShape
         this.capTexture = this.makeTexture(imageSource);
 
         // Determine whether the tex-coord list needs to be closed.
-        boolean closeIt = texCoords[0] != texCoords[texCoordCount - 2] || texCoords[1] != texCoords[texCoordCount - 1];
+        bool closeIt = texCoords[0] != texCoords[texCoordCount - 2] || texCoords[1] != texCoords[texCoordCount - 1];
 
         this.capTextureCoords = Buffers.newDirectFloatBuffer(2 * (texCoordCount + (closeIt ? 1 : 0)));
         for (int i = 0; i < 2 * texCoordCount; i++)
@@ -818,7 +818,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true to draw the cap, otherwise false.
      */
-    public boolean isEnableCap()
+    public bool isEnableCap()
     {
         return enableCap;
     }
@@ -838,7 +838,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true to draw the sides, otherwise false.
      */
-    public boolean isEnableSides()
+    public bool isEnableSides()
     {
         return enableSides;
     }
@@ -1077,7 +1077,7 @@ public class ExtrudedPolygon extends AbstractShape
         if (this.sideTextures == null)
             return null;
 
-        boolean hasTextures = false;
+        bool hasTextures = false;
         for (List<WWTexture> textures : this.sideTextures)
         {
             if (textures != null && textures.size() > 0)
@@ -1118,7 +1118,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true if side textures have been specified, otherwise false.
      */
-    public boolean hasSideTextures()
+    public bool hasSideTextures()
     {
         if (this.sideTextures == null)
             return false;
@@ -1133,7 +1133,7 @@ public class ExtrudedPolygon extends AbstractShape
     }
 
     @Override
-    protected boolean mustApplyTexture(DrawContext dc)
+    protected bool mustApplyTexture(DrawContext dc)
     {
         if (this.getCapTexture() != null && this.capTextureCoords != null)
             return true;
@@ -1142,12 +1142,12 @@ public class ExtrudedPolygon extends AbstractShape
     }
 
     @Override
-    protected boolean isTerrainDependent()
+    protected bool isTerrainDependent()
     {
         return true; // this shape is terrain dependent regardless of the altitude mode
     }
 
-    protected boolean mustApplySideTextures()
+    protected bool mustApplySideTextures()
     {
         return this.hasSideTextures();
     }
@@ -1157,7 +1157,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true if an interior must be drawn, otherwise false.
      */
-    protected boolean mustDrawInterior()
+    protected bool mustDrawInterior()
     {
         return super.mustDrawInterior() || this.getActiveSideAttributes().isDrawInterior();
     }
@@ -1167,12 +1167,12 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return true if the outline should be drawn, otherwise false.
      */
-    protected boolean mustDrawOutline()
+    protected bool mustDrawOutline()
     {
         return super.mustDrawOutline() || this.getActiveSideAttributes().isDrawOutline();
     }
 
-    protected boolean mustRegenerateGeometry(DrawContext dc)
+    protected bool mustRegenerateGeometry(DrawContext dc)
     {
         ShapeData shapeData = this.getCurrent();
 
@@ -1288,13 +1288,13 @@ public class ExtrudedPolygon extends AbstractShape
     }
 
     @Override
-    protected boolean isOrderedRenderableValid(DrawContext dc)
+    protected bool isOrderedRenderableValid(DrawContext dc)
     {
         return this.getCurrent().capVertexBuffer != null || this.getCurrent().sideVertexBuffer != null;
     }
 
     @Override
-    protected boolean doMakeOrderedRenderable(DrawContext dc)
+    protected bool doMakeOrderedRenderable(DrawContext dc)
     {
         if (dc.getSurfaceGeometry() == null || !this.isOuterBoundaryValid())
             return false;
@@ -1591,7 +1591,7 @@ public class ExtrudedPolygon extends AbstractShape
      * @param skipOuterBoundary true if outer boundaries vertices do not need to be calculated, otherwise false.
      */
     protected void createFullGeometry(DrawContext dc, Terrain terrain, ShapeData shapeData,
-        boolean skipOuterBoundary)
+        bool skipOuterBoundary)
     {
         for (ExtrudedBoundaryInfo boundary : shapeData)
         {
@@ -1631,7 +1631,7 @@ public class ExtrudedPolygon extends AbstractShape
      * @param skipOuterBoundary if true, do not compute the outer boundary's vertices because they have already been
      *                          computed.
      */
-    protected void createVertices(Terrain terrain, ShapeData shapeData, boolean skipOuterBoundary)
+    protected void createVertices(Terrain terrain, ShapeData shapeData, bool skipOuterBoundary)
     {
         for (ExtrudedBoundaryInfo boundary : shapeData)
         {
@@ -1782,7 +1782,7 @@ public class ExtrudedPolygon extends AbstractShape
         // Create individual buffer slices for each boundary.
         for (ExtrudedBoundaryInfo boundary : shapeData)
         {
-            boolean applyTextureToThisBoundary = this.hasSideTextures()
+            bool applyTextureToThisBoundary = this.hasSideTextures()
                 && boundary.sideTextures != null && boundary.sideTextures.size() == boundary.faceCount;
 
             if (applyTextureToThisBoundary)
@@ -2227,7 +2227,7 @@ public class ExtrudedPolygon extends AbstractShape
         }
     }
 
-    protected boolean isSameAsPreviousTerrain(Terrain terrain)
+    protected bool isSameAsPreviousTerrain(Terrain terrain)
     {
         if (terrain == null || terrain != this.previousIntersectionTerrain)
             return false;
@@ -2517,14 +2517,14 @@ public class ExtrudedPolygon extends AbstractShape
         {
             if (location instanceof Position)
             {
-                xmlWriter.writeCharacters(String.format(Locale.US, "%f,%f,%f ",
+                xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                     location.getLongitude().getDegrees(),
                     location.getLatitude().getDegrees(),
                     ((Position) location).getAltitude()));
             }
             else
             {
-                xmlWriter.writeCharacters(String.format(Locale.US, "%f,%f ",
+                xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f ",
                     location.getLongitude().getDegrees(),
                     location.getLatitude().getDegrees()));
             }

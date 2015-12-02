@@ -168,27 +168,27 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static boolean isNoValueShort(short s)
+    public static bool isNoValueShort(short s)
     {
         return s == NO_VALUE_SHORT;
     }
 
-    public static boolean isNoValueInt(int i)
+    public static bool isNoValueInt(int i)
     {
         return i == NO_VALUE_INT;
     }
 
-    public static boolean isNoValueFloat(float f)
+    public static bool isNoValueFloat(float f)
     {
         return Float.isNaN(f);
     }
 
-    public static boolean isNoValueDouble(double d)
+    public static bool isNoValueDouble(double d)
     {
-        return Double.isNaN(d);
+        return Double.IsNaN(d);
     }
 
-    public static boolean isNoValueText(String s)
+    public static bool isNoValueText(String s)
     {
         if (s == null)
         {
@@ -224,7 +224,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return null;
         }
 
-        public boolean hasValue(int index)
+        public bool hasValue(int index)
         {
             return false;
         }
@@ -271,7 +271,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return this.array;
         }
 
-        public boolean hasValue(int index)
+        public bool hasValue(int index)
         {
             // For Date/Time data, entry is null when space character filled.
             // For Triplet ID data, entry is null when type byte = 0.
@@ -346,7 +346,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             else if (length == 16)
                 sb.append("Z");
 
-            return sb.toString();
+            return sb.ToString();
         }
     }
 
@@ -476,7 +476,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return this.buffer;
         }
 
-        public boolean hasValue(int index)
+        public bool hasValue(int index)
         {
             // Variable length text is null if it has zero length.
             if (this.elementsPerRow < 0)
@@ -521,7 +521,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
     {
         Object get(BufferWrapper bufferWrapper, int index);
 
-        boolean hasValue(BufferWrapper bufferWrapper, int index);
+        bool hasValue(BufferWrapper bufferWrapper, int index);
     }
 
     protected static class ShortReader implements ScalarReader
@@ -558,7 +558,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
 
     protected static class ShortAccessor extends IntAccessor
     {
-        public boolean hasValue(BufferWrapper bufferWrapper, int index)
+        public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
             // Scalar shorts are null when equal to "no value" 16 bit pattern.
             return !isNoValueShort((short) bufferWrapper.getInt(index));
@@ -572,7 +572,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return bufferWrapper.getInt(index);
         }
 
-        public boolean hasValue(BufferWrapper bufferWrapper, int index)
+        public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
             // Scalar ints are null when equal to "no value" 32 bit pattern.
             return !isNoValueInt(bufferWrapper.getInt(index));
@@ -581,7 +581,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
 
     protected static class FloatAccessor extends DoubleAccessor
     {
-        public boolean hasValue(BufferWrapper bufferWrapper, int index)
+        public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
             // Scalar floats are null when equal to the 32 bit floating point NaN.
             return !isNoValueFloat((float) bufferWrapper.getDouble(index));
@@ -595,7 +595,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return bufferWrapper.getDouble(index);
         }
 
-        public boolean hasValue(BufferWrapper bufferWrapper, int index)
+        public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
             // Scalar doubles are null when equal to the 64 bit floating point NaN.
             return !isNoValueDouble(bufferWrapper.getDouble(index));
@@ -628,7 +628,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return this.buffer;
         }
 
-        public boolean hasValue(int index)
+        public bool hasValue(int index)
         {
             return this.accessor.hasValue(this.buffer, index);
         }
@@ -854,7 +854,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
 
         public DoubleVecReader(int coordsPerElem)
         {
-            super(coordsPerElem, Double.SIZE / 8);
+            super(coordsPerElem, sizeof(double) / 8);
         }
 
         protected BufferWrapper doRead(ByteBuffer byteBuffer)
@@ -925,7 +925,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
             return this.buffer;
         }
 
-        public boolean hasValue(int index)
+        public bool hasValue(int index)
         {
             // Variable length vector is null if it has zero length. Fixed length vector is null if all coordinates are
             // null, in which case the sub-buffer entry will also have zero length because we have detected this case

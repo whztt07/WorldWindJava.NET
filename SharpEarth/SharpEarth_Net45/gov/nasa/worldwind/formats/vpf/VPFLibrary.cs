@@ -141,7 +141,7 @@ public class VPFLibrary extends AVListImpl
         // Coverage tiled attributes.
         for (VPFCoverage coverage : library.getCoverages())
         {
-            boolean tiled = isCoverageTiled(library, coverage);
+            bool tiled = isCoverageTiled(library, coverage);
             coverage.setTiled(tiled);
         }
 
@@ -178,7 +178,7 @@ public class VPFLibrary extends AVListImpl
         StringBuilder sb = new StringBuilder(this.database.getFilePath());
         sb.append(File.separator);
         sb.append(this.getName());
-        return sb.toString();
+        return sb.ToString();
     }
 
     public VPFBoundingBox getBounds()
@@ -197,7 +197,7 @@ public class VPFLibrary extends AVListImpl
         return this.coverageMap.size();
     }
 
-    public boolean containsCoverage(String name)
+    public bool containsCoverage(String name)
     {
         if (name == null)
         {
@@ -283,7 +283,7 @@ public class VPFLibrary extends AVListImpl
         this.coverageMap.clear();
     }
 
-    public boolean hasTiledCoverages()
+    public bool hasTiledCoverages()
     {
         return this.getCoverage(VPFConstants.TILE_REFERENCE_COVERAGE) != null;
     }
@@ -334,7 +334,7 @@ public class VPFLibrary extends AVListImpl
 
         VPFRecord record = this.libraryHeaderTable.getRecord(1);
         Object o = (record != null) ? record.getValue("product_type") : null;
-        return (o != null) ? o.toString() : null;
+        return (o != null) ? o.ToString() : null;
     }
 
     public double getMapScale()
@@ -496,7 +496,7 @@ public class VPFLibrary extends AVListImpl
         return list;
     }
 
-    protected static boolean isCoverageTiled(VPFLibrary lib, VPFCoverage cov)
+    protected static bool isCoverageTiled(VPFLibrary lib, VPFCoverage cov)
     {
         if (cov.getName().equals(VPFConstants.TILE_REFERENCE_COVERAGE))
             return false;

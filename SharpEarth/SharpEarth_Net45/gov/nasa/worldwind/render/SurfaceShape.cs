@@ -31,7 +31,7 @@ public interface SurfaceShape
      * @see #setHighlighted(boolean)
      * @see #setHighlightAttributes(ShapeAttributes)
      */
-    boolean isHighlighted();
+    bool isHighlighted();
 
     /**
      * Specifies whether the surface shape is highlighted.
@@ -162,6 +162,6 @@ public interface SurfaceShape
      *
      * @throws ArgumentException if <code>globe</code> is null.
      */
-    double getArea(Globe globe, boolean terrainConformant);
+    double getArea(Globe globe, bool terrainConformant);
 }
 }

@@ -326,7 +326,7 @@ public class GDALMetadata
             try
             {
                 SpatialReference srs = new SpatialReference();
-                srs.ImportFromProj4(proj4.toString());
+                srs.ImportFromProj4(proj4.ToString());
                 destParams.setValue(AVKey.SPATIAL_REFERENCE_WKT, srs.ExportToWkt());
             }
             catch (Throwable t)

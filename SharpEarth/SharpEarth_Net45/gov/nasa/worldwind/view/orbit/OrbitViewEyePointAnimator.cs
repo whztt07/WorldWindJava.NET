@@ -23,7 +23,7 @@ public class OrbitViewEyePointAnimator implements Animator
     protected BasicOrbitView view;
     protected Vec4 eyePoint;
     protected double smoothing;
-    protected boolean hasNext;
+    protected bool hasNext;
 
     public OrbitViewEyePointAnimator(Globe globe, BasicOrbitView view, Vec4 eyePoint, double smoothing)
     {
@@ -73,7 +73,7 @@ public class OrbitViewEyePointAnimator implements Animator
     }
 
     @Override
-    public boolean hasNext()
+    public bool hasNext()
     {
         return this.hasNext;
     }

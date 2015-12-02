@@ -23,7 +23,7 @@ namespace SharpEarth.ogc.kml{
 public class KMLUpdate extends KMLAbstractObject
 {
     protected List<KMLUpdateOperation> operations; // operations are performed in the order specified in the KML file
-    protected boolean updatesApplied;
+    protected bool updatesApplied;
 
     /**
      * Construct an instance.
@@ -78,7 +78,7 @@ public class KMLUpdate extends KMLAbstractObject
         this.operations.add(o);
     }
 
-    public boolean isUpdatesApplied()
+    public bool isUpdatesApplied()
     {
         return updatesApplied;
     }

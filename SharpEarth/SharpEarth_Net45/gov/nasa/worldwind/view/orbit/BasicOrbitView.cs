@@ -24,7 +24,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
 
     protected Position center = Position.ZERO;
     protected double zoom;
-    protected boolean viewOutOfFocus;
+    protected bool viewOutOfFocus;
     // Stateless helper classes.
     protected final OrbitViewCollisionSupport collisionSupport = new OrbitViewCollisionSupport();
 
@@ -356,7 +356,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
      *
      * @return true if the BasicOrbitView can focus on the viewport center.
      */
-    public boolean canFocusOnViewportCenter()
+    public bool canFocusOnViewportCenter()
     {
         return this.dc != null
             && this.dc.getViewportCenterPosition() != null
@@ -424,7 +424,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
         }
     }
 
-    public boolean canFocusOnTerrainCenter()
+    public bool canFocusOnTerrainCenter()
     {
         return this.dc != null
             && this.dc.getSurfaceGeometry() != null
@@ -716,7 +716,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
         }
     }
 
-    protected boolean validateModelCoordinates(OrbitViewInputSupport.OrbitViewState modelCoords)
+    protected bool validateModelCoordinates(OrbitViewInputSupport.OrbitViewState modelCoords)
     {
         return (modelCoords != null
             && modelCoords.getCenterPosition() != null
@@ -840,7 +840,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
     public void addPanToAnimator(Position beginCenterPos, Position endCenterPos,
         Angle beginHeading, Angle endHeading,
         Angle beginPitch, Angle endPitch,
-        double beginZoom, double endZoom, long timeToMove, boolean endCenterOnSurface)
+        double beginZoom, double endZoom, long timeToMove, bool endCenterOnSurface)
     {
         ((OrbitViewInputHandler) this.viewInputHandler).addPanToAnimator(
             beginCenterPos, endCenterPos, beginHeading, endHeading, beginPitch, endPitch,
@@ -850,7 +850,7 @@ public class BasicOrbitView extends BasicView implements OrbitView
     public void addPanToAnimator(Position beginCenterPos, Position endCenterPos,
         Angle beginHeading, Angle endHeading,
         Angle beginPitch, Angle endPitch,
-        double beginZoom, double endZoom, boolean endCenterOnSurface)
+        double beginZoom, double endZoom, bool endCenterOnSurface)
     {
 
         ((OrbitViewInputHandler) this.viewInputHandler).addPanToAnimator(
@@ -859,14 +859,14 @@ public class BasicOrbitView extends BasicView implements OrbitView
     }
 
     public void addPanToAnimator(Position centerPos, Angle heading, Angle pitch, double zoom,
-        long timeToMove, boolean endCenterOnSurface)
+        long timeToMove, bool endCenterOnSurface)
     {
         ((OrbitViewInputHandler) this.viewInputHandler).addPanToAnimator(centerPos, heading, pitch, zoom, timeToMove,
             endCenterOnSurface);
     }
 
     public void addPanToAnimator(Position centerPos, Angle heading, Angle pitch, double zoom,
-        boolean endCenterOnSurface)
+        bool endCenterOnSurface)
     {
         ((OrbitViewInputHandler) this.viewInputHandler).addPanToAnimator(centerPos, heading, pitch, zoom,
             endCenterOnSurface);
@@ -911,12 +911,12 @@ public class BasicOrbitView extends BasicView implements OrbitView
             heading, pitch, zoomAmount);
     }
 
-    public void addCenterAnimator(Position begin, Position end, boolean smoothed)
+    public void addCenterAnimator(Position begin, Position end, bool smoothed)
     {
         ((OrbitViewInputHandler) this.viewInputHandler).addCenterAnimator(begin, end, smoothed);
     }
 
-    public void addCenterAnimator(Position begin, Position end, long lengthMillis, boolean smoothed)
+    public void addCenterAnimator(Position begin, Position end, long lengthMillis, bool smoothed)
     {
         ((OrbitViewInputHandler) this.viewInputHandler).addCenterAnimator(begin, end, lengthMillis, smoothed);
     }

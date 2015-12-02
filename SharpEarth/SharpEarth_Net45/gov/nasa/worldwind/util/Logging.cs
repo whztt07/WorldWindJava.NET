@@ -9,6 +9,8 @@ using java.util;
 using java.text.MessageFormat;
 using SharpEarth.avlist.AVKey;
 using SharpEarth.Configuration;
+using System;
+
 namespace SharpEarth.util{
 
 
@@ -25,8 +27,8 @@ namespace SharpEarth.util{
  */
 public class Logging
 {
-    protected static final String MESSAGE_BUNDLE_NAME = Logging.class.getPackage().getName() + ".MessageStrings";
-    protected static final int MAX_MESSAGE_REPEAT = Configuration.getIntegerValue(AVKey.MAX_MESSAGE_REPEAT, 10);
+    protected static readonly string MESSAGE_BUNDLE_NAME = typeof(Logging).Namespace + ".MessageStrings";
+    protected static readonly int MAX_MESSAGE_REPEAT = Configuration.getIntegerValue(AVKey.MAX_MESSAGE_REPEAT, 10);
 
     private Logging()
     {
@@ -41,9 +43,9 @@ public class Logging
     {
         try
         {
-            // The Configuration singleton may not be established yet, so catch the exception that occurs if it's not
-            // and use the default logger name.
-            String loggerName = Configuration.getStringValue(AVKey.LOGGER_NAME, Configuration.DEFAULT_LOGGER_NAME);
+        // The Configuration singleton may not be established yet, so catch the exception that occurs if it's not
+        // and use the default logger name.
+        string loggerName = Configuration.getStringValue(AVKey.LOGGER_NAME, Configuration.DEFAULT_LOGGER_NAME);
             return logger(loggerName);
         }
         catch (Exception e)
@@ -63,7 +65,7 @@ public class Logging
      *
      * @return The logger.
      */
-    public static Logger logger(String loggerName)
+    public static Logger logger(string loggerName)
     {
         return Logger.getLogger(loggerName != null ? loggerName : "", MESSAGE_BUNDLE_NAME);
     }
@@ -75,15 +77,15 @@ public class Logging
      *
      * @return The requested message.
      */
-    public static String getMessage(String property)
+    public static string getMessage(string property)
     {
         try
         {
-            return (String) ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, Locale.getDefault()).getObject(property);
+            return (string) ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, Locale.getDefault()).getObject(property);
         }
         catch (Exception e)
         {
-            String message = "Exception looking up message from bundle " + MESSAGE_BUNDLE_NAME;
+        string message = "Exception looking up message from bundle " + MESSAGE_BUNDLE_NAME;
             logger().log(java.util.logging.Level.SEVERE, message, e);
             return message;
         }
@@ -100,9 +102,9 @@ public class Logging
      *
      * @see java.text.MessageFormat
      */
-    public static String getMessage(String property, String arg)
+    public static string getMessage( string property, string arg )
     {
-        return arg != null ? getMessage(property, (Object) arg) : getMessage(property);
+        return arg != null ? getMessage(property, (object) arg) : getMessage(property);
     }
 
     /**
@@ -116,13 +118,13 @@ public class Logging
      *
      * @see java.text.MessageFormat
      */
-    public static String getMessage(String property, Object... args)
+    public static string getMessage( string property, params object[] args)
     {
-        String message;
+      string message;
 
         try
         {
-            message = (String) ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, Locale.getDefault()).getObject(property);
+            message = (string) ResourceBundle.getBundle(MESSAGE_BUNDLE_NAME, Locale.getDefault()).getObject(property);
         }
         catch (Exception e)
         {

@@ -30,7 +30,7 @@ public class TextureTile extends Tile implements SurfaceTile
 {
     private volatile TextureData textureData; // if non-null, then must be converted to a Texture
     private TextureTile fallbackTile = null; // holds texture to use if own texture not available
-    protected boolean hasMipmapData = false;
+    protected bool hasMipmapData = false;
     protected AtomicLong updateTime = new AtomicLong(0);
 
     /**
@@ -146,7 +146,7 @@ public class TextureTile extends Tile implements SurfaceTile
         return tc.getTexture(this.getTileKey());
     }
 
-    public boolean isTextureInMemory(GpuResourceCache tc)
+    public bool isTextureInMemory(GpuResourceCache tc)
     {
         if (tc == null)
         {
@@ -163,12 +163,12 @@ public class TextureTile extends Tile implements SurfaceTile
         return this.updateTime.get();
     }
 
-    public boolean isTextureExpired()
+    public bool isTextureExpired()
     {
         return this.isTextureExpired(this.getLevel().getExpiryTime());
     }
 
-    public boolean isTextureExpired(long expiryTime)
+    public bool isTextureExpired(long expiryTime)
     {
         return this.updateTime.get() > 0 && this.updateTime.get() < expiryTime;
     }
@@ -385,7 +385,7 @@ public class TextureTile extends Tile implements SurfaceTile
         //
         // TODO: remove the latitude range restriction if a better tessellator fixes the problem.
 
-        boolean useMipmapFilter = (this.hasMipmapData || t.isUsingAutoMipmapGeneration())
+        bool useMipmapFilter = (this.hasMipmapData || t.isUsingAutoMipmapGeneration())
             && this.getSector().getMaxLatitude().degrees < 80d && this.getSector().getMinLatitude().degrees > -80;
 
         // Set the texture minification filter. If the texture qualifies for mipmaps, apply a minification filter that
@@ -420,7 +420,7 @@ public class TextureTile extends Tile implements SurfaceTile
         gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, GL.GL_CLAMP_TO_EDGE);
     }
 
-    public boolean bind(DrawContext dc)
+    public bool bind(DrawContext dc)
     {
         if (dc == null)
         {
@@ -457,7 +457,7 @@ public class TextureTile extends Tile implements SurfaceTile
         return t != null;
     }
 
-    public void applyInternalTransform(DrawContext dc, boolean textureIdentityActive)
+    public void applyInternalTransform(DrawContext dc, bool textureIdentityActive)
     {
         if (dc == null)
         {
@@ -545,11 +545,11 @@ public class TextureTile extends Tile implements SurfaceTile
     }
 
     @Override
-    public boolean equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final TextureTile tile = (TextureTile) o;
@@ -558,7 +558,7 @@ public class TextureTile extends Tile implements SurfaceTile
     }
 
     @Override
-    public int hashCode()
+    public override int GetHashCode()
     {
         return (this.getTileKey() != null ? this.getTileKey().hashCode() : 0);
     }
@@ -566,7 +566,7 @@ public class TextureTile extends Tile implements SurfaceTile
     @Override
     public String toString()
     {
-        return this.getSector().toString();
+        return this.getSector().ToString();
     }
 }
 }

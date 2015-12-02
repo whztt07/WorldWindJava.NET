@@ -30,7 +30,7 @@ public class BoundedHashMap<K, V> extends java.util.LinkedHashMap<K, V>
      * @param capacity    the maximum number of entries in the map.
      * @param accessOrder the ordering mode: true specifies access order, false specifies insertion order.
      */
-    public BoundedHashMap(int capacity, boolean accessOrder)
+    public BoundedHashMap(int capacity, bool accessOrder)
     {
         super(getInitialCapacity(capacity, DEFAULT_LOAD_FACTOR), DEFAULT_LOAD_FACTOR, accessOrder);
         this.capacity = capacity;
@@ -79,7 +79,7 @@ public class BoundedHashMap<K, V> extends java.util.LinkedHashMap<K, V>
         return WWMath.powerOfTwoCeiling((int) Math.ceil(capacity / loadFactor));
     }
 
-    protected boolean removeEldestEntry(java.util.Map.Entry<K, V> eldest)
+    protected bool removeEldestEntry(java.util.Map.Entry<K, V> eldest)
     {
         return this.size() > this.getCapacity();
     }

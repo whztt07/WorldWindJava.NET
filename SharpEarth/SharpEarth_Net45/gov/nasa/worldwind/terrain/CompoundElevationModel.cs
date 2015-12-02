@@ -38,7 +38,7 @@ public class CompoundElevationModel extends AbstractElevationModel
      *
      * @throws ArgumentException if the ElevationModel is null.
      */
-    public boolean containsElevationModel(ElevationModel em)
+    public bool containsElevationModel(ElevationModel em)
     {
         if (em == null)
         {
@@ -386,7 +386,7 @@ public class CompoundElevationModel extends AbstractElevationModel
             throw new ArgumentException(msg);
         }
 
-        boolean intersects = false;
+        bool intersects = false;
 
         for (ElevationModel em : this.elevationModels)
         {
@@ -404,7 +404,7 @@ public class CompoundElevationModel extends AbstractElevationModel
         return intersects ? 1 : -1;
     }
 
-    public boolean contains(Angle latitude, Angle longitude)
+    public bool contains(Angle latitude, Angle longitude)
     {
         if (latitude == null || longitude == null)
         {
@@ -539,7 +539,7 @@ public class CompoundElevationModel extends AbstractElevationModel
     }
 
     protected double[] doGetElevations(Sector sector, List<? extends LatLon> latlons, double[] targetResolution,
-        double[] buffer, boolean mapMissingData)
+        double[] buffer, bool mapMissingData)
     {
         if (sector == null)
         {
@@ -692,7 +692,7 @@ public class CompoundElevationModel extends AbstractElevationModel
     }
 
     @Override
-    public boolean isExtremesCachingEnabled()
+    public bool isExtremesCachingEnabled()
     {
         for (ElevationModel em : this.elevationModels)
         {

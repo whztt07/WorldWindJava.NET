@@ -27,9 +27,9 @@ public class BasicModel extends WWObjectImpl implements Model
 {
     private Globe globe;
     private LayerList layers;
-    private boolean showWireframeInterior = false;
-    private boolean showWireframeExterior = false;
-    private boolean showTessellationBoundingVolumes = false;
+    private bool showWireframeInterior = false;
+    private bool showWireframeExterior = false;
+    private bool showTessellationBoundingVolumes = false;
 
     public BasicModel()
     {
@@ -191,19 +191,19 @@ public class BasicModel extends WWObjectImpl implements Model
     }
 
     /** {@inheritDoc} */
-    public boolean isShowWireframeInterior()
+    public bool isShowWireframeInterior()
     {
         return this.showWireframeInterior;
     }
 
     /** {@inheritDoc} */
-    public boolean isShowWireframeExterior()
+    public bool isShowWireframeExterior()
     {
         return this.showWireframeExterior;
     }
 
     /** {@inheritDoc} */
-    public boolean isShowTessellationBoundingVolumes()
+    public bool isShowTessellationBoundingVolumes()
     {
         return showTessellationBoundingVolumes;
     }

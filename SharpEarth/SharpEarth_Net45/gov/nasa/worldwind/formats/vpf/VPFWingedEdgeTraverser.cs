@@ -17,7 +17,7 @@ public class VPFWingedEdgeTraverser
 {
     public interface EdgeTraversalListener
     {
-        void nextEdge(int index, int primitiveId, boolean reverseCoordinates);
+        void nextEdge(int index, int primitiveId, bool reverseCoordinates);
     }
 
     protected enum Orientation
@@ -110,8 +110,8 @@ public class VPFWingedEdgeTraverser
     protected Orientation getOrientation(int faceId, int edgeId, VPFPrimitiveData.PrimitiveInfo[] edgeInfo)
     {
         VPFPrimitiveData.EdgeInfo thisInfo = getEdgeInfo(edgeInfo, edgeId);
-        boolean matchLeft = thisInfo.getLeftFace() == faceId;
-        boolean matchRight = thisInfo.getRightFace() == faceId;
+        bool matchLeft = thisInfo.getLeftFace() == faceId;
+        bool matchRight = thisInfo.getRightFace() == faceId;
 
         if (matchLeft && matchRight) // Auxiliary edge has the same face on both sides.
         {
@@ -129,7 +129,7 @@ public class VPFWingedEdgeTraverser
         return null;
     }
 
-    protected boolean getMustReverseCoordinates(int faceId, int prevEdgeId, int curEdgeId,
+    protected bool getMustReverseCoordinates(int faceId, int prevEdgeId, int curEdgeId,
         VPFPrimitiveData.PrimitiveInfo[] edgeInfo)
     {
         // Determine whether or not this edge's coordinate array must be reversed to provide a consistent ordering
@@ -186,7 +186,7 @@ public class VPFWingedEdgeTraverser
         }
     }
 
-    protected boolean auxiliaryMustReverseCoordinates(int prevEdgeId, int curEdgeId,
+    protected bool auxiliaryMustReverseCoordinates(int prevEdgeId, int curEdgeId,
         VPFPrimitiveData.PrimitiveInfo[] edgeInfoArray)
     {
         VPFPrimitiveData.EdgeInfo prevInfo = getEdgeInfo(edgeInfoArray, prevEdgeId);

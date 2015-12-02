@@ -124,7 +124,7 @@ public class MipMappedBufferedImageRaster extends BufferedImageRaster
             return 0;
         }
 
-        return (int) WWMath.logBase2(scale);
+        return (int) WWMath.LogBase2(scale);
     }
 }
 }

@@ -70,7 +70,7 @@ public enum RPFProducer
         return -1;
     }
 
-    public static boolean isProducerId(Character id)
+    public static bool isProducerId(Character id)
     {
         if (id == null)
         {

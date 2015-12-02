@@ -211,10 +211,10 @@ public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcesso
     protected String validate(Retriever retriever)
     {
         if (!retriever.getState().equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
-            return Logging.getMessage("generic.RetrievalFailed", this.toString());
+            return Logging.getMessage("generic.RetrievalFailed", this.ToString());
 
         if (retriever.getBuffer() == null || retriever.getBuffer().limit() == 0)
-            return Logging.getMessage("generic.RetrievalReturnedNoContent", this.toString());
+            return Logging.getMessage("generic.RetrievalReturnedNoContent", this.ToString());
 
         return null;
     }
@@ -281,7 +281,7 @@ public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcesso
         if (this.getName() != null)
             return this.getName();
 
-        return super.toString();
+        return super.ToString();
     }
 }
 }

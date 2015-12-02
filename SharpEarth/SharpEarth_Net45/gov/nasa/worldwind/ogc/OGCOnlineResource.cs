@@ -85,7 +85,7 @@ public class OGCOnlineResource extends AbstractXMLEventParser
         sb.append("href: ").append(this.href != null ? this.href : "null");
         sb.append(", type: ").append(this.type != null ? this.type : "null");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

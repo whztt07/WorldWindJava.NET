@@ -68,7 +68,7 @@ public class KMLUtil
      *
      * @return true if the sub-style has the "highlight" field, otherwise false.
      */
-    public static boolean isHighlightStyleState(KMLAbstractSubStyle subStyle)
+    public static bool isHighlightStyleState(KMLAbstractSubStyle subStyle)
     {
         if (subStyle == null)
             return false;

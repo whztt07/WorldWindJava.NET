@@ -22,8 +22,8 @@ namespace SharpEarth.ogc.kml.impl{
 public class KMLPolygonImpl extends Polygon implements KMLRenderable
 {
     protected final KMLAbstractFeature parent;
-    protected boolean highlightAttributesResolved = false;
-    protected boolean normalAttributesResolved = false;
+    protected bool highlightAttributesResolved = false;
+    protected bool normalAttributesResolved = false;
 
     /**
      * Create an instance.

@@ -225,7 +225,7 @@ public class KMLPlacemark extends KMLAbstractFeature
      *
      * @return True if {@code altMode} is one of "clampToGround", "relativeToGround", or "absolute".
      */
-    protected boolean isValidAltitudeMode(String altMode)
+    protected bool isValidAltitudeMode(String altMode)
     {
         return "clampToGround".equals(altMode)
             || "relativeToGround".equals(altMode)
@@ -237,7 +237,7 @@ public class KMLPlacemark extends KMLAbstractFeature
     {
         if (!(sourceValues instanceof KMLPlacemark))
         {
-            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.getClass().getName());
+            String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().getName());
             Logging.logger().warning(message);
             throw new ArgumentException(message);
         }

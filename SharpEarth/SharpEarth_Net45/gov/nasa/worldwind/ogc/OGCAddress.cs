@@ -153,7 +153,7 @@ public class OGCAddress extends AbstractXMLEventParser
         sb.append("PostCode: ").append(this.postCode != null ? this.postCode : "none").append(" ");
         sb.append("Country: ").append(this.country != null ? this.country : "none");
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

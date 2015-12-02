@@ -133,7 +133,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
          *
          * @see ColladaMeshShape#isDoubleSided(gov.nasa.worldwind.ogc.collada.ColladaAbstractGeometry)
          */
-        protected boolean doubleSided;
+        protected bool doubleSided;
 
         /**
          * Create a new geometry instance.
@@ -158,13 +158,13 @@ public class ColladaMeshShape extends AbstractGeneralShape
         }
 
         @Override
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
             {
                 return true;
             }
-            if (o == null || getClass() != o.getClass())
+            if (o == null || GetType() != o.GetType())
             {
                 return false;
             }
@@ -184,7 +184,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         }
 
         @Override
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = globeStateKey != null ? globeStateKey.hashCode() : 0;
             result = 31 * result + (matrix != null ? matrix.hashCode() : 0);
@@ -411,7 +411,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
 
         if (!dc.isPickingMode())
         {
-            while (nextItem != null && nextItem.getClass() == OrderedMeshShape.class)
+            while (nextItem != null && nextItem.GetType() == OrderedMeshShape.class)
             {
                 OrderedMeshShape or = (OrderedMeshShape) nextItem;
                 ColladaMeshShape shape = or.mesh;
@@ -427,7 +427,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         else if (this.isEnableBatchPicking())
         {
             super.drawBatched(dc);
-            while (nextItem != null && nextItem.getClass() == this.getClass())
+            while (nextItem != null && nextItem.GetType() == this.GetType())
             {
                 OrderedMeshShape or = (OrderedMeshShape) nextItem;
                 ColladaMeshShape shape = or.mesh;
@@ -446,7 +446,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
     }
 
     /** {@inheritDoc} */
-    protected boolean doMakeOrderedRenderable(DrawContext dc)
+    protected bool doMakeOrderedRenderable(DrawContext dc)
     {
         // Clear cached extents because we are creating new geometry.
         this.extentCache.clear();
@@ -511,8 +511,8 @@ public class ColladaMeshShape extends AbstractGeneralShape
         // Create an OpenGL stack handler to handle matrix stack push/pop. Explicitly track changes to the OpenGL
         // texture and cull face states in order to eliminate the need for attribute push/pop on a per mesh basis.
         OGLStackHandler stackHandler = new OGLStackHandler();
-        boolean texturesEnabled = false;
-        boolean cullingEnabled = false;
+        bool texturesEnabled = false;
+        bool cullingEnabled = false;
         try
         {
             stackHandler.pushModelview(gl);
@@ -708,7 +708,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
     //////////////////////////////////////////////////////////////////////
 
     /** {@inheritDoc} */
-    protected boolean isOrderedRenderableValid(DrawContext dc)
+    protected bool isOrderedRenderableValid(DrawContext dc)
     {
         return this.coordBuffer != null;
     }
@@ -1016,7 +1016,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      * @return True if any geometry in this shape includes a texture.
      */
     @Override
-    protected boolean mustApplyTexture(DrawContext dc)
+    protected bool mustApplyTexture(DrawContext dc)
     {
         for (Geometry geometry : this.geometries)
         {
@@ -1033,7 +1033,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      *
      * @return True if the specified geometry includes a texture.
      */
-    protected boolean mustApplyTexture(Geometry geometry)
+    protected bool mustApplyTexture(Geometry geometry)
     {
         String semantic = this.getTexCoordSemantic(geometry);
         return geometry.colladaGeometry.getTexCoordAccessor(semantic) != null
@@ -1342,7 +1342,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      *
      * @return True if the geometry is marked as double sided. Otherwise false.
      */
-    protected boolean isDoubleSided(ColladaAbstractGeometry geometry)
+    protected bool isDoubleSided(ColladaAbstractGeometry geometry)
     {
         ColladaEffect effect = this.getEffect(geometry);
         if (effect == null)

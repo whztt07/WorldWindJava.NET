@@ -143,10 +143,10 @@ public class OGCDCType extends AbstractXMLEventParser
         {
             sb.append(dcpi.protocol).append(", ");
             sb.append(dcpi.method).append(", ");
-            sb.append(dcpi.onlineResource.toString());
+            sb.append(dcpi.onlineResource.ToString());
         }
 
-        return sb.toString();
+        return sb.ToString();
     }
 }
 }

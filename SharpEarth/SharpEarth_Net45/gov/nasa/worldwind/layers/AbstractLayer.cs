@@ -22,22 +22,22 @@ namespace SharpEarth.layers{
  */
 public abstract class AbstractLayer extends WWObjectImpl implements Layer
 {
-    private boolean enabled = true;
-    private boolean pickable = true;
+    private bool enabled = true;
+    private bool pickable = true;
     private double opacity = 1d;
     private double minActiveAltitude = -Double.MaxValue;
     private double maxActiveAltitude = Double.MaxValue;
-    private boolean networkDownloadEnabled = true;
+    private bool networkDownloadEnabled = true;
     private long expiryTime = 0;
     private ScreenCredit screenCredit = null;
     private FileStore dataFileStore = WorldWind.getDataFileStore();
 
-    public boolean isEnabled()
+    public bool isEnabled()
     {
         return this.enabled;
     }
 
-    public boolean isPickEnabled()
+    public bool isPickEnabled()
     {
         return pickable;
     }
@@ -58,7 +58,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.toString() : this.toString();
+        return n != null ? n.ToString() : this.ToString();
     }
 
     public void setName(String name)
@@ -70,7 +70,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.toString() : super.toString();
+        return n != null ? n.ToString() : super.ToString();
     }
 
     public double getOpacity()
@@ -119,7 +119,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         return o != null && o instanceof Double ? (Double) o : 1;
     }
 
-    public boolean isNetworkRetrievalEnabled()
+    public bool isNetworkRetrievalEnabled()
     {
         return networkDownloadEnabled;
     }
@@ -146,7 +146,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         this.dataFileStore = fileStore;
     }
 
-    public boolean isLayerInView(DrawContext dc)
+    public bool isLayerInView(DrawContext dc)
     {
         if (dc == null)
         {
@@ -158,7 +158,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         return true;
     }
 
-    public boolean isLayerActive(DrawContext dc)
+    public bool isLayerActive(DrawContext dc)
     {
         if (dc == null)
         {
@@ -313,12 +313,12 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
 
     protected abstract void doRender(DrawContext dc);
 
-    public boolean isAtMaxResolution()
+    public bool isAtMaxResolution()
     {
         return !this.isMultiResolution();
     }
 
-    public boolean isMultiResolution()
+    public bool isMultiResolution()
     {
         return false;
     }
@@ -368,7 +368,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
      *
      * @throws ArgumentException if document is null.
      */
-    public static boolean isLayerConfigDocument(Element domElement)
+    public static bool isLayerConfigDocument(Element domElement)
     {
         if (domElement == null)
         {

@@ -117,7 +117,7 @@ public class GDALUtils
             ClassLoader cl = Thread.currentThread().getContextClassLoader();
             Class gdalClass = cl.loadClass("org.gdal.gdal.gdal");
 
-            boolean isKnownBuild = false;
+            bool isKnownBuild = false;
             Method[] methods = gdalClass.getDeclaredMethods();
             for (Method m : methods)
             {
@@ -146,7 +146,7 @@ public class GDALUtils
         }
     }
 
-    protected static boolean is32bitArchitecture()
+    protected static bool is32bitArchitecture()
     {
         String arch = System.getProperty("sun.arch.data.model");
         if( !WWUtil.isEmpty(arch) )
@@ -156,7 +156,7 @@ public class GDALUtils
         return "x86".equals(System.getProperty("os.arch"));
     }
 
-    protected static boolean gdalPreLoadNativeLibrary(boolean allowLogErrors)
+    protected static bool gdalPreLoadNativeLibrary(boolean allowLogErrors)
     {
         try
         {
@@ -179,11 +179,11 @@ public class GDALUtils
     {
         try
         {
-            boolean runningAsJavaWebStart = (null != System.getProperty("javawebstart.version", null));
+            bool runningAsJavaWebStart = (null != System.getProperty("javawebstart.version", null));
 
 			// attempt to load library from default locations
 			// (current path OR by specifying java.library.path from the command line)
-            boolean gdalNativeLibraryLoaded = gdalPreLoadNativeLibrary(false);
+            bool gdalNativeLibraryLoaded = gdalPreLoadNativeLibrary(false);
 
             if (!gdalNativeLibraryLoaded && !runningAsJavaWebStart)
             {
@@ -309,7 +309,7 @@ public class GDALUtils
         return null;
     }
 
-    protected static String buildPathString(String[] folders, boolean addDefaultValues)
+    protected static String buildPathString(String[] folders, bool addDefaultValues)
     {
         String del = System.getProperty("path.separator");
         StringBuffer path = new StringBuffer();
@@ -330,7 +330,7 @@ public class GDALUtils
             path.append(System.getProperty(JAVA_LIBRARY_PATH));
         }
 
-        return path.toString();
+        return path.ToString();
     }
 
     protected static void listAllRegisteredDrivers()
@@ -343,7 +343,7 @@ public class GDALUtils
                 drv.GetDescription());
             sb.append(msg).append("\n");
         }
-        Logging.logger().finest(sb.toString());
+        Logging.logger().finest(sb.ToString());
     }
 
     /** @return returns an error string, if no errors returns null */
@@ -380,7 +380,7 @@ public class GDALUtils
      * @throws SecurityException        if file could not be read
      * @throws WWRuntimeException       if GDAL library was not initialized
      */
-    public static Dataset open(Object source, boolean isSilentMode)
+    public static Dataset open(Object source, bool isSilentMode)
         throws FileNotFoundException, ArgumentException, SecurityException, WWRuntimeException
     {
         if (!gdalIsAvailable.get())
@@ -403,7 +403,7 @@ public class GDALUtils
                 return null;
             }
 
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", source.getClass().getName());
+            String message = Logging.getMessage("generic.UnrecognizedSourceType", source.GetType().getName());
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -484,7 +484,7 @@ public class GDALUtils
      *
      * @return true, if source is readable
      */
-    public static boolean canOpen(Object source)
+    public static bool canOpen(Object source)
     {
         if (!gdalIsAvailable.get())
         {
@@ -498,7 +498,7 @@ public class GDALUtils
         }
 
         Dataset ds = null;
-        boolean canOpen = false;
+        bool canOpen = false;
 
         try
         {
@@ -655,7 +655,7 @@ public class GDALUtils
         }
         else if (maxValue > 0d)
         {
-            actualBitsPerColor = (int) Math.ceil(Math.log(maxValue) / Math.log(2d));
+            actualBitsPerColor = (int) Math.ceil(Math.Log(maxValue) / Math.Log(2d));
         }
         else
         {
@@ -705,7 +705,7 @@ public class GDALUtils
         //  bitsPerSample is 64=4x16, bitsPerColor { 16,16,16,16 }, SignificantBitsPerColor { 12,12,12,12 }, byteOffsets {  6, 4, 2, 0 }
 
         int reqBandCount = reqBandOrder.length;
-        boolean hasAlpha = (reqBandCount == 2) || (reqBandCount == 4);
+        bool hasAlpha = (reqBandCount == 2) || (reqBandCount == 4);
 
         IntBuffer imageMask = null;
         if (hasAlpha && parameters.hasKey(AVKey.GDAL_MASK_DATASET))
@@ -1317,7 +1317,7 @@ public class GDALUtils
      *                                  AVKey.RASTER_PIXEL_IS_POINT if not specified, default for images is
      *                                  RASTER_PIXEL_IS_AREA, and AVKey.RASTER_PIXEL_IS_POINT for elevations
      */
-    public static AVList extractRasterParameters(Dataset ds, AVList parameters, boolean quickReadingMode)
+    public static AVList extractRasterParameters(Dataset ds, AVList parameters, bool quickReadingMode)
         throws ArgumentException, WWRuntimeException
     {
         if (null == parameters)
@@ -1725,7 +1725,7 @@ public class GDALUtils
         }
     }
 
-    protected static boolean setNoDataValue(Band band, Double nodata)
+    protected static bool setNoDataValue(Band band, Double nodata)
     {
         if( null != band && null != nodata )
         {
@@ -1984,6 +1984,6 @@ public class GDALUtils
     private static Class newClassLoader = null;
     private static Object originalClassLoader = null;
     private static Field fieldSysPaths = null;
-    private static boolean fieldSysPaths_accessible = false;
+    private static bool fieldSysPaths_accessible = false;
 }
 }

@@ -19,11 +19,11 @@ public class TextRendererCache implements Disposable
     public static class CacheKey
     {
         private final java.awt.Font font;
-        private final boolean antialiased;
-        private final boolean useFractionalMetrics;
-        private final boolean mipmap;
+        private final bool antialiased;
+        private final bool useFractionalMetrics;
+        private final bool mipmap;
 
-        public CacheKey(java.awt.Font font, boolean antialiased, boolean useFractionalMetrics, boolean mipmap)
+        public CacheKey(java.awt.Font font, bool antialiased, bool useFractionalMetrics, bool mipmap)
         {
             if (font == null)
             {
@@ -43,26 +43,26 @@ public class TextRendererCache implements Disposable
             return this.font;
         }
 
-        public final boolean isAntialiased()
+        public final bool isAntialiased()
         {
             return this.antialiased;
         }
 
-        public final boolean isUseFractionalMetrics()
+        public final bool isUseFractionalMetrics()
         {
             return this.useFractionalMetrics;
         }
 
-        public final boolean isMipmap()
+        public final bool isMipmap()
         {
             return this.mipmap;
         }
 
-        public boolean equals(Object o)
+        public override bool Equals(Object o)
         {
             if (this == o)
                 return true;
-            if (o == null || this.getClass() != o.getClass())
+            if (o == null || this.GetType() != o.GetType())
                 return false;
 
             CacheKey that = (CacheKey) o;
@@ -73,7 +73,7 @@ public class TextRendererCache implements Disposable
                 && (this.font.equals(that.font));
         }
 
-        public int hashCode()
+        public override int GetHashCode()
         {
             int result = this.font.hashCode();
             result = 31 * result + (this.antialiased ? 1 : 0);
@@ -147,7 +147,7 @@ public class TextRendererCache implements Disposable
         }
     }
 
-    public boolean contains(Object key)
+    public bool contains(Object key)
     {
         if (key == null)
         {

@@ -165,7 +165,7 @@ public class CSVTrackPoint implements TrackPoint
     @Override
     public String toString()
     {
-        return String.format("(%10.8f\u00B0, %11.8f\u00B0, %10.4g m, %s)", this.latitude, this.longitude,
+        return String.Format("(%10.8f\u00B0, %11.8f\u00B0, %10.4g m, %s)", this.latitude, this.longitude,
             this.altitude, this.time);
     }
 }

@@ -34,11 +34,11 @@ public class Quaternion
         this.w = w;
     }
 
-    public final boolean equals(Object obj)
+    public final bool equals(Object obj)
     {
         if (this == obj)
             return true;
-        if (obj == null || obj.getClass() != this.getClass())
+        if (obj == null || obj.GetType() != this.GetType())
             return false;
 
         Quaternion that = (Quaternion) obj;
@@ -48,19 +48,19 @@ public class Quaternion
             && (this.w == that.w);
     }
 
-    public final int hashCode()
+    public override int GetHashCode()
     {
         if (this.hashCode == 0)
         {
             int result;
             long tmp;
-            tmp = Double.doubleToLongBits(this.x);
+            tmp = BitConverter.DoubleToInt64Bits(this.x);
             result = (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.y);
+            tmp = BitConverter.DoubleToInt64Bits(this.y);
             result = 31 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.z);
+            tmp = BitConverter.DoubleToInt64Bits(this.z);
             result = 31 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = Double.doubleToLongBits(this.w);
+            tmp = BitConverter.DoubleToInt64Bits(this.w);
             result = 31 * result + (int) (tmp ^ (tmp >>> 32));
             this.hashCode = result;
         }
@@ -113,7 +113,7 @@ public class Quaternion
         return compArray;
     }
 
-    public final String toString()
+    public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
         sb.append("(");
@@ -122,7 +122,7 @@ public class Quaternion
         sb.append(this.z).append(", ");
         sb.append(this.w);
         sb.append(")");
-        return sb.toString();
+        return sb.ToString();
     }
 
     public final double getX()
@@ -198,7 +198,7 @@ public class Quaternion
         return fromAxisAngle(angle, axisX, axisY, axisZ, true);
     }
 
-    private static Quaternion fromAxisAngle(Angle angle, double axisX, double axisY, double axisZ, boolean normalize)
+    private static Quaternion fromAxisAngle(Angle angle, double axisX, double axisY, double axisZ, bool normalize)
     {
         if (angle == null)
         {
@@ -663,7 +663,7 @@ public class Quaternion
             w /= length;
 
         double radians = 2.0 * Math.Acos(w);
-        if (Double.isNaN(radians))
+        if (Double.IsNaN(radians))
             return null;
 
         return Angle.fromRadians(radians);
@@ -696,9 +696,9 @@ public class Quaternion
 
     public final Angle getRotationX()
     {
-        double radians = Math.ATan2((2.0 * this.x * this.w) - (2.0 * this.y * this.z),
+        double radians = Math.Atan2((2.0 * this.x * this.w) - (2.0 * this.y * this.z),
                                     1.0 - 2.0 * (this.x * this.x) - 2.0 * (this.z * this.z));
-        if (Double.isNaN(radians))
+        if (Double.IsNaN(radians))
             return null;
 
         return Angle.fromRadians(radians);
@@ -706,9 +706,9 @@ public class Quaternion
 
     public final Angle getRotationY()
     {
-        double radians = Math.ATan2((2.0 * this.y * this.w) - (2.0 * this.x * this.z),
+        double radians = Math.Atan2((2.0 * this.y * this.w) - (2.0 * this.x * this.z),
                                     1.0 - (2.0 * this.y * this.y) - (2.0 * this.z * this.z));
-        if (Double.isNaN(radians))
+        if (Double.IsNaN(radians))
             return null;
 
         return Angle.fromRadians(radians);
@@ -716,8 +716,8 @@ public class Quaternion
 
     public final Angle getRotationZ()
     {
-        double radians = Math.ASin((2.0 * this.x * this.y) + (2.0 * this.z * this.w));
-        if (Double.isNaN(radians))
+        double radians = Math.Asin((2.0 * this.x * this.y) + (2.0 * this.z * this.w));
+        if (Double.IsNaN(radians))
             return null;
 
         return Angle.fromRadians(radians);
@@ -725,10 +725,10 @@ public class Quaternion
 
     public final LatLon getLatLon()
     {
-        double latRadians = Math.ASin((2.0 * this.y * this.w) - (2.0 * this.x * this.z));
-        double lonRadians = Math.ATan2((2.0 * this.y * this.z) + (2.0 * this.x * this.w),
+        double latRadians = Math.Asin((2.0 * this.y * this.w) - (2.0 * this.x * this.z));
+        double lonRadians = Math.Atan2((2.0 * this.y * this.z) + (2.0 * this.x * this.w),
                                        (this.w * this.w) - (this.x * this.x) - (this.y * this.y) + (this.z * this.z));
-        if (Double.isNaN(latRadians) || Double.isNaN(lonRadians))
+        if (Double.IsNaN(latRadians) || Double.IsNaN(lonRadians))
             return null;
 
         return LatLon.fromRadians(latRadians, lonRadians);
@@ -742,7 +742,7 @@ public class Quaternion
 
     private static final Double NegativeZero = -0.0d;
 
-    private static boolean isZero(double value)
+    private static bool isZero(double value)
     {
         return (PositiveZero.compareTo(value) == 0)
             || (NegativeZero.compareTo(value) == 0);

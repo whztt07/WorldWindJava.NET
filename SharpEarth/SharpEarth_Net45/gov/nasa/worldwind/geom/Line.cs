@@ -88,11 +88,11 @@ public sealed class Line// Instances are immutable
      * @return true if these two objects are equal, false otherwise
      */
     @Override
-    public final boolean equals(Object o)
+    public final bool equals(Object o)
     {
         if (this == o)
             return true;
-        if (o == null || getClass() != o.getClass())
+        if (o == null || GetType() != o.GetType())
             return false;
 
         final SharpEarth.geom.Line line = (gov.nasa.worldwind.geom.Line) o;
@@ -107,7 +107,7 @@ public sealed class Line// Instances are immutable
     }
 
     @Override
-    public final int hashCode()
+    public override int GetHashCode()
     {
         int result;
         result = origin.hashCode();
@@ -277,7 +277,7 @@ public sealed class Line// Instances are immutable
      *
      * @return true if <code>point</code> is behind this <code>Line</code>'s origin, false otherwise.
      */
-    public boolean isPointBehindLineOrigin(Vec4 point)
+    public bool isPointBehindLineOrigin(Vec4 point)
     {
         double dot = point.subtract3(this.getOrigin()).dot3(this.getDirection());
         return dot < 0.0;

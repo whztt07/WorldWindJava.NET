@@ -50,7 +50,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @return <code>true</code> if the elevation model is enabled to retrieve network data, else <code>false</code>.
      */
-    boolean isNetworkRetrievalEnabled();
+    bool isNetworkRetrievalEnabled();
 
     /**
      * Controls whether the elevation model is allowed to retrieve data from the network. Some elevation models have no
@@ -123,7 +123,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @return true if the location is within the elevation model's domain, otherwise false.
      */
-    boolean contains(Angle latitude, Angle longitude);
+    bool contains(Angle latitude, Angle longitude);
 
     /**
      * Returns the maximum elevation contained in the elevation model. When the elevation model is associated with a
@@ -397,7 +397,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @return true if this elevation model is used, otherwise false.
      */
-    boolean isEnabled();
+    bool isEnabled();
 
     /**
      * Indicates whether extreme values of sectors should be cached as they're computed. Caching should be disabled if
@@ -416,7 +416,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @see #setExtremesCachingEnabled(boolean)
      */
-    boolean isExtremesCachingEnabled();
+    bool isExtremesCachingEnabled();
 
     /**
      * Returns the elevation for this elevation model's highest level of detail if the source file for that level and

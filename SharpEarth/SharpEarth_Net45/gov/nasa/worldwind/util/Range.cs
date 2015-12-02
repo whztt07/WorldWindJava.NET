@@ -31,7 +31,7 @@ public class Range
     }
 
     /**
-     * Returns a boolean value indicating whether or not the specified location is in this range. The location is in
+     * Returns a bool value indicating whether or not the specified location is in this range. The location is in
      * this range if it's greater than or equal to <code>this.location</code> and less than <code>this.location +
      * this.length</code>.
      *
@@ -39,7 +39,7 @@ public class Range
      *
      * @return true if the location is in this range, otherwise false.
      */
-    public boolean contains(int location)
+    public bool contains(int location)
     {
         return location >= this.location && location < this.location + this.length;
     }

@@ -27,9 +27,9 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
     protected double missingDataFlag = -Double.MaxValue;
     protected double missingDataValue = 0;
 
-    protected boolean networkRetrievalEnabled = true;
+    protected bool networkRetrievalEnabled = true;
     protected long expiryTime = 0;
-    protected boolean enabled = true;
+    protected bool enabled = true;
 
     public void dispose()
     {
@@ -39,7 +39,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.toString() : this.toString();
+        return n != null ? n.ToString() : this.ToString();
     }
 
     public void setName(String name)
@@ -51,10 +51,10 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.toString() : super.toString();
+        return n != null ? n.ToString() : super.ToString();
     }
 
-    public boolean isNetworkRetrievalEnabled()
+    public bool isNetworkRetrievalEnabled()
     {
         return this.networkRetrievalEnabled;
     }
@@ -79,7 +79,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
         this.enabled = enabled;
     }
 
-    public boolean isEnabled()
+    public bool isEnabled()
     {
         return this.enabled;
     }
@@ -215,7 +215,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
         }
     }
 
-    protected boolean isTransparentValue(Double value)
+    protected bool isTransparentValue(Double value)
     {
         return ((value == null || value.equals(this.getMissingDataSignal()))
             && this.getMissingDataReplacement() == this.getMissingDataSignal());
@@ -234,7 +234,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
      *
      * @throws ArgumentException if document is null.
      */
-    public static boolean isElevationModelConfigDocument(Element domElement)
+    public static bool isElevationModelConfigDocument(Element domElement)
     {
         if (domElement == null)
         {
