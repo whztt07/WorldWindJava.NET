@@ -75,7 +75,7 @@ public class Logging
      *
      * @return The requested message.
      */
-    public static String getMessage(String property)
+    public static string getMessage( string property )
     {
         try
         {

@@ -6,7 +6,7 @@
 using SharpEarth.geom.Sector;
 using SharpEarth.events.BulkRetrievalListener;
 using SharpEarth.cache.FileStore;
-namespace SharpEarth.retrieve{
+namespace SharpEarth.retrieve {
 
 
 /**

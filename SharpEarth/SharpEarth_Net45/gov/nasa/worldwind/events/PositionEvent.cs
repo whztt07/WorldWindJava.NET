@@ -3,50 +3,47 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.geom.Position;
-namespace SharpEarth.events{
 
+using System.Drawing;
+using SharpEarth.geom;
 
+namespace SharpEarth.events
+{
 /**
  * @author tag
  * @version $Id: PositionEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PositionEvent extends WWEvent
-{
-    private final java.awt.Point screenPoint;
-    private final Position position;
-    private final Position previousPosition;
+  public class PositionEvent : WWEvent
+  {
+    private readonly Position position;
+    private readonly Position previousPosition;
+    private readonly Point screenPoint;
 
-    public PositionEvent(Object source, java.awt.Point screenPoint, Position previousPosition, Position position)
+    public PositionEvent( object source, Point screenPoint, Position previousPosition, Position position ) : base( source )
     {
-        super(source);
-        this.screenPoint = screenPoint;
-        this.position = position;
-        this.previousPosition = previousPosition;
+      this.screenPoint = screenPoint;
+      this.position = position;
+      this.previousPosition = previousPosition;
     }
 
-    public java.awt.Point getScreenPoint()
+    public Point getScreenPoint()
     {
-        return screenPoint;
+      return screenPoint;
     }
 
     public Position getPosition()
     {
-        return position;
+      return position;
     }
 
     public Position getPreviousPosition()
     {
-        return previousPosition;
+      return previousPosition;
     }
 
-    @Override
-    public String toString()
+    public override string ToString()
     {
-        return this.getClass().getName() + " "
-            + (this.previousPosition != null ? this.previousPosition : "null")
-            + " --> "
-            + (this.position != null ? this.position : "null");
+      return GetType().Name + " " + ( previousPosition?.ToString() ?? "null" ) + " --> " + ( position?.ToString() ?? "null" );
     }
-}
+  }
 }

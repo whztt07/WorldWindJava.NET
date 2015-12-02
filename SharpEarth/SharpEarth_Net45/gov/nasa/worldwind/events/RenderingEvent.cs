@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.events{
 
 
@@ -11,30 +11,28 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: RenderingEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RenderingEvent extends WWEvent
+public class RenderingEvent : WWEvent
 {
-    public static final String BEFORE_RENDERING = "gov.nasa.worldwind.RenderingEvent.BeforeRendering";
-    public static final String BEFORE_BUFFER_SWAP = "gov.nasa.worldwind.RenderingEvent.BeforeBufferSwap";
-    public static final String AFTER_BUFFER_SWAP = "gov.nasa.worldwind.RenderingEvent.AfterBufferSwap";
+    public static readonly string BEFORE_RENDERING = "gov.nasa.worldwind.RenderingEvent.BeforeRendering";
+    public static readonly string BEFORE_BUFFER_SWAP = "gov.nasa.worldwind.RenderingEvent.BeforeBufferSwap";
+    public static readonly string AFTER_BUFFER_SWAP = "gov.nasa.worldwind.RenderingEvent.AfterBufferSwap";
 
-    private String stage;
+    private string stage;
 
-    public RenderingEvent(Object source, String stage)
+    public RenderingEvent(object source, string stage) : base(source)
     {
-        super(source);
         this.stage = stage;
     }
 
-    public String getStage()
+    public string getStage()
     {
         return this.stage != null ? this.stage : "gov.nasa.worldwind.RenderingEvent.UnknownStage";
     }
 
-    @Override
-    public String toString()
-    {
-        return this.getClass().getName() + " "
-            + (this.stage != null ? this.stage : Logging.getMessage("generic.Unknown"));
+  public override string ToString()
+  {
+      return this.GetType().Name + " "
+              + ( this.stage != null ? this.stage : Logging.getMessage( "generic.Unknown" ) );
     }
 }
 }

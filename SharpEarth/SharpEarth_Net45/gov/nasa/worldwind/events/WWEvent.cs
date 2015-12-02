@@ -3,7 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.EventObject;
+
+using java.util;
+
 namespace SharpEarth.events{
 
 
@@ -17,10 +19,10 @@ namespace SharpEarth.events{
  * @author dcollins
  * @version $Id: WWEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WWEvent extends EventObject
+public class WWEvent : EventObject
 {
     /** Denotes whether or not the event has been consumed. Initially {@code false}. */
-    protected boolean consumed;
+    protected bool consumed;
 
     /**
      * Creates a new WWEvent with the object that originated the event.
@@ -29,9 +31,8 @@ public class WWEvent extends EventObject
      *
      * @throws ArgumentException if the source is {@code null}.
      */
-    public WWEvent(Object source)
+    public WWEvent(object source) : base(source)
     {
-        super(source);
     }
 
     /**
@@ -51,7 +52,7 @@ public class WWEvent extends EventObject
      *
      * @return {@code true} if the event has been consumed, and {@code false} otherwise.
      */
-    public boolean isConsumed()
+    public bool isConsumed()
     {
         return this.consumed;
     }

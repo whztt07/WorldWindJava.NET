@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.EventListener;
+using java.util;
 namespace SharpEarth.events{
 
 
@@ -11,8 +11,8 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: PositionListener.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface PositionListener extends EventListener
+public interface PositionListener : EventListener
 {
-    public void moved(PositionEvent event);
+    void moved(PositionEvent positionEvent);
 }
 }

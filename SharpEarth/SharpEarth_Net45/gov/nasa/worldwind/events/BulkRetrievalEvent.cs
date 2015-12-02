@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.retrieve.BulkRetrievable;
+using SharpEarth.retrieve;
 namespace SharpEarth.events{
 
 
@@ -15,16 +15,16 @@ namespace SharpEarth.events{
  * @version $Id: BulkRetrievalEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  * @see SharpEarth.retrieve.BulkRetrievable
  */
-public class BulkRetrievalEvent extends WWEvent
+public class BulkRetrievalEvent : WWEvent
 {
     /** Constant indicating retrieval failure. */
-    public static String RETRIEVAL_FAILED = "gov.nasa.worldwind.retrieve.BulkRetrievable.RetrievalFailed";
+    public static readonly string RETRIEVAL_FAILED = "gov.nasa.worldwind.retrieve.BulkRetrievable.RetrievalFailed";
 
     /** Constant indicating retrieval success. */
-    public static String RETRIEVAL_SUCCEEDED = "gov.nasa.worldwind.retrieve.BulkRetrievable.RetrievalSucceeded";
+    public static readonly string RETRIEVAL_SUCCEEDED = "gov.nasa.worldwind.retrieve.BulkRetrievable.RetrievalSucceeded";
 
-    protected String eventType;
-    protected String item;
+    protected string eventType;
+    protected string item;
 
     /**
      * Creates a new event.
@@ -35,9 +35,8 @@ public class BulkRetrievalEvent extends WWEvent
      *
      * @see SharpEarth.retrieve.BulkRetrievable
      */
-    public BulkRetrievalEvent(BulkRetrievable source, String eventType, String item)
+    public BulkRetrievalEvent(BulkRetrievable source, string eventType, string item ) : base(source)
     {
-        super(source);
 
         this.eventType = eventType;
         this.item = item;
@@ -52,7 +51,7 @@ public class BulkRetrievalEvent extends WWEvent
      */
     public BulkRetrievable getSource()
     {
-        return super.getSource() instanceof BulkRetrievable ? (BulkRetrievable) super.getSource() : null;
+      return base.getSource() as BulkRetrievable;
     }
 
     /**
@@ -60,7 +59,7 @@ public class BulkRetrievalEvent extends WWEvent
      *
      * @return the event type.
      */
-    public String getEventType()
+    public string getEventType()
     {
         return eventType;
     }
@@ -70,7 +69,7 @@ public class BulkRetrievalEvent extends WWEvent
      *
      * @return the filestore location of the item.
      */
-    public String getItem()
+    public string getItem()
     {
         return item;
     }
