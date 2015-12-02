@@ -706,3 +706,4 @@
 2779 : \terrain\BasicElevationModel.cs
 3904 : \util\WWXML.cs
 8648 : \util\GeometryBuilder.cs
+Average: 289 | Total: 205059
