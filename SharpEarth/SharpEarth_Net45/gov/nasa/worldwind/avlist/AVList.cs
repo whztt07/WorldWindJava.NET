@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System.Collections.Generic;
 using java.util;
 namespace SharpEarth.avlist{
 
@@ -28,7 +30,7 @@ public interface AVList
      *
      * @throws NullPointerException if <code>key</code> is <code>null</code>.
      */
-    Object setValue(String key, Object value);
+    object setValue(string key, object value);
 
     /**
      * Adds the contents of another attribute-value list to the list. Replaces an existing key/value pair if the list
@@ -51,9 +53,9 @@ public interface AVList
      *
      * @throws NullPointerException if <code>key</code> is <code>null</code>.
      */
-    Object getValue(String key);
+    object getValue(string key);
 
-    Collection<Object> getValues();
+    ICollection<object> getValues();
 
     /**
      * Returns the value for a specified key. The value must be a {@link String}.
@@ -66,9 +68,9 @@ public interface AVList
      * @throws SharpEarth.exception.WWRuntimeException
      *                              if the value in the collection is not a <code>String</code> type.
      */
-    String getStringValue(String key);
+    string getStringValue(string key);
 
-    Set<Map.Entry<String, Object>> getEntries();
+    Dictionary<string,object> getEntries();
 
     /**
      * Indicates whether a key is in the collection.
@@ -79,7 +81,7 @@ public interface AVList
      *
      * @throws NullPointerException if <code>key</code> is <code>null</code>.
      */
-    boolean hasKey(String key);
+    bool hasKey(string key);
 
     /**
      * Removes a specified key from the collection if the key exists, otherwise returns without affecting the
@@ -91,7 +93,7 @@ public interface AVList
      *
      * @throws NullPointerException if <code>key</code> is <code>null</code>.
      */
-    Object removeKey(String key);
+    object removeKey(string key);
 
     /**
      * Adds a property change listener for the specified key.
@@ -102,7 +104,7 @@ public interface AVList
      * @throws ArgumentException if either <code>propertyName</code> or <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener);
+    void addPropertyChangeListener(string propertyName, java.beans.PropertyChangeListener listener);
 
     /**
      * Removes a property change listener associated with the specified key.
@@ -113,7 +115,7 @@ public interface AVList
      * @throws ArgumentException if either <code>propertyName</code> or <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void removePropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener);
+    void removePropertyChangeListener(string propertyName, java.beans.PropertyChangeListener listener);
 
     /**
      * Adds the specified all-property property change listener that will be called for all list changes.
@@ -146,7 +148,7 @@ public interface AVList
      * @throws ArgumentException if <code>propertyName</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void firePropertyChange(String propertyName, Object oldValue, Object newValue);
+    void firePropertyChange(string propertyName, object oldValue, object newValue );
 
     /**
      * Calls all registered property change listeners with the specified property change event.

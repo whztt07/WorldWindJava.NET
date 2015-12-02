@@ -3,11 +3,11 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.logging.Level;
+using java.util.logging;
 using java.util;
-using java.beans.PropertyChangeSupport;
+using java.beans;
 using SharpEarth.util;
-using SharpEarth.exception.WWRuntimeException;
+using SharpEarth.exception;
 namespace SharpEarth.avlist{
 
 
@@ -24,7 +24,7 @@ namespace SharpEarth.avlist{
  * @author Tom Gaskins
  * @version $Id: AVListImpl.java 2255 2014-08-22 17:36:32Z tgaskins $
  */
-public class AVListImpl implements AVList
+public class AVListImpl : AVList
 {
     // Identifies the property change support instance in the avlist
     private static final String PROPERTY_CHANGE_SUPPORT = "avlist.PropertyChangeSupport";
