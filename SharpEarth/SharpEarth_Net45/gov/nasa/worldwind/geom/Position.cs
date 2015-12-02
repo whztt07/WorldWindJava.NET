@@ -5,7 +5,7 @@
  */
 using java.util;
 using SharpEarth.util;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 namespace SharpEarth.geom{
 
 
@@ -14,7 +14,7 @@ namespace SharpEarth.geom{
  * @author tag
  * @version $Id: Position.java 2291 2014-08-30 21:38:47Z tgaskins $
  */
-public class Position extends LatLon
+public class Position : LatLon
 {
     public static final Position ZERO = new Position(Angle.ZERO, Angle.ZERO, 0d);
 
@@ -346,7 +346,7 @@ public class Position extends LatLon
         return result;
     }
 
-    public String toString()
+  public override string ToString()
     {
         return "(" + this.latitude.ToString() + ", " + this.longitude.ToString() + ", " + this.elevation + ")";
     }

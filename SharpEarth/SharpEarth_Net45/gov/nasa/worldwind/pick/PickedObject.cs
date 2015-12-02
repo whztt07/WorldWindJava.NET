@@ -1,10 +1,10 @@
-/*
+  /*
  * Copyright (C) 2012 United States Government as represented by the Administrator of the
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
 using java.awt;
-using SharpEarth.layers.Layer;
+using SharpEarth.layers;
 using SharpEarth.geom;
 using SharpEarth.avlist;
 namespace SharpEarth.pick{
@@ -15,7 +15,7 @@ namespace SharpEarth.pick{
  * @author lado
  * @version $Id: PickedObject.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PickedObject extends AVListImpl
+public class PickedObject : AVListImpl
 {
     private final Point pickPoint;
     private final int colorCode;

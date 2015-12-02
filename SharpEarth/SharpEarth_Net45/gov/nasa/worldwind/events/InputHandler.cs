@@ -3,9 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.awt.event;
-using SharpEarth.avlist.AVList;
-using SharpEarth.WorldWindow;
+using java.awt.events;
+using SharpEarth.avlist;
 namespace SharpEarth.events{
 
 
@@ -14,7 +13,7 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: InputHandler.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface InputHandler extends AVList, java.beans.PropertyChangeListener
+public interface InputHandler : AVList, java.beans.PropertyChangeListener
 {
     void setEventSource(WorldWindow newWorldWindow);
 
@@ -64,6 +63,6 @@ public interface InputHandler extends AVList, java.beans.PropertyChangeListener
      *
      * @param forceRedrawOnMousePressed true to force a redraw on button press, otherwise false, the default.
      */
-    void setForceRedrawOnMousePressed(boolean forceRedrawOnMousePressed);
+    void setForceRedrawOnMousePressed( bool forceRedrawOnMousePressed );
 }
 }

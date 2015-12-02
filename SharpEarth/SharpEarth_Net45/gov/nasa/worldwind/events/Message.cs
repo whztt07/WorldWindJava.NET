@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.events{
+namespace SharpEarth.events {
 
 /**
  * General purpose message event.
@@ -12,10 +12,10 @@ namespace SharpEarth.events{
  * @author pabercrombie
  * @version $Id: Message.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class Message extends WWEvent
+public class Message : WWEvent
 {
     /** Message name. */
-    protected String name;
+    protected string name;
     /** Time at which the message was sent. */
     protected long when;
 
@@ -25,9 +25,9 @@ public class Message extends WWEvent
      * @param name   The name of the message.
      * @param source The object that generated the message.
      */
-    public Message(String name, Object source)
+    public Message(string name, object source) : this( name, source, java.System.currentTimeMillis())
     {
-        this(name, source, System.currentTimeMillis());
+        
     }
 
     /**
@@ -37,9 +37,8 @@ public class Message extends WWEvent
      * @param source The object that generated the message.
      * @param when   The timestamp to apply to the message.
      */
-    public Message(String name, Object source, long when)
+    public Message(string name, object source, long when) : base(source)
     {
-        super(source);
         this.name = name;
         this.when = when;
     }
@@ -49,7 +48,7 @@ public class Message extends WWEvent
      *
      * @return The message name.
      */
-    public String getName()
+    public string getName()
     {
         return this.name;
     }

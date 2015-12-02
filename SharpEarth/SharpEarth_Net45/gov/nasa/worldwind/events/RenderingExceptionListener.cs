@@ -4,6 +4,7 @@
  * All Rights Reserved.
  */
 
+using System;
 using java.util;
 namespace SharpEarth.events{
 
@@ -12,8 +13,8 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: RenderingExceptionListener.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface RenderingExceptionListener extends EventListener
+public interface RenderingExceptionListener : EventListener
 {
-    public void exceptionThrown(Throwable t);
+    void exceptionThrown(Exception e);
 }
 }

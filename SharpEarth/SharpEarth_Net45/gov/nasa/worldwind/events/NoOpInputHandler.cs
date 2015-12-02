@@ -4,8 +4,8 @@
  * All Rights Reserved.
  */
 
-using java.awt.event;
-using SharpEarth;
+using java.awt.events;
+
 namespace SharpEarth.events{
 
 
@@ -16,7 +16,7 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: NoOpInputHandler.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class NoOpInputHandler extends WWObjectImpl implements InputHandler
+public class NoOpInputHandler : WWObjectImpl, InputHandler
 {
     public void setEventSource(WorldWindow newWorldWindow)
     {
@@ -85,7 +85,7 @@ public class NoOpInputHandler extends WWObjectImpl implements InputHandler
         return false;
     }
 
-    public void setForceRedrawOnMousePressed(boolean forceRedrawOnMousePressed)
+    public void setForceRedrawOnMousePressed(bool forceRedrawOnMousePressed)
     {
     }
 }

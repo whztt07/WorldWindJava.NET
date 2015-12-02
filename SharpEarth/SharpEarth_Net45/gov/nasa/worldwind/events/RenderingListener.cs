@@ -3,16 +3,17 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.EventListener;
+using java.util;
+
 namespace SharpEarth.events{
 
 
-/**
- * @author tag
- * @version $Id: RenderingListener.java 1171 2013-02-11 21:45:02Z dcollins $
- */
-public interface RenderingListener extends EventListener
-{
-    public void stageChanged(RenderingEvent event);
-}
+  /**
+   * @author tag
+   * @version $Id: RenderingListener.java 1171 2013-02-11 21:45:02Z dcollins $
+   */
+  public interface RenderingListener : EventListener
+  {
+      void stageChanged(RenderingEvent renderingEvent);
+  }
 }

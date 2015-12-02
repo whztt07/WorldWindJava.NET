@@ -4,7 +4,8 @@
  * All Rights Reserved.
  */
 
-using java.util.EventListener;
+using java.util;
+
 namespace SharpEarth.events{
 
 
@@ -14,14 +15,14 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: BulkRetrievalListener.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface BulkRetrievalListener extends EventListener
+public interface BulkRetrievalListener : EventListener
 {
     /**
      * A bulk-download event occurred, either a succes, a failure or an extended event.
      *
-     * @param event the event that occurred.
+     * @param bulkevent the event that occurred.
      * @see SharpEarth.retrieve.BulkRetrievable 
      */
-    void eventOccurred(BulkRetrievalEvent event);
+    void eventOccurred(BulkRetrievalEvent bulkevent);
 }
 }

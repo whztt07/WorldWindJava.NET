@@ -3,8 +3,11 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.awt.event;
-using SharpEarth.pick.PickedObjectList;
+
+using System.Drawing;
+using java.awt.events;
+using SharpEarth.pick;
+using SharpEarth.pick;
 namespace SharpEarth.events{
 
 
@@ -16,14 +19,13 @@ namespace SharpEarth.events{
  * @author tag
  * @version $Id: DragSelectEvent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DragSelectEvent extends SelectEvent
+public class DragSelectEvent : SelectEvent
 {
-    private final java.awt.Point previousPickPoint;
+    private readonly Point previousPickPoint;
 
-    public DragSelectEvent(Object source, String eventAction, MouseEvent mouseEvent, PickedObjectList pickedObjects,
-        java.awt.Point previousPickPoint)
+    public DragSelectEvent(object source, string eventAction, MouseEvent mouseEvent, PickedObjectList pickedObjects,
+        Point previousPickPoint) : base( source, eventAction, mouseEvent, pickedObjects );
     {
-        super(source, eventAction, mouseEvent, pickedObjects);
         this.previousPickPoint = previousPickPoint;
     }
 
@@ -32,7 +34,7 @@ public class DragSelectEvent extends SelectEvent
      *
      * @return the screen position of the event just prior to this one.
      */
-    public java.awt.Point getPreviousPickPoint()
+    public Point getPreviousPickPoint()
     {
         return this.previousPickPoint;
     }
