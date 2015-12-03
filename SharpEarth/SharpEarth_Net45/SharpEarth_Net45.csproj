@@ -759,6 +759,7 @@
     <Compile Include="java\beans\PropertyChangeEvent.cs" />
     <Compile Include="java\beans\PropertyChangeListener.cs" />
     <Compile Include="java\System.cs" />
+    <Compile Include="java\util\concurrent\Future.cs" />
     <Compile Include="java\util\EventListener.cs" />
     <Compile Include="java\util\EventObject.cs" />
     <Compile Include="java\io\Serializable.cs" />

@@ -4,14 +4,21 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.ogc.collada{
-
-/** Constants related to COLLADA documents. */
-public interface ColladaConstants
+namespace SharpEarth.ogc.collada
 {
-    /** The Collada namespace URI. */
-    final String COLLADA_NAMESPACE = "http://www.collada.org/2005/11/COLLADASchema";
-    /** MIME type for Collada documents. */
-    final String COLLADA_MIME_TYPE = "model/collada+xml";
-}
+  /// <summary>
+  /// Constants related to COLLADA documents.
+  /// </summary>
+  public static class ColladaConstants
+  {
+    /// <summary>
+    /// The Collada namespace URI.
+    /// </summary>
+    public static readonly string COLLADA_NAMESPACE = "http://www.collada.org/2005/11/COLLADASchema";
+
+    /// <summary>
+    /// MIME type for Collada documents.
+    /// </summary>
+    public static readonly string COLLADA_MIME_TYPE = "model/collada+xml";
+  }
 }

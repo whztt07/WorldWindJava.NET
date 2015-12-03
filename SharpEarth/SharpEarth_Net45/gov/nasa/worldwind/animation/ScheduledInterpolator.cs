@@ -3,8 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.Date;
-using SharpEarth.util.Logging;
+
+using SharpEarth.util;
+
 namespace SharpEarth.animation{
 
 
@@ -13,14 +14,13 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: ScheduledInterpolator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ScheduledInterpolator implements Interpolator
+public class ScheduledInterpolator : Interpolator
 {
     private long startTime = -1;
-    private final long length;
+    private readonly long length;
 
-    public ScheduledInterpolator(long lengthMillis)
+    public ScheduledInterpolator(long lengthMillis) : this(null, lengthMillis)
     {
-        this(null, lengthMillis);
     }
 
     public ScheduledInterpolator(Date startTime, long lengthMillis)
@@ -59,9 +59,7 @@ public class ScheduledInterpolator implements Interpolator
 
     public double nextInterpolant()
     {
-
-
-        long currentTime = System.currentTimeMillis();
+      long currentTime = global::java.System.currentTimeMillis();
         // When no start time is specified, begin counting time on the first run.
         if (this.startTime < 0)
             this.startTime = currentTime;

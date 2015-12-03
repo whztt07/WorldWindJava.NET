@@ -4,8 +4,8 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.globes{
-
+namespace SharpEarth.globes
+{
 /**
  * Holds a globe's configuration state. The state can be used to compare a globe's current configuration with a previous
  * configuration.
@@ -13,13 +13,13 @@ namespace SharpEarth.globes{
  * @author tag
  * @version $Id: GlobeStateKey.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface GlobeStateKey
-{
+  public interface GlobeStateKey
+  {
     /**
      * Indicates the globe associated with this state key.
      *
      * @return the globe associated with this state key.
      */
     Globe getGlobe();
-}
+  }
 }

@@ -5,9 +5,9 @@
  */
 
 using SharpEarth.geom;
-namespace SharpEarth.globes{
 
-
+namespace SharpEarth.globes
+{
 /**
  * Defines an interface to project geographic coordinates to Cartesian coordinates. Used by {@link Globe2D}
  * implementations to transform geographic coordinates to meters and back.
@@ -18,15 +18,15 @@ namespace SharpEarth.globes{
  * @author tag
  * @version $Id: GeographicProjection.java 2277 2014-08-28 21:19:37Z dcollins $
  */
-public interface GeographicProjection
-{
+
+  public interface GeographicProjection
+  {
     /**
      * Returns the projection name.
      *
      * @return The projection name.
      */
-    String getName();
-
+    string getName();
     /**
      * Indicates whether it makes sense to treat this projection as contiguous with itself. If true, the scene
      * controller will make the globe using the projection appear to scroll continuously horizontally.
@@ -35,14 +35,12 @@ public interface GeographicProjection
      *         <code>false</code>.
      */
     bool isContinuous();
-
     /**
      * Indicates the latitude limits for this projection.
      *
      * @return The projection limits for this projection.
      */
     Sector getProjectionLimits();
-
     /**
      * Specifies the limits for this projection.
      *
@@ -51,8 +49,7 @@ public interface GeographicProjection
      * @throws ArgumentException if the specified limits is null or the limits are outside the normal range of
      *                                  latitude or longitude.
      */
-    void setProjectionLimits(Sector projectionLimits);
-
+    void setProjectionLimits( Sector projectionLimits );
     /**
      * Converts a geographic position to meters in Cartesian coordinates.
      * <p/>
@@ -71,8 +68,7 @@ public interface GeographicProjection
      *
      * @see #cartesianToGeographic(Globe, SharpEarth.geom.Vec4, SharpEarth.geom.Vec4)
      */
-    Vec4 geographicToCartesian(Globe globe, Angle latitude, Angle longitude, double metersElevation, Vec4 offset);
-
+    Vec4 geographicToCartesian( Globe globe, Angle latitude, Angle longitude, double metersElevation, Vec4 offset );
     /**
      * Converts a grid of geographic positions to a grid of points in Cartesian coordinates.
      * <p/>
@@ -99,8 +95,9 @@ public interface GeographicProjection
      *                        <code>numLon x numLat</code>. Points are written to this array in row major order,
      *                        beginning with the row of minimum latitude.
      */
-    void geographicToCartesian(Globe globe, Sector sector, int numLat, int numLon, double[] metersElevation,
-        Vec4 offset, Vec4[] out);
+
+    void geographicToCartesian( Globe globe, Sector sector, int numLat, int numLon, double[] metersElevation,
+      Vec4 offset, Vec4[] outVector );
 
     /**
      * Converts a Cartesian point in meters to a geographic position.
@@ -119,8 +116,7 @@ public interface GeographicProjection
      * @see #geographicToCartesian(Globe, SharpEarth.geom.Angle, SharpEarth.geom.Angle, double,
      *      SharpEarth.geom.Vec4)
      */
-    Position cartesianToGeographic(Globe globe, Vec4 cart, Vec4 offset);
-
+    Position cartesianToGeographic( Globe globe, Vec4 cart, Vec4 offset );
     /**
      * Computes a Cartesian vector that points north and is tangent to the meridian at the specified geographic
      * location.
@@ -131,6 +127,6 @@ public interface GeographicProjection
      *
      * @return The north pointing tangent corresponding to the input location.
      */
-    Vec4 northPointingTangent(Globe globe, Angle latitude, Angle longitude);
-}
+    Vec4 northPointingTangent( Globe globe, Angle latitude, Angle longitude );
+  }
 }

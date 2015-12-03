@@ -3,6 +3,11 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Drawing;
 using java.util.Queue;
 using java.util.List;
 using java.util;
@@ -19,6 +24,9 @@ using SharpEarth.geom;
 using SharpEarth.cache.GpuResourceCache;
 using SharpEarth;
 using com.jogamp.opengl.util.texture.TextureCoords;
+using SharpEarth.cache;
+using SharpEarth.globes;
+
 namespace SharpEarth.render{
 
 
@@ -27,7 +35,7 @@ namespace SharpEarth.render{
  * @author Tom Gaskins
  * @version $Id: DrawContext.java 2281 2014-08-29 23:08:04Z dcollins $
  */
-public interface DrawContext extends WWObject, Disposable
+public interface DrawContext : WWObject, Disposable
 {
     /**
      * Assigns this <code>DrawContext</code> a new </code>javax.media.opengl.GLContext</code>. May throw a
@@ -383,7 +391,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @param tf true to pick all objects under the cursor
      */
-    void setDeepPickingEnabled(boolean tf);
+    void setDeepPickingEnabled(bool tf);
 
     /**
      * Indicates whether all items under cursor are picked.
@@ -799,7 +807,7 @@ public interface DrawContext extends WWObject, Disposable
      * @param exceptions the Collection of exceptions to be used to accumulate rendering exceptions, or null to disable
      *                   accumulation of rendering exception.
      */
-    void setRenderingExceptions(Collection<Throwable> exceptions);
+    void setRenderingExceptions(Collection<Exception> exceptions);
 
     /**
      * Adds the specified {@link Throwable} to this DrawContext's collection of rendering exceptions. If this
@@ -809,7 +817,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @throws ArgumentException if the Throwable is null.
      */
-    void addRenderingException(Throwable t);
+    void addRenderingException(Exception t);
 
     /**
      * Modifies the current projection matrix to slightly offset subsequently drawn objects toward or away from the eye
@@ -855,7 +863,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @param tf true if ordered renderables are being drawn, false if ordered renderables are only being accumulated.
      */
-    void setOrderedRenderingMode(boolean tf);
+    void setOrderedRenderingMode(bool tf);
 
     /**
      * Performs a multi-pass rendering technique to ensure that outlines around filled shapes are drawn correctly when
@@ -868,7 +876,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @see SharpEarth.render.OutlinedShape
      */
-    void drawOutlinedShape(OutlinedShape renderer, Object shape);
+    void drawOutlinedShape(OutlinedShape renderer, object shape);
 
     /**
      * Enables the current standard lighting model. {@link #endStandardLighting()} must be called when rendering of the
@@ -977,7 +985,7 @@ public interface DrawContext extends WWObject, Disposable
      *
      * @see PreRenderable
      */
-    void setPreRenderMode(boolean preRenderMode);
+    void setPreRenderMode(bool preRenderMode);
 
     /**
      * Computes a Cartesian point from a specified geographic position, applying a specified altitude mode.

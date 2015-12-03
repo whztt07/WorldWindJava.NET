@@ -4,15 +4,13 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth{
-
-/**
- * @author tag
- * @version $Id: Disposable.java 1171 2013-02-11 21:45:02Z dcollins $
- */
-public interface Disposable
+namespace SharpEarth
 {
-    /** Disposes of any internal resources allocated by the object. */
-    public void dispose();
-}
+  public interface Disposable
+  {
+    /// <summary>
+    /// Disposes of any internal resources allocated by the object.
+    /// </summary>
+    void dispose();
+  }
 }

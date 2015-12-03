@@ -11,6 +11,6 @@ namespace SharpEarth.formats.vpf{
  */
 public interface VPFFeatureClassFactory
 {
-    public VPFFeatureClass createFromSchema(VPFCoverage coverage, VPFFeatureClassSchema schema);
+    VPFFeatureClass createFromSchema(VPFCoverage coverage, VPFFeatureClassSchema schema);
 }
 }

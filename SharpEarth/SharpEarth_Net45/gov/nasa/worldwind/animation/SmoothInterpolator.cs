@@ -9,23 +9,21 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: SmoothInterpolator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class SmoothInterpolator extends ScheduledInterpolator
+public class SmoothInterpolator : ScheduledInterpolator
 {
-    private bool useMidZoom = true;
-    private final int MAX_SMOOTHING = 3;
-    private final double START = this.useMidZoom ? 0.0 : 0.6;
-    private final double STOP = 1.0;
+    private const bool useMidZoom = true;
+    private const int MAX_SMOOTHING = 3;
+    private const double START = useMidZoom ? 0.0 : 0.6;
+    private const double STOP = 1.0;
 
-    public SmoothInterpolator(long lengthMillis)
+    public SmoothInterpolator(long lengthMillis) : base(lengthMillis)
     {
-        super(lengthMillis);
     }
 
     public double nextInterpolant()
     {
-        double interpolant = super.nextInterpolant();
-        return basicInterpolant(interpolant,
-            this.START, this.STOP, this.MAX_SMOOTHING);
+        double interpolant = base.nextInterpolant();
+        return basicInterpolant(interpolant, START, STOP, MAX_SMOOTHING);
     }
 
     protected static double basicInterpolant(double interpolant, double startInterpolant,

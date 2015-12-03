@@ -3,12 +3,14 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
+
+using System.Collections.Generic;
 using SharpEarth.terrain;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
-using SharpEarth.WWObject;
-namespace SharpEarth.globes{
+using SharpEarth;
+
+namespace SharpEarth.globes {
 
 
 
@@ -47,7 +49,7 @@ namespace SharpEarth.globes{
  * @author Tom Gaskins
  * @version $Id: Globe.java 2295 2014-09-04 17:33:25Z tgaskins $
  */
-public interface Globe extends WWObject, Extent
+public interface Globe : WWObject, Extent
 {
     /**
      * Indicates the spatial volume contained by this globe.
@@ -128,7 +130,7 @@ public interface Globe extends WWObject, Extent
      * @throws ArgumentException if either the sector, latlons list or elevations array is null.
      * @see #getElevationModel()
      */
-    double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution, double[] elevations);
+  double getElevations<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
@@ -155,8 +157,7 @@ public interface Globe extends WWObject, Extent
      *                                  is null.
      * @see #getElevationModel()
      */
-    double[] getElevations(Sector sector, List<? extends LatLon> latlons, double[] targetResolution,
-        double[] elevations);
+    double[] getElevations<T>(Sector sector, List<T> latlons, double[] targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the maximum elevation on this globe, in meters.
@@ -264,7 +265,7 @@ public interface Globe extends WWObject, Extent
      *
      * @throws ArgumentException If any argument is null, or if numLat or numLon are less than or equal to zero.
      */
-    void computePointsFromPositions(Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] out);
+    void computePointsFromPositions(Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] outVector);
 
     /**
      * Computes a vector perpendicular to the surface of this globe in cartesian coordinates.
@@ -297,11 +298,9 @@ public interface Globe extends WWObject, Extent
     Vec4 computeNorthPointingTangentAtLocation(Angle latitude, Angle longitude);
 
     /** @see #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double). */
-    @SuppressWarnings({"JavaDoc"})
     Matrix computeModelCoordinateOriginTransform(Angle latitude, Angle longitude, double metersElevation);
 
     /** @see #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Position) */
-    @SuppressWarnings({"JavaDoc"})
     Matrix computeModelCoordinateOriginTransform(Position position);
 
     /**
@@ -529,7 +528,7 @@ public interface Globe extends WWObject, Extent
      *
      * @throws ArgumentException if the draw context is null.
      */
-    Object getStateKey(DrawContext dc);
+    object getStateKey(DrawContext dc);
 
     /**
      * Returns a typed state key identifying this globe's current configuration. Can be used to subsequently determine

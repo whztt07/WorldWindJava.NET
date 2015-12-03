@@ -3,8 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.render.DrawContext;
-using SharpEarth.WWObject;
+using SharpEarth.render;
+using SharpEarth;
+
 namespace SharpEarth.terrain{
 
 
@@ -12,7 +13,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: Tessellator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface Tessellator extends WWObject
+public interface Tessellator : WWObject
 {
     /**
      * Tessellate a globe for the currently visible region.
@@ -39,7 +40,7 @@ public interface Tessellator extends WWObject
      *
      * @param makeTileSkirts true if skirts are created, otherwise false.
      */
-    void setMakeTileSkirts(boolean makeTileSkirts);
+    void setMakeTileSkirts(bool makeTileSkirts);
 
     /**
      * Indicates the maximum amount of time that may elapse between re-tessellation. Re-tessellation is performed to

@@ -4,9 +4,11 @@
  * All Rights Reserved.
  */
 
+using System;
 using SharpEarth.util;
 using SharpEarth.events;
-using SharpEarth.avlist.AVListImpl;
+using java.beans;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 
@@ -17,7 +19,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: WWObjectImpl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WWObjectImpl extends AVListImpl implements WWObject
+public class WWObjectImpl : AVListImpl, WWObject
 {
     /**
      * Constructs a new <code>WWObjectImpl</code>.
@@ -26,9 +28,8 @@ public class WWObjectImpl extends AVListImpl implements WWObject
     {
     }
 
-    public WWObjectImpl(Object source)
+    public WWObjectImpl(object source) : base(source)
     {
-        super(source);
     }
 
     /**
@@ -37,17 +38,17 @@ public class WWObjectImpl extends AVListImpl implements WWObject
      * @param propertyChangeEvent the event
      * @throws ArgumentException if <code>propertyChangeEvent</code> is null
      */
-    public void propertyChange(java.beans.PropertyChangeEvent propertyChangeEvent)
+    public void propertyChange(PropertyChangeEvent propertyChangeEvent)
     {
         if (propertyChangeEvent == null)
         {
-            String msg = Logging.getMessage("nullValue.PropertyChangeEventIsNull");
+            string msg = Logging.getMessage("nullValue.PropertyChangeEventIsNull");
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
 
         // Notify all *my* listeners of the change that I caught
-        super.firePropertyChange(propertyChangeEvent);
+        base.firePropertyChange(propertyChangeEvent);
     }
 
     /** Empty implementation of MessageListener. */

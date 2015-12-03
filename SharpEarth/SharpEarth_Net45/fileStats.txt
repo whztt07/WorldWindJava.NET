@@ -1,9 +1,9 @@
-16 : \formats\vpf\VPFDataBufferFactory.cs
-16 : \formats\vpf\VPFFeatureClassFactory.cs
-16 : \formats\vpf\VPFPrimitiveDataFactory.cs
-16 : \retrieve\RetrievalFuture.cs
+16 : \formats\vpf\VPFDataBufferFactory.cs *
+16 : \formats\vpf\VPFFeatureClassFactory.cs *
+16 : \formats\vpf\VPFPrimitiveDataFactory.cs *
+16 : \retrieve\RetrievalFuture.cs *
 16 : \retrieve\RetrievalPostProcessor.cs
-17 : \ogc\collada\ColladaConstants.cs
+17 : \ogc\collada\ColladaConstants.cs *
 17 : \ogc\kml\KMLUpdateOperation.cs
 17 : \ogc\kml\gx\GXConstants.cs
 17 : \render\PreRenderable.cs

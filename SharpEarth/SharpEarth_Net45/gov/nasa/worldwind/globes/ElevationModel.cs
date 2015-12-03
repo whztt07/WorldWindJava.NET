@@ -3,7 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
+
+using System.Collections.Generic;
 using SharpEarth.geom;
 using SharpEarth;
 namespace SharpEarth.globes{
@@ -25,7 +26,7 @@ namespace SharpEarth.globes{
  * @author Tom Gaskins
  * @version $Id: ElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
  */
-public interface ElevationModel extends WWObject, Restorable, Disposable
+public interface ElevationModel : WWObject, Restorable, Disposable
 {
     /**
      * Returns the elevation model's name.
@@ -34,7 +35,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @see #setName(String)
      */
-    String getName();
+    string getName();
 
     /**
      * Set the elevation model's name. The name is a convenience attribute typically used to identify the elevation
@@ -42,7 +43,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @param name the name to give the elevation model.
      */
-    void setName(String name);
+    void setName(string name);
 
     /**
      * Indicates whether the elevation model is allowed to retrieve data from the network. Some elevation models have no
@@ -58,7 +59,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @param networkRetrievalEnabled <code>true</code> if network retrieval is allowed, else <code>false</code>.
      */
-    void setNetworkRetrievalEnabled(boolean networkRetrievalEnabled);
+    void setNetworkRetrievalEnabled(bool networkRetrievalEnabled);
 
     /**
      * Returns the current expiry time.
@@ -246,8 +247,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      * @throws ArgumentException if either the sector, latlons list or elevations array is null.
      * @see #setMissingDataSignal(double)
      */
-    @SuppressWarnings({"JavadocReference"})
-    double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution, double[] buffer);
+    double getElevations<T>(Sector sector, List<T> latlons, double targetResolution, double[] buffer) where T : LatLon;
 
     /**
      * Returns the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
@@ -277,7 +277,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *                                  is null.
      * @see #setMissingDataSignal(double)
      */
-    double[] getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution[], double[] buffer);
+  double[] getElevations<T>( Sector sector, List<T> latlons, double[] targetResolution, double[] buffer ) where T : LatLon;
 
     /**
      * Returns the elevations of a collection of locations. <em>Does not</em> replace any elevation values corresponding
@@ -301,8 +301,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @see #setMissingDataSignal(double)
      */
-    double getUnmappedElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
-        double[] buffer);
+    double getUnmappedElevations<T>(Sector sector, List<T> latlons, double targetResolution, double[] buffer) where T : LatLon;
 
     /**
      * Returns the elevations of a collection of locations. <em>Does not</em> replace any elevation values corresponding
@@ -332,8 +331,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *                                  array
      * @see #setMissingDataSignal(double)
      */
-    double[] getUnmappedElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution[],
-        double[] buffer);
+    double[] getUnmappedElevations<T>(Sector sector, List<T> latlons, double[] targetResolution, double[] buffer) where T : LatLon;
 
     /**
      * Returns the elevation used for missing values in the elevation model.
@@ -368,8 +366,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *                                  not at least as large as the location list, or the tile width is greater than
      *                                  the locations list length or less than 1.
      */
-    void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth, double[] buffer)
-        throws Exception;
+    void composeElevations<T>(Sector sector, List<T> latlons, int tileWidth, double[] buffer) where T : LatLon;
 
     /**
      * Returns the proportion of this elevation model's data that is local -- in the computer's data cache or installed
@@ -383,14 +380,14 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @return the fraction of the data that is local. A value of 1.0 indicates that all the data is available.
      */
-    double getLocalDataAvailability(Sector sector, Double targetResolution);
+    double getLocalDataAvailability(Sector sector, double targetResolution);
 
     /**
      * Indicates whether this elevation model is used or ignored.
      *
      * @param enabled true if this elevation model is used, otherwise false.
      */
-    void setEnabled(boolean enabled);
+    void setEnabled(bool enabled);
 
     /**
      * Indicates whether this elevation model is used or ignored.
@@ -407,7 +404,7 @@ public interface ElevationModel extends WWObject, Restorable, Disposable
      *
      * @param enabled true if extreme value caching should be performed.
      */
-    void setExtremesCachingEnabled(boolean enabled);
+    void setExtremesCachingEnabled(bool enabled);
 
     /**
      * Indicates whether extreme value caching is enabled.

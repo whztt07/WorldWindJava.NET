@@ -4,6 +4,7 @@
  * All Rights Reserved.
  */
 
+using System;
 using java.io;
 using SharpEarth.geom.Angle;
 using SharpEarth.exception.WWRuntimeException;
@@ -36,11 +37,11 @@ public class EGM96
      * @param offsetsFilePath a path pointing to a file with the geoid offsets. See the class description above for a
      *                        description of the file.
      */
-    public EGM96(String offsetsFilePath) throws IOException
+    public EGM96(string offsetsFilePath)
     {
         if (offsetsFilePath == null)
         {
-            String msg = Logging.getMessage("nullValue.PathIsNull");
+            string msg = Logging.getMessage("nullValue.PathIsNull");
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -50,7 +51,7 @@ public class EGM96
         this.loadOffsetFile();
     }
 
-    protected void loadOffsetFile() throws IOException
+    protected void loadOffsetFile()
     {
         InputStream is = WWIO.openFileOrResourceStream(this.offsetsFilePath, EGM96.class);
         if (is == null)

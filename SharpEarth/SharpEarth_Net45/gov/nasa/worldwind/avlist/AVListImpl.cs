@@ -113,7 +113,7 @@ public class AVListImpl : AVList
         {
             string msg = Logging.getMessage("nullValue.AttributeKeyIsNull");
             Logging.logger().severe(msg);
-            throw new ArgumentNullException(msg);
+            throw new ArgumentException(msg);
         }
 
       string value = this.getValue( key ) as string;
@@ -282,7 +282,7 @@ public class AVListImpl : AVList
         this.getChangeSupport().removePropertyChangeListener(listener);
     }
 
-    public void firePropertyChange(java.beans.PropertyChangeEvent propertyChangeEvent)
+    public void firePropertyChange(PropertyChangeEvent propertyChangeEvent)
     {
         if (propertyChangeEvent == null)
         {
@@ -293,7 +293,7 @@ public class AVListImpl : AVList
         this.getChangeSupport().firePropertyChange(propertyChangeEvent);
     }
 
-    public void firePropertyChange(String propertyName, Object oldValue, Object newValue)
+    public void firePropertyChange(string propertyName, object oldValue, object newValue )
     {
         if (propertyName == null)
         {

@@ -4,8 +4,10 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.events.MessageListener;
-using SharpEarth.avlist.AVList;
+using SharpEarth.events;
+using SharpEarth.avlist;
+using java.beans;
+
 namespace SharpEarth{
 
 
@@ -17,7 +19,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: WWObject.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface WWObject extends AVList, java.beans.PropertyChangeListener, MessageListener
+public interface WWObject : AVList, PropertyChangeListener, MessageListener
 {
 }
 }

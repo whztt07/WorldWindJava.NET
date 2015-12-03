@@ -24,7 +24,7 @@ public interface Globe2D
      *
      * @see SharpEarth.globes.GeographicProjection#isContinuous()
      */
-    void setContinuous(boolean continuous);
+    void setContinuous(bool continuous);
 
     /**
      * Indicates whether it makes sense to treat the associated projection as contiguous with itself. If true, the scene

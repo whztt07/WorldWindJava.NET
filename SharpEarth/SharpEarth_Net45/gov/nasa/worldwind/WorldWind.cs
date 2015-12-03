@@ -206,7 +206,7 @@ public sealed class WorldWind
      * @throws WWRuntimeException       if the <code>Object</code> could not be created
      * @throws ArgumentException if <code>className</code> is null or zero length
      */
-    public static Object createComponent(String className) throws WWRuntimeException
+    public static object createComponent(string className)
     {
         if (className == null || className.length() == 0)
         {
@@ -240,8 +240,7 @@ public sealed class WorldWind
      * @throws ArgumentException if <code>classNameKey<code> is null
      * @throws WWRuntimeException       if the component could not be created
      */
-    public static Object createConfigurationComponent(String classNameKey)
-        throws IllegalStateException, ArgumentException
+    public static object createConfigurationComponent(string classNameKey)
     {
         if (classNameKey == null || classNameKey.length() == 0)
         {

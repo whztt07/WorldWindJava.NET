@@ -6,7 +6,8 @@
 using java.util;
 using SharpEarth.util;
 using SharpEarth.globes;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
+
 namespace SharpEarth.geom{
 
 
@@ -22,10 +23,10 @@ namespace SharpEarth.geom{
  */
 public class LatLon
 {
-    public static final LatLon ZERO = new LatLon(Angle.ZERO, Angle.ZERO);
+    public static readonly LatLon ZERO = new LatLon(Angle.ZERO, Angle.ZERO);
 
-    public final Angle latitude;
-    public final Angle longitude;
+    public readonly Angle latitude;
+    public readonly Angle longitude;
 
     /**
      * Factor method for obtaining a new <code>LatLon</code> from two angles expressed in radians.
@@ -98,7 +99,7 @@ public class LatLon
      *
      * @return this <code>LatLon</code>'s latitude
      */
-    public final Angle getLatitude()
+    public Angle getLatitude()
     {
         return this.latitude;
     }
@@ -108,7 +109,7 @@ public class LatLon
      *
      * @return this <code>LatLon</code>'s longitude
      */
-    public final Angle getLongitude()
+    public Angle getLongitude()
     {
         return this.longitude;
     }
@@ -151,7 +152,7 @@ public class LatLon
      *
      * @throws ArgumentException if the path type or either location is null.
      */
-    public static LatLon interpolate(String pathType, double amount, LatLon value1, LatLon value2)
+    public static LatLon interpolate(string pathType, double amount, LatLon value1, LatLon value2)
     {
         if (pathType == null)
         {

@@ -3,14 +3,15 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
-using java.io.IOException;
+
+using System;
+using System.Collections.Generic;
 using SharpEarth.util;
 using SharpEarth.terrain;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
-using SharpEarth;
+using SharpEarth.avlist;
+
 namespace SharpEarth.globes{
 
 
@@ -26,14 +27,14 @@ namespace SharpEarth.globes{
  * @author Tom Gaskins
  * @version $Id: EllipsoidalGlobe.java 2295 2014-09-04 17:33:25Z tgaskins $
  */
-public class EllipsoidalGlobe extends WWObjectImpl implements Globe
+public class EllipsoidalGlobe : WWObjectImpl, Globe
 {
-    protected final double equatorialRadius;
-    protected final double polarRadius;
-    protected final double es;
-    private final Vec4 center;
-    private ElevationModel elevationModel;
-    private Tessellator tessellator;
+    protected readonly double equatorialRadius;
+    protected readonly double polarRadius;
+    protected readonly double es;
+    private readonly Vec4 center;
+    private ElevationModel _elevationModel;
+    private Tessellator _tessellator;
     protected EGM96 egm96;
 
     /**
@@ -45,14 +46,9 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
      * @param es               Square of the globe's eccentricity.
      * @param em               Elevation model. May be null.
      */
-    public EllipsoidalGlobe(double equatorialRadius, double polarRadius, double es, ElevationModel em)
+    public EllipsoidalGlobe(double equatorialRadius, double polarRadius, double es, ElevationModel em) 
+      : this(equatorialRadius, polarRadius, es, em, Vec4.ZERO)
     {
-        this.equatorialRadius = equatorialRadius;
-        this.polarRadius = polarRadius;
-        this.es = es; // assume it's consistent with the two radii
-        this.center = Vec4.ZERO;
-        this.elevationModel = em;
-        this.tessellator = (Tessellator) WorldWind.createConfigurationComponent(AVKey.TESSELLATOR_CLASS_NAME);
     }
 
     /**
@@ -65,20 +61,20 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
      * @param em               Elevation model. May be null.
      * @param center           Cartesian coordinates of the globe's center point.
      */
-    public EllipsoidalGlobe(double equatorialRadius, double polarRadius, double es, ElevationModel em, Vec4 center)
+    public EllipsoidalGlobe(double equatorialRadius, double polarRadius, double es, ElevationModel em, Vec4 center) 
     {
         this.equatorialRadius = equatorialRadius;
         this.polarRadius = polarRadius;
         this.es = es; // assume it's consistent with the two radii
         this.center = center;
-        this.elevationModel = em;
-        this.tessellator = (Tessellator) WorldWind.createConfigurationComponent(AVKey.TESSELLATOR_CLASS_NAME);
+        this._elevationModel = em;
+        this._tessellator = (Tessellator) WorldWind.createConfigurationComponent(AVKey.TESSELLATOR_CLASS_NAME);
     }
 
-    protected class StateKey implements GlobeStateKey
+    protected class StateKey : GlobeStateKey
     {
         protected Globe globe;
-        protected final Tessellator tessellator;
+        protected readonly Tessellator _tessellator;
         protected double verticalExaggeration;
         protected ElevationModel elevationModel;
 
@@ -86,14 +82,14 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         {
             if (dc == null)
             {
-                String msg = Logging.getMessage("nullValue.DrawContextIsNull");
+                string msg = Logging.getMessage("nullValue.DrawContextIsNull");
                 Logging.logger().severe(msg);
                 throw new ArgumentException(msg);
             }
 
             this.globe = dc.getGlobe();
-            this.tessellator = EllipsoidalGlobe.this.tessellator;
-            this.verticalExaggeration = dc.getVerticalExaggeration();
+            this._tessellator = EllipsoidalGlobe.this.tessellator;
+        this.verticalExaggeration = dc.getVerticalExaggeration();
             this.elevationModel = this.globe.getElevationModel();
         }
 
@@ -110,19 +106,17 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
             return this.globe;
         }
 
-        @SuppressWarnings({"RedundantIfStatement"})
-        @Override
-        public override bool Equals(Object o)
+        public override bool Equals(object o)
         {
             if (this == o)
                 return true;
             if (o == null || GetType() != o.GetType())
                 return false;
 
-            StateKey stateKey = (StateKey) o;
+            StateKey stateKey = (StateKey) o; 
 
-            if (Double.compare(stateKey.verticalExaggeration, verticalExaggeration) != 0)
-                return false;
+            if ( Math.Abs( stateKey.verticalExaggeration - verticalExaggeration ) > 0.0000001 )
+              return false;
             if (elevationModel != null ? !elevationModel.equals(stateKey.elevationModel) :
                 stateKey.elevationModel != null)
                 return false;
@@ -134,7 +128,6 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
             return true;
         }
 
-        @Override
         public override int GetHashCode()
         {
             int result;
@@ -148,7 +141,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         }
     }
 
-    public Object getStateKey(DrawContext dc)
+    public object getStateKey(DrawContext dc)
     {
         return this.getGlobeStateKey(dc);
     }
@@ -165,22 +158,22 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
 
     public Tessellator getTessellator()
     {
-        return tessellator;
+        return _tessellator;
     }
 
     public void setTessellator(Tessellator tessellator)
     {
-        this.tessellator = tessellator;
+        this._tessellator = tessellator;
     }
 
     public ElevationModel getElevationModel()
     {
-        return elevationModel;
+        return _elevationModel;
     }
 
     public void setElevationModel(ElevationModel elevationModel)
     {
-        this.elevationModel = elevationModel;
+        this._elevationModel = elevationModel;
     }
 
     public double getRadius()
@@ -252,14 +245,14 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
 
     public double getMaxElevation()
     {
-        return this.elevationModel != null ? this.elevationModel.getMaxElevation() : 0;
+        return this._elevationModel != null ? this._elevationModel.getMaxElevation() : 0;
     }
 
     public double getMinElevation()
     {
         // TODO: The value returned might not reflect the globe's actual minimum elevation if the elevation model does
         // not span the full globe. See WWJINT-435.
-        return this.elevationModel != null ? this.elevationModel.getMinElevation() : 0;
+        return this._elevationModel != null ? this._elevationModel.getMinElevation() : 0;
     }
 
     public double[] getMinAndMaxElevations(Angle latitude, Angle longitude)
@@ -271,7 +264,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
             throw new ArgumentException(msg);
         }
 
-        return this.elevationModel != null ? this.elevationModel.getExtremeElevations(latitude, longitude)
+        return this._elevationModel != null ? this._elevationModel.getExtremeElevations(latitude, longitude)
             : new double[] {0, 0};
     }
 
@@ -281,10 +274,10 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         {
             String message = Logging.getMessage("nullValue.SectorIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new ArgumentNullException(message);
         }
 
-        return this.elevationModel != null ? this.elevationModel.getExtremeElevations(sector) : new double[] {0, 0};
+        return this._elevationModel != null ? this._elevationModel.getExtremeElevations(sector) : new double[] {0, 0};
     }
 
     public Extent getExtent()
@@ -303,7 +296,7 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         {
             String message = Logging.getMessage("nullValue.FrustumIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new ArgumentNullException(message);
         }
 
         return frustum.intersects(new Sphere(Vec4.ZERO, this.getRadius()));
@@ -432,13 +425,13 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
         {
             String message = Logging.getMessage("nullValue.ViewIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new ArgumentNullException(message);
         }
 
         return WWMath.computeSphereProjectedArea(view, this.getCenter(), this.getRadius());
     }
 
-    public void applyEGMA96Offsets(String offsetsFilePath) throws IOException
+    public void applyEGMA96Offsets(string offsetsFilePath)
     {
         if (offsetsFilePath != null)
             this.egm96 = new EGM96(offsetsFilePath);
@@ -446,13 +439,14 @@ public class EllipsoidalGlobe extends WWObjectImpl implements Globe
             this.egm96 = null;
     }
 
-    public double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
-        double[] elevations)
+    public double getElevations<T>(Sector sector, List<T> latlons, double targetResolution,
+        double[] elevations) where T : LatLon
     {
-        if (this.elevationModel == null)
+        if (this._elevationModel == null)
             return 0;
+        
 
-        double resolution = this.elevationModel.getElevations(sector, latlons, targetResolution, elevations);
+        double resolution = this._elevationModel.getElevations<T>(sector, latlons, targetResolution, elevations);
 
         if (this.egm96 != null)
         {

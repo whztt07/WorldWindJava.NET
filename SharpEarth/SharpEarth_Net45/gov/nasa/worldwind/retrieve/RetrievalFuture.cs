@@ -9,8 +9,8 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: RetrievalFuture.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface RetrievalFuture extends java.util.concurrent.Future<Retriever>
+public interface RetrievalFuture : java.util.concurrent.Future<Retriever>
 {
-    public Retriever getRetriever();
+    Retriever getRetriever();
 }
 }
