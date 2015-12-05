@@ -14,7 +14,7 @@ using SharpEarth.pick.PickSupport;
 using SharpEarth.ogc.kml.impl.KMLExportUtil;
 using SharpEarth.ogc.kml.KMLConstants;
 using SharpEarth.layers.Layer;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 using com.jogamp.opengl.util.texture.TextureCoords;
 namespace SharpEarth.render{

@@ -6,7 +6,7 @@
 
 using java.util;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.ogc.kml.impl;
 using SharpEarth.geom;
 using SharpEarth.events.Message;

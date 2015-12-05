@@ -6,7 +6,7 @@
 
 using java.util.List;
 using SharpEarth.util;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth.ogc.kml{
 
 

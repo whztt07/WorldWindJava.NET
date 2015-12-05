@@ -12,7 +12,7 @@ using SharpEarth.pick.PickedObject;
 using SharpEarth.layers.TextureTile;
 using SharpEarth.globes.Globe2D;
 using SharpEarth.geom;
-using SharpEarth.cache.Cacheable;
+using SharpEarth.cache;
 using SharpEarth.avlist;
 using com.jogamp.opengl.util.texture;
 namespace SharpEarth.render{

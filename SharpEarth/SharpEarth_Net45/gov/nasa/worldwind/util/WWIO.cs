@@ -13,7 +13,7 @@ using java.nio;
 using java.net;
 using java.io;
 using SharpEarth.exception.WWRuntimeException;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.Configuration;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.util{

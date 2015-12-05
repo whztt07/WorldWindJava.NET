@@ -5,7 +5,7 @@
  */
 using SharpEarth.util;
 using SharpEarth.geom.Sector;
-using SharpEarth.cache.Cacheable;
+using SharpEarth.cache;
 using SharpEarth.avlist;
 using SharpEarth.Disposable;
 namespace SharpEarth.data{

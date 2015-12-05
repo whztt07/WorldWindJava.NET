@@ -10,7 +10,7 @@ using SharpEarth.pick.PickedObject;
 using SharpEarth.ogc.kml;
 using SharpEarth.geom.Position;
 using SharpEarth.events.Message;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWind;
 namespace SharpEarth.ogc.kml.impl{
 

@@ -6,7 +6,7 @@
 using java.util;
 using java.awt;
 using SharpEarth.util;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.Restorable;
 namespace SharpEarth.render{
 

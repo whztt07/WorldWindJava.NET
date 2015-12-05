@@ -16,7 +16,7 @@ using SharpEarth.pick;
 using SharpEarth.layers.Layer;
 using SharpEarth.geom.Position;
 using SharpEarth.cache.GpuResourceCache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

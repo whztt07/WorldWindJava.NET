@@ -6,12 +6,12 @@
 using java.util;
 using java.awt.geom;
 using SharpEarth.util;
-using SharpEarth.tracks.TrackPoint;
-using SharpEarth.render.DrawContext;
+using SharpEarth.tracks;
+using SharpEarth.render;
 using SharpEarth.globes;
-using SharpEarth.geom.coords.UTMCoord;
-using SharpEarth.cache.Cacheable;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.geom.coords;
+using SharpEarth.cache;
+using SharpEarth.avlist;
 namespace SharpEarth.geom{
 
 

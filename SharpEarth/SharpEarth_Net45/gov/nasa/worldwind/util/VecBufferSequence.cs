@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using javax.media.opengl.GL2;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 namespace SharpEarth.util{
 
 

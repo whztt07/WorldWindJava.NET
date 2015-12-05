@@ -13,12 +13,12 @@ using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.terrain.Terrain;
 using SharpEarth.ogc.kml.impl.KMLExportUtil;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.geom.Box;
 using SharpEarth.exception.WWRuntimeException;
 using SharpEarth.cache.ShapeDataCache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.render{

@@ -11,7 +11,7 @@ using javax.media.opengl.awt.GLJPanel;
 using SharpEarth.util;
 using SharpEarth.pick;
 using SharpEarth.events;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.awt{
 

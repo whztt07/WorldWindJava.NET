@@ -5,7 +5,7 @@
  */
 
 using java.util.Random;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 namespace SharpEarth.util{
 
 

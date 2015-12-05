@@ -7,10 +7,10 @@ using java.util.logging.Level;
 using org.w3c.dom.Element;
 using SharpEarth.util;
 using SharpEarth.layers;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom.Extent;
 using SharpEarth.events.Message;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

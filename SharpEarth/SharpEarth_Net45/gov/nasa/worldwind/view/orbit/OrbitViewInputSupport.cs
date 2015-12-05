@@ -6,7 +6,7 @@
 using SharpEarth.view.ViewUtil;
 using SharpEarth.util;
 using SharpEarth.terrain.SectorGeometryList;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 namespace SharpEarth.view.orbit{
 

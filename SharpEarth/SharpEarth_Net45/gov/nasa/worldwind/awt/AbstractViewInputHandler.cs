@@ -9,7 +9,7 @@ using SharpEarth.view.orbit.OrbitView;
 using SharpEarth.util;
 using SharpEarth.pick.PickedObjectList;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.awt{
 

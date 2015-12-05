@@ -13,7 +13,7 @@ using SharpEarth.layers.Layer;
 using SharpEarth.geom.Position;
 using SharpEarth.events;
 using SharpEarth.cache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

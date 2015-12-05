@@ -6,7 +6,7 @@
 using javax.media.opengl.GL;
 using SharpEarth.pick;
 using SharpEarth.geom.Position;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.render{
 

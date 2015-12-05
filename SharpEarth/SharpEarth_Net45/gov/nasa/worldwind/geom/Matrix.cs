@@ -4,8 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
-using SharpEarth.globes.Globe;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.globes;
+using SharpEarth.formats.worldfile;
 using SharpEarth.avlist;
 namespace SharpEarth.geom{
 
@@ -104,7 +104,7 @@ public class Matrix
         this.isOrthonormalTransform = isOrthonormalTransform;
     }
 
-    public final bool equals(Object obj)
+    public override bool Equals(Object obj)
     {
         if (this == obj)
             return true;

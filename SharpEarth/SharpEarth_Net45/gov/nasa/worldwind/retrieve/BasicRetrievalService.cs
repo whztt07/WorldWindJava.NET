@@ -8,7 +8,7 @@ using java.util.concurrent;
 using java.net.SocketTimeoutException;
 using javax.net.ssl.SSLHandshakeException;
 using SharpEarth.util;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.retrieve{
 

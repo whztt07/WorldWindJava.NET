@@ -13,7 +13,7 @@ using SharpEarth.retrieve;
 using SharpEarth.geom.Sector;
 using SharpEarth.events;
 using SharpEarth.cache.FileStore;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWind;
 namespace SharpEarth.layers{
 

@@ -15,7 +15,7 @@ using SharpEarth.util.gdal.GDALUtils;
 using SharpEarth.util;
 using SharpEarth.geom.Sector;
 using SharpEarth.exception.WWRuntimeException;
-using SharpEarth.cache.Cacheable;
+using SharpEarth.cache;
 using SharpEarth.avlist;
 using SharpEarth.Configuration;
 namespace SharpEarth.data{

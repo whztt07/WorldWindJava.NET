@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom.Angle;
 namespace SharpEarth.geom.coords{
 

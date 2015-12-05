@@ -6,10 +6,10 @@
 using javax.media.opengl.GL;
 using SharpEarth.view.BasicView;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
 using SharpEarth.awt.ViewInputHandler;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.view.orbit{
 

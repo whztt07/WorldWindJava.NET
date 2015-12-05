@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 namespace SharpEarth.terrain{
 

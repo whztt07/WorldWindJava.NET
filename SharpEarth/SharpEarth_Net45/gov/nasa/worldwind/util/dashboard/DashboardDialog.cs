@@ -10,7 +10,7 @@ using javax.swing.border;
 using javax.swing;
 using SharpEarth.util;
 using SharpEarth.events;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWindow;
 namespace SharpEarth.util.dashboard{
 

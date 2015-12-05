@@ -5,7 +5,7 @@
  */
 using javax.media.opengl;
 using SharpEarth.util;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.Configuration;
 namespace SharpEarth.render{
 

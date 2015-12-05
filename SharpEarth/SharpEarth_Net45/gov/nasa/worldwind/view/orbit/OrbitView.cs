@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using SharpEarth.geom.Position;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.view.orbit{
 
 

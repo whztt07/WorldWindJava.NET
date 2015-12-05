@@ -7,7 +7,7 @@ using javax.media.opengl.glu;
 using javax.media.opengl.GL2;
 using SharpEarth.util;
 using SharpEarth.render;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.geom{
 
 

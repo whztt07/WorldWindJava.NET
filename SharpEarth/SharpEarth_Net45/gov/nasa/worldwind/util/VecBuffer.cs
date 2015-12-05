@@ -6,7 +6,7 @@
 using java.util;
 using java.nio.Buffer;
 using javax.media.opengl.GL2;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
 namespace SharpEarth.util{
 

@@ -5,8 +5,8 @@
  */
 
 using SharpEarth.view.ViewPropertyLimits;
-using SharpEarth.render.DrawContext;
-using SharpEarth.globes.Globe;
+using SharpEarth.render;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.awt.ViewInputHandler;
 using SharpEarth.animation.Animator;

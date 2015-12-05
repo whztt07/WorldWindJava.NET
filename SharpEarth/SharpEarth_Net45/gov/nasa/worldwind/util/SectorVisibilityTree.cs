@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
 namespace SharpEarth.util{
 

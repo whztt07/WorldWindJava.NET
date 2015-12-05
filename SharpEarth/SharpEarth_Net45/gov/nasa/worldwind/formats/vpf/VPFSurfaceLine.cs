@@ -7,7 +7,7 @@ using java.util;
 using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.render;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 namespace SharpEarth.formats.vpf{
 

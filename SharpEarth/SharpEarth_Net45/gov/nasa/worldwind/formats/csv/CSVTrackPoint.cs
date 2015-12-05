@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.tracks.TrackPoint;
+using SharpEarth.tracks;
 using SharpEarth.geom.Position;
 using SharpEarth.util;
 namespace SharpEarth.formats.csv{

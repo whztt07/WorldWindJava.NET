@@ -10,11 +10,11 @@ using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.pick;
 using SharpEarth.layers.Layer;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.geom.Box;
-using SharpEarth.cache.Cacheable;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.cache;
+using SharpEarth.avlist;
 using SharpEarth.WWObjectImpl;
 namespace SharpEarth.render{
 

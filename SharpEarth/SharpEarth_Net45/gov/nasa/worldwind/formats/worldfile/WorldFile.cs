@@ -9,7 +9,7 @@ using java.util;
 using java.io;
 using java.awt.image;
 using SharpEarth.util;
-using SharpEarth.geom.coords.UTMCoord;
+using SharpEarth.geom.coords;
 using SharpEarth.geom;
 using SharpEarth.avlist;
 namespace SharpEarth.formats.worldfile{

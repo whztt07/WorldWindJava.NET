@@ -4,6 +4,9 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
+using System;
+using System.Text;
+
 namespace SharpEarth.geom{
 
 
@@ -14,15 +17,15 @@ namespace SharpEarth.geom{
 public class Quaternion
 {
     // Multiplicative identity quaternion.
-    public static final Quaternion IDENTITY = new Quaternion(0, 0, 0, 1);
+    public static readonly Quaternion IDENTITY = new Quaternion(0, 0, 0, 1);
 
-    public final double x;
-    public final double y;
-    public final double z;
-    public final double w;
+    public readonly double x;
+    public readonly double y;
+    public readonly double z;
+    public readonly double w;
 
     // 4 values in a quaternion.
-    private static final int NUM_ELEMENTS = 4;
+    private static readonly int NUM_ELEMENTS = 4;
     // Cached computations.
     private int hashCode;
 
@@ -34,7 +37,7 @@ public class Quaternion
         this.w = w;
     }
 
-    public final bool equals(Object obj)
+    public override bool Equals(Object obj)
     {
         if (this == obj)
             return true;
@@ -75,7 +78,7 @@ public class Quaternion
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
-        if ((compArray.length - offset) < NUM_ELEMENTS)
+        if ((compArray.Length - offset) < NUM_ELEMENTS)
         {
             String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.length);
             Logging.logger().severe(msg);
@@ -90,7 +93,7 @@ public class Quaternion
             compArray[3 + offset]);
     }
 
-    public final double[] toArray(double[] compArray, int offset)
+    public double[] toArray(double[] compArray, int offset)
     {
         if (compArray == null)
         {
@@ -98,7 +101,7 @@ public class Quaternion
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
-        if ((compArray.length - offset) < NUM_ELEMENTS)
+        if ((compArray.Length - offset) < NUM_ELEMENTS)
         {
             String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.length);
             Logging.logger().severe(msg);
@@ -116,51 +119,51 @@ public class Quaternion
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        sb.append(this.x).append(", ");
-        sb.append(this.y).append(", ");
-        sb.append(this.z).append(", ");
-        sb.append(this.w);
-        sb.append(")");
+        sb.Append("(");
+        sb.Append(this.x).Append(", ");
+        sb.Append(this.y).Append(", ");
+        sb.Append(this.z).Append(", ");
+        sb.Append(this.w);
+        sb.Append(")");
         return sb.ToString();
     }
 
-    public final double getX()
+    public double getX()
     {
         return this.x;
     }
 
-    public final double getY()
+    public double getY()
     {
         return this.y;
     }
 
-    public final double getZ()
+    public double getZ()
     {
         return this.z;
     }
 
-    public final double getW()
+    public double getW()
     {
         return this.w;
     }
 
-    public final double x()
+    public double x()
     {
         return this.x;
     }
 
-    public final double y()
+    public double y()
     {
         return this.y;
     }
 
-    public final double z()
+    public double z()
     {
         return this.z;
     }
 
-    public final double w()
+    public double w()
     {
         return this.w;
     }
@@ -235,7 +238,7 @@ public class Quaternion
         double t = 1.0 + matrix.m11 + matrix.m22 + matrix.m33;
         double x, y, z, w;
         double s;
-        final double EPSILON = 0.00000001;
+        const double EPSILON = 0.00000001;
         if (t > EPSILON)
         {
 			s = 2.0 * Math.Sqrt(t);
@@ -397,7 +400,7 @@ public class Quaternion
     // ============== Arithmetic Functions ======================= //
     // ============== Arithmetic Functions ======================= //
 
-    public final Quaternion add(Quaternion quaternion)
+    public  Quaternion add(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -413,7 +416,7 @@ public class Quaternion
             this.w + quaternion.w);
     }
 
-    public final Quaternion subtract(Quaternion quaternion)
+    public  Quaternion subtract(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -429,7 +432,7 @@ public class Quaternion
             this.w - quaternion.w);
     }
 
-    public final Quaternion multiplyComponents(double value)
+    public  Quaternion multiplyComponents(double value)
     {
         return new Quaternion(
             this.x * value,
@@ -438,7 +441,7 @@ public class Quaternion
             this.w * value);
     }
 
-    public final Quaternion multiply(Quaternion quaternion)
+    public  Quaternion multiply(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -454,7 +457,7 @@ public class Quaternion
             (this.w * quaternion.w) - (this.x * quaternion.x) - (this.y * quaternion.y) - (this.z * quaternion.z));
     }
 
-    public final Quaternion divideComponents(double value)
+    public  Quaternion divideComponents(double value)
     {
         if (isZero(value))
         {
@@ -470,7 +473,7 @@ public class Quaternion
             this.w / value);
     }
 
-    public final Quaternion divideComponents(Quaternion quaternion)
+    public  Quaternion divideComponents(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -486,7 +489,7 @@ public class Quaternion
             this.w / quaternion.w);
     }
 
-    public final Quaternion getConjugate()
+    public  Quaternion getConjugate()
     {
         return new Quaternion(
             0.0 - this.x,
@@ -495,7 +498,7 @@ public class Quaternion
             this.w);
     }
 
-    public final Quaternion getNegative()
+    public  Quaternion getNegative()
     {
         return new Quaternion(
             0.0 - this.x,
@@ -508,12 +511,12 @@ public class Quaternion
     // ============== Geometric Functions ======================= //
     // ============== Geometric Functions ======================= //
 
-    public final double getLength()
+    public  double getLength()
     {
         return Math.Sqrt(this.getLengthSquared());
     }
 
-    public final double getLengthSquared()
+    public  double getLengthSquared()
     {
         return (this.x * this.x)
              + (this.y * this.y)
@@ -521,7 +524,7 @@ public class Quaternion
              + (this.w * this.w);
     }
 
-    public final Quaternion normalize()
+    public  Quaternion normalize()
     {
         double length = this.getLength();
         // Vector has zero length.
@@ -539,7 +542,7 @@ public class Quaternion
         }
     }
 
-    public final double dot(Quaternion quaternion)
+    public  double dot(Quaternion quaternion)
     {
         if (quaternion == null)
         {
@@ -551,7 +554,7 @@ public class Quaternion
         return (this.x * quaternion.x) + (this.y * quaternion.y) + (this.z * quaternion.z) + (this.w * quaternion.w);
     }
 
-    public final Quaternion getInverse()
+    public  Quaternion getInverse()
     {
         double length = this.getLength();
         // Vector has zero length.
@@ -629,7 +632,7 @@ public class Quaternion
 
         double t1, t2;
 
-        final double EPSILON = 0.0001;
+         double EPSILON = 0.0001;
         if ((1.0 - dot) > EPSILON) // standard case (slerp)
         {
             double angle = Math.Acos(dot);
@@ -654,7 +657,7 @@ public class Quaternion
     // ============== Accessor Functions ======================= //
     // ============== Accessor Functions ======================= //
 
-    public final Angle getAngle()
+    public  Angle getAngle()
     {
         double w = this.w;
 
@@ -669,7 +672,7 @@ public class Quaternion
         return Angle.fromRadians(radians);
     }
 
-    public final Vec4 getAxis()
+    public  Vec4 getAxis()
     {
         double x = this.x;
         double y = this.y;
@@ -694,7 +697,7 @@ public class Quaternion
         return new Vec4(x, y, z);
     }
 
-    public final Angle getRotationX()
+    public  Angle getRotationX()
     {
         double radians = Math.Atan2((2.0 * this.x * this.w) - (2.0 * this.y * this.z),
                                     1.0 - 2.0 * (this.x * this.x) - 2.0 * (this.z * this.z));
@@ -704,7 +707,7 @@ public class Quaternion
         return Angle.fromRadians(radians);
     }
 
-    public final Angle getRotationY()
+    public  Angle getRotationY()
     {
         double radians = Math.Atan2((2.0 * this.y * this.w) - (2.0 * this.x * this.z),
                                     1.0 - (2.0 * this.y * this.y) - (2.0 * this.z * this.z));
@@ -714,7 +717,7 @@ public class Quaternion
         return Angle.fromRadians(radians);
     }
 
-    public final Angle getRotationZ()
+    public  Angle getRotationZ()
     {
         double radians = Math.Asin((2.0 * this.x * this.y) + (2.0 * this.z * this.w));
         if (Double.IsNaN(radians))
@@ -723,7 +726,7 @@ public class Quaternion
         return Angle.fromRadians(radians);
     }
 
-    public final LatLon getLatLon()
+    public  LatLon getLatLon()
     {
         double latRadians = Math.Asin((2.0 * this.y * this.w) - (2.0 * this.x * this.z));
         double lonRadians = Math.Atan2((2.0 * this.y * this.z) + (2.0 * this.x * this.w),
@@ -738,9 +741,9 @@ public class Quaternion
     // ============== Helper Functions ======================= //
     // ============== Helper Functions ======================= //
 
-    private static final Double PositiveZero = +0.0d;
+    private static  Double PositiveZero = +0.0d;
 
-    private static final Double NegativeZero = -0.0d;
+    private static  Double NegativeZero = -0.0d;
 
     private static bool isZero(double value)
     {

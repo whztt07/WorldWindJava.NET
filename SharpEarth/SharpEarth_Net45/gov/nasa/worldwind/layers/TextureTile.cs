@@ -8,10 +8,10 @@ using java.util;
 using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.render;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.cache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 using com.jogamp.opengl.util.texture;
 namespace SharpEarth.layers{

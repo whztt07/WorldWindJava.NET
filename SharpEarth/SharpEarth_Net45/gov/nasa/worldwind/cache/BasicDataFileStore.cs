@@ -10,7 +10,7 @@ using java.io;
 using java.beans.PropertyChangeEvent;
 using SharpEarth.util;
 using SharpEarth.retrieve;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.cache{
 

@@ -8,11 +8,11 @@ using java.util.List;
 using java.util;
 using java.nio;
 using java.awt;
-using SharpEarth.render.DrawContext;
-using SharpEarth.globes.Globe;
+using SharpEarth.render;
+using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
-using SharpEarth.View;
+using SharpEarth.avlist;
+using SharpEarth;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.util{
 

@@ -8,7 +8,7 @@ using java.nio.DoubleBuffer;
 using java.awt;
 using javax.media.opengl;
 using SharpEarth.util;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.render{
 

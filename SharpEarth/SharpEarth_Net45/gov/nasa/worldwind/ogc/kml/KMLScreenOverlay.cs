@@ -5,7 +5,7 @@
  */
 
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.ogc.kml.impl;
 using SharpEarth.events.Message;
 namespace SharpEarth.ogc.kml{

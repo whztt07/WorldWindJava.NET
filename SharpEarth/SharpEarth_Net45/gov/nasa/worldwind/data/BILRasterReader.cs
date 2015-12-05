@@ -6,7 +6,7 @@
 using java.io.File;
 using SharpEarth.util;
 using SharpEarth.geom.Sector;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.formats.worldfile;
 using SharpEarth.avlist;
 namespace SharpEarth.data{
 

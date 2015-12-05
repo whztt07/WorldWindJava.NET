@@ -10,7 +10,7 @@ using java.awt;
 using SharpEarth.util;
 using SharpEarth.geom;
 using SharpEarth.formats.tiff.GeoTiff;
-using SharpEarth.cache.Cacheable;
+using SharpEarth.cache;
 using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.data{

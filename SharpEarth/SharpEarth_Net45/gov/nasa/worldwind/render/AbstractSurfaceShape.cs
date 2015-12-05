@@ -18,7 +18,7 @@ using SharpEarth.ogc.kml.KMLConstants;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.exception.WWRuntimeException;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.render{

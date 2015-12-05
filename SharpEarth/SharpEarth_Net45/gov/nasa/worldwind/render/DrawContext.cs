@@ -19,7 +19,7 @@ using SharpEarth.util;
 using SharpEarth.terrain;
 using SharpEarth.pick;
 using SharpEarth.layers;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.cache.GpuResourceCache;
 using SharpEarth;

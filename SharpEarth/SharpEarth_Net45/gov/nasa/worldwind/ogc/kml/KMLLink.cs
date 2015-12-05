@@ -13,10 +13,10 @@ using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
 using SharpEarth.util.xml.XMLEventParserContext;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom;
 using SharpEarth.events.Message;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.ogc.kml{
 

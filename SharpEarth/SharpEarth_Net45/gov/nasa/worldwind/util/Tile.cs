@@ -5,7 +5,7 @@
  */
 using java.util.Random;
 using SharpEarth.geom;
-using SharpEarth.cache.Cacheable;
+using SharpEarth.cache;
 namespace SharpEarth.util{
 
 

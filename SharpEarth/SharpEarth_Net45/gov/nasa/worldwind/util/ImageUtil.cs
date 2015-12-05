@@ -16,7 +16,7 @@ using javax.imageio;
 using SharpEarth.globes.Earth;
 using SharpEarth.geom.coords;
 using SharpEarth.geom;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.formats.worldfile;
 using SharpEarth.formats.tiff.GeotiffReader;
 using SharpEarth.exception.WWRuntimeException;
 using SharpEarth.data;

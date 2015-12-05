@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.events.SelectEvent;
 using SharpEarth;
 namespace SharpEarth.layers{

@@ -9,9 +9,9 @@ using java.awt;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.ogc.kml;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWind;
 namespace SharpEarth.ogc.kml.impl{
 

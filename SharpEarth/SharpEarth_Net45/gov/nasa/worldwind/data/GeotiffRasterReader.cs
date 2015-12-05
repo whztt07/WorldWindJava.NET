@@ -5,7 +5,7 @@
  */
 using SharpEarth.util;
 using SharpEarth.geom.Sector;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.formats.worldfile;
 using SharpEarth.formats.tiff.GeotiffReader;
 using SharpEarth.avlist;
 namespace SharpEarth.data{

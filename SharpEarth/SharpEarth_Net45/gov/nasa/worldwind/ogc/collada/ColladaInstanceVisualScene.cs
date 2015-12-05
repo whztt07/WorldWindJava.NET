@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.ogc.collada.impl;
 using SharpEarth.geom.Box;
 namespace SharpEarth.ogc.collada{

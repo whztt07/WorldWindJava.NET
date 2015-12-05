@@ -8,10 +8,10 @@ using java.util.concurrent.atomic;
 using java.beans;
 using javax.swing;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.ogc.kml.impl.KMLTraversalContext;
 using SharpEarth.events.Message;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWind;
 namespace SharpEarth.ogc.kml{
 

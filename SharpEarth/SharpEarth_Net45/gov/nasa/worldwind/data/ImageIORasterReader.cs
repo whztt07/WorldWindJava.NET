@@ -7,11 +7,11 @@ using SharpEarth.util.WWIO;
 using SharpEarth.util;
 using SharpEarth.util.ImageUtil;
 using SharpEarth.geom.Sector;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.formats.worldfile;
 using SharpEarth.formats.tiff.GeotiffImageReaderSpi;
 using SharpEarth.avlist.AVListImpl;
 using SharpEarth.avlist.AVList;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth.data{
 
 

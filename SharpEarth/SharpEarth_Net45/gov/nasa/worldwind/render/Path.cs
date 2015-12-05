@@ -17,12 +17,12 @@ using SharpEarth.terrain.Terrain;
 using SharpEarth.pick;
 using SharpEarth.ogc.kml.impl.KMLExportUtil;
 using SharpEarth.layers.Layer;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom.Cylinder;
 using SharpEarth.geom.Box;
 using SharpEarth.geom;
 using SharpEarth.cache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.WorldWind;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.render{

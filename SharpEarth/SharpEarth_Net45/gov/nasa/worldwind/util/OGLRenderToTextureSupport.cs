@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using javax.media.opengl;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using com.jogamp.opengl.util.texture.Texture;
 namespace SharpEarth.util{
 

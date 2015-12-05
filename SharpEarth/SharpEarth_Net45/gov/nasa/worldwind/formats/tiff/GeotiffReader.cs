@@ -13,7 +13,7 @@ using java.awt.color;
 using java.awt;
 using SharpEarth.util;
 using SharpEarth.geom;
-using SharpEarth.formats.worldfile.WorldFile;
+using SharpEarth.formats.worldfile;
 using SharpEarth.data;
 using SharpEarth.avlist;
 using SharpEarth.Disposable;

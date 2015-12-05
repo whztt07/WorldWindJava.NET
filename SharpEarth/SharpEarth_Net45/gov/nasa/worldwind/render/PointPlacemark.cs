@@ -19,7 +19,7 @@ using SharpEarth.ogc.kml.KMLConstants;
 using SharpEarth.layers.Layer;
 using SharpEarth.globes.Globe2D;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.render{
 

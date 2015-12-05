@@ -6,7 +6,7 @@
 using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.view{
 
 

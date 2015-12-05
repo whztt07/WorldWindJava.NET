@@ -12,7 +12,7 @@ using javax.media.opengl;
 using org.w3c.dom;
 using SharpEarth.util;
 using SharpEarth.geom.Angle;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

@@ -13,7 +13,7 @@ using javax.media.opengl.GL;
 using SharpEarth.util;
 using SharpEarth.ogc.kml.impl.KMLExportUtil;
 using SharpEarth.ogc.kml.KMLConstants;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.render{
 

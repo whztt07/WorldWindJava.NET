@@ -17,7 +17,7 @@ using SharpEarth.layers.Layer;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.cache.ShapeDataCache;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.render{
 

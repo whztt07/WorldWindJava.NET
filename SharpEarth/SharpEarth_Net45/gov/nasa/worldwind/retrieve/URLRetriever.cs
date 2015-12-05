@@ -14,7 +14,7 @@ using java.io;
 using javax.net.ssl;
 using SharpEarth.util;
 using SharpEarth.exception.WWRuntimeException;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth;
 namespace SharpEarth.retrieve{
 

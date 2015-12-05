@@ -5,7 +5,7 @@
  */
 using SharpEarth.view;
 using SharpEarth.util.PropertyAccessor;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
 using SharpEarth.WorldWind;

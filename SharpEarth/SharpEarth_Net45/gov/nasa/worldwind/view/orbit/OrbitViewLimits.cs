@@ -5,7 +5,7 @@
  */
 using SharpEarth.view.ViewPropertyLimits;
 using SharpEarth.geom;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.view.orbit{
 
 

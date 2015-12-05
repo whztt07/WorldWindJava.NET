@@ -5,7 +5,7 @@
  */
 using SharpEarth.util.RestorableSupport;
 using SharpEarth.geom;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.view{
 
 

@@ -8,7 +8,7 @@ using java.nio;
 using javax.media.opengl.glu;
 using javax.media.opengl.GL;
 using SharpEarth.terrain.Terrain;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.util{

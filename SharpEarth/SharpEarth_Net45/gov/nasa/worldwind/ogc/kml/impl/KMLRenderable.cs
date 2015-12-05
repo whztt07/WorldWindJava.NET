@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.events.MessageListener;
 namespace SharpEarth.ogc.kml.impl{
 

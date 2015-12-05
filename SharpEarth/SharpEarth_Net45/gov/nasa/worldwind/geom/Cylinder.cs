@@ -8,8 +8,8 @@ using javax.media.opengl.glu;
 using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.render;
-using SharpEarth.globes.Globe;
-using SharpEarth.View;
+using SharpEarth.globes;
+using SharpEarth;
 namespace SharpEarth.geom{
 
 

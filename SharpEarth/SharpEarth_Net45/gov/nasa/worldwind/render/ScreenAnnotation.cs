@@ -8,7 +8,7 @@ using javax.media.opengl.GL;
 using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth.render{
 
 

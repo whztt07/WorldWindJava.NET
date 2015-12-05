@@ -10,7 +10,7 @@ using java.net;
 using java.io;
 using javax.xml.stream.XMLStreamException;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.ogc.kml;
 using SharpEarth.ogc.collada.impl.ColladaTraversalContext;
 using SharpEarth.ogc.collada;

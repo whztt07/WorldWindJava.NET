@@ -5,7 +5,7 @@
  */
 
 using SharpEarth.layers.LayerList;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 namespace SharpEarth{
 
 

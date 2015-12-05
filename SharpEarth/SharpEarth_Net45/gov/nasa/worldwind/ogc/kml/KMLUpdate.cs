@@ -9,7 +9,7 @@ using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
 using SharpEarth.util.xml.XMLEventParserContext;
 using SharpEarth.util.WWUtil;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth.ogc.kml{
 
 

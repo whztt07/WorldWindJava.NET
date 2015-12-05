@@ -8,7 +8,7 @@ using java.util;
 using java.awt;
 using javax.media.opengl;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.pick;
 using SharpEarth.geom;
 namespace SharpEarth.terrain{

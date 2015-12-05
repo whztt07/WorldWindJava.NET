@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.geom{
 
 

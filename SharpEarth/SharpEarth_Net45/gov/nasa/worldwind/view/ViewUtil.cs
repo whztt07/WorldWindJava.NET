@@ -7,11 +7,11 @@ using java.awt;
 using javax.media.opengl.glu.gl2.GLUgl2;
 using javax.media.opengl.glu.GLU;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
-using SharpEarth.globes.Globe;
+using SharpEarth.render;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.view{
 
 

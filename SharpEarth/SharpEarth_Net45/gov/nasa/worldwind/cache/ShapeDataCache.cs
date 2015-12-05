@@ -6,7 +6,7 @@
 
 using java.util;
 using SharpEarth.util.TimedExpirySupport;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth.geom.Extent;
 using SharpEarth.avlist.AVListImpl;

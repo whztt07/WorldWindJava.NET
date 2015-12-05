@@ -4,8 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
-using SharpEarth.globes.Globe;
+using SharpEarth.render;
+using SharpEarth.globes;
 using SharpEarth.geom.Vec4;
 using SharpEarth.geom.Position;
 using SharpEarth.geom.Matrix;

@@ -7,7 +7,7 @@ using java.awt.event;
 using java.awt;
 using SharpEarth.view.ViewUtil;
 using SharpEarth.geom;
-using SharpEarth.View;
+using SharpEarth;
 namespace SharpEarth.awt{
 
 

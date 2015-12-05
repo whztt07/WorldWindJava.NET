@@ -5,11 +5,11 @@
  */
 using javax.media.opengl.GL2;
 using SharpEarth.util;
-using SharpEarth.render.DrawContext;
-using SharpEarth.globes.Globe;
+using SharpEarth.render;
+using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.awt.ViewInputHandler;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 using SharpEarth.animation.Animator;
 using SharpEarth;
 namespace SharpEarth.view{

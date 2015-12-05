@@ -16,7 +16,7 @@ using SharpEarth.cache.SessionCache;
 using SharpEarth.cache.MemoryCacheSet;
 using SharpEarth.cache.MemoryCache;
 using SharpEarth.cache.FileStore;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

@@ -6,7 +6,7 @@
 
 using java.util.ArrayList;
 using SharpEarth.util;
-using SharpEarth.globes.Globe;
+using SharpEarth.globes;
 using SharpEarth.geom;
 namespace SharpEarth.util.measure{
 

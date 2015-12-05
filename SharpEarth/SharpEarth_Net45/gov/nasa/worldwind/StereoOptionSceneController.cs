@@ -5,9 +5,9 @@
  */
 
 using javax.media.opengl;
-using SharpEarth.render.DrawContext;
+using SharpEarth.render;
 using SharpEarth.geom.Angle;
-using SharpEarth.avlist.AVKey;
+using SharpEarth.avlist;
 namespace SharpEarth{
 
 

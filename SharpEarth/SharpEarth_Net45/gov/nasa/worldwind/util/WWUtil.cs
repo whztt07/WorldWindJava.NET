@@ -9,7 +9,7 @@ using java.text;
 using java.nio;
 using java.lang.reflect;
 using java.awt;
-using SharpEarth.geom.coords.UTMCoord;
+using SharpEarth.geom.coords;
 using SharpEarth.geom;
 using SharpEarth.avlist;
 namespace SharpEarth.util{
