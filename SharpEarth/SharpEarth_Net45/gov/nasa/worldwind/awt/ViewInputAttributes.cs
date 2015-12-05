@@ -5,7 +5,7 @@
  */
 using java.util;
 using java.awt.event;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.Configuration;
 namespace SharpEarth.awt{
 

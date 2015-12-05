@@ -6,7 +6,7 @@
 using java.awt;
 using javax.media.opengl.glu.gl2.GLUgl2;
 using javax.media.opengl.glu.GLU;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.DrawContext;
 using SharpEarth.globes.Globe;
 using SharpEarth.geom;

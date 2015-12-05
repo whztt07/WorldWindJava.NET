@@ -7,7 +7,7 @@
 using java.util.logging.Level;
 using java.nio.ByteBuffer;
 using java.net;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.retrieve{
 
 

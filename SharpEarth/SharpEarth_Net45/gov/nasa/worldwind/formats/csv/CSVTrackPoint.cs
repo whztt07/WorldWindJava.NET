@@ -5,7 +5,7 @@
  */
 using SharpEarth.tracks.TrackPoint;
 using SharpEarth.geom.Position;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.csv{
 
 

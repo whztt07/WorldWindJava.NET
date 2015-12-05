@@ -5,7 +5,7 @@
  */
 using java.util;
 using java.awt.geom;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.tracks.TrackPoint;
 using SharpEarth.render.DrawContext;
 using SharpEarth.globes;

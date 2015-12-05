@@ -5,7 +5,7 @@
  */
 
 using SharpEarth.util.xml;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.ogc.collada.impl.ColladaTraversalContext;
 using SharpEarth.geom.Box;
 namespace SharpEarth.ogc.collada{

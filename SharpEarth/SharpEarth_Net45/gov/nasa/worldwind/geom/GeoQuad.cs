@@ -6,7 +6,7 @@
 
 using java.util.logging.Level;
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.geom{
 
 

@@ -6,7 +6,7 @@
 
 using java.util;
 using java.nio.FloatBuffer;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.ogc.collada{
 
 

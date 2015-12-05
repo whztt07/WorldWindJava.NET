@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.awt.image;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom.Sector;
 using SharpEarth.geom.LatLon;
 namespace SharpEarth.formats.rpf{

@@ -6,7 +6,7 @@
 
 using java.util.List;
 using javax.media.opengl.GL;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom;
 using com.jogamp.opengl.util.texture;
 using com.jogamp.common.nio.Buffers;

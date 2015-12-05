@@ -7,7 +7,7 @@ using java.util.List;
 using java.util;
 using java.awt;
 using javax.media.opengl;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.DrawContext;
 using SharpEarth.pick;
 using SharpEarth.geom;

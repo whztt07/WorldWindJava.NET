@@ -5,7 +5,7 @@
  */
 using java.util;
 using java.io.File;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.avlist.AVList;
 namespace SharpEarth.formats.vpf{
 

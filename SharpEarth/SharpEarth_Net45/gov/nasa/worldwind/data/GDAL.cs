@@ -8,7 +8,7 @@ using java.awt.geom;
 using org.gdal.osr;
 using org.gdal.gdal.Dataset;
 using SharpEarth.util.gdal.GDALUtils;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom;
 using SharpEarth.exception.WWRuntimeException;
 namespace SharpEarth.data{

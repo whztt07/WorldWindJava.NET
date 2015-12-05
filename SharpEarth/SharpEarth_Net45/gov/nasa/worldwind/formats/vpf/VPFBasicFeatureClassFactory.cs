@@ -5,7 +5,7 @@
  */
 using java.util.Collection;
 using java.io;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.exception.WWRuntimeException;
 namespace SharpEarth.formats.vpf{
 

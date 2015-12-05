@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.dds{
 
 

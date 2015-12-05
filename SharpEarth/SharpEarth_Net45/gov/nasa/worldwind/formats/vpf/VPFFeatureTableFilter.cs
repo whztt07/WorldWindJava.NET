@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.io.FileFilter;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.vpf{
 
 

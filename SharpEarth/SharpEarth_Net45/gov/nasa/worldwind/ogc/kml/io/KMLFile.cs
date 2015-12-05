@@ -5,7 +5,7 @@
  */
 
 using java.io;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.ogc.kml.io{
 
 

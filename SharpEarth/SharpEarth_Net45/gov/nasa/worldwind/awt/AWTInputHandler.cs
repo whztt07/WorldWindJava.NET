@@ -8,7 +8,7 @@ using java.awt.event;
 using java.awt;
 using javax.swing.event;
 using javax.media.opengl.awt.GLJPanel;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.pick;
 using SharpEarth.events;
 using SharpEarth.avlist.AVKey;

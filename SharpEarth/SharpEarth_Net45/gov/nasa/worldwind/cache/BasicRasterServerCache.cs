@@ -7,7 +7,7 @@
 using java.util.concurrent.locks.ReentrantLock;
 using java.util.concurrent.atomic.AtomicInteger;
 using java.lang.ref;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.cache{
 
 

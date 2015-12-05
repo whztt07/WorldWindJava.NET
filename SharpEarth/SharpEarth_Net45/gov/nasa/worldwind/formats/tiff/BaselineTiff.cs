@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.tiff{
 
 

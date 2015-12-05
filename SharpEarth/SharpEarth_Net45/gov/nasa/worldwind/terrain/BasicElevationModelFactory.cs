@@ -6,7 +6,7 @@
 using java.util.List;
 using org.w3c.dom.Element;
 using SharpEarth.util.WWXML;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.ogc.wms.WMSLayerCapabilities;
 using SharpEarth.ogc.wms.WMSCapabilities;
 using SharpEarth.ogc.wcs.wcs100.WCS100Capabilities;

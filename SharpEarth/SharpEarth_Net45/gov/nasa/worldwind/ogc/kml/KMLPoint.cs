@@ -7,7 +7,7 @@
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
 using SharpEarth.util.xml.XMLEventParserContext;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom.Position;
 namespace SharpEarth.ogc.kml{
 

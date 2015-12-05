@@ -5,7 +5,7 @@
  */
 
 using javax.swing.event;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom.Sector;
 using SharpEarth.events;
 using SharpEarth.cache.FileStore;

@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using SharpEarth.util.WWIO;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.util.ImageUtil;
 using SharpEarth.geom.Sector;
 using SharpEarth.formats.worldfile.WorldFile;

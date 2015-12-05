@@ -5,7 +5,7 @@
  */
 
 using java.awt;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.render{
 
 

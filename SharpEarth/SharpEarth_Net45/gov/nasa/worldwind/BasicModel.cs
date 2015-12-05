@@ -5,7 +5,7 @@
  */
 using java.util.logging.Level;
 using org.w3c.dom.Element;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.layers;
 using SharpEarth.globes.Globe;
 using SharpEarth.geom.Extent;

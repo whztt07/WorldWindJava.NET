@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using SharpEarth.view.ViewUtil;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.terrain.SectorGeometryList;
 using SharpEarth.globes.Globe;
 using SharpEarth.geom;

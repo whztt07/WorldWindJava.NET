@@ -7,7 +7,7 @@
 using java.nio.channels.FileChannel;
 using java.nio;
 using java.io;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom;
 using SharpEarth.formats.tiff.GeoTiff;
 using SharpEarth.data;

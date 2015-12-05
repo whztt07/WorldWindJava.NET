@@ -6,7 +6,7 @@
 using java.nio.ByteOrder;
 using java.nio.ByteBuffer;
 using java.nio.channels.FileChannel;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.tiff{
 
 

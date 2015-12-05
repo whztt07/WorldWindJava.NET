@@ -12,7 +12,7 @@ using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream;
 using javax.xml.namespace.QName;
 using javax.xml.XMLConstants;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.avlist.AVListImpl;
 namespace SharpEarth.util.xml{
 

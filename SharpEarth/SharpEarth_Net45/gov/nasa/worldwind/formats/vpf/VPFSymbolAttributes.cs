@@ -5,7 +5,7 @@
  */
 using java.util.Arrays;
 using java.awt;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.geom.Angle;
 namespace SharpEarth.formats.vpf{

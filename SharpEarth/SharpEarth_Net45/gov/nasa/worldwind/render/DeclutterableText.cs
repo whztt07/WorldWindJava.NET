@@ -6,7 +6,7 @@
 
 using java.awt.geom;
 using java.awt;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom.Vec4;
 namespace SharpEarth.render{
 

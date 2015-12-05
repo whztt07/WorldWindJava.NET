@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.DrawContext;
 using SharpEarth.ogc.kml.impl;
 using SharpEarth.events.Message;

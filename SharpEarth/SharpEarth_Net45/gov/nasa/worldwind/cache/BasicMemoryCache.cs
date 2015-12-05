@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.util.concurrent.atomic.AtomicLong;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.cache{
 
 

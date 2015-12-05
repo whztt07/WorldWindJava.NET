@@ -6,7 +6,7 @@
 
 using java.util.logging.Level;
 using SharpEarth.util.xml.AbstractXMLEventParser;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.ogc.wcs.wcs100{
 
 

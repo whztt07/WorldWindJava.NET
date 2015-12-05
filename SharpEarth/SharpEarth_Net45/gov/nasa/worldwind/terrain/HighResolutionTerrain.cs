@@ -6,7 +6,7 @@
 
 using java.util.concurrent;
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.SurfaceQuad;
 using SharpEarth.globes;
 using SharpEarth.geom;

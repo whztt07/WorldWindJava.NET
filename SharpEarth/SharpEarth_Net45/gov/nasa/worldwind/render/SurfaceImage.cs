@@ -11,7 +11,7 @@ using java.awt.image;
 using java.awt;
 using javax.xml.stream;
 using javax.media.opengl;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.pick.PickSupport;
 using SharpEarth.ogc.kml.gx.GXConstants;
 using SharpEarth.ogc.kml.KMLConstants;

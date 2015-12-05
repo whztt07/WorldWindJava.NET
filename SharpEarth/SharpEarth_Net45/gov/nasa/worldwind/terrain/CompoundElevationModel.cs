@@ -5,7 +5,7 @@
  */
 using java.util.concurrent.CopyOnWriteArrayList;
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.globes.ElevationModel;
 using SharpEarth.geom;
 namespace SharpEarth.terrain{

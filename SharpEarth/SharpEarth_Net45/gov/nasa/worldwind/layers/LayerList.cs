@@ -7,7 +7,7 @@
 using java.util.concurrent.CopyOnWriteArrayList;
 using java.util;
 using java.beans;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.events.Message;
 using SharpEarth.avlist;
 using SharpEarth;

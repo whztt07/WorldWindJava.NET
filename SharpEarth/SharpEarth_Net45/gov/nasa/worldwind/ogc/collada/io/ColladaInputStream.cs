@@ -6,7 +6,7 @@
 
 using java.net.URI;
 using java.io;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.ogc.collada.io{
 
 

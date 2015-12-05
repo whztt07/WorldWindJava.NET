@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.util.Arrays;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.animation{
 
 

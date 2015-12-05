@@ -6,7 +6,7 @@
 
 using java.util.Map;
 using SharpEarth.util.xml;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.events;
 namespace SharpEarth.ogc.kml{
 

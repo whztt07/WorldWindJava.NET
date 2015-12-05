@@ -6,7 +6,7 @@
 
 using java.util.logging.Level;
 using javax.media.opengl;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using com.jogamp.opengl.util.texture.Texture;
 namespace SharpEarth.cache{
 

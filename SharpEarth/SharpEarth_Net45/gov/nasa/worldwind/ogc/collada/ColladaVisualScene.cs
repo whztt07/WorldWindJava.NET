@@ -5,7 +5,7 @@
  */
 
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.DrawContext;
 using SharpEarth.ogc.collada.impl;
 using SharpEarth.geom.Box;

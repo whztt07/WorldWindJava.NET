@@ -9,7 +9,7 @@ using java.util.concurrent.CopyOnWriteArrayList;
 using java.util;
 using java.lang.reflect.Constructor;
 using javax.xml.XMLConstants;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.ogc.kml;
 namespace SharpEarth.util.xml{
 

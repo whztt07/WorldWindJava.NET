@@ -6,7 +6,7 @@
 
 using java.util.ArrayList;
 using SharpEarth.render.Polyline;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
 namespace SharpEarth.util.measure{

@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.rpf{
 
 

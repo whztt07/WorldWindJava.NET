@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.events.Message;
 namespace SharpEarth.ogc.kml{
 

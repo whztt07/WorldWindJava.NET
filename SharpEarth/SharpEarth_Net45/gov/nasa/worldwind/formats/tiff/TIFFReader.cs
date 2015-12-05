@@ -7,7 +7,7 @@
 using java.nio.channels.FileChannel;
 using java.nio;
 using java.io.IOException;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.tiff{
 
 

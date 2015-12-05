@@ -7,7 +7,7 @@
 using java.awt.event;
 using java.awt;
 using javax.swing;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth;
 namespace SharpEarth.util.dashboard{
 

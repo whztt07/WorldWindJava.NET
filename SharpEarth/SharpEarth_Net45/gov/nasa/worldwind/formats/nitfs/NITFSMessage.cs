@@ -5,7 +5,7 @@
  */
 
 using java.io.IOException;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.formats.rpf.RPFUserDefinedHeaderSegment;
 namespace SharpEarth.formats.nitfs{
 

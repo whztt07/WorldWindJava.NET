@@ -10,7 +10,7 @@ using java.nio.ByteBuffer;
 using java.io.InputStream;
 using java.io.IOException;
 using SharpEarth.util.WWIO;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.formats.dds{
 
 

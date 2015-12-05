@@ -6,7 +6,7 @@
 using java.awt.event;
 using java.awt;
 using SharpEarth.view.orbit.OrbitView;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.pick.PickedObjectList;
 using SharpEarth.geom;
 using SharpEarth.avlist.AVKey;

@@ -7,7 +7,7 @@
 using java.util.Map;
 using java.io.IOException;
 using javax.xml.stream;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.terrain.Terrain;
 using SharpEarth.geom;
 using SharpEarth.WorldWind;

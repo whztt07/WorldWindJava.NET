@@ -5,7 +5,7 @@
  */
 
 using java.util.Stack;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.geom.Matrix;
 namespace SharpEarth.ogc.collada.impl{
 

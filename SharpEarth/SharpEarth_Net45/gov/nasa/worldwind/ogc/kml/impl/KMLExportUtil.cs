@@ -5,7 +5,7 @@
  */
 using java.io.IOException;
 using javax.xml.stream;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.ogc.kml.KMLConstants;
 using SharpEarth.geom.LatLon;

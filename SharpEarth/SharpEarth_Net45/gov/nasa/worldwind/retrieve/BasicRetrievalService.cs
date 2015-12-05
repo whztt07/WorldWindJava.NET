@@ -7,7 +7,7 @@ using java.util.logging.Level;
 using java.util.concurrent;
 using java.net.SocketTimeoutException;
 using javax.net.ssl.SSLHandshakeException;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.avlist.AVKey;
 using SharpEarth;
 namespace SharpEarth.retrieve{

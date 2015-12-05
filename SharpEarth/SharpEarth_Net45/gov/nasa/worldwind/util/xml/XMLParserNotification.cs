@@ -6,7 +6,7 @@
 
 using java.beans.PropertyChangeEvent;
 using javax.xml.stream.events.XMLEvent;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.util.xml{
 
 

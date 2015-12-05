@@ -6,7 +6,7 @@
 using java.util;
 using java.nio;
 using javax.media.opengl.GL;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 namespace SharpEarth.geom{
 
 

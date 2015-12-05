@@ -5,7 +5,7 @@
  */
 
 using java.util;
-using SharpEarth.util.Logging;
+using SharpEarth.util;
 using SharpEarth.render.DrawContext;
 using SharpEarth.ogc.kml.impl;
 using SharpEarth.geom;
