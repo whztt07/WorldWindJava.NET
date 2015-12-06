@@ -5,6 +5,10 @@
  */
 using java.net.URL;
 using SharpEarth.WWObject;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 namespace SharpEarth.cache{
 
 
@@ -13,21 +17,21 @@ namespace SharpEarth.cache{
  * @author Tom Gaskins
  * @version $Id: FileStore.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface FileStore extends WWObject
+public interface FileStore : WWObject
 {
     /**
      * Returns the locations that the file store will look for files.
      *
      * @return the list of locations the file store will search when a file is requested.
      */
-    java.util.List<? extends java.io.File> getLocations();
+    IList<File> getLocations();
 
     /**
      * Returns the location that additions to the file store are placed.
      *
      * @return the location at which new entries are placed.
      */
-    java.io.File getWriteLocation();
+    File getWriteLocation();
 
     /**
      * Adds a location to search when files are requested from the file store.
@@ -39,7 +43,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty.
      */
-    void addLocation(String newPath, bool isInstall);
+    void addLocation(string newPath, bool isInstall);
 
     /**
      * Adds a location to search when files are requested from the file store and specifies its location in the search
@@ -52,7 +56,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty or the specified index is less than 0.
      */
-    void addLocation(int index, String newPath, bool isInstall);
+    void addLocation(int index, string newPath, bool isInstall);
 
     /**
      * Remove a specified read location from the file store. The current write location cannot be removed.
@@ -61,7 +65,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or identifies the current write location.
      */
-    void removeLocation(String path);
+    void removeLocation(string path);
 
     /**
      * Indicates whether a specified location is considered an installed-data location and therefore not subject to
@@ -73,7 +77,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null or empty.
      */
-    bool isInstallLocation(String path);
+    bool isInstallLocation(string path);
 
     /**
      * Indicates whether the file store contains a specified file.
@@ -83,7 +87,7 @@ public interface FileStore extends WWObject
      * @return true if the file store contains the file, false if the file store does not contain the file or the
      *         specified path is null.
      */
-    bool containsFile(String fileName);
+    bool containsFile(string fileName);
 
     /**
      * Searches the file store for a specified file and returns a reference to it if it is.
@@ -96,7 +100,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null.
      */
-    java.net.URL findFile(String fileName, bool checkClassPath);
+    Uri findFile(string fileName, bool checkClassPath);
 
     /**
      * Creates a new, empty file in the file store.
@@ -109,7 +113,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified path is null.
      */
-    java.io.File newFile(String fileName);
+    File newFile(string fileName);
 
     /**
      * Remove an entry from the file store. This method removes files that were added to the file store by {@link
@@ -119,7 +123,7 @@ public interface FileStore extends WWObject
      * @param address file address of the entry to remove. This must be the same string as was passed to {@link
      *                #requestFile(String)}.
      */
-    void removeFile(String address);
+    void removeFile(string address);
 
     /**
      * Removes a file from the file store using the URL to the cached file.
@@ -128,7 +132,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the specified URL is null.
      */
-    void removeFile(java.net.URL url);
+    void removeFile(Uri url);
 
     /**
      * Returns an array of strings naming the files discovered directly under a specified file store path name. If the
@@ -142,7 +146,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the filter is null.
      */
-    String[] listFileNames(String pathName, FileStoreFilter filter);
+    string[] listFileNames(string pathName, FileStoreFilter filter);
 
     /**
      * Returns an array of strings naming the files discovered under a specified file store path name. If the path name
@@ -158,7 +162,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the filter is null.
      */
-    String[] listAllFileNames(String pathName, FileStoreFilter filter);
+    string[] listAllFileNames(string pathName, FileStoreFilter filter);
 
     /**
      * Returns an array of strings naming the files discovered under a specified file store path name. If the path name
@@ -175,7 +179,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the filter is null.
      */
-    String[] listTopFileNames(String pathName, FileStoreFilter filter);
+    string[] listTopFileNames(string pathName, FileStoreFilter filter);
 
     /**
      * Returns the content type of a cached file.
@@ -184,7 +188,7 @@ public interface FileStore extends WWObject
      *
      * @return the mime type describing the cached file's contents. Null is returned if the specified address is null.
      */
-    String getContentType(String address);
+    string getContentType(string address);
 
     /**
      * Returns the expiration time of a cached file.
@@ -194,7 +198,7 @@ public interface FileStore extends WWObject
      * @return The expiration time of the file, in milliseconds since the Epoch (January 1, 1970, 00:00:00 GMT). Zero
      *         indicates that there is no expiration time.
      */
-    long getExpirationTime(String address);
+    long getExpirationTime(string address);
 
     /**
      * Requests a file. If the file exists locally, including as a resource on the classpath, this returns a
@@ -209,7 +213,7 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the <code>address</code> is <code>null</code>.
      */
-    URL requestFile(String address);
+    Uri requestFile(string address);
 
     /**
      * Requests a file and specifies whether to store retrieved files in the cache or in a temporary location. If the
@@ -236,6 +240,6 @@ public interface FileStore extends WWObject
      *
      * @throws ArgumentException if the <code>address</code> is <code>null</code>.
      */
-    URL requestFile(String address, bool cacheRemoteFile);
+    Uri requestFile(string address, bool cacheRemoteFile);
 }
 }

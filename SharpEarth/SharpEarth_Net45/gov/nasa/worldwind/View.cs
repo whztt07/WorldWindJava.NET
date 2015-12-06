@@ -36,7 +36,7 @@ namespace SharpEarth{
  * @version $Id: View.java 1171 2013-02-11 21:45:02Z dcollins $
  * @see SharpEarth.view.orbit.OrbitView
  */
-public interface View extends WWObject, Restorable
+public interface View : WWObject, Restorable
 {
 
     final String VIEW_STOPPED = "gov.nasa.worldwind.View.ViewStopped";

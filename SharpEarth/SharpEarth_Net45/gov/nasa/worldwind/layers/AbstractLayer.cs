@@ -3,15 +3,18 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.beans.PropertyChangeEvent;
-using javax.xml.xpath.XPath;
-using org.w3c.dom.Element;
 using SharpEarth.util;
 using SharpEarth.render;
-using SharpEarth.geom.Position;
-using SharpEarth.cache.FileStore;
 using SharpEarth.avlist;
-using SharpEarth;
+using SharpEarth.cache;
+using java.beans;
+using SharpEarth.java.lang;
+using SharpEarth.geom;
+using System.Drawing;
+using SharpEarth.java.org.w3c.dom;
+using System;
+using SharpEarth.javax.xml.xpath;
+
 namespace SharpEarth.layers{
 
 
@@ -103,12 +106,12 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         this.maxActiveAltitude = maxActiveAltitude;
     }
 
-    public double getMinEffectiveAltitude(double radius)
+    public double? getMinEffectiveAltitude(double radius)
     {
         return null;
     }
 
-    public double getMaxEffectiveAltitude(double radius)
+    public double? getMaxEffectiveAltitude(double radius)
     {
         return null;
     }
@@ -258,7 +261,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         this.doRender(dc);
     }
 
-    public void pick(DrawContext dc, java.awt.Point point)
+    public void pick(DrawContext dc, Point point)
     {
         if (!this.enabled)
             return; // Don't check for arg errors if we're disabled
@@ -293,7 +296,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         this.doPick(dc, point);
     }
 
-    protected void doPick(DrawContext dc, java.awt.Point point)
+    protected void doPick(DrawContext dc, Point point)
     {
         // any state that could change the color needs to be disabled, such as GL_TEXTURE, GL_LIGHTING or GL_FOG.
         // re-draw with unique colors
@@ -380,7 +383,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         XPath xpath = WWXML.makeXPath();
         Element[] elements = WWXML.getElements(domElement, "//Layer", xpath);
 
-        return elements != null && elements.length > 0;
+        return elements != null && elements.Length > 0;
     }
 
     /**

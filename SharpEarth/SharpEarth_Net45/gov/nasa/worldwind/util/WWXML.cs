@@ -4,30 +4,24 @@
  * All Rights Reserved.
  */
 
-using java.util;
-using java.text;
-using java.nio.ByteBuffer;
-using java.net.URL;
-using java.lang.reflect.InvocationTargetException;
-using java.io;
-using java.awt;
-using javax.xml.xpath;
-using javax.xml.transform.stream.StreamResult;
-using javax.xml.transform.dom.DOMSource;
-using javax.xml.transform;
-using javax.xml.stream.events;
-using javax.xml.stream;
-using javax.xml.parsers;
-using org.xml.sax.SAXException;
-using org.w3c.dom;
 using SharpEarth.render;
 using SharpEarth.geom;
-using SharpEarth.exception.WWRuntimeException;
 using SharpEarth.avlist;
-using SharpEarth.Configuration;
-namespace SharpEarth.util{
+using SharpEarth.javax.xml.parsers;
+using SharpEarth.exception;
+using SharpEarth.javax.xml.transform;
+using SharpEarth.java.org.w3c.dom;
+using System;
+using SharpEarth.java.io;
+using SharpEarth.java.net;
+using System.IO;
+using SharpEarth.java.lang;
+using SharpEarth.javax.xml.xpath;
+using SharpEarth.util;
+using SharpEarth.javax.xml.stream.events;
+using SharpEarth.javax.xml.stream;
 
-
+namespace SharpEarth.util {
 
 /**
  * A collection of static methods use for opening, reading and otherwise working with XML files.
@@ -37,7 +31,7 @@ namespace SharpEarth.util{
  */
 public class WWXML
 {
-    public static final String XLINK_URI = "http://www.w3.org/1999/xlink";
+    public const string XLINK_URI = "http://www.w3.org/1999/xlink";
 
     /**
      * Create a DOM builder.
@@ -48,7 +42,7 @@ public class WWXML
      *
      * @throws WWRuntimeException if an error occurs.
      */
-    public static DocumentBuilder createDocumentBuilder(boolean isNamespaceAware)
+    public static DocumentBuilder createDocumentBuilder(bool isNamespaceAware)
     {
         DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 
@@ -63,7 +57,7 @@ public class WWXML
             }
             catch (ParserConfigurationException e)
             {   // Note it and continue on. Some Java5 parsers don't support the feature.
-                String message = Logging.getMessage("XML.NonvalidatingNotSupported");
+                string message = Logging.getMessage("XML.NonvalidatingNotSupported");
                 Logging.logger().finest(message);
             }
         }
@@ -74,10 +68,193 @@ public class WWXML
         }
         catch (ParserConfigurationException e)
         {
-            String message = Logging.getMessage("XML.ParserConfigurationException");
+            string message = Logging.getMessage("XML.ParserConfigurationException");
             Logging.logger().finest(message);
             throw new WWRuntimeException(e);
         }
+    }
+
+    /**
+ * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
+ * parameter to a specified context.
+ *
+ * @param context  the context on which to append new elements.
+ * @param parameters   the parameter list.
+ * @param paramKey the key used to identify the paramater in the parameter list.
+ * @param path     the element path to append.
+ *
+ * @throws ArgumentException if either the parameter list  parameter key, or context are null.
+ */
+    public static void checkAndAppendTextElement(AVList parameters, String paramKey, Element context, String path)
+    {
+      if (parameters == null)
+      {
+        String message = Logging.getMessage("nullValue.ParametersIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (paramKey == null)
+      {
+        String message = Logging.getMessage("nullValue.ParameterKeyIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (context == null)
+      {
+        String message = Logging.getMessage("nullValue.ElementIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      String s = parameters.getStringValue(paramKey);
+      if (s != null && s.Length > 0)
+      {
+        appendText(context, path, s.Trim);
+      }
+    }
+
+    /**
+     * Returns the element identified by an XPath expression.
+     *
+     * @param context the context from which to start the XPath search.
+     * @param path    the XPath expression.
+     * @param xpath   an {@link XPath} object to use for the search. This allows the caller to re-use XPath objects when
+     *                performing multiple searches. May be null.
+     *
+     * @return the element matching the XPath expression, or null if no element matches.
+     *
+     * @throws ArgumentException if the context or XPath expression are null.
+     */
+    public static Element getElement(Element context, String path, XPath xpath)
+    {
+      if (context == null)
+      {
+        String message = Logging.getMessage("nullValue.ContextIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (path == null)
+      {
+        String message = Logging.getMessage("nullValue.PathIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (xpath == null)
+        xpath = makeXPath();
+
+      try
+      {
+        Node node = (Node)xpath.evaluate(path, context, XPathConstants.NODE);
+        if (node == null)
+          return null;
+
+        return node is Element ? (Element)node : null;
+      }
+      catch (XPathExpressionException e)
+      {
+        String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
+        Logging.logger().log(java.util.logging.Level.WARNING, message, e);
+        return null;
+      }
+    }
+
+    /**
+ * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
+ * parameter to a specified context.
+ *
+ * @param context  the context on which to append new elements.
+ * @param parameters   the parameter list.
+ * @param paramKey the key used to identify the paramater in the parameter list.
+ * @param path     the element path to append.
+ *
+ * @throws ArgumentException if either the parameter list  parameter key, or context are null.
+ */
+    public static void checkAndAppendDoubleElement(AVList parameters, String paramKey, Element context, String path)
+    {
+      if (parameters == null)
+      {
+        String message = Logging.getMessage("nullValue.ParametersIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (paramKey == null)
+      {
+        String message = Logging.getMessage("nullValue.ParameterKeyIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (context == null)
+      {
+        String message = Logging.getMessage("nullValue.ElementIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      Double d = AVListImpl.getDoubleValue(parameters, paramKey);
+      if (d != null)
+      {
+        appendDouble(context, path, d);
+      }
+    }
+
+    /**
+     * Returns all elements identified by an XPath expression.
+     *
+     * @param context the context from which to start the XPath search.
+     * @param path    the XPath expression.
+     * @param xpath   an {@link XPath} object to use for the search. This allows the caller to re-use XPath objects when
+     *                performing multiple searches. May be null.
+     *
+     * @return an array containing the elements matching the XPath expression.
+     *
+     * @throws ArgumentException if the context or XPath expression are null.
+     */
+    public static Element[] getElements(Element context, String path, XPath xpath)
+    {
+      if (context == null)
+      {
+        String message = Logging.getMessage("nullValue.ContextIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (path == null)
+      {
+        String message = Logging.getMessage("nullValue.PathIsNull");
+        Logging.logger().severe(message);
+        throw new ArgumentException(message);
+      }
+
+      if (xpath == null)
+        xpath = makeXPath();
+
+      try
+      {
+        NodeList nodes = (NodeList)xpath.evaluate(path, context, XPathConstants.NODESET);
+        if (nodes == null || nodes.getLength() == 0)
+          return null;
+
+        Element[] elements = new Element[nodes.getLength()];
+        for (int i = 0; i < nodes.getLength(); i++)
+        {
+          Node node = nodes.item(i);
+          if (node is Element)
+            elements[i] = (Element)node;
+        }
+        return elements;
+      }
+      catch (XPathExpressionException e)
+      {
+        String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
+        Logging.logger().log(java.util.logging.Level.WARNING, message, e);
+        return null;
+      }
     }
 
     /**
@@ -97,7 +274,7 @@ public class WWXML
         }
         catch (TransformerConfigurationException e)
         {
-            String message = Logging.getMessage("XML.TransformerConfigurationException");
+            string message = Logging.getMessage("XML.TransformerConfigurationException");
             Logging.logger().finest(message);
             throw new WWRuntimeException(e);
         }
@@ -113,11 +290,11 @@ public class WWXML
      * @return the source document as a {@link Document}, or null if the source object is a string that does not
      *         identify a URL, a file or a resource available on the classpath.
      */
-    public static Document openDocument(Object docSource)
+    public static Document openDocument(object docSource)
     {
         if (docSource == null || WWUtil.isEmpty(docSource))
         {
-            String message = Logging.getMessage("nullValue.DocumentSourceIsNull");
+            string message = Logging.getMessage("nullValue.DocumentSourceIsNull");
             throw new ArgumentException(message);
         }
 
@@ -131,15 +308,15 @@ public class WWXML
         }
         else if (docSource is File)
         {
-            return openDocumentFile(((File) docSource).getPath(), null);
+            return openDocumentFile(((URL)docSource).getPath(), null);
         }
-        else if (!(docSource is String))
+        else if (!(docSource is string))
         {
-            String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
+        string message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
             throw new ArgumentException(message);
         }
 
-        String sourceName = (String) docSource;
+      string sourceName = (string) docSource;
 
         URL url = WWIO.makeURL(sourceName);
         if (url != null)
@@ -166,7 +343,7 @@ public class WWXML
     {
         if (filePath == null)
         {
-            String message = Logging.getMessage("nullValue.FileIsNull");
+            string message = Logging.getMessage("nullValue.FileIsNull");
             throw new ArgumentException(message);
         }
 
@@ -518,6 +695,17 @@ public class WWXML
     }
 
     /**
+ * Shortcut method to create an {@link XPath}.
+ *
+ * @return a new XPath.
+ */
+    public static XPath makeXPath()
+    {
+      XPathFactory xpFactory = XPathFactory.newInstance();
+      return xpFactory.newXPath();
+    }
+
+    /**
      * Close an XML event stream and catch any {@link javax.xml.stream.XMLStreamException} generated in the process.
      *
      * @param eventReader the event reader to close. If null, this method does nothing.
@@ -553,7 +741,7 @@ public class WWXML
      * @throws ArgumentException if <code>output</code> is <code>null</code>.
      * @throws XMLStreamException       if an exception occurs while attempting to open the <code>XMLStreamWriter</code>.
      */
-    public static XMLStreamWriter openStreamWriter(Object output) throws XMLStreamException
+    public static XMLStreamWriter openStreamWriter(Object output)
     {
         if (output == null)
         {
@@ -591,19 +779,19 @@ public class WWXML
 
         try
         {
-            XMLEvent event = null;
+            XMLEvent @event = null;
             while (eventReader.hasNext())
             {
-                event = eventReader.nextEvent();
-                if (event != null && event.isStartElement())
+                @event = eventReader.nextEvent();
+                if (@event != null && @event.isStartElement())
                     break;
             }
 
-            return (event != null && event.isStartElement()) ? (StartElement) event : null;
+            return (@event != null && @event.isStartElement()) ? (StartElement) @event : null;
         }
         catch (XMLStreamException e)
         {
-            String message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", eventReader);
+            string message = Logging.getMessage("generic.ExceptionAttemptingToParseXml", eventReader);
             Logging.logger().finest(message);
         }
 
@@ -678,16 +866,7 @@ public class WWXML
         return sb.ToString();
     }
 
-    /**
-     * Shortcut method to create an {@link XPath}.
-     *
-     * @return a new XPath.
-     */
-    public static XPath makeXPath()
-    {
-        XPathFactory xpFactory = XPathFactory.newInstance();
-        return xpFactory.newXPath();
-    }
+
 
     public static String checkOGCException(Document doc)
     {
@@ -922,106 +1101,6 @@ public class WWXML
         return sarl.toArray(new String[1]);
     }
 
-    /**
-     * Returns the element identified by an XPath expression.
-     *
-     * @param context the context from which to start the XPath search.
-     * @param path    the XPath expression.
-     * @param xpath   an {@link XPath} object to use for the search. This allows the caller to re-use XPath objects when
-     *                performing multiple searches. May be null.
-     *
-     * @return the element matching the XPath expression, or null if no element matches.
-     *
-     * @throws ArgumentException if the context or XPath expression are null.
-     */
-    public static Element getElement(Element context, String path, XPath xpath)
-    {
-        if (context == null)
-        {
-            String message = Logging.getMessage("nullValue.ContextIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (path == null)
-        {
-            String message = Logging.getMessage("nullValue.PathIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (xpath == null)
-            xpath = makeXPath();
-
-        try
-        {
-            Node node = (Node) xpath.evaluate(path, context, XPathConstants.NODE);
-            if (node == null)
-                return null;
-
-            return node is Element ? (Element) node : null;
-        }
-        catch (XPathExpressionException e)
-        {
-            String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
-            Logging.logger().log(java.util.logging.Level.WARNING, message, e);
-            return null;
-        }
-    }
-
-    /**
-     * Returns all elements identified by an XPath expression.
-     *
-     * @param context the context from which to start the XPath search.
-     * @param path    the XPath expression.
-     * @param xpath   an {@link XPath} object to use for the search. This allows the caller to re-use XPath objects when
-     *                performing multiple searches. May be null.
-     *
-     * @return an array containing the elements matching the XPath expression.
-     *
-     * @throws ArgumentException if the context or XPath expression are null.
-     */
-    public static Element[] getElements(Element context, String path, XPath xpath)
-    {
-        if (context == null)
-        {
-            String message = Logging.getMessage("nullValue.ContextIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (path == null)
-        {
-            String message = Logging.getMessage("nullValue.PathIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (xpath == null)
-            xpath = makeXPath();
-
-        try
-        {
-            NodeList nodes = (NodeList) xpath.evaluate(path, context, XPathConstants.NODESET);
-            if (nodes == null || nodes.getLength() == 0)
-                return null;
-
-            Element[] elements = new Element[nodes.getLength()];
-            for (int i = 0; i < nodes.getLength(); i++)
-            {
-                Node node = nodes.item(i);
-                if (node is Element)
-                    elements[i] = (Element) node;
-            }
-            return elements;
-        }
-        catch (XPathExpressionException e)
-        {
-            String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
-            Logging.logger().log(java.util.logging.Level.WARNING, message, e);
-            return null;
-        }
-    }
 
     /**
      * Returns the unique elements identified by an XPath expression and a sub-expression.
@@ -1763,7 +1842,7 @@ public class WWXML
      *
      * @throws ArgumentException if the context is null.
      */
-    public static Element appendText(Element context, String path, String string)
+    public static Element appendText(Element context, String path, String @string)
     {
         if (context == null)
         {
@@ -1772,7 +1851,7 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (string == null)
+        if (@string == null)
         {
             String message = Logging.getMessage("nullValue.StringIsNull");
             Logging.logger().severe(message);
@@ -3163,46 +3242,7 @@ public class WWXML
         }
     }
 
-    /**
-     * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
-     * parameter to a specified context.
-     *
-     * @param context  the context on which to append new elements.
-     * @param parameters   the parameter list.
-     * @param paramKey the key used to identify the paramater in the parameter list.
-     * @param path     the element path to append.
-     *
-     * @throws ArgumentException if either the parameter list  parameter key, or context are null.
-     */
-    public static void checkAndAppendTextElement(AVList parameters, String paramKey, Element context, String path)
-    {
-        if (params == null)
-        {
-            String message = Logging.getMessage("nullValue.ParametersIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
 
-        if (paramKey == null)
-        {
-            String message = Logging.getMessage("nullValue.ParameterKeyIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (context == null)
-        {
-            String message = Logging.getMessage("nullValue.ElementIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        String s = parameters.getStringValue(paramKey);
-        if (s != null && s.length() > 0)
-        {
-            appendText(context, path, s.trim());
-        }
-    }
 
     /**
      * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
@@ -3249,46 +3289,7 @@ public class WWXML
         }
     }
 
-    /**
-     * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
-     * parameter to a specified context.
-     *
-     * @param context  the context on which to append new elements.
-     * @param parameters   the parameter list.
-     * @param paramKey the key used to identify the paramater in the parameter list.
-     * @param path     the element path to append.
-     *
-     * @throws ArgumentException if either the parameter list  parameter key, or context are null.
-     */
-    public static void checkAndAppendDoubleElement(AVList parameters, String paramKey, Element context, String path)
-    {
-        if (params == null)
-        {
-            String message = Logging.getMessage("nullValue.ParametersIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
 
-        if (paramKey == null)
-        {
-            String message = Logging.getMessage("nullValue.ParameterKeyIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        if (context == null)
-        {
-            String message = Logging.getMessage("nullValue.ElementIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
-        Double d = AVListImpl.getDoubleValue(params, paramKey);
-        if (d != null)
-        {
-            appendDouble(context, path, d);
-        }
-    }
 
     /**
      * Checks a parameter list for a specified key and if present attempts to append new elements represeting the
@@ -3900,5 +3901,4 @@ public class WWXML
             }
         }
     }
-}
 }

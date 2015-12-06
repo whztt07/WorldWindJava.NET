@@ -16,6 +16,13 @@ using SharpEarth.exception.WWRuntimeException;
 using SharpEarth.avlist;
 using SharpEarth.Configuration;
 using com.jogamp.common.nio.Buffers;
+using System.Text;
+using System.IO;
+using SharpEarth.java.net;
+using System;
+using SharpEarth.java.io;
+using SharpEarth.java.lang;
+
 namespace SharpEarth.util{
 
 
@@ -26,25 +33,25 @@ namespace SharpEarth.util{
  */
 public class WWIO
 {
-    public static final String DELETE_ON_EXIT_PREFIX = "WWJDeleteOnExit";
-    public static final String ILLEGAL_FILE_PATH_PART_CHARACTERS = "[" + "?/\\\\=+<>:;\\,\"\\|^\\[\\]" + "]";
+    public const string DELETE_ON_EXIT_PREFIX = "WWJDeleteOnExit";
+    public const string ILLEGAL_FILE_PATH_PART_CHARACTERS = "[" + "?/\\\\=+<>:;\\,\"\\|^\\[\\]" + "]";
     /** The default character encoding used if none is specified. */
-    protected static final String DEFAULT_CHARACTER_ENCODING = "UTF-8";
+    protected const string DEFAULT_CHARACTER_ENCODING = "UTF-8";
     /** The maximum number of characters allowed in a file path. Covers Windows, Linux and OS X. */
-    public static final int MAX_FILE_PATH_LENGTH = 255;
+    public const int MAX_FILE_PATH_LENGTH = 255;
 
-    public static String formPath(String... pathParts)
+    public static string formPath(params string[] pathParts)
     {
         StringBuilder sb = new StringBuilder();
 
-        for (String pathPart : pathParts)
+        foreach (string pathPart in pathParts)
         {
             if (pathPart == null)
                 continue;
 
-            if (sb.length() > 0)
-                sb.append(File.separator);
-            sb.append(pathPart.replaceAll(ILLEGAL_FILE_PATH_PART_CHARACTERS, "_"));
+            if (sb.Length > 0)
+                sb.Append(Path.PathSeparator);
+            sb.Append(pathPart.ReplaceAll(ILLEGAL_FILE_PATH_PART_CHARACTERS, "_"));
         }
 
         return sb.ToString();
@@ -143,6 +150,11 @@ public class WWIO
         return s.substring(i, len); // String contains at least one leading '0' character.
     }
 
+    internal static URL makeURL(string sourceName)
+    {
+      throw new NotImplementedException();
+    }
+
     /**
      * Converts several types of addresses to a local file to a {@link java.io.File}. Returns null if the source cannot
      * be converted to a file. The source type may be one of the following: <ul><li>{@link java.net.URL}</li> <li>{@link
@@ -191,6 +203,11 @@ public class WWIO
             return convertURIToFile(uri);
 
         return null;
+    }
+
+    internal static InputStream openFileOrResourceStream(string filePath, Class c)
+    {
+      throw new NotImplementedException();
     }
 
     /**
