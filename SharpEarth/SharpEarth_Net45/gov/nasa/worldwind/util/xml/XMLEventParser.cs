@@ -4,8 +4,6 @@
  * All Rights Reserved.
  */
 
-using javax.xml.stream.events.XMLEvent;
-using javax.xml.stream.XMLStreamException;
 namespace SharpEarth.util.xml{
 
 
@@ -28,7 +26,7 @@ public interface XMLEventParser
      *
      * @throws XMLStreamException if an exception occurs during event-stream reading.
      */
-    Object parse(XMLEventParserContext context, XMLEvent event, Object... args) throws XMLStreamException;
+    object parse(XMLEventParserContext context, javax.xml.stream.events.XMLEvent @event, params object[] args);
 
     /**
      * Creates a new empty parser instance of the same type. This is used by {@link
@@ -41,7 +39,7 @@ public interface XMLEventParser
      *
      * @throws Exception if an error or exception occurs while attempting to create the parser.
      */
-    XMLEventParser newInstance() throws Exception;
+    XMLEventParser newInstance();
 
     /**
      * Specifies the parent parser of this parser.
