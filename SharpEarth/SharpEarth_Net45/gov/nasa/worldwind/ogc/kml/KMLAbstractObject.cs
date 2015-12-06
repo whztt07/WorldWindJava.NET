@@ -67,7 +67,7 @@ public abstract class KMLAbstractObject extends AbstractXMLEventParser implement
     public KMLRoot getRoot()
     {
         XMLEventParser root = super.getRoot();
-        return root instanceof KMLRoot ? (KMLRoot) root : null;
+        return root is KMLRoot ? (KMLRoot) root : null;
     }
 
     public void onMessage(Message msg)

@@ -129,7 +129,7 @@ public class AbsentResourceList
         if (cacheSize != null)
             this.possiblyAbsent.setCapacity(cacheSize);
 
-        this.maxTries = Math.max(maxTries, 1);
+        this.maxTries = Math.Max(maxTries, 1);
         this.minCheckInterval = minCheckInterval;
         this.tryAgainInterval = tryAgainInterval;
     }

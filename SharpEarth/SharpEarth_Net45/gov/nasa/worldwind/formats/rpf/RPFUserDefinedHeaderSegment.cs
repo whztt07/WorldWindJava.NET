@@ -20,7 +20,7 @@ public class RPFUserDefinedHeaderSegment extends NITFSUserDefinedHeaderSegment
     {
         super(buffer);
 
-        if( RPFHeaderSection.DATA_TAG.equals(this.dataTag) )
+        if( RPFHeaderSection.DATA_TAG.Equals(this.dataTag) )
         {
             this.components = new RPFFileComponents(buffer);
         }

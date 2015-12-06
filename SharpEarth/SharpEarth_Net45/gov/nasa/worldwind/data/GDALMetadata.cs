@@ -56,7 +56,7 @@ public class GDALMetadata
                 while (keys.hasMoreElements())
                 {
                     Object o = keys.nextElement();
-                    if (null != o && o instanceof String)
+                    if (null != o && o is String)
                     {
                         String key = (String) o;
                         Object value = dict.get(key);
@@ -89,7 +89,7 @@ public class GDALMetadata
 
         String drvName = (null != ds) ? ds.GetDriver().getShortName() : "";
 
-        if ("NITF".equals(drvName))
+        if ("NITF".Equals(drvName))
         {
             mapNITFMetadata(extParams, parameters);
         }
@@ -118,7 +118,7 @@ public class GDALMetadata
         if (extParams.hasKey(NITF_ABPP))
         {
             Object o = extParams.getValue(NITF_ABPP);
-            if (!WWUtil.isEmpty(o) && o instanceof String)
+            if (!WWUtil.isEmpty(o) && o is String)
             {
                 Integer abpp = WWUtil.convertStringToInteger((String) o);
                 if (null != abpp)
@@ -129,7 +129,7 @@ public class GDALMetadata
         if (extParams.hasKey(NITF_DYNAMIC_RANGE))
         {
             Object o = extParams.getValue(NITF_DYNAMIC_RANGE);
-            if (!WWUtil.isEmpty(o) && o instanceof String)
+            if (!WWUtil.isEmpty(o) && o is String)
             {
                 Double maxPixelValue = WWUtil.convertStringToDouble((String) o);
                 if (null != maxPixelValue)
@@ -140,7 +140,7 @@ public class GDALMetadata
         if (extParams.hasKey(NITF_FBKGC))
         {
             Object o = extParams.getValue(NITF_FBKGC);
-            if (!WWUtil.isEmpty(o) && o instanceof String)
+            if (!WWUtil.isEmpty(o) && o is String)
             {
                 try
                 {
@@ -296,11 +296,11 @@ public class GDALMetadata
 
         StringBuffer proj4 = new StringBuffer();
 
-        if (AVKey.COORDINATE_SYSTEM_PROJECTED.equals(destParams.getValue(AVKey.COORDINATE_SYSTEM)))
+        if (AVKey.COORDINATE_SYSTEM_PROJECTED.Equals(destParams.getValue(AVKey.COORDINATE_SYSTEM)))
         {
             //        +proj=utm +zone=38 +ellps=WGS84 +datum=WGS84 +units=m
 
-            if (AVKey.PROJECTION_UTM.equals(destParams.getValue(AVKey.PROJECTION_NAME)))
+            if (AVKey.PROJECTION_UTM.Equals(destParams.getValue(AVKey.PROJECTION_NAME)))
             {
                 proj4.append("+proj=utm");
             }
@@ -319,7 +319,7 @@ public class GDALMetadata
             if (destParams.hasKey(AVKey.PROJECTION_UNITS))
             {
                 proj4.append(" +units=").append(
-                    AVKey.UNIT_METER.equals(destParams.getValue(AVKey.PROJECTION_UNITS)) ? "m" : "f"
+                    AVKey.UNIT_METER.Equals(destParams.getValue(AVKey.PROJECTION_UNITS)) ? "m" : "f"
                 );
             }
 

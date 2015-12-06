@@ -47,7 +47,7 @@ public class WCS100LonLatEnvelope extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof GMLPos)
+                if (o != null && o is GMLPos)
                     this.positions.add((GMLPos) o);
             }
         }

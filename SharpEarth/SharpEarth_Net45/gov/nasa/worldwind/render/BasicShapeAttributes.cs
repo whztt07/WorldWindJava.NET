@@ -394,7 +394,7 @@ public class BasicShapeAttributes implements ShapeAttributes
 
         rs.addStateValueAsInteger(so, "outlineStipplePattern", this.getOutlineStipplePattern());
 
-        if (this.getImageSource() != null && this.getImageSource() instanceof String)
+        if (this.getImageSource() != null && this.getImageSource() is String)
             rs.addStateValueAsString(so, "interiorImagePath", (String) this.getImageSource());
 
         rs.addStateValueAsDouble(so, "interiorImageScale", this.getImageScale());
@@ -483,10 +483,10 @@ public class BasicShapeAttributes implements ShapeAttributes
             return false;
         if (this.enableLighting != that.enableLighting)
             return false;
-        if (this.interiorMaterial != null ? !this.interiorMaterial.equals(that.interiorMaterial)
+        if (this.interiorMaterial != null ? !this.interiorMaterial.Equals(that.interiorMaterial)
             : that.interiorMaterial != null)
             return false;
-        if (this.outlineMaterial != null ? !this.outlineMaterial.equals(that.outlineMaterial)
+        if (this.outlineMaterial != null ? !this.outlineMaterial.Equals(that.outlineMaterial)
             : that.outlineMaterial != null)
             return false;
         if (Double.compare(this.interiorOpacity, that.interiorOpacity) != 0)
@@ -499,7 +499,7 @@ public class BasicShapeAttributes implements ShapeAttributes
             return false;
         if (this.outlineStipplePattern != that.outlineStipplePattern)
             return false;
-        if (this.imageSource != null ? !this.imageSource.equals(that.imageSource) : that.imageSource != null)
+        if (this.imageSource != null ? !this.imageSource.Equals(that.imageSource) : that.imageSource != null)
             return false;
         //noinspection RedundantIfStatement
         if (Double.compare(this.imageScale, that.imageScale) != 0)
@@ -519,8 +519,8 @@ public class BasicShapeAttributes implements ShapeAttributes
         result = 31 * result + (this.drawOutline ? 1 : 0);
         result = 31 * result + (this.enableAntialiasing ? 1 : 0);
         result = 31 * result + (this.enableLighting ? 1 : 0);
-        result = 31 * result + (this.interiorMaterial != null ? this.interiorMaterial.hashCode() : 0);
-        result = 31 * result + (this.outlineMaterial != null ? this.outlineMaterial.hashCode() : 0);
+        result = 31 * result + (this.interiorMaterial != null ? this.interiorMaterial.GetHashCode() : 0);
+        result = 31 * result + (this.outlineMaterial != null ? this.outlineMaterial.GetHashCode() : 0);
         temp = this.interiorOpacity != +0.0d ? BitConverter.DoubleToInt64Bits(this.interiorOpacity) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = this.outlineOpacity != +0.0d ? BitConverter.DoubleToInt64Bits(this.outlineOpacity) : 0L;
@@ -529,7 +529,7 @@ public class BasicShapeAttributes implements ShapeAttributes
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + this.outlineStippleFactor;
         result = 31 * result + (int) this.outlineStipplePattern;
-        result = 31 * result + (this.imageSource != null ? this.imageSource.hashCode() : 0);
+        result = 31 * result + (this.imageSource != null ? this.imageSource.GetHashCode() : 0);
         temp = this.imageScale != +0.0d ? BitConverter.DoubleToInt64Bits(this.imageScale) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
 
@@ -597,16 +597,16 @@ public class BasicShapeAttributes implements ShapeAttributes
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }

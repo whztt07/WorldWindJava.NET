@@ -435,7 +435,7 @@ public class ExtrudedPolygon extends AbstractShape
             if (locations == null || locations.size() < 3)
                 continue;
 
-            if (!WWMath.computeWindingOrderOfLocations(locations).equals(AVKey.COUNTER_CLOCKWISE))
+            if (!WWMath.computeWindingOrderOfLocations(locations).Equals(AVKey.COUNTER_CLOCKWISE))
                 Collections.reverse(locations);
         }
 
@@ -589,7 +589,7 @@ public class ExtrudedPolygon extends AbstractShape
         }
 
         // Close the list if not already closed.
-        if (list.size() > 0 && !list.get(0).equals(list.get(list.size() - 1)))
+        if (list.size() > 0 && !list.get(0).Equals(list.get(list.size() - 1)))
             list.add(list.get(0));
 
         list.trimToSize();
@@ -1030,7 +1030,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         if (this.boundaries.size() > 0 && this.outerBoundary().size() > 0)
         {
-            if (this.outerBoundary().get(0) instanceof Position)
+            if (this.outerBoundary().get(0) is Position)
                 this.referencePosition = (Position) this.outerBoundary().get(0);
             else
                 this.referencePosition = new Position(this.outerBoundary().get(0), 0);
@@ -1687,7 +1687,7 @@ public class ExtrudedPolygon extends AbstractShape
             }
 
             // Compute the top/cap point.
-            if (this.getAltitudeMode() == WorldWind.CONSTANT || !(location instanceof Position))
+            if (this.getAltitudeMode() == WorldWind.CONSTANT || !(location is Position))
             {
                 // The shape's base is on the terrain, and all the cap vertices are at a common altitude
                 // relative to the reference position. This means that the distance between the cap and base vertices
@@ -2237,7 +2237,7 @@ public class ExtrudedPolygon extends AbstractShape
             return false;
 
         return this.previousIntersectionGlobeStateKey != null &&
-            terrain.getGlobe().getGlobeStateKey().equals(this.previousIntersectionGlobeStateKey);
+            terrain.getGlobe().getGlobeStateKey().Equals(this.previousIntersectionGlobeStateKey);
     }
 
     /**
@@ -2436,7 +2436,7 @@ public class ExtrudedPolygon extends AbstractShape
             // Must convert the new locations to positions if the old ones were positions.
             for (int i = 0; i < boundary.size(); i++)
             {
-                if (boundary.get(i) instanceof Position)
+                if (boundary.get(i) is Position)
                     newList.set(i, new Position(newList.get(i), ((Position) boundary.get(i)).getAltitude()));
             }
 
@@ -2474,7 +2474,7 @@ public class ExtrudedPolygon extends AbstractShape
         if (outerBoundary != null)
         {
             xmlWriter.writeStartElement("outerBoundaryIs");
-            if (outerBoundary.iterator().hasNext() && outerBoundary.iterator().next() instanceof Position)
+            if (outerBoundary.iterator().hasNext() && outerBoundary.iterator().next() is Position)
                 this.exportBoundaryAsLinearRing(xmlWriter, outerBoundary);
             else
                 KMLExportUtil.exportBoundaryAsLinearRing(xmlWriter, outerBoundary, getHeight());
@@ -2491,7 +2491,7 @@ public class ExtrudedPolygon extends AbstractShape
             List<? extends LatLon> boundary = boundaryIterator.next();
 
             xmlWriter.writeStartElement("innerBoundaryIs");
-            if (boundary.iterator().hasNext() && boundary.iterator().next() instanceof Position)
+            if (boundary.iterator().hasNext() && boundary.iterator().next() is Position)
                 this.exportBoundaryAsLinearRing(xmlWriter, outerBoundary);
             else
                 KMLExportUtil.exportBoundaryAsLinearRing(xmlWriter, boundary, getHeight());
@@ -2515,7 +2515,7 @@ public class ExtrudedPolygon extends AbstractShape
         xmlWriter.writeStartElement("coordinates");
         for (LatLon location : boundary)
         {
-            if (location instanceof Position)
+            if (location is Position)
             {
                 xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                     location.getLongitude().getDegrees(),

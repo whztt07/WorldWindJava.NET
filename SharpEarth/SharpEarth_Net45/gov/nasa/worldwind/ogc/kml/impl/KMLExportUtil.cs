@@ -147,13 +147,13 @@ public class KMLExportUtil
         String units)
         throws XMLStreamException
     {
-        if (Size.NATIVE_DIMENSION.equals(sizeMode))
+        if (Size.NATIVE_DIMENSION.Equals(sizeMode))
         {
             xmlWriter.writeAttribute(axes, "-1");
         }
-        else if (Size.MAINTAIN_ASPECT_RATIO.equals(sizeMode))
+        else if (Size.MAINTAIN_ASPECT_RATIO.Equals(sizeMode))
             xmlWriter.writeAttribute(axes, "0");
-        else if (Size.EXPLICIT_DIMENSION.equals(sizeMode))
+        else if (Size.EXPLICIT_DIMENSION.Equals(sizeMode))
         {
             xmlWriter.writeAttribute(axes, Double.ToString(size));
             xmlWriter.writeAttribute(axes + "units", KMLUtil.wwUnitsToKMLUnits(units));

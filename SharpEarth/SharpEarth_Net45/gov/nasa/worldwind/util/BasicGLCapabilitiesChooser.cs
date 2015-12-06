@@ -45,7 +45,7 @@ public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
     public int chooseCapabilities(CapabilitiesImmutable desired,
         List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
     {
-        if (desired instanceof GLCapabilities && ((GLCapabilities) desired).getStereo())
+        if (desired is GLCapabilities && ((GLCapabilities) desired).getStereo())
         {
             return this.chooseStereoCapabilities(desired, available, windowSystemRecommendedChoice);
         }

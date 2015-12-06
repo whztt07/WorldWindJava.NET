@@ -137,7 +137,7 @@ public class BasicElevationModelFactory extends BasicFactory
         String localName = WWXML.getUnqualifiedName(domElement);
         if (elements != null && elements.length > 0)
             return this.createCompoundModel(elements, parameters);
-        else if (localName != null && localName.equals("ElevationModel"))
+        else if (localName != null && localName.Equals("ElevationModel"))
             return this.createNonCompoundModel(domElement, parameters);
 
         return null;
@@ -200,23 +200,23 @@ public class BasicElevationModelFactory extends BasicFactory
 
         String serviceName = WWXML.getText(domElement, "Service/@serviceName");
 
-        if (serviceName.equals("Offline"))
+        if (serviceName.Equals("Offline"))
         {
             em = new BasicElevationModel(domElement, parameters);
         }
-        else if (serviceName.equals("WWTileService"))
+        else if (serviceName.Equals("WWTileService"))
         {
             em = new BasicElevationModel(domElement, parameters);
         }
-        else if (serviceName.equals(OGCConstants.WMS_SERVICE_NAME))
+        else if (serviceName.Equals(OGCConstants.WMS_SERVICE_NAME))
         {
             em = new WMSBasicElevationModel(domElement, parameters);
         }
-        else if (serviceName.equals(OGCConstants.WCS_SERVICE_NAME))
+        else if (serviceName.Equals(OGCConstants.WCS_SERVICE_NAME))
         {
             em = new WCSElevationModel(domElement, parameters);
         }
-        else if (AVKey.SERVICE_NAME_LOCAL_RASTER_SERVER.equals(serviceName))
+        else if (AVKey.SERVICE_NAME_LOCAL_RASTER_SERVER.Equals(serviceName))
         {
             em = new LocalRasterServerElevationModel(domElement, parameters);
         }

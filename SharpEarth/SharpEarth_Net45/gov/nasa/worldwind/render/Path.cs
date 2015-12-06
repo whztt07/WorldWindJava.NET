@@ -1123,7 +1123,7 @@ public class Path extends AbstractShape
         //noinspection SimplifiableIfStatement
 //        if (this.getAltitudeMode() == WorldWind.ABSOLUTE
 //            && this.getCurrentPathData().getGlobeStateKey() != null
-//            && this.getCurrentPathData().getGlobeStateKey().equals(dc.getGlobe().getGlobeStateKey(dc)))
+//            && this.getCurrentPathData().getGlobeStateKey().Equals(dc.getGlobe().getGlobeStateKey(dc)))
 //            return false;
 
         return super.mustRegenerateGeometry(dc);
@@ -2153,7 +2153,7 @@ public class Path extends AbstractShape
         if (f.contains(ptB))
             return true;
 
-        if (ptA.equals(ptB))
+        if (ptA.Equals(ptB))
             return false;
 
         Position posC = Position.interpolateRhumb(0.5, posA, posB);
@@ -2199,7 +2199,7 @@ public class Path extends AbstractShape
 
         if (arcLength <= 0 || straightLine)
         {
-            if (!ptA.equals(ptB) || (this.positionsSpanDateline && dc.is2DGlobe()))
+            if (!ptA.Equals(ptB) || (this.positionsSpanDateline && dc.is2DGlobe()))
                 this.addTessellatedPosition(posB, colorB, ordinalB, pathData);
             return;
         }

@@ -122,7 +122,7 @@ public class KMLScreenOverlay extends KMLAbstractOverlay
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLScreenOverlay))
+        if (!(sourceValues is KMLScreenOverlay))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -137,7 +137,7 @@ public class KMLScreenOverlay extends KMLAbstractOverlay
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_LINK_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_LINK_CHANGED.Equals(msg.getName()))
             this.renderable = null;
 
         super.onChange(msg);

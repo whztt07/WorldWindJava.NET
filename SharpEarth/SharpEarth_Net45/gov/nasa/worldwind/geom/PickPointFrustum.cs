@@ -6,6 +6,9 @@
 
 using java.awt;
 using SharpEarth.util;
+using System;
+using System.Drawing;
+
 namespace SharpEarth.geom{
 
 
@@ -17,9 +20,9 @@ namespace SharpEarth.geom{
  * @author Jeff Addison
  * @version $Id: PickPointFrustum.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PickPointFrustum extends Frustum
+public class PickPointFrustum : Frustum
 {
-    private final Rectangle screenRect;
+    private readonly Rectangle screenRect;
 
     /**
      * Constructs a new PickPointFrustum from another Frustum and screen rectangle
@@ -28,13 +31,13 @@ public class PickPointFrustum extends Frustum
      * @param rect    screen rectangle to store with this frustum
      */
     public PickPointFrustum(Frustum frustum, Rectangle rect)
+        :base(frustum.getLeft(), frustum.getRight(), frustum.getBottom(), frustum.getTop(), frustum.getNear(),
+            frustum.getFar())
     {
-        super(frustum.getLeft(), frustum.getRight(), frustum.getBottom(), frustum.getTop(), frustum.getNear(),
-            frustum.getFar());
 
         if (rect == null)
         {
-            String message = Logging.getMessage("nullValue.RectangleIsNull");
+            string message = Logging.getMessage("nullValue.RectangleIsNull");
             Logging.logger().fine(message);
             throw new ArgumentException(message);
         }
@@ -54,7 +57,7 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final bool intersects(Rectangle rect)
+    public bool intersects(Rectangle rect)
     {
         if (rect == null)
         {
@@ -63,7 +66,7 @@ public class PickPointFrustum extends Frustum
             throw new ArgumentException(message);
         }
 
-        return this.screenRect.intersects(rect);
+        return this.screenRect.IntersectsWith(rect);
     }
 
     /**
@@ -76,9 +79,9 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final bool contains(double x, double y)
+    public bool contains(double x, double y)
     {
-        return this.screenRect.contains(x, y);
+        return this.screenRect.Contains( (int)x, (int)y);
     }
 
     /**
@@ -90,7 +93,7 @@ public class PickPointFrustum extends Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final bool contains(Point point)
+    public bool contains(Point point)
     {
         if (point == null)
         {
@@ -99,7 +102,7 @@ public class PickPointFrustum extends Frustum
             throw new ArgumentException(msg);
         }
 
-        return this.screenRect.contains(point);
+        return this.screenRect.Contains(point);
     }
 
     /**
@@ -120,7 +123,7 @@ public class PickPointFrustum extends Frustum
             throw new ArgumentException(msg);
         }
 
-        return new PickPointFrustum(super.transformBy(matrix), this.screenRect);
+        return new PickPointFrustum(base.transformBy(matrix), this.screenRect);
     }
 
     /**

@@ -121,7 +121,7 @@ public class GDALUtils
             Method[] methods = gdalClass.getDeclaredMethods();
             for (Method m : methods)
             {
-                if ("setLibraryLoader".equals(m.getName()))
+                if ("setLibraryLoader".Equals(m.getName()))
                 {
                     gdal.setLibraryLoader(new GDALLibraryLoader());
 //                    Logging.logger().finest(Logging.getMessage("gdal.LibraryLoaderReplacedOK"));
@@ -150,10 +150,10 @@ public class GDALUtils
     {
         String arch = System.getProperty("sun.arch.data.model");
         if( !WWUtil.isEmpty(arch) )
-            return ("32".equals(arch));
+            return ("32".Equals(arch));
 
         // GNU JAVA does not return "sun.arch.data.model"
-        return "x86".equals(System.getProperty("os.arch"));
+        return "x86".Equals(System.getProperty("os.arch"));
     }
 
     protected static bool gdalPreLoadNativeLibrary(boolean allowLogErrors)
@@ -1094,7 +1094,7 @@ public class GDALUtils
         try
         {
             Object o = parameters.getValue(AVKey.GDAL_MASK_DATASET);
-            if (o instanceof Dataset)
+            if (o is Dataset)
             {
                 Dataset maskDS = (Dataset) o;
 
@@ -1426,7 +1426,7 @@ public class GDALUtils
 
             if( "GTiff".equalsIgnoreCase(ds.GetDriver().getShortName())
                 && parameters.hasKey(AVKey.FILE)
-                && AVKey.ELEVATION.equals(params.getValue(AVKey.PIXEL_FORMAT))
+                && AVKey.ELEVATION.Equals(params.getValue(AVKey.PIXEL_FORMAT))
                 && !params.hasKey(AVKey.ELEVATION_UNIT) )
             {
                 GeotiffReader reader = null;
@@ -1453,7 +1453,7 @@ public class GDALUtils
 
             extractMinMaxSampleValues(ds, band, parameters );
 
-            if(      AVKey.ELEVATION.equals(params.getValue(AVKey.PIXEL_FORMAT))
+            if(      AVKey.ELEVATION.Equals(params.getValue(AVKey.PIXEL_FORMAT))
                   && (     !params.hasKey(AVKey.ELEVATION_MIN)
                         || !params.hasKey(AVKey.ELEVATION_MAX)
                         || !params.hasKey(AVKey.MISSING_DATA_SIGNAL)
@@ -1634,11 +1634,11 @@ public class GDALUtils
                 if (null != unit)
                 {
                     unit = unit.toLowerCase();
-                    if ("meter".equals(unit) || "meters".equals(unit) || "metre".equals(unit) || "metres".equals(unit))
+                    if ("meter".Equals(unit) || "meters".Equals(unit) || "metre".Equals(unit) || "metres".Equals(unit))
                     {
                         parameters.setValue(AVKey.PROJECTION_UNITS, AVKey.UNIT_METER);
                     }
-                    else if ("foot".equals(unit) || "feet".equals(unit))
+                    else if ("foot".Equals(unit) || "feet".Equals(unit))
                     {
                         parameters.setValue(AVKey.PROJECTION_UNITS, AVKey.UNIT_FOOT);
                     }
@@ -1681,7 +1681,7 @@ public class GDALUtils
 
     protected static void extractMinMaxSampleValues(Dataset ds, Band band, AVList parameters)
     {
-        if( null != ds && null != parameters && AVKey.ELEVATION.equals(params.getValue(AVKey.PIXEL_FORMAT)))
+        if( null != ds && null != parameters && AVKey.ELEVATION.Equals(params.getValue(AVKey.PIXEL_FORMAT)))
         {
             band = (null != band ) ? band : ds.GetRasterBand(1);
 
@@ -1757,11 +1757,11 @@ public class GDALUtils
         parameters = extractRasterParameters(ds, parameters, false);
 
         String pixelFormat = parameters.getStringValue(AVKey.PIXEL_FORMAT);
-        if (AVKey.ELEVATION.equals(pixelFormat))
+        if (AVKey.ELEVATION.Equals(pixelFormat))
         {
             return composeNonImageDataRaster(ds, parameters);
         }
-        else if (AVKey.IMAGE.equals(pixelFormat))
+        else if (AVKey.IMAGE.Equals(pixelFormat))
         {
             return composeImageDataRaster(ds, parameters);
         }
@@ -1803,7 +1803,7 @@ public class GDALUtils
 
             Object o = parameters.getValue(AVKey.BANDS_ORDER);
 
-            if (null != o && o instanceof Integer[])
+            if (null != o && o is Integer[])
             {
                 Integer[] order = (Integer[]) o;
                 bandsOrder = new int[order.length];
@@ -1812,7 +1812,7 @@ public class GDALUtils
                     bandsOrder[i] = order[i];
                 }
             }
-            else if (null != o && o instanceof int[])
+            else if (null != o && o is int[])
             {
                 bandsOrder = (int[]) o;
             }
@@ -1862,7 +1862,7 @@ public class GDALUtils
         throws ArgumentException, WWRuntimeException
     {
         String pixelFormat = parameters.getStringValue(AVKey.PIXEL_FORMAT);
-        if (!AVKey.ELEVATION.equals(pixelFormat))
+        if (!AVKey.ELEVATION.Equals(pixelFormat))
         {
             String message = Logging.getMessage("generic.UnexpectedRasterType", pixelFormat);
             Logging.logger().severe(message);
@@ -1870,7 +1870,7 @@ public class GDALUtils
         }
 
         Object o = parameters.getValue(AVKey.SECTOR);
-        if (null == o || !(o instanceof Sector))
+        if (null == o || !(o is Sector))
         {
             String message = Logging.getMessage("generic.MissingRequiredParameter", AVKey.SECTOR);
             Logging.logger().severe(message);
@@ -1890,7 +1890,7 @@ public class GDALUtils
         ByteOrder byteOrder = ByteOrder.nativeOrder();
         if (params.hasKey(AVKey.BYTE_ORDER))
         {
-            byteOrder = AVKey.LITTLE_ENDIAN.equals(params.getStringValue(AVKey.BYTE_ORDER))
+            byteOrder = AVKey.LITTLE_ENDIAN.Equals(params.getStringValue(AVKey.BYTE_ORDER))
                 ? ByteOrder.LITTLE_ENDIAN : ByteOrder.BIG_ENDIAN;
         }
         else

@@ -414,11 +414,11 @@ public class Configuration // Singleton
         if (v == null)
             return null;
 
-        if (v.trim().toUpperCase().startsWith("T") || v.trim().equals("1"))
+        if (v.trim().toUpperCase().startsWith("T") || v.trim().Equals("1"))
         {
             return true;
         }
-        else if (v.trim().toUpperCase().startsWith("F") || v.trim().equals("0"))
+        else if (v.trim().toUpperCase().startsWith("F") || v.trim().Equals("0"))
         {
             return false;
         }
@@ -679,7 +679,7 @@ public class Configuration // Singleton
 
         // Determine whether we should request a stereo canvas
         String stereo = System.getProperty(AVKey.STEREO_MODE);
-        if ("device".equals(stereo))
+        if ("device".Equals(stereo))
             caps.setStereo(true);
 
         return caps;

@@ -38,7 +38,7 @@ public class KMLStyleMap extends KMLAbstractStyleSelector
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLPair)
+        if (o is KMLPair)
             this.addPair((KMLPair) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -69,7 +69,7 @@ public class KMLStyleMap extends KMLAbstractStyleSelector
 
         for (KMLPair pair : this.pairs)
         {
-            if (pair.getKey().equals(styleState))
+            if (pair.getKey().Equals(styleState))
                 return pair.getStyleSelector();
         }
 
@@ -91,7 +91,7 @@ public class KMLStyleMap extends KMLAbstractStyleSelector
 
         for (KMLPair pair : this.pairs)
         {
-            if (pair.getKey().equals(styleState))
+            if (pair.getKey().Equals(styleState))
                 return pair.getStyleUrl();
         }
 
@@ -131,7 +131,7 @@ public class KMLStyleMap extends KMLAbstractStyleSelector
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLStyleMap))
+        if (!(sourceValues is KMLStyleMap))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -168,7 +168,7 @@ public class KMLStyleMap extends KMLAbstractStyleSelector
                 for (KMLPair existingPair : pairsCopy)
                 {
                     String currentId = existingPair.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                     {
                         this.getPairs().remove(existingPair);
                     }

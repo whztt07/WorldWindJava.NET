@@ -67,7 +67,7 @@ public class KMLStyle extends KMLAbstractStyleSelector
     @Override
     public void setField(String keyName, Object value)
     {
-        if ("labelColor".equals(keyName))
+        if ("labelColor".Equals(keyName))
         {
             KMLLabelStyle labelStyle = this.getLabelStyle();
             if (labelStyle == null)
@@ -107,7 +107,7 @@ public class KMLStyle extends KMLAbstractStyleSelector
         Class subStyleClass = subStyle.GetType();
         for (Map.Entry<String, Object> field : this.getFields().getEntries())
         {
-            if (field.getValue() != null && field.getValue().GetType().equals(subStyleClass))
+            if (field.getValue() != null && field.getValue().GetType().Equals(subStyleClass))
             {
                 this.overrideFields(subStyle, (KMLAbstractSubStyle) field.getValue());
             }
@@ -119,7 +119,7 @@ public class KMLStyle extends KMLAbstractStyleSelector
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLStyle))
+        if (!(sourceValues is KMLStyle))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);

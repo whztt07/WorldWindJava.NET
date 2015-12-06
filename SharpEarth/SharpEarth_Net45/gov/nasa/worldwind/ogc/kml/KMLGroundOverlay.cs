@@ -105,7 +105,7 @@ public class KMLGroundOverlay extends KMLAbstractOverlay implements KMLRenderabl
     protected void initializeRenderable(KMLTraversalContext tc)
     {
         final String altitudeMode = this.getAltitudeMode();
-        if ("absolute".equals(altitudeMode))
+        if ("absolute".Equals(altitudeMode))
         {
             this.renderable = new KMLGroundOverlayPolygonImpl(tc, this);
         }
@@ -172,7 +172,7 @@ public class KMLGroundOverlay extends KMLAbstractOverlay implements KMLRenderabl
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLGroundOverlay))
+        if (!(sourceValues is KMLGroundOverlay))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -187,10 +187,10 @@ public class KMLGroundOverlay extends KMLAbstractOverlay implements KMLRenderabl
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_LINK_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_LINK_CHANGED.Equals(msg.getName()))
             this.renderable = null;
 
-        if (KMLAbstractObject.MSG_BOX_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_BOX_CHANGED.Equals(msg.getName()))
             this.renderable = null;
 
         super.onChange(msg);

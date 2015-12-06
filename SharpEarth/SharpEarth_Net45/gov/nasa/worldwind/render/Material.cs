@@ -221,9 +221,9 @@ public class Material
         int a = color.getAlpha();
 
         return new Color(
-            Math.max(0, (int) (r * factor)),
-            Math.max(0, (int) (g * factor)),
-            Math.max(0, (int) (b * factor)),
+            Math.Max(0, (int) (r * factor)),
+            Math.Max(0, (int) (g * factor)),
+            Math.Max(0, (int) (b * factor)),
             a);
     }
 
@@ -289,14 +289,14 @@ public class Material
 
         if (Double.compare(this.shininess, that.shininess) != 0)
             return false;
-        if (this.ambient != null ? !this.ambient.equals(that.ambient) : that.ambient != null)
+        if (this.ambient != null ? !this.ambient.Equals(that.ambient) : that.ambient != null)
             return false;
-        if (this.diffuse != null ? !this.diffuse.equals(that.diffuse) : that.diffuse != null)
+        if (this.diffuse != null ? !this.diffuse.Equals(that.diffuse) : that.diffuse != null)
             return false;
-        if (this.specular != null ? !this.specular.equals(that.specular) : that.specular != null)
+        if (this.specular != null ? !this.specular.Equals(that.specular) : that.specular != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.emission != null ? !this.emission.equals(that.emission) : that.emission != null)
+        if (this.emission != null ? !this.emission.Equals(that.emission) : that.emission != null)
             return false;
 
         return true;
@@ -307,10 +307,10 @@ public class Material
         int result;
         long temp = (this.shininess != +0.0d) ? BitConverter.DoubleToInt64Bits(this.shininess) : 0L;
         result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (this.ambient != null ? this.ambient.hashCode() : 0);
-        result = 31 * result + (this.diffuse != null ? this.diffuse.hashCode() : 0);
-        result = 31 * result + (this.specular != null ? this.specular.hashCode() : 0);
-        result = 31 * result + (this.emission != null ? this.emission.hashCode() : 0);
+        result = 31 * result + (this.ambient != null ? this.ambient.GetHashCode() : 0);
+        result = 31 * result + (this.diffuse != null ? this.diffuse.GetHashCode() : 0);
+        result = 31 * result + (this.specular != null ? this.specular.GetHashCode() : 0);
+        result = 31 * result + (this.emission != null ? this.emission.GetHashCode() : 0);
         return result;
     }
 }

@@ -37,9 +37,9 @@ public class KMLVec2 extends KMLAbstractObject
     protected void doAddEventAttribute(Attribute attr, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if ("x".equals(attr.getName().getLocalPart()))
+        if ("x".Equals(attr.getName().getLocalPart()))
             this.setX(WWUtil.makeDouble(attr.getValue()));
-        else if ("y".equals(attr.getName().getLocalPart()))
+        else if ("y".Equals(attr.getName().getLocalPart()))
             this.setY(WWUtil.makeDouble(attr.getValue()));
         else
             super.doAddEventAttribute(attr, ctx, event, args);

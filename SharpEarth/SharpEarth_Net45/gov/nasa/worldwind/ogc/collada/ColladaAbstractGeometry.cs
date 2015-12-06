@@ -157,7 +157,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         ColladaInput input = null;
         for (ColladaInput in : this.getInputs())
         {
-            if (semantic.equals(in.getSemantic()))
+            if (semantic.Equals(in.getSemantic()))
             {
                 input = in;
                 break;
@@ -194,7 +194,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         String vertexUri = null;
         for (ColladaInput input : this.getInputs())
         {
-            if ("VERTEX".equals(input.getSemantic()))
+            if ("VERTEX".Equals(input.getSemantic()))
             {
                 vertexUri = input.getSource();
                 break;
@@ -208,7 +208,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         ColladaVertices vertices = (ColladaVertices) this.getRoot().resolveReference(vertexUri);
         for (ColladaInput input : vertices.getInputs())
         {
-            if ("POSITION".equals(input.getSemantic()))
+            if ("POSITION".Equals(input.getSemantic()))
             {
                 positionUri = input.getSource();
                 break;
@@ -227,7 +227,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         String sourceUri = null;
         for (ColladaInput input : this.getInputs())
         {
-            if ("NORMAL".equals(input.getSemantic()))
+            if ("NORMAL".Equals(input.getSemantic()))
             {
                 sourceUri = input.getSource();
                 break;
@@ -257,7 +257,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         String sourceUri = null;
         for (ColladaInput input : this.getInputs())
         {
-            if (semantic.equals(input.getSemantic()))
+            if (semantic.Equals(input.getSemantic()))
             {
                 sourceUri = input.getSource();
                 break;
@@ -275,7 +275,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
     @Override
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals("input"))
+        if (keyName.Equals("input"))
         {
             this.inputs.add((ColladaInput) value);
         }

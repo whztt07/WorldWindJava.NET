@@ -167,21 +167,21 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
                 return false;
             if (Double.compare(this.offset, that.offset) != 0)
                 return false;
-            if (this.append != null ? !this.append.equals(that.append) : that.append != null)
+            if (this.append != null ? !this.append.Equals(that.append) : that.append != null)
                 return false;
-            if (this.attributeName != null ? !this.attributeName.equals(that.attributeName)
+            if (this.attributeName != null ? !this.attributeName.Equals(that.attributeName)
                 : that.attributeName != null)
                 return false;
-            if (this.backgroundColor != null ? !this.backgroundColor.equals(that.backgroundColor)
+            if (this.backgroundColor != null ? !this.backgroundColor.Equals(that.backgroundColor)
                 : that.backgroundColor != null)
                 return false;
-            if (this.color != null ? !this.color.equals(that.color) : that.color != null)
+            if (this.color != null ? !this.color.Equals(that.color) : that.color != null)
                 return false;
-            if (this.font != null ? !this.font.equals(that.font) : that.font != null)
+            if (this.font != null ? !this.font.Equals(that.font) : that.font != null)
                 return false;
-            if (this.offsetAngle != null ? !this.offsetAngle.equals(that.offsetAngle) : that.offsetAngle != null)
+            if (this.offsetAngle != null ? !this.offsetAngle.Equals(that.offsetAngle) : that.offsetAngle != null)
                 return false;
-            if (this.prepend != null ? !this.prepend.equals(that.prepend) : that.prepend != null)
+            if (this.prepend != null ? !this.prepend.Equals(that.prepend) : that.prepend != null)
                 return false;
 
             return true;
@@ -192,15 +192,15 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
         {
             int result;
             long temp;
-            result = this.font != null ? this.font.hashCode() : 0;
-            result = 31 * result + (this.color != null ? this.color.hashCode() : 0);
-            result = 31 * result + (this.backgroundColor != null ? this.backgroundColor.hashCode() : 0);
+            result = this.font != null ? this.font.GetHashCode() : 0;
+            result = 31 * result + (this.color != null ? this.color.GetHashCode() : 0);
+            result = 31 * result + (this.backgroundColor != null ? this.backgroundColor.GetHashCode() : 0);
             temp = this.offset != +0.0d ? BitConverter.DoubleToInt64Bits(this.offset) : 0L;
             result = 31 * result + (int) (temp ^ (temp >>> 32));
-            result = 31 * result + (this.offsetAngle != null ? this.offsetAngle.hashCode() : 0);
-            result = 31 * result + (this.prepend != null ? this.prepend.hashCode() : 0);
-            result = 31 * result + (this.append != null ? this.append.hashCode() : 0);
-            result = 31 * result + (this.attributeName != null ? this.attributeName.hashCode() : 0);
+            result = 31 * result + (this.offsetAngle != null ? this.offsetAngle.GetHashCode() : 0);
+            result = 31 * result + (this.prepend != null ? this.prepend.GetHashCode() : 0);
+            result = 31 * result + (this.append != null ? this.append.GetHashCode() : 0);
+            result = 31 * result + (this.attributeName != null ? this.attributeName.GetHashCode() : 0);
             result = 31 * result + this.abbreviationTableId;
             return result;
         }
@@ -273,7 +273,7 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
     {
         super.copy(attributes);
 
-        if (attributes instanceof VPFSymbolAttributes)
+        if (attributes is VPFSymbolAttributes)
         {
             VPFSymbolAttributes vpfAttrs = (VPFSymbolAttributes) attributes;
             this.featureType = vpfAttrs.getFeatureType();
@@ -387,7 +387,7 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
             return true;
         if (o == null || GetType() != o.GetType())
             return false;
-        if (!super.equals(o))
+        if (!super.Equals(o))
             return false;
 
         VPFSymbolAttributes that = (VPFSymbolAttributes) o;
@@ -398,19 +398,19 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
             return false;
         if (this.mipMapIconImage != that.mipMapIconImage)
             return false;
-        if (this.description != null ? !this.description.equals(that.description) : that.description != null)
+        if (this.description != null ? !this.description.Equals(that.description) : that.description != null)
             return false;
         if (this.featureType != that.featureType)
             return false;
-        if (this.iconImageSource != null ? !this.iconImageSource.equals(that.iconImageSource)
+        if (this.iconImageSource != null ? !this.iconImageSource.Equals(that.iconImageSource)
             : that.iconImageSource != null)
             return false;
-        if (!Arrays.equals(this.labelAttributes, that.labelAttributes))
+        if (!Arrays.Equals(this.labelAttributes, that.labelAttributes))
             return false;
-        if (this.orientationAttributeName != null ? !this.orientationAttributeName.equals(that.orientationAttributeName)
+        if (this.orientationAttributeName != null ? !this.orientationAttributeName.Equals(that.orientationAttributeName)
             : that.orientationAttributeName != null)
             return false;
-        if (this.symbolKey != null ? !this.symbolKey.equals(that.symbolKey) : that.symbolKey != null)
+        if (this.symbolKey != null ? !this.symbolKey.Equals(that.symbolKey) : that.symbolKey != null)
             return false;
 
         return true;
@@ -419,19 +419,19 @@ public class VPFSymbolAttributes extends BasicShapeAttributes
     @Override
     public override int GetHashCode()
     {
-        int result = super.hashCode();
+        int result = super.GetHashCode();
         long temp;
-        result = 31 * result + (this.featureType != null ? this.featureType.hashCode() : 0);
-        result = 31 * result + (this.symbolKey != null ? this.symbolKey.hashCode() : 0);
-        result = 31 * result + (this.iconImageSource != null ? this.iconImageSource.hashCode() : 0);
+        result = 31 * result + (this.featureType != null ? this.featureType.GetHashCode() : 0);
+        result = 31 * result + (this.symbolKey != null ? this.symbolKey.GetHashCode() : 0);
+        result = 31 * result + (this.iconImageSource != null ? this.iconImageSource.GetHashCode() : 0);
         temp = this.iconImageScale != +0.0d ? BitConverter.DoubleToInt64Bits(this.iconImageScale) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + (this.mipMapIconImage ? 1 : 0);
         result = 31 * result + (this.labelAttributes != null ? Arrays.hashCode(this.labelAttributes) : 0);
         temp = this.displayPriority != +0.0d ? BitConverter.DoubleToInt64Bits(this.displayPriority) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (this.orientationAttributeName != null ? this.orientationAttributeName.hashCode() : 0);
-        result = 31 * result + (this.description != null ? this.description.hashCode() : 0);
+        result = 31 * result + (this.orientationAttributeName != null ? this.orientationAttributeName.GetHashCode() : 0);
+        result = 31 * result + (this.description != null ? this.description.GetHashCode() : 0);
         return result;
     }
 }

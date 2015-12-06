@@ -120,13 +120,13 @@ public class BasicFactory implements Factory
 
         try
         {
-            if (configSource instanceof Element)
+            if (configSource is Element)
             {
                 o = this.doCreateFromElement((Element) configSource, parameters);
             }
-            else if (configSource instanceof OGCCapabilities)
+            else if (configSource is OGCCapabilities)
                 o = this.doCreateFromCapabilities((OGCCapabilities) configSource, parameters);
-            else if (configSource instanceof WCS100Capabilities)
+            else if (configSource is WCS100Capabilities)
                 o = this.doCreateFromCapabilities((WCS100Capabilities) configSource, parameters);
             else
             {

@@ -137,7 +137,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         }
 
         if (!this.hasKey(AVKey.COORDINATE_SYSTEM)
-            || AVKey.COORDINATE_SYSTEM_UNKNOWN.equals(this.getValue(AVKey.COORDINATE_SYSTEM))
+            || AVKey.COORDINATE_SYSTEM_UNKNOWN.Equals(this.getValue(AVKey.COORDINATE_SYSTEM))
             )
         {
             this.setValue(AVKey.COORDINATE_SYSTEM, AVKey.COORDINATE_SYSTEM_GEOGRAPHIC);
@@ -315,14 +315,14 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         this.height = (Integer) this.getValue(AVKey.HEIGHT);
 
         Object o = this.getValue(AVKey.GDAL_AREA);
-        this.area = (o != null && o instanceof GDAL.Area) ? (GDAL.Area) o : null;
+        this.area = (o != null && o is GDAL.Area) ? (GDAL.Area) o : null;
 
         String proj = ds.GetProjectionRef();
         proj = (null == proj || 0 == proj.length()) ? ds.GetProjection() : proj;
 
         if ((null == proj || 0 == proj.length())
             && (srcWKT == null || 0 == srcWKT.length())
-            && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(this.getValue(AVKey.COORDINATE_SYSTEM))
+            && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(this.getValue(AVKey.COORDINATE_SYSTEM))
             )
         {   // this is a case where file has GEODETIC GeoTranform matrix but does not have CS or PROJECTION data
             this.srs = GDALUtils.createGeographicSRS();
@@ -553,7 +553,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
 
         Object cs = this.getValue(AVKey.COORDINATE_SYSTEM);
         if (null == cs
-            || (!AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs) && !AVKey.COORDINATE_SYSTEM_PROJECTED.equals(cs)))
+            || (!AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs) && !AVKey.COORDINATE_SYSTEM_PROJECTED.Equals(cs)))
         {
             String msg = (null == cs) ? "generic.UnspecifiedCoordinateSystem" : "generic.UnsupportedCoordinateSystem";
             String reason = Logging.getMessage(msg, cs);
@@ -630,7 +630,7 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
 
                 for (int i = 0; true; i++)
                 {
-                    double scale = Math.pow(2, i);
+                    double scale = Math.Pow(2, i);
                     double h = Math.Floor(this.getHeight() / scale);
                     double w = Math.Floor(this.getWidth() / scale);
                     double ovWidthRes = Math.Abs(extent.getDeltaLonDegrees() / w);
@@ -901,22 +901,22 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
         int destNumOfBands = 4; // RGBA by default
         String pixelFormat = this.getStringValue(AVKey.PIXEL_FORMAT);
         String colorFormat = this.getStringValue(AVKey.IMAGE_COLOR_FORMAT);
-        if (AVKey.ELEVATION.equals(pixelFormat))
+        if (AVKey.ELEVATION.Equals(pixelFormat))
         {
             destNumOfBands = 1;
             bandColorInt = new int[] {gdalconst.GCI_GrayIndex};
         }
-        else if (AVKey.IMAGE.equals(pixelFormat) && AVKey.GRAYSCALE.equals(colorFormat))
+        else if (AVKey.IMAGE.Equals(pixelFormat) && AVKey.GRAYSCALE.Equals(colorFormat))
         {
             bandColorInt = new int[] {gdalconst.GCI_GrayIndex, gdalconst.GCI_AlphaBand};
             destNumOfBands = 2; // Y + alpha
         }
-        else if (AVKey.IMAGE.equals(pixelFormat) && AVKey.COLOR.equals(colorFormat))
+        else if (AVKey.IMAGE.Equals(pixelFormat) && AVKey.COLOR.Equals(colorFormat))
         {
             bandColorInt = new int[] {
                 gdalconst.GCI_RedBand, gdalconst.GCI_GreenBand, gdalconst.GCI_BlueBand, gdalconst.GCI_AlphaBand};
 
-            if (AVKey.INT16.equals(this.getValue(AVKey.DATA_TYPE)) && srcNumOfBands > 3)
+            if (AVKey.INT16.Equals(this.getValue(AVKey.DATA_TYPE)) && srcNumOfBands > 3)
             {
                 destNumOfBands = 3; // ignore 4th band which is some kind of infra-red
             }
@@ -1071,9 +1071,9 @@ public class GDALDataRaster extends AbstractDataRaster implements Cacheable
                 roiParams.setValue(AVKey.HEIGHT, roiHeight);
 
                 if (null == roiSector
-                    || Sector.EMPTY_SECTOR.equals(roiSector)
+                    || Sector.EMPTY_SECTOR.Equals(roiSector)
                     || !this.hasKey(AVKey.COORDINATE_SYSTEM)
-                    || AVKey.COORDINATE_SYSTEM_UNKNOWN.equals(this.getValue(AVKey.COORDINATE_SYSTEM))
+                    || AVKey.COORDINATE_SYSTEM_UNKNOWN.Equals(this.getValue(AVKey.COORDINATE_SYSTEM))
                     )
                 {
                     // return the entire data raster

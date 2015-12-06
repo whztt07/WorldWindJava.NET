@@ -166,11 +166,11 @@ public class Offset
         if (this.getX() != null)
         {
             String units = this.getXUnits();
-            if (AVKey.PIXELS.equals(units))
+            if (AVKey.PIXELS.Equals(units))
                 dx = this.getX();
-            else if (AVKey.INSET_PIXELS.equals(units))
+            else if (AVKey.INSET_PIXELS.Equals(units))
                 dx = width - this.getX();
-            else if (AVKey.FRACTION.equals(units))
+            else if (AVKey.FRACTION.Equals(units))
                 dx = (width * this.getX());
             else
                 dx = this.getX(); // treat as pixels
@@ -179,11 +179,11 @@ public class Offset
         if (this.getY() != null)
         {
             String units = this.getYUnits();
-            if (AVKey.PIXELS.equals(units))
+            if (AVKey.PIXELS.Equals(units))
                 dy = this.getY();
-            else if (AVKey.INSET_PIXELS.equals(units))
+            else if (AVKey.INSET_PIXELS.Equals(units))
                 dy = height - this.getY();
-            else if (AVKey.FRACTION.equals(units))
+            else if (AVKey.FRACTION.Equals(units))
                 dy = (height * this.getY());
             else
                 dy = this.getY(); // treat as pixels
@@ -277,14 +277,14 @@ public class Offset
 
         Offset that = (Offset) o;
 
-        if (this.x != null ? !this.x.equals(that.x) : that.x != null)
+        if (this.x != null ? !this.x.Equals(that.x) : that.x != null)
             return false;
-        if (this.y != null ? !this.y.equals(that.y) : that.y != null)
+        if (this.y != null ? !this.y.Equals(that.y) : that.y != null)
             return false;
-        if (this.xUnits != null ? !this.xUnits.equals(that.xUnits) : that.xUnits != null)
+        if (this.xUnits != null ? !this.xUnits.Equals(that.xUnits) : that.xUnits != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.yUnits != null ? !this.yUnits.equals(that.yUnits) : that.yUnits != null)
+        if (this.yUnits != null ? !this.yUnits.Equals(that.yUnits) : that.yUnits != null)
             return false;
 
         return true;
@@ -293,10 +293,10 @@ public class Offset
     @Override
     public override int GetHashCode()
     {
-        int result = this.x != null ? this.x.hashCode() : 0;
-        result = 31 * result + (this.y != null ? this.y.hashCode() : 0);
-        result = 31 * result + (this.xUnits != null ? this.xUnits.hashCode() : 0);
-        result = 31 * result + (this.yUnits != null ? this.yUnits.hashCode() : 0);
+        int result = this.x != null ? this.x.GetHashCode() : 0;
+        result = 31 * result + (this.y != null ? this.y.GetHashCode() : 0);
+        result = 31 * result + (this.xUnits != null ? this.xUnits.GetHashCode() : 0);
+        result = 31 * result + (this.yUnits != null ? this.yUnits.GetHashCode() : 0);
         return result;
     }
 }

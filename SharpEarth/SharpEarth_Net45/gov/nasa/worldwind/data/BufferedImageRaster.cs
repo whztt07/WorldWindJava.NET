@@ -92,7 +92,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (!(canvas instanceof BufferedImageRaster))
+        if (!(canvas is BufferedImageRaster))
         {
             String message = Logging.getMessage("DataRaster.IncompatibleRaster", canvas);
             Logging.logger().severe(message);
@@ -442,7 +442,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         if (params.hasKey(AVKey.SECTOR))
         {
             Object o = parameters.getValue(AVKey.SECTOR);
-            if (o instanceof Sector)
+            if (o is Sector)
             {
                 sector = (Sector) o;
             }
@@ -513,7 +513,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         String cs = parameters.getStringValue(AVKey.COORDINATE_SYSTEM);
         if (!params.hasKey(AVKey.PROJECTION_EPSG_CODE))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 // assume WGS84
                 parameters.setValue(AVKey.PROJECTION_EPSG_CODE, GeoTiff.GCS.WGS_84);
@@ -530,7 +530,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         // will have different pixel size
         if (!params.hasKey(AVKey.PIXEL_WIDTH))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 double pixelWidth = sector.getDeltaLonDegrees() / (double) image.getWidth();
                 parameters.setValue(AVKey.PIXEL_WIDTH, pixelWidth);
@@ -547,7 +547,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         // because UTM images will have different pixel size
         if (!params.hasKey(AVKey.PIXEL_HEIGHT))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 double pixelHeight = sector.getDeltaLatDegrees() / (double) image.getHeight();
                 parameters.setValue(AVKey.PIXEL_HEIGHT, pixelHeight);
@@ -564,7 +564,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
         {
             parameters.setValue(AVKey.PIXEL_FORMAT, AVKey.IMAGE);
         }
-        else if (!AVKey.IMAGE.equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
+        else if (!AVKey.IMAGE.Equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
         {
             String msg = Logging.getMessage("generic.UnknownValueForKey",
                 parameters.getStringValue(AVKey.PIXEL_FORMAT), AVKey.PIXEL_FORMAT);
@@ -572,7 +572,7 @@ public class BufferedImageRaster extends AbstractDataRaster implements Cacheable
             throw new ArgumentException(msg);
         }
 
-        if (!params.hasKey(AVKey.ORIGIN) && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+        if (!params.hasKey(AVKey.ORIGIN) && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
         {
             // set UpperLeft corner as the origin, if not specified
             LatLon origin = new LatLon(sector.getMaxLatitude(), sector.getMinLongitude());

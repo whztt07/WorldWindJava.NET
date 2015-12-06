@@ -118,9 +118,9 @@ public class BlockDXT3Compressor
         // Quantizes an 8 bit alpha value into 4 bits. To reduce rounding error, this will compare the three nearest
         // 4 bit values and choose the closest one.
 
-        int q0 = Math.max((alpha8 >> 4) - 1, 0);
+        int q0 = Math.Max((alpha8 >> 4) - 1, 0);
         int q1 = (alpha8 >> 4);
-        int q2 = Math.min((alpha8 >> 4) + 1, 0xF);
+        int q2 = Math.Min((alpha8 >> 4) + 1, 0xF);
 
         q0 = (q0 << 4) | q0;
         q1 = (q1 << 4) | q1;

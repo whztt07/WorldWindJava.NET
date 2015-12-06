@@ -635,9 +635,9 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
             {
                 if (po == null)
                     continue;
-                if (po.getPickPoint().equals(dc.getPickPoint()))
+                if (po.getPickPoint().Equals(dc.getPickPoint()))
                     dc.addPickedObject(po);
-                else if (po.getPickPoint().equals(vpc))
+                else if (po.getPickPoint().Equals(vpc))
                     dc.setViewportCenterPosition((Position) po.getObject());
             }
         }
@@ -1007,7 +1007,7 @@ public abstract class AbstractSceneController extends WWObjectImpl implements Sc
             try
             {
                 OrderedRenderable or = dc.getOrderedSurfaceRenderables().poll();
-                if (or instanceof PreRenderable)
+                if (or is PreRenderable)
                     ((PreRenderable) or).preRender(dc);
             }
             catch (Exception e)

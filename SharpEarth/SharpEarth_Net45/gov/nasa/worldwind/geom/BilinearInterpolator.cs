@@ -4,6 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
+using System;
+
 namespace SharpEarth.geom{
 
 
@@ -22,7 +24,7 @@ public class BilinearInterpolator
     {
         if (ll == null || lr == null || ur == null || ul == null)
         {
-            String message = Logging.getMessage("nullValue.Vec4IsNull");
+            string message = Logging.getMessage("nullValue.Vec4IsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -42,13 +44,13 @@ public class BilinearInterpolator
     {
         if (compArray == null)
         {
-            String message = Logging.getMessage("nullValue.ArrayIsNull");
+            string message = Logging.getMessage("nullValue.ArrayIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (compArray.length < 1)
+        if (compArray.Length < 1)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", compArray.length);
+            string message = Logging.getMessage("generic.ArrayInvalidLength", compArray.Length);
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -58,10 +60,10 @@ public class BilinearInterpolator
         double pur = u         * v;
         double pul = (1.0 - u) * v;
 
-        compArray[0] = (pll * ll.x) + (plr * lr.x) + (pur * ur.x) + (pul * ul.x);
-        compArray[1] = (pll * ll.y) + (plr * lr.y) + (pur * ur.y) + (pul * ul.y);
-        compArray[2] = (pll * ll.z) + (plr * lr.z) + (pur * ur.z) + (pul * ul.z);
-        compArray[3] = (pll * ll.w) + (plr * lr.w) + (pur * ur.w) + (pul * ul.w);
+        compArray[0] = (pll * ll.x()) + (plr * lr.x()) + (pur * ur.x()) + (pul * ul.x());
+        compArray[1] = (pll * ll.y()) + (plr * lr.y()) + (pur * ur.y()) + (pul * ul.y());
+        compArray[2] = (pll * ll.z()) + (plr * lr.z()) + (pur * ur.z()) + (pul * ul.z());
+        compArray[3] = (pll * ll.w()) + (plr * lr.w()) + (pur * ur.w()) + (pul * ul.w());
     }
 
     public Vec4 interpolateAsPoint(double u, double v)

@@ -37,7 +37,7 @@ public class KMLDelete extends AbstractXMLEventParser implements KMLUpdateOperat
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractFeature)
+        if (o is KMLAbstractFeature)
             this.addFeature((KMLAbstractFeature) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -62,13 +62,13 @@ public class KMLDelete extends AbstractXMLEventParser implements KMLUpdateOperat
                 continue;
 
             Object o = targetRoot.getItemByID(targetId);
-            if (o == null || !(o instanceof KMLAbstractFeature))
+            if (o == null || !(o is KMLAbstractFeature))
                 continue;
 
             KMLAbstractFeature featureToDelete = (KMLAbstractFeature) o;
 
             Object p = featureToDelete.getParent();
-            if (!(p instanceof KMLAbstractContainer))
+            if (!(p is KMLAbstractContainer))
                 continue;
 
             ((KMLAbstractContainer) p).removeFeature(featureToDelete);

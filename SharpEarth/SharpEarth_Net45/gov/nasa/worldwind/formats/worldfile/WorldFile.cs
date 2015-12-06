@@ -24,13 +24,13 @@ namespace SharpEarth.formats.worldfile{
  */
 public class WorldFile
 {
-    public final static String WORLD_FILE_X_PIXEL_SIZE = "gov.nasa.worldwind.worldFile.XPixelSize";
-    public final static String WORLD_FILE_Y_PIXEL_SIZE = "gov.nasa.worldwind.worldFile.YPixelSize";
-    public final static String WORLD_FILE_X_COEFFICIENT = "gov.nasa.worldwind.worldFile.XCoefficient";
-    public final static String WORLD_FILE_Y_COEFFICIENT = "gov.nasa.worldwind.worldFile.YCoefficient";
-    public final static String WORLD_FILE_X_LOCATION = "gov.nasa.worldwind.worldFile.XLocation";
-    public final static String WORLD_FILE_Y_LOCATION = "gov.nasa.worldwind.worldFile.YLocation";
-    public final static String WORLD_FILE_IMAGE_SIZE = "gov.nasa.worldwind.worldFile.ImageSize";
+    public readonly static string WORLD_FILE_X_PIXEL_SIZE = "gov.nasa.worldwind.worldFile.XPixelSize";
+    public readonly static string WORLD_FILE_Y_PIXEL_SIZE = "gov.nasa.worldwind.worldFile.YPixelSize";
+    public readonly static string WORLD_FILE_X_COEFFICIENT = "gov.nasa.worldwind.worldFile.XCoefficient";
+    public readonly static string WORLD_FILE_Y_COEFFICIENT = "gov.nasa.worldwind.worldFile.YCoefficient";
+    public readonly static string WORLD_FILE_X_LOCATION = "gov.nasa.worldwind.worldFile.XLocation";
+    public readonly static string WORLD_FILE_Y_LOCATION = "gov.nasa.worldwind.worldFile.YLocation";
+    public readonly static string WORLD_FILE_IMAGE_SIZE = "gov.nasa.worldwind.worldFile.ImageSize";
 
     /**
      * Retrieve the metadata files corresponding to a specified image or elevation file.
@@ -143,7 +143,7 @@ public class WorldFile
 
         int[] size;
         Object o = values.getValue(WORLD_FILE_IMAGE_SIZE);
-        if (o != null && (o instanceof int[]))
+        if (o != null && (o is int[]))
         {
             size = (int[]) o;
         }
@@ -457,25 +457,25 @@ public class WorldFile
         double yPixelSize;
 
         Object o = values.getValue(WORLD_FILE_X_LOCATION);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             xLocation = (Double) o;
         else
             return false;
 
         o = values.getValue(WORLD_FILE_Y_LOCATION);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             yLocation = (Double) o;
         else
             return false;
 
         o = values.getValue(WORLD_FILE_X_PIXEL_SIZE);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             xPixelSize = (Double) o;
         else
             return false;
 
         o = values.getValue(WORLD_FILE_Y_PIXEL_SIZE);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             yPixelSize = (Double) o;
         else
             return false;
@@ -750,7 +750,7 @@ public class WorldFile
             throw new ArgumentException(message);
         }
 
-        if (!AVKey.NORTH.equals(hemisphere) && !AVKey.SOUTH.equals(hemisphere))
+        if (!AVKey.NORTH.Equals(hemisphere) && !AVKey.SOUTH.Equals(hemisphere))
         {
             String msg = Logging.getMessage("generic.HemisphereIsInvalid", hemisphere);
             Logging.logger().severe(msg);
@@ -963,7 +963,7 @@ public class WorldFile
 
         // Translate the property WORLD_FILE_IMAGE_SIZE to separate properties WIDTH and HEIGHT.
         Object o = parameters.getValue(WorldFile.WORLD_FILE_IMAGE_SIZE);
-        if (o != null && o instanceof int[])
+        if (o != null && o is int[])
         {
             int[] size = (int[]) o;
 

@@ -128,7 +128,7 @@ public class PickedObject : AVListImpl
         if (isOnTop != that.isOnTop)
             return false;
         //noinspection RedundantIfStatement
-        if (userObject != null ? !userObject.equals(that.userObject) : that.userObject != null)
+        if (userObject != null ? !userObject.Equals(that.userObject) : that.userObject != null)
             return false;
 
         return true;
@@ -138,7 +138,7 @@ public class PickedObject : AVListImpl
     {
         int result;
         result = colorCode;
-        result = 31 * result + (userObject != null ? userObject.hashCode() : 0);
+        result = 31 * result + (userObject != null ? userObject.GetHashCode() : 0);
         result = 31 * result + (isOnTop ? 1 : 0);
         return result;
     }

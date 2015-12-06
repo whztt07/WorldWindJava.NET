@@ -514,7 +514,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
     public void getRestorableStateForAVPair(String key, Object value,
         RestorableSupport rs, RestorableSupport.StateObject context)
     {
-        if (value instanceof URLBuilder)
+        if (value is URLBuilder)
         {
             rs.addStateValueAsString(context, "wms.Version", ((URLBuilder) value).wmsVersion);
             rs.addStateValueAsString(context, "wms.Crs", ((URLBuilder) value).crs);

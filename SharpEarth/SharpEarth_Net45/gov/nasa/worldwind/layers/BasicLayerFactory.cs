@@ -125,7 +125,7 @@ public class BasicLayerFactory extends BasicFactory
             return this.createFromLayerDocument(elements[0], parameters);
 
         String localName = WWXML.getUnqualifiedName(domElement);
-        if (localName != null && localName.equals("Layer"))
+        if (localName != null && localName.Equals("Layer"))
             return this.createFromLayerDocument(domElement, parameters);
 
         return null;
@@ -158,20 +158,20 @@ public class BasicLayerFactory extends BasicFactory
                     if (o == null)
                         continue;
 
-                    if (o instanceof Layer)
+                    if (o is Layer)
                     {
                         LayerList ll = new LayerList();
                         ll.add((Layer) o);
                         o = ll;
                     }
 
-                    if (o instanceof LayerList)
+                    if (o is LayerList)
                     {
                         LayerList list = (LayerList) o;
                         if (list != null && list.size() > 0)
                             layerLists.add(list);
                     }
-                    else if (o instanceof LayerList[])
+                    else if (o is LayerList[])
                     {
                         LayerList[] lists = (LayerList[]) o;
                         if (lists != null && lists.length > 0)
@@ -259,7 +259,7 @@ public class BasicLayerFactory extends BasicFactory
         {
             Layer layer = (Layer) WorldWind.createComponent(className);
             String actuate = WWXML.getText(domElement, "@actuate");
-            layer.setEnabled(WWUtil.isEmpty(actuate) || actuate.equals("onLoad"));
+            layer.setEnabled(WWUtil.isEmpty(actuate) || actuate.Equals("onLoad"));
             WWXML.invokePropertySetters(layer, domElement);
             return layer;
         }
@@ -280,7 +280,7 @@ public class BasicLayerFactory extends BasicFactory
             if (o == null)
                 return null;
 
-            if (!(o instanceof Layer))
+            if (!(o is Layer))
             {
                 String msg = Logging.getMessage("LayerFactory.UnexpectedTypeForLayer", o.GetType().Name);
                 throw new WWRuntimeException(msg);
@@ -291,11 +291,11 @@ public class BasicLayerFactory extends BasicFactory
         else
         {
             String layerType = WWXML.getText(domElement, "@layerType");
-            if (layerType != null && layerType.equals("TiledImageLayer"))
+            if (layerType != null && layerType.Equals("TiledImageLayer"))
             {
                 layer = this.createTiledImageLayer(domElement, parameters);
             }
-            else if (layerType != null && layerType.equals("ShapefileLayer"))
+            else if (layerType != null && layerType.Equals("ShapefileLayer"))
             {
                 layer = this.createShapefileLayer(domElement, parameters);
             }
@@ -309,7 +309,7 @@ public class BasicLayerFactory extends BasicFactory
         if (layer != null)
         {
             String actuate = WWXML.getText(domElement, "@actuate");
-            layer.setEnabled(actuate != null && actuate.equals("onLoad"));
+            layer.setEnabled(actuate != null && actuate.Equals("onLoad"));
             WWXML.invokePropertySetters(layer, domElement);
         }
 
@@ -334,19 +334,19 @@ public class BasicLayerFactory extends BasicFactory
 
         String serviceName = WWXML.getText(domElement, "Service/@serviceName");
 
-        if ("Offline".equals(serviceName))
+        if ("Offline".Equals(serviceName))
         {
             layer = new BasicTiledImageLayer(domElement, parameters);
         }
-        else if ("WWTileService".equals(serviceName))
+        else if ("WWTileService".Equals(serviceName))
         {
             layer = new BasicTiledImageLayer(domElement, parameters);
         }
-        else if (OGCConstants.WMS_SERVICE_NAME.equals(serviceName))
+        else if (OGCConstants.WMS_SERVICE_NAME.Equals(serviceName))
         {
             layer = new WMSTiledImageLayer(domElement, parameters);
         }
-        else if (AVKey.SERVICE_NAME_LOCAL_RASTER_SERVER.equals(serviceName))
+        else if (AVKey.SERVICE_NAME_LOCAL_RASTER_SERVER.Equals(serviceName))
         {
             layer = new LocalRasterServerLayer(domElement, parameters);
         }
@@ -360,7 +360,7 @@ public class BasicLayerFactory extends BasicFactory
 //        System.out.println(name);
 
         String actuate = WWXML.getText(domElement, "@actuate");
-        layer.setEnabled(actuate != null && actuate.equals("onLoad"));
+        layer.setEnabled(actuate != null && actuate.Equals("onLoad"));
 
         return layer;
     }

@@ -37,7 +37,7 @@ public class WMSLayerIdentifier extends AbstractXMLEventParser
         while (iter.hasNext())
         {
             Attribute attr = (Attribute) iter.next();
-            if (attr.getName().getLocalPart().equals("authority") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("authority") && attr.getValue() != null)
                 this.setAuthority(attr.getValue());
         }
     }

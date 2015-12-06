@@ -59,15 +59,15 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractView)
+        if (o is KMLAbstractView)
             this.setView((KMLAbstractView) o);
-        else if (o instanceof KMLAbstractTimePrimitive)
+        else if (o is KMLAbstractTimePrimitive)
             this.setTimePrimitive((KMLAbstractTimePrimitive) o);
-        else if (o instanceof KMLAbstractStyleSelector)
+        else if (o is KMLAbstractStyleSelector)
             this.addStyleSelector((KMLAbstractStyleSelector) o);
-        else if (o instanceof KMLRegion)
+        else if (o is KMLRegion)
             this.setRegion((KMLRegion) o);
-        else if (o instanceof Boolean && event.asStartElement().getName().getLocalPart().equalsIgnoreCase("visibility"))
+        else if (o is Boolean && event.asStartElement().getName().getLocalPart().equalsIgnoreCase("visibility"))
             this.setVisibility((Boolean) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -388,7 +388,7 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractFeature))
+        if (!(sourceValues is KMLAbstractFeature))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
@@ -433,7 +433,7 @@ public abstract class KMLAbstractFeature extends KMLAbstractObject implements KM
                 for (KMLAbstractStyleSelector existingSelector : styleSelectorsCopy)
                 {
                     String currentId = existingSelector.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                     {
                         this.getStyleSelectors().remove(existingSelector);
                     }

@@ -415,11 +415,11 @@ public class OGLUtil
         // Add the number of pixels from each level in the mipmap chain to the total number of pixels.
         if (includeMipmaps)
         {
-            int maxLevel = Math.max((int) WWMath.LogBase2(width), (int) WWMath.LogBase2(height));
+            int maxLevel = Math.Max((int) WWMath.LogBase2(width), (int) WWMath.LogBase2(height));
             for (int level = 1; level <= maxLevel; level++)
             {
-                int w = Math.max(width >> level, 1);
-                int h = Math.max(height >> level, 1);
+                int w = Math.Max(width >> level, 1);
+                int h = Math.Max(height >> level, 1);
                 numPixels += w * h;
             }
         }
@@ -549,7 +549,7 @@ public class OGLUtil
     public static TextureData newTextureData(GLProfile glp, InputStream stream, bool useMipMaps) throws IOException
     {
         // Wrap stream in BufferedInputStream so that DDS detection will work. This is a work around for JOGL issue 4764639/4892246.
-        if (!(stream instanceof BufferedInputStream))
+        if (!(stream is BufferedInputStream))
         {
             stream = new BufferedInputStream(stream);
         }

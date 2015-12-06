@@ -6,6 +6,9 @@
 using java.util;
 using SharpEarth.util;
 using SharpEarth.globes;
+using System.Collections.Generic;
+using System;
+
 namespace SharpEarth.geom{
 
 
@@ -16,9 +19,9 @@ namespace SharpEarth.geom{
  */
 public class Position : LatLon
 {
-    public static final Position ZERO = new Position(Angle.ZERO, Angle.ZERO, 0d);
+    public static readonly Position ZERO = new Position(Angle.ZERO, Angle.ZERO, 0d);
 
-    public final double elevation;
+    public readonly double elevation;
 
     public static Position fromRadians(double latitude, double longitude, double elevation)
     {
@@ -36,23 +39,23 @@ public class Position : LatLon
     }
 
     public Position(Angle latitude, Angle longitude, double elevation)
+        : base( latitude, longitude)
     {
-        super(latitude, longitude);
-        this.elevation = elevation;
+      this.elevation = elevation;
     }
 
     public Position(LatLon latLon, double elevation)
+        :base(latLon)
     {
-        super(latLon);
-        this.elevation = elevation;
+      this.elevation = elevation;
     }
 
     // A class that makes it easier to pass around position lists.
-    public static class PositionList
+    public class PositionList
     {
-        public List<? extends Position> list;
+        public List<Position> list;
 
-        public PositionList(List<? extends Position> list)
+        public PositionList(List<Position> list)
         {
             this.list = list;
         }
@@ -198,7 +201,7 @@ public class Position : LatLon
         return new Position(latLon, elevation);
     }
 
-    public static bool positionsCrossDateLine(Iterable<? extends Position> positions)
+    public static bool positionsCrossDateLine(IEnumerable<Position> positions)
     {
         if (positions == null)
         {
@@ -208,7 +211,7 @@ public class Position : LatLon
         }
 
         Position pos = null;
-        for (Position posNext : positions)
+        foreach (Position posNext in positions)
         {
             if (pos != null)
             {
@@ -239,7 +242,7 @@ public class Position : LatLon
      * @throws ArgumentException if any argument is null.
      */
     public static List<Position> computeShiftedPositions(Position oldPosition, Position newPosition,
-        Iterable<? extends Position> positions)
+        IEnumerable<Position> positions)
     {
         // TODO: Account for dateline spanning
         if (oldPosition == null || newPosition == null)
@@ -256,25 +259,25 @@ public class Position : LatLon
             throw new ArgumentException(msg);
         }
 
-        ArrayList<Position> newPositions = new ArrayList<Position>();
+        List<Position> newPositions = new List<Position>();
 
         double elevDelta = newPosition.getElevation() - oldPosition.getElevation();
 
-        for (Position pos : positions)
+        foreach (Position pos in positions)
         {
             Angle distance = LatLon.greatCircleDistance(oldPosition, pos);
             Angle azimuth = LatLon.greatCircleAzimuth(oldPosition, pos);
             LatLon newLocation = LatLon.greatCircleEndPosition(newPosition, azimuth, distance);
             double newElev = pos.getElevation() + elevDelta;
 
-            newPositions.add(new Position(newLocation, newElev));
+            newPositions.Add(new Position(newLocation, newElev));
         }
 
         return newPositions;
     }
 
     public static List<Position> computeShiftedPositions(Globe globe, Position oldPosition, Position newPosition,
-        Iterable<? extends Position> positions)
+        IEnumerable<Position> positions)
     {
         if (globe == null)
         {
@@ -297,52 +300,50 @@ public class Position : LatLon
             throw new ArgumentException(msg);
         }
 
-        ArrayList<Position> newPositions = new ArrayList<Position>();
+        List<Position> newPositions = new List<Position>();
 
         double elevDelta = newPosition.getElevation() - oldPosition.getElevation();
         Vec4 oldPoint = globe.computePointFromPosition(oldPosition);
         Vec4 newPoint = globe.computePointFromPosition(newPosition);
         Vec4 delta = newPoint.subtract3(oldPoint);
 
-        for (Position pos : positions)
+        foreach (Position pos in positions)
         {
             Vec4 point = globe.computePointFromPosition(pos);
             point = point.add3(delta);
             Position newPos = globe.computePositionFromPoint(point);
             double newElev = pos.getElevation() + elevDelta;
 
-            newPositions.add(new Position(newPos, newElev));
+            newPositions.Add(new Position(newPos, newElev));
         }
 
         return newPositions;
     }
 
-    @Override
     public override bool Equals(Object o)
     {
         if (this == o)
             return true;
         if (o == null || GetType() != o.GetType())
             return false;
-        if (!super.equals(o))
+        if (!base.Equals(o))
             return false;
 
         Position position = (Position) o;
 
         //noinspection RedundantIfStatement
-        if (Double.compare(position.elevation, elevation) != 0)
+        if (position.elevation.CompareTo(elevation) != 0)
             return false;
 
         return true;
     }
-
-    @Override
+    
     public override int GetHashCode()
     {
-        int result = super.hashCode();
-        long temp;
-        temp = elevation != +0.0d ? BitConverter.DoubleToInt64Bits(elevation) : 0L;
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        int result = base.GetHashCode();
+        ulong temp;
+        temp = (ulong) (elevation != +0.0d ? BitConverter.DoubleToInt64Bits(elevation) : 0L);
+        result = 31 * result + (int) (temp ^ (temp >> 32));
         return result;
     }
 

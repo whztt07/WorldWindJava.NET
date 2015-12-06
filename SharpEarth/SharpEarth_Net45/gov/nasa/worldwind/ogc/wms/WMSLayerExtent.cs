@@ -40,13 +40,13 @@ public class WMSLayerExtent extends AbstractXMLEventParser
         while (iter.hasNext())
         {
             Attribute attr = (Attribute) iter.next();
-            if (attr.getName().getLocalPart().equals("name") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("name") && attr.getValue() != null)
                 this.setName(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("default") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("default") && attr.getValue() != null)
                 this.setDefaultValue(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("nearestValue") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("nearestValue") && attr.getValue() != null)
             {
                 Boolean d = WWUtil.convertStringToBoolean(attr.getValue());
                 if (d != null)

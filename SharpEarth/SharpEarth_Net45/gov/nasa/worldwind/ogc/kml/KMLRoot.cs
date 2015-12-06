@@ -107,13 +107,13 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
             throw new ArgumentException(message);
         }
 
-        if (docSource instanceof File)
+        if (docSource is File)
             return new KMLRoot((File) docSource, namespaceAware);
-        else if (docSource instanceof URL)
+        else if (docSource is URL)
             return new KMLRoot((URL) docSource, null, namespaceAware);
-        else if (docSource instanceof InputStream)
+        else if (docSource is InputStream)
             return new KMLRoot((InputStream) docSource, null, namespaceAware);
-        else if (docSource instanceof String)
+        else if (docSource is String)
         {
             File file = new File((String) docSource);
             if (file.exists())
@@ -311,9 +311,9 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
             throw new ArgumentException(message);
         }
 
-        if (contentType != null && contentType.equals(KMLConstants.KMZ_MIME_TYPE))
+        if (contentType != null && contentType.Equals(KMLConstants.KMZ_MIME_TYPE))
             this.kmlDoc = new KMZInputStream(docSource);
-        else if (contentType == null && docSource instanceof ZipInputStream)
+        else if (contentType == null && docSource is ZipInputStream)
             this.kmlDoc = new KMZInputStream(docSource);
         else
             this.kmlDoc = new KMLInputStream(docSource, null);
@@ -371,10 +371,10 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
         if (contentType == null)
             contentType = conn.getContentType();
 
-        if (!(KMLConstants.KMZ_MIME_TYPE.equals(contentType) || KMLConstants.KML_MIME_TYPE.equals(contentType)))
+        if (!(KMLConstants.KMZ_MIME_TYPE.Equals(contentType) || KMLConstants.KML_MIME_TYPE.Equals(contentType)))
             contentType = WWIO.makeMimeTypeForSuffix(WWIO.getSuffix(docSource.getPath()));
 
-        if (KMLConstants.KMZ_MIME_TYPE.equals(contentType))
+        if (KMLConstants.KMZ_MIME_TYPE.Equals(contentType))
             this.kmlDoc = new KMZInputStream(conn.getInputStream());
         else
             this.kmlDoc = new KMLInputStream(conn.getInputStream(), WWIO.makeURI(docSource));
@@ -644,7 +644,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
 
             // See if it's an already found and parsed KML file.
             Object o = WorldWind.getSessionCache().get(path);
-            if (o != null && o instanceof KMLRoot)
+            if (o != null && o is KMLRoot)
                 return linkRef != null ? ((KMLRoot) o).getItemByID(linkRef) : o;
 
             URL url = WWIO.makeURL(path);
@@ -906,7 +906,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
             if (cacheRemoteFile)
             {
                 o = WorldWind.getSessionCache().get(path);
-                if (o instanceof KMLRoot)
+                if (o is KMLRoot)
                     return o;
             }
 
@@ -1021,8 +1021,8 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
      */
     protected bool canParseContentType(String mimeType)
     {
-        return KMLConstants.KML_MIME_TYPE.equals(mimeType) || KMLConstants.KMZ_MIME_TYPE.equals(mimeType)
-            || "text/plain".equals(mimeType) || "text/xml".equals(mimeType);
+        return KMLConstants.KML_MIME_TYPE.Equals(mimeType) || KMLConstants.KMZ_MIME_TYPE.Equals(mimeType)
+            || "text/plain".Equals(mimeType) || "text/xml".Equals(mimeType);
     }
 
     /**
@@ -1045,7 +1045,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
 
         InputStream refStream = url.openStream();
 
-        if (KMLConstants.KMZ_MIME_TYPE.equals(contentType))
+        if (KMLConstants.KMZ_MIME_TYPE.Equals(contentType))
             kmlDoc = new KMZInputStream(refStream);
         else // Attempt to parse as KML
             kmlDoc = new KMLInputStream(refStream, WWIO.makeURI(linkBase));
@@ -1086,7 +1086,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
                     continue;
 
                 // Allow a <kml> element in any namespace
-                if (event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("kml"))
+                if (event.isStartElement() && event.asStartElement().getName().getLocalPart().Equals("kml"))
                 {
                     super.parse(ctx, event, args);
                     return this;
@@ -1182,7 +1182,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
 
         for (Map.Entry<String, Object> entry : this.getFields().getEntries())
         {
-            if (entry.getValue() instanceof KMLAbstractFeature)
+            if (entry.getValue() is KMLAbstractFeature)
                 return (KMLAbstractFeature) entry.getValue();
         }
 

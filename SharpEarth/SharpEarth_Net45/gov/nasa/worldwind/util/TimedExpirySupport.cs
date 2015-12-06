@@ -40,8 +40,8 @@ public class TimedExpirySupport
      */
     public TimedExpirySupport(long minExpiryTime, long maxExpiryTime)
     {
-        this.minExpiryTime = Math.max(minExpiryTime, 0);
-        this.maxExpiryTime = Math.max(maxExpiryTime, 0);
+        this.minExpiryTime = Math.Max(minExpiryTime, 0);
+        this.maxExpiryTime = Math.Max(maxExpiryTime, 0);
     }
 
     /**
@@ -84,8 +84,8 @@ public class TimedExpirySupport
      */
     public void setExpiryTime(long minExpiryTime, long maxExpiryTime)
     {
-        this.minExpiryTime = Math.max(minExpiryTime, 0);
-        this.maxExpiryTime = Math.max(maxExpiryTime, 0);
+        this.minExpiryTime = Math.Max(minExpiryTime, 0);
+        this.maxExpiryTime = Math.Max(maxExpiryTime, 0);
     }
 
     /**

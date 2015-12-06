@@ -741,7 +741,7 @@ public class AnnotationAttributes implements Restorable
     public String getPath()
     {
         Object imageSource = this.getImageSource();
-        return (imageSource instanceof String) ? (String) imageSource : null;
+        return (imageSource is String) ? (String) imageSource : null;
     }
 
     /**

@@ -449,16 +449,16 @@ public class SurfaceQuad extends AbstractSurfaceShape implements Exportable
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }

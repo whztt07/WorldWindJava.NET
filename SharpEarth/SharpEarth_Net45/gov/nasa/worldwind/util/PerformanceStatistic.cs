@@ -77,12 +77,12 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
 
         PerformanceStatistic that = (PerformanceStatistic) o;
 
-        if (displayString != null ? !displayString.equals(that.displayString) : that.displayString != null)
+        if (displayString != null ? !displayString.Equals(that.displayString) : that.displayString != null)
             return false;
-        if (key != null ? !key.equals(that.key) : that.key != null)
+        if (key != null ? !key.Equals(that.key) : that.key != null)
             return false;
         //noinspection RedundantIfStatement
-        if (value != null ? !value.equals(that.value) : that.value != null)
+        if (value != null ? !value.Equals(that.value) : that.value != null)
             return false;
 
         return true;
@@ -91,9 +91,9 @@ public class PerformanceStatistic implements Comparable<PerformanceStatistic>
     public override int GetHashCode()
     {
         int result;
-        result = (key != null ? key.hashCode() : 0);
-        result = 31 * result + (displayString != null ? displayString.hashCode() : 0);
-        result = 31 * result + (value != null ? value.hashCode() : 0);
+        result = (key != null ? key.GetHashCode() : 0);
+        result = 31 * result + (displayString != null ? displayString.GetHashCode() : 0);
+        result = 31 * result + (value != null ? value.GetHashCode() : 0);
         return result;
     }
 

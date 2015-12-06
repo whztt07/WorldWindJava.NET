@@ -61,7 +61,7 @@ public class BILRasterReader extends AbstractDataRasterReader
 
     protected bool doCanRead(Object source, AVList parameters)
     {
-        if (!(source instanceof java.io.File) && !(source instanceof java.net.URL))
+        if (!(source is java.io.File) && !(source is java.net.URL))
         {
             return false;
         }
@@ -136,7 +136,7 @@ public class BILRasterReader extends AbstractDataRasterReader
         }
 
         Object o = (params != null) ? parameters.getValue(AVKey.BYTE_ORDER) : null;
-        if (o == null || !(o instanceof String))
+        if (o == null || !(o is String))
         {
             sb.append(sb.length() > 0 ? ", " : "").append(Logging.getMessage("WorldFile.NoByteOrderSpecified", source));
         }
@@ -147,7 +147,7 @@ public class BILRasterReader extends AbstractDataRasterReader
             sb.append(sb.length() > 0 ? ", " : "").append(
                 Logging.getMessage("WorldFile.NoPixelFormatSpecified", source));
         }
-        else if (!AVKey.ELEVATION.equals(o))
+        else if (!AVKey.ELEVATION.Equals(o))
         {
             sb.append(sb.length() > 0 ? ", " : "").append(Logging.getMessage("WorldFile.InvalidPixelFormat", source));
         }
@@ -168,15 +168,15 @@ public class BILRasterReader extends AbstractDataRasterReader
 
     private java.nio.ByteBuffer readElevations(Object source) throws java.io.IOException
     {
-        if (!(source instanceof java.io.File) && !(source instanceof java.net.URL))
+        if (!(source is java.io.File) && !(source is java.net.URL))
         {
             String message = Logging.getMessage("DataRaster.CannotRead", source);
             Logging.logger().severe(message);
             throw new java.io.IOException(message);
         }
 
-        File file = (source instanceof java.io.File) ? (File) source : null;
-        java.net.URL url = (source instanceof java.net.URL) ? (java.net.URL) source : null;
+        File file = (source is java.io.File) ? (File) source : null;
+        java.net.URL url = (source is java.net.URL) ? (java.net.URL) source : null;
 
         if (null == file && "file".equalsIgnoreCase(url.getProtocol()))
         {
@@ -204,7 +204,7 @@ public class BILRasterReader extends AbstractDataRasterReader
                 return WWIO.mapFile(file);
             }
         }
-        else // (source instanceof java.net.URL)
+        else // (source is java.net.URL)
         {
             return WWIO.readURLContentToBuffer(url);
         }

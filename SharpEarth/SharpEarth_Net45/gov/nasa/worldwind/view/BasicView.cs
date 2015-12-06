@@ -616,7 +616,7 @@ public class BasicView extends WWObjectImpl implements View
         {
             double elevation = eyePosition.getElevation();
             double elevationAboveSurface = ViewUtil.computeElevationAboveSurface(this.dc, eyePosition);
-            return ViewUtil.computeHorizonDistance(this.globe, Math.max(elevation, elevationAboveSurface));
+            return ViewUtil.computeHorizonDistance(this.globe, Math.Max(elevation, elevationAboveSurface));
         }
 
         return 0;

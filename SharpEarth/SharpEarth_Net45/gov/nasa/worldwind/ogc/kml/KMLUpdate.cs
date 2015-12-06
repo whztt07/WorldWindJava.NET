@@ -39,11 +39,11 @@ public class KMLUpdate extends KMLAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLChange)
+        if (o is KMLChange)
             this.addChange((KMLChange) o);
-        else if (o instanceof KMLCreate)
+        else if (o is KMLCreate)
             this.addCreate((KMLCreate) o);
-        else if (o instanceof KMLDelete)
+        else if (o is KMLDelete)
             this.addDelete((KMLDelete) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -95,7 +95,7 @@ public class KMLUpdate extends KMLAbstractObject
 
         Object o = this.getRoot().resolveReference(this.getTargetHref());
 
-        if (o == null || !(o instanceof KMLRoot))
+        if (o == null || !(o is KMLRoot))
             return;
 
         KMLRoot targetRoot = (KMLRoot) o;

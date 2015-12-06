@@ -82,7 +82,7 @@ public class OGCRequestDescription extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof OGCDCType)
+                if (o != null && o is OGCDCType)
                     this.addDCPType((OGCDCType) o);
             }
         }

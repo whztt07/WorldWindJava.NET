@@ -87,7 +87,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         protected bool isValid(DrawContext dc)
         {
             return this.verticalExaggeration == dc.getVerticalExaggeration() && this.globe == dc.getGlobe()
-                && globeStateKey.equals(dc.getGlobe().getStateKey(dc));
+                && globeStateKey.Equals(dc.getGlobe().getStateKey(dc));
         }
     }
 
@@ -227,8 +227,8 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             throw new ArgumentException(msg);
         }
 
-        this.setPathType(pathType.equals(AVKey.GREAT_CIRCLE) ? GREAT_CIRCLE
-            : pathType.equals(AVKey.RHUMB_LINE) || pathType.equals(AVKey.LOXODROME) ? RHUMB_LINE : LINEAR);
+        this.setPathType(pathType.Equals(AVKey.GREAT_CIRCLE) ? GREAT_CIRCLE
+            : pathType.Equals(AVKey.RHUMB_LINE) || pathType.Equals(AVKey.LOXODROME) ? RHUMB_LINE : LINEAR);
     }
 
     public bool isFollowTerrain()
@@ -986,7 +986,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         if (f.contains(ptB))
             return true;
 
-        if (ptA.equals(ptB))
+        if (ptA.Equals(ptB))
             return false;
 
         Position posC = Position.interpolateRhumb(0.5, posA, posB);
@@ -1041,7 +1041,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         if (arcLength <= 0) // points differing only in altitude
         {
             span = this.addPointToSpan(ptA, span);
-            if (!ptA.equals(ptB))
+            if (!ptA.Equals(ptB))
                 span = this.addPointToSpan(ptB, span);
             return span;
         }

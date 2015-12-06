@@ -52,7 +52,7 @@ public class WCS100SpatialDomain extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof GMLEnvelope)
+                if (o != null && o is GMLEnvelope)
                     this.envelopes.add((GMLEnvelope) o);
             }
         }
@@ -62,7 +62,7 @@ public class WCS100SpatialDomain extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof GMLRectifiedGrid)
+                if (o != null && o is GMLRectifiedGrid)
                     this.rectifiedGrids.add((GMLRectifiedGrid) o);
             }
         }
@@ -72,7 +72,7 @@ public class WCS100SpatialDomain extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof GMLGrid)
+                if (o != null && o is GMLGrid)
                     this.grids.add((GMLGrid) o);
             }
         }

@@ -40,10 +40,10 @@ public class FBOTexture extends FramebufferTexture
             return null;
 
         // Limit FBO size to the max OGL size or 4k, whichever is smaller
-        int maxSize = Math.min(dc.getGLRuntimeCapabilities().getMaxTextureSize(), 4096);
+        int maxSize = Math.Min(dc.getGLRuntimeCapabilities().getMaxTextureSize(), 4096);
 
-        this.width = Math.min(maxSize, sourceTexture.getWidth(dc));
-        this.height = Math.min(maxSize, sourceTexture.getHeight(dc));
+        this.width = Math.Min(maxSize, sourceTexture.getWidth(dc));
+        this.height = Math.Min(maxSize, sourceTexture.getHeight(dc));
 
         GL gl = dc.getGL();
 

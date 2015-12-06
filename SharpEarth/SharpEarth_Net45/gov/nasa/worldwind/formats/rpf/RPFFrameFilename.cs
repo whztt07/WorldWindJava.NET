@@ -198,7 +198,7 @@ public class RPFFrameFilename
     {
         int hash = 0;
         if (this.dataSeriesCode != null)
-            hash = this.dataSeriesCode.hashCode();
+            hash = this.dataSeriesCode.GetHashCode();
         hash = 29 * hash + frameNumber;
         hash = 29 * hash + (int) producerId;
         hash = 29 * hash + version;

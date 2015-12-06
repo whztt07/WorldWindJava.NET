@@ -205,7 +205,7 @@ public class DataConfigurationUtils
             String s = WWXML.getText(domElement,
                 "property[@name=\"dataSet\"]/property[@name=\"gov.nasa.worldwind.avkey.DataType\"]",
                 null);
-            if (s != null && s.equals("gov.nasa.worldwind.avkey.TiledElevations"))
+            if (s != null && s.Equals("gov.nasa.worldwind.avkey.TiledElevations"))
             {
                 return "ElevationModel";
             }
@@ -1043,7 +1043,7 @@ public class DataConfigurationUtils
 
         try
         {
-            if (service.equals(OGCConstants.WMS_SERVICE_NAME))
+            if (service.Equals(OGCConstants.WMS_SERVICE_NAME))
             {
                 service = "WMS";
                 CapabilitiesRequest request = new CapabilitiesRequest(new URI(uri), service);
@@ -1200,7 +1200,7 @@ public class DataConfigurationUtils
 
     //protected static int computeLayerNumLevels(LatLon minDelta, LatLon maxDelta)
     //{
-    //    return Math.max(
+    //    return Math.Max(
     //        computeLayerNumLevels(minDelta.getLatitude(), maxDelta.getLatitude()),
     //        computeLayerNumLevels(minDelta.getLongitude(), maxDelta.getLongitude()));
     //}
@@ -1697,7 +1697,7 @@ public class DataConfigurationUtils
         String s = WWXML.getText(context, "property[@name=\"gov.nasa.worldwind.avkey.DataType\"]", xpath);
 
         // ElevationModel output.
-        if (s != null && s.equals("gov.nasa.worldwind.avkey.TiledElevations"))
+        if (s != null && s.Equals("gov.nasa.worldwind.avkey.TiledElevations"))
         {
             Element el = WWXML.setDocumentElement(outDoc, "ElevationModel");
             WWXML.setIntegerAttribute(el, "version", 1);
@@ -1932,7 +1932,7 @@ public class DataConfigurationUtils
         }
 
         String name = WWXML.getUnqalifiedName(event.asStartElement());
-        return name != null && name.equals("LayerSet");
+        return name != null && name.Equals("LayerSet");
     }
 
     /**

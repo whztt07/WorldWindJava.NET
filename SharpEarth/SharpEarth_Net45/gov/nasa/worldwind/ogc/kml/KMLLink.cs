@@ -103,7 +103,7 @@ public class KMLLink extends KMLAbstractObject
         super.setField(keyName, value);
 
         // If the link refreshes "onChange", mark the link as updated because it has changed.
-        if (KMLConstants.ON_CHANGE.equals(this.getRefreshMode()))
+        if (KMLConstants.ON_CHANGE.Equals(this.getRefreshMode()))
         {
             this.setUpdateTime(System.currentTimeMillis());
         }
@@ -147,7 +147,7 @@ public class KMLLink extends KMLAbstractObject
     {
         // If the refresh mode is onExpire, schedule a task to update the link at the expiration time. Otherwise
         // we don't care about the expiration.
-        if (KMLConstants.ON_EXPIRE.equals(this.getRefreshMode()))
+        if (KMLConstants.ON_EXPIRE.Equals(this.getRefreshMode()))
         {
             // If there is already a task running, cancel it
             if (this.refreshTask != null)
@@ -194,7 +194,7 @@ public class KMLLink extends KMLAbstractObject
         Long refreshTime = null;
 
         // Only handle onInterval here. onExpire is handled by KMLNetworkLink when the network resource is retrieved.
-        if (KMLConstants.ON_INTERVAL.equals(this.getRefreshMode()))
+        if (KMLConstants.ON_INTERVAL.Equals(this.getRefreshMode()))
         {
             Double ri = this.getRefreshInterval();
             refreshTime = ri != null ? this.updateTime.get() + (long) (ri * 1000d) : null;
@@ -224,7 +224,7 @@ public class KMLLink extends KMLAbstractObject
     public void onMessage(Message msg)
     {
         String viewRefreshMode = this.getViewRefreshMode();
-        if (View.VIEW_STOPPED.equals(msg.getName()) && KMLConstants.ON_STOP.equals(viewRefreshMode))
+        if (View.VIEW_STOPPED.Equals(msg.getName()) && KMLConstants.ON_STOP.Equals(viewRefreshMode))
         {
             Double refreshTime = this.getViewRefreshTime();
             if (refreshTime != null)
@@ -370,7 +370,7 @@ public class KMLLink extends KMLAbstractObject
      */
     protected bool isLocalReference(URL url)
     {
-        return url.getProtocol() == null || "file".equals(url.getProtocol()) || "jar".equals(url.getProtocol());
+        return url.getProtocol() == null || "file".Equals(url.getProtocol()) || "jar".Equals(url.getProtocol());
     }
 
     /**
@@ -399,7 +399,7 @@ public class KMLLink extends KMLAbstractObject
 
         // Ignore the viewFormat if the viewRefreshMode is unspecified or if the viewRefreshMode is "never".
         // See OGC KML specification 2.2.0, section 16.22.1.
-        if (!WWUtil.isEmpty(viewRefreshMode) && !KMLConstants.NEVER.equals(viewRefreshMode))
+        if (!WWUtil.isEmpty(viewRefreshMode) && !KMLConstants.NEVER.Equals(viewRefreshMode))
         {
             String s = this.getViewFormat();
             if (s != null)
@@ -408,7 +408,7 @@ public class KMLLink extends KMLAbstractObject
             // Use a default viewFormat that includes the view bounding box parameters if no viewFormat is specified
             // and the viewRefreshMode is "onStop".
             // See Google KML Reference: http://code.google.com/apis/kml/documentation/kmlreference.html#link
-            if (s == null && KMLConstants.ON_STOP.equals(viewRefreshMode))
+            if (s == null && KMLConstants.ON_STOP.Equals(viewRefreshMode))
                 s = DEFAULT_VIEW_FORMAT;
 
             // Ignore the viewFormat if it's specified but empty.
@@ -540,7 +540,7 @@ public class KMLLink extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLLink))
+        if (!(sourceValues is KMLLink))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);

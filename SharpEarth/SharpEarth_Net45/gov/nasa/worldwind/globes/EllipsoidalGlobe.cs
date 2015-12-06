@@ -117,12 +117,12 @@ public class EllipsoidalGlobe : WWObjectImpl, Globe
 
             if ( Math.Abs( stateKey.verticalExaggeration - verticalExaggeration ) > 0.0000001 )
               return false;
-            if (elevationModel != null ? !elevationModel.equals(stateKey.elevationModel) :
+            if (elevationModel != null ? !elevationModel.Equals(stateKey.elevationModel) :
                 stateKey.elevationModel != null)
                 return false;
-            if (globe != null ? !globe.equals(stateKey.globe) : stateKey.globe != null)
+            if (globe != null ? !globe.Equals(stateKey.globe) : stateKey.globe != null)
                 return false;
-            if (tessellator != null ? !tessellator.equals(stateKey.tessellator) : stateKey.tessellator != null)
+            if (tessellator != null ? !tessellator.Equals(stateKey.tessellator) : stateKey.tessellator != null)
                 return false;
 
             return true;
@@ -132,11 +132,11 @@ public class EllipsoidalGlobe : WWObjectImpl, Globe
         {
             int result;
             long temp;
-            result = globe != null ? globe.hashCode() : 0;
-            result = 31 * result + (tessellator != null ? tessellator.hashCode() : 0);
+            result = globe != null ? globe.GetHashCode() : 0;
+            result = 31 * result + (tessellator != null ? tessellator.GetHashCode() : 0);
             temp = verticalExaggeration != +0.0d ? BitConverter.DoubleToInt64Bits(verticalExaggeration) : 0L;
             result = 31 * result + (int) (temp ^ (temp >>> 32));
-            result = 31 * result + (elevationModel != null ? elevationModel.hashCode() : 0);
+            result = 31 * result + (elevationModel != null ? elevationModel.GetHashCode() : 0);
             return result;
         }
     }
@@ -994,7 +994,7 @@ public class EllipsoidalGlobe : WWObjectImpl, Globe
 //        double q = Z * Z * (1 - e2) * ra2;
 //        double r = 1 / 6.0 * (p + q - e4);
 //        double s = e4 * p * q / (4 * r * r * r);
-//        double t = Math.pow(1 + s + Math.Sqrt(s * (2 + s)), 1 / 3.0);
+//        double t = Math.Pow(1 + s + Math.Sqrt(s * (2 + s)), 1 / 3.0);
 //        double u = r * (1 + t + 1 / t);
 //        double v = Math.Sqrt(u * u + e4 * q);
 //        double w = e2 * (u + v - q) / (2 * v);

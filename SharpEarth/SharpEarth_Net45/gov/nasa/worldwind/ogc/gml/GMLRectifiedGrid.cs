@@ -46,7 +46,7 @@ public class GMLRectifiedGrid extends GMLGrid
         {
             double[] arr = new double[] {0, 0, 0, 0};
             String[] split = s.split(" ");
-            for (int i = 0; i < Math.min(split.length, 4); i++)
+            for (int i = 0; i < Math.Min(split.length, 4); i++)
             {
                 try
                 {

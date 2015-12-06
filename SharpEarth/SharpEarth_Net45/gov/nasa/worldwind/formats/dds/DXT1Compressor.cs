@@ -39,8 +39,8 @@ public class DXT1Compressor implements DXTCompressor
 
         // TODO: comment, provide documentation reference
 
-        int width = Math.max(image.getWidth(), 4);
-        int height = Math.max(image.getHeight(), 4);
+        int width = Math.Max(image.getWidth(), 4);
+        int height = Math.Max(image.getHeight(), 4);
 
         return (width * height) / 2;
     }

@@ -128,9 +128,9 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
                     msg = Logging.getMessage(notification.getMessage(), "", "");
                 }
 
-                if (notification.getPropertyName().equals(XMLParserNotification.EXCEPTION))
+                if (notification.getPropertyName().Equals(XMLParserNotification.EXCEPTION))
                     Logging.logger().log(Level.WARNING, msg);
-                else if (notification.getPropertyName().equals(XMLParserNotification.UNRECOGNIZED))
+                else if (notification.getPropertyName().Equals(XMLParserNotification.UNRECOGNIZED))
                     Logging.logger().log(Level.WARNING, msg);
             }
         });
@@ -374,17 +374,17 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
     @SuppressWarnings({"SimplifiableIfStatement"})
     public bool isSameName(QName qa, QName qb)
     {
-        if (qa.equals(qb))
+        if (qa.Equals(qb))
             return true;
 
-        if (!qa.getLocalPart().equals(qb.getLocalPart()))
+        if (!qa.getLocalPart().Equals(qb.getLocalPart()))
             return false;
 
-        if (qa.getNamespaceURI().equals(XMLConstants.NULL_NS_URI))
-            return qb.getNamespaceURI().equals(this.getDefaultNamespaceURI());
+        if (qa.getNamespaceURI().Equals(XMLConstants.NULL_NS_URI))
+            return qb.getNamespaceURI().Equals(this.getDefaultNamespaceURI());
 
-        if (qb.getNamespaceURI().equals(XMLConstants.NULL_NS_URI))
-            return qa.getNamespaceURI().equals(this.getDefaultNamespaceURI());
+        if (qb.getNamespaceURI().Equals(XMLConstants.NULL_NS_URI))
+            return qa.getNamespaceURI().Equals(this.getDefaultNamespaceURI());
 
         return false;
     }
@@ -392,7 +392,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
     @SuppressWarnings({"SimplifiableIfStatement"})
     public bool isSameAttributeName(QName qa, QName qb)
     {
-        return qa != null && qb != null && qa.getLocalPart() != null && qa.getLocalPart().equals(qb.getLocalPart());
+        return qa != null && qb != null && qa.getLocalPart() != null && qa.getLocalPart().Equals(qb.getLocalPart());
     }
 
     public bool isStartElement(XMLEvent event, QName elementName)
@@ -430,7 +430,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
             throw new ArgumentException(message);
         }
 
-        return (event.isStartElement() && event.asStartElement().getName().getLocalPart().equals(elementName));
+        return (event.isStartElement() && event.asStartElement().getName().getLocalPart().Equals(elementName));
     }
 
     public bool isEndElement(XMLEvent event, XMLEvent startElement)
@@ -455,7 +455,7 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         }
 
         return (event.isEndElement()
-            && event.asEndElement().getName().equals(startElement.asStartElement().getName()));
+            && event.asEndElement().getName().Equals(startElement.asStartElement().getName()));
     }
 
     public void registerParser(QName elementName, XMLEventParser parser)
@@ -521,12 +521,12 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
 
     protected static bool isNullNamespace(String namespaceURI)
     {
-        return namespaceURI == null || XMLConstants.NULL_NS_URI.equals(namespaceURI);
+        return namespaceURI == null || XMLConstants.NULL_NS_URI.Equals(namespaceURI);
     }
 
     public bool isDefaultNamespace(String namespaceURI)
     {
-        return this.getDefaultNamespaceURI() != null && this.getDefaultNamespaceURI().equals(namespaceURI);
+        return this.getDefaultNamespaceURI() != null && this.getDefaultNamespaceURI().Equals(namespaceURI);
     }
 
     @Deprecated
@@ -540,21 +540,21 @@ public class BasicXMLEventParserContext extends AVListImpl implements XMLEventPa
         for (Map.Entry<String, Object> p : parser.getFields().getEntries())
         {
             String key = p.getKey();
-            if (key == null || key.equals("id"))
+            if (key == null || key.Equals("id"))
                 continue;
 
             Object v = p.getValue();
             if (v == null)
                 continue;
 
-            if (v instanceof String)
+            if (v is String)
             {
                 String value = (String) v;
 
                 if (value.startsWith("#") && key.endsWith(referenceName))
                 {
                     Object o = this.getIdTable().get(value.substring(1, value.length()));
-                    if (/*o instanceof KMLStyle &&*/ !parser.hasField(fieldName))
+                    if (/*o is KMLStyle &&*/ !parser.hasField(fieldName))
                     {
                         if (newFields == null)
                             newFields = new HashMap<String, Object>();

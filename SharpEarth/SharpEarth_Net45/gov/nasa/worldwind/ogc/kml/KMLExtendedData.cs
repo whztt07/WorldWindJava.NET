@@ -37,9 +37,9 @@ public class KMLExtendedData extends KMLAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLData)
+        if (o is KMLData)
             this.addData((KMLData) o);
-        else if (o instanceof KMLSchemaData)
+        else if (o is KMLSchemaData)
             this.addSchemaData((KMLSchemaData) o);
         else
             super.doAddEventContent(o, ctx, event, args);

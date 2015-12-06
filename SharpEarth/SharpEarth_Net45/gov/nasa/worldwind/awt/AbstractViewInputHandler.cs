@@ -774,7 +774,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
 
         if (scaleFunc.toLowerCase().endsWith("exp"))
         {
-            t = Math.pow(2.0, t) - 1.0;
+            t = Math.Pow(2.0, t) - 1.0;
         }
 
         return minValue * (1.0 - t) + maxValue * t;
@@ -803,7 +803,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
             return 0.0;
         }
 
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double radius = this.wwd.getModel().getGlobe().getRadius();
             double t = ((OrbitView) view).getZoom() / (3.0 * radius);
@@ -843,7 +843,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
         t = t < 0 ? 0 : (t > 1 ? 1 : t);
         if (isExp)
         {
-            t = Math.pow(2.0, t) - 1.0;
+            t = Math.Pow(2.0, t) - 1.0;
         }
         return(minValue * (1.0 - t) + maxValue * t);
     }
@@ -937,7 +937,7 @@ public abstract class AbstractViewInputHandler implements ViewInputHandler, java
         if (point == null)
             return null;
 
-        if (!(source instanceof Component))
+        if (!(source is Component))
             return point;
 
         Component c = (Component) source;

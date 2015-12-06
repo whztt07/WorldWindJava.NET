@@ -437,7 +437,7 @@ public class TextRenderer {
     */
     public void setColor(Color color) throws GLException {
         bool noNeedForFlush = (haveCachedColor && (cachedColor != null) &&
-                                  color.equals(cachedColor));
+                                  color.Equals(cachedColor));
 
         if (!noNeedForFlush) {
             flushGlyphPipeline();
@@ -606,7 +606,7 @@ public class TextRenderer {
         // NOTE that this boundary is quite heuristic and is related
         // to how far away in 3D we may view the text --
         // heuristically, 1.5% of the font's height
-        int boundary = (int) Math.max(1, 0.015 * font.getSize());
+        int boundary = (int) Math.Max(1, 0.015 * font.getSize());
 
         return new Rectangle2D.Double((int) Math.Floor(src.getMinX() - boundary),
                                       (int) Math.Floor(src.getMinY() - boundary),
@@ -824,7 +824,7 @@ public class TextRenderer {
     private void draw3D_ROBUST(CharSequence str, float x, float y, float z,
                                float scaleFactor) {
         String curStr;
-        if (str instanceof String) {
+        if (str is String) {
             curStr = (String) str;
         } else {
             curStr = str.ToString();
@@ -1014,7 +1014,7 @@ public class TextRenderer {
 
         @Override
         public char last() {
-            mCurrentIndex = Math.max(0, mLength - 1);
+            mCurrentIndex = Math.Max(0, mLength - 1);
 
             return current();
         }
@@ -1037,7 +1037,7 @@ public class TextRenderer {
 
         @Override
         public char previous() {
-            mCurrentIndex = Math.max(mCurrentIndex - 1, 0);
+            mCurrentIndex = Math.Max(mCurrentIndex - 1, 0);
 
             return current();
         }

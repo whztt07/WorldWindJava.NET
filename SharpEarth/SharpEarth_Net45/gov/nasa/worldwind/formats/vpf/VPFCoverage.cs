@@ -221,7 +221,7 @@ public class VPFCoverage extends AVListImpl
         for (VPFRecord row : this.featureClassSchemaTable)
         {
             Object o = row.getValue("feature_class");
-            if (o == null || !(o instanceof String))
+            if (o == null || !(o is String))
                 continue;
 
             if (!className.equalsIgnoreCase((String) o))

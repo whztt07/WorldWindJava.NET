@@ -467,7 +467,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             final RequestTask that = (RequestTask) o;
 
             //noinspection RedundantIfStatement
-            if (this.tileKey != null ? !this.tileKey.equals(that.tileKey) : that.tileKey != null)
+            if (this.tileKey != null ? !this.tileKey.Equals(that.tileKey) : that.tileKey != null)
                 return false;
 
             return true;
@@ -475,7 +475,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
         public override int GetHashCode()
         {
-            return (this.tileKey != null ? this.tileKey.hashCode() : 0);
+            return (this.tileKey != null ? this.tileKey.GetHashCode() : 0);
         }
 
         public override string ToString()
@@ -621,7 +621,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         DataRaster subRaster = raster.getSubRaster(width, height, sector, raster);
 
         // Verify that the sub-raster can create a ByteBuffer, then create one.
-        if (!(subRaster instanceof ByteBufferRaster))
+        if (!(subRaster is ByteBufferRaster))
         {
             String msg = Logging.getMessage("ElevationModel.CannotCreateElevationBuffer", file.getPath());
             Logging.logger().severe(msg);
@@ -967,7 +967,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 //
 //            // Before reading the raster, verify that the file contains elevations.
 //            AVList metadata = reader.readMetadata(tmpFile, null);
-//            if (metadata == null || !AVKey.ELEVATION.equals(metadata.getStringValue(AVKey.PIXEL_FORMAT)))
+//            if (metadata == null || !AVKey.ELEVATION.Equals(metadata.getStringValue(AVKey.PIXEL_FORMAT)))
 //            {
 //                String msg = Logging.getMessage("ElevationModel.SourceNotElevations", tmpFile.getAbsolutePath());
 //                Logging.logger().severe(msg);
@@ -2020,7 +2020,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         // retrieval, or if the OGC Capabilities URL is unavailable.
         //
         // Note that we use the URL's String representation as the cache key. We cannot use the URL itself, because
-        // the cache invokes the methods Object.hashCode() and Object.equals() on the cache key. URL's implementations
+        // the cache invokes the methods Object.GetHashCode() and Object.Equals() on the cache key. URL's implementations
         // of hashCode() and equals() perform blocking IO calls. World Wind does not perform blocking calls during
         // rendering, and this method is likely to be called from the rendering thread.
         WMSCapabilities caps;
@@ -2212,7 +2212,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         WWXML.checkAndAppendTextElement(params, AVKey.IMAGE_FORMAT, context, "ImageFormat");
 
         Object o = parameters.getValue(AVKey.AVAILABLE_IMAGE_FORMATS);
-        if (o != null && o instanceof String[])
+        if (o != null && o is String[])
         {
             String[] strings = (String[]) o;
             if (strings.length > 0)
@@ -2524,14 +2524,14 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         if (value == null)
             return;
 
-        if (key.equals(AVKey.CONSTRUCTION_PARAMETERS))
+        if (key.Equals(AVKey.CONSTRUCTION_PARAMETERS))
             return;
 
-        if (value instanceof LatLon)
+        if (value is LatLon)
         {
             rs.addStateValueAsLatLon(context, key, (LatLon) value);
         }
-        else if (value instanceof Sector)
+        else if (value is Sector)
         {
             rs.addStateValueAsSector(context, key, (Sector) value);
         }
@@ -2600,7 +2600,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             return;
 
         // Map the old PIXEL_TYPE AVKey constant to the new DATA_TYPE constant.
-        if ("gov.nasa.worldwind.avkey.PixelType".equals(so.getName()))
+        if ("gov.nasa.worldwind.avkey.PixelType".Equals(so.getName()))
             this.setValue(AVKey.DATA_TYPE, so.getValue());
         else
             this.setValue(so.getName(), so.getValue());

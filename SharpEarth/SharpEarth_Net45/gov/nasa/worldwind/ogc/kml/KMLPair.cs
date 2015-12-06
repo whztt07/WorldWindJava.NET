@@ -33,7 +33,7 @@ public class KMLPair extends KMLAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractStyleSelector)
+        if (o is KMLAbstractStyleSelector)
             this.setStyleSelector((KMLAbstractStyleSelector) o);
         else
             super.doAddEventContent(o, ctx, event, args);

@@ -31,11 +31,11 @@ public class XALCountry extends XALAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof XALAddressLine)
+        if (o is XALAddressLine)
             this.addAddressLine((XALAddressLine) o);
-        else if (o instanceof XALCountryNameCode)
+        else if (o is XALCountryNameCode)
             this.addCountryNameCode((XALCountryNameCode) o);
-        else if (o instanceof XALCountryName)
+        else if (o is XALCountryName)
             this.addCountryName((XALCountryName) o);
         else
             super.doAddEventContent(o, ctx, event, args);

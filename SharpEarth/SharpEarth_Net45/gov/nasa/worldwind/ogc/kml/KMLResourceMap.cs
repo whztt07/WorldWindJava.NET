@@ -31,7 +31,7 @@ public class KMLResourceMap extends KMLAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAlias)
+        if (o is KMLAlias)
             this.addAlias((KMLAlias) o);
         else
             super.doAddEventContent(o, ctx, event, args);

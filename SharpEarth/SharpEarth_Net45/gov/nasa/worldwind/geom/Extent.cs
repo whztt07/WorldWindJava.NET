@@ -59,7 +59,7 @@ public interface Extent
      * @return an array of intersections representing all the points where <code>line</code> enters or leave this
      *         <code>Extent</code>.
      */
-    SharpEarth.geom.Intersection[] intersect(gov.nasa.worldwind.geom.Line line);
+    Intersection[] intersect(Line line);
 
     /**
      * Determines whether or not <code>line</code> intersects this <code>Extent</code>. This method may be faster than
@@ -71,7 +71,7 @@ public interface Extent
      *
      * @return true if an intersection is found, false otherwise.
      */
-    bool intersects(gov.nasa.worldwind.geom.Line line);
+    bool intersects(Line line);
 
     /**
      * Calculate whether or not this <code>Extent</code> is intersected by <code>plane</code>.
@@ -80,7 +80,7 @@ public interface Extent
      *
      * @return true if <code>plane</code> is found to intersect this <code>Extent</code>.
      */
-    bool intersects(gov.nasa.worldwind.geom.Plane plane);
+    bool intersects(Plane plane);
 
     /**
      * Computes the effective radius of the extent relative to a specified plane.

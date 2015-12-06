@@ -238,7 +238,7 @@ public class SectorVisibilityTree
 
     protected void swapCylinderLists(DrawContext dc)
     {
-        if (this.globeStateKey != null && !dc.getGlobe().getStateKey(dc).equals(this.globeStateKey))
+        if (this.globeStateKey != null && !dc.getGlobe().getStateKey(dc).Equals(this.globeStateKey))
             this.newExtents.clear();
 
         this.prevExtents.clear();

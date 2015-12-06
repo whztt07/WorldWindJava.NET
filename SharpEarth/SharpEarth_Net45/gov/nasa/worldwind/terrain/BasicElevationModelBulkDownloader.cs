@@ -190,7 +190,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         {
             ByteBuffer buffer = super.run(retriever);
 
-            if (retriever.getState().equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
+            if (retriever.getState().Equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
                 removeRetrievedTile(this.tile);
 
             if (hasRetrievalListeners())
@@ -202,7 +202,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
 
     protected void callRetrievalListeners(Retriever retriever, Tile tile)
     {
-        String eventType = (retriever.getState().equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
+        String eventType = (retriever.getState().Equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
             ? BulkRetrievalEvent.RETRIEVAL_SUCCEEDED : BulkRetrievalEvent.RETRIEVAL_FAILED;
         super.callRetrievalListeners(new BulkRetrievalEvent(this.elevationModel, eventType, tile.getPath()));
     }
@@ -304,7 +304,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
 
         // Average cached tile files size in a few directories from first non empty level
         Level targetLevel = this.elevationModel.getLevels().getFirstLevel();
-        while (targetLevel.isEmpty() && !targetLevel.equals(this.elevationModel.getLevels().getLastLevel()))
+        while (targetLevel.isEmpty() && !targetLevel.Equals(this.elevationModel.getLevels().getLastLevel()))
         {
             targetLevel = this.elevationModel.getLevels().getLevel(targetLevel.getLevelNumber() + 1);
         }

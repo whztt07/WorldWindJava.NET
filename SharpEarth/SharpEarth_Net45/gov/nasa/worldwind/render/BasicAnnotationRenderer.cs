@@ -40,7 +40,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             return false;
 
         //noinspection RedundantIfStatement,SimplifiableIfStatement
-        if (checkPosition && annotation instanceof Locatable)
+        if (checkPosition && annotation is Locatable)
             return ((Locatable) annotation).getPosition() != null;
 
         return true;
@@ -128,7 +128,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             if (altitude < annotation.getMinActiveAltitude() || altitude > annotation.getMaxActiveAltitude())
                 continue;
 
-            if (dc.isContinuous2DGlobe() && annotation instanceof ScreenAnnotation)
+            if (dc.isContinuous2DGlobe() && annotation is ScreenAnnotation)
             {
                 if (dc.isPickingMode() && this.currentPickAnnotations.contains(annotation))
                     continue;
@@ -139,7 +139,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
 
             // TODO: cull annotations that are beyond the horizon
             double eyeDistance = 1;
-            if (annotation instanceof Locatable)
+            if (annotation is Locatable)
             {
                 // Determine Cartesian position from the surface geometry if the annotation is near the surface,
                 // otherwise draw it from the globe.
@@ -149,7 +149,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
                 eyeDistance = annotation.isAlwaysOnTop() ? 0 : dc.getView().getEyePoint().distanceTo3(annotationPoint);
             }
 
-            if (annotation instanceof ScreenAnnotation)
+            if (annotation is ScreenAnnotation)
             {
                 Rectangle screenBounds = annotation.getBounds(dc);
                 if (screenBounds != null && !dc.getView().getViewport().intersects(screenBounds))
@@ -159,7 +159,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             // The annotations aren't drawn here, but added to the ordered queue to be drawn back-to-front.
             dc.addOrderedRenderable(new OrderedAnnotation(annotation, layer, eyeDistance));
 
-            if (dc.isContinuous2DGlobe() && annotation instanceof ScreenAnnotation)
+            if (dc.isContinuous2DGlobe() && annotation is ScreenAnnotation)
             {
                 if (dc.isPickingMode())
                     this.currentPickAnnotations.add(annotation);
@@ -178,7 +178,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             throw new ArgumentException(msg);
         }
 
-        if (dc.isContinuous2DGlobe() && annotation instanceof ScreenAnnotation
+        if (dc.isContinuous2DGlobe() && annotation is ScreenAnnotation
             && this.currentFrameTime != dc.getFrameTimeStamp())
         {
             // Keep track of which screen annotations are added to the ordered renderable list so that they are not added
@@ -203,7 +203,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
         if (dc.isPickingMode() && !this.isAtPickRange(dc, annotation))
             return;
 
-        if (dc.isContinuous2DGlobe() && annotation instanceof ScreenAnnotation)
+        if (dc.isContinuous2DGlobe() && annotation is ScreenAnnotation)
         {
             if (dc.isPickingMode() && this.currentPickAnnotations.contains(annotation))
                 return;
@@ -217,7 +217,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             return;
 
         double eyeDistance = 1;
-        if (annotation instanceof Locatable)
+        if (annotation is Locatable)
         {
             if (annotationPoint == null)
             {
@@ -245,7 +245,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             }
         }
 
-        if (annotation instanceof ScreenAnnotation)
+        if (annotation is ScreenAnnotation)
         {
             Rectangle screenBounds = annotation.getBounds(dc);
             if (screenBounds != null && !dc.getView().getViewport().intersects(screenBounds))
@@ -255,7 +255,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
         // The annotation isn't drawn here, but added to the ordered queue to be drawn back-to-front.
         dc.addOrderedRenderable(new OrderedAnnotation(annotation, layer, eyeDistance));
 
-        if (dc.isContinuous2DGlobe() && annotation instanceof ScreenAnnotation)
+        if (dc.isContinuous2DGlobe() && annotation is ScreenAnnotation)
         {
             if (dc.isPickingMode())
                 this.currentPickAnnotations.add(annotation);
@@ -283,7 +283,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
     protected Vec4 getAnnotationDrawPoint(DrawContext dc, Annotation annotation)
     {
         Vec4 drawPoint = null;
-        if (annotation instanceof Locatable)
+        if (annotation is Locatable)
         {
             Position pos = ((Locatable) annotation).getPosition();
             if (pos.getElevation() < dc.getGlobe().getMaxElevation())
@@ -327,7 +327,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
             {
                 this.doRender(dc, this);
                 // Draw as many as we can in a batch to save ogl state switching.
-                while (dc.peekOrderedRenderables() instanceof OrderedAnnotation)
+                while (dc.peekOrderedRenderables() is OrderedAnnotation)
                 {
                     OrderedAnnotation oa = (OrderedAnnotation) dc.pollOrderedRenderables();
                     this.doRender(dc, oa);
@@ -357,7 +357,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
                 this.annotation.setPickSupport(BasicAnnotationRenderer.this.pickSupport);
                 this.doRender(dc, this);
                 // Draw as many as we can in a batch to save ogl state switching.
-                while (dc.peekOrderedRenderables() instanceof OrderedAnnotation)
+                while (dc.peekOrderedRenderables() is OrderedAnnotation)
                 {
                     OrderedAnnotation oa = (OrderedAnnotation) dc.pollOrderedRenderables();
                     oa.annotation.setPickSupport(BasicAnnotationRenderer.this.pickSupport);

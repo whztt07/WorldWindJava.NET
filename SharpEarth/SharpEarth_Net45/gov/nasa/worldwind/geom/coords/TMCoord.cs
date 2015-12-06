@@ -5,7 +5,8 @@
  */
 using SharpEarth.util;
 using SharpEarth.globes;
-using SharpEarth.geom.Angle;
+using System;
+
 namespace SharpEarth.geom.coords{
 
 
@@ -19,15 +20,15 @@ namespace SharpEarth.geom.coords{
  */
 public class TMCoord
 {
-    private final Angle latitude;
-    private final Angle longitude;
-    private final Angle originLatitude;
-    private final Angle centralMeridian;
-    private final double falseEasting;
-    private final double falseNorthing;
-    private final double scale;
-    private final double easting;
-    private final double northing;
+    private readonly Angle latitude;
+    private readonly Angle longitude;
+    private readonly Angle originLatitude;
+    private readonly Angle centralMeridian;
+    private readonly double falseEasting;
+    private readonly double falseNorthing;
+    private readonly double scale;
+    private readonly double easting;
+    private readonly double northing;
 
     /**
      * Create a set of Transverse Mercator coordinates from a pair of latitude and longitude,
@@ -48,25 +49,25 @@ public class TMCoord
      * or the conversion to TM coordinates fails. If the globe is null conversion will default
      * to using WGS84.
      */
-    public static TMCoord fromLatLon(Angle latitude, Angle longitude, Globe globe, Double a, Double f,
+    public static TMCoord fromLatLon(Angle latitude, Angle longitude, Globe globe, double a, double f,
                    Angle originLatitude, Angle centralMeridian,
                    double falseEasting, double falseNorthing,
                    double scale)
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
+            string message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
+            string message = Logging.getMessage("nullValue.AngleIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        final TMCoordConverter converter = new TMCoordConverter();
+        TMCoordConverter converter = new TMCoordConverter();
         if (globe != null)
         {
             a = globe.getEquatorialRadius();
@@ -84,7 +85,7 @@ public class TMCoord
 
         if (err != TMCoordConverter.TRANMERC_NO_ERROR && err != TMCoordConverter.TRANMERC_LON_WARNING)
         {
-            String message = Logging.getMessage("Coord.TMConversionError");
+            string message = Logging.getMessage("Coord.TMConversionError");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -117,12 +118,12 @@ public class TMCoord
     {
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
+            string message = Logging.getMessage("nullValue.AngleIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        final TMCoordConverter converter = new TMCoordConverter();
+        TMCoordConverter converter = new TMCoordConverter();
         double a, f;
         if (globe != null)
         {
@@ -141,7 +142,7 @@ public class TMCoord
 
         if (err != TMCoordConverter.TRANMERC_NO_ERROR && err != TMCoordConverter.TRANMERC_LON_WARNING)
         {
-            String message = Logging.getMessage("Coord.TMConversionError");
+            string message = Logging.getMessage("Coord.TMConversionError");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -172,13 +173,13 @@ public class TMCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
+            string message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
         if (originLatitude == null || centralMeridian == null)
         {
-            String message = Logging.getMessage("nullValue.AngleIsNull");
+            string message = Logging.getMessage("nullValue.AngleIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }

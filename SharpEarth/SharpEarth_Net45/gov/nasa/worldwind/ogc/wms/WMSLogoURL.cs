@@ -41,14 +41,14 @@ public class WMSLogoURL extends WMSLayerInfoURL
         {
             Attribute attr = (Attribute) iter.next();
 
-            if (attr.getName().getLocalPart().equals("width") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("width") && attr.getValue() != null)
             {
                 Integer i = WWUtil.convertStringToInteger(attr.getValue());
                 if (i != null)
                     this.setWidth(i);
             }
 
-            if (attr.getName().getLocalPart().equals("height") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("height") && attr.getValue() != null)
             {
                 Integer i = WWUtil.convertStringToInteger(attr.getValue());
                 if (i != null)

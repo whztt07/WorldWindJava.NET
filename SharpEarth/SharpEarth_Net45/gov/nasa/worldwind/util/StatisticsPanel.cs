@@ -47,8 +47,8 @@ public class StatisticsPanel extends JPanel
             public void stageChanged(RenderingEvent event)
             {
                 long now = System.currentTimeMillis();
-                if (event.getStage().equals(RenderingEvent.AFTER_BUFFER_SWAP)
-                    && event.getSource() instanceof WorldWindow && now - lastUpdate > updateInterval)
+                if (event.getStage().Equals(RenderingEvent.AFTER_BUFFER_SWAP)
+                    && event.getSource() is WorldWindow && now - lastUpdate > updateInterval)
                 {
                     EventQueue.invokeLater(new Runnable()
                     {

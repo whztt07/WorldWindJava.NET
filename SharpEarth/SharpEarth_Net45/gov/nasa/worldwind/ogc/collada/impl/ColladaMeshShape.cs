@@ -171,11 +171,11 @@ public class ColladaMeshShape extends AbstractGeneralShape
 
             ExtentCacheKey that = (ExtentCacheKey) o;
 
-            if (globeStateKey != null ? !globeStateKey.equals(that.globeStateKey) : that.globeStateKey != null)
+            if (globeStateKey != null ? !globeStateKey.Equals(that.globeStateKey) : that.globeStateKey != null)
             {
                 return false;
             }
-            if (matrix != null ? !matrix.equals(that.matrix) : that.matrix != null)
+            if (matrix != null ? !matrix.Equals(that.matrix) : that.matrix != null)
             {
                 return false;
             }
@@ -186,8 +186,8 @@ public class ColladaMeshShape extends AbstractGeneralShape
         @Override
         public override int GetHashCode()
         {
-            int result = globeStateKey != null ? globeStateKey.hashCode() : 0;
-            result = 31 * result + (matrix != null ? matrix.hashCode() : 0);
+            int result = globeStateKey != null ? globeStateKey.GetHashCode() : 0;
+            result = 31 * result + (matrix != null ? matrix.GetHashCode() : 0);
             return result;
         }
     }
@@ -538,7 +538,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
                 Material nextMaterial = geometry.material != null ? geometry.material : defaultMaterial;
 
                 // Apply new material if necessary
-                if (!dc.isPickingMode() && !nextMaterial.equals(activeMaterial))
+                if (!dc.isPickingMode() && !nextMaterial.Equals(activeMaterial))
                 {
                     this.applyMaterial(dc, nextMaterial);
                     activeMaterial = nextMaterial;
@@ -1141,7 +1141,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
 
         for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
         {
-            if (materialSource.equals(material.getSymbol()))
+            if (materialSource.Equals(material.getSymbol()))
                 return material;
         }
         return null;
@@ -1176,7 +1176,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         // Search bind_vertex_input to find the semantic that identifies the texture coords.
         for (ColladaBindVertexInput bind : instanceMaterial.getBindVertexInputs())
         {
-            if (texcoord.equals(bind.getSemantic()))
+            if (texcoord.Equals(bind.getSemantic()))
                 inputSemantic = bind.getInputSemantic();
         }
 
@@ -1203,7 +1203,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         ColladaInstanceMaterial myMaterialInstance = null;
         for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
         {
-            if (materialSource.equals(material.getSymbol()))
+            if (materialSource.Equals(material.getSymbol()))
             {
                 myMaterialInstance = material;
                 break;
@@ -1242,7 +1242,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
 
         // imageRef identifiers an <image> element (may be external). This element will give us the filename.
         Object o = geometry.getRoot().resolveReference(imageRef);
-        if (o instanceof ColladaImage)
+        if (o is ColladaImage)
             return ((ColladaImage) o).getInitFrom();
 
         return null;
@@ -1309,7 +1309,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         ColladaInstanceMaterial myMaterialInstance = null;
         for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
         {
-            if (materialSource.equals(material.getSymbol()))
+            if (materialSource.Equals(material.getSymbol()))
             {
                 myMaterialInstance = material;
                 break;
@@ -1357,7 +1357,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
             return false;
 
         ColladaTechnique technique = (ColladaTechnique) extra.getField("technique");
-        if (technique == null || !"GOOGLEEARTH".equals(technique.getProfile()))
+        if (technique == null || !"GOOGLEEARTH".Equals(technique.getProfile()))
             return false;
 
         Integer i = (Integer) technique.getField("double_sided");

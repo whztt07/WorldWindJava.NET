@@ -64,11 +64,11 @@ public class KMLLineStringPlacemarkImpl extends Path implements KMLRenderable
         String altMode = lineString.getAltitudeMode();
         if (!WWUtil.isEmpty(altMode))
         {
-            if ("clampToGround".equals(altMode))
+            if ("clampToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.CLAMP_TO_GROUND);
-            else if ("relativeToGround".equals(altMode))
+            else if ("relativeToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
-            else if ("absolute".equals(altMode))
+            else if ("absolute".Equals(altMode))
                 this.setAltitudeMode(WorldWind.ABSOLUTE);
         }
 
@@ -193,7 +193,7 @@ public class KMLLineStringPlacemarkImpl extends Path implements KMLRenderable
     {
         ShapeAttributes attrs = new BasicShapeAttributes();
 
-        if (KMLConstants.HIGHLIGHT.equals(attrType))
+        if (KMLConstants.HIGHLIGHT.Equals(attrType))
         {
             attrs.setOutlineMaterial(Material.RED);
             attrs.setInteriorMaterial(Material.PINK);
@@ -212,7 +212,7 @@ public class KMLLineStringPlacemarkImpl extends Path implements KMLRenderable
     {
         super.onMessage(message);
 
-        if (KMLAbstractObject.MSG_STYLE_CHANGED.equals(message.getName()))
+        if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(message.getName()))
         {
             this.normalAttributesResolved = false;
             this.highlightAttributesResolved = false;

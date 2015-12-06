@@ -15,8 +15,7 @@ public interface BarycentricPlanarShape
     double[] getBarycentricCoords(Vec4 p);
 
     Vec4 getPoint(double[] w);
-
-    @SuppressWarnings({"UnnecessaryLocalVariable"})
+    
     double[] getBilinearCoords(double alpha, double beta);
 }
 }

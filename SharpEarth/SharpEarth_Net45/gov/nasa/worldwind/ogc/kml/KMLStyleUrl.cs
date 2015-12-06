@@ -39,13 +39,13 @@ public class KMLStyleUrl extends KMLAbstractObject
             return null;
 
         Object o = this.getRoot().resolveReference(this.getCharacters());
-        return o instanceof KMLAbstractStyleSelector ? (KMLAbstractStyleSelector) o : null;
+        return o is KMLAbstractStyleSelector ? (KMLAbstractStyleSelector) o : null;
     }
 
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLStyleUrl))
+        if (!(sourceValues is KMLStyleUrl))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);

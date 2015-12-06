@@ -81,7 +81,7 @@ public class BasicGpuResourceCache implements GpuResourceCache
         if (context == null || context.getGL() == null)
             return;
 
-        if (!(clientObject instanceof CacheEntry)) // shouldn't be null or wrong type, but check anyway
+        if (!(clientObject is CacheEntry)) // shouldn't be null or wrong type, but check anyway
             return;
 
         CacheEntry entry = (CacheEntry) clientObject;

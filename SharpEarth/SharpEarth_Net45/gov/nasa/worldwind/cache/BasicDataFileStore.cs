@@ -347,7 +347,7 @@ public class BasicDataFileStore extends AbstractFileStore
         }
 
         String addressProtocol = retrievalUrl != null ? retrievalUrl.getProtocol() : null;
-        if (cacheFileUrl == null && (addressProtocol == null || addressProtocol.equals("file")))
+        if (cacheFileUrl == null && (addressProtocol == null || addressProtocol.Equals("file")))
         {
             File f = new File(address);
             if (f.exists())
@@ -366,7 +366,7 @@ public class BasicDataFileStore extends AbstractFileStore
         // We need to ensure that the address is not a network address (HTTP, etc.) because the getResource call in
         // findFile will attempt to retrieve from that URL on the thread that called this method, which might be the EDT
         // (See WWJ-434).
-        if (cacheFileUrl == null && (addressProtocol == null || addressProtocol.equals("file")))
+        if (cacheFileUrl == null && (addressProtocol == null || addressProtocol.Equals("file")))
             cacheFileUrl = WorldWind.getDataFileStore().findFile(address, true);
 
         // Look for the file in the World Wind disk cache by creating a cache path from the file's address. We ignore this
@@ -586,7 +586,7 @@ public class BasicDataFileStore extends AbstractFileStore
      */
     protected String makeCachePath(URL url, String contentType)
     {
-        if ("jar".equals(url.getProtocol()))
+        if ("jar".Equals(url.getProtocol()))
             return this.makeJarURLCachePath(url, contentType);
 
         return this.makeGenericURLCachePath(url, contentType);
@@ -648,7 +648,7 @@ public class BasicDataFileStore extends AbstractFileStore
         // sign). The filename is either the path name or the path name appended with the query string. In either case,
         // the same hash folder name can be re-created from the same address. If two URLs have the same hash string,
         // both URLs are stored under the same hash folder and are differentiated by their filenames.
-        String hashString = String.valueOf(Math.Abs(filename.hashCode()));
+        String hashString = String.valueOf(Math.Abs(filename.GetHashCode()));
         if (hashString.length() > 4)
             hashString = hashString.substring(0, 4);
 

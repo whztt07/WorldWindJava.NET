@@ -79,7 +79,7 @@ public class SectorGeometryList extends ArrayList<SectorGeometry>
         }
 
         // TODO: add the beginRendering interface to Tessellator in order to eliminate this type test
-        if (dc.getGlobe().getTessellator() instanceof RectangularTessellator)
+        if (dc.getGlobe().getTessellator() is RectangularTessellator)
             ((RectangularTessellator) dc.getGlobe().getTessellator()).beginRendering(dc);
     }
 
@@ -97,7 +97,7 @@ public class SectorGeometryList extends ArrayList<SectorGeometry>
             throw new IllegalStateException(message);
         }
 
-        if (dc.getGlobe().getTessellator() instanceof RectangularTessellator)
+        if (dc.getGlobe().getTessellator() is RectangularTessellator)
             ((RectangularTessellator) dc.getGlobe().getTessellator()).endRendering(dc);
     }
 

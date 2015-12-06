@@ -3,10 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-
-using java.util.logging.Level;
-using java.util;
+using System;
 using SharpEarth.util;
+using System.Collections.Generic;
+
 namespace SharpEarth.geom{
 
 
@@ -17,19 +17,19 @@ namespace SharpEarth.geom{
  */
 public class GeoQuad
 {
-    public static final int NORTH = 1;
-    public static final int SOUTH = 2;
-    public static final int EAST = 4;
-    public static final int WEST = 8;
-    public static final int NORTHWEST = NORTH + WEST;
-    public static final int NORTHEAST = NORTH + EAST;
-    public static final int SOUTHWEST = SOUTH + WEST;
-    public static final int SOUTHEAST = SOUTH + EAST;
+    public static readonly int NORTH = 1;
+    public static readonly int SOUTH = 2;
+    public static readonly int EAST = 4;
+    public static readonly int WEST = 8;
+    public static readonly int NORTHWEST = NORTH + WEST;
+    public static readonly int NORTHEAST = NORTH + EAST;
+    public static readonly int SOUTHWEST = SOUTH + WEST;
+    public static readonly int SOUTHEAST = SOUTH + EAST;
 
-    private final LatLon sw, se, ne, nw;
-    private final Line northEdge, southEdge, eastEdge, westEdge;
+    private readonly LatLon sw, se, ne, nw;
+    private readonly Line northEdge, southEdge, eastEdge, westEdge;
 
-    public GeoQuad(List<? extends LatLon> corners)
+    public GeoQuad(List<LatLon> corners)
     {
         if (corners == null)
         {
@@ -38,15 +38,13 @@ public class GeoQuad
             throw new ArgumentException(message);
         }
 
-        // Count the corners and check for nulls
-        Iterator<? extends LatLon> iter = corners.iterator();
         int numCorners = 0;
-        for (LatLon c : corners)
+        foreach (LatLon c in corners)
         {
             if (c == null)
             {
                 String message = Logging.getMessage("nullValue.LocationInListIsNull");
-                Logging.logger().log(Level.SEVERE, message);
+                Logging.logger().severe(message);
                 throw new ArgumentException(message);
             }
 
@@ -59,12 +57,13 @@ public class GeoQuad
             String message = Logging.getMessage("nullValue.LocationInListIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
-        }
+      }
 
-        this.sw = iter.next();
-        this.se = iter.next();
-        this.ne = iter.next();
-        this.nw = iter.next();
+      // Count the corners and check for nulls
+      this.sw = corners[0];
+        this.se = corners[1];
+        this.ne = corners[2];
+        this.nw = corners[3];
 
         this.northEdge = Line.fromSegment(
             new Vec4(this.nw.getLongitude().degrees, this.nw.getLatitude().degrees, 0),
@@ -151,7 +150,7 @@ public class GeoQuad
         Line topToBot = Line.fromSegment(bot, top);
         Vec4 point = topToBot.getPointAt(t);
 
-        return LatLon.fromDegrees(point.y, point.x);
+        return LatLon.fromDegrees(point.y(), point.x());
     }
 }
 }

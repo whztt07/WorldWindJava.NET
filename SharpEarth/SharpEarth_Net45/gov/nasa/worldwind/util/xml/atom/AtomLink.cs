@@ -29,7 +29,7 @@ public class AtomLink extends AtomAbstractObject
     protected void doAddEventAttribute(Attribute attr, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if ("length".equals(attr.getName().getLocalPart()))
+        if ("length".Equals(attr.getName().getLocalPart()))
             this.setField(attr.getName(), WWUtil.makeInteger(attr.getValue()));
         else
             super.doAddEventAttribute(attr, ctx, event, args);

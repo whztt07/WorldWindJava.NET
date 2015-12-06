@@ -116,7 +116,7 @@ public class KMZFile implements KMLDoc
         while (zipEntries.hasMoreElements())
         {
             ZipEntry entry = zipEntries.nextElement();
-            if (entry.getName().equals(path))
+            if (entry.getName().Equals(path))
             {
                 return this.zipFile.getInputStream(entry);
             }
@@ -161,7 +161,7 @@ public class KMZFile implements KMLDoc
         while (zipEntries.hasMoreElements())
         {
             ZipEntry entry = zipEntries.nextElement();
-            if (entry.getName().equals(path))
+            if (entry.getName().Equals(path))
             {
                 return this.copyEntryToTempDir(entry);
             }

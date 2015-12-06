@@ -43,7 +43,7 @@ public class KMLPlacemark extends KMLAbstractFeature
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractGeometry)
+        if (o is KMLAbstractGeometry)
             this.setGeometry((KMLAbstractGeometry) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -141,15 +141,15 @@ public class KMLPlacemark extends KMLAbstractFeature
         if (this.getRenderables() == null)
             this.renderables = new ArrayList<KMLRenderable>(1); // most common case is one renderable
 
-        if (geom instanceof KMLPoint)
+        if (geom is KMLPoint)
             this.addRenderable(this.selectPointRenderable(tc, geom));
-        else if (geom instanceof KMLLinearRing) // since LinearRing is a subclass of LineString, this test must precede
+        else if (geom is KMLLinearRing) // since LinearRing is a subclass of LineString, this test must precede
             this.addRenderable(this.selectLinearRingRenderable(tc, geom));
-        else if (geom instanceof KMLLineString)
+        else if (geom is KMLLineString)
             this.addRenderable(this.selectLineStringRenderable(tc, geom));
-        else if (geom instanceof KMLPolygon)
+        else if (geom is KMLPolygon)
             this.addRenderable(this.selectPolygonRenderable(tc, geom));
-        else if (geom instanceof KMLMultiGeometry)
+        else if (geom is KMLMultiGeometry)
         {
             List<KMLAbstractGeometry> geoms = ((KMLMultiGeometry) geom).geometries;
             if (geoms != null)
@@ -160,7 +160,7 @@ public class KMLPlacemark extends KMLAbstractFeature
                 }
             }
         }
-        else if (geom instanceof KMLModel)
+        else if (geom is KMLModel)
             this.addRenderable(this.selectModelRenderable(tc, geom));
     }
 
@@ -210,7 +210,7 @@ public class KMLPlacemark extends KMLAbstractFeature
         if (shape.getOuterBoundary().getCoordinates() == null)
             return null;
 
-        if ("clampToGround".equals(shape.getAltitudeMode()) || !this.isValidAltitudeMode(shape.getAltitudeMode()))
+        if ("clampToGround".Equals(shape.getAltitudeMode()) || !this.isValidAltitudeMode(shape.getAltitudeMode()))
             return new KMLSurfacePolygonImpl(tc, this, geom);
         else if (shape.isExtrude())
             return new KMLExtrudedPolygonImpl(tc, this, geom);
@@ -227,15 +227,15 @@ public class KMLPlacemark extends KMLAbstractFeature
      */
     protected bool isValidAltitudeMode(String altMode)
     {
-        return "clampToGround".equals(altMode)
-            || "relativeToGround".equals(altMode)
-            || "absolute".equals(altMode);
+        return "clampToGround".Equals(altMode)
+            || "relativeToGround".Equals(altMode)
+            || "absolute".Equals(altMode);
     }
 
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLPlacemark))
+        if (!(sourceValues is KMLPlacemark))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
@@ -269,11 +269,11 @@ public class KMLPlacemark extends KMLAbstractFeature
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_GEOMETRY_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_GEOMETRY_CHANGED.Equals(msg.getName()))
         {
             this.renderables = null;
         }
-        else if (KMLAbstractObject.MSG_STYLE_CHANGED.equals(msg.getName()))
+        else if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(msg.getName()))
         {
             for (KMLRenderable renderable : this.renderables)
             {

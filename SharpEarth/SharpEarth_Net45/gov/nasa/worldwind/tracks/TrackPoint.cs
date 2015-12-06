@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.geom.Position;
+using SharpEarth.geom;
 namespace SharpEarth.tracks{
 
 
@@ -25,9 +25,9 @@ public interface TrackPoint
 
     void setElevation(double elevation);
 
-    String getTime();
+    string getTime();
 
-    void setTime(String time);
+    void setTime(string time);
 
     Position getPosition();
 

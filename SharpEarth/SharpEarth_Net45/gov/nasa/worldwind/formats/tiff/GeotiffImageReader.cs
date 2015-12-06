@@ -331,7 +331,7 @@ public class GeotiffImageReader extends ImageReader
         if (this.theStream != null)
             return;
 
-        if (super.input == null || !(super.input instanceof ImageInputStream))
+        if (super.input == null || !(super.input is ImageInputStream))
         {
             throw new IIOException(this.GetType().Name + ": null/invalid ImageInputStream");
         }

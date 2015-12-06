@@ -892,7 +892,7 @@ public class PointPlacemark extends WWObjectImpl
 
         if (!dc.isPickingMode())
         {
-            while (nextItem != null && nextItem instanceof OrderedPlacemark)
+            while (nextItem != null && nextItem is OrderedPlacemark)
             {
                 OrderedPlacemark opm = (OrderedPlacemark) nextItem;
                 if (!opm.isEnableBatchRendering())
@@ -906,7 +906,7 @@ public class PointPlacemark extends WWObjectImpl
         }
         else if (this.isEnableBatchPicking())
         {
-            while (nextItem != null && nextItem instanceof OrderedPlacemark)
+            while (nextItem != null && nextItem is OrderedPlacemark)
             {
                 OrderedPlacemark opm = (OrderedPlacemark) nextItem;
                 if (!opm.isEnableBatchRendering() || !opm.isEnableBatchPicking())
@@ -1015,7 +1015,7 @@ public class PointPlacemark extends WWObjectImpl
             // Adjust heading to be relative to globe or screen
             if (heading != null)
             {
-                if (AVKey.RELATIVE_TO_GLOBE.equals(this.getActiveAttributes().getHeadingReference()))
+                if (AVKey.RELATIVE_TO_GLOBE.Equals(this.getActiveAttributes().getHeadingReference()))
                     heading = dc.getView().getHeading().degrees - heading;
                 else
                     heading = -heading;
@@ -1797,16 +1797,16 @@ public class PointPlacemark extends WWObjectImpl
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }

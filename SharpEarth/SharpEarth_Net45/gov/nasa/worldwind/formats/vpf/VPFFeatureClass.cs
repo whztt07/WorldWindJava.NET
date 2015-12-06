@@ -94,17 +94,17 @@ public class VPFFeatureClass extends AVListImpl
 
         VPFFeatureClass that = (VPFFeatureClass) o;
 
-        if (this.coverage != null ? !this.coverage.getFilePath().equals(that.coverage.getFilePath())
+        if (this.coverage != null ? !this.coverage.getFilePath().Equals(that.coverage.getFilePath())
             : that.coverage != null)
             return false;
-        if (this.schema != null ? !this.schema.equals(that.schema) : that.schema != null)
+        if (this.schema != null ? !this.schema.Equals(that.schema) : that.schema != null)
             return false;
-        if (!Arrays.equals(this.relations, that.relations))
+        if (!Arrays.Equals(this.relations, that.relations))
             return false;
-        if (this.joinTableName != null ? !this.joinTableName.equals(that.joinTableName) : that.joinTableName != null)
+        if (this.joinTableName != null ? !this.joinTableName.Equals(that.joinTableName) : that.joinTableName != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.primitiveTableName != null ? !this.primitiveTableName.equals(that.primitiveTableName)
+        if (this.primitiveTableName != null ? !this.primitiveTableName.Equals(that.primitiveTableName)
             : that.primitiveTableName != null)
             return false;
 
@@ -113,11 +113,11 @@ public class VPFFeatureClass extends AVListImpl
 
     public override int GetHashCode()
     {
-        int result = this.coverage != null ? this.coverage.hashCode() : 0;
-        result = 31 * result + (this.schema != null ? this.schema.hashCode() : 0);
+        int result = this.coverage != null ? this.coverage.GetHashCode() : 0;
+        result = 31 * result + (this.schema != null ? this.schema.GetHashCode() : 0);
         result = 31 * result + (this.relations != null ? Arrays.hashCode(this.relations) : 0);
-        result = 31 * result + (this.joinTableName != null ? this.joinTableName.hashCode() : 0);
-        result = 31 * result + (this.primitiveTableName != null ? this.primitiveTableName.hashCode() : 0);
+        result = 31 * result + (this.joinTableName != null ? this.joinTableName.GetHashCode() : 0);
+        result = 31 * result + (this.primitiveTableName != null ? this.primitiveTableName.GetHashCode() : 0);
         return result;
     }
 }

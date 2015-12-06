@@ -112,13 +112,13 @@ public sealed class BasicRetrievalService extends WWObjectImpl
             final RetrievalTask that = (RetrievalTask) o;
 
             // Tasks are equal if their retrievers are equivalent
-            return this.retriever.equals(that.retriever);
+            return this.retriever.Equals(that.retriever);
             // Priority and submit time are not factors in equality
         }
 
         public override int GetHashCode()
         {
-            return this.retriever.getName().hashCode();
+            return this.retriever.getName().GetHashCode();
         }
     }
 
@@ -263,11 +263,11 @@ public sealed class BasicRetrievalService extends WWObjectImpl
             {
                 String message = Logging.getMessage("BasicRetrievalService.ExecutionExceptionDuringRetrieval",
                     task.getRetriever().getName());
-                if (e.getCause() instanceof SocketTimeoutException)
+                if (e.getCause() is SocketTimeoutException)
                 {
                     Logging.logger().fine(message + " " + e.getCause().getLocalizedMessage());
                 }
-                else if (e.getCause() instanceof SSLHandshakeException)
+                else if (e.getCause() is SSLHandshakeException)
                 {
                     if (sslExceptionListener != null)
                         sslExceptionListener.onException(e.getCause(), task.getRetriever().getName());
@@ -514,7 +514,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
         if (totalContentLength < 1)
             progress = 0;
         else
-            progress = Math.min(100.0, 100.0 * (double) totalBytesRead / (double) totalContentLength);
+            progress = Math.Min(100.0, 100.0 * (double) totalBytesRead / (double) totalContentLength);
 
         return progress;
     }

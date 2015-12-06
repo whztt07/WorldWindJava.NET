@@ -60,7 +60,7 @@ public class WCS100Values extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof WCS100SingleValue)
+                if (o != null && o is WCS100SingleValue)
                     this.singleValues.add((WCS100SingleValue) o);
             }
         }
@@ -70,7 +70,7 @@ public class WCS100Values extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof WCS100Interval)
+                if (o != null && o is WCS100Interval)
                     this.intervals.add((WCS100Interval) o);
             }
         }

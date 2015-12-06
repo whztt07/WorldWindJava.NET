@@ -70,12 +70,12 @@ public class TextRendererCache implements Disposable
             return (this.antialiased == that.antialiased)
                 && (this.useFractionalMetrics == that.useFractionalMetrics)
                 && (this.mipmap == that.mipmap)
-                && (this.font.equals(that.font));
+                && (this.font.Equals(that.font));
         }
 
         public override int GetHashCode()
         {
-            int result = this.font.hashCode();
+            int result = this.font.GetHashCode();
             result = 31 * result + (this.antialiased ? 1 : 0);
             result = 31 * result + (this.useFractionalMetrics ? 1 : 0);
             result = 31 * result + (this.mipmap ? 1 : 0);

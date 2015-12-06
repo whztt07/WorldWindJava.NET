@@ -35,7 +35,7 @@ public class OrbitViewCenterAnimator extends MoveToPositionAnimator
 
         double latlonDifference = LatLon.greatCircleDistance(nextPosition, curCenter).degrees;
         double elevDifference = Math.Abs(nextPosition.getElevation() - curCenter.getElevation());
-        bool stopMoving = Math.max(latlonDifference, elevDifference) < this.positionMinEpsilon;
+        bool stopMoving = Math.Max(latlonDifference, elevDifference) < this.positionMinEpsilon;
         if (!stopMoving)
         {
             interpolant = 1 - this.smoothing;

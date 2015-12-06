@@ -151,7 +151,7 @@ public class GeotiffReader implements Disposable
             return null;
         }
 
-        if (raster instanceof BufferedImageRaster)
+        if (raster is BufferedImageRaster)
         {
             return ((BufferedImageRaster) raster).getBufferedImage();
         }

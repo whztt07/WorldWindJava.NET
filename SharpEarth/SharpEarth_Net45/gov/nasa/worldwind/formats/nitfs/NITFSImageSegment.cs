@@ -288,7 +288,7 @@ public class NITFSImageSegment extends NITFSSegment
 
         if(1 != this.compressionAlgorithmID )
             throw new NITFSRuntimeException("NITFSReader.UnsupportedCompressionAlgorithm");
-        if( ! "B".equals(this.imageMode) )
+        if( ! "B".Equals(this.imageMode) )
             throw new NITFSRuntimeException("NITFSReader.UnsupportedImageMode");
         if( 1 != rpfComponents.numOfSpectralGroups )
             throw new NITFSRuntimeException("NITFSReader.UnsupportedNumberOfSpectralGroups.");
@@ -520,7 +520,7 @@ public class NITFSImageSegment extends NITFSSegment
             sec = (double) NITFSUtil.getShortNumeric(dstBuffer, 2);
             hemisphere = NITFSUtil.getString(dstBuffer, 1);
             lat = deg + (min + (sec / sixty)) / sixty;   // decimal latitude
-            if("S".equals(hemisphere))
+            if("S".Equals(hemisphere))
                 lat *= -1.0;
 
             // parse longitude [ dddmmssY ]
@@ -530,7 +530,7 @@ public class NITFSImageSegment extends NITFSSegment
             sec = (double) NITFSUtil.getShortNumeric(dstBuffer, 2);
             hemisphere = NITFSUtil.getString(dstBuffer, 1);
             lon = deg + (min + (sec / sixty)) / sixty;   // decimal longitude
-            if("W".equals(hemisphere))
+            if("W".Equals(hemisphere))
                 lon *= -1.0;
 
             // TODO Do not waste time on this calculations - the same info is repeated in the [ rpf coverage section ]
@@ -544,7 +544,7 @@ public class NITFSImageSegment extends NITFSSegment
         throws NITFSRuntimeException {
         // [ nitf identification , security, structure fields]
         this.partType = NITFSUtil.getString(buffer, 2);
-        if(!"IM".equals(this.partType))
+        if(!"IM".Equals(this.partType))
             throw new NITFSRuntimeException("NITFSReader.UnexpectedSegmentType", this.partType);
 
         this.imageID = NITFSUtil.getString(buffer, 10);
@@ -570,7 +570,7 @@ public class NITFSImageSegment extends NITFSSegment
         this.classAuthority = NITFSUtil.getString(buffer, 20);              // ISCAUT
         this.securityCtrlNum = NITFSUtil.getString(buffer, 20);             // ISCTLN
         this.ISDWNG = NITFSUtil.getString(buffer, 6);
-        this.ISDEVT = "999998".equals(this.ISDWNG) ? NITFSUtil.getString(buffer, 40) : "";
+        this.ISDEVT = "999998".Equals(this.ISDWNG) ? NITFSUtil.getString(buffer, 40) : "";
         
         this.encryption = NITFSUtil.getShortNumeric(buffer, 1);
         this.imageSource = NITFSUtil.getString(buffer, 42);

@@ -121,19 +121,19 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (docSource instanceof URL)
+        if (docSource is URL)
         {
             return openDocumentURL((URL) docSource);
         }
-        else if (docSource instanceof InputStream)
+        else if (docSource is InputStream)
         {
             return openDocumentStream((InputStream) docSource);
         }
-        else if (docSource instanceof File)
+        else if (docSource is File)
         {
             return openDocumentFile(((File) docSource).getPath(), null);
         }
-        else if (!(docSource instanceof String))
+        else if (!(docSource is String))
         {
             String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
             throw new ArgumentException(message);
@@ -484,24 +484,24 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (docSource instanceof URL)
+        if (docSource is URL)
         {
             return openEventReaderURL((URL) docSource, isNamespaceAware);
         }
-        else if (docSource instanceof InputStream)
+        else if (docSource is InputStream)
         {
             return openEventReaderStream((InputStream) docSource, isNamespaceAware);
         }
-        else if (docSource instanceof File)
+        else if (docSource is File)
         {
             return openEventReaderFile(((File) docSource).getPath(), null, isNamespaceAware);
         }
-        else if (docSource instanceof java.nio.ByteBuffer)
+        else if (docSource is java.nio.ByteBuffer)
         {
             InputStream is = WWIO.getInputStreamFromByteBuffer((java.nio.ByteBuffer) docSource);
             return openEventReaderStream(is, isNamespaceAware);
         }
-        else if (!(docSource instanceof String))
+        else if (!(docSource is String))
         {
             String message = Logging.getMessage("generic.UnrecognizedSourceType", docSource.ToString());
             Logging.logger().severe(message);
@@ -562,9 +562,9 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (output instanceof OutputStream)
+        if (output is OutputStream)
             return XMLOutputFactory.newInstance().createXMLStreamWriter((OutputStream) output);
-        else if (output instanceof Writer)
+        else if (output is Writer)
             return XMLOutputFactory.newInstance().createXMLStreamWriter((Writer) output);
 
         return null;
@@ -959,7 +959,7 @@ public class WWXML
             if (node == null)
                 return null;
 
-            return node instanceof Element ? (Element) node : null;
+            return node is Element ? (Element) node : null;
         }
         catch (XPathExpressionException e)
         {
@@ -1010,7 +1010,7 @@ public class WWXML
             for (int i = 0; i < nodes.getLength(); i++)
             {
                 Node node = nodes.item(i);
-                if (node instanceof Element)
+                if (node is Element)
                     elements[i] = (Element) node;
             }
             return elements;
@@ -1303,10 +1303,10 @@ public class WWXML
             if (lat == null || lon == null)
                 return null;
 
-            if (units == null || units.equals("degrees"))
+            if (units == null || units.Equals("degrees"))
                 return LatLon.fromDegrees(lat, lon);
 
-            if (units.equals("radians"))
+            if (units.Equals("radians"))
                 return LatLon.fromRadians(lat, lon);
 
             // Warn that units are not recognized
@@ -1475,16 +1475,16 @@ public class WWXML
             if (value == null)
                 return null;
 
-            if (units == null || units.equals("milliseconds"))
+            if (units == null || units.Equals("milliseconds"))
                 return value.longValue();
 
-            if (units.equals("seconds"))
+            if (units.Equals("seconds"))
                 return (long) WWMath.convertSecondsToMillis(value);
 
-            if (units.equals("minutes"))
+            if (units.Equals("minutes"))
                 return (long) WWMath.convertMinutesToMillis(value);
 
-            if (units.equals("hours"))
+            if (units.Equals("hours"))
                 return (long) WWMath.convertHoursToMillis(value);
 
             // Warn that units are not recognized
@@ -1587,7 +1587,7 @@ public class WWXML
 
         String type = WWXML.getText(el, "@creditType", xpath);
 
-        if (type != null && type.equals("ScreenImage"))
+        if (type != null && type.Equals("ScreenImage"))
         {
             String fileName = WWXML.getText(el, "FileName", xpath);
             if (fileName != null && fileName.length() > 0)
@@ -2102,7 +2102,7 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (screenCredit instanceof ScreenCreditImage)
+        if (screenCredit is ScreenCreditImage)
         {
             Element el = WWXML.appendElementPath(context, path);
             setTextAttribute(el, "creditType", "ScreenImage");
@@ -2112,7 +2112,7 @@ public class WWXML
                 WWXML.appendText(el, "Link", link);
 
             Object imageSource = ((ScreenCreditImage) screenCredit).getImageSource();
-            if (imageSource != null && imageSource instanceof String)
+            if (imageSource != null && imageSource is String)
             {
                 WWXML.appendText(el, "FileName", (String) imageSource);
             }
@@ -3239,7 +3239,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof String[])
+        if (o != null && o is String[])
         {
             String[] strings = (String[]) o;
             if (strings.length > 0)
@@ -3407,7 +3407,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof Boolean)
+        if (o != null && o is Boolean)
         {
             appendBoolean(context, path, (Boolean) o);
         }
@@ -3448,7 +3448,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof LatLon)
+        if (o != null && o is LatLon)
         {
             appendLatLon(context, path, (LatLon) o);
         }
@@ -3489,7 +3489,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof Sector)
+        if (o != null && o is Sector)
         {
             appendSector(context, path, (Sector) o);
         }
@@ -3531,7 +3531,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof LevelSet.SectorResolution[])
+        if (o != null && o is LevelSet.SectorResolution[])
         {
             LevelSet.SectorResolution[] srs = (LevelSet.SectorResolution[]) o;
 
@@ -3581,7 +3581,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof Number)
+        if (o != null && o is Number)
         {
             Number num = (Number) o;
             appendTimeInMillis(context, path, num.longValue());
@@ -3623,7 +3623,7 @@ public class WWXML
         }
 
         Object o = parameters.getValue(paramKey);
-        if (o != null && o instanceof ScreenCredit)
+        if (o != null && o is ScreenCredit)
         {
             appendScreenCredit(context, path, (ScreenCredit) o);
         }
@@ -3702,9 +3702,9 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (byteOrder.equals(AVKey.LITTLE_ENDIAN))
+        if (byteOrder.Equals(AVKey.LITTLE_ENDIAN))
             return "LittleEndian";
-        else if (byteOrder.equals(AVKey.BIG_ENDIAN))
+        else if (byteOrder.Equals(AVKey.BIG_ENDIAN))
             return "BigEndian";
 
         // Warn that the byte order is unrecognized.
@@ -3735,13 +3735,13 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (s.equals("Float32"))
+        if (s.Equals("Float32"))
             return AVKey.FLOAT32;
-        else if (s.equals("Int32"))
+        else if (s.Equals("Int32"))
             return AVKey.INT32;
-        else if (s.equals("Int16"))
+        else if (s.Equals("Int16"))
             return AVKey.INT16;
-        else if (s.equals("Int8"))
+        else if (s.Equals("Int8"))
             return AVKey.INT8;
 
         // Warn that the data type is unrecognized.
@@ -3772,13 +3772,13 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        if (dataType.equals(AVKey.FLOAT32))
+        if (dataType.Equals(AVKey.FLOAT32))
             return "Float32";
-        else if (dataType.equals(AVKey.INT32))
+        else if (dataType.Equals(AVKey.INT32))
             return "Int32";
-        else if (dataType.equals(AVKey.INT16))
+        else if (dataType.Equals(AVKey.INT16))
             return "Int16";
-        else if (dataType.equals(AVKey.INT8))
+        else if (dataType.Equals(AVKey.INT8))
             return "Int8";
 
         // Warn that the data type is unrecognized.
@@ -3884,7 +3884,7 @@ public class WWXML
             catch (NoSuchMethodException e)
             {
                 // No property method, so just add the property to the object's AVList if it has one.
-                if (parent instanceof AVList)
+                if (parent is AVList)
                     ((AVList) parent).setValue(propertyName, propertyValue);
                 continue; // This is a benign exception; not all properties have set methods.
             }

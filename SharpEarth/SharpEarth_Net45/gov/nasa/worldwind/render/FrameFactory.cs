@@ -59,7 +59,7 @@ public class FrameFactory
     public static void drawShape(DrawContext dc, String shape, double width, double height, int glMode,
         int cornerRadius)
     {
-        if (!shape.equals(AVKey.SHAPE_NONE))
+        if (!shape.Equals(AVKey.SHAPE_NONE))
             drawBuffer(dc, glMode, createShapeBuffer(shape, width, height, cornerRadius, null));
     }
 
@@ -82,7 +82,7 @@ public class FrameFactory
     public static void drawShapeWithLeader(DrawContext dc, String shape, double width, double height,
         Point leaderOffset, double leaderGapWidth, int glMode, int cornerRadius)
     {
-        if (!shape.equals(AVKey.SHAPE_NONE))
+        if (!shape.Equals(AVKey.SHAPE_NONE))
             drawBuffer(dc, glMode,
                 createShapeWithLeaderBuffer(shape, width, height, leaderOffset, leaderGapWidth, cornerRadius, null));
     }
@@ -102,11 +102,11 @@ public class FrameFactory
     public static DoubleBuffer createShapeBuffer(String shape, double width, double height, int cornerRadius,
         DoubleBuffer buffer)
     {
-        if (shape.equals(AVKey.SHAPE_RECTANGLE))
+        if (shape.Equals(AVKey.SHAPE_RECTANGLE))
             return createRoundedRectangleBuffer(width, height, cornerRadius, buffer);
-        else if (shape.equals(AVKey.SHAPE_ELLIPSE))
+        else if (shape.Equals(AVKey.SHAPE_ELLIPSE))
             return createEllipseBuffer(width, height, circleSteps, buffer);
-        else if (shape.equals(AVKey.SHAPE_NONE))
+        else if (shape.Equals(AVKey.SHAPE_NONE))
             return null;
         else
             // default to rectangle if shape unknown
@@ -131,12 +131,12 @@ public class FrameFactory
     public static DoubleBuffer createShapeWithLeaderBuffer(String shape, double width, double height,
         Point leaderOffset, double leaderGapWidth, int cornerRadius, DoubleBuffer buffer)
     {
-        if (shape.equals(AVKey.SHAPE_RECTANGLE))
+        if (shape.Equals(AVKey.SHAPE_RECTANGLE))
             return createRoundedRectangleWithLeaderBuffer(width, height, leaderOffset, leaderGapWidth, cornerRadius,
                 buffer);
-        else if (shape.equals(AVKey.SHAPE_ELLIPSE))
+        else if (shape.Equals(AVKey.SHAPE_ELLIPSE))
             return createEllipseWithLeaderBuffer(width, height, leaderOffset, leaderGapWidth, circleSteps, buffer);
-        else if (shape.equals(AVKey.SHAPE_NONE))
+        else if (shape.Equals(AVKey.SHAPE_NONE))
             return null;
         else
             // default to rectangle if shape unknown

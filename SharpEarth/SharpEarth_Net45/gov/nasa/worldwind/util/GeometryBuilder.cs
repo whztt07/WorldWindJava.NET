@@ -691,7 +691,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, a;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         int cylinderIndexCount = 12 * slices;
@@ -850,7 +850,7 @@ public class GeometryBuilder
         // face 1 = bottom
         // face 2 = round cylinder core
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         int cylinderIndexCount = 3 * slices;
@@ -1028,7 +1028,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, a;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = (float) angle.getRadians() / slices;
 
         int wedgeIndexCount = 12 * slices + 12;
@@ -1222,7 +1222,7 @@ public class GeometryBuilder
         // face 3 = first wedge side
         // face 4 = second wedge side
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = (float) angle.getRadians() / slices;
 
         int wedgeIndexCount = 6;
@@ -1425,7 +1425,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, a;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         int coneIndexCount = 12 * slices;
@@ -1565,7 +1565,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, a;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         int coneIndexCount = 3 * slices;
@@ -6190,7 +6190,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, u, v, a, phi;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         if (face == 2)      // cylinder core
@@ -6269,7 +6269,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, u, v, a;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = (float) angle.getRadians() / slices;
         int coreTexIndex = 4 * (slices + 2);
 
@@ -6360,7 +6360,7 @@ public class GeometryBuilder
         // face 3 = first wedge side
         // face 4 = second wedge side
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = (float) angle.getRadians() / slices;
 
         if (face == 0 || face == 1)   // wedge top or bottom
@@ -6464,7 +6464,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, u, v, a, phi;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
         int coreTexIndex = 2 * (slices + 1);
 
@@ -6529,7 +6529,7 @@ public class GeometryBuilder
         int i, index;
         float x, y, z, u, v, a, phi;
 
-        int slices = (int) Math.pow(2, 2 + subdivisions);
+        int slices = (int) Math.Pow(2, 2 + subdivisions);
         float da = 2.0f * (float) Math.PI / (float) slices;
 
         if (face == 1)      // cone core
@@ -7793,7 +7793,7 @@ public class GeometryBuilder
         }
 
         // Limit the corner radius to half of the rectangles width or height, whichever is smaller.
-        float maxCornerRadius = Math.min(width, height) / 2f;
+        float maxCornerRadius = Math.Min(width, height) / 2f;
         if (cornerRadius > maxCornerRadius)
             cornerRadius = maxCornerRadius;
 
@@ -8129,7 +8129,7 @@ public class GeometryBuilder
         }
 
         // Limit the corner radius to half of the rectangles width or height, whichever is smaller.
-        float maxCornerRadius = Math.min(width, height) / 2f;
+        float maxCornerRadius = Math.Min(width, height) / 2f;
         if (cornerRadius > maxCornerRadius)
             cornerRadius = maxCornerRadius;
 
@@ -8467,7 +8467,7 @@ public class GeometryBuilder
         int[] copy;
 
         copy = new int[newLength];
-        System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+        System.arraycopy(original, 0, copy, 0, Math.Min(original.length, newLength));
 
         return copy;
     }
@@ -8477,7 +8477,7 @@ public class GeometryBuilder
         float[] copy;
 
         copy = new float[newLength];
-        System.arraycopy(original, 0, copy, 0, Math.min(original.length, newLength));
+        System.arraycopy(original, 0, copy, 0, Math.Min(original.length, newLength));
 
         return copy;
     }

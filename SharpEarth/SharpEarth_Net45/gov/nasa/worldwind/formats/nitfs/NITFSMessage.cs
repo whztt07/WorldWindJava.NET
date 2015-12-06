@@ -26,7 +26,7 @@ public class NITFSMessage
     {
         for(NITFSSegment seg : segments)
         {
-            if(null != seg && seg.segmentType.equals(segmentType))
+            if(null != seg && seg.segmentType.Equals(segmentType))
                 return seg;
         }
         return null;

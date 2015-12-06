@@ -397,7 +397,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
         }
 
         Object o = this.getRoot().resolveNetworkLink(address, this.isLinkCacheable(), updateTime);
-        if (o instanceof KMLRoot)
+        if (o is KMLRoot)
         {
             KMLRoot newRoot = (KMLRoot) o;
             this.setNetworkResource(newRoot);
@@ -465,7 +465,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLNetworkLink))
+        if (!(sourceValues is KMLNetworkLink))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -484,7 +484,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_LINK_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_LINK_CHANGED.Equals(msg.getName()))
             this.reset();
 
         super.onChange(msg);
@@ -554,10 +554,10 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
 
             RequestTask that = (RequestTask) o;
 
-            if (!this.address.equals(that.address))
+            if (!this.address.Equals(that.address))
                 return false;
             //noinspection RedundantIfStatement
-            if (!this.link.equals(that.link))
+            if (!this.link.Equals(that.link))
                 return false;
 
             return true;
@@ -566,8 +566,8 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
         @Override
         public override int GetHashCode()
         {
-            int result = link.hashCode();
-            result = 31 * result + address.hashCode();
+            int result = link.GetHashCode();
+            result = 31 * result + address.GetHashCode();
             return result;
         }
 

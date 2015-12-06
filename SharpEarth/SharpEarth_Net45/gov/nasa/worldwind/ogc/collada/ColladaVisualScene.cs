@@ -48,7 +48,7 @@ public class ColladaVisualScene extends ColladaAbstractObject implements Collada
     @Override
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals("node"))
+        if (keyName.Equals("node"))
         {
             this.nodes.add((ColladaNode) value);
         }

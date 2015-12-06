@@ -72,7 +72,7 @@ abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof StringSetXMLEventParser)
+                if (o != null && o is StringSetXMLEventParser)
                     this.setExceptionFormats(((StringSetXMLEventParser) o).getStrings());
             }
         }
@@ -82,7 +82,7 @@ abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof OGCRequestDescription)
+                if (o != null && o is OGCRequestDescription)
                     this.requestDescriptions.add((OGCRequestDescription) o);
             }
         }

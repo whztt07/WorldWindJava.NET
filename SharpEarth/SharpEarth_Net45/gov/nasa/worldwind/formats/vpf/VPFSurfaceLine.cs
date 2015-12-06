@@ -35,7 +35,7 @@ public class VPFSurfaceLine extends SurfacePolyline // TODO: consolidate with Su
 
     protected List<Sector> computeSectors(Globe globe)
     {
-        if (this.sector == null || this.sector.equals(Sector.EMPTY_SECTOR))
+        if (this.sector == null || this.sector.Equals(Sector.EMPTY_SECTOR))
             return null;
 
         return Arrays.asList(this.sector);

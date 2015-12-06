@@ -3,12 +3,13 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-
-using java.util;
-using javax.media.opengl;
+using System;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth;
+using System.Collections.Generic;
+using SharpEarth.java.util;
+
 namespace SharpEarth.geom{
 
 
@@ -22,7 +23,7 @@ namespace SharpEarth.geom{
  * @author tag
  * @version $Id: Box.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class Box implements Extent, Renderable
+public class Box : Extent, Renderable
 {
     /**
      * <code>ProjectionHullTable</code> defines a table of all possible vertex combinations representing a
@@ -55,66 +56,66 @@ public class Box implements Extent, Renderable
      * The vertices are organized so that they appear in counter-clockwise order on the screen. Index codes that
      * represent an invalid combination of planes facing the <code>View</code> map to <code>null</code>.
      */
-    protected static final int[][] ProjectionHullTable = new int[][]
+    protected static readonly int[][] ProjectionHullTable = new int[][]
         {
             null,               // 000000: inside
-            {7, 6, 5, 4},       // 000001: top
-            {0, 1, 2, 3},       // 000010: bottom
+            new []{7, 6, 5, 4},       // 000001: top
+            new []{0, 1, 2, 3},       // 000010: bottom
             null,               // 000011: -
-            {3, 2, 6, 7},       // 000100: front
-            {3, 2, 6, 5, 4, 7}, // 000101: front, top
-            {0, 1, 2, 6, 7, 3}, // 000110: front, bottom
+            new []{3, 2, 6, 7},       // 000100: front
+            new []{3, 2, 6, 5, 4, 7}, // 000101: front, top
+            new []{0, 1, 2, 6, 7, 3}, // 000110: front, bottom
             null,               // 000111: -
-            {1, 0, 4, 5},       // 001000: back
-            {1, 0, 4, 7, 6, 5}, // 001001: back, top
-            {2, 3, 0, 4, 5, 1}, // 001010: back, bottom
+            new []{1, 0, 4, 5},       // 001000: back
+            new []{1, 0, 4, 7, 6, 5}, // 001001: back, top
+            new []{2, 3, 0, 4, 5, 1}, // 001010: back, bottom
             null,               // 001011: -
             null,               // 001100: -
             null,               // 001101: -
             null,               // 001110: -
             null,               // 001111: -
-            {2, 1, 5, 6},       // 010000: right
-            {2, 1, 5, 4, 7, 6}, // 010001: right, top
-            {3, 0, 1, 5, 6, 2}, // 010010: right, bottom
+            new []{2, 1, 5, 6},       // 010000: right
+            new []{2, 1, 5, 4, 7, 6}, // 010001: right, top
+            new []{3, 0, 1, 5, 6, 2}, // 010010: right, bottom
             null,               // 010011: -
-            {3, 2, 1, 5, 6, 7}, // 010100: right, front
-            {3, 2, 1, 5, 4, 7}, // 010101: right, front, top
-            {3, 0, 1, 5, 6, 7}, // 010110: right, front, bottom
+            new []{3, 2, 1, 5, 6, 7}, // 010100: right, front
+            new []{3, 2, 1, 5, 4, 7}, // 010101: right, front, top
+            new []{3, 0, 1, 5, 6, 7}, // 010110: right, front, bottom
             null,               // 010111: -
-            {2, 1, 0, 4, 5, 6}, // 011000: right, back
-            {2, 1, 0, 4, 7, 6}, // 011001: right, back, top
-            {2, 3, 0, 4, 5, 6}, // 011010: right, back, bottom
+            new []{2, 1, 0, 4, 5, 6}, // 011000: right, back
+            new []{2, 1, 0, 4, 7, 6}, // 011001: right, back, top
+            new []{2, 3, 0, 4, 5, 6}, // 011010: right, back, bottom
             null,               // 011011: -
             null,               // 011100: -
             null,               // 011101: -
             null,               // 011110: -
             null,               // 011111: -
-            {0, 3, 7, 4},       // 100000: left
-            {0, 3, 7, 6, 5, 4}, // 100001: left, top
-            {1, 2, 3, 7, 4, 0}, // 100010: left, bottom
+            new []{0, 3, 7, 4},       // 100000: left
+            new []{0, 3, 7, 6, 5, 4}, // 100001: left, top
+            new []{1, 2, 3, 7, 4, 0}, // 100010: left, bottom
             null,               // 100011: -
-            {0, 3, 2, 6, 7, 4}, // 100100: left, front
-            {0, 3, 2, 6, 5, 4}, // 100101: left, front, top
-            {0, 1, 2, 6, 7, 4}, // 100110: left, front, bottom
+            new []{0, 3, 2, 6, 7, 4}, // 100100: left, front
+            new []{0, 3, 2, 6, 5, 4}, // 100101: left, front, top
+            new []{0, 1, 2, 6, 7, 4}, // 100110: left, front, bottom
             null,               // 100111: -
-            {1, 0, 3, 7, 4, 5}, // 101000: left, back
-            {1, 0, 3, 7, 6, 5}, // 101001: left, back, top
-            {1, 2, 3, 7, 4, 5}, // 101010: left, back, bottom
+            new []{1, 0, 3, 7, 4, 5}, // 101000: left, back
+            new []{1, 0, 3, 7, 6, 5}, // 101001: left, back, top
+            new []{1, 2, 3, 7, 4, 5}, // 101010: left, back, bottom
         };
 
     public Vec4 bottomCenter; // point at center of box's longest axis
     public Vec4 topCenter; // point at center of box's longest axis
-    protected final Vec4 center; // center of box
-    protected final Vec4 r; // longest axis
-    protected final Vec4 s; // next longest axis
-    protected final Vec4 t; // shortest axis
-    protected final Vec4 ru; // r axis unit normal
-    protected final Vec4 su; // s axis unit normal
-    protected final Vec4 tu; // t axis unit normal
-    protected final double rLength; // length of r axis
-    protected final double sLength; // length of s axis
-    protected final double tLength; // length of t axis
-    protected final Plane[] planes; // the six planes, with positive normals facing outwards
+    protected readonly Vec4 center; // center of box
+    protected readonly Vec4 r; // longest axis
+    protected readonly Vec4 s; // next longest axis
+    protected readonly Vec4 t; // shortest axis
+    protected readonly Vec4 ru; // r axis unit normal
+    protected readonly Vec4 su; // s axis unit normal
+    protected readonly Vec4 tu; // t axis unit normal
+    protected readonly double rLength; // length of r axis
+    protected readonly double sLength; // length of s axis
+    protected readonly double tLength; // length of t axis
+    protected readonly Plane[] planes; // the six planes, with positive normals facing outwards
 
     protected Box(Vec4 bottomCenter, Vec4 topCenter, Vec4 center, Vec4 r, Vec4 s, Vec4 t, Vec4 ru, Vec4 su, Vec4 tu,
         double rlength, double sLength, double tLength, Plane[] planes)
@@ -155,7 +156,7 @@ public class Box implements Extent, Renderable
      *
      * @throws ArgumentException if the axes array or one of its entries is null.
      */
-    public Box(Vec4 axes[], double rMin, double rMax, double sMin, double sMax, double tMin, double tMax)
+    public Box(Vec4[] axes, double rMin, double rMax, double sMin, double sMax, double tMin, double tMax)
     {
         if (axes == null || axes[0] == null || axes[1] == null || axes[2] == null)
         {
@@ -178,12 +179,12 @@ public class Box implements Extent, Renderable
 
         // Plane normals point outward from the box.
         this.planes = new Plane[6];
-        this.planes[0] = new Plane(-this.ru.x, -this.ru.y, -this.ru.z, +rMin);
-        this.planes[1] = new Plane(+this.ru.x, +this.ru.y, +this.ru.z, -rMax);
-        this.planes[2] = new Plane(-this.su.x, -this.su.y, -this.su.z, +sMin);
-        this.planes[3] = new Plane(+this.su.x, +this.su.y, +this.su.z, -sMax);
-        this.planes[4] = new Plane(-this.tu.x, -this.tu.y, -this.tu.z, +tMin);
-        this.planes[5] = new Plane(+this.tu.x, +this.tu.y, +this.tu.z, -tMax);
+        this.planes[0] = new Plane(-this.ru.x(), -this.ru.y(), -this.ru.z(), +rMin);
+        this.planes[1] = new Plane(+this.ru.x(), +this.ru.y(), +this.ru.z(), -rMax);
+        this.planes[2] = new Plane(-this.su.x(), -this.su.y(), -this.su.z(), +sMin);
+        this.planes[3] = new Plane(+this.su.x(), +this.su.y(), +this.su.z(), -sMax);
+        this.planes[4] = new Plane(-this.tu.x(), -this.tu.y(), -this.tu.z(), +tMin);
+        this.planes[5] = new Plane(+this.tu.x(), +this.tu.y(), +this.tu.z(), -tMax);
 
         double a = 0.5 * (rMin + rMax);
         double b = 0.5 * (sMin + sMax);
@@ -226,12 +227,12 @@ public class Box implements Extent, Renderable
         // Plane normals point outwards from the box.
         this.planes = new Plane[6];
         double d = 0.5 * point.getLength3();
-        this.planes[0] = new Plane(-this.ru.x, -this.ru.y, -this.ru.z, -(d + 0.5));
-        this.planes[1] = new Plane(+this.ru.x, +this.ru.y, +this.ru.z, -(d + 0.5));
-        this.planes[2] = new Plane(-this.su.x, -this.su.y, -this.su.z, -(d + 0.5));
-        this.planes[3] = new Plane(+this.su.x, +this.su.y, +this.su.z, -(d + 0.5));
-        this.planes[4] = new Plane(-this.tu.x, -this.tu.y, -this.tu.z, -(d + 0.5));
-        this.planes[5] = new Plane(+this.tu.x, +this.tu.y, +this.tu.z, -(d + 0.5));
+        this.planes[0] = new Plane(-this.ru.x(), -this.ru.y(), -this.ru.z(), -(d + 0.5));
+        this.planes[1] = new Plane(+this.ru.x(), +this.ru.y(), +this.ru.z(), -(d + 0.5));
+        this.planes[2] = new Plane(-this.su.x(), -this.su.y(), -this.su.z(), -(d + 0.5));
+        this.planes[3] = new Plane(+this.su.x(), +this.su.y(), +this.su.z(), -(d + 0.5));
+        this.planes[4] = new Plane(-this.tu.x(), -this.tu.y(), -this.tu.z(), -(d + 0.5));
+        this.planes[5] = new Plane(+this.tu.x(), +this.tu.y(), +this.tu.z(), -(d + 0.5));
 
         this.center = ru.add3(su).add3(tu).multiply3(0.5);
 
@@ -424,12 +425,12 @@ public class Box implements Extent, Renderable
         Vec4 tc = this.topCenter.add3(point);
         Vec4 c = this.center.add3(point);
 
-        Plane[] newPlanes = new Plane[this.planes.length];
-        for (int i = 0; i < this.planes.length; i++)
+        Plane[] newPlanes = new Plane[this.planes.Length];
+        for (int i = 0; i < this.planes.Length; i++)
         {
             Plane pl = this.planes[i];
             Vec4 n = pl.getNormal();
-            newPlanes[i] = new Plane(n.x, n.y, n.z, pl.getDistance() - (n.dot3(point)));
+            newPlanes[i] = new Plane(n.x(), n.y(), n.z(), pl.getDistance() - (n.dot3(point)));
         }
 
         return new Box(bc, tc, c, this.r, this.s, this.t, this.ru, this.su, this.tu, this.rLength, this.sLength,
@@ -447,7 +448,7 @@ public class Box implements Extent, Renderable
      *
      * @throws ArgumentException if the point list is null or empty.
      */
-    public static Box computeBoundingBox(Iterable<? extends Vec4> points)
+    public static Box computeBoundingBox(IEnumerable<Vec4> points)
     {
         if (points == null)
         {
@@ -476,7 +477,7 @@ public class Box implements Extent, Renderable
         double minDotT = Double.MaxValue;
         double maxDotT = -minDotT;
 
-        for (Vec4 p : points)
+        foreach (Vec4 p in points)
         {
             if (p == null)
                 continue;
@@ -572,19 +573,19 @@ public class Box implements Extent, Renderable
             double y = coordinates.getDouble(i + 1);
             double z = coordinates.getDouble(i + 2);
 
-            double pdr = x * r.x + y * r.y + z * r.z;
+            double pdr = x * r.x() + y * r.y() + z * r.z();
             if (pdr < minDotR)
                 minDotR = pdr;
             if (pdr > maxDotR)
                 maxDotR = pdr;
 
-            double pds = x * s.x + y * s.y + z * s.z;
+            double pds = x * s.x() + y * s.y() + z * s.z();
             if (pds < minDotS)
                 minDotS = pds;
             if (pds > maxDotS)
                 maxDotS = pds;
 
-            double pdt = x * t.x + y * t.y + z * t.z;
+            double pdt = x * t.x() + y * t.y() + z * t.z();
             if (pdt < minDotT)
                 minDotT = pdt;
             if (pdt > maxDotT)
@@ -614,7 +615,7 @@ public class Box implements Extent, Renderable
      *
      * @throws ArgumentException if the <code>iterable</code> is null.
      */
-    public static Box union(Iterable<? extends Box> iterable)
+    public static Box union(IEnumerable<Box> iterable)
     {
         if (iterable == null)
         {
@@ -623,36 +624,36 @@ public class Box implements Extent, Renderable
             throw new ArgumentException(msg);
         }
 
-        ArrayList<Box> boxes = new ArrayList<Box>();
+        List<Box> boxes = new List<Box>();
 
-        for (Box box : iterable)
+        foreach (Box box in iterable)
         {
             if (box == null)
                 continue;
 
-            boxes.add(box);
+            boxes.Add(box);
         }
 
-        if (boxes.size() == 0)
+        if (boxes.Count == 0)
         {
             return null;
         }
-        else if (boxes.size() == 1)
+        else if (boxes.Count == 1)
         {
             // If the iterable contains only a single non-null box, we avoid unnecessarily computing its bouding box and
             // just return it directly. This also ensures that we do not return a box larger than the original box, by
             // performing a principal component analysis on the corners of a single box.
-            return boxes.get(0);
+            return boxes[0];
         }
         else
         {
-            // If the iterable contains two or more boxes, gather up their corners and return a box that encloses the
-            // boxes corners. We create an ArrayList with enough room to hold all the boxes corners to avoid unnecessary
-            // overhead.
-            ArrayList<Vec4> corners = new ArrayList<Vec4>(8 * boxes.size());
-            for (Box box : boxes)
+        // If the iterable contains two or more boxes, gather up their corners and return a box that encloses the
+        // boxes corners. We create an List with enough room to hold all the boxes corners to avoid unnecessary
+        // overhead.
+        List<Vec4> corners = new List<Vec4>(8 * boxes.Count);
+            foreach (Box box in boxes)
             {
-                corners.addAll(Arrays.asList(box.getCorners()));
+                corners.AddRange(box.getCorners());
             }
 
             return computeBoundingBox(corners);
@@ -847,31 +848,31 @@ public class Box implements Extent, Renderable
         if (lookupCode == 0)
             return Double.PositiveInfinity;
 
-        if (lookupCode < 0 || lookupCode >= ProjectionHullTable.length)
+        if (lookupCode < 0 || lookupCode >= ProjectionHullTable.Length)
             return 0; // This should never happen, but we check anyway.
 
         // Get the 4 or 6 vertex indices that define this Box's convex hull in screen coordinates. Each element is used
         // as an index into this Box's array of corners.
         int[] indices = ProjectionHullTable[lookupCode];
-        if (indices == null || (indices.length != 4 && indices.length != 6))
+        if (indices == null || (indices.Length != 4 && indices.Length != 6))
             return 0; // This should never happen, but we check anyway.
 
         // Compute this Box's convex hull in screen coordinates, by transforming the 4 or 6 vertices that define its
         // projected outline from model coordinates into screen coordinates.
         Vec4[] vertices = this.getCorners();
-        Vec4[] screenVertices = new Vec4[indices.length];
+        Vec4[] screenVertices = new Vec4[indices.Length];
 
         // If any of this Box's vertices are behind the eye point, return positive infinity indicating that this Box
         // does not have a finite area in the viewport.
         //noinspection ForLoopReplaceableByForEach
-        for (int i = 0; i < indices.length; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             Vec4 eyeVertex = vertices[indices[i]].transformBy4(view.getModelviewMatrix());
-            if (eyeVertex.z >= 0)
+            if (eyeVertex.z() >= 0)
                 return Double.PositiveInfinity;
         }
 
-        for (int i = 0; i < indices.length; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             screenVertices[i] = view.project(vertices[indices[i]]);
         }
@@ -881,7 +882,7 @@ public class Box implements Extent, Renderable
         // screen and the area is positive. If the axes define a left-handed coordinate system, the vertices have a
         // clockwise winding order on scree and the area is negative. We return the area's absolute value to handle
         // either case.
-        double area = WWMath.computePolygonAreaFromVertices(Arrays.asList(screenVertices));
+        double area = WWMath.computePolygonAreaFromVertices(screenVertices);
         return Math.Abs(area);
     }
 
@@ -923,9 +924,9 @@ public class Box implements Extent, Renderable
 //            -.5, .5, -.5, .5, -.5, .5);
 //        Line line = new Line(new Vec4(-1, 0.5, 0.5), new Vec4(1, 0, 0));
 //        Intersection[] intersections = box.intersect(line);
-//        if (intersections != null && intersections.length > 0 && intersections[0] != null)
+//        if (intersections != null && intersections.Length > 0 && intersections[0] != null)
 //            System.out.println(intersections[0]);
-//        if (intersections != null && intersections.length > 1 && intersections[1] != null)
+//        if (intersections != null && intersections.Length > 1 && intersections[1] != null)
 //            System.out.println(intersections[1]);
 //    }
 
@@ -1100,37 +1101,35 @@ public class Box implements Extent, Renderable
         gl.glVertex3d(d.x, d.y, d.z);
         gl.glEnd();
     }
-
-    @Override
+    
     public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (!(o instanceof Box))
+        if (!(o is Box))
             return false;
 
         Box box = (Box) o;
 
-        if (center != null ? !center.equals(box.center) : box.center != null)
+        if (center != null ? !center.Equals(box.center) : box.center != null)
             return false;
-        if (r != null ? !r.equals(box.r) : box.r != null)
+        if (r != null ? !r.Equals(box.r) : box.r != null)
             return false;
-        if (s != null ? !s.equals(box.s) : box.s != null)
+        if (s != null ? !s.Equals(box.s) : box.s != null)
             return false;
         //noinspection RedundantIfStatement
-        if (t != null ? !t.equals(box.t) : box.t != null)
+        if (t != null ? !t.Equals(box.t) : box.t != null)
             return false;
 
         return true;
     }
-
-    @Override
+    
     public override int GetHashCode()
     {
-        int result = center != null ? center.hashCode() : 0;
-        result = 31 * result + (r != null ? r.hashCode() : 0);
-        result = 31 * result + (s != null ? s.hashCode() : 0);
-        result = 31 * result + (t != null ? t.hashCode() : 0);
+        int result = center != null ? center.GetHashCode() : 0;
+        result = 31 * result + (r != null ? r.GetHashCode() : 0);
+        result = 31 * result + (s != null ? s.GetHashCode() : 0);
+        result = 31 * result + (t != null ? t.GetHashCode() : 0);
         return result;
     }
 }

@@ -67,7 +67,7 @@ public class ColladaLibrary<T> extends ColladaAbstractObject
     @SuppressWarnings("unchecked")
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals(this.elementName))
+        if (keyName.Equals(this.elementName))
         {
             this.elements.add((T) value);
         }
@@ -79,17 +79,17 @@ public class ColladaLibrary<T> extends ColladaAbstractObject
 
     protected String getElementName(String libraryName)
     {
-        if ("library_nodes".equals(libraryName))
+        if ("library_nodes".Equals(libraryName))
             return "node";
-        else if ("library_effects".equals(libraryName))
+        else if ("library_effects".Equals(libraryName))
             return "effect";
-        else if ("library_materials".equals(libraryName))
+        else if ("library_materials".Equals(libraryName))
             return "material";
-        else if ("library_geometries".equals(libraryName))
+        else if ("library_geometries".Equals(libraryName))
             return "geometry";
-        else if ("library_images".equals(libraryName))
+        else if ("library_images".Equals(libraryName))
             return "image";
-        else if ("library_visual_scenes".equals(libraryName))
+        else if ("library_visual_scenes".Equals(libraryName))
             return "visual_scene";
         return null;
     }

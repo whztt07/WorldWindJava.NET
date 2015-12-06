@@ -170,7 +170,7 @@ public class WCSElevationModel extends BasicElevationModel
 
         double xRes = Math.Abs(grids.get(0).getOffsetVectors().get(0).x);
         double yRes = Math.Abs(grids.get(0).getOffsetVectors().get(1).y);
-        double dataResolution = Math.min(xRes, yRes);
+        double dataResolution = Math.Min(xRes, yRes);
 
         int tileSize = (Integer) parameters.getValue(AVKey.TILE_WIDTH);
         LatLon level0Delta = (LatLon) parameters.getValue(AVKey.LEVEL_ZERO_TILE_DELTA);
@@ -378,11 +378,11 @@ public class WCSElevationModel extends BasicElevationModel
     public void getRestorableStateForAVPair(String key, Object value,
         RestorableSupport rs, RestorableSupport.StateObject context)
     {
-        if (value instanceof URLBuilder)
+        if (value is URLBuilder)
         {
             rs.addStateValueAsString(context, AVKey.WCS_VERSION, ((URLBuilder) value).serviceVersion);
         }
-        else if (!(value instanceof WCS100DescribeCoverage))
+        else if (!(value is WCS100DescribeCoverage))
         {
             // Don't pass DescribeCoverage to superclass. The DescribeCoverage parameters will already be present in the
             // parameter list, so do nothing here.

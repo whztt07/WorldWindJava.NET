@@ -143,7 +143,7 @@ public class WCS100Capabilities extends AbstractXMLEventParser
             if (event == null)
                 continue;
 
-            if (event.isStartElement() && event.asStartElement().getName().equals(capsName))
+            if (event.isStartElement() && event.asStartElement().getName().Equals(capsName))
             {
                 // Parse the attributes in order to get the version number.
                 this.doParseEventAttributes(ctx, event);

@@ -102,8 +102,8 @@ public class BasicColorBlockExtractor implements ColorBlockExtractor
         // Image blocks that are smaller than 4x4 are handled by repeating the image pixels that intersect the
         // requested block range.
         
-        int bw = Math.min(this.width - x, 4);
-        int bh = Math.min(this.height - y, 4);
+        int bw = Math.Min(this.width - x, 4);
+        int bh = Math.Min(this.height - y, 4);
         int bxOffset = 4 * (bw - 1);
         int byOffset = 4 * (bh - 1);
         int bx, by;

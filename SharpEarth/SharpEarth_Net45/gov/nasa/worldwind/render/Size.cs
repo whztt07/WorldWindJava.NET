@@ -299,22 +299,22 @@ public class Size
 
         double width, height;
 
-        if (NATIVE_DIMENSION.equals(xMode) && NATIVE_DIMENSION.equals(yMode)
-            || NATIVE_DIMENSION.equals(xMode) && MAINTAIN_ASPECT_RATIO.equals(yMode)
-            || MAINTAIN_ASPECT_RATIO.equals(xMode) && NATIVE_DIMENSION.equals(yMode)
-            || MAINTAIN_ASPECT_RATIO.equals(xMode) && MAINTAIN_ASPECT_RATIO.equals(yMode))
+        if (NATIVE_DIMENSION.Equals(xMode) && NATIVE_DIMENSION.Equals(yMode)
+            || NATIVE_DIMENSION.Equals(xMode) && MAINTAIN_ASPECT_RATIO.Equals(yMode)
+            || MAINTAIN_ASPECT_RATIO.Equals(xMode) && NATIVE_DIMENSION.Equals(yMode)
+            || MAINTAIN_ASPECT_RATIO.Equals(xMode) && MAINTAIN_ASPECT_RATIO.Equals(yMode))
         {
             // Keep original dimensions
             width = rectWidth;
             height = rectHeight;
         }
-        else if (MAINTAIN_ASPECT_RATIO.equals(xMode))
+        else if (MAINTAIN_ASPECT_RATIO.Equals(xMode))
         {
             // y dimension is specified, scale x to maintain aspect ratio
             height = computeSize(this.heightParam, this.heightUnits, containerHeight);
             width = height * aspectRatio;
         }
-        else if (MAINTAIN_ASPECT_RATIO.equals(yMode))
+        else if (MAINTAIN_ASPECT_RATIO.Equals(yMode))
         {
             // x dimension is specified, scale y to maintain aspect ratio
             width = computeSize(this.widthParam, this.widthUnits, containerWidth);
@@ -325,12 +325,12 @@ public class Size
         }
         else
         {
-            if (NATIVE_DIMENSION.equals(xMode))
+            if (NATIVE_DIMENSION.Equals(xMode))
                 width = rectWidth;
             else
                 width = computeSize(this.widthParam, this.widthUnits, containerWidth);
 
-            if (NATIVE_DIMENSION.equals(yMode))
+            if (NATIVE_DIMENSION.Equals(yMode))
                 height = rectHeight;
             else
                 height = computeSize(this.heightParam, this.heightUnits, containerHeight);
@@ -351,7 +351,7 @@ public class Size
      */
     protected double computeSize(double size, String units, double containerDimension)
     {
-        if (AVKey.FRACTION.equals(units))
+        if (AVKey.FRACTION.Equals(units))
             return size * containerDimension;
         else  // Default to pixel
             return size;
@@ -458,11 +458,11 @@ public class Size
      */
     protected String convertLegacyModeString(String string)
     {
-        if ("NativeDimension".equals(string))
+        if ("NativeDimension".Equals(string))
             return NATIVE_DIMENSION;
-        else if ("MaintainAspectRatio".equals(string))
+        else if ("MaintainAspectRatio".Equals(string))
             return MAINTAIN_ASPECT_RATIO;
-        else if ("ExplicitDimension".equals(string))
+        else if ("ExplicitDimension".Equals(string))
             return EXPLICIT_DIMENSION;
         else
             return string;
@@ -482,14 +482,14 @@ public class Size
             return false;
         if (Double.compare(this.heightParam, that.heightParam) != 0)
             return false;
-        if (this.widthUnits != null ? !this.widthUnits.equals(that.widthUnits) : that.widthUnits != null)
+        if (this.widthUnits != null ? !this.widthUnits.Equals(that.widthUnits) : that.widthUnits != null)
             return false;
-        if (this.heightUnits != null ? !this.heightUnits.equals(that.heightUnits) : that.heightUnits != null)
+        if (this.heightUnits != null ? !this.heightUnits.Equals(that.heightUnits) : that.heightUnits != null)
             return false;
-        if (this.widthMode != null ? !this.widthMode.equals(that.widthMode) : that.widthMode != null)
+        if (this.widthMode != null ? !this.widthMode.Equals(that.widthMode) : that.widthMode != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.heightMode != null ? !this.heightMode.equals(that.heightMode) : that.heightMode != null)
+        if (this.heightMode != null ? !this.heightMode.Equals(that.heightMode) : that.heightMode != null)
             return false;
 
         return true;
@@ -504,10 +504,10 @@ public class Size
         result = (int) (temp ^ (temp >>> 32));
         temp = this.heightParam != +0.0d ? BitConverter.DoubleToInt64Bits(this.heightParam) : 0L;
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (this.widthUnits != null ? this.widthUnits.hashCode() : 0);
-        result = 31 * result + (this.heightUnits != null ? this.heightUnits.hashCode() : 0);
-        result = 31 * result + (this.widthMode != null ? this.widthMode.hashCode() : 0);
-        result = 31 * result + (this.heightMode != null ? this.heightMode.hashCode() : 0);
+        result = 31 * result + (this.widthUnits != null ? this.widthUnits.GetHashCode() : 0);
+        result = 31 * result + (this.heightUnits != null ? this.heightUnits.GetHashCode() : 0);
+        result = 31 * result + (this.widthMode != null ? this.widthMode.GetHashCode() : 0);
+        result = 31 * result + (this.heightMode != null ? this.heightMode.GetHashCode() : 0);
         return result;
     }
 }

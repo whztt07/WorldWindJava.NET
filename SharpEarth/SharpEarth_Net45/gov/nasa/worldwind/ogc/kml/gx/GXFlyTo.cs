@@ -27,7 +27,7 @@ public class GXFlyTo extends GXAbstractTourPrimitive
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractView)
+        if (o is KMLAbstractView)
             this.setView((KMLAbstractView) o);
         else
             super.doAddEventContent(o, ctx, event, args);

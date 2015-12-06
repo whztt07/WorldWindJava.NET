@@ -58,7 +58,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         // If the data source doesn't already have all the necessary metadata, then we determine whether or not
         // the missing metadata can be read.
         Object o = (params != null) ? parameters.getValue(AVKey.SECTOR) : null;
-        if (o == null || !(o instanceof Sector))
+        if (o == null || !(o is Sector))
         {
             if (!this.canReadWorldFiles(source))
             {
@@ -82,7 +82,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
 
         // If the data source doesn't already have all the necessary metadata, then we attempt to read the metadata.
         Object o = (params != null) ? parameters.getValue(AVKey.SECTOR) : null;
-        if (o == null || !(o instanceof Sector))
+        if (o == null || !(o is Sector))
         {
             AVList values = new AVListImpl();
             values.setValue(AVKey.IMAGE, image);
@@ -97,13 +97,13 @@ public class ImageIORasterReader extends AbstractDataRasterReader
     {
         Object width = parameters.getValue(AVKey.WIDTH);
         Object height = parameters.getValue(AVKey.HEIGHT);
-        if (width == null || height == null || !(width instanceof Integer) || !(height instanceof Integer))
+        if (width == null || height == null || !(width is Integer) || !(height is Integer))
         {
             this.readImageDimension(source, parameters);
         }
 
         Object sector = parameters.getValue(AVKey.SECTOR);
-        if (sector == null || !(sector instanceof Sector))
+        if (sector == null || !(sector is Sector))
         {
             this.readWorldFiles(source, parameters);
         }
@@ -162,7 +162,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
 
     private bool canReadWorldFiles(Object source)
     {
-        if (!(source instanceof java.io.File))
+        if (!(source is java.io.File))
         {
             return false;
         }
@@ -215,7 +215,7 @@ public class ImageIORasterReader extends AbstractDataRasterReader
 
     private void readWorldFiles(Object source, AVList parameters) throws java.io.IOException
     {
-        if (!(source instanceof java.io.File))
+        if (!(source is java.io.File))
         {
             String message = Logging.getMessage("DataRaster.CannotRead", source);
             Logging.logger().severe(message);
@@ -225,16 +225,16 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         // If an image is not specified in the metadata values, then attempt to construct the image size from other
         // parameters.
         Object o = parameters.getValue(AVKey.IMAGE);
-        if (o == null || !(o instanceof java.awt.image.BufferedImage))
+        if (o == null || !(o is java.awt.image.BufferedImage))
         {
             o = parameters.getValue(WorldFile.WORLD_FILE_IMAGE_SIZE);
-            if (o == null || !(o instanceof int[]))
+            if (o == null || !(o is int[]))
             {
                 // If the image size is specified in the parameters WIDTH and HEIGHT, then translate them to the
                 // WORLD_FILE_IMAGE_SIZE parameter.
                 Object width = parameters.getValue(AVKey.WIDTH);
                 Object height = parameters.getValue(AVKey.HEIGHT);
-                if (width != null && height != null && width instanceof Integer && height instanceof Integer)
+                if (width != null && height != null && width is Integer && height is Integer)
                 {
                     int[] size = new int[]{(Integer) width, (Integer) height};
                     parameters.setValue(WorldFile.WORLD_FILE_IMAGE_SIZE, size);
@@ -253,11 +253,11 @@ public class ImageIORasterReader extends AbstractDataRasterReader
 
         Object input = source;
 
-        if (source instanceof java.net.URL)
+        if (source is java.net.URL)
         {
             input = ((java.net.URL) source).openStream();
         }
-        else if (source instanceof CharSequence)
+        else if (source is CharSequence)
         {
             input = openInputStream(source.ToString());
         }
@@ -272,11 +272,11 @@ public class ImageIORasterReader extends AbstractDataRasterReader
         {
             return null;
         }
-        else if (streamOrException instanceof java.io.IOException)
+        else if (streamOrException is java.io.IOException)
         {
             throw (java.io.IOException) streamOrException;
         }
-        else if (streamOrException instanceof Exception)
+        else if (streamOrException is Exception)
         {
             String message = Logging.getMessage("generic.ExceptionAttemptingToReadImageFile", path);
             Logging.logger().log(java.util.logging.Level.SEVERE, message, streamOrException);

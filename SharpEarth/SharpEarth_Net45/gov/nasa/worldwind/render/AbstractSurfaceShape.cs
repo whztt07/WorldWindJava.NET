@@ -297,7 +297,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
             // If the shape contains a pole, then the bounding sector is defined by the shape's extreme latitude, the
             // latitude of the pole, and the full range of longitude.
             Sector s = Sector.boundingSector(locations);
-            if (AVKey.NORTH.equals(pole))
+            if (AVKey.NORTH.Equals(pole))
                 s = new Sector(s.getMinLatitude(), Angle.POS90, Angle.NEG180, Angle.POS180);
             else
                 s = new Sector(Angle.NEG90, s.getMaxLatitude(), Angle.NEG180, Angle.POS180);
@@ -322,7 +322,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
 
         // Great circle paths between two latitudes may result in a latitude which is greater or smaller than either of
         // the two latitudes. All other path types are bounded by the defining locations.
-        if (AVKey.GREAT_CIRCLE.equals(this.getPathType()))
+        if (AVKey.GREAT_CIRCLE.Equals(this.getPathType()))
         {
             for (int i = 0; i < sectors.size(); i++)
             {
@@ -354,11 +354,11 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
             return true;
 
         //noinspection SimplifiableIfStatement
-        if (sector.equals(Sector.EMPTY_SECTOR))
+        if (sector.Equals(Sector.EMPTY_SECTOR))
             return true;
 
-        return sector.getMinLatitude().equals(sector.getMaxLatitude())
-            && sector.getMinLongitude().equals(sector.getMaxLongitude());
+        return sector.getMinLatitude().Equals(sector.getMaxLatitude())
+            && sector.getMinLongitude().Equals(sector.getMaxLongitude());
     }
 
     /**
@@ -974,7 +974,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
 
     protected double computeEdgeIntervalsPerDegree(SurfaceTileDrawContext sdc)
     {
-        double texelsPerDegree = Math.max(
+        double texelsPerDegree = Math.Max(
             sdc.getViewport().width / sdc.getSector().getDeltaLonDegrees(),
             sdc.getViewport().getHeight() / sdc.getSector().getDeltaLatDegrees());
         double intervalsPerTexel = 1.0 / this.getTexelsPerEdgeInterval();
@@ -1240,7 +1240,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         // and first locations, then close the path by repeating the first location.
         if (makeClosedPath)
         {
-            if (firstLocation != null && lastLocation != null && !firstLocation.equals(lastLocation))
+            if (firstLocation != null && lastLocation != null && !firstLocation.Equals(lastLocation))
             {
                 this.addIntermediateLocations(lastLocation, firstLocation, edgeIntervalsPerDegree, locations);
                 locations.add(firstLocation);
@@ -1419,7 +1419,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
                     arrayList.add(ll);
                 }
 
-                if (arrayList.size() > 1 && !arrayList.get(0).equals(arrayList.get(arrayList.size() - 1)))
+                if (arrayList.size() > 1 && !arrayList.get(0).Equals(arrayList.get(arrayList.size() - 1)))
                     arrayList.add(arrayList.get(0));
             }
 
@@ -1606,19 +1606,19 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         if (s == null)
             return null;
 
-        if (s.equals(AVKey.GREAT_CIRCLE))
+        if (s.Equals(AVKey.GREAT_CIRCLE))
         {
             return AVKey.GREAT_CIRCLE;
         }
-        else if (s.equals(AVKey.LINEAR))
+        else if (s.Equals(AVKey.LINEAR))
         {
             return AVKey.LINEAR;
         }
-        else if (s.equals(AVKey.LOXODROME))
+        else if (s.Equals(AVKey.LOXODROME))
         {
             return AVKey.LOXODROME;
         }
-        else if (s.equals(AVKey.RHUMB_LINE))
+        else if (s.Equals(AVKey.RHUMB_LINE))
         {
             return AVKey.RHUMB_LINE;
         }
@@ -1675,18 +1675,18 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
                 return false;
 
             SurfaceShapeStateKey that = (SurfaceShapeStateKey) o;
-            return super.equals(o)
-                && (this.attributes != null ? this.attributes.equals(that.attributes) : that.attributes == null)
-                && (this.globeStateKey != null ? this.globeStateKey.equals(that.globeStateKey)
+            return super.Equals(o)
+                && (this.attributes != null ? this.attributes.Equals(that.attributes) : that.attributes == null)
+                && (this.globeStateKey != null ? this.globeStateKey.Equals(that.globeStateKey)
                 : that.globeStateKey == null);
         }
 
         @Override
         public override int GetHashCode()
         {
-            int result = super.hashCode();
-            result = 31 * result + (this.attributes != null ? this.attributes.hashCode() : 0);
-            result = 31 * result + (this.globeStateKey != null ? this.globeStateKey.hashCode() : 0);
+            int result = super.GetHashCode();
+            result = 31 * result + (this.attributes != null ? this.attributes.GetHashCode() : 0);
+            result = 31 * result + (this.globeStateKey != null ? this.globeStateKey.GetHashCode() : 0);
             return result;
         }
 
@@ -1727,13 +1727,13 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
                 return false;
 
             GeometryKey that = (GeometryKey) o;
-            return this.globe.equals(that.globe) && this.edgeIntervalsPerDegree == that.edgeIntervalsPerDegree;
+            return this.globe.Equals(that.globe) && this.edgeIntervalsPerDegree == that.edgeIntervalsPerDegree;
         }
 
         @Override
         public override int GetHashCode()
         {
-            int hash = this.globe.hashCode();
+            int hash = this.globe.GetHashCode();
             long temp = this.edgeIntervalsPerDegree != +0.0d ? BitConverter.DoubleToInt64Bits(this.edgeIntervalsPerDegree)
                 : 0L;
             return 31 * hash + (int) (temp ^ (temp >>> 32));

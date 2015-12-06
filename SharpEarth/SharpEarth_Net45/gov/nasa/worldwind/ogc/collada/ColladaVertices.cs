@@ -48,7 +48,7 @@ public class ColladaVertices extends ColladaAbstractObject
     {
         for (ColladaInput input : this.getInputs())
         {
-            if ("POSITION".equals(input.getSemantic()))
+            if ("POSITION".Equals(input.getSemantic()))
                 return input;
         }
         return null;
@@ -58,7 +58,7 @@ public class ColladaVertices extends ColladaAbstractObject
     @Override
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals("input"))
+        if (keyName.Equals("input"))
         {
             this.inputs.add((ColladaInput) value);
         }

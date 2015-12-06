@@ -271,7 +271,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      */
     public void setCacheCapacity(long size)
     {
-        this.geometryCache.setCapacity(Math.max(size, (long) 1e6));
+        this.geometryCache.setCapacity(Math.Max(size, (long) 1e6));
     }
 
     /** {@inheritDoc} */
@@ -596,7 +596,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
     /** Computes the row and column dimensions of the tile array. */
     protected void computeDimensions()
     {
-        double resTarget = Math.max(this.globe.getElevationModel().getBestResolution(null), this.targetResolution);
+        double resTarget = Math.Max(this.globe.getElevationModel().getBestResolution(null), this.targetResolution);
 
         this.numCols = (int) Math.ceil(this.sector.getDeltaLonRadians() / (this.density * resTarget));
         this.numRows = (int) Math.ceil(this.sector.getDeltaLatRadians() / (this.density * resTarget));
@@ -640,11 +640,11 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         if (row < 0 || col < 0 || row >= this.numRows || col >= this.numCols)
             return null;
 
-        double minLon = Math.max(this.sector.getMinLongitude().degrees + col * this.lonTileSize, -180);
-        double maxLon = Math.min(minLon + this.lonTileSize, 180);
+        double minLon = Math.Max(this.sector.getMinLongitude().degrees + col * this.lonTileSize, -180);
+        double maxLon = Math.Min(minLon + this.lonTileSize, 180);
 
-        double minLat = Math.max(this.sector.getMinLatitude().degrees + row * this.latTileSize, -90);
-        double maxLat = Math.min(minLat + this.latTileSize, 90);
+        double minLat = Math.Max(this.sector.getMinLatitude().degrees + row * this.latTileSize, -90);
+        double maxLat = Math.Min(minLat + this.latTileSize, 90);
 
         return this.createTile(Sector.fromDegrees(minLat, maxLat, minLon, maxLon));
     }
@@ -718,7 +718,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         if (ptA == null || ptB == null)
             return null;
 
-        if (pA.getLatitude().equals(pB.getLatitude()) && pA.getLongitude().equals(pB.getLongitude())
+        if (pA.getLatitude().Equals(pB.getLatitude()) && pA.getLongitude().Equals(pB.getLongitude())
             && pA.getAltitude() == pB.getAltitude())
             return null;
 
@@ -882,12 +882,12 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         // is only one column, the SE subdivision is identical to the SW one and need not be tested. When there is
         // only one row, the NW subdivision is identical to the SW one and need not be tested. In either case (one
         // column or 1 row) the NE subdivision need not be tested.
-        this.doGetIntersectingTiles(r0, c0, r0 + Math.max(0, n / 2 - 1), c0 + Math.max(0, m / 2 - 1), line,
+        this.doGetIntersectingTiles(r0, c0, r0 + Math.Max(0, n / 2 - 1), c0 + Math.Max(0, m / 2 - 1), line,
             tiles); // SW
         if (m != 1)
-            this.doGetIntersectingTiles(r0, c0 + m / 2, r0 + Math.max(0, n / 2 - 1), c1, line, tiles); // SE
+            this.doGetIntersectingTiles(r0, c0 + m / 2, r0 + Math.Max(0, n / 2 - 1), c1, line, tiles); // SE
         if (n != 1)
-            this.doGetIntersectingTiles(r0 + n / 2, c0, r1, c0 + Math.max(0, m / 2 - 1), line, tiles); // NW
+            this.doGetIntersectingTiles(r0 + n / 2, c0, r1, c0 + Math.Max(0, m / 2 - 1), line, tiles); // NW
         if (!(m == 1 || n == 1))
             this.doGetIntersectingTiles(r0 + n / 2, c0 + m / 2, r1, c1, line, tiles); // NE
     }
@@ -949,7 +949,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         double[] localTargetResolution = this.getGlobe().getElevationModel().getBestResolutions(sector);
         for (int i = 0; i < localTargetResolution.length; i++)
         {
-            localTargetResolution[i] = Math.max(localTargetResolution[i], this.targetResolution);
+            localTargetResolution[i] = Math.Max(localTargetResolution[i], this.targetResolution);
         }
         this.getElevations(tile.sector, latlons, localTargetResolution, elevations);
 
@@ -1043,7 +1043,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
 
             // Give the system a chance to retrieve data from the disk cache or the server. Also catches interrupts
             // and throws interrupt exceptions.
-            Thread.sleep(this.timeout == null ? 5L : Math.min(this.timeout, 5L));
+            Thread.sleep(this.timeout == null ? 5L : Math.Min(this.timeout, 5L));
 
             Long timeout = this.getTimeout();
             if (this.startTime.get() != null && timeout != null)

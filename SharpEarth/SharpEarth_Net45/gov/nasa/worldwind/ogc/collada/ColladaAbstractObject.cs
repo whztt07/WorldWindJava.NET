@@ -34,7 +34,7 @@ public abstract class ColladaAbstractObject extends AbstractXMLEventParser
     public ColladaRoot getRoot()
     {
         XMLEventParser root = super.getRoot();
-        return root instanceof ColladaRoot ? (ColladaRoot) root : null;
+        return root is ColladaRoot ? (ColladaRoot) root : null;
     }
 
     /**

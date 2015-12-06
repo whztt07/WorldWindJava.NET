@@ -4,6 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
+using System;
+
 namespace SharpEarth.geom{
 
 
@@ -17,7 +19,7 @@ namespace SharpEarth.geom{
  */
 public sealed class Plane
 {
-    private final Vec4 n; // the plane normal and proportional distance. The vector is not necessarily a unit vector.
+    private readonly Vec4 n; // the plane normal and proportional distance. The vector is not necessarily a unit vector.
 
     /**
      * Constructs a plane from a 4-D vector giving the plane normal vector and distance.
@@ -30,14 +32,14 @@ public sealed class Plane
     {
         if (vec == null)
         {
-            String message = Logging.getMessage("nullValue.VectorIsNull");
+            string message = Logging.getMessage("nullValue.VectorIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         if (vec.getLengthSquared3() == 0.0)
         {
-            String message = Logging.getMessage("Geom.Plane.VectorIsZero");
+            string message = Logging.getMessage("Geom.Plane.VectorIsZero");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -94,7 +96,7 @@ public sealed class Plane
         Vec4 n = vab.cross3(vac);
         double d = -n.dot3(pa);
 
-        return new Plane(n.x, n.y, n.z, d);
+        return new Plane(n.x(), n.y(), n.z(), d);
     }
 
     /**
@@ -102,7 +104,7 @@ public sealed class Plane
      *
      * @return the plane's normal vector.
      */
-    public final Vec4 getNormal()
+    public Vec4 getNormal()
     {
         return this.n;//new Vec4(this.n.x, this.n.y, this.n.z);
     }
@@ -112,9 +114,9 @@ public sealed class Plane
      *
      * @return the plane distance.
      */
-    public final double getDistance()
+    public double getDistance()
     {
-        return this.n.w;
+        return this.n.w();
     }
 
     /**
@@ -122,7 +124,7 @@ public sealed class Plane
      *
      * @return a 4-D vector indicating the plane's normal vector and distance.
      */
-    public final Vec4 getVector()
+    public Vec4 getVector()
     {
         return this.n;
     }
@@ -133,17 +135,17 @@ public sealed class Plane
      *
      * @return a normalized copy of this Plane.
      */
-    public final Plane normalize()
+    public Plane normalize()
     {
         double length = this.n.getLength3();
         if (length == 0) // should not happen, but check to be sure.
             return this;
 
         return new Plane(new Vec4(
-            this.n.x / length,
-            this.n.y / length,
-            this.n.z / length,
-            this.n.w / length));
+            this.n.x() / length,
+            this.n.y() / length,
+            this.n.z() / length,
+            this.n.w() / length));
     }
 
     /**
@@ -155,7 +157,7 @@ public sealed class Plane
      *
      * @throws ArgumentException if the vector is null.
      */
-    public final double dot(Vec4 p)
+    public double dot(Vec4 p)
     {
         if (p == null)
         {
@@ -164,7 +166,7 @@ public sealed class Plane
             throw new ArgumentException(message);
         }
 
-        return this.n.x * p.x + this.n.y * p.y + this.n.z * p.z + this.n.w * p.w;
+        return this.n.x() * p.x() + this.n.y() * p.y() + this.n.z() * p.z() + this.n.w() * p.w();
     }
 
     /**
@@ -190,7 +192,7 @@ public sealed class Plane
         if (Double.IsNaN(t))
             return null;
 
-        if (Double.isInfinite(t))
+        if (Double.IsInfinity(t))
             return line.getOrigin();
 
         return line.getPointAt(t);
@@ -252,7 +254,7 @@ public sealed class Plane
         try
         {
             // Test if line segment is in fact a point
-            if (pa.equals(pb))
+            if (pa.Equals(pb))
             {
                 double d = this.distanceTo(pa);
                 if (d == 0)
@@ -264,7 +266,7 @@ public sealed class Plane
             Line l = Line.fromSegment(pa, pb);
             double t = this.intersectDistance(l);
 
-            if (Double.isInfinite(t))
+            if (Double.IsInfinity( t))
                 return Vec4.INFINITY;
 
             if (Double.IsNaN(t) || t < 0 || t > 1)
@@ -303,7 +305,7 @@ public sealed class Plane
             throw new ArgumentException(message);
         }
 
-        if (pa.equals(pb))
+        if (pa.Equals(pb))
             return null;
 
         // Get the projection of the segment onto the plane.
@@ -391,7 +393,7 @@ public sealed class Plane
         if (side == 0)
             return 0;
 
-        for (int i = 1; i < pts.length; i++)
+        for (int i = 1; i < pts.Length; i++)
         {
             if (pts[i] == null)
             {
@@ -435,9 +437,9 @@ public sealed class Plane
         Vec4 nc = pc.getNormal();
 
         Matrix m = new Matrix(
-            na.x, na.y, na.z, 0,
-            nb.x, nb.y, nb.z, 0,
-            nc.x, nc.y, nc.z, 0,
+            na.x(), na.y(), na.z(), 0,
+            nb.x(), nb.y(), nb.z(), 0,
+            nc.x(), nc.y(), nc.z(), 0,
             0, 0, 0, 1, true
         );
 
@@ -447,27 +449,24 @@ public sealed class Plane
 
         return D.transformBy3(mInverse);
     }
-
-    @Override
+    
     public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (!(o instanceof Plane))
+        if (!(o is Plane))
             return false;
 
         Plane plane = (Plane) o;
 
-        return !(n != null ? !n.equals(plane.n) : plane.n != null);
+        return !(n != null ? !n.Equals(plane.n) : plane.n != null);
     }
-
-    @Override
+    
     public override int GetHashCode()
     {
-        return n != null ? n.hashCode() : 0;
+        return n != null ? n.GetHashCode() : 0;
     }
 
-    @Override
     public override string ToString()
     {
         return this.n.ToString();

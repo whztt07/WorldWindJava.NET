@@ -7,6 +7,9 @@ using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.avlist;
+using System;
+using System.Text;
+
 namespace SharpEarth.geom.coords{
 
 
@@ -19,12 +22,12 @@ namespace SharpEarth.geom.coords{
 
 public class UTMCoord
 {
-    private final Angle latitude;
-    private final Angle longitude;
-    private final String hemisphere;
-    private final int zone;
-    private final double easting;
-    private final double northing;
+    private Angle latitude;
+    private Angle longitude;
+    private string hemisphere;
+    private int zone;
+    private double easting;
+    private double northing;
     private Angle centralMeridian;
 
     /**
@@ -59,17 +62,17 @@ public class UTMCoord
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
+            string message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        final UTMCoordConverter converter = new UTMCoordConverter(globe);
+        UTMCoordConverter converter = new UTMCoordConverter(globe);
         long err = converter.convertGeodeticToUTM(latitude.radians, longitude.radians);
 
         if (err != UTMCoordConverter.UTM_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.UTMConversionError");
+            string message = Logging.getMessage("Coord.UTMConversionError");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -78,17 +81,17 @@ public class UTMCoord
             converter.getEasting(), converter.getNorthing(), Angle.fromRadians(converter.getCentralMeridian()));
     }
 
-    public static UTMCoord fromLatLon(Angle latitude, Angle longitude, String datum)
+    public static UTMCoord fromLatLon(Angle latitude, Angle longitude, string datum)
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
+            string message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         UTMCoordConverter converter;
-        if (!WWUtil.isEmpty(datum) && datum.equals("NAD27"))
+        if (!WWUtil.isEmpty(datum) && datum.Equals("NAD27"))
         {
             converter = new UTMCoordConverter(UTMCoordConverter.CLARKE_A, UTMCoordConverter.CLARKE_F);
             LatLon llNAD27 = UTMCoordConverter.convertWGS84ToNAD27(latitude, longitude);
@@ -104,7 +107,7 @@ public class UTMCoord
 
         if (err != UTMCoordConverter.UTM_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.UTMConversionError");
+            string message = Logging.getMessage("Coord.UTMConversionError");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -126,7 +129,7 @@ public class UTMCoord
      *
      * @throws ArgumentException if the conversion to UTM coordinates fails.
      */
-    public static UTMCoord fromUTM(int zone, String hemisphere, double easting, double northing)
+    public static UTMCoord fromUTM(int zone, string hemisphere, double easting, double northing)
     {
         return fromUTM(zone, hemisphere, easting, northing, null);
     }
@@ -145,14 +148,14 @@ public class UTMCoord
      *
      * @throws ArgumentException if the conversion to UTM coordinates fails.
      */
-    public static UTMCoord fromUTM(int zone, String hemisphere, double easting, double northing, Globe globe)
+    public static UTMCoord fromUTM(int zone, string hemisphere, double easting, double northing, Globe globe)
     {
-        final UTMCoordConverter converter = new UTMCoordConverter(globe);
+        UTMCoordConverter converter = new UTMCoordConverter(globe);
         long err = converter.convertUTMToGeodetic(zone, hemisphere, easting, northing);
 
         if (err != UTMCoordConverter.UTM_NO_ERROR)
         {
-            String message = Logging.getMessage("Coord.UTMConversionError");
+            string message = Logging.getMessage("Coord.UTMConversionError");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -174,7 +177,7 @@ public class UTMCoord
      *
      * @return the geographic location corresponding to the specified UTM coordinate.
      */
-    public static LatLon locationFromUTMCoord(int zone, String hemisphere, double easting, double northing, Globe globe)
+    public static LatLon locationFromUTMCoord(int zone, string hemisphere, double easting, double northing, Globe globe)
     {
         UTMCoord coord = UTMCoord.fromUTM(zone, hemisphere, easting, northing, globe);
         return new LatLon(coord.getLatitude(), coord.getLongitude());
@@ -193,9 +196,9 @@ public class UTMCoord
      *
      * @throws ArgumentException if <code>latitude</code> or <code>longitude</code> is null.
      */
-    public UTMCoord(Angle latitude, Angle longitude, int zone, String hemisphere, double easting, double northing)
+    public UTMCoord(Angle latitude, Angle longitude, int zone, string hemisphere, double easting, double northing)
+       :this(latitude, longitude, zone, hemisphere, easting, northing, Angle.fromDegreesLongitude(0.0))
     {
-        this(latitude, longitude, zone, hemisphere, easting, northing, Angle.fromDegreesLongitude(0.0));
     }
 
     /**
@@ -212,12 +215,12 @@ public class UTMCoord
      *
      * @throws ArgumentException if <code>latitude</code> or <code>longitude</code> is null.
      */
-    public UTMCoord(Angle latitude, Angle longitude, int zone, String hemisphere, double easting, double northing,
+    public UTMCoord(Angle latitude, Angle longitude, int zone, string hemisphere, double easting, double northing,
         Angle centralMeridian)
     {
         if (latitude == null || longitude == null)
         {
-            String message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
+            string message = Logging.getMessage("nullValue.LatitudeOrLongitudeIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -251,7 +254,7 @@ public class UTMCoord
         return this.zone;
     }
 
-    public String getHemisphere()
+    public string getHemisphere()
     {
         return this.hemisphere;
     }
@@ -269,10 +272,10 @@ public class UTMCoord
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append(zone);
-        sb.append(" ").append(AVKey.NORTH.equals(hemisphere) ? "N" : "S");
-        sb.append(" ").append(easting).append("E");
-        sb.append(" ").append(northing).append("N");
+        sb.Append(zone);
+        sb.Append(" ").Append(AVKey.NORTH.Equals(hemisphere) ? "N" : "S");
+        sb.Append(" ").Append(easting).Append("E");
+        sb.Append(" ").Append(northing).Append("N");
         return sb.ToString();
     }
 }

@@ -208,10 +208,10 @@ public class GDAL
         {
             double xWest, yNorth, xEast, ySouth;
 
-            xWest = Math.min(minX, maxX);
-            xEast = Math.max(minX, maxX);
-            ySouth = Math.min(minY, maxY);
-            yNorth = Math.max(minY, maxY);
+            xWest = Math.Min(minX, maxX);
+            xEast = Math.Max(minX, maxX);
+            ySouth = Math.Min(minY, maxY);
+            yNorth = Math.Max(minY, maxY);
 
             this.corners = new java.awt.geom.Point2D[] {
                 new java.awt.geom.Point2D.Double(xWest, ySouth), // SW corner
@@ -343,13 +343,13 @@ public class GDAL
                 throw new WWRuntimeException(message);
             }
 
-            double minY = Math.max(this.getMinY(), that.getMinY());
-            double maxY = Math.min(this.getMaxY(), that.getMaxY());
+            double minY = Math.Max(this.getMinY(), that.getMinY());
+            double maxY = Math.Min(this.getMaxY(), that.getMaxY());
             if (minY > maxY)
                 return null;
 
-            double minX = Math.max(this.getMinX(), that.getMinX());
-            double maxX = Math.min(this.getMaxX(), that.getMaxX());
+            double minX = Math.Max(this.getMinX(), that.getMinX());
+            double maxX = Math.Min(this.getMaxX(), that.getMaxX());
             if (minX > maxX)
                 return null;
 

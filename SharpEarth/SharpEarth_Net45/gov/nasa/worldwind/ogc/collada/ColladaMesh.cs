@@ -51,22 +51,22 @@ public class ColladaMesh extends ColladaAbstractObject
     @Override
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals("vertices"))
+        if (keyName.Equals("vertices"))
         {
             this.vertices.add((ColladaVertices) value);
         }
-        else if (keyName.equals("source"))
+        else if (keyName.Equals("source"))
         {
             this.sources.add((ColladaSource) value);
         }
-        else if (keyName.equals("triangles"))
+        else if (keyName.Equals("triangles"))
         {
             if (this.triangles == null)
                 this.triangles = new ArrayList<ColladaTriangles>();
 
             this.triangles.add((ColladaTriangles) value);
         }
-        else if (keyName.equals("lines"))
+        else if (keyName.Equals("lines"))
         {
             if (this.lines == null)
                 this.lines = new ArrayList<ColladaLines>();

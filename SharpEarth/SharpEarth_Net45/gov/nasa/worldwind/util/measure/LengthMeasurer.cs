@@ -189,7 +189,7 @@ public class LengthMeasurer implements MeasurableLength
     {
         return this.positions != null
             && this.positions.size() > 1
-            && this.positions.get(0).equals(this.positions.get(this.positions.size() - 1));
+            && this.positions.get(0).Equals(this.positions.get(this.positions.size() - 1));
     }
 
     /**
@@ -267,7 +267,7 @@ public class LengthMeasurer implements MeasurableLength
                 double pathLength = computeLength(globe, false);
                 // Determine segment length to have enough sampling points
                 maxLength = pathLength / this.lengthTerrainSamplingSteps;
-                maxLength = Math.min(Math.max(maxLength, DEFAULT_MIN_SEGMENT_LENGTH), getMaxSegmentLength());
+                maxLength = Math.Min(Math.Max(maxLength, DEFAULT_MIN_SEGMENT_LENGTH), getMaxSegmentLength());
             }
             this.subdividedPositions = subdividePositions(globe, this.positions, maxLength,
                 followTerrain, this.pathType);

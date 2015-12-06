@@ -53,14 +53,14 @@ public class VPFRelation
 
         VPFRelation that = (VPFRelation) o;
 
-        if (this.table1 != null ? !this.table1.equals(that.table1) : that.table1 != null)
+        if (this.table1 != null ? !this.table1.Equals(that.table1) : that.table1 != null)
             return false;
-        if (this.table1Key != null ? !this.table1Key.equals(that.table1Key) : that.table1Key != null)
+        if (this.table1Key != null ? !this.table1Key.Equals(that.table1Key) : that.table1Key != null)
             return false;
-        if (this.table2 != null ? !this.table2.equals(that.table2) : that.table2 != null)
+        if (this.table2 != null ? !this.table2.Equals(that.table2) : that.table2 != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.table2Key != null ? !this.table2Key.equals(that.table2Key) : that.table2Key != null)
+        if (this.table2Key != null ? !this.table2Key.Equals(that.table2Key) : that.table2Key != null)
             return false;
 
         return true;
@@ -68,10 +68,10 @@ public class VPFRelation
 
     public override int GetHashCode()
     {
-        int result = this.table1 != null ? this.table1.hashCode() : 0;
-        result = 31 * result + (this.table1Key != null ? this.table1Key.hashCode() : 0);
-        result = 31 * result + (this.table2 != null ? this.table2.hashCode() : 0);
-        result = 31 * result + (this.table2Key != null ? this.table2Key.hashCode() : 0);
+        int result = this.table1 != null ? this.table1.GetHashCode() : 0;
+        result = 31 * result + (this.table1Key != null ? this.table1Key.GetHashCode() : 0);
+        result = 31 * result + (this.table2 != null ? this.table2.GetHashCode() : 0);
+        result = 31 * result + (this.table2Key != null ? this.table2Key.GetHashCode() : 0);
         return result;
     }
 }

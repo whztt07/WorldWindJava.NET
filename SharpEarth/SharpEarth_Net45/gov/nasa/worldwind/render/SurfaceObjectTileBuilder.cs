@@ -571,7 +571,7 @@ public class SurfaceObjectTileBuilder
         if (!this.isForceTileUpdates())
         {
             Object tileStateKey = tile.getStateKey(dc);
-            if (texture != null && tileStateKey.equals(tile.lastUpdateStateKey))
+            if (texture != null && tileStateKey.Equals(tile.lastUpdateStateKey))
                 return;
 
             // If the tile needs to be updated, then assign its lastUpdateStateKey before its texture is created. This
@@ -728,7 +728,7 @@ public class SurfaceObjectTileBuilder
         // Gather up all the SurfaceRenderables, ignoring null references and non SurfaceRenderables.
         for (Object o : iterable)
         {
-            if (o instanceof SurfaceRenderable)
+            if (o is SurfaceRenderable)
                 this.currentSurfaceObjects.add((SurfaceRenderable) o);
         }
     }
@@ -1123,7 +1123,7 @@ public class SurfaceObjectTileBuilder
         double s = this.getSplitScale();
         if (tile.getSector().getMinLatitude().degrees >= 75 || tile.getSector().getMaxLatitude().degrees <= -75)
             s *= 0.85;
-        double detailScale = Math.pow(10, -s);
+        double detailScale = Math.Pow(10, -s);
         double fieldOfViewScale = dc.getView().getFieldOfView().tanHalfAngle() / Angle.fromDegrees(45).tanHalfAngle();
         fieldOfViewScale = WWMath.clamp(fieldOfViewScale, 0, 1);
 
@@ -1193,7 +1193,7 @@ public class SurfaceObjectTileBuilder
     protected Dimension computeTextureTileDimension(DrawContext dc)
     {
         // Force a square dimension by using the maximum of the tile builder's tileWidth and tileHeight.
-        int maxSize = Math.max(this.tileDimension.width, this.tileDimension.height);
+        int maxSize = Math.Max(this.tileDimension.width, this.tileDimension.height);
 
         // The viewport may be smaller than the desired dimension. For that reason, we constrain the desired tile
         // dimension by the viewport width and height.
@@ -1233,7 +1233,7 @@ public class SurfaceObjectTileBuilder
 
         public TileInfoKey(DrawContext dc, int tileWidth, int tileHeight)
         {
-            this.globeOffset = (dc.getGlobe() instanceof Globe2D) ? ((Globe2D) dc.getGlobe()).getOffset() : 0;
+            this.globeOffset = (dc.getGlobe() is Globe2D) ? ((Globe2D) dc.getGlobe()).getOffset() : 0;
             this.tileWidth = tileWidth;
             this.tileHeight = tileHeight;
         }
@@ -1362,7 +1362,7 @@ public class SurfaceObjectTileBuilder
         {
             long size = super.getSizeInBytes();
 
-            if (this.lastUpdateStateKey instanceof Cacheable)
+            if (this.lastUpdateStateKey is Cacheable)
                 size += ((Cacheable) this.lastUpdateStateKey).getSizeInBytes();
             else if (this.lastUpdateStateKey != null)
                 size += 4; // If the object doesn't implement Cacheable, just account for the reference to it.
@@ -1525,17 +1525,17 @@ public class SurfaceObjectTileBuilder
                 return false;
 
             // Compare the tile keys and each state key in the array. The state keys are equal if the tile keys are
-            // equal, the arrays equivalent length, and each array element is equivalent. Arrays.equals() correctly
+            // equal, the arrays equivalent length, and each array element is equivalent. Arrays.Equals() correctly
             // handles null references.
             SurfaceObjectTileStateKey that = (SurfaceObjectTileStateKey) o;
-            return (this.tileKey != null ? this.tileKey.equals(that.tileKey) : that.tileKey == null)
-                && Arrays.equals(this.intersectingObjectKeys, that.intersectingObjectKeys);
+            return (this.tileKey != null ? this.tileKey.Equals(that.tileKey) : that.tileKey == null)
+                && Arrays.Equals(this.intersectingObjectKeys, that.intersectingObjectKeys);
         }
 
         @Override
         public override int GetHashCode()
         {
-            int result = this.tileKey != null ? this.tileKey.hashCode() : 0;
+            int result = this.tileKey != null ? this.tileKey.GetHashCode() : 0;
             result = 31 * result + Arrays.hashCode(this.intersectingObjectKeys); // Correctly handles a null reference.
             return result;
         }
@@ -1556,7 +1556,7 @@ public class SurfaceObjectTileBuilder
 
             for (Object o : this.intersectingObjectKeys)
             {
-                if (o instanceof Cacheable)
+                if (o is Cacheable)
                     size += ((Cacheable) o).getSizeInBytes();
                 else if (o != null)
                     size += 4; // If the object doesn't implement Cacheable, just account for the reference to it.

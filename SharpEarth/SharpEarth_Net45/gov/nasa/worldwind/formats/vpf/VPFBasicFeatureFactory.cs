@@ -177,7 +177,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
 
         // Query the number of primitives which match the feature.
         Object o = this.getPrimitiveIds(featureClass, featureRow, joinTable, null, true);
-        if (o == null || !(o instanceof Integer))
+        if (o == null || !(o is Integer))
             return null;
 
         int numPrimitives = (Integer) o;
@@ -361,7 +361,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
 
     protected static int asInt(Object o)
     {
-        if (o instanceof Number)
+        if (o is Number)
             return ((Number) o).intValue();
 
         return -1;

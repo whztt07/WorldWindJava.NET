@@ -217,7 +217,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
 
     protected bool isTransparentValue(Double value)
     {
-        return ((value == null || value.equals(this.getMissingDataSignal()))
+        return ((value == null || value.Equals(this.getMissingDataSignal()))
             && this.getMissingDataReplacement() == this.getMissingDataSignal());
     }
 

@@ -142,7 +142,7 @@ public class WMSCapabilities extends OGCCapabilities
         List<WMSLayerCapabilities> namedLayers = this.getNamedLayers();
         for (WMSLayerCapabilities layer : namedLayers)
         {
-            if (layer.getName().equals(name))
+            if (layer.getName().Equals(name))
                 return layer;
         }
 
@@ -159,7 +159,7 @@ public class WMSCapabilities extends OGCCapabilities
         Set<OGCRequestDescription> requestDescriptions = this.getCapabilityInformation().getRequestDescriptions();
         for (OGCRequestDescription rd : requestDescriptions)
         {
-            if (rd.getRequestName().equals("GetMap"))
+            if (rd.getRequestName().Equals("GetMap"))
                 return rd.getFormats();
         }
 

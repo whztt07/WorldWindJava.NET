@@ -37,7 +37,7 @@ public class KMLPoint extends KMLAbstractGeometry
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (event.asStartElement().getName().getLocalPart().equals("coordinates"))
+        if (event.asStartElement().getName().getLocalPart().Equals("coordinates"))
             this.setCoordinates((Position.PositionList) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -72,7 +72,7 @@ public class KMLPoint extends KMLAbstractGeometry
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLPoint))
+        if (!(sourceValues is KMLPoint))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);

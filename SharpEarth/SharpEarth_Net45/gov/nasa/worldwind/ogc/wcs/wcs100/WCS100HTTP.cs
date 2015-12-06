@@ -91,7 +91,7 @@ public class WCS100HTTP extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof AttributesOnlyXMLEventParser)
+                if (o != null && o is AttributesOnlyXMLEventParser)
                     this.gets.add((AttributesOnlyXMLEventParser) o);
             }
         }
@@ -101,7 +101,7 @@ public class WCS100HTTP extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof AttributesOnlyXMLEventParser)
+                if (o != null && o is AttributesOnlyXMLEventParser)
                     this.posts.add((AttributesOnlyXMLEventParser) o);
             }
         }

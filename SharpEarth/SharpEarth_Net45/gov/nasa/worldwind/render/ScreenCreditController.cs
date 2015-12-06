@@ -126,7 +126,7 @@ public class ScreenCreditController implements Renderable, SelectListener, Dispo
             if (entry.getValue() == dc.getFrameTimeStamp())
             {
                 Object po = dc.getPickedObjects().getTopObject();
-                credit.setOpacity(po != null && po instanceof ScreenCredit ? this.highlightOpacity : this.baseOpacity);
+                credit.setOpacity(po != null && po is ScreenCredit ? this.highlightOpacity : this.baseOpacity);
                 credit.render(dc);
             }
 
@@ -141,9 +141,9 @@ public class ScreenCreditController implements Renderable, SelectListener, Dispo
 
         Object po = event.getTopObject();
 
-        if (po != null && po instanceof ScreenCredit)
+        if (po != null && po is ScreenCredit)
         {
-            if (event.getEventAction().equals(SelectEvent.LEFT_DOUBLE_CLICK))
+            if (event.getEventAction().Equals(SelectEvent.LEFT_DOUBLE_CLICK))
             {
                 openBrowser((ScreenCredit) po);
             }

@@ -45,7 +45,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
                 for (int i = startIndex; i <= endIndex; i++)
                 {
                     Object o = this.dataBuffer.get(i);
-                    if ((o != null) ? o.equals(value) : (value == null))
+                    if ((o != null) ? o.Equals(value) : (value == null))
                     {
                         index = i;
                         break;

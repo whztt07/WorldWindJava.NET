@@ -502,7 +502,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         double s = this.getDetailFactor();
         if (sector.getMinLatitude().degrees >= 75 || sector.getMaxLatitude().degrees <= -75)
             s *= 0.9;
-        double detailScale = Math.pow(10, -s);
+        double detailScale = Math.Pow(10, -s);
         double fieldOfViewScale = dc.getView().getFieldOfView().tanHalfAngle() / Angle.fromDegrees(45).tanHalfAngle();
         fieldOfViewScale = WWMath.clamp(fieldOfViewScale, 0, 1);
 
@@ -530,7 +530,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         double texelSizeMeters = radius * texelSizeRadians;
 
         // Compute altitude associated with the texel size at which it would switch if it had higher-res levels.
-        return texelSizeMeters * Math.pow(10, this.getDetailFactor());
+        return texelSizeMeters * Math.Pow(10, this.getDetailFactor());
     }
 
     public Double getMaxEffectiveAltitude(Double radius)
@@ -549,7 +549,7 @@ public abstract class TiledImageLayer extends AbstractLayer
             double texelSizeRadians = this.levels.getLevel(i).getTexelSize();
             double texelSizeMeters = 2 * radius * texelSizeRadians;
 
-            return texelSizeMeters * Math.pow(10, this.getDetailFactor());
+            return texelSizeMeters * Math.Pow(10, this.getDetailFactor());
         }
 
         return null;
@@ -789,7 +789,7 @@ public abstract class TiledImageLayer extends AbstractLayer
 
         for (TextureTile tile : tiles)
         {
-            if (tile.getExtent(dc) instanceof Renderable)
+            if (tile.getExtent(dc) is Renderable)
                 ((Renderable) tile.getExtent(dc)).render(dc);
         }
 
@@ -895,7 +895,7 @@ public abstract class TiledImageLayer extends AbstractLayer
         WWXML.checkAndAppendTextElement(params, AVKey.TEXTURE_FORMAT, context, "TextureFormat");
 
         Object o = parameters.getValue(AVKey.AVAILABLE_IMAGE_FORMATS);
-        if (o != null && o instanceof String[])
+        if (o != null && o is String[])
         {
             String[] strings = (String[]) o;
             if (strings.length > 0)

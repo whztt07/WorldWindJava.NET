@@ -743,8 +743,8 @@ public class ImageUtil
 
         for (int level = 1; level <= maxLevel; level++)
         {
-            int width = Math.max(image.getWidth() >> level, 1);
-            int height = Math.max(image.getHeight() >> level, 1);
+            int width = Math.Max(image.getWidth() >> level, 1);
+            int height = Math.Max(image.getHeight() >> level, 1);
 
             mipMapLevels[level] = new BufferedImage(width, height, mipmapImageType);
             getScaledCopy(mipMapLevels[level - 1], mipMapLevels[level]);
@@ -825,7 +825,7 @@ public class ImageUtil
 
         int widthLevels = (int) WWMath.LogBase2(width);
         int heightLevels = (int) WWMath.LogBase2(height);
-        return Math.max(widthLevels, heightLevels);
+        return Math.Max(widthLevels, heightLevels);
     }
 
     /**
@@ -1072,7 +1072,7 @@ public class ImageUtil
 
         ImageUtil.readGeoKeys(reader, imageIndex, values);
 
-        if (AVKey.COORDINATE_SYSTEM_PROJECTED.equals(values.getValue(AVKey.COORDINATE_SYSTEM)))
+        if (AVKey.COORDINATE_SYSTEM_PROJECTED.Equals(values.getValue(AVKey.COORDINATE_SYSTEM)))
             ImageUtil.reprojectUtmToGeographic(values, interpolation_mode);
 
         return values;
@@ -1209,7 +1209,7 @@ public class ImageUtil
 
         BufferedImage biOut;
         //Note: image type always BufferedImage.TYPE_INT_ARGB to handle transparent no-data areas after reprojection
-        if ((image.getColorModel() != null) && (image.getColorModel() instanceof IndexColorModel))
+        if ((image.getColorModel() != null) && (image.getColorModel() is IndexColorModel))
         {
             biOut = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB,
                 (IndexColorModel) image.getColorModel());
@@ -1223,11 +1223,11 @@ public class ImageUtil
         double yPixelSize = 0;
 
         Object o = values.getValue(WorldFile.WORLD_FILE_X_PIXEL_SIZE);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             xPixelSize = (Double) o;
 
         o = values.getValue(WorldFile.WORLD_FILE_Y_PIXEL_SIZE);
-        if (o != null && o instanceof Double)
+        if (o != null && o is Double)
             yPixelSize = (Double) o;
 
         // TODO: validate that all these values exist and are valid
@@ -1496,8 +1496,8 @@ public class ImageUtil
         // extremely anisotriopic, causing severe aliasing in one dimension.
         if (dimension == null)
         {
-            double maxDimension = Math.max(sourceWidth, sourceHeight);
-            double maxSectorDelta = Math.max(sector.getDeltaLonDegrees(), sector.getDeltaLatDegrees());
+            double maxDimension = Math.Max(sourceWidth, sourceHeight);
+            double maxSectorDelta = Math.Max(sector.getDeltaLonDegrees(), sector.getDeltaLatDegrees());
             double pixelsPerDegree = maxDimension / maxSectorDelta;
             dimension = new Dimension(
                 (int) Math.Round(pixelsPerDegree * sector.getDeltaLonDegrees()),
@@ -1670,7 +1670,7 @@ public class ImageUtil
 
         java.awt.GraphicsConfiguration gc = getDefaultGraphicsConfiguration();
         java.awt.image.ColorModel gcColorModel = gc.getColorModel(image.getTransparency());
-        return image.getColorModel().equals(gcColorModel);
+        return image.getColorModel().Equals(gcColorModel);
     }
 
     protected static java.awt.GraphicsConfiguration getDefaultGraphicsConfiguration()
@@ -1830,11 +1830,11 @@ public class ImageUtil
 
         BufferedImage image;
 
-        if (raster instanceof BufferedImageRaster)
+        if (raster is BufferedImageRaster)
         {
             image = ((BufferedImageRaster) raster).getBufferedImage();
         }
-        else if (raster instanceof BufferWrapperRaster)
+        else if (raster is BufferWrapperRaster)
         {
             image = ImageUtil.visualize((BufferWrapperRaster) raster);
         }
@@ -1860,7 +1860,7 @@ public class ImageUtil
             ios = new MemoryCacheImageOutputStream(imageBytes);
 
             ColorModel cm = image.getColorModel();
-            if (cm instanceof ComponentColorModel)
+            if (cm is ComponentColorModel)
             {
                 ImageWriter writer = ImageIO.getImageWritersByFormatName("jpeg").next();
                 if (null != writer)
@@ -1906,11 +1906,11 @@ public class ImageUtil
 
         BufferedImage image;
 
-        if (raster instanceof BufferedImageRaster)
+        if (raster is BufferedImageRaster)
         {
             image = ((BufferedImageRaster) raster).getBufferedImage();
         }
-        else if (raster instanceof BufferWrapperRaster)
+        else if (raster is BufferWrapperRaster)
         {
             image = ImageUtil.visualize((BufferWrapperRaster) raster);
         }

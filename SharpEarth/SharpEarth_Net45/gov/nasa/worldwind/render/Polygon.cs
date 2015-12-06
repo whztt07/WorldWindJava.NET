@@ -382,7 +382,7 @@ public class Polygon extends AbstractShape
         }
 
         // Close the list if not already closed.
-        if (list.size() > 0 && !list.get(0).equals(list.get(list.size() - 1)))
+        if (list.size() > 0 && !list.get(0).Equals(list.get(list.size() - 1)))
             list.add(list.get(0));
 
         list.trimToSize();
@@ -661,7 +661,7 @@ public class Polygon extends AbstractShape
 
         if (this.getAltitudeMode() == WorldWind.ABSOLUTE
             && this.getCurrent().getGlobeStateKey() != null
-            && this.getCurrent().getGlobeStateKey().equals(dc.getGlobe().getGlobeStateKey(dc)))
+            && this.getCurrent().getGlobeStateKey().Equals(dc.getGlobe().getGlobeStateKey(dc)))
             return false;
 
         return super.mustRegenerateGeometry(dc);
@@ -1303,7 +1303,7 @@ public class Polygon extends AbstractShape
             return false;
 
         return this.previousIntersectionGlobeStateKey != null &&
-            terrain.getGlobe().getGlobeStateKey().equals(this.previousIntersectionGlobeStateKey);
+            terrain.getGlobe().getGlobeStateKey().Equals(this.previousIntersectionGlobeStateKey);
     }
 
     public void clearIntersectionGeometry()
@@ -1574,7 +1574,7 @@ public class Polygon extends AbstractShape
         xmlWriter.writeStartElement("coordinates");
         for (LatLon location : boundary)
         {
-            if (location instanceof Position)
+            if (location is Position)
             {
                 xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                     location.getLongitude().getDegrees(),

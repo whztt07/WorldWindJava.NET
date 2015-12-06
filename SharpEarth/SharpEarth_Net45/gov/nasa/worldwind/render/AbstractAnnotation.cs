@@ -647,9 +647,9 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
 
         // Apply texture wrap state.
         String imageRepeat = this.getAttributes().getImageRepeat();
-        int sWrap = (imageRepeat.equals(AVKey.REPEAT_X) || imageRepeat.equals(AVKey.REPEAT_XY)) ?
+        int sWrap = (imageRepeat.Equals(AVKey.REPEAT_X) || imageRepeat.Equals(AVKey.REPEAT_XY)) ?
             GL.GL_REPEAT : GL2.GL_CLAMP_TO_BORDER;
-        int tWrap = (imageRepeat.equals(AVKey.REPEAT_Y) || imageRepeat.equals(AVKey.REPEAT_XY)) ?
+        int tWrap = (imageRepeat.Equals(AVKey.REPEAT_Y) || imageRepeat.Equals(AVKey.REPEAT_XY)) ?
             GL.GL_REPEAT : GL2.GL_CLAMP_TO_BORDER;
         gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_S, sWrap);
         gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_WRAP_T, tWrap);
@@ -808,11 +808,11 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         int y = insetBounds.y + baselineOffset + 2; // TODO: why does this y-coordinate have an additional +2?
 
         // Adjust the text x-coordinate according to the text alignment property.
-        if (attribs.getTextAlign().equals(AVKey.CENTER))
+        if (attribs.getTextAlign().Equals(AVKey.CENTER))
         {
             x = (int) insetBounds.getCenterX();
         }
-        else if (attribs.getTextAlign().equals(AVKey.RIGHT))
+        else if (attribs.getTextAlign().Equals(AVKey.RIGHT))
         {
             x = (int) insetBounds.getMaxX();
         }
@@ -965,7 +965,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         int cornerRadius = this.getAttributes().getCornerRadius();
 
         java.nio.DoubleBuffer buffer = vertexBuffer;
-        if (this.getAttributes().getLeader().equals(AVKey.SHAPE_TRIANGLE))
+        if (this.getAttributes().getLeader().Equals(AVKey.SHAPE_TRIANGLE))
         {
             buffer = FrameFactory.createShapeWithLeaderBuffer(shape, width, height, leaderOffset, leaderGapWidth,
                 cornerRadius, buffer);
@@ -1155,18 +1155,18 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
             TextCacheKey that = (TextCacheKey) o;
             return (this.width == that.width)
                 && (this.height == that.height)
-                && (this.align.equals(that.align))
-                && (this.text != null ? this.text.equals(that.text) : that.text == null)
-                && (this.font != null ? this.font.equals(that.font) : that.font == null);
+                && (this.align.Equals(that.align))
+                && (this.text != null ? this.text.Equals(that.text) : that.text == null)
+                && (this.font != null ? this.font.Equals(that.font) : that.font == null);
         }
 
         public override int GetHashCode()
         {
             int result = this.width;
             result = 31 * result + this.height;
-            result = 31 * result + (this.text != null ? this.text.hashCode() : 0);
-            result = 31 * result + (this.font != null ? this.font.hashCode() : 0);
-            result = 31 * result + (this.align != null ? this.align.hashCode() : 0);
+            result = 31 * result + (this.text != null ? this.text.GetHashCode() : 0);
+            result = 31 * result + (this.font != null ? this.font.GetHashCode() : 0);
+            result = 31 * result + (this.align != null ? this.align.GetHashCode() : 0);
             return result;
         }
     }
@@ -1220,7 +1220,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
 
         // If the attributes specify to fit the annotation to the wrapped text width, then set the inset width to
         // the wrapped text width.
-        if (attribs.getAdjustWidthToText().equals(AVKey.SIZE_FIT_TEXT) && text.length() > 0)
+        if (attribs.getAdjustWidthToText().Equals(AVKey.SIZE_FIT_TEXT) && text.length() > 0)
         {
             width = textBounds.width;
         }

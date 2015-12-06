@@ -295,12 +295,12 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
             final RequestTask that = (RequestTask) o;
 
             // Don't include layer in comparison so that requests are shared among layers
-            return !(tile != null ? !tile.equals(that.tile) : that.tile != null);
+            return !(tile != null ? !tile.Equals(that.tile) : that.tile != null);
         }
 
         public override int GetHashCode()
         {
-            return (tile != null ? tile.hashCode() : 0);
+            return (tile != null ? tile.GetHashCode() : 0);
         }
 
         public override string ToString()
@@ -715,7 +715,7 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         // retrieval, or if the OGC Capabilities URL is unavailable.
         //
         // Note that we use the URL's String representation as the cache key. We cannot use the URL itself, because
-        // the cache invokes the methods Object.hashCode() and Object.equals() on the cache key. URL's implementations
+        // the cache invokes the methods Object.GetHashCode() and Object.Equals() on the cache key. URL's implementations
         // of hashCode() and equals() perform blocking IO calls. World Wind does not perform blocking calls during
         // rendering, and this method is likely to be called from the rendering thread.
         WMSCapabilities caps;
@@ -975,18 +975,18 @@ public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetriev
         if (value == null)
             return;
 
-        if (key.equals(AVKey.CONSTRUCTION_PARAMETERS))
+        if (key.Equals(AVKey.CONSTRUCTION_PARAMETERS))
             return;
 
-        if (value instanceof LatLon)
+        if (value is LatLon)
         {
             rs.addStateValueAsLatLon(context, key, (LatLon) value);
         }
-        else if (value instanceof Sector)
+        else if (value is Sector)
         {
             rs.addStateValueAsSector(context, key, (Sector) value);
         }
-        else if (value instanceof Color)
+        else if (value is Color)
         {
             rs.addStateValueAsColor(context, key, (Color) value);
         }

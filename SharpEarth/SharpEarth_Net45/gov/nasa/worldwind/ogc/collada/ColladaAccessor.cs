@@ -114,7 +114,7 @@ public class ColladaAccessor extends ColladaAbstractObject
             return null; // Source not available
 
         // TODO: COLLADA spec says source can be a non-COLLADA document (pg 5-5)
-        if (!(o instanceof ColladaFloatArray))
+        if (!(o is ColladaFloatArray))
             return null;
 
         float[] floats = ((ColladaFloatArray) o).getFloats();
@@ -158,7 +158,7 @@ public class ColladaAccessor extends ColladaAbstractObject
     @Override
     public void setField(String keyName, Object value)
     {
-        if (keyName.equals("param"))
+        if (keyName.Equals("param"))
             this.params.add((ColladaParam) value);
         else
             super.setField(keyName, value);
@@ -170,7 +170,7 @@ public class ColladaAccessor extends ColladaAbstractObject
         throws XMLStreamException
     {
         String localName = attr.getName().getLocalPart();
-        bool isIntField = "count".equals(localName) || "offset".equals(localName) || "stride".equals(localName);
+        bool isIntField = "count".Equals(localName) || "offset".Equals(localName) || "stride".Equals(localName);
 
         if (isIntField)
             this.setField(localName, WWUtil.makeInteger(attr.getValue()));

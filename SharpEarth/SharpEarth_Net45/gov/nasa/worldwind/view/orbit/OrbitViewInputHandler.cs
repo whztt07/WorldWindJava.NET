@@ -95,7 +95,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     protected bool isNonContinous2DGlobe()
     {
         Globe globe = this.getWorldWindow().getModel().getGlobe();
-        return globe instanceof Globe2D && !((Globe2D) globe).isContinuous();
+        return globe is Globe2D && !((Globe2D) globe).isContinuous();
     }
 
     //**************************************************************//
@@ -119,7 +119,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             return;
         }
 
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             // We're treating a speed parameter as smoothing here. A greater speed results in greater smoothing and
             // slower response. Therefore the min speed used at lower altitudes ought to be *greater* than the max
@@ -142,7 +142,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         ViewInputAttributes.ActionAttributes actionAttribs)
     {
         View view = this.getView();
-        if (view == null || !(view instanceof BasicOrbitView))
+        if (view == null || !(view is BasicOrbitView))
         {
             return;
         }
@@ -170,12 +170,12 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             return;
         }
 
-        if (latitudeChange.equals(Angle.ZERO) && longitudeChange.equals(Angle.ZERO))
+        if (latitudeChange.Equals(Angle.ZERO) && longitudeChange.Equals(Angle.ZERO))
         {
             return;
         }
 
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double latDegrees = latitudeChange.degrees;
             double lonDegrees = longitudeChange.degrees;
@@ -272,12 +272,12 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             return;
         }
 
-        if (forwardChange.equals(Angle.ZERO) && sideChange.equals(Angle.ZERO))
+        if (forwardChange.Equals(Angle.ZERO) && sideChange.Equals(Angle.ZERO))
         {
             return;
         }
 
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double sinHeading = view.getHeading().sin();
             double cosHeading = view.getHeading().cos();
@@ -299,7 +299,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         ViewInputAttributes.ActionAttributes actionAttributes)
     {
         View view = this.getView();
-        if (view == null || !(view instanceof BasicOrbitView))
+        if (view == null || !(view is BasicOrbitView))
         {
             return;
         }
@@ -387,7 +387,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             return;
         }
 
-        if (Angle.ZERO.equals(view.getRoll())) // Don't need to reset if roll is already zero
+        if (Angle.ZERO.Equals(view.getRoll())) // Don't need to reset if roll is already zero
         {
             return;
         }
@@ -422,7 +422,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         {
             // Switch the direction of heading change depending on whether the cursor is above or below
             // the center of the screen.
-            if (getWorldWindow() instanceof Component)
+            if (getWorldWindow() is Component)
             {
                 if (getMousePoint().y < ((Component) getWorldWindow()).getHeight() / 2)
                 {
@@ -459,12 +459,12 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             return;
         }
 
-        if (view instanceof BasicOrbitView)
+        if (view is BasicOrbitView)
         {
-            if (!headingChange.equals(Angle.ZERO))
+            if (!headingChange.Equals(Angle.ZERO))
                 this.changeHeading((BasicOrbitView) view, uiAnimControl, headingChange, actionAttribs);
 
-            if (!pitchChange.equals(Angle.ZERO))
+            if (!pitchChange.Equals(Angle.ZERO))
                 this.changePitch((BasicOrbitView) view, uiAnimControl, pitchChange, actionAttribs);
         }
     }
@@ -492,7 +492,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         {
             return;
         }
-        if (view instanceof BasicOrbitView)
+        if (view is BasicOrbitView)
         {
             this.changeZoom((BasicOrbitView) view, uiAnimControl, translateChange, actionAttribs);
         }
@@ -568,7 +568,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         if (view == null)
             return;
 
-        if (view instanceof BasicOrbitView)
+        if (view is BasicOrbitView)
         {
             ((BasicOrbitView) view).setViewOutOfFocus(true);
         }
@@ -953,7 +953,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         {
             return 0.0;
         }
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double[] range = actionAttributes.getValues();
             // If this is an OrbitView, we use the zoom value to set the scale
@@ -976,7 +976,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         {
             return 0.0;
         }
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double[] range = actionAttributes.getValues();
             // If this is an OrbitView, we use the zoom value to set the scale
@@ -995,7 +995,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         {
             return 0.0;
         }
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             double[] range = actionAttributes.getValues();
             // If this is an OrbitView, we use the zoom value to set the scale
@@ -1152,7 +1152,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
             throw new ArgumentException(message);
         }
         View view = this.getView();
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             OrbitView orbitView = (OrbitView) view;
             Angle beginHeading = orbitView.getHeading();
@@ -1188,7 +1188,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         }
 
         View view = this.getView();
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             // TODO: length-scaling factory function
             final long DEFAULT_LENGTH_MILLIS = 4000;
@@ -1206,7 +1206,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
         }
 
         View view = this.getView();
-        if (view instanceof OrbitView)
+        if (view is OrbitView)
         {
             OrbitView orbitView = (OrbitView) view;
             Interpolator interpolator;

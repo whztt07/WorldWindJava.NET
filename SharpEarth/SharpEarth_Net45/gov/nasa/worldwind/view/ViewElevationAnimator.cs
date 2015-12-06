@@ -232,7 +232,7 @@ public class ViewElevationAnimator extends DoubleAnimator
         double scaleFactor = AnimationSupport.angularRatio(sphericalDistance, Angle.POS180);
 
         // Mid-point zoom is interpolated value between minimum and maximum zoom.
-        final double MIN_ZOOM = Math.min(beginZoom, endZoom);
+        final double MIN_ZOOM = Math.Min(beginZoom, endZoom);
         final double MAX_ZOOM = 3.0 * globe.getRadius();
         return AnimationSupport.mixDouble(scaleFactor, MIN_ZOOM, MAX_ZOOM);
     }
@@ -249,7 +249,7 @@ public class ViewElevationAnimator extends DoubleAnimator
     protected bool useMidZoom(double beginZoom, double endZoom, double midZoom)
     {
         double a = Math.Abs(endZoom - beginZoom);
-        double b = Math.Abs(midZoom - Math.max(beginZoom, endZoom));
+        double b = Math.Abs(midZoom - Math.Max(beginZoom, endZoom));
         return a < b;
     }
 

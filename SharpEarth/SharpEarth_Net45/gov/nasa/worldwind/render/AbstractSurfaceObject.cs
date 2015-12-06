@@ -556,7 +556,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
         // Draw as many as we can in a batch to save pick resolution.
         Object nextItem = dc.getOrderedSurfaceRenderables().peek();
 
-        while (nextItem != null && nextItem instanceof AbstractSurfaceObject)
+        while (nextItem != null && nextItem is AbstractSurfaceObject)
         {
             AbstractSurfaceObject so = (AbstractSurfaceObject) nextItem;
 

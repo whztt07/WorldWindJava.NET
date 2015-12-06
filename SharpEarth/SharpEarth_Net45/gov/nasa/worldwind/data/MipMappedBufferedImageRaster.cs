@@ -117,7 +117,7 @@ public class MipMappedBufferedImageRaster extends BufferedImageRaster
             * (destSector.getDeltaLatDegrees() / sourceSector.getDeltaLatDegrees());
         double sx = ((double) sourceWidth / (double) destWidth)
             * (destSector.getDeltaLonDegrees() / sourceSector.getDeltaLonDegrees());
-        double scale = Math.max(sx, sy);
+        double scale = Math.Max(sx, sy);
 
         if (scale < 1)
         {

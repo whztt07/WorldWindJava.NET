@@ -59,7 +59,7 @@ public class XMLParserNotification extends PropertyChangeEvent
         this.event = event;
         this.message = msg;
 
-        if (newValue instanceof Exception)
+        if (newValue is Exception)
             this.exception = (Exception) newValue;
     }
 

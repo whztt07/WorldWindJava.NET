@@ -63,7 +63,7 @@ public class DTEDRasterReader extends AbstractDataRasterReader
                     parameters.setValues(metadata);
                 }
 
-                canRead = AVKey.ELEVATION.equals(metadata.getValue(AVKey.PIXEL_FORMAT));
+                canRead = AVKey.ELEVATION.Equals(metadata.getValue(AVKey.PIXEL_FORMAT));
             }
         }
         catch (Throwable t)
@@ -89,7 +89,7 @@ public class DTEDRasterReader extends AbstractDataRasterReader
         // This may be the first time the file has been opened, so pass the metadata list to the read method
         // in order to update that list with the file's metadata.
         DataRaster raster = DTED.read(file, parameters);
-        if (raster instanceof ByteBufferRaster)
+        if (raster is ByteBufferRaster)
             ElevationsUtil.rectify((ByteBufferRaster) raster);
 
         return new DataRaster[] {raster};
@@ -119,11 +119,11 @@ public class DTEDRasterReader extends AbstractDataRasterReader
         {
             return null;
         }
-        else if (source instanceof java.io.File)
+        else if (source is java.io.File)
         {
             return (File) source;
         }
-        else if (source instanceof java.net.URL)
+        else if (source is java.net.URL)
         {
             return WWIO.convertURLToFile((java.net.URL) source);
         }

@@ -40,8 +40,8 @@ public class OGCBoundingBox extends AbstractXMLEventParser
             bbox.maxx = Double.parseDouble(maxx);
             bbox.miny = Double.parseDouble(miny);
             bbox.maxy = Double.parseDouble(maxy);
-            bbox.resx = resx != null && !resx.equals("") ? Double.parseDouble(resx) : 0;
-            bbox.resy = resy != null && !resy.equals("") ? Double.parseDouble(resy) : 0;
+            bbox.resx = resx != null && !resx.Equals("") ? Double.parseDouble(resx) : 0;
+            bbox.resy = resy != null && !resy.Equals("") ? Double.parseDouble(resy) : 0;
         }
         catch (NumberFormatException e)
         {
@@ -68,43 +68,43 @@ public class OGCBoundingBox extends AbstractXMLEventParser
         while (iter.hasNext())
         {
             Attribute attr = (Attribute) iter.next();
-            if (attr.getName().getLocalPart().equals("CRS") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("CRS") && attr.getValue() != null)
             {
                 String s = attr.getValue();
                 if (s != null)
                     this.setCRS(s);
             }
-            else if (attr.getName().getLocalPart().equals("minx") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("minx") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)
                     this.setMinx(d);
             }
-            else if (attr.getName().getLocalPart().equals("miny") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("miny") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)
                     this.setMiny(d);
             }
-            else if (attr.getName().getLocalPart().equals("maxx") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("maxx") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)
                     this.setMaxx(d);
             }
-            else if (attr.getName().getLocalPart().equals("maxy") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("maxy") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)
                     this.setMaxy(d);
             }
-            else if (attr.getName().getLocalPart().equals("resx") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("resx") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)
                     this.setResx(d);
             }
-            else if (attr.getName().getLocalPart().equals("resy") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("resy") && attr.getValue() != null)
             {
                 Double d = WWUtil.convertStringToDouble(attr.getValue());
                 if (d != null)

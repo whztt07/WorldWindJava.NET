@@ -389,7 +389,7 @@ public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
         }
         finally
         {
-            if (connection != null && connection instanceof HttpURLConnection)
+            if (connection != null && connection is HttpURLConnection)
                 ((HttpURLConnection) connection).disconnect();
         }
 

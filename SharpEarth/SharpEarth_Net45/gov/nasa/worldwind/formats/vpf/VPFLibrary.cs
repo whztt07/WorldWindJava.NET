@@ -344,7 +344,7 @@ public class VPFLibrary extends AVListImpl
 
         VPFRecord record = this.libraryHeaderTable.getRecord(1);
         Object o = (record != null) ? record.getValue("scale") : null;
-        return (o != null && o instanceof Number) ? ((Number) o).doubleValue() : 0;
+        return (o != null && o is Number) ? ((Number) o).doubleValue() : 0;
     }
 
     public Angle computeArcLengthFromMapDistance(double millimeters)
@@ -377,7 +377,7 @@ public class VPFLibrary extends AVListImpl
         // Multiply the distance in map units (millimeters) by the map scale to determine a real world offset in meters,
         // then divide by the Globe's radius to get offset length in arc radians.
         double meters = this.getMapScale() * millimeters / 1000d;
-        double radius = unitsCoefficient * Math.max(ellipsoidParams[0], ellipsoidParams[1]);
+        double radius = unitsCoefficient * Math.Max(ellipsoidParams[0], ellipsoidParams[1]);
         return Angle.fromRadians(meters / radius);
     }
 
@@ -498,7 +498,7 @@ public class VPFLibrary extends AVListImpl
 
     protected static bool isCoverageTiled(VPFLibrary lib, VPFCoverage cov)
     {
-        if (cov.getName().equals(VPFConstants.TILE_REFERENCE_COVERAGE))
+        if (cov.getName().Equals(VPFConstants.TILE_REFERENCE_COVERAGE))
             return false;
 
         if (lib == null || lib.getCoverage(VPFConstants.TILE_REFERENCE_COVERAGE) == null)

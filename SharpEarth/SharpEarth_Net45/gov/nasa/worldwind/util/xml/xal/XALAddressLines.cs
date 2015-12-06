@@ -29,7 +29,7 @@ public class XALAddressLines extends XALAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof XALAddressLine)
+        if (o is XALAddressLine)
             this.addAddressLine((XALAddressLine) o);
     }
 

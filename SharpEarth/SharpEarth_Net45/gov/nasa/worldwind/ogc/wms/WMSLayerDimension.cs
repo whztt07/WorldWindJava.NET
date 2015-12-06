@@ -62,31 +62,31 @@ public class WMSLayerDimension extends AbstractXMLEventParser
         while (iter.hasNext())
         {
             Attribute attr = (Attribute) iter.next();
-            if (attr.getName().getLocalPart().equals("name") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("name") && attr.getValue() != null)
                 this.setName(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("units") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("units") && attr.getValue() != null)
                 this.setUnits(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("unitSymbol") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("unitSymbol") && attr.getValue() != null)
                 this.setUnitSymbol(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("default") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("default") && attr.getValue() != null)
                 this.setDefaultValue(attr.getValue());
 
-            else if (attr.getName().getLocalPart().equals("multipleValues") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("multipleValues") && attr.getValue() != null)
             {
                 Boolean d = WWUtil.convertStringToBoolean(attr.getValue());
                 if (d != null)
                     this.setMultipleValues(d);
             }
-            else if (attr.getName().getLocalPart().equals("nearestValue") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("nearestValue") && attr.getValue() != null)
             {
                 Boolean d = WWUtil.convertStringToBoolean(attr.getValue());
                 if (d != null)
                     this.setNearestValue(d);
             }
-            else if (attr.getName().getLocalPart().equals("current") && attr.getValue() != null)
+            else if (attr.getName().getLocalPart().Equals("current") && attr.getValue() != null)
             {
                 Boolean d = WWUtil.convertStringToBoolean(attr.getValue());
                 if (d != null)

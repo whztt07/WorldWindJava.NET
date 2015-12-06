@@ -42,8 +42,8 @@ public class DashboardDialog extends JDialog
         {
             public void stageChanged(RenderingEvent event)
             {
-                if (runContinuously && event.getStage().equals(RenderingEvent.AFTER_BUFFER_SWAP)
-                    && event.getSource() instanceof WorldWindow)
+                if (runContinuously && event.getStage().Equals(RenderingEvent.AFTER_BUFFER_SWAP)
+                    && event.getSource() is WorldWindow)
                 {
                     ((WorldWindow) event.getSource()).redraw();
                 }

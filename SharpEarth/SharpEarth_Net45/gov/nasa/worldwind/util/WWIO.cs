@@ -164,16 +164,16 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        if (src instanceof File)
+        if (src is File)
             return (File) src;
 
-        else if (src instanceof URL)
+        else if (src is URL)
             return convertURLToFile((URL) src);
 
-        else if (src instanceof URI)
+        else if (src is URI)
             return convertURIToFile((URI) src);
 
-        else if (!(src instanceof String))
+        else if (!(src is String))
             return null;
 
         String sourceName = (String) src;
@@ -904,7 +904,7 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        final int PAGE_SIZE = (int) Math.Round(Math.pow(2, 16));
+        final int PAGE_SIZE = (int) Math.Round(Math.Pow(2, 16));
         ByteBuffer buffer = WWBufferUtil.newByteBuffer(PAGE_SIZE, allocateDirect);
 
         int count = 0;
@@ -1058,7 +1058,7 @@ public class WWIO
         String suffix = (p >= 0 && p + 1 < len) ? filePath.substring(p + 1, len) : null;
 
         // handle .bil.gz extensions
-        if (null != suffix && p > 0 && "gz".equals(suffix))
+        if (null != suffix && p > 0 && "gz".Equals(suffix))
         {
             int idx = filePath.lastIndexOf(".", p - 1);
             suffix = (idx >= 0 && idx + 1 < len) ? filePath.substring(idx + 1, len) : suffix;
@@ -1144,7 +1144,7 @@ public class WWIO
         }
 
         String fs = File.separator;
-        String[] pathParts = path.split("[/" + (fs.equals("/") ? "" : (fs.equals("\\") ? "\\\\" : fs)) + "]");
+        String[] pathParts = path.split("[/" + (fs.Equals("/") ? "" : (fs.Equals("\\") ? "\\\\" : fs)) + "]");
         if (pathParts.length <= 1)
             return true;
 
@@ -1242,9 +1242,9 @@ public class WWIO
             String proxyType = Configuration.getStringValue(AVKey.URL_PROXY_TYPE);
 
             SocketAddress addr = new InetSocketAddress(proxyHost, proxyPort);
-            if (proxyType.equals("Proxy.Type.Http"))
+            if (proxyType.Equals("Proxy.Type.Http"))
                 proxy = new Proxy(Proxy.Type.HTTP, addr);
-            else if (proxyType.equals("Proxy.Type.SOCKS"))
+            else if (proxyType.Equals("Proxy.Type.SOCKS"))
                 proxy = new Proxy(Proxy.Type.SOCKS, addr);
         }
         catch (Exception e)
@@ -1498,13 +1498,13 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        if (mimeType.equals("application/bil32"))
+        if (mimeType.Equals("application/bil32"))
             return AVKey.FLOAT32;
-        else if (mimeType.equals("application/bil16"))
+        else if (mimeType.Equals("application/bil16"))
             return AVKey.INT16;
-        else if (mimeType.equals("application/bil"))
+        else if (mimeType.Equals("application/bil"))
             return AVKey.INT16;
-        else if (mimeType.equals("image/bil"))
+        else if (mimeType.Equals("image/bil"))
             return AVKey.INT16;
 
         return null;
@@ -1634,7 +1634,7 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        return (is instanceof BufferedInputStream && BufferedInputStream.class.equals(is.GetType()))
+        return (is is BufferedInputStream && BufferedInputStream.class.Equals(is.GetType()))
             ? (BufferedInputStream) is : new BufferedInputStream(is);
     }
 
@@ -1656,7 +1656,7 @@ public class WWIO
         // Traverse up the directory tree, visiting each node. If any node is equal to the specified ancestor,
         // then the files are related.
         File cur = file;
-        while (cur != null && !cur.equals(ancestor))
+        while (cur != null && !cur.Equals(ancestor))
         {
             cur = cur.getParentFile();
         }
@@ -1817,7 +1817,7 @@ public class WWIO
 
         try
         {
-            if (stream instanceof Closeable)
+            if (stream is Closeable)
             {
                 ((Closeable) stream).close();
             }
@@ -1942,7 +1942,7 @@ public class WWIO
 
         Object streamOrException = WWIO.getFileOrResourceAsStream(fileName, c);
 
-        if (streamOrException instanceof Exception)
+        if (streamOrException is Exception)
         {
             String msg = Logging.getMessage("generic.CannotOpenFile", fileName);
             throw new WWRuntimeException(msg, (Exception) streamOrException);
@@ -2057,15 +2057,15 @@ public class WWIO
     {
         java.io.Reader r = null;
 
-        if (src instanceof java.io.Reader)
+        if (src is java.io.Reader)
             r = (java.io.Reader) src;
-        else if (src instanceof java.io.InputStream)
+        else if (src is java.io.InputStream)
             r = new java.io.InputStreamReader((java.io.InputStream) src);
-        else if (src instanceof java.io.File)
+        else if (src is java.io.File)
             r = new java.io.FileReader((java.io.File) src);
-        else if (src instanceof java.net.URL)
+        else if (src is java.net.URL)
             r = new java.io.InputStreamReader(((java.net.URL) src).openStream());
-        else if (src instanceof String)
+        else if (src is String)
             r = new java.io.StringReader((String) src);
 
         return r;
@@ -2093,29 +2093,29 @@ public class WWIO
             throw new ArgumentException(message);
         }
 
-        if (src instanceof InputStream)
+        if (src is InputStream)
         {
             return (InputStream) src;
         }
-        else if (src instanceof URL)
+        else if (src is URL)
         {
             return ((URL) src).openStream();
         }
-        else if (src instanceof URI)
+        else if (src is URI)
         {
             return ((URI) src).toURL().openStream();
         }
-        else if (src instanceof File)
+        else if (src is File)
         {
             Object streamOrException = getFileOrResourceAsStream(((File) src).getPath(), null);
-            if (streamOrException instanceof Exception)
+            if (streamOrException is Exception)
             {
                 throw (Exception) streamOrException;
             }
 
             return (InputStream) streamOrException;
         }
-        else if (!(src instanceof String))
+        else if (!(src is String))
         {
             String message = Logging.getMessage("generic.UnrecognizedSourceType", src.ToString());
             Logging.logger().severe(message);
@@ -2129,7 +2129,7 @@ public class WWIO
             return url.openStream();
 
         Object streamOrException = getFileOrResourceAsStream(sourceName, null);
-        if (streamOrException instanceof Exception)
+        if (streamOrException is Exception)
         {
             throw (Exception) streamOrException;
         }
@@ -2159,13 +2159,13 @@ public class WWIO
 
         String s = null;
 
-        if (src instanceof java.io.File)
+        if (src is java.io.File)
             s = ((java.io.File) src).getAbsolutePath();
-        else if (src instanceof java.net.URL)
+        else if (src is java.net.URL)
             s = ((java.net.URL) src).toExternalForm();
-        else if (src instanceof java.net.URI)
+        else if (src is java.net.URI)
             s = src.ToString();
-        else if (src instanceof String)
+        else if (src is String)
             s = (String) src;
 
         return s;
@@ -2261,11 +2261,11 @@ public class WWIO
     {
         try
         {
-            if (path instanceof String)
+            if (path is String)
                 return new URI((String) path);
-            else if (path instanceof File)
+            else if (path is File)
                 return ((File) path).toURI();
-            else if (path instanceof URL)
+            else if (path is URL)
                 return ((URL) path).toURI();
             else
                 return null;

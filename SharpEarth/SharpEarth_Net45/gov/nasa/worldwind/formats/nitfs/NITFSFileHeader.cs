@@ -57,7 +57,7 @@ public class NITFSFileHeader
     {
         this.headerID = NITFSUtil.getString(buffer, 0, 4);
         this.version =  NITFSUtil.getString(buffer, 5);
-        this.isVersion0210 = "02.10".equals(version);
+        this.isVersion0210 = "02.10".Equals(version);
         this.complexityLevel = NITFSUtil.getShortNumeric(buffer, 2);
         this.specialType = NITFSUtil.getString(buffer, 4);                                   // offset  11, size 4
         this.originationStationId = NITFSUtil.getString(buffer, 10);                         // offset  15, size 10
@@ -85,7 +85,7 @@ public class NITFSFileHeader
         this.FSCTLN  = NITFSUtil.getString(buffer, isVersion0210 ? 15 : 20);                     // offset 271/260
         this.FSDWNG  = (isVersion0210) ? "" : NITFSUtil.getString(buffer, 6);      // offset    /280
 
-        this.FSDEVT  = (!isVersion0210 && "999998".equals(FSDWNG))                   // offset    /286
+        this.FSDEVT  = (!isVersion0210 && "999998".Equals(FSDWNG))                   // offset    /286
                             ? NITFSUtil.getString(buffer, 40) : "";
 
         this.FSCOP  = NITFSUtil.getString(buffer, 5);                                           // offset 286/+40

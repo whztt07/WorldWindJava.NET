@@ -93,7 +93,7 @@ public class BasicMemoryCache implements MemoryCache
     /** @return the amount of free space left in the cache (in cache units). */
     public long getFreeCapacity()
     {
-        return Math.max(this.capacity.get() - this.currentUsedCapacity.get(), 0);
+        return Math.Max(this.capacity.get() - this.currentUsedCapacity.get(), 0);
     }
 
     public void setName(String name)

@@ -36,7 +36,7 @@ public class KMLSchema extends AbstractXMLEventParser
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLSimpleField)
+        if (o is KMLSimpleField)
             this.addSimpleField((KMLSimpleField) o);
         else
             super.doAddEventContent(o, ctx, event, args);

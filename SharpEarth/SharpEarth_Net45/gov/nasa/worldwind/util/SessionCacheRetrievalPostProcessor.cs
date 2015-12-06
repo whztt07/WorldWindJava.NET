@@ -210,7 +210,7 @@ public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcesso
 
     protected String validate(Retriever retriever)
     {
-        if (!retriever.getState().equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
+        if (!retriever.getState().Equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
             return Logging.getMessage("generic.RetrievalFailed", this.ToString());
 
         if (retriever.getBuffer() == null || retriever.getBuffer().limit() == 0)
@@ -256,7 +256,7 @@ public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcesso
 
     protected void handleContentException(Retriever retriever, Exception e)
     {
-        if (e instanceof ClosedByInterruptException)
+        if (e is ClosedByInterruptException)
         {
             Logging.logger().log(java.util.logging.Level.FINE,
                 Logging.getMessage("generic.OperationCancelled",

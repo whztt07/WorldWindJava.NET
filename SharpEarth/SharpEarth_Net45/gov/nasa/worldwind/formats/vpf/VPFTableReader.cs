@@ -135,17 +135,17 @@ public class VPFTableReader
 
         public bool isPrimaryKey()
         {
-            return this.keyType.equals(VPFConstants.PRIMARY_KEY);
+            return this.keyType.Equals(VPFConstants.PRIMARY_KEY);
         }
 
         public bool isUniqueKey()
         {
-            return this.keyType.equals(VPFConstants.UNIQUE_KEY);
+            return this.keyType.Equals(VPFConstants.UNIQUE_KEY);
         }
 
         public bool isNonUniqueKey()
         {
-            return this.keyType.equals(VPFConstants.NON_UNIQUE_KEY);
+            return this.keyType.Equals(VPFConstants.NON_UNIQUE_KEY);
         }
     }
 
@@ -249,7 +249,7 @@ public class VPFTableReader
     protected static int parseNumElements(String numElements)
     {
         // "*" denotes a field with variable length.
-        if (numElements == null || numElements.equals("*"))
+        if (numElements == null || numElements.Equals("*"))
             return -1;
 
         Integer i = WWUtil.convertStringToInteger(numElements);
@@ -347,9 +347,9 @@ public class VPFTableReader
             recordData.setRecordData(columns[col].name, readers[col].getDataBuffer());
 
             // Compute an index for any columns which are identified as primary keys or unique keys.
-            if (!columns[col].name.equals(VPFConstants.ID) &&
-                (columns[col].name.equals(VPFConstants.PRIMARY_KEY) ||
-                    columns[col].name.equals(VPFConstants.UNIQUE_KEY)))
+            if (!columns[col].name.Equals(VPFConstants.ID) &&
+                (columns[col].name.Equals(VPFConstants.PRIMARY_KEY) ||
+                    columns[col].name.Equals(VPFConstants.UNIQUE_KEY)))
             {
                 recordData.buildRecordIndex(columns[col].name);
             }

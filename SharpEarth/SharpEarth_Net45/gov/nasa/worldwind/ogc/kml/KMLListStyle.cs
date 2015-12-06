@@ -37,7 +37,7 @@ public class KMLListStyle extends KMLAbstractSubStyle
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLItemIcon)
+        if (o is KMLItemIcon)
             this.addItemIcon((KMLItemIcon) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -71,7 +71,7 @@ public class KMLListStyle extends KMLAbstractSubStyle
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLListStyle))
+        if (!(sourceValues is KMLListStyle))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
@@ -106,7 +106,7 @@ public class KMLListStyle extends KMLAbstractSubStyle
                 for (KMLItemIcon existingItemIcon : itemIconsCopy)
                 {
                     String currentId = existingItemIcon.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                     {
                         this.getItemIcons().remove(existingItemIcon);
                     }

@@ -143,15 +143,15 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
         StringBuilder sb = new StringBuilder();
 
         Object o = (params != null) ? parameters.getValue(AVKey.WIDTH) : null;
-        if (o == null || !(o instanceof Integer))
+        if (o == null || !(o is Integer))
             sb.append(sb.length() > 0 ? ", " : "").append(Logging.getMessage("WorldFile.NoSizeSpecified", source));
 
         o = (params != null) ? parameters.getValue(AVKey.HEIGHT) : null;
-        if (o == null || !(o instanceof Integer))
+        if (o == null || !(o is Integer))
             sb.append(sb.length() > 0 ? ", " : "").append(Logging.getMessage("WorldFile.NoSizeSpecified", source));
 
         o = (params != null) ? parameters.getValue(AVKey.SECTOR) : null;
-        if (o == null || !(o instanceof Sector))
+        if (o == null || !(o is Sector))
             sb.append(sb.length() > 0 ? ", " : "").append(Logging.getMessage("WorldFile.NoSectorSpecified", source));
 
         if (sb.length() == 0)
@@ -163,13 +163,13 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
     /** {@inheritDoc} */
     public bool isImageryRaster(Object source, AVList parameters)
     {
-        if (params != null && AVKey.IMAGE.equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
+        if (params != null && AVKey.IMAGE.Equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
             return true;
 
         try
         {
             AVList metadata = this.readMetadata(source, parameters);
-            return metadata != null && AVKey.IMAGE.equals(metadata.getStringValue(AVKey.PIXEL_FORMAT));
+            return metadata != null && AVKey.IMAGE.Equals(metadata.getStringValue(AVKey.PIXEL_FORMAT));
         }
         catch (IOException e)
         {
@@ -180,13 +180,13 @@ public abstract class AbstractDataRasterReader extends AVListImpl implements Dat
     /** {@inheritDoc} */
     public bool isElevationsRaster(Object source, AVList parameters)
     {
-        if (params != null && AVKey.ELEVATION.equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
+        if (params != null && AVKey.ELEVATION.Equals(params.getStringValue(AVKey.PIXEL_FORMAT)))
             return true;
 
         try
         {
             AVList metadata = this.readMetadata(source, parameters);
-            return metadata != null && AVKey.ELEVATION.equals(metadata.getStringValue(AVKey.PIXEL_FORMAT));
+            return metadata != null && AVKey.ELEVATION.Equals(metadata.getStringValue(AVKey.PIXEL_FORMAT));
         }
         catch (IOException e)
         {

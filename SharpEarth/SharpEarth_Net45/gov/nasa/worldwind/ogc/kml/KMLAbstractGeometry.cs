@@ -30,7 +30,7 @@ public abstract class KMLAbstractGeometry extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractGeometry))
+        if (!(sourceValues is KMLAbstractGeometry))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);

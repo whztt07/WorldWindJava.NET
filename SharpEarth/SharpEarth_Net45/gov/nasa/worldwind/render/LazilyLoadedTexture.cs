@@ -136,7 +136,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
      */
     protected bool isBufferedImageSource()
     {
-        return this.getImageSource() instanceof BufferedImage;
+        return this.getImageSource() is BufferedImage;
     }
 
     /**
@@ -414,7 +414,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
      */
     protected Texture makeBufferedImageTexture(DrawContext dc)
     {
-        if (this.getImageSource() == null || !(this.getImageSource() instanceof BufferedImage))
+        if (this.getImageSource() == null || !(this.getImageSource() is BufferedImage))
         {
             String message = Logging.getMessage("generic.NotABufferedImage");
             Logging.logger().severe(message);
@@ -582,12 +582,12 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
 
             final RequestTask that = (RequestTask) o;
 
-            return !(this.wwTexture != null ? !this.wwTexture.equals(that.wwTexture) : that.wwTexture != null);
+            return !(this.wwTexture != null ? !this.wwTexture.Equals(that.wwTexture) : that.wwTexture != null);
         }
 
         public override int GetHashCode()
         {
-            return (this.wwTexture != null ? this.wwTexture.hashCode() : 0);
+            return (this.wwTexture != null ? this.wwTexture.GetHashCode() : 0);
         }
 
         public override string ToString()
@@ -653,7 +653,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
         LazilyLoadedTexture that = (LazilyLoadedTexture) o;
 
         //noinspection RedundantIfStatement
-        if (imageSource != null ? !imageSource.equals(that.imageSource) : that.imageSource != null)
+        if (imageSource != null ? !imageSource.Equals(that.imageSource) : that.imageSource != null)
             return false;
 
         return true;
@@ -662,7 +662,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
     @Override
     public override int GetHashCode()
     {
-        return imageSource != null ? imageSource.hashCode() : 0;
+        return imageSource != null ? imageSource.GetHashCode() : 0;
     }
 }
 }

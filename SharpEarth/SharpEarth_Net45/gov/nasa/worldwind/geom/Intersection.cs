@@ -4,7 +4,12 @@
  * All Rights Reserved.
  */
 using java.util;
+using SharpEarth.geom;
 using SharpEarth.util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace SharpEarth.geom{
 
 
@@ -16,10 +21,10 @@ namespace SharpEarth.geom{
 public sealed class Intersection // Instances are immutable
 {
     protected Vec4 intersectionPoint;
-    protected Double intersectionLength;
+    protected double intersectionLength;
     protected Position intersectionPosition;
-    protected bool isTangent;
-    protected Object object;
+    protected bool _isTangent;
+    protected object intersectionObject;
 
     /**
      * Constructs an Intersection from an intersection point and tangency indicator.
@@ -38,7 +43,7 @@ public sealed class Intersection // Instances are immutable
             throw new ArgumentException(message);
         }
         this.intersectionPoint = intersectionPoint;
-        this.isTangent = isTangent;
+        this._isTangent = isTangent;
     }
 
     /**
@@ -52,13 +57,12 @@ public sealed class Intersection // Instances are immutable
      * @throws ArgumentException if <code>intersectionPoint</code> is null
      */
     public Intersection(Vec4 intersectionPoint, double intersectionLength, bool isTangent)
+        :this(intersectionPoint, isTangent)
     {
-        this(intersectionPoint, isTangent);
-
         this.intersectionLength = intersectionLength;
     }
 
-    public Intersection(Vec4 intersectionPoint, Position intersectionPosition, bool isTangent, Object object)
+    public Intersection(Vec4 intersectionPoint, Position intersectionPosition, bool isTangent, Object intersectionObject )
     {
         if (intersectionPoint == null)
         {
@@ -69,8 +73,8 @@ public sealed class Intersection // Instances are immutable
 
         this.intersectionPoint = intersectionPoint;
         this.intersectionPosition = intersectionPosition;
-        this.isTangent = isTangent;
-        this.object = object;
+        this._isTangent = isTangent;
+        this.intersectionObject = intersectionObject;
     }
 
     /**
@@ -100,7 +104,7 @@ public sealed class Intersection // Instances are immutable
      */
     public Object getObject()
     {
-        return object;
+        return intersectionObject;
     }
 
     /**
@@ -108,9 +112,9 @@ public sealed class Intersection // Instances are immutable
      *
      * @param object the object to associate with the intersection. May be null.
      */
-    public void setObject(Object object)
+    public void setObject(Object intersectionObject )
     {
-        this.object = object;
+        this.intersectionObject = intersectionObject;
     }
 
     /**
@@ -140,7 +144,7 @@ public sealed class Intersection // Instances are immutable
      */
     public bool isTangent()
     {
-        return isTangent;
+        return _isTangent;
     }
 
     /**
@@ -148,9 +152,9 @@ public sealed class Intersection // Instances are immutable
      *
      * @param tangent true if the intersection is tangent, otherwise false.
      */
-    public void setTangent(boolean tangent)
+    public void setTangent(bool tangent)
     {
-        isTangent = tangent;
+        _isTangent = tangent;
     }
 
     /**
@@ -174,42 +178,39 @@ public sealed class Intersection // Instances are immutable
      *
      * @return the merged list of intersections, sorted by increasing distance from the reference point.
      */
-    public static Queue<Intersection> sort(final Vec4 refPoint, List<Intersection> listA, List<Intersection> listB)
+    public static Queue<Intersection> sort( Vec4 refPoint, List<Intersection> listA, List<Intersection> listB )
     {
-        PriorityQueue<Intersection> sorted = new PriorityQueue<Intersection>(10, new Comparator<Intersection>()
+      List<Intersection> toSort = new List<Intersection>();
+
+      if ( listA != null )
+      {
+        foreach ( Intersection intersection in listA )
         {
-            public int compare(Intersection losiA, Intersection losiB)
-            {
-                if (losiA.intersectionPoint == null || losiB.intersectionPoint == null)
-                    return 0;
-
-                double dA = refPoint.distanceTo3(losiA.intersectionPoint);
-                double dB = refPoint.distanceTo3(losiB.intersectionPoint);
-
-                return dA < dB ? -1 : dA == dB ? 0 : 1;
-            }
-        });
-
-        if (listA != null)
-        {
-            for (Intersection intersection : listA)
-            {
-                sorted.add(intersection);
-            }
+          toSort.Add( intersection );
         }
+      }
 
-        if (listB != null)
+      if ( listB != null )
+      {
+        foreach ( Intersection intersection in listB )
         {
-            for (Intersection intersection : listB)
-            {
-                sorted.add(intersection);
-            }
+          toSort.Add( intersection );
         }
+      }
 
-        return sorted;
+      toSort.Sort( ( losiA, losiB ) => {
+        if ( losiA.intersectionPoint == null || losiB.intersectionPoint == null )
+          return 0;
+
+        double dA = refPoint.distanceTo3( losiA.intersectionPoint );
+        double dB = refPoint.distanceTo3( losiB.intersectionPoint );
+
+        return dA < dB ? -1 : dA == dB ? 0 : 1;
+      } );
+
+      return new Queue<Intersection>( toSort );
     }
 
-    @Override
     public override bool Equals(Object o)
     {
         if (this == o)
@@ -217,31 +218,29 @@ public sealed class Intersection // Instances are immutable
         if (o == null || GetType() != o.GetType())
             return false;
 
-        final SharpEarth.geom.Intersection that = (gov.nasa.worldwind.geom.Intersection) o;
+        SharpEarth.geom.Intersection that = (Intersection) o;
 
-        if (isTangent != that.isTangent)
+        if (isTangent() != that.isTangent())
             return false;
         //noinspection RedundantIfStatement
-        if (!intersectionPoint.equals(that.intersectionPoint))
+        if (!intersectionPoint.Equals(that.intersectionPoint))
             return false;
 
         return true;
     }
 
-    @Override
     public override int GetHashCode()
     {
         int result;
-        result = intersectionPoint.hashCode();
-        result = 29 * result + (isTangent ? 1 : 0);
+        result = intersectionPoint.GetHashCode();
+        result = 29 * result + (_isTangent ? 1 : 0);
         return result;
     }
 
-    @Override
     public override string ToString()
     {
         String pt = "Intersection Point: " + this.intersectionPoint;
-        String tang = this.isTangent ? " is a tangent." : " not a tangent";
+        String tang = this._isTangent ? " is a tangent." : " not a tangent";
         return pt + tang;
     }
 }

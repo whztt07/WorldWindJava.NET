@@ -3,13 +3,14 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util;
-using javax.media.opengl.glu;
-using javax.media.opengl;
+using System;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth;
+using System.Collections.Generic;
+using SharpEarth.java.util;
+
 namespace SharpEarth.geom{
 
 
@@ -20,13 +21,13 @@ namespace SharpEarth.geom{
  * @author Tom Gaskins
  * @version $Id: Cylinder.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class Cylinder implements Extent, Renderable
+public class Cylinder : Extent, Renderable
 {
-    protected final Vec4 bottomCenter; // point at center of cylinder base
-    protected final Vec4 topCenter; // point at center of cylinder top
-    protected final Vec4 axisUnitDirection; // axis as unit vector from bottomCenter to topCenter
-    protected final double cylinderRadius;
-    protected final double cylinderHeight;
+    protected readonly Vec4 bottomCenter; // point at center of cylinder base
+    protected readonly Vec4 topCenter; // point at center of cylinder top
+    protected readonly Vec4 axisUnitDirection; // axis as unit vector from bottomCenter to topCenter
+    protected readonly double cylinderRadius;
+    protected readonly double cylinderHeight;
 
     /**
      * Create a Cylinder from two points and a radius.
@@ -40,7 +41,7 @@ public class Cylinder implements Extent, Renderable
      */
     public Cylinder(Vec4 bottomCenter, Vec4 topCenter, double cylinderRadius)
     {
-        if (bottomCenter == null || topCenter == null || bottomCenter.equals(topCenter))
+        if (bottomCenter == null || topCenter == null || bottomCenter.Equals(topCenter))
         {
             String message = Logging.getMessage(
                 bottomCenter == null || topCenter == null ? "nullValue.EndPointIsNull" : "generic.EndPointsCoincident");
@@ -81,7 +82,7 @@ public class Cylinder implements Extent, Renderable
      */
     public Cylinder(Vec4 bottomCenter, Vec4 topCenter, double cylinderRadius, Vec4 unitDirection)
     {
-        if (bottomCenter == null || topCenter == null || bottomCenter.equals(topCenter))
+        if (bottomCenter == null || topCenter == null || bottomCenter.Equals(topCenter))
         {
             String message = Logging.getMessage(
                 bottomCenter == null || topCenter == null ? "nullValue.EndPointIsNull" : "generic.EndPointsCoincident");
@@ -168,9 +169,9 @@ public class Cylinder implements Extent, Renderable
         Vec4 b = this.bottomCenter;
         Vec4 t = this.topCenter;
         return new Vec4(
-            (b.x + t.x) / 2.0,
-            (b.y + t.y) / 2.0,
-            (b.z + t.z) / 2.0);
+            (b.x() + t.x()) / 2.0,
+            (b.y() + t.y()) / 2.0,
+            (b.z() + t.z()) / 2.0);
     }
 
     /** {@inheritDoc} */
@@ -208,7 +209,7 @@ public class Cylinder implements Extent, Renderable
      * @throws ArgumentException if the point list is null or empty.
      * @see #computeVerticalBoundingCylinder(gov.nasa.worldwind.globes.Globe, double, Sector)
      */
-    public static Cylinder computeBoundingCylinder(Iterable<? extends Vec4> points)
+    public static Cylinder computeBoundingCylinder(IEnumerable<Vec4> points)
     {
         if (points == null)
         {
@@ -228,14 +229,14 @@ public class Cylinder implements Extent, Renderable
         Vec4 r = axes[0];
         Vec4 s = axes[1];
 
-        List<Vec4> sPlanePoints = new ArrayList<Vec4>();
+        List<Vec4> sPlanePoints = new List<Vec4>();
         double minDotR = Double.MaxValue;
         double maxDotR = -minDotR;
 
-        for (Vec4 p : points)
+        foreach (Vec4 p in points)
         {
             double pdr = p.dot3(r);
-            sPlanePoints.add(p.subtract3(r.multiply3(p.dot3(r))));
+            sPlanePoints.Add(p.subtract3(r.multiply3(p.dot3(r))));
 
             if (pdr < minDotR)
                 minDotR = pdr;
@@ -243,11 +244,11 @@ public class Cylinder implements Extent, Renderable
                 maxDotR = pdr;
         }
 
-        Vec4 minPoint = sPlanePoints.get(0);
+        Vec4 minPoint = sPlanePoints[0];
         Vec4 maxPoint = minPoint;
         double minDotS = Double.MaxValue;
         double maxDotS = -minDotS;
-        for (Vec4 p : sPlanePoints)
+        foreach (Vec4 p in sPlanePoints)
         {
             double d = p.dot3(s);
             if (d < minDotS)
@@ -265,7 +266,7 @@ public class Cylinder implements Extent, Renderable
         Vec4 center = minPoint.add3(maxPoint).divide3(2);
         double radius = center.distanceTo3(minPoint);
 
-        for (Vec4 h : sPlanePoints)
+        foreach (Vec4 h in sPlanePoints)
         {
             Vec4 hq = h.subtract3(center);
             double d = hq.getLength3();
@@ -283,7 +284,7 @@ public class Cylinder implements Extent, Renderable
         if (radius == 0)
             radius = 1;
 
-        if (bottomCenter.equals(topCenter))
+        if (bottomCenter.Equals(topCenter))
             topCenter = bottomCenter.add3(new Vec4(1, 0, 0));
 
         return new Cylinder(bottomCenter, topCenter, radius);
@@ -308,12 +309,12 @@ public class Cylinder implements Extent, Renderable
             this.axisUnitDirection, tVals))
             return null;
 
-        if (!Double.isInfinite(tVals[0]) && !Double.isInfinite(tVals[1]) && tVals[0] >= 0.0 && tVals[1] >= 0.0)
+        if (!Double.IsInfinity(tVals[0]) && !Double.IsInfinity(tVals[1]) && tVals[0] >= 0.0 && tVals[1] >= 0.0)
             return new Intersection[] {new Intersection(line.getPointAt(tVals[0]), false),
                 new Intersection(line.getPointAt(tVals[1]), false)};
-        if (!Double.isInfinite(tVals[0]) && tVals[0] >= 0.0)
+        if (!Double.IsInfinity(tVals[0]) && tVals[0] >= 0.0)
             return new Intersection[] {new Intersection(line.getPointAt(tVals[0]), false)};
-        if (!Double.isInfinite(tVals[1]) && tVals[1] >= 0.0)
+        if (!Double.IsInfinity(tVals[1]) && tVals[1] >= 0.0)
             return new Intersection[] {new Intersection(line.getPointAt(tVals[1]), false)};
         return null;
     }
@@ -333,7 +334,7 @@ public class Cylinder implements Extent, Renderable
 
     // Taken from "Graphics Gems IV", Section V.2, page 356.
 
-    protected bool intcyl(Vec4 raybase, Vec4 raycos, Vec4 base, Vec4 axis, double radius, double[] tVals)
+    protected bool intcyl(Vec4 raybase, Vec4 raycos, Vec4 cylinderBase, Vec4 axis, double radius, double[] tVals)
     {
         bool hit; // True if ray intersects cyl
         Vec4 RC; // Ray base to cylinder base
@@ -342,7 +343,7 @@ public class Cylinder implements Extent, Renderable
         Vec4 n, D, O;
         double ln;
 
-        RC = raybase.subtract3(base);
+        RC = raybase.subtract3( cylinderBase );
         n = raycos.cross3(axis);
 
         // Ray is parallel to the cylinder's axis.
@@ -351,7 +352,7 @@ public class Cylinder implements Extent, Renderable
             d = RC.dot3(axis);
             D = RC.subtract3(axis.multiply3(d));
             d = D.getLength3();
-            tVals[0] = Double.NEGATIVE_INFINITY;
+            tVals[0] = Double.NegativeInfinity;
             tVals[1] = Double.PositiveInfinity;
             // True if ray is in cylinder.
             return d <= radius;
@@ -381,10 +382,10 @@ public class Cylinder implements Extent, Renderable
     protected bool clipcyl(Vec4 raybase, Vec4 raycos, Vec4 bot, Vec4 top, Vec4 axis, double[] tVals)
     {
         double dc, dwb, dwt, tb, tt;
-        double in, out; // Object intersection distances.
+        double inner, outer; // Object intersection distances.
 
-        in = tVals[0];
-        out = tVals[1];
+      inner = tVals[0];
+      outer = tVals[1];
 
         dc = axis.dot3(raycos);
         dwb = axis.dot3(raybase) - axis.dot3(bot);
@@ -408,32 +409,32 @@ public class Cylinder implements Extent, Renderable
             // Bottom is near cap, top is far cap.
             if (dc >= 0.0)
             {
-                if (tb > out)
+                if (tb > outer )
                     return false;
-                if (tt < in)
+                if (tt < inner )
                     return false;
-                if (tb > in && tb < out)
-                    in = tb;
-                if (tt > in && tt < out)
-                    out = tt;
+                if (tb > inner && tb < outer )
+            inner = tb;
+                if (tt > inner && tt < outer )
+            outer = tt;
             }
             // Bottom is far cap, top is near cap.
             else
             {
-                if (tb < in)
+                if (tb < inner )
                     return false;
-                if (tt > out)
+                if (tt > outer )
                     return false;
-                if (tb > in && tb < out)
-                    out = tb;
-                if (tt > in && tt < out)
-                    in = tt;
+                if (tb > inner && tb < outer )
+            outer = tb;
+                if (tt > inner && tt < outer )
+                    inner = tt;
             }
         }
 
-        tVals[0] = in;
-        tVals[1] = out;
-        return in < out;
+        tVals[0] = inner;
+        tVals[1] = outer;
+        return inner < outer;
     }
 
     protected double intersects(Plane plane, double effectiveRadius)
@@ -648,14 +649,9 @@ public class Cylinder implements Extent, Renderable
         // sector's latitude range. In some cases this cylinder may be too large, but we're typically not interested
         // in culling these cylinders since the sector will span most of the globe.
         if (sector.getDeltaLatDegrees() >= 180d || sector.getDeltaLonDegrees() >= 180d)
-        {
             return computeVerticalBoundsFromSectorLatitudeRange(globe, sector, minHeight, maxHeight);
-        }
         // Otherwise, create a standard bounding cylinder that minimally surrounds the specified sector and elevations.
-        else
-        {
             return computeVerticalBoundsFromSectorQuadrilateral(globe, sector, minHeight, maxHeight);
-        }
     }
 
     /**
@@ -671,7 +667,6 @@ public class Cylinder implements Extent, Renderable
      *
      * @throws ArgumentException if <code>sector</code> is null
      */
-    @SuppressWarnings({"UnusedDeclaration"})
     protected static Cylinder computeVerticalBoundsFromSectorLatitudeRange(Globe globe, Sector sector, double minHeight,
         double maxHeight)
     {
@@ -702,7 +697,7 @@ public class Cylinder implements Extent, Renderable
         if (radius == 0)
             radius = 1;
 
-        if (bottomCenterPoint.equals(topCenterPoint))
+        if (bottomCenterPoint.Equals(topCenterPoint))
             topCenterPoint = bottomCenterPoint.add3(new Vec4(1, 0, 0));
 
         return new Cylinder(bottomCenterPoint, topCenterPoint, radius);
@@ -769,7 +764,7 @@ public class Cylinder implements Extent, Renderable
             minHeight);
         double minProj = extremePoint.subtract3(centerPoint).dot3(axis);
         extremePoint = globe.computePointFromPosition(sector.getMaxLatitude(), sector.getMaxLongitude(), minHeight);
-        minProj = Math.min(minProj, extremePoint.subtract3(centerPoint).dot3(axis));
+        minProj = Math.Min(minProj, extremePoint.subtract3(centerPoint).dot3(axis));
         // Compute the sector's highest projection along the cylinder axis. We only need to use the point at the
         // sector's centroid with maxHeight. This point is guaranteed to be the highest point in the sector.
         LatLon centroid = sector.getCentroid();
@@ -782,7 +777,7 @@ public class Cylinder implements Extent, Renderable
         if (radius == 0)
             radius = 1;
 
-        if (bottomCenterPoint.equals(topCenterPoint))
+        if (bottomCenterPoint.Equals(topCenterPoint))
             topCenterPoint = bottomCenterPoint.add3(new Vec4(1, 0, 0));
 
         return new Cylinder(bottomCenterPoint, topCenterPoint, radius);
@@ -826,21 +821,21 @@ public class Cylinder implements Extent, Renderable
 
         // Compute the bottom center point as the lowest projection along the axis.
         double minProj = southwest.subtract3(topCenterPoint).dot3(axis);
-        minProj = Math.min(minProj, southeast.subtract3(topCenterPoint).dot3(axis));
-        minProj = Math.min(minProj, northeast.subtract3(topCenterPoint).dot3(axis));
-        minProj = Math.min(minProj, northwest.subtract3(topCenterPoint).dot3(axis));
+        minProj = Math.Min(minProj, southeast.subtract3(topCenterPoint).dot3(axis));
+        minProj = Math.Min(minProj, northeast.subtract3(topCenterPoint).dot3(axis));
+        minProj = Math.Min(minProj, northwest.subtract3(topCenterPoint).dot3(axis));
         Vec4 bottomCenterPoint = axis.multiply3(minProj).add3(topCenterPoint);
 
         // Compute the radius as the maximum distance from the top center point to any of the corner points.
         double radius = topCenterPoint.distanceTo3(southwest);
-        radius = Math.max(radius, topCenterPoint.distanceTo3(southeast));
-        radius = Math.max(radius, topCenterPoint.distanceTo3(northeast));
-        radius = Math.max(radius, topCenterPoint.distanceTo3(northwest));
+        radius = Math.Max(radius, topCenterPoint.distanceTo3(southeast));
+        radius = Math.Max(radius, topCenterPoint.distanceTo3(northeast));
+        radius = Math.Max(radius, topCenterPoint.distanceTo3(northwest));
 
         if (radius == 0)
             radius = 1;
 
-        if (bottomCenterPoint.equals(topCenterPoint))
+        if (bottomCenterPoint.Equals(topCenterPoint))
             topCenterPoint = bottomCenterPoint.add3(new Vec4(1, 0, 0));
 
         return new Cylinder(bottomCenterPoint, topCenterPoint, radius);
@@ -923,45 +918,43 @@ public class Cylinder implements Extent, Renderable
             ogsh.pop(gl);
         }
     }
-
-    @Override
+    
     public override bool Equals(Object o)
     {
         if (this == o)
             return true;
-        if (!(o instanceof Cylinder))
+        if (!(o is Cylinder))
             return false;
 
         Cylinder cylinder = (Cylinder) o;
 
-        if (Double.compare(cylinder.cylinderHeight, cylinderHeight) != 0)
+        if (cylinder.cylinderHeight.CompareTo(cylinderHeight) != 0)
             return false;
-        if (Double.compare(cylinder.cylinderRadius, cylinderRadius) != 0)
+        if (cylinder.cylinderRadius.CompareTo( cylinderRadius ) != 0)
             return false;
-        if (axisUnitDirection != null ? !axisUnitDirection.equals(cylinder.axisUnitDirection)
+        if (axisUnitDirection != null ? !axisUnitDirection.Equals(cylinder.axisUnitDirection)
             : cylinder.axisUnitDirection != null)
             return false;
-        if (bottomCenter != null ? !bottomCenter.equals(cylinder.bottomCenter) : cylinder.bottomCenter != null)
+        if (bottomCenter != null ? !bottomCenter.Equals(cylinder.bottomCenter) : cylinder.bottomCenter != null)
             return false;
         //noinspection RedundantIfStatement
-        if (topCenter != null ? !topCenter.equals(cylinder.topCenter) : cylinder.topCenter != null)
+        if (topCenter != null ? !topCenter.Equals(cylinder.topCenter) : cylinder.topCenter != null)
             return false;
 
         return true;
     }
 
-    @Override
     public override int GetHashCode()
     {
         int result;
-        long temp;
-        result = bottomCenter != null ? bottomCenter.hashCode() : 0;
-        result = 31 * result + (topCenter != null ? topCenter.hashCode() : 0);
-        result = 31 * result + (axisUnitDirection != null ? axisUnitDirection.hashCode() : 0);
-        temp = cylinderRadius != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderRadius) : 0L;
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = cylinderHeight != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderHeight) : 0L;
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        ulong temp;
+        result = bottomCenter != null ? bottomCenter.GetHashCode() : 0;
+        result = 31 * result + (topCenter != null ? topCenter.GetHashCode() : 0);
+        result = 31 * result + (axisUnitDirection != null ? axisUnitDirection.GetHashCode() : 0);
+        temp = (ulong) (cylinderRadius != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderRadius) : 0L);
+        result = 31 * result + (int) (temp ^ (temp >> 32));
+        temp = (ulong) (cylinderHeight != +0.0d ? BitConverter.DoubleToInt64Bits(cylinderHeight) : 0L);
+        result = 31 * result + (int) (temp ^ (temp >> 32));
         return result;
     }
 

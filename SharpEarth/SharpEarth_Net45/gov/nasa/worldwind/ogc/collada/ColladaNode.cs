@@ -225,14 +225,14 @@ public class ColladaNode extends ColladaAbstractObject implements ColladaRendera
     @Override
     public void setField(String keyName, Object value)
     {
-        if ("node".equals(keyName) || "instance_node".equals(keyName))
+        if ("node".Equals(keyName) || "instance_node".Equals(keyName))
         {
             if (this.children == null)
                 this.children = new ArrayList<ColladaRenderable>();
 
             this.children.add((ColladaRenderable) value);
         }
-        else if ("instance_geometry".equals(keyName))
+        else if ("instance_geometry".Equals(keyName))
         {
             if (this.geometries == null)
                 this.geometries = new ArrayList<ColladaInstanceGeometry>();

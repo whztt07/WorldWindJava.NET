@@ -76,7 +76,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
 
         this.retriever = retriever;
 
-        if (!retriever.getState().equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
+        if (!retriever.getState().Equals(Retriever.RETRIEVER_STATE_SUCCESSFUL))
         {
             this.handleUnsuccessfulRetrieval();
             return null;
@@ -108,7 +108,7 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      */
     protected void handleUnsuccessfulRetrieval()
     {
-        if (this.getRetriever().getState().equals(Retriever.RETRIEVER_STATE_ERROR))
+        if (this.getRetriever().getState().Equals(Retriever.RETRIEVER_STATE_ERROR))
             this.markResourceAbsent();
     }
 
@@ -139,11 +139,11 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
     protected bool validateResponseCode()
     {
         //noinspection SimplifiableIfStatement
-        if (this.getRetriever() instanceof HTTPRetriever)
+        if (this.getRetriever() is HTTPRetriever)
             return this.validateHTTPResponseCode();
-        else if (this.getRetriever() instanceof JarRetriever)
+        else if (this.getRetriever() is JarRetriever)
             return this.validateJarResponseCode();
-        else if (this.getRetriever() instanceof LocalRasterServerRetriever)
+        else if (this.getRetriever() is LocalRasterServerRetriever)
             return true;
 
         return false;
@@ -366,13 +366,13 @@ public abstract class AbstractRetrievalPostProcessor implements RetrievalPostPro
      */
     protected void handleContentException(Exception e)
     {
-        if (e instanceof ClosedByInterruptException)
+        if (e is ClosedByInterruptException)
         {
             Logging.logger().log(java.util.logging.Level.FINE,
                 Logging.getMessage("generic.OperationCancelled",
                     "retrieval post-processing for " + this.getRetriever().getName()), e);
         }
-        else if (e instanceof IOException)
+        else if (e is IOException)
         {
             this.markResourceAbsent();
             Logging.logger().log(java.util.logging.Level.SEVERE,

@@ -89,7 +89,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
         if (this.hasKey(AVKey.MISSING_DATA_SIGNAL))
         {
             Object o = this.getValue(AVKey.MISSING_DATA_SIGNAL);
-            if (null != o && o instanceof Double)
+            if (null != o && o is Double)
                 return (Double) o;
         }
         return Double.MaxValue;
@@ -168,7 +168,7 @@ public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable
             throw new ArgumentException(message);
         }
 
-        if (!(canvas instanceof BufferWrapperRaster))
+        if (!(canvas is BufferWrapperRaster))
         {
             String message = Logging.getMessage("DataRaster.IncompatibleRaster", canvas);
             Logging.logger().severe(message);

@@ -347,10 +347,10 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 
             if (density != cacheKey.density)
                 return false;
-            if (globeStateKey != null ? !globeStateKey.equals(cacheKey.globeStateKey) : cacheKey.globeStateKey != null)
+            if (globeStateKey != null ? !globeStateKey.Equals(cacheKey.globeStateKey) : cacheKey.globeStateKey != null)
                 return false;
             //noinspection RedundantIfStatement
-            if (sector != null ? !sector.equals(cacheKey.sector) : cacheKey.sector != null)
+            if (sector != null ? !sector.Equals(cacheKey.sector) : cacheKey.sector != null)
                 return false;
 
             return true;
@@ -359,9 +359,9 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
         public override int GetHashCode()
         {
             int result;
-            result = (sector != null ? sector.hashCode() : 0);
+            result = (sector != null ? sector.GetHashCode() : 0);
             result = 31 * result + density;
-            result = 31 * result + (globeStateKey != null ? globeStateKey.hashCode() : 0);
+            result = 31 * result + (globeStateKey != null ? globeStateKey.GetHashCode() : 0);
             return result;
         }
     }
@@ -516,7 +516,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
     protected bool skipTile(DrawContext dc, Sector sector)
     {
         Sector limits = ((Globe2D) dc.getGlobe()).getProjection().getProjectionLimits();
-        if (limits == null || limits.equals(Sector.FULL_SPHERE))
+        if (limits == null || limits.Equals(Sector.FULL_SPHERE))
             return false;
 
         return !sector.intersectsInterior(limits);
@@ -598,7 +598,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
         double s = this.computeTileResolutionTarget(dc, tile);
         if (tile.getSector().getMinLatitude().degrees >= 75 || tile.getSector().getMaxLatitude().degrees <= -75)
             s *= 0.5;
-        double detailScale = Math.pow(10, -s);
+        double detailScale = Math.Pow(10, -s);
         double fieldOfViewScale = dc.getView().getFieldOfView().tanHalfAngle() / Angle.fromDegrees(45).tanHalfAngle();
         fieldOfViewScale = WWMath.clamp(fieldOfViewScale, 0, 1);
 
@@ -860,7 +860,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
             gl.glClientActiveTexture(GL2.GL_TEXTURE0 + i);
             gl.glEnableClientState(GL2.GL_TEXTURE_COORD_ARRAY);
             Object texCoords = dc.getValue(AVKey.TEXTURE_COORDINATES);
-            if (texCoords != null && texCoords instanceof DoubleBuffer)
+            if (texCoords != null && texCoords is DoubleBuffer)
                 gl.glTexCoordPointer(2, GL.GL_FLOAT, 0, ((DoubleBuffer) texCoords).rewind());
             else
                 gl.glTexCoordPointer(2, GL.GL_FLOAT, 0, tile.ri.texCoords.rewind());
@@ -1095,7 +1095,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
         if (extent == null)
             return;
 
-        if (extent instanceof Renderable)
+        if (extent is Renderable)
             ((Renderable) extent).render(dc);
     }
 
@@ -1539,7 +1539,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 
         // Check whether the tile includes the intersection elevation - assume cylinder as Extent
         // TODO: replace this test with a generic test against Extent
-        if (tile.getExtent() instanceof Cylinder)
+        if (tile.getExtent() is Cylinder)
         {
             Cylinder cylinder = ((Cylinder) tile.getExtent());
             if (!(globe.isPointAboveElevation(cylinder.getBottomCenter(), elevation)
@@ -2163,8 +2163,8 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 //        // try to minimize numerical roundoff. The three triangle vertices
 //        // are going to have coordinates with roughly the same magnitude,
 //        // so we just sample triVerts[0].
-//        double maxC = Math.max(Math.Abs(triVerts[0].x), Math.Abs(triVerts[0].y));
-//        maxC = Math.max(maxC, Math.Abs(triVerts[0].z));
+//        double maxC = Math.Max(Math.Abs(triVerts[0].x), Math.Abs(triVerts[0].y));
+//        maxC = Math.Max(maxC, Math.Abs(triVerts[0].z));
 //        Vec4 v0 = triVerts[0].divide3(maxC);
 //        Vec4 u = triVerts[1].divide3(maxC).subtract3(v0);
 //        Vec4 v = triVerts[triVerts.length - 1].divide3(maxC).subtract3(v0);
@@ -2625,7 +2625,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
 //
 //    public static RectGeometry getTerrainGeometry(SectorGeometry tile)
 //    {
-//        if (tile == null || !(tile instanceof RectTile))
+//        if (tile == null || !(tile is RectTile))
 //            throw new ArgumentException("SectorGeometry instance not of type RectTile");
 //
 //        return new RectGeometry((RectTile) tile);

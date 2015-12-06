@@ -108,7 +108,7 @@ public abstract class AbstractDataRaster extends AVListImpl implements DataRaste
 
         if (this.hasKey(key))
         {
-            if (AVKey.WIDTH.equals(key) && this.getWidth() != (Integer) value)
+            if (AVKey.WIDTH.Equals(key) && this.getWidth() != (Integer) value)
             {
                 String message = Logging.getMessage("generic.AttemptToChangeReadOnlyProperty", key);
                 Logging.logger().finest(message);
@@ -116,7 +116,7 @@ public abstract class AbstractDataRaster extends AVListImpl implements DataRaste
 //                throw new ArgumentException(message);
                 return this;
             }
-            else if (AVKey.HEIGHT.equals(key) && this.getHeight() != (Integer) value)
+            else if (AVKey.HEIGHT.Equals(key) && this.getHeight() != (Integer) value)
             {
                 String message = Logging.getMessage("generic.AttemptToChangeReadOnlyProperty", key);
                 Logging.logger().finest(message);
@@ -272,14 +272,14 @@ public abstract class AbstractDataRaster extends AVListImpl implements DataRaste
         }
 
         Sector roiSector = (Sector) parameters.getValue(AVKey.SECTOR);
-        if (null == roiSector || Sector.EMPTY_SECTOR.equals(roiSector))
+        if (null == roiSector || Sector.EMPTY_SECTOR.Equals(roiSector))
         {
             String message = Logging.getMessage("nullValue.SectorIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        if (Sector.EMPTY_SECTOR.equals(roiSector))
+        if (Sector.EMPTY_SECTOR.Equals(roiSector))
         {
             String message = Logging.getMessage("nullValue.SectorGeometryIsNull");
             Logging.logger().severe(message);

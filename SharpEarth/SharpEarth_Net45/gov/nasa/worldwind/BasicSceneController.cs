@@ -24,7 +24,7 @@ public class BasicSceneController extends AbstractSceneController
         this.initializeFrame(dc);
         try
         {
-            if (dc.getGlobe() instanceof Globe2D && ((Globe2D)dc.getGlobe()).isContinuous())
+            if (dc.getGlobe() is Globe2D && ((Globe2D)dc.getGlobe()).isContinuous())
                 this.do2DContiguousRepaint(dc);
             else
                 this.doNormalRepaint(dc);

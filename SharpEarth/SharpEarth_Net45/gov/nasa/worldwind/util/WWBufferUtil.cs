@@ -548,15 +548,15 @@ public class WWBufferUtil
             throw new ArgumentException(message);
         }
 
-        if (AVKey.INT8.equals(dataType))
+        if (AVKey.INT8.Equals(dataType))
             return 1;
-        else if (AVKey.INT16.equals(dataType))
+        else if (AVKey.INT16.Equals(dataType))
             return SIZEOF_SHORT;
-        else if (AVKey.INT32.equals(dataType))
+        else if (AVKey.INT32.Equals(dataType))
             return SIZEOF_INT;
-        else if (AVKey.FLOAT32.equals(dataType))
+        else if (AVKey.FLOAT32.Equals(dataType))
             return SIZEOF_FLOAT;
-        else if (AVKey.FLOAT64.equals(dataType))
+        else if (AVKey.FLOAT64.Equals(dataType))
             return SIZEOF_DOUBLE;
 
         return -1;

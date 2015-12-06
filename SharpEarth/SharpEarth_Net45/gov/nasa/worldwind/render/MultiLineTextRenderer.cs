@@ -182,7 +182,7 @@ public class MultiLineTextRenderer
      */
     public void setTextAlign(String align)
     {
-        if (!align.equals(AVKey.LEFT) && !align.equals(AVKey.CENTER) && !align.equals(AVKey.RIGHT))
+        if (!align.Equals(AVKey.LEFT) && !align.Equals(AVKey.CENTER) && !align.Equals(AVKey.RIGHT))
         {
             String msg = Logging.getMessage("generic.ArgumentOutOfRange", align);
             Logging.logger().severe(msg);
@@ -324,11 +324,11 @@ public class MultiLineTextRenderer
         for (String line : lines)
         {
             Rectangle2D lineBounds = this.textRenderer.getBounds(line);
-            width = (int) Math.max(lineBounds.getWidth(), width);
-            maxLineHeight = (int) Math.max(lineBounds.getHeight(), lineHeight);
+            width = (int) Math.Max(lineBounds.getWidth(), width);
+            maxLineHeight = (int) Math.Max(lineBounds.getHeight(), lineHeight);
         }
         // Make sure we have the highest line height
-        maxLineHeight = (int) Math.max(getMaxLineHeight(this.textRenderer), maxLineHeight);
+        maxLineHeight = (int) Math.Max(getMaxLineHeight(this.textRenderer), maxLineHeight);
         // Set current line height for future draw
         this.lineHeight = maxLineHeight;
         // Compute final height using maxLineHeight and number of lines
@@ -390,13 +390,13 @@ public class MultiLineTextRenderer
             throw new ArgumentException(msg);
         }
 
-        if (effect.equals(AVKey.TEXT_EFFECT_SHADOW))
+        if (effect.Equals(AVKey.TEXT_EFFECT_SHADOW))
         {
             this.textRenderer.setColor(backColor);
             this.draw(text, x + 1, y - 1, textLineHeight);
             this.textRenderer.setColor(textColor);
         }
-        else if (effect.equals(AVKey.TEXT_EFFECT_OUTLINE))
+        else if (effect.Equals(AVKey.TEXT_EFFECT_OUTLINE))
         {
             this.textRenderer.setColor(backColor);
             this.draw(text, x, y + 1, textLineHeight);
@@ -433,9 +433,9 @@ public class MultiLineTextRenderer
         for (String line : lines)
         {
             int xAligned = x;
-            if (this.textAlign.equals(AVKey.CENTER))
+            if (this.textAlign.Equals(AVKey.CENTER))
                 xAligned = x - (int) (this.textRenderer.getBounds(line).getWidth() / 2);
-            else if (this.textAlign.equals(AVKey.RIGHT))
+            else if (this.textAlign.Equals(AVKey.RIGHT))
                 xAligned = x - (int) (this.textRenderer.getBounds(line).getWidth());
             y -= textLineHeight;
             this.textRenderer.draw3D(line, xAligned, y, 0, 1);
@@ -482,9 +482,9 @@ public class MultiLineTextRenderer
         for (String line : lines)
         {
             int xAligned = x;
-            if (this.textAlign.equals(AVKey.CENTER))
+            if (this.textAlign.Equals(AVKey.CENTER))
                 xAligned = x - (int) (this.textRenderer.getBounds(line).getWidth() / 2);
-            else if (this.textAlign.equals(AVKey.RIGHT))
+            else if (this.textAlign.Equals(AVKey.RIGHT))
                 xAligned = x - (int) (this.textRenderer.getBounds(line).getWidth());
             y -= textLineHeight;
             drawLineWithUniqueColors(line, xAligned, y, dc, pickSupport, refObject, refPosition);
@@ -793,7 +793,7 @@ public class MultiLineTextRenderer
         for (String line : lines)
         {
             Rectangle2D lineBounds = getLineBoundsHTML(line, ds);
-            width = Math.max(lineBounds.getWidth(), width);
+            width = Math.Max(lineBounds.getWidth(), width);
             height += lineBounds.getHeight() + this.lineSpacing;
         }
         height -= this.lineSpacing;  // remove last line spacing
@@ -811,7 +811,7 @@ public class MultiLineTextRenderer
             // Acumulate words dimensions
             Rectangle2D wordBounds = getWordBoundsHTML((String) wi.next(), ds);
             width += wordBounds.getWidth();
-            height = Math.max(wordBounds.getHeight(), height);
+            height = Math.Max(wordBounds.getHeight(), height);
             // Count a space between words - not after last.
             if (wi.hasNext())
                 width += ds.textRenderer.getCharWidth(' ');
@@ -830,7 +830,7 @@ public class MultiLineTextRenderer
         Matcher matcher = SGMLOrSpacePattern.matcher(word);  // html tags or spaces
         while (matcher.find())
         {
-            if (!matcher.group().equals(" "))  // html tag - not a space
+            if (!matcher.group().Equals(" "))  // html tag - not a space
             {
                 if (matcher.start() > start)
                 {
@@ -841,7 +841,7 @@ public class MultiLineTextRenderer
                 }
                 // Apply html tag to draw state
                 ds.updateFromHTMLTag(matcher.group(), false);
-                height = Math.max(getMaxLineHeight(ds.textRenderer), height);
+                height = Math.Max(getMaxLineHeight(ds.textRenderer), height);
                 start = matcher.end();
             }
         }
@@ -1066,9 +1066,9 @@ public class MultiLineTextRenderer
                 // Set line start x
                 drawX = x;
                 lineBounds = getTextBoundsHTML(line, new DrawState(ds));
-                if (this.textAlign.equals(AVKey.CENTER))
+                if (this.textAlign.Equals(AVKey.CENTER))
                     drawX = x - lineBounds.getWidth() / 2;
-                else if (this.textAlign.equals(AVKey.RIGHT))
+                else if (this.textAlign.Equals(AVKey.RIGHT))
                     drawX = x - lineBounds.getWidth();
 
                 // Skip line height
@@ -1113,7 +1113,7 @@ public class MultiLineTextRenderer
         Matcher matcher = SGMLOrSpacePattern.matcher(word);  // html tags or spaces
         while (matcher.find())
         {
-            if (!matcher.group().equals(" "))  // html tag - not a space
+            if (!matcher.group().Equals(" "))  // html tag - not a space
             {
                 if (matcher.start() > start)
                 {
@@ -1146,7 +1146,7 @@ public class MultiLineTextRenderer
         Matcher matcher = SGMLOrSpacePattern.matcher(word);  // html tags or spaces
         while (matcher.find())
         {
-            if (!matcher.group().equals(" "))  // html tag - not a space
+            if (!matcher.group().Equals(" "))  // html tag - not a space
             {
                 if (matcher.start() > start)
                 {
@@ -1248,7 +1248,7 @@ public class MultiLineTextRenderer
             int start = 0;
             while (matcher.find())
             {
-                if (matcher.group().equals(" "))
+                if (matcher.group().Equals(" "))
                 {
                     // Space found, add word to list
                     addWord(text.substring(start, matcher.end()));

@@ -52,33 +52,33 @@ public class LevelSet extends WWObjectImpl
         StringBuffer sb = new StringBuffer();
 
         Object o = parameters.getValue(AVKey.LEVEL_ZERO_TILE_DELTA);
-        if (o == null || !(o instanceof LatLon))
+        if (o == null || !(o is LatLon))
             sb.append(Logging.getMessage("term.tileDelta")).append(" ");
 
         o = parameters.getValue(AVKey.SECTOR);
-        if (o == null || !(o instanceof Sector))
+        if (o == null || !(o is Sector))
             sb.append(Logging.getMessage("term.sector")).append(" ");
 
         int numLevels = 0;
         o = parameters.getValue(AVKey.NUM_LEVELS);
-        if (o == null || !(o instanceof Integer) || (numLevels = (Integer) o) < 1)
+        if (o == null || !(o is Integer) || (numLevels = (Integer) o) < 1)
             sb.append(Logging.getMessage("term.numLevels")).append(" ");
 
         int numEmptyLevels = 0;
         o = parameters.getValue(AVKey.NUM_EMPTY_LEVELS);
-        if (o != null && o instanceof Integer && (Integer) o > 0)
+        if (o != null && o is Integer && (Integer) o > 0)
             numEmptyLevels = (Integer) o;
 
         String[] inactiveLevels = null;
         o = parameters.getValue(AVKey.INACTIVE_LEVELS);
-        if (o != null && !(o instanceof String))
+        if (o != null && !(o is String))
             sb.append(Logging.getMessage("term.inactiveLevels")).append(" ");
         else if (o != null)
             inactiveLevels = ((String) o).split(",");
 
         SectorResolution[] sectorLimits = null;
         o = parameters.getValue(AVKey.SECTOR_RESOLUTION_LIMITS);
-        if (o != null && !(o instanceof SectorResolution[]))
+        if (o != null && !(o is SectorResolution[]))
         {
             sb.append(Logging.getMessage("term.sectorResolutionLimits")).append(" ");
         }
@@ -109,7 +109,7 @@ public class LevelSet extends WWObjectImpl
         this.levelZeroTileDelta = (LatLon) parameters.getValue(AVKey.LEVEL_ZERO_TILE_DELTA);
 
         o = parameters.getValue(AVKey.TILE_ORIGIN);
-        if (o != null && o instanceof LatLon)
+        if (o != null && o is LatLon)
             this.tileOrigin = (LatLon) o;
         else
             this.tileOrigin = new LatLon(Angle.NEG90, Angle.NEG180);
@@ -163,15 +163,15 @@ public class LevelSet extends WWObjectImpl
             this.sector.getMinLongitude(), this.tileOrigin.getLongitude());
         int lastLevelZeroCol = Tile.computeColumn(this.levelZeroTileDelta.getLongitude(), this.sector.getMaxLongitude(),
             this.tileOrigin.getLongitude());
-        this.numLevelZeroColumns = Math.max(1, lastLevelZeroCol - firstLevelZeroCol + 1);
+        this.numLevelZeroColumns = Math.Max(1, lastLevelZeroCol - firstLevelZeroCol + 1);
 
         for (int i = 0; i < numLevels; i++)
         {
             parameters.setValue(AVKey.LEVEL_NAME, i < numEmptyLevels ? "" : Integer.toString(i - numEmptyLevels));
             parameters.setValue(AVKey.LEVEL_NUMBER, i);
 
-            Angle latDelta = this.levelZeroTileDelta.getLatitude().divide(Math.pow(2, i));
-            Angle lonDelta = this.levelZeroTileDelta.getLongitude().divide(Math.pow(2, i));
+            Angle latDelta = this.levelZeroTileDelta.getLatitude().divide(Math.Pow(2, i));
+            Angle lonDelta = this.levelZeroTileDelta.getLongitude().divide(Math.Pow(2, i));
             parameters.setValue(AVKey.TILE_DELTA, new LatLon(latDelta, lonDelta));
 
             this.levels.add(new Level(params));
@@ -353,7 +353,7 @@ public class LevelSet extends WWObjectImpl
     private int numColumnsInLevel(Level level)
     {
         int levelDelta = level.getLevelNumber() - this.getFirstLevel().getLevelNumber();
-        double twoToTheN = Math.pow(2, levelDelta);
+        double twoToTheN = Math.Pow(2, levelDelta);
         return (int) (twoToTheN * this.numLevelZeroColumns);
     }
 

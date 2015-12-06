@@ -71,7 +71,7 @@ public class WMSCapabilityInformation extends OGCCapabilityInformation
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof WMSLayerCapabilities)
+                if (o != null && o is WMSLayerCapabilities)
                 {
                     WMSLayerCapabilities caps = (WMSLayerCapabilities) o;
                     caps.setEnclosingCapabilityInformation(this);
@@ -112,7 +112,7 @@ public class WMSCapabilityInformation extends OGCCapabilityInformation
         Set<OGCRequestDescription> requestDescriptions = this.getRequestDescriptions();
         for (OGCRequestDescription rd : requestDescriptions)
         {
-            if (rd.getRequestName().equals("GetMap"))
+            if (rd.getRequestName().Equals("GetMap"))
                 return rd.getFormats();
         }
 

@@ -234,7 +234,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
     {
         for (Layer layer : this)
         {
-            if (layer.equals(o))
+            if (layer.Equals(o))
                 layer.removePropertyChangeListener(this);
         }
 
@@ -250,7 +250,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
     {
         for (Layer l : this)
         {
-            if (l.equals(layer))
+            if (l.Equals(layer))
                 return false;
         }
 
@@ -402,7 +402,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
 
         for (Layer l : this)
         {
-            if (l.getName().equals(name))
+            if (l.getName().Equals(name))
                 return l;
         }
 
@@ -422,7 +422,7 @@ public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
 
         for (Layer l : this)
         {
-            if (l.GetType().equals(classToFind))
+            if (l.GetType().Equals(classToFind))
                 layers.add(l);
         }
 

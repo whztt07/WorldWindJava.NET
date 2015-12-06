@@ -311,7 +311,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
     protected BasicWWTexture initializeTexture()
     {
         Object imageSource = this.getImageSource();
-        if (imageSource instanceof String || imageSource instanceof URL)
+        if (imageSource is String || imageSource is URL)
         {
             URL imageURL = WorldWind.getDataFileStore().requestFile(imageSource.ToString());
             if (imageURL != null)
@@ -780,16 +780,16 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }
@@ -809,9 +809,9 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
 
         String imgSrcString = null;
         Object imageSource = this.getImageSource();
-        if (imageSource instanceof String)
+        if (imageSource is String)
             imgSrcString = (String) imageSource;
-        else if (imageSource instanceof URL)
+        else if (imageSource is URL)
             imgSrcString = imageSource.ToString();
 
         // We can only export a link to the image if the image source is a path or URL. 

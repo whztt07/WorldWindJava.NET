@@ -84,7 +84,7 @@ public class OGCDCType extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof OGCOnlineResource)
+                if (o != null && o is OGCOnlineResource)
                     this.addOnlineResource((OGCOnlineResource) o);
             }
         }

@@ -251,12 +251,12 @@ public class BasicWWTexture implements WWTexture
         bool haveMipMapData;
         GL gl = dc.getGL();
 
-        if (imageSource instanceof String)
+        if (imageSource is String)
         {
             String path = (String) imageSource;
 
             Object streamOrException = WWIO.getFileOrResourceAsStream(path, this.GetType());
-            if (streamOrException == null || streamOrException instanceof Exception)
+            if (streamOrException == null || streamOrException is Exception)
             {
                 Logging.logger().log(java.util.logging.Level.SEVERE, "generic.ExceptionAttemptingToReadImageFile",
                     streamOrException != null ? streamOrException : path);
@@ -280,7 +280,7 @@ public class BasicWWTexture implements WWTexture
                 return null;
             }
         }
-        else if (imageSource instanceof BufferedImage)
+        else if (imageSource is BufferedImage)
         {
             try
             {
@@ -297,7 +297,7 @@ public class BasicWWTexture implements WWTexture
                 return null;
             }
         }
-        else if (imageSource instanceof URL)
+        else if (imageSource is URL)
         {
             try
             {
@@ -334,7 +334,7 @@ public class BasicWWTexture implements WWTexture
         if (t == null) // In case JOGL TextureIO returned null
         {
             Logging.logger().log(java.util.logging.Level.SEVERE, "generic.TextureUnreadable",
-                imageSource instanceof String ? imageSource : imageSource.GetType().Name);
+                imageSource is String ? imageSource : imageSource.GetType().Name);
             this.textureInitializationFailed = true;
             return null;
         }

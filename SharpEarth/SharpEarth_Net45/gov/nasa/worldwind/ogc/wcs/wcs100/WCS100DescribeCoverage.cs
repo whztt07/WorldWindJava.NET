@@ -111,7 +111,7 @@ public class WCS100DescribeCoverage extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof WCS100CoverageOffering)
+                if (o != null && o is WCS100CoverageOffering)
                     this.coverageOfferings.add((WCS100CoverageOffering) o);
             }
         }
@@ -142,7 +142,7 @@ public class WCS100DescribeCoverage extends AbstractXMLEventParser
             if (event == null)
                 continue;
 
-            if (event.isStartElement() && event.asStartElement().getName().equals(docName))
+            if (event.isStartElement() && event.asStartElement().getName().Equals(docName))
             {
                 // Parse the attributes in order to get the version number.
                 this.doParseEventAttributes(ctx, event);

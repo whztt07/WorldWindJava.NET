@@ -49,7 +49,7 @@ public class KMLIconStyle extends KMLAbstractColorStyle
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_LINK_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_LINK_CHANGED.Equals(msg.getName()))
             this.onChange(new Message(KMLAbstractObject.MSG_STYLE_CHANGED, this));
 
         super.onChange(msg);

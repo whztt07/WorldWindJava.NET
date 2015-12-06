@@ -4,6 +4,9 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
+using System;
+using System.Text;
+
 namespace SharpEarth.geom{
 
 
@@ -17,26 +20,25 @@ namespace SharpEarth.geom{
  */
 public class Frustum
 {
-    protected final Plane left;
-    protected final Plane right;
-    protected final Plane bottom;
-    protected final Plane top;
-    protected final Plane near;
-    protected final Plane far;
+    protected readonly Plane left;
+    protected readonly Plane right;
+    protected readonly Plane bottom;
+    protected readonly Plane top;
+    protected readonly Plane near;
+    protected readonly Plane far;
     /** Holds all six frustum planes in an array in the order left, right, bottom, top, near, far. */
-    protected final Plane[] allPlanes;
+    protected readonly Plane[] allPlanes;
 
     /** Constructs a frustum two meters wide centered at the origin. Primarily used for testing. */
     public Frustum()
-    {
-        this(
+        :this(
             new Plane(1, 0, 0, 1),  // Left
             new Plane(-1, 0, 0, 1),  // Right
             new Plane(0, 1, 0, 1),  // Bottom
             new Plane(0, -1, 0, 1),  // Top
             new Plane(0, 0, -1, 1),  // Near
-            new Plane(0, 0, 1, 1)); // Far
-    }
+            new Plane(0, 0, 1, 1)) // Far
+    {    }
 
     /**
      * Create a frustum from six {@link SharpEarth.geom.Plane}s defining the frustum boundaries.
@@ -56,7 +58,7 @@ public class Frustum
     {
         if (left == null || right == null || bottom == null || top == null || near == null || far == null)
         {
-            String message = Logging.getMessage("nullValue.PlaneIsNull");
+            string message = Logging.getMessage("nullValue.PlaneIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -75,7 +77,7 @@ public class Frustum
      *
      * @return the left plane.
      */
-    public final Plane getLeft()
+    public Plane getLeft()
     {
         return this.left;
     }
@@ -85,7 +87,7 @@ public class Frustum
      *
      * @return the right plane.
      */
-    public final Plane getRight()
+    public Plane getRight()
     {
         return this.right;
     }
@@ -95,7 +97,7 @@ public class Frustum
      *
      * @return the bottom plane.
      */
-    public final Plane getBottom()
+    public Plane getBottom()
     {
         return this.bottom;
     }
@@ -105,7 +107,7 @@ public class Frustum
      *
      * @return the top plane.
      */
-    public final Plane getTop()
+    public Plane getTop()
     {
         return this.top;
     }
@@ -115,7 +117,7 @@ public class Frustum
      *
      * @return the left plane.
      */
-    public final Plane getNear()
+    public Plane getNear()
     {
         return this.near;
     }
@@ -125,7 +127,7 @@ public class Frustum
      *
      * @return the left plane.
      */
-    public final Plane getFar()
+    public Plane getFar()
     {
         return this.far;
     }
@@ -148,23 +150,23 @@ public class Frustum
             return false;
 
         Frustum that = (Frustum) obj;
-        return this.left.equals(that.left)
-            && this.right.equals(that.right)
-            && this.bottom.equals(that.bottom)
-            && this.top.equals(that.top)
-            && this.near.equals(that.near)
-            && this.far.equals(that.far);
+        return this.left.Equals(that.left)
+            && this.right.Equals(that.right)
+            && this.bottom.Equals(that.bottom)
+            && this.top.Equals(that.top)
+            && this.near.Equals(that.near)
+            && this.far.Equals(that.far);
     }
 
     public override int GetHashCode()
     {
         int result;
-        result = this.left.hashCode();
-        result = 31 * result + this.right.hashCode();
-        result = 19 * result + this.bottom.hashCode();
-        result = 23 * result + this.top.hashCode();
-        result = 17 * result + this.near.hashCode();
-        result = 19 * result + this.far.hashCode();
+        result = this.left.GetHashCode();
+        result = 31 * result + this.right.GetHashCode();
+        result = 19 * result + this.bottom.GetHashCode();
+        result = 23 * result + this.top.GetHashCode();
+        result = 17 * result + this.near.GetHashCode();
+        result = 19 * result + this.far.GetHashCode();
 
         return result;
     }
@@ -172,14 +174,14 @@ public class Frustum
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        sb.append("left=").append(this.left);
-        sb.append(", right=").append(this.right);
-        sb.append(", bottom=").append(this.bottom);
-        sb.append(", top=").append(this.top);
-        sb.append(", near=").append(this.near);
-        sb.append(", far=").append(this.far);
-        sb.append(")");
+        sb.Append("(");
+        sb.Append("left=").Append(this.left);
+        sb.Append(", right=").Append(this.right);
+        sb.Append(", bottom=").Append(this.bottom);
+        sb.Append(", top=").Append(this.top);
+        sb.Append(", near=").Append(this.near);
+        sb.Append(", far=").Append(this.far);
+        sb.Append(")");
         return sb.ToString();
     }
 
@@ -202,56 +204,56 @@ public class Frustum
         Matrix m = projectionMatrix;
         if (m == null)
         {
-            String message = Logging.getMessage("nullValue.MatrixIsNull");
+            string message = Logging.getMessage("nullValue.MatrixIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         // Left Plane = row 4 + row 1:
-        double x = m.m41 + m.m11;
-        double y = m.m42 + m.m12;
-        double z = m.m43 + m.m13;
-        double w = m.m44 + m.m14;
+        double x = m.m41() + m.m11();
+        double y = m.m42() + m.m12();
+        double z = m.m43() + m.m13();
+        double w = m.m44() + m.m14();
         double d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane left = new Plane(x / d, y / d, z / d, w / d);
 
         // Right Plane = row 4 - row 1:
-        x = m.m41 - m.m11;
-        y = m.m42 - m.m12;
-        z = m.m43 - m.m13;
-        w = m.m44 - m.m14;
+        x = m.m41() - m.m11();
+        y = m.m42() - m.m12();
+        z = m.m43() - m.m13();
+        w = m.m44() - m.m14();
         d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane right = new Plane(x / d, y / d, z / d, w / d);
 
         // Bottom Plane = row 4 + row 2:
-        x = m.m41 + m.m21;
-        y = m.m42 + m.m22;
-        z = m.m43 + m.m23;
-        w = m.m44 + m.m23;
+        x = m.m41() + m.m21();
+        y = m.m42() + m.m22();
+        z = m.m43() + m.m23();
+        w = m.m44() + m.m23();
         d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane bottom = new Plane(x / d, y / d, z / d, w / d);
 
         // Top Plane = row 4 - row 2:
-        x = m.m41 - m.m21;
-        y = m.m42 - m.m22;
-        z = m.m43 - m.m23;
-        w = m.m44 - m.m23;
+        x = m.m41() - m.m21();
+        y = m.m42() - m.m22();
+        z = m.m43() - m.m23();
+        w = m.m44() - m.m23();
         d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane top = new Plane(x / d, y / d, z / d, w / d);
 
         // Near Plane = row 4 + row 3:
-        x = m.m41 + m.m31;
-        y = m.m42 + m.m32;
-        z = m.m43 + m.m33;
-        w = m.m44 + m.m34;
+        x = m.m41() + m.m31();
+        y = m.m42() + m.m32();
+        z = m.m43() + m.m33();
+        w = m.m44() + m.m34();
         d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane near = new Plane(x / d, y / d, z / d, w / d);
 
         // Far Plane = row 4 - row 3:
-        x = m.m41 - m.m31;
-        y = m.m42 - m.m32;
-        z = m.m43 - m.m33;
-        w = m.m44 - m.m34;
+        x = m.m41() - m.m31();
+        y = m.m42() - m.m32();
+        z = m.m43() - m.m33();
+        w = m.m44() - m.m34();
         d = Math.Sqrt(x * x + y * y + z * z); // for normalizing the coordinates
         Plane far = new Plane(x / d, y / d, z / d, w / d).normalize();
 
@@ -279,13 +281,13 @@ public class Frustum
     {
         if (horizontalFieldOfView == null)
         {
-            String message = Logging.getMessage("Geom.ViewFrustum.FieldOfViewIsNull");
-            Logging.logger().fine(message);
-            throw new ArgumentException(message);
+            string logMessage = Logging.getMessage("Geom.ViewFrustum.FieldOfViewIsNull");
+            Logging.logger().fine( logMessage );
+            throw new ArgumentException( logMessage );
         }
         double fov = horizontalFieldOfView.getDegrees();
         double farMinusNear = far - near;
-        String message = null;
+        string message = null;
         if (fov <= 0 || fov > 180)
             message = Logging.getMessage("Geom.ViewFrustum.FieldOfViewOutOfRange", fov);
         if (near <= 0 || farMinusNear <= 0)
@@ -328,7 +330,7 @@ public class Frustum
         double farMinusNear = far - near;
         if (farMinusNear <= 0.0 || width <= 0.0 || height <= 0.0)
         {
-            String message = Logging.getMessage("Geom.ViewFrustum.ClippingDistanceOutOfRange");
+            string message = Logging.getMessage("Geom.ViewFrustum.ClippingDistanceOutOfRange");
             Logging.logger().fine(message);
             throw new ArgumentException(message);
         }
@@ -366,7 +368,7 @@ public class Frustum
     {
         if (vTL == null || vTR == null || vBL == null || vBR == null)
         {
-            String message = Logging.getMessage("Geom.ViewFrustum.EdgeVectorIsNull");
+            string message = Logging.getMessage("Geom.ViewFrustum.EdgeVectorIsNull");
             Logging.logger().fine(message);
             throw new ArgumentException(message);
         }
@@ -374,19 +376,19 @@ public class Frustum
         double farMinusNear = far - near;
         if (near <= 0 || farMinusNear <= 0)
         {
-            String message = Logging.getMessage("Geom.ViewFrustum.ClippingDistanceOutOfRange");
+            string message = Logging.getMessage("Geom.ViewFrustum.ClippingDistanceOutOfRange");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         Vec4 lpn = vBL.cross3(vTL).normalize3();
-        Plane leftPlane = new Plane(lpn.x, lpn.y, lpn.z, 0);
+        Plane leftPlane = new Plane(lpn.x(), lpn.y(), lpn.z(), 0);
         Vec4 rpn = vTR.cross3(vBR).normalize3();
-        Plane rightPlane = new Plane(rpn.x, rpn.y, rpn.z, 0);
+        Plane rightPlane = new Plane(rpn.x(), rpn.y(), rpn.z(), 0);
         Vec4 bpn = vBR.cross3(vBL).normalize3();
-        Plane bottomPlane = new Plane(bpn.x, bpn.y, bpn.z, 0);
+        Plane bottomPlane = new Plane(bpn.x(), bpn.y(), bpn.z(), 0);
         Vec4 tpn = vTL.cross3(vTR).normalize3();
-        Plane topPlane = new Plane(tpn.x, tpn.y, tpn.z, 0);
+        Plane topPlane = new Plane(tpn.x(), tpn.y(), tpn.z(), 0);
 
         Plane nearPlane = new Plane(0d, 0d, 0d - 1d, 0d - near);
         Plane farPlane = new Plane(0d, 0d, 1d, far);
@@ -410,7 +412,7 @@ public class Frustum
     {
         if (extent == null)
         {
-            String msg = Logging.getMessage("nullValue.ExtentIsNull");
+            string msg = Logging.getMessage("nullValue.ExtentIsNull");
             Logging.logger().fine(msg);
             throw new ArgumentException(msg);
         }
@@ -432,7 +434,7 @@ public class Frustum
     {
         if (pa == null || pb == null)
         {
-            String message = Logging.getMessage("nullValue.PointIsNull");
+            string message = Logging.getMessage("nullValue.PointIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -441,10 +443,10 @@ public class Frustum
         if (this.contains(pa) || this.contains(pb))
             return true;
 
-        if (pa.equals(pb))
+        if (pa.Equals(pb))
             return false;
 
-        for (Plane p : this.getAllPlanes())
+        foreach (Plane p in this.getAllPlanes())
         {
             // See if both points are behind the plane and therefore not in the frustum.
             if (p.onSameSide(pa, pb) < 0)
@@ -467,13 +469,13 @@ public class Frustum
      *
      * @throws ArgumentException if the extent is null.
      */
-    public final bool contains(Extent extent)
+    public bool contains(Extent extent)
     {
         // TODO: This method should be implemented in the concrete extent classes and those implementing methods
         // invoked here, as is done above for intersects(Frustum).
         if (extent == null)
         {
-            String msg = Logging.getMessage("nullValue.ExtentIsNull");
+            string msg = Logging.getMessage("nullValue.ExtentIsNull");
             Logging.logger().fine(msg);
             throw new ArgumentException(msg);
         }
@@ -512,11 +514,11 @@ public class Frustum
      *
      * @throws ArgumentException if the point is null.
      */
-    public final bool contains(Vec4 point)
+    public bool contains(Vec4 point)
     {
         if (point == null)
         {
-            String msg = Logging.getMessage("nullValue.PointIsNull");
+            string msg = Logging.getMessage("nullValue.PointIsNull");
             Logging.logger().fine(msg);
             throw new ArgumentException(msg);
         }
@@ -559,7 +561,7 @@ public class Frustum
     {
         if (matrix == null)
         {
-            String msg = Logging.getMessage("nullValue.MatrixIsNull");
+            string msg = Logging.getMessage("nullValue.MatrixIsNull");
             Logging.logger().fine(msg);
             throw new ArgumentException(msg);
         }
@@ -574,7 +576,7 @@ public class Frustum
     }
 
     /** Holds the eight corner points of a frustum. */
-    public static class Corners
+    public class Corners
     {
         public Vec4 nbl, nbr, ntl, ntr, fbl, fbr, ftl, ftr;
     }

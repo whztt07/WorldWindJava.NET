@@ -65,7 +65,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
         Sector oldSector = getBoundingSector();
         super.setPositions(positions); // will call clearCachedData()
 
-        if (getBoundingSector() == null || !getBoundingSector().equals(oldSector))
+        if (getBoundingSector() == null || !getBoundingSector().Equals(oldSector))
         {
             this.sectorCells = null;
             this.sectorElevations = null;
@@ -281,7 +281,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
                         true, getPathType());
 
             // Sample the bounding sector with cells about the same length in side - squares
-            double stepRadians = Math.max(sector.getDeltaLatRadians() / steps, sector.getDeltaLonRadians() / steps);
+            double stepRadians = Math.Max(sector.getDeltaLatRadians() / steps, sector.getDeltaLonRadians() / steps);
             int latSteps = (int)Math.Round(sector.getDeltaLatRadians() / stepRadians);
             int lonSteps = (int)Math.Round(sector.getDeltaLonRadians() / stepRadians
                     * Math.Cos(sector.getCentroid().getLatitude().radians));

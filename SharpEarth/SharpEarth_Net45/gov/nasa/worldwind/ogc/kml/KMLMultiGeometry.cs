@@ -37,7 +37,7 @@ public class KMLMultiGeometry extends KMLAbstractGeometry
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractGeometry)
+        if (o is KMLAbstractGeometry)
             this.addGeometry((KMLAbstractGeometry) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -56,7 +56,7 @@ public class KMLMultiGeometry extends KMLAbstractGeometry
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLMultiGeometry))
+        if (!(sourceValues is KMLMultiGeometry))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -91,7 +91,7 @@ public class KMLMultiGeometry extends KMLAbstractGeometry
                 for (KMLAbstractGeometry existingGeometry : geometriesCopy)
                 {
                     String currentId = existingGeometry.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                     {
                         this.getGeometries().remove(existingGeometry);
                     }

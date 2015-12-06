@@ -129,7 +129,7 @@ public abstract class KMLAbstractStyleSelector extends KMLAbstractObject
 
         if (styleSelector != null)
         {
-            if (styleSelector instanceof KMLStyleMap)
+            if (styleSelector is KMLStyleMap)
                 ((KMLStyleMap) styleSelector).mergeSubStyles(subStyle, styleState);
             else
                 ((KMLStyle) styleSelector).mergeSubStyle(subStyle);

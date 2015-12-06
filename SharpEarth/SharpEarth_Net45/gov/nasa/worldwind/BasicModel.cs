@@ -77,13 +77,13 @@ public class BasicModel extends WWObjectImpl implements Model
     {
         Object o = BasicFactory.create(AVKey.LAYER_FACTORY, element);
 
-        if (o instanceof LayerList)
+        if (o is LayerList)
             return (LayerList) o;
 
-        if (o instanceof Layer)
+        if (o is Layer)
             return new LayerList(new Layer[] {(Layer) o});
 
-        if (o instanceof LayerList[])
+        if (o is LayerList[])
         {
             LayerList[] lists = (LayerList[]) o;
             if (lists.length > 0)

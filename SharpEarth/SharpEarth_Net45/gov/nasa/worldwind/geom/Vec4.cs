@@ -1005,9 +1005,9 @@ public class Vec4
         }
 
         return new Vec4(
-            (matrix.m11 * this._x) + (matrix.m12 * this._y) + (matrix.m13 * this._z),
-            (matrix.m21 * this._x) + (matrix.m22 * this._y) + (matrix.m23 * this._z),
-            (matrix.m31 * this._x) + (matrix.m32 * this._y) + (matrix.m33 * this._z));
+            (matrix.m11() * this._x) + (matrix.m12() * this._y) + (matrix.m13() * this._z),
+            (matrix.m21() * this._x) + (matrix.m22() * this._y) + (matrix.m23() * this._z),
+            (matrix.m31() * this._x) + (matrix.m32() * this._y) + (matrix.m33() * this._z));
     }
 
     public Vec4 transformBy3(Quaternion quaternion)
@@ -1035,10 +1035,10 @@ public class Vec4
         }
 
         return new Vec4(
-            (matrix.m11 * this._x) + (matrix.m12 * this._y) + (matrix.m13 * this._z) + (matrix.m14 * this._w),
-            (matrix.m21 * this._x) + (matrix.m22 * this._y) + (matrix.m23 * this._z) + (matrix.m24 * this._w),
-            (matrix.m31 * this._x) + (matrix.m32 * this._y) + (matrix.m33 * this._z) + (matrix.m34 * this._w),
-            (matrix.m41 * this._x) + (matrix.m42 * this._y) + (matrix.m43 * this._z) + (matrix.m44 * this._w));
+            (matrix.m11() * this._x) + (matrix.m12() * this._y) + (matrix.m13() * this._z) + (matrix.m14() * this._w),
+            (matrix.m21() * this._x) + (matrix.m22() * this._y) + (matrix.m23() * this._z) + (matrix.m24() * this._w),
+            (matrix.m31() * this._x) + (matrix.m32() * this._y) + (matrix.m33() * this._z) + (matrix.m34() * this._w),
+            (matrix.m41() * this._x) + (matrix.m42() * this._y) + (matrix.m43() * this._z) + (matrix.m44() * this._w));
     }
 
     // ============== Mixing Functions ======================= //

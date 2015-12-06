@@ -78,10 +78,10 @@ public class VPFTile implements ExtentHolder
 
         if (id != vpfTile.id)
             return false;
-        if (bounds != null ? !bounds.equals(vpfTile.bounds) : vpfTile.bounds != null)
+        if (bounds != null ? !bounds.Equals(vpfTile.bounds) : vpfTile.bounds != null)
             return false;
         //noinspection RedundantIfStatement
-        if (name != null ? !name.equals(vpfTile.name) : vpfTile.name != null)
+        if (name != null ? !name.Equals(vpfTile.name) : vpfTile.name != null)
             return false;
 
         return true;
@@ -90,8 +90,8 @@ public class VPFTile implements ExtentHolder
     public override int GetHashCode()
     {
         int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (bounds != null ? bounds.hashCode() : 0);
+        result = 31 * result + (name != null ? name.GetHashCode() : 0);
+        result = 31 * result + (bounds != null ? bounds.GetHashCode() : 0);
         return result;
     }
 

@@ -98,45 +98,45 @@ public class Level extends AVListImpl implements Comparable<Level>
         StringBuffer sb = new StringBuffer();
 
         Object o = parameters.getValue(AVKey.LEVEL_NUMBER);
-        if (o == null || !(o instanceof Integer) || ((Integer) o) < 0)
+        if (o == null || !(o is Integer) || ((Integer) o) < 0)
             sb.append(Logging.getMessage("term.levelNumber")).append(" ");
 
         o = parameters.getValue(AVKey.LEVEL_NAME);
-        if (o == null || !(o instanceof String))
+        if (o == null || !(o is String))
             sb.append(Logging.getMessage("term.levelName")).append(" ");
 
         o = parameters.getValue(AVKey.TILE_WIDTH);
-        if (o == null || !(o instanceof Integer) || ((Integer) o) < 0)
+        if (o == null || !(o is Integer) || ((Integer) o) < 0)
             sb.append(Logging.getMessage("term.tileWidth")).append(" ");
 
         o = parameters.getValue(AVKey.TILE_HEIGHT);
-        if (o == null || !(o instanceof Integer) || ((Integer) o) < 0)
+        if (o == null || !(o is Integer) || ((Integer) o) < 0)
             sb.append(Logging.getMessage("term.tileHeight")).append(" ");
 
         o = parameters.getValue(AVKey.TILE_DELTA);
-        if (o == null || !(o instanceof LatLon))
+        if (o == null || !(o is LatLon))
             sb.append(Logging.getMessage("term.tileDelta")).append(" ");
 
         o = parameters.getValue(AVKey.DATA_CACHE_NAME);
-        if (o == null || !(o instanceof String) || ((String) o).length() < 1)
+        if (o == null || !(o is String) || ((String) o).length() < 1)
             sb.append(Logging.getMessage("term.fileStoreFolder")).append(" ");
 
         o = parameters.getValue(AVKey.TILE_URL_BUILDER);
-        if (o == null || !(o instanceof TileUrlBuilder))
+        if (o == null || !(o is TileUrlBuilder))
             sb.append(Logging.getMessage("term.tileURLBuilder")).append(" ");
 
         o = parameters.getValue(AVKey.EXPIRY_TIME);
-        if (o != null && (!(o instanceof Long) || ((Long) o) < 1))
+        if (o != null && (!(o is Long) || ((Long) o) < 1))
             sb.append(Logging.getMessage("term.expiryTime")).append(" ");
 
         if (params.getStringValue(AVKey.LEVEL_NAME).length() > 0)
         {
             o = parameters.getValue(AVKey.DATASET_NAME);
-            if (o == null || !(o instanceof String) || ((String) o).length() < 1)
+            if (o == null || !(o is String) || ((String) o).length() < 1)
                 sb.append(Logging.getMessage("term.datasetName")).append(" ");
 
             o = parameters.getValue(AVKey.FORMAT_SUFFIX);
-            if (o == null || !(o instanceof String) || ((String) o).length() < 1)
+            if (o == null || !(o is String) || ((String) o).length() < 1)
                 sb.append(Logging.getMessage("term.formatSuffix")).append(" ");
         }
 
@@ -208,7 +208,7 @@ public class Level extends AVListImpl implements Comparable<Level>
 
     public bool isEmpty()
     {
-        return this.levelName == null || this.levelName.equals("") || !this.active;
+        return this.levelName == null || this.levelName.Equals("") || !this.active;
     }
 
     public void markResourceAbsent(long tileNumber)
@@ -256,9 +256,9 @@ public class Level extends AVListImpl implements Comparable<Level>
     @Override
     public Object setValue(String key, Object value)
     {
-        if (key != null && key.equals(AVKey.MAX_ABSENT_TILE_ATTEMPTS) && value instanceof Integer)
+        if (key != null && key.Equals(AVKey.MAX_ABSENT_TILE_ATTEMPTS) && value is Integer)
             this.absentTiles.setMaxTries((Integer) value);
-        else if (key != null && key.equals(AVKey.MIN_ABSENT_TILE_CHECK_INTERVAL) && value instanceof Integer)
+        else if (key != null && key.Equals(AVKey.MIN_ABSENT_TILE_CHECK_INTERVAL) && value is Integer)
             this.absentTiles.setMinCheckInterval((Integer) value);
 
         return super.setValue(key, value);
@@ -267,9 +267,9 @@ public class Level extends AVListImpl implements Comparable<Level>
     @Override
     public Object getValue(String key)
     {
-        if (key != null && key.equals(AVKey.MAX_ABSENT_TILE_ATTEMPTS))
+        if (key != null && key.Equals(AVKey.MAX_ABSENT_TILE_ATTEMPTS))
             return this.absentTiles.getMaxTries();
-        else if (key != null && key.equals(AVKey.MIN_ABSENT_TILE_CHECK_INTERVAL))
+        else if (key != null && key.Equals(AVKey.MIN_ABSENT_TILE_CHECK_INTERVAL))
             return this.absentTiles.getMinCheckInterval();
 
         return super.getValue(key);
@@ -353,18 +353,18 @@ public class Level extends AVListImpl implements Comparable<Level>
             return false;
         if (tileWidth != level.tileWidth)
             return false;
-        if (cacheName != null ? !cacheName.equals(level.cacheName) : level.cacheName != null)
+        if (cacheName != null ? !cacheName.Equals(level.cacheName) : level.cacheName != null)
             return false;
-        if (dataset != null ? !dataset.equals(level.dataset) : level.dataset != null)
+        if (dataset != null ? !dataset.Equals(level.dataset) : level.dataset != null)
             return false;
-        if (formatSuffix != null ? !formatSuffix.equals(level.formatSuffix) : level.formatSuffix != null)
+        if (formatSuffix != null ? !formatSuffix.Equals(level.formatSuffix) : level.formatSuffix != null)
             return false;
-        if (levelName != null ? !levelName.equals(level.levelName) : level.levelName != null)
+        if (levelName != null ? !levelName.Equals(level.levelName) : level.levelName != null)
             return false;
-        if (service != null ? !service.equals(level.service) : level.service != null)
+        if (service != null ? !service.Equals(level.service) : level.service != null)
             return false;
         //noinspection RedundantIfStatement
-        if (tileDelta != null ? !tileDelta.equals(level.tileDelta) : level.tileDelta != null)
+        if (tileDelta != null ? !tileDelta.Equals(level.tileDelta) : level.tileDelta != null)
             return false;
 
         return true;
@@ -374,14 +374,14 @@ public class Level extends AVListImpl implements Comparable<Level>
     {
         int result;
         result = levelNumber;
-        result = 29 * result + (levelName != null ? levelName.hashCode() : 0);
-        result = 29 * result + (tileDelta != null ? tileDelta.hashCode() : 0);
+        result = 29 * result + (levelName != null ? levelName.GetHashCode() : 0);
+        result = 29 * result + (tileDelta != null ? tileDelta.GetHashCode() : 0);
         result = 29 * result + tileWidth;
         result = 29 * result + tileHeight;
-        result = 29 * result + (formatSuffix != null ? formatSuffix.hashCode() : 0);
-        result = 29 * result + (service != null ? service.hashCode() : 0);
-        result = 29 * result + (dataset != null ? dataset.hashCode() : 0);
-        result = 29 * result + (cacheName != null ? cacheName.hashCode() : 0);
+        result = 29 * result + (formatSuffix != null ? formatSuffix.GetHashCode() : 0);
+        result = 29 * result + (service != null ? service.GetHashCode() : 0);
+        result = 29 * result + (dataset != null ? dataset.GetHashCode() : 0);
+        result = 29 * result + (cacheName != null ? cacheName.GetHashCode() : 0);
         return result;
     }
 

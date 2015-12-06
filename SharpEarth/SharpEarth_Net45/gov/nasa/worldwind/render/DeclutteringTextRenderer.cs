@@ -370,7 +370,7 @@ public class DeclutteringTextRenderer
 
     protected void handleTextRendererExceptions(Exception e) throws Exception
     {
-        if (e instanceof IOException)
+        if (e is IOException)
         {
             if (!this.hasJOGLv111Bug)
             {

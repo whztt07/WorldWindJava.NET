@@ -74,7 +74,7 @@ public class StereoOptionSceneController extends BasicSceneController implements
         this.stereoMode = mode != null ? mode : AVKey.STEREO_MODE_NONE;
 
         // If device-implemented stereo is used, stereo is considered always in effect no matter what the stereo mode.
-        this.inStereo = this.isHardwareStereo() || AVKey.STEREO_MODE_RED_BLUE.equals(this.stereoMode);
+        this.inStereo = this.isHardwareStereo() || AVKey.STEREO_MODE_RED_BLUE.Equals(this.stereoMode);
     }
 
     public String getStereoMode()
@@ -148,9 +148,9 @@ public class StereoOptionSceneController extends BasicSceneController implements
         Boolean pitchInRange = (dcView.getPitch().compareTo(Angle.fromDegrees(50)) > 0
             && dcView.getPitch().compareTo(Angle.POS90) < 0);
 
-        if (AVKey.STEREO_MODE_DEVICE.equals(this.stereoMode) && this.isHardwareStereo() && pitchInRange)
+        if (AVKey.STEREO_MODE_DEVICE.Equals(this.stereoMode) && this.isHardwareStereo() && pitchInRange)
             this.doDrawToStereoDevice(dc);
-        else if (AVKey.STEREO_MODE_RED_BLUE.equals(this.stereoMode) && pitchInRange)
+        else if (AVKey.STEREO_MODE_RED_BLUE.Equals(this.stereoMode) && pitchInRange)
             this.doDrawStereoRedBlue(dc);
         else // AVKey.STEREO_MODE_NONE
             this.doDrawStereoNone(dc);

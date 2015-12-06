@@ -220,7 +220,7 @@ public class TiffIFDEntry implements Comparable<TiffIFDEntry> {
         DoubleBuffer db = ((ByteBuffer) this.data.rewind()).asDoubleBuffer();
         this.data.rewind();
 
-        int size = Math.max(db.limit(), (int) this.count);
+        int size = Math.Max(db.limit(), (int) this.count);
         double[] array = new double[size];
         int i = 0;
         while (db.hasRemaining()) {
@@ -250,7 +250,7 @@ public class TiffIFDEntry implements Comparable<TiffIFDEntry> {
         FloatBuffer db = ((ByteBuffer) this.data.rewind()).asFloatBuffer();
         this.data.rewind();
 
-        int size = Math.max(db.limit(), (int) this.count);
+        int size = Math.Max(db.limit(), (int) this.count);
         float[] array = new float[size];
         int i = 0;
         while (db.hasRemaining()) {

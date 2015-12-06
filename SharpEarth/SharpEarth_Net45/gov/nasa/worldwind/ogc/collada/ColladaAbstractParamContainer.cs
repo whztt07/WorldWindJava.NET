@@ -48,7 +48,7 @@ public class ColladaAbstractParamContainer extends ColladaAbstractObject
     @Override
     public void setField(String keyName, Object value)
     {
-        if ("newparam".equals(keyName))
+        if ("newparam".Equals(keyName))
         {
             ColladaNewParam param = (ColladaNewParam) value;
             String sid = (String) param.getField("sid");

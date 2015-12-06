@@ -69,11 +69,11 @@ public class CSVTrackPoint implements TrackPoint
     {
         double f;
 
-        if (units.equals("M")) // meters
+        if (units.Equals("M")) // meters
             f = 1d;
-        else if (units.equals("f")) // feet
+        else if (units.Equals("f")) // feet
             f = 3.2808399;
-        else if (units.equals("F")) // fathoms
+        else if (units.Equals("F")) // fathoms
             f = 0.5468066528;
         else
             f = 1d;

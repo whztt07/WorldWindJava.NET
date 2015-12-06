@@ -133,7 +133,7 @@ public class TileKey implements Comparable<TileKey>
         result = this.level;
         result = 29 * result + this.row;
         result = 29 * result + this.col;
-        result = 29 * result + (this.cacheName != null ? this.cacheName.hashCode() : 0);
+        result = 29 * result + (this.cacheName != null ? this.cacheName.GetHashCode() : 0);
         return result;
     }
 
@@ -193,7 +193,7 @@ public class TileKey implements Comparable<TileKey>
         if (this.row != tileKey.row)
             return false;
 
-        return !(this.cacheName != null ? !this.cacheName.equals(tileKey.cacheName) : tileKey.cacheName != null);
+        return !(this.cacheName != null ? !this.cacheName.Equals(tileKey.cacheName) : tileKey.cacheName != null);
     }
 
     @Override

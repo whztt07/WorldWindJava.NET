@@ -25,7 +25,7 @@ public abstract class KMLAbstractView extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractView))
+        if (!(sourceValues is KMLAbstractView))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);

@@ -4,8 +4,10 @@
  * All Rights Reserved.
  */
 
-using java.awt;
-using java.util;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+
 namespace SharpEarth.geom{
 
 
@@ -16,32 +18,30 @@ namespace SharpEarth.geom{
  * @author tag
  * @version $Id: BarycentricQuadrilateral.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BarycentricQuadrilateral extends BarycentricTriangle
+public class BarycentricQuadrilateral : BarycentricTriangle
 {
     protected Vec4 p11;
     private double[] w11;
 
-    public BarycentricQuadrilateral(Vec4 p00, Vec4 p10, Vec4 p11, Vec4 p01)
+    public BarycentricQuadrilateral(Vec4 p00, Vec4 p10, Vec4 p11, Vec4 p01 )
+        :base( p00, p10, p01)
     {
-        super(p00, p10, p01);
 
         this.p11 = p11;
         this.w11 = this.getBarycentricCoords(this.p11);
     }
 
     public BarycentricQuadrilateral(LatLon p00, LatLon p10, LatLon p11, LatLon p01)
+      :base( p00, p10, p01)
     {
-        super(p00, p10, p01);
-
         this.p11 = new Vec4(p11.getLongitude().getRadians(), p11.getLatitude().getRadians(), 0);
         this.w11 = this.getBarycentricCoords(this.p11);
     }
 
     public BarycentricQuadrilateral(Point p00, Point p10, Point p11, Point p01)
+      :base( p00, p10, p01)
     {
-        super(p00, p10, p01);
-
-        this.p11 = new Vec4(p11.x, p11.y, 0);
+        this.p11 = new Vec4(p11.X, p11.Y, 0);
         this.w11 = this.getBarycentricCoords(this.p11);
     }
 
@@ -50,13 +50,11 @@ public class BarycentricQuadrilateral extends BarycentricTriangle
         return p11;
     }
 
-    @Override
-    public bool contains(Vec4 p)
+    public override bool contains(Vec4 p)
     {
         return this.invertBilinear(p) != null;
     }
 
-    @SuppressWarnings({"UnnecessaryLocalVariable"})
     public double[] getBilinearCoords(double alpha, double beta)
     {
         // TODO: this method isn't always finding the correct -- or any -- roots
@@ -179,28 +177,26 @@ public class BarycentricQuadrilateral extends BarycentricTriangle
     private static Vec4 i2 = new Vec4(2d, 2d, 0d);
     private static Vec4 i3 = new Vec4(0d, 1d, 0d);
 
-    private static ArrayList<Vec4> testPoints = new ArrayList<Vec4>(Arrays.asList(
-        g0, g1, g2, g3,
-        i0, i1, i2, i3,
-        new Vec4(-17, 0, 0)
-//        new Vec4(-122.4, 34.2, 0),
-//        new Vec4(-120.6, 34.2, 0),
-//        new Vec4(-120.6, 36, 0),
-//        new Vec4(-122.4, 36, 0)
-    ));
+    private static List<Vec4> testPoints = new List<Vec4>()
+    {  g0, g1, g2, g3, i0, i1, i2, i3, new Vec4(-17, 0, 0)
+      //        new Vec4(-122.4, 34.2, 0),
+      //        new Vec4(-120.6, 34.2, 0),
+      //        new Vec4(-120.6, 36, 0),
+      //        new Vec4(-122.4, 36, 0)
+    };
 
     public static void main(String[] args)
     {
         BarycentricPlanarShape bc = new BarycentricQuadrilateral(i0, i1, i2, i3);
 
-        for (Vec4 point : testPoints)
+        foreach (Vec4 point in testPoints)
         {
             double[] w = bc.getBarycentricCoords(point);
             Vec4 p = bc.getPoint(w);
             double[] uv = bc.getBilinearCoords(w[1], w[2]);
 
-            System.out.printf("%s, %s: ( %f, %f, %f) : ( %f, %f), %s\n",
-                point, p, w[0], w[1], w[2], uv[0], uv[1], p.equals(point) ? "true" : "false");
+            Console.WriteLine(String.Format("{0}, {1}: ( {2}, {3}, {4}) : ( {5}, {6}), {7}\n",
+                point, p, w[0], w[1], w[2], uv[0], uv[1], p.Equals(point) ? "true" : "false"));
         }
 //
 //        BarycentricPlanarShape bc = new BarycentricQuadrilateral(new Vec4(4, 3, 0), new Vec4(7, 1, 0),
@@ -214,7 +210,7 @@ public class BarycentricQuadrilateral extends BarycentricTriangle
 //            double[] uv = bc.getBilinearCoords(w[1], w[2]);
 //
 //            System.out.printf("%s, %s: ( %f, %f, %f) : ( %f, %f), %s\n",
-//                point, p, w[0], w[1], w[2], uv[0], uv[1], p.equals(point) ? "true" : "false");
+//                point, p, w[0], w[1], w[2], uv[0], uv[1], p.Equals(point) ? "true" : "false");
 //        }
     }
 }

@@ -54,7 +54,7 @@ public class ColladaInstanceMaterial extends ColladaAbstractInstance<ColladaMate
     @Override
     public void setField(String keyName, Object value)
     {
-        if ("bind_vertex_input".equals(keyName))
+        if ("bind_vertex_input".Equals(keyName))
         {
             this.bindVertexInputs.add((ColladaBindVertexInput) value);
         }

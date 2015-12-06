@@ -105,7 +105,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
 //        }
 //
 //        String rootElementName = rootElement.getNodeName();
-//        if (!"RasterServer".equals(rootElementName))
+//        if (!"RasterServer".Equals(rootElementName))
 //        {
 //            String message = Logging.getMessage("generic.InvalidDataSource", rootElementName);
 //            Logging.logger().severe(message);
@@ -248,7 +248,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
                         rasterReader.readMetadata(rasterSourceFile, rasterMetadata);
 
                         Object o = rasterMetadata.getValue(AVKey.SECTOR);
-                        sector = (o instanceof Sector) ? (Sector) o : null;
+                        sector = (o is Sector) ? (Sector) o : null;
                     }
                     else
                     {
@@ -261,7 +261,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
                     if( !WWUtil.isEmpty(datasetPixelFormat) )
                     {
                         // verify all data rasters are the same type - we do not allow to mix elevations and imagery
-                        if (!datasetPixelFormat.equals(rasterPixelFormat))
+                        if (!datasetPixelFormat.Equals(rasterPixelFormat))
                         {
                             hasUnavailableRasterSources = true;
                             String reason = Logging.getMessage("generic.UnexpectedRasterType", rasterSourcePath );
@@ -271,7 +271,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
                     }
                     else
                     {
-                        if( AVKey.IMAGE.equals(rasterPixelFormat) || AVKey.ELEVATION.equals(rasterPixelFormat) )
+                        if( AVKey.IMAGE.Equals(rasterPixelFormat) || AVKey.ELEVATION.Equals(rasterPixelFormat) )
                         {
                             this.setDataSetPixelFormat( (String)rasterPixelFormat );
                         }
@@ -407,7 +407,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
         }
 
         Object o = reqParams.getValue(AVKey.SECTOR);
-        if (null == o || !(o instanceof Sector))
+        if (null == o || !(o is Sector))
         {
             String message = Logging.getMessage("generic.MissingRequiredParameter", AVKey.SECTOR);
             Logging.logger().severe(message);
@@ -434,7 +434,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
             }
 
             // check if this Raster Server serves elevations or imagery
-            if (AVKey.ELEVATION.equals(this.getStringValue(AVKey.PIXEL_FORMAT)))
+            if (AVKey.ELEVATION.Equals(this.getStringValue(AVKey.PIXEL_FORMAT)))
             {
                 reqParams.setValue(AVKey.PIXEL_FORMAT, AVKey.ELEVATION);
 
@@ -445,7 +445,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
 
                 reqRaster = new ByteBufferRaster(reqWidth, reqHeight, reqSector, reqParams);
             }
-            else if (AVKey.IMAGE.equals(this.getStringValue(AVKey.PIXEL_FORMAT)))
+            else if (AVKey.IMAGE.Equals(this.getStringValue(AVKey.PIXEL_FORMAT)))
             {
                 reqParams.setValue(AVKey.PIXEL_FORMAT, AVKey.IMAGE);
                 reqRaster = new BufferedImageRaster(reqWidth, reqHeight, Transparency.TRANSLUCENT, reqSector);
@@ -535,7 +535,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
         {
             DataRaster raster = this.composeRaster(params);
 
-            if (raster instanceof BufferedImageRaster)
+            if (raster is BufferedImageRaster)
             {
                 if ("image/png".equalsIgnoreCase(format))
                 {
@@ -556,7 +556,7 @@ public class BasicRasterServer extends WWObjectImpl implements RasterServer
                     throw new WWRuntimeException(msg);
                 }
             }
-            else if (raster instanceof ByteBufferRaster)
+            else if (raster is ByteBufferRaster)
             {
                 // Elevations as BIL16 or as BIL32 are stored in the simple ByteBuffer object
                 return ((ByteBufferRaster) raster).getByteBuffer();

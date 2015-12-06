@@ -40,7 +40,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractFeature)
+        if (o is KMLAbstractFeature)
             this.addFeature((KMLAbstractFeature) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -181,7 +181,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
         // general overlay that is higher in the tree.
         for (KMLAbstractFeature feature : this.getFeatures())
         {
-            if (feature instanceof KMLAbstractContainer)
+            if (feature is KMLAbstractContainer)
                 containers.add(feature);
             else
                 feature.preRender(tc, dc);
@@ -211,7 +211,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
         // general overlay that is higher in the tree.
         for (KMLAbstractFeature feature : this.getFeatures())
         {
-            if (feature instanceof KMLAbstractContainer)
+            if (feature is KMLAbstractContainer)
                 containers.add(feature);
             else
                 feature.render(tc, dc);
@@ -227,7 +227,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractContainer))
+        if (!(sourceValues is KMLAbstractContainer))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
@@ -262,7 +262,7 @@ public class KMLAbstractContainer extends KMLAbstractFeature
                 for (KMLAbstractFeature existingFeature : featuresListCopy)
                 {
                     String currentId = existingFeature.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                         this.getFeatures().remove(existingFeature);
                 }
             }

@@ -118,7 +118,7 @@ public class SessionCacheUtils
         }
 
         Object o = cache.get(cacheKey);
-        return (o instanceof WMSCapabilities) ? (WMSCapabilities) o : null;
+        return (o is WMSCapabilities) ? (WMSCapabilities) o : null;
     }
 
     /**

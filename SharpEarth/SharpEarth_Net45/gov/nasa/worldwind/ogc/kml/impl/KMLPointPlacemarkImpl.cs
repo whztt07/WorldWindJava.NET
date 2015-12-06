@@ -82,11 +82,11 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
         String altMode = point.getAltitudeMode();
         if (!WWUtil.isEmpty(altMode))
         {
-            if ("clampToGround".equals(altMode))
+            if ("clampToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.CLAMP_TO_GROUND);
-            else if ("relativeToGround".equals(altMode))
+            else if ("relativeToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
-            else if ("absolute".equals(altMode))
+            else if ("absolute".Equals(altMode))
                 this.setAltitudeMode(WorldWind.ABSOLUTE);
         }
 
@@ -357,7 +357,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
         if (style.getColor() != null)
             attrs.setImageColor(WWUtil.decodeColorABGR(style.getColor()));
 
-        if (style.getColorMode() != null && "random".equals(style.getColorMode()))
+        if (style.getColorMode() != null && "random".Equals(style.getColorMode()))
             attrs.setImageColor(WWUtil.makeRandomColor(attrs.getImageColor()));
 
         if (style.getScale() != null)
@@ -394,7 +394,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
         if (style.getColor() != null)
             attrs.setLineColor(style.getColor());
 
-        if (style.getColorMode() != null && "random".equals(style.getColorMode()))
+        if (style.getColorMode() != null && "random".Equals(style.getColorMode()))
             attrs.setLineMaterial(new Material(WWUtil.makeRandomColor(attrs.getLineColor())));
 
         return attrs;
@@ -410,7 +410,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
         if (style.getColor() != null)
             attrs.setLabelColor(style.getColor());
 
-        if (style.getColorMode() != null && "random".equals(style.getColorMode()))
+        if (style.getColorMode() != null && "random".Equals(style.getColorMode()))
             attrs.setLabelMaterial(new Material(WWUtil.makeRandomColor(attrs.getLabelColor())));
 
         return attrs;
@@ -460,7 +460,7 @@ public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderab
     {
         super.onMessage(message);
 
-        if (KMLAbstractObject.MSG_STYLE_CHANGED.equals(message.getName()))
+        if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(message.getName()))
         {
             this.normalAttributesResolved = false;
             this.highlightAttributesResolved = false;

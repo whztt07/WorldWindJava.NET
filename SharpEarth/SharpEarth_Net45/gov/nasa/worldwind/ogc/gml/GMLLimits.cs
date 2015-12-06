@@ -39,7 +39,7 @@ public class GMLLimits extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof GMLGridEnvelope)
+                if (o != null && o is GMLGridEnvelope)
                     this.gridEnvelopes.add((GMLGridEnvelope) o);
             }
         }

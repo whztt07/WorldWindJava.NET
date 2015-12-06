@@ -268,7 +268,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         catch (Exception e)
         {
             this.setState(RETRIEVER_STATE_ERROR);
-            if (!(e instanceof java.net.SocketTimeoutException))
+            if (!(e is java.net.SocketTimeoutException))
             {
                 Logging.logger().log(Level.SEVERE,
                     Logging.getMessage("URLRetriever.ErrorAttemptingToRetrieve", this.url.ToString()), e);
@@ -326,7 +326,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
             throw new IllegalStateException(message);
         }
 
-        if (this.connection instanceof HttpsURLConnection)
+        if (this.connection is HttpsURLConnection)
             this.configureSSLContext((HttpsURLConnection) this.connection);
 
         this.connection.setConnectTimeout(this.connectTimeout);
@@ -372,8 +372,8 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
         }
         catch (Exception e)
         {
-            if (!(e instanceof java.net.SocketTimeoutException || e instanceof UnknownHostException
-                || e instanceof SocketException))
+            if (!(e is java.net.SocketTimeoutException || e is UnknownHostException
+                || e is SocketException))
             {
                 Logging.logger().log(Level.SEVERE,
                     Logging.getMessage("URLRetriever.ErrorReadingFromConnection", this.url.ToString()), e);
@@ -472,7 +472,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
 
     protected ByteBuffer readNonSpecificStreamUnknownLength(InputStream inputStream) throws IOException
     {
-        final int pageSize = (int) Math.ceil(Math.pow(2, 15));
+        final int pageSize = (int) Math.ceil(Math.Pow(2, 15));
 
         ReadableByteChannel channel = Channels.newChannel(inputStream);
         ByteBuffer buffer = ByteBuffer.allocate(pageSize);
@@ -605,7 +605,7 @@ public abstract class URLRetriever extends WWObjectImpl implements Retriever
     public override int GetHashCode()
     {
         int result;
-        result = (url != null ? url.hashCode() : 0);
+        result = (url != null ? url.GetHashCode() : 0);
         return result;
     }
 

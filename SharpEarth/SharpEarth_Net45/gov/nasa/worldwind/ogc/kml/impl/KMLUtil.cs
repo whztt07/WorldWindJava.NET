@@ -37,7 +37,7 @@ public class KMLUtil
         if (style.getColor() != null)
             attrs.setOutlineMaterial(new Material(WWUtil.decodeColorABGR(style.getColor())));
 
-        if (style.getColorMode() != null && "random".equals(style.getColorMode()))
+        if (style.getColorMode() != null && "random".Equals(style.getColorMode()))
             attrs.setOutlineMaterial(new Material(WWUtil.makeRandomColor(attrs.getOutlineMaterial().getDiffuse())));
 
         return attrs;
@@ -55,7 +55,7 @@ public class KMLUtil
             attrs.setInteriorOpacity((double) color.getAlpha() / 255);
         }
 
-        if (style.getColorMode() != null && "random".equals(style.getColorMode()))
+        if (style.getColorMode() != null && "random".Equals(style.getColorMode()))
             attrs.setInteriorMaterial(new Material(WWUtil.makeRandomColor(attrs.getOutlineMaterial().getDiffuse())));
 
         return attrs;
@@ -74,16 +74,16 @@ public class KMLUtil
             return false;
 
         String styleState = (String) subStyle.getField(KMLConstants.STYLE_STATE);
-        return styleState != null && styleState.equals(KMLConstants.HIGHLIGHT);
+        return styleState != null && styleState.Equals(KMLConstants.HIGHLIGHT);
     }
 
     public static int convertAltitudeMode(String altMode, int defaultAltMode)
     {
-        if ("clampToGround".equals(altMode))
+        if ("clampToGround".Equals(altMode))
             return WorldWind.CLAMP_TO_GROUND;
-        else if ("relativeToGround".equals(altMode))
+        else if ("relativeToGround".Equals(altMode))
             return WorldWind.RELATIVE_TO_GROUND;
-        else if ("absolute".equals(altMode))
+        else if ("absolute".Equals(altMode))
             return WorldWind.ABSOLUTE;
         else
             return defaultAltMode;
@@ -99,11 +99,11 @@ public class KMLUtil
      */
     public static String kmlUnitsToWWUnits(String units)
     {
-        if (KML_PIXELS.equals(units))
+        if (KML_PIXELS.Equals(units))
             return AVKey.PIXELS;
-        else if (KML_FRACTION.equals(units))
+        else if (KML_FRACTION.Equals(units))
             return AVKey.FRACTION;
-        else if (KML_INSET_PIXELS.equals(units))
+        else if (KML_INSET_PIXELS.Equals(units))
             return AVKey.INSET_PIXELS;
         else
             return null;
@@ -119,11 +119,11 @@ public class KMLUtil
      */
     public static String wwUnitsToKMLUnits(String units)
     {
-        if (AVKey.PIXELS.equals(units))
+        if (AVKey.PIXELS.Equals(units))
             return KML_PIXELS;
-        else if (AVKey.FRACTION.equals(units))
+        else if (AVKey.FRACTION.Equals(units))
             return KML_FRACTION;
-        else if (AVKey.INSET_PIXELS.equals(units))
+        else if (AVKey.INSET_PIXELS.Equals(units))
             return KML_INSET_PIXELS;
         else
             return null;
@@ -157,10 +157,10 @@ public class KMLUtil
         double east = box.getEast();
         double west = box.getWest();
 
-        double minLat = Math.min(north, south);
-        double maxLat = Math.max(north, south);
-        double minLon = Math.min(east, west);
-        double maxLon = Math.max(east, west);
+        double minLat = Math.Min(north, south);
+        double maxLat = Math.Max(north, south);
+        double minLon = Math.Min(east, west);
+        double maxLon = Math.Max(east, west);
 
         return Sector.fromDegrees(minLat, maxLat, minLon, maxLon);
     }
@@ -175,7 +175,7 @@ public class KMLUtil
      */
     public static void getPositions(Globe globe, KMLAbstractGeometry geometry, java.util.List<Position> positions)
     {
-        if (geometry instanceof KMLPoint)
+        if (geometry is KMLPoint)
         {
             KMLPoint kmlPoint = (KMLPoint) geometry;
             Position pos = kmlPoint.getCoordinates();
@@ -183,7 +183,7 @@ public class KMLUtil
             if (pos != null)
                 positions.add(computeAltitude(globe, pos, kmlPoint.getAltitudeMode()));
         }
-        else if (geometry instanceof KMLModel)
+        else if (geometry is KMLModel)
         {
             KMLModel model = (KMLModel) geometry;
             KMLLocation location = model.getLocation();
@@ -194,7 +194,7 @@ public class KMLUtil
                     positions.add(computeAltitude(globe, pos, model.getAltitudeMode()));
             }
         }
-        else if (geometry instanceof KMLLineString) // Also handles KMLLinearRing, since KMLLineString is a subclass of KMLLinearRing
+        else if (geometry is KMLLineString) // Also handles KMLLinearRing, since KMLLineString is a subclass of KMLLinearRing
         {
             KMLLineString lineString = (KMLLineString) geometry;
             Position.PositionList positionList = lineString.getCoordinates();
@@ -203,13 +203,13 @@ public class KMLUtil
                 positions.addAll(computeAltitude(globe, positionList.list, lineString.getAltitudeMode()));
             }
         }
-        else if (geometry instanceof KMLPolygon)
+        else if (geometry is KMLPolygon)
         {
             KMLLinearRing ring = ((KMLPolygon) geometry).getOuterBoundary();
             // Recurse and let the LineString/LinearRing code handle the boundary positions
             getPositions(globe, ring, positions);
         }
-        else if (geometry instanceof KMLMultiGeometry)
+        else if (geometry is KMLMultiGeometry)
         {
             java.util.List<KMLAbstractGeometry> geoms = ((KMLMultiGeometry) geometry).getGeometries();
             for (KMLAbstractGeometry g : geoms)

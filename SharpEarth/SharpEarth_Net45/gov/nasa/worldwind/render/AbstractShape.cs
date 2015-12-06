@@ -197,7 +197,7 @@ public abstract class AbstractShape extends WWObjectImpl
     protected Position referencePosition; // the location/position to use as the shape's reference point
     protected Object delegateOwner; // for app use to identify an owner of this shape other than the current layer
     protected long maxExpiryTime = DEFAULT_GEOMETRY_GENERATION_INTERVAL;
-    protected long minExpiryTime = Math.max(DEFAULT_GEOMETRY_GENERATION_INTERVAL - 500, 0);
+    protected long minExpiryTime = Math.Max(DEFAULT_GEOMETRY_GENERATION_INTERVAL - 500, 0);
     protected bool viewDistanceExpiration = true;
     protected SurfaceShape surfaceShape;
 
@@ -612,7 +612,7 @@ public abstract class AbstractShape extends WWObjectImpl
      */
     public void setGeometryRegenerationInterval(int geometryRegenerationInterval)
     {
-        this.maxExpiryTime = Math.max(geometryRegenerationInterval, 0);
+        this.maxExpiryTime = Math.Max(geometryRegenerationInterval, 0);
         this.minExpiryTime = (long) (0.6 * (double) this.maxExpiryTime);
 
         for (ShapeDataCache.ShapeDataCacheEntry shapeData : this.shapeDataCache)
@@ -846,7 +846,7 @@ public abstract class AbstractShape extends WWObjectImpl
     @Override
     public void preRender(DrawContext dc)
     {
-        if (dc.getGlobe() instanceof Globe2D)
+        if (dc.getGlobe() is Globe2D)
         {
             if (this.surfaceShape == null)
             {
@@ -925,7 +925,7 @@ public abstract class AbstractShape extends WWObjectImpl
             throw new ArgumentException(msg);
         }
 
-        if (dc.getGlobe() instanceof Globe2D && this.surfaceShape != null)
+        if (dc.getGlobe() is Globe2D && this.surfaceShape != null)
         {
             this.surfaceShape.render(dc);
             return;
@@ -1515,7 +1515,7 @@ public abstract class AbstractShape extends WWObjectImpl
             extremes = new double[] {Double.MaxValue, -Double.MaxValue};
             for (LatLon pos : positions)
             {
-                double elevation = pos instanceof Position ? ((Position) pos).getElevation() : 0;
+                double elevation = pos is Position ? ((Position) pos).getElevation() : 0;
                 if (this.getAltitudeMode() == WorldWind.RELATIVE_TO_GROUND)
                     elevation += minAndMaxElevations[1];
 
@@ -1637,7 +1637,7 @@ public abstract class AbstractShape extends WWObjectImpl
         }
 
         String supported = this.isExportFormatSupported(mimeType);
-        if (FORMAT_NOT_SUPPORTED.equals(supported))
+        if (FORMAT_NOT_SUPPORTED.Equals(supported))
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
@@ -1680,16 +1680,16 @@ public abstract class AbstractShape extends WWObjectImpl
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }

@@ -311,7 +311,7 @@ public class KMLRegion extends KMLAbstractObject
      * The minimum lifespan of this Region's computed data, in milliseconds. Initialized to
      * <code>DEFAULT_DATA_GENERATION_INTERVAL - 1000</code>.
      */
-    protected long minExpiryTime = Math.max(DEFAULT_DATA_GENERATION_INTERVAL - 1000, 0);
+    protected long minExpiryTime = Math.Max(DEFAULT_DATA_GENERATION_INTERVAL - 1000, 0);
     /**
      * Holds globe-dependent computed Region data. One entry per globe encountered during <code>isActive</code>.
      * Initialized to a new <code>ShapeDataCache</code> with <code>maxTimeSinceLastUsed</code> set to
@@ -842,7 +842,7 @@ public class KMLRegion extends KMLAbstractObject
 
         Double lodMinPixels = lod.getMinLodPixels();
         Double lodMaxPixels = lod.getMaxLodPixels();
-        double distanceFactor = minDistance * Math.pow(10, -this.getDetailFactor(tc));
+        double distanceFactor = minDistance * Math.Pow(10, -this.getDetailFactor(tc));
 
         // We ignore minLodPixels if it's unspecified, zero, or less than zero. We ignore maxLodPixels if it's
         // unspecified or less than 0 (infinity). In these cases any distance passes the test against minLodPixels or
@@ -949,7 +949,7 @@ public class KMLRegion extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLRegion))
+        if (!(sourceValues is KMLRegion))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);
@@ -964,7 +964,7 @@ public class KMLRegion extends KMLAbstractObject
     @Override
     public void onChange(Message msg)
     {
-        if (KMLAbstractObject.MSG_BOX_CHANGED.equals(msg.getName()))
+        if (KMLAbstractObject.MSG_BOX_CHANGED.Equals(msg.getName()))
             this.reset();
 
         super.onChange(msg);

@@ -349,22 +349,22 @@ public class WWUtil
         int x = parentLocation.x;
         int y = parentLocation.y;
 
-        if (alignment != null && alignment.equals(AVKey.RIGHT))
+        if (alignment != null && alignment.Equals(AVKey.RIGHT))
         {
             x += parentSize.width - 50;
             y += parentSize.height - prefSize.height;
         }
-        else if (alignment != null && alignment.equals(AVKey.CENTER))
+        else if (alignment != null && alignment.Equals(AVKey.CENTER))
         {
             x += (parentSize.width - prefSize.width) / 2;
             y += (parentSize.height - prefSize.height) / 2;
         }
-        else if (alignment != null && alignment.equals(AVKey.LEFT_OF_CENTER))
+        else if (alignment != null && alignment.Equals(AVKey.LEFT_OF_CENTER))
         {
             x += parentSize.width / 2 - 1.05 * prefSize.width;
             y += (parentSize.height - prefSize.height) / 2;
         }
-        else if (alignment != null && alignment.equals(AVKey.RIGHT_OF_CENTER))
+        else if (alignment != null && alignment.Equals(AVKey.RIGHT_OF_CENTER))
         {
             x += parentSize.width / 2 + 0.05 * prefSize.width;
             y += (parentSize.height - prefSize.height) / 2;
@@ -719,9 +719,9 @@ public class WWUtil
      *
      * @return true if the reference is null or is a zero-length {@link String}.
      */
-    public static bool isEmpty(Object s)
+    public static bool isEmpty(object s)
     {
-        return s == null || (s instanceof String && ((String) s).length() == 0);
+        return s == null || (s is String && ((String) s).length() == 0);
     }
 
     /**
@@ -774,7 +774,7 @@ public class WWUtil
             throw new ArgumentException(message);
         }
 
-        if (!AVKey.NORTH.equals(hemisphere) && !AVKey.SOUTH.equals(hemisphere))
+        if (!AVKey.NORTH.Equals(hemisphere) && !AVKey.SOUTH.Equals(hemisphere))
         {
             String message = Logging.getMessage("generic.HemisphereIsInvalid", hemisphere);
             Logging.logger().severe(message);
@@ -1031,7 +1031,7 @@ public class WWUtil
             String causeMessage = cause.getMessage();
             String causeClass = cause.GetType().Name;
 
-            if (!WWUtil.isEmpty(messageClass) && !WWUtil.isEmpty(causeClass) && !messageClass.equals(causeClass))
+            if (!WWUtil.isEmpty(messageClass) && !WWUtil.isEmpty(causeClass) && !messageClass.Equals(causeClass))
             {
                 if (sb.length() != 0)
                 {
@@ -1059,7 +1059,7 @@ public class WWUtil
     public static String stripLeadingPeriod(String s)
     {
         if (null != s && s.startsWith("."))
-            return s.substring(Math.min(1, s.length()), s.length());
+            return s.substring(Math.Min(1, s.length()), s.length());
         return s;
     }
 
@@ -1162,13 +1162,13 @@ public class WWUtil
             throw new ArgumentException(Logging.getMessage("nullValue.StringIsNull"));
         }
 
-        if (va.equals(vb))
+        if (va.Equals(vb))
             return 0;
 
         String[] vas = va.split("\\.");
         String[] vbs = vb.split("\\.");
 
-        for (int i = 0; i < Math.max(vas.length, vbs.length); i++)
+        for (int i = 0; i < Math.Max(vas.length, vbs.length); i++)
         {
             String sa = vas.length > i ? vas[i] : "0";
             String sb = vbs.length > i ? vbs[i] : "0";

@@ -184,13 +184,13 @@ public class XMLEventParserContextFactory
         {
             for (String entryMimeType : entry.mimeTypes)
             {
-                if (entryMimeType.equals(mimeType))
+                if (entryMimeType.Equals(mimeType))
                 {
                     String ns = entry.prototypeParser.getDefaultNamespaceURI();
                     ns = ns != null ? ns : XMLConstants.NULL_NS_URI;
                     defaultNamespace = defaultNamespace != null ? defaultNamespace : XMLConstants.NULL_NS_URI;
 
-                    if (ns.equals(defaultNamespace))
+                    if (ns.Equals(defaultNamespace))
                         try
                         {
                             return createInstanceFromPrototype(entry.prototypeParser);

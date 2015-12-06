@@ -30,7 +30,7 @@ public abstract class KMLAbstractTimePrimitive extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractTimePrimitive))
+        if (!(sourceValues is KMLAbstractTimePrimitive))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);

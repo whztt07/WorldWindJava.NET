@@ -162,7 +162,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
     public int getWidth()
     {
         Object o = this.getValue(AVKey.WIDTH);
-        if (null != o && o instanceof Integer)
+        if (null != o && o is Integer)
             return (Integer) o;
         throw new WWRuntimeException(Logging.getMessage("generic.MissingRequiredParameter", AVKey.WIDTH));
     }
@@ -170,7 +170,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
     public int getHeight()
     {
         Object o = this.getValue(AVKey.HEIGHT);
-        if (null != o && o instanceof Integer)
+        if (null != o && o is Integer)
             return (Integer) o;
         throw new WWRuntimeException(Logging.getMessage("generic.MissingRequiredParameter", AVKey.HEIGHT));
     }
@@ -178,7 +178,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
     public Sector getSector()
     {
         Object o = this.getValue(AVKey.SECTOR);
-        if (null != o && o instanceof Sector)
+        if (null != o && o is Sector)
             return (Sector) o;
         throw new WWRuntimeException(Logging.getMessage("generic.MissingRequiredParameter", AVKey.SECTOR));
     }
@@ -391,7 +391,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
         {
             for (DataRaster raster : rasters)
             {
-                if (raster != null && raster instanceof Cacheable)
+                if (raster != null && raster is Cacheable)
                     totalBytes += ((Cacheable) raster).getSizeInBytes();
             }
         }
@@ -424,7 +424,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
             if (key != this.key)
                 return;
 
-            if (clientObject == null || !(clientObject instanceof DataRaster[]))
+            if (clientObject == null || !(clientObject is DataRaster[]))
             {
                 String message = MessageFormat.format("Cannot dispose {0}", clientObject);
                 Logging.logger().warning(message);

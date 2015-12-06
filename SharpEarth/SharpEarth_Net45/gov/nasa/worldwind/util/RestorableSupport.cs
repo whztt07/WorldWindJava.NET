@@ -393,7 +393,7 @@ public class RestorableSupport
 
             // If the result is an Element node, return a new StateObject with the result as its content.
             // Otherwise return null.
-            return (result instanceof org.w3c.dom.Element) ? new StateObject((org.w3c.dom.Element) result) : null;
+            return (result is org.w3c.dom.Element) ? new StateObject((org.w3c.dom.Element) result) : null;
         }
         catch (javax.xml.xpath.XPathExpressionException e)
         {
@@ -426,7 +426,7 @@ public class RestorableSupport
                 (context != null ? context : getDocumentElement()),
                 javax.xml.xpath.XPathConstants.NODESET);
             if (result == null
-                || !(result instanceof org.w3c.dom.NodeList)
+                || !(result is org.w3c.dom.NodeList)
                 || ((org.w3c.dom.NodeList) result).getLength() == 0)
             {
                 return null;
@@ -438,7 +438,7 @@ public class RestorableSupport
             for (int i = 0; i < nodeList.getLength(); i++)
             {
                 org.w3c.dom.Node node = nodeList.item(i);
-                if (node instanceof org.w3c.dom.Element)
+                if (node is org.w3c.dom.Element)
                 {
                     stateObjectList.add(new StateObject((org.w3c.dom.Element) node));
                 }
@@ -463,9 +463,9 @@ public class RestorableSupport
             for (int i = 0; i < nodeList.getLength(); i++)
             {
                 org.w3c.dom.Node node = nodeList.item(i);
-                if (node instanceof org.w3c.dom.Element
+                if (node is org.w3c.dom.Element
                     && node.getNodeName() != null
-                    && node.getNodeName().equals(getStateObjectTagName()))
+                    && node.getNodeName().Equals(getStateObjectTagName()))
                 {
                     stateObjectList.add(new StateObject((org.w3c.dom.Element) node));
                 }
@@ -517,7 +517,7 @@ public class RestorableSupport
             throw new ArgumentException(message);
         }
 
-        return elem.getOwnerDocument().equals(this.doc);
+        return elem.getOwnerDocument().Equals(this.doc);
     }
 
     /**

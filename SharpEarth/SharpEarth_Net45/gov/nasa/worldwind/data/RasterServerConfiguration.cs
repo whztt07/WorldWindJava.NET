@@ -61,7 +61,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
             Double maxLat = Double.valueOf((String) latLon.getField("latitude"));
             Double maxLon = Double.valueOf((String) latLon.getField("longitude"));
 
-            if (units.equals("radians"))
+            if (units.Equals("radians"))
                 return Sector.fromRadians(minLat, maxLat, minLon, maxLon);
             else
                 return Sector.fromDegrees(minLat, maxLat, minLon, maxLon);
@@ -199,7 +199,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
             if (event == null)
                 continue;
 
-            if (event.isStartElement() && event.asStartElement().getName().equals(capsName))
+            if (event.isStartElement() && event.asStartElement().getName().Equals(capsName))
             {
                 // Parse the attributes in order to get the version number in order to determine the namespaces.
                 this.doParseEventAttributes(ctx, event);

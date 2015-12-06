@@ -3,11 +3,13 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using javax.media.opengl.glu;
-using javax.media.opengl.GL2;
+using System;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth;
+using System.Collections.Generic;
+using SharpEarth.java.util;
+
 namespace SharpEarth.geom{
 
 
@@ -18,12 +20,12 @@ namespace SharpEarth.geom{
  * @author Tom Gaskins
  * @version $Id: Sphere.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public sealed class Sphere implements Extent, Renderable
+public sealed class Sphere : Extent, Renderable
 {
-    public final static Sphere UNIT_SPHERE = new Sphere(Vec4.ZERO, 1);
+    public readonly static Sphere UNIT_SPHERE = new Sphere(Vec4.ZERO, 1);
 
-    protected final Vec4 center;
-    protected final double radius;
+    protected readonly Vec4 center;
+    protected readonly double radius;
 
     /**
      * Creates a sphere that completely contains a set of points.
@@ -34,7 +36,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if <code>points</code> is null or empty
      */
-    public static Sphere createBoundingSphere(Vec4 points[])
+    public static Sphere createBoundingSphere(Vec4[] points)
     {
         if (points == null)
         {
@@ -43,7 +45,7 @@ public sealed class Sphere implements Extent, Renderable
             throw new ArgumentException(message);
         }
 
-        if (points.length < 1)
+        if (points.Length < 1)
         {
             String message = Logging.getMessage("Geom.Sphere.NoPointsSpecified");
             Logging.logger().severe(message);
@@ -53,9 +55,9 @@ public sealed class Sphere implements Extent, Renderable
         // Creates the sphere around the axis aligned bounding box of the input points.
         Vec4[] extrema = Vec4.computeExtrema(points);
         Vec4 center = new Vec4(
-            (extrema[0].x + extrema[1].x) / 2.0,
-            (extrema[0].y + extrema[1].y) / 2.0,
-            (extrema[0].z + extrema[1].z) / 2.0);
+            (extrema[0].x() + extrema[1].x()) / 2.0,
+            (extrema[0].y() + extrema[1].y()) / 2.0,
+            (extrema[0].z() + extrema[1].z()) / 2.0);
         double radius = extrema[0].distanceTo3(extrema[1]) / 2.0;
 
         return new Sphere(center, radius);
@@ -89,9 +91,9 @@ public sealed class Sphere implements Extent, Renderable
         // Creates the sphere around the axis aligned bounding box of the input points.
         Vec4[] extrema = Vec4.computeExtrema(buffer);
         Vec4 center = new Vec4(
-            (extrema[0].x + extrema[1].x) / 2.0,
-            (extrema[0].y + extrema[1].y) / 2.0,
-            (extrema[0].z + extrema[1].z) / 2.0);
+            (extrema[0].x() + extrema[1].x()) / 2.0,
+            (extrema[0].y() + extrema[1].y()) / 2.0,
+            (extrema[0].z() + extrema[1].z()) / 2.0);
         double radius = extrema[0].distanceTo3(extrema[1]) / 2.0;
 
         return new Sphere(center, radius);
@@ -110,7 +112,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if the Iterable is null.
      */
-    public static Sphere createBoundingSphere(Iterable<? extends Extent> extents)
+    public static Sphere createBoundingSphere(IEnumerable<Extent> extents)
     {
         if (extents == null)
         {
@@ -124,7 +126,7 @@ public sealed class Sphere implements Extent, Renderable
         int count = 0;
 
         // Compute the mean center point of the specified extents.
-        for (Extent e : extents)
+        foreach (Extent e in extents)
         {
             if (e == null)
                 continue;
@@ -140,10 +142,10 @@ public sealed class Sphere implements Extent, Renderable
 
         center = center.divide3(count);
 
-        // Compute the maximum distance from the mean center point to the outermost point on each extent. This is
-        // the radius of the enclosing extent.
-        for (Extent e : extents)
-        {
+      // Compute the maximum distance from the mean center point to the outermost point on each extent. This is
+      // the radius of the enclosing extent.
+      foreach ( Extent e in extents )
+      {
             if (e == null)
                 continue;
 
@@ -191,7 +193,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @return the radius of this sphere
      */
-    public final double getRadius()
+    public double getRadius()
     {
         return this.radius;
     }
@@ -201,7 +203,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @return the diameter of this <code>Sphere</code>
      */
-    public final double getDiameter()
+    public double getDiameter()
     {
         return 2 * this.radius;
     }
@@ -211,7 +213,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @return the <code>Vec4</code> situated at the center of this <code>Sphere</code>
      */
-    public final Vec4 getCenter()
+    public Vec4 getCenter()
     {
         return this.center;
     }
@@ -242,9 +244,9 @@ public sealed class Sphere implements Extent, Renderable
 
         double sinLat = location.getLatitude().sin();
 
-        double x = this.center.x + this.getRadius() * sinLat * location.getLongitude().cos();
-        double y = this.center.y + this.getRadius() * sinLat * location.getLongitude().sin();
-        double z = this.center.z + this.getRadius() * location.getLatitude().cos();
+        double x = this.center.x() + this.getRadius() * sinLat * location.getLongitude().cos();
+        double y = this.center.y() + this.getRadius() * sinLat * location.getLongitude().sin();
+        double z = this.center.z() + this.getRadius() * location.getLatitude().cos();
 
         return new Vec4(x, y, z);
     }
@@ -260,7 +262,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if <code>line</code> is null
      */
-    public final Intersection[] intersect(Line line)
+    public Intersection[] intersect(Line line)
     {
         if (line == null)
         {
@@ -316,7 +318,7 @@ public sealed class Sphere implements Extent, Renderable
      *
      * @throws ArgumentException if the frustum is null.
      */
-    public final bool intersects(Frustum frustum)
+    public bool intersects(Frustum frustum)
     {
         if (frustum == null)
         {
@@ -438,13 +440,11 @@ public sealed class Sphere implements Extent, Renderable
         gl.glPopAttrib();
     }
 
-    @Override
     public override string ToString()
     {
         return "Sphere: center = " + this.center.ToString() + " radius = " + Double.ToString(this.radius);
     }
-
-    @Override
+    
     public override bool Equals(Object o)
     {
         if (this == o)
@@ -452,25 +452,24 @@ public sealed class Sphere implements Extent, Renderable
         if (o == null || GetType() != o.GetType())
             return false;
 
-        final SharpEarth.geom.Sphere sphere = (gov.nasa.worldwind.geom.Sphere) o;
+        Sphere sphere = (Sphere) o;
 
-        if (Double.compare(sphere.radius, radius) != 0)
+        if (sphere.radius.CompareTo(radius) != 0)
             return false;
         //noinspection RedundantIfStatement
-        if (!center.equals(sphere.center))
+        if (!center.Equals(sphere.center))
             return false;
 
         return true;
     }
-
-    @Override
+    
     public override int GetHashCode()
     {
         int result;
-        long temp;
-        result = center.hashCode();
-        temp = radius != +0.0d ? BitConverter.DoubleToInt64Bits(radius) : 0L;
-        result = 29 * result + (int) (temp ^ (temp >>> 32));
+        ulong temp;
+        result = center.GetHashCode();
+        temp = (ulong) ( radius != +0.0d ? BitConverter.DoubleToInt64Bits(radius) : 0L );
+        result = 29 * result + (int) (temp ^ (temp >> 32));
         return result;
     }
 

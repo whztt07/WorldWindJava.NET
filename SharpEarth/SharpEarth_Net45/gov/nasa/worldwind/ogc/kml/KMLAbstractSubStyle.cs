@@ -30,7 +30,7 @@ public abstract class KMLAbstractSubStyle extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractSubStyle))
+        if (!(sourceValues is KMLAbstractSubStyle))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);

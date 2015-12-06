@@ -346,13 +346,13 @@ public class Tile implements Comparable<Tile>, Cacheable
 
         final Tile tile = (Tile) o;
 
-        return !(tileKey != null ? !tileKey.equals(tile.tileKey) : tile.tileKey != null);
+        return !(tileKey != null ? !tileKey.Equals(tile.tileKey) : tile.tileKey != null);
     }
 
     @Override
     public override int GetHashCode()
     {
-        return (tileKey != null ? tileKey.hashCode() : 0);
+        return (tileKey != null ? tileKey.GetHashCode() : 0);
     }
 
     @Override

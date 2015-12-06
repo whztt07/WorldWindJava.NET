@@ -85,7 +85,7 @@ public class ElevationsUtil
 
        // check if the minimum value is one of the well known NODATA values
        if (ElevationsUtil.isKnownMissingSignal(minValue)
-           || (missingDataSignal != null && missingDataSignal.equals(minValue))
+           || (missingDataSignal != null && missingDataSignal.Equals(minValue))
            )
        {
            missingDataSignal = minValue;

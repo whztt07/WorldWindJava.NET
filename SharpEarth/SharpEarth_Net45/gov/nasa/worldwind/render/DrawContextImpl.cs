@@ -672,13 +672,13 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
     @Override
     public bool is2DGlobe()
     {
-        return this.globe instanceof Globe2D;
+        return this.globe is Globe2D;
     }
 
     @Override
     public bool isContinuous2DGlobe()
     {
-        return this.globe instanceof Globe2D && ((Globe2D) this.getGlobe()).isContinuous();
+        return this.globe is Globe2D && ((Globe2D) this.getGlobe()).isContinuous();
     }
 
     public void addOrderedRenderable(OrderedRenderable orderedRenderable)
@@ -738,7 +738,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
 //        ArrayList<OrderedRenderableEntry> declutterableArray = new ArrayList<OrderedRenderableEntry>();
 //        for (OrderedRenderableEntry ore : this.orderedRenderables)
 //        {
-//            if (ore.or instanceof Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
+//            if (ore.or is Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
 //                declutterableArray.add(ore);
 //        }
 //
@@ -797,7 +797,7 @@ public class DrawContextImpl extends WWObjectImpl implements DrawContext
         ArrayList<OrderedRenderableEntry> declutterableArray = new ArrayList<OrderedRenderableEntry>();
         for (OrderedRenderableEntry ore : this.orderedRenderables)
         {
-            if (ore.or instanceof Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
+            if (ore.or is Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
                 declutterableArray.add(ore);
         }
 

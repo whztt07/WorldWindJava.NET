@@ -270,7 +270,7 @@ public class KMLSurfacePolygonImpl extends SurfacePolygon implements KMLRenderab
     {
         ShapeAttributes attrs = new BasicShapeAttributes();
 
-        if (KMLConstants.HIGHLIGHT.equals(attrType))
+        if (KMLConstants.HIGHLIGHT.Equals(attrType))
         {
             attrs.setOutlineMaterial(Material.RED);
             attrs.setInteriorMaterial(Material.PINK);
@@ -289,7 +289,7 @@ public class KMLSurfacePolygonImpl extends SurfacePolygon implements KMLRenderab
     {
         super.onMessage(message);
 
-        if (KMLAbstractObject.MSG_STYLE_CHANGED.equals(message.getName()))
+        if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(message.getName()))
         {
             this.normalAttributesResolved = false;
             this.highlightAttributesResolved = false;
@@ -310,7 +310,7 @@ public class KMLSurfacePolygonImpl extends SurfacePolygon implements KMLRenderab
     protected void applyRotation(DrawContext dc)
     {
         // Rotation applies only to ground overlay position with a LatLon box.
-        if (!(this.parent instanceof KMLGroundOverlay))
+        if (!(this.parent is KMLGroundOverlay))
             return;
 
         KMLLatLonBox box = ((KMLGroundOverlay) this.parent).getLatLonBox();

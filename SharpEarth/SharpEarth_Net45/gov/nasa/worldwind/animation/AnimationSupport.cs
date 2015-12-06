@@ -69,7 +69,7 @@ public class AnimationSupport
         double beginZoom, double endZoom,
         long minTimeMillisecs, long maxTimeMillisecs)
     {
-        double scaleFactor = Math.Abs(endZoom - beginZoom) / Math.max(endZoom, beginZoom);
+        double scaleFactor = Math.Abs(endZoom - beginZoom) / Math.Max(endZoom, beginZoom);
         // Clamp scaleFactor to range [0, 1].
         scaleFactor = clampDouble(scaleFactor, 0.0, 1.0);
         // Iteration time is interpolated value between minumum and maximum lengths.

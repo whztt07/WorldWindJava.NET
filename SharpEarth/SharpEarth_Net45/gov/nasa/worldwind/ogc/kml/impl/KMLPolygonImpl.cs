@@ -60,9 +60,9 @@ public class KMLPolygonImpl extends Polygon implements KMLRenderable
         String altMode = polygon.getAltitudeMode();
         if (!WWUtil.isEmpty(altMode))
         {
-            if ("relativeToGround".equals(altMode))
+            if ("relativeToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
-            else if ("absolute".equals(altMode))
+            else if ("absolute".Equals(altMode))
                 this.setAltitudeMode(WorldWind.ABSOLUTE);
         }
 
@@ -198,7 +198,7 @@ public class KMLPolygonImpl extends Polygon implements KMLRenderable
     {
         ShapeAttributes attrs = new BasicShapeAttributes();
 
-        if (KMLConstants.HIGHLIGHT.equals(attrType))
+        if (KMLConstants.HIGHLIGHT.Equals(attrType))
         {
             attrs.setOutlineMaterial(Material.RED);
             attrs.setInteriorMaterial(Material.PINK);
@@ -217,7 +217,7 @@ public class KMLPolygonImpl extends Polygon implements KMLRenderable
     {
         super.onMessage(message);
 
-        if (KMLAbstractObject.MSG_STYLE_CHANGED.equals(message.getName()))
+        if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(message.getName()))
         {
             this.normalAttributesResolved = false;
             this.highlightAttributesResolved = false;

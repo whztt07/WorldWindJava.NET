@@ -37,7 +37,7 @@ public class KMLPolygon extends KMLAbstractGeometry
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLBoundary && event.asStartElement().getName().getLocalPart().equals("innerBoundaryIs"))
+        if (o is KMLBoundary && event.asStartElement().getName().getLocalPart().Equals("innerBoundaryIs"))
             this.addInnerBoundary(((KMLBoundary) o).getLinearRing());
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -85,7 +85,7 @@ public class KMLPolygon extends KMLAbstractGeometry
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLPolygon))
+        if (!(sourceValues is KMLPolygon))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);

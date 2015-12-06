@@ -35,7 +35,7 @@ public abstract class AbstractFileStore extends WWObjectImpl implements FileStor
         public java.io.File getFile()
         {
             Object o = this.getValue(AVKey.FILE_STORE_LOCATION);
-            return (o != null && o instanceof java.io.File) ? (java.io.File) o : null;
+            return (o != null && o is java.io.File) ? (java.io.File) o : null;
         }
 
         public void setFile(java.io.File file)
@@ -46,7 +46,7 @@ public abstract class AbstractFileStore extends WWObjectImpl implements FileStor
         public bool isInstall()
         {
             Object o = this.getValue(AVKey.INSTALLED);
-            return (o != null && o instanceof Boolean) ? (Boolean) o : false;
+            return (o != null && o is Boolean) ? (Boolean) o : false;
         }
 
         public void setInstall(boolean isInstall)
@@ -420,7 +420,7 @@ public abstract class AbstractFileStore extends WWObjectImpl implements FileStor
         if (location == null) // Path is not part of this FileStore.
             return;
 
-        if (location.equals(this.writeLocation))
+        if (location.Equals(this.writeLocation))
         {
             String message = Logging.getMessage("FileStore.CannotRemoveWriteLocation", path);
             Logging.logger().severe(message);
@@ -449,7 +449,7 @@ public abstract class AbstractFileStore extends WWObjectImpl implements FileStor
 
         for (StoreLocation location : this.readLocations)
         {
-            if (file.equals(location.getFile()))
+            if (file.Equals(location.getFile()))
                 return location;
         }
 

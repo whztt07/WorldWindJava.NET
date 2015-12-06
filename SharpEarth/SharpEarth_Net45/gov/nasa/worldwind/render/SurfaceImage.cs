@@ -126,7 +126,7 @@ public class SurfaceImage extends WWObjectImpl
         // frame, this still keeps track of the previous texture. Clearing of the source texture is necessary only for
         // BufferedImage sources. Other types will clear automatically through the GPU resource cache. Clearing of the
         // generated texture is necessary because those are FBO textures and therefore require significant memory.
-        if (this.sourceTexture != null && imageSource instanceof BufferedImage)
+        if (this.sourceTexture != null && imageSource is BufferedImage)
             this.previousSourceTexture = this.sourceTexture;
         if (this.generatedTexture != null)
             this.previousGeneratedTexture = this.generatedTexture;
@@ -479,16 +479,16 @@ public class SurfaceImage extends WWObjectImpl
             return false;
 
         if (this.getImageSource() == null)
-            return that.imageSource == null && this.getSector().equals(that.getSector());
+            return that.imageSource == null && this.getSector().Equals(that.getSector());
 
-        return this.getImageSource().equals(that.getImageSource()) && this.getSector().equals(that.getSector());
+        return this.getImageSource().Equals(that.getImageSource()) && this.getSector().Equals(that.getSector());
     }
 
     public override int GetHashCode()
     {
         int result;
-        result = this.getImageSource() != null ? this.getImageSource().hashCode() : 0;
-        result = 31 * result + this.getSector().hashCode();
+        result = this.getImageSource() != null ? this.getImageSource().GetHashCode() : 0;
+        result = 31 * result + this.getSector().GetHashCode();
         return result;
     }
 
@@ -571,16 +571,16 @@ public class SurfaceImage extends WWObjectImpl
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }
@@ -598,7 +598,7 @@ public class SurfaceImage extends WWObjectImpl
         // nothing we can do.
         String imgSourceStr = null;
         Object imgSource = this.getImageSource();
-        if (imgSource instanceof String || imgSource instanceof URL)
+        if (imgSource is String || imgSource is URL)
             imgSourceStr = imgSource.ToString();
 
         if (imgSourceStr != null)

@@ -200,9 +200,9 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         switch (s.length())
         {
             case 1:
-                return s.equals("-");
+                return s.Equals("-");
             case 2:
-                return s.equals("--");
+                return s.Equals("--");
             default:
                 return s.equalsIgnoreCase("N/A");
         }
@@ -456,7 +456,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
 
         public TextDataBuffer(String charsetName, int numRows, int elementsPerRow)
         {
-            int stringLength = Math.max(1, elementsPerRow);
+            int stringLength = Math.Max(1, elementsPerRow);
 
             this.elementsPerRow = elementsPerRow;
             this.reader = new TextReader(charsetName);
@@ -906,7 +906,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         public VecDataBuffer(VecReader reader, int coordsPerElem, BufferFactory bufferFactory, int numRows,
             int elementsPerRow)
         {
-            int bufferLength = Math.max(1, elementsPerRow);
+            int bufferLength = Math.Max(1, elementsPerRow);
             BufferWrapper buffer = bufferFactory.newBuffer((1 + numRows) * coordsPerElem * bufferLength);
 
             this.reader = reader;

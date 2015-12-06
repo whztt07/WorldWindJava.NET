@@ -56,7 +56,7 @@ public class WCS100Request extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof WCS100RequestDescription)
+                if (o != null && o is WCS100RequestDescription)
                 {
                     ((WCS100RequestDescription) o).setRequestName(requestName);
                     this.requests.add((WCS100RequestDescription) o);

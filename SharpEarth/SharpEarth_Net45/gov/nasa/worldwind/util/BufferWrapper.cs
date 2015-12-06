@@ -333,18 +333,18 @@ public abstract class BufferWrapper
 
         if (byteOrder != null)
         {
-            byteBuffer.order(AVKey.LITTLE_ENDIAN.equals(byteOrder) ? ByteOrder.LITTLE_ENDIAN : ByteOrder.BIG_ENDIAN);
+            byteBuffer.order(AVKey.LITTLE_ENDIAN.Equals(byteOrder) ? ByteOrder.LITTLE_ENDIAN : ByteOrder.BIG_ENDIAN);
         }
 
-        if (AVKey.INT8.equals(dataType))
+        if (AVKey.INT8.Equals(dataType))
             return new ByteBufferWrapper(byteBuffer.slice());
-        else if (AVKey.INT16.equals(dataType))
+        else if (AVKey.INT16.Equals(dataType))
             return new ShortBufferWrapper(byteBuffer.asShortBuffer());
-        else if (AVKey.INT32.equals(dataType))
+        else if (AVKey.INT32.Equals(dataType))
             return new IntBufferWrapper(byteBuffer.asIntBuffer());
-        else if (AVKey.FLOAT32.equals(dataType))
+        else if (AVKey.FLOAT32.Equals(dataType))
             return new FloatBufferWrapper(byteBuffer.asFloatBuffer());
-        else if (AVKey.FLOAT64.equals(dataType))
+        else if (AVKey.FLOAT64.Equals(dataType))
             return new DoubleBufferWrapper(byteBuffer.asDoubleBuffer());
 
         return null;
@@ -980,7 +980,7 @@ public abstract class BufferWrapper
         protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
-            if (that instanceof ByteBuffer)
+            if (that is ByteBuffer)
             {
                 // Save this buffer's current position.
                 int thisPos = this.buffer.position();
@@ -1201,7 +1201,7 @@ public abstract class BufferWrapper
         protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
-            if (that instanceof ShortBuffer)
+            if (that is ShortBuffer)
             {
                 // Save this buffer's current position.
                 int thisPos = this.buffer.position();
@@ -1422,7 +1422,7 @@ public abstract class BufferWrapper
         protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
-            if (that instanceof IntBuffer)
+            if (that is IntBuffer)
             {
                 // Save this buffer's current position.
                 int thisPos = this.buffer.position();
@@ -1643,7 +1643,7 @@ public abstract class BufferWrapper
         protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
-            if (that instanceof FloatBuffer)
+            if (that is FloatBuffer)
             {
                 // Save this buffer's current position.
                 int thisPos = this.buffer.position();
@@ -1864,7 +1864,7 @@ public abstract class BufferWrapper
         protected bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length)
         {
             Buffer that = buffer.getBackingBuffer();
-            if (that instanceof DoubleBuffer)
+            if (that is DoubleBuffer)
             {
                 // Save this buffer's current position.
                 int thisPos = this.buffer.position();

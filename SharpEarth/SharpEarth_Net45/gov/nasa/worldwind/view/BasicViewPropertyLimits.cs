@@ -251,12 +251,12 @@ public class BasicViewPropertyLimits implements ViewPropertyLimits
 
     protected bool is2DGlobe(Globe globe)
     {
-        return globe instanceof Globe2D;
+        return globe is Globe2D;
     }
 
     protected bool isNonContinous2DGlobe(Globe globe)
     {
-        return globe instanceof Globe2D && !((Globe2D) globe).isContinuous();
+        return globe is Globe2D && !((Globe2D) globe).isContinuous();
     }
 
     /**

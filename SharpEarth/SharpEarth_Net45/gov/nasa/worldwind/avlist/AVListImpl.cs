@@ -212,7 +212,7 @@ public class AVListImpl : AVList
     protected PropertyChangeSupport getChangeSupport()
     {
         Object pcs = this.getValue(PROPERTY_CHANGE_SUPPORT);
-        if (pcs == null || !(pcs instanceof PropertyChangeSupport))
+        if (pcs == null || !(pcs is PropertyChangeSupport))
         {
             pcs = new PropertyChangeSupport(this);
             this.setValue(PROPERTY_CHANGE_SUPPORT, pcs);
@@ -335,7 +335,7 @@ public class AVListImpl : AVList
         if (o == null)
             return null;
 
-        if (o instanceof Integer)
+        if (o is Integer)
             return (Integer) o;
 
         String v = getStringValue(avList, key);
@@ -365,7 +365,7 @@ public class AVListImpl : AVList
         if (o == null)
             return null;
 
-        if (o instanceof Long)
+        if (o is Long)
             return (Long) o;
 
         String v = getStringValue(avList, key);
@@ -395,7 +395,7 @@ public class AVListImpl : AVList
         if (o == null)
             return null;
 
-        if (o instanceof Double)
+        if (o is Double)
             return (Double) o;
 
         String v = getStringValue(avList, key);
@@ -419,7 +419,7 @@ public class AVListImpl : AVList
         if (value == null)
             return;
 
-        if (key.equals(PROPERTY_CHANGE_SUPPORT))
+        if (key.Equals(PROPERTY_CHANGE_SUPPORT))
             return;
 
         if (rs == null)

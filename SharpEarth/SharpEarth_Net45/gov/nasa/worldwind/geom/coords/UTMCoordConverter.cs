@@ -6,6 +6,8 @@
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.avlist;
+using System;
+
 namespace SharpEarth.geom.coords{
 
 
@@ -22,52 +24,52 @@ namespace SharpEarth.geom.coords{
  *
  * @author Garrett Headley, Patrick Murris
  */
-class UTMCoordConverter
+internal class UTMCoordConverter
 {
-    public final static double CLARKE_A = 6378206.4;
-    public final static double CLARKE_B = 6356583.8;
-    public final static double CLARKE_F = 1 / 294.9786982;
+    public readonly static double CLARKE_A = 6378206.4;
+    public readonly static double CLARKE_B = 6356583.8;
+    public readonly static double CLARKE_F = 1 / 294.9786982;
 
-    public final static double WGS84_A = 6378137;
-    public final static double WGS84_F = 1 / 298.257223563;
+    public readonly static double WGS84_A = 6378137;
+    public readonly static double WGS84_F = 1 / 298.257223563;
 
-    public final static int UTM_NO_ERROR = 0x0000;
-    public final static int UTM_LAT_ERROR = 0x0001;
-    public final static int UTM_LON_ERROR = 0x0002;
-    public final static int UTM_EASTING_ERROR = 0x0004;
-    public final static int UTM_NORTHING_ERROR = 0x0008;
-    public final static int UTM_ZONE_ERROR = 0x0010;
-    public final static int UTM_HEMISPHERE_ERROR = 0x0020;
-    public final static int UTM_ZONE_OVERRIDE_ERROR = 0x0040;
-    public final static int UTM_A_ERROR = 0x0080;
-    public final static int UTM_INV_F_ERROR = 0x0100;
-    public final static int UTM_TM_ERROR = 0x0200;
+    public readonly static int UTM_NO_ERROR = 0x0000;
+    public readonly static int UTM_LAT_ERROR = 0x0001;
+    public readonly static int UTM_LON_ERROR = 0x0002;
+    public readonly static int UTM_EASTING_ERROR = 0x0004;
+    public readonly static int UTM_NORTHING_ERROR = 0x0008;
+    public readonly static int UTM_ZONE_ERROR = 0x0010;
+    public readonly static int UTM_HEMISPHERE_ERROR = 0x0020;
+    public readonly static int UTM_ZONE_OVERRIDE_ERROR = 0x0040;
+    public readonly static int UTM_A_ERROR = 0x0080;
+    public readonly static int UTM_INV_F_ERROR = 0x0100;
+    public readonly static int UTM_TM_ERROR = 0x0200;
 
-    private final static double PI = 3.14159265358979323;
-    //private final static double MIN_LAT = ((-80.5 * PI) / 180.0); /* -80.5 degrees in radians    */
-    //private final static double MAX_LAT = ((84.5 * PI) / 180.0);  /* 84.5 degrees in radians     */
-    private final static double MIN_LAT = ((-82 * PI) / 180.0); /* -82 degrees in radians    */
-    private final static double MAX_LAT = ((86 * PI) / 180.0);  /* 86 degrees in radians     */
+    private readonly static double PI = 3.14159265358979323;
+    //private readonly static double MIN_LAT = ((-80.5 * PI) / 180.0); /* -80.5 degrees in radians    */
+    //private readonly static double MAX_LAT = ((84.5 * PI) / 180.0);  /* 84.5 degrees in radians     */
+    private readonly static double MIN_LAT = ((-82 * PI) / 180.0); /* -82 degrees in radians    */
+    private readonly static double MAX_LAT = ((86 * PI) / 180.0);  /* 86 degrees in radians     */
 
-    private final static int MIN_EASTING = 100000;
-    private final static int MAX_EASTING = 900000;
-    private final static int MIN_NORTHING = 0;
-    private final static int MAX_NORTHING = 10000000;
+    private readonly static int MIN_EASTING = 100000;
+    private readonly static int MAX_EASTING = 900000;
+    private readonly static int MIN_NORTHING = 0;
+    private readonly static int MAX_NORTHING = 10000000;
 
-    private final Globe globe;
+    private readonly Globe globe;
     private double UTM_a = 6378137.0;         /* Semi-major axis of ellipsoid in meters  */
     private double UTM_f = 1 / 298.257223563; /* Flattening of ellipsoid                 */
     private long UTM_Override = 0;          /* Zone override flag                      */
 
     private double Easting;
     private double Northing;
-    private String Hemisphere;
+    private string Hemisphere;
     private int Zone;
     private double Latitude;
     private double Longitude;
     private double Central_Meridian;
 
-    UTMCoordConverter(Globe globe)
+    internal UTMCoordConverter(Globe globe)
     {
         this.globe = globe;
         if (globe != null)
@@ -78,7 +80,7 @@ class UTMCoordConverter
         }
     }
 
-    UTMCoordConverter(double a, double f)
+    internal UTMCoordConverter( double a, double f)
     {
         this.globe = null;
         setUTMParameters(a, f, 0);
@@ -91,11 +93,11 @@ class UTMCoordConverter
      *
      * @param a        Semi-major axis of ellipsoid, in meters
      * @param f        Flattening of ellipsoid
-     * @param override UTM override zone, zero indicates no override
+     * @param overrideZone UTM override zone, zero indicates no override
      *
      * @return error code
      */
-    private long setUTMParameters(double a, double f, long override)
+    private long setUTMParameters(double a, double f, long overrideZone)
     {
         double inv_f = 1 / f;
         long Error_Code = UTM_NO_ERROR;
@@ -108,7 +110,7 @@ class UTMCoordConverter
         { /* Inverse flattening must be between 250 and 350 */
             Error_Code |= UTM_INV_F_ERROR;
         }
-        if ((override < 0) || (override > 60))
+        if ((overrideZone < 0) || (overrideZone > 60))
         {
             Error_Code |= UTM_ZONE_OVERRIDE_ERROR;
         }
@@ -116,7 +118,7 @@ class UTMCoordConverter
         { /* no errors */
             UTM_a = a;
             UTM_f = f;
-            UTM_Override = override;
+            UTM_Override = overrideZone;
         }
         return (Error_Code);
     }
@@ -277,7 +279,7 @@ class UTMCoordConverter
 
         if ((Zone < 1) || (Zone > 60))
             Error_Code |= UTM_ZONE_ERROR;
-        if (!Hemisphere.equals(AVKey.SOUTH) && !Hemisphere.equals(AVKey.NORTH))
+        if (!Hemisphere.Equals(AVKey.SOUTH) && !Hemisphere.Equals(AVKey.NORTH))
             Error_Code |= UTM_HEMISPHERE_ERROR;
 //        if ((Easting < MIN_EASTING) || (Easting > MAX_EASTING))    //removed check to enable reprojecting images
 //            Error_Code |= UTM_EASTING_ERROR;                       //that extend into another zone
@@ -290,7 +292,7 @@ class UTMCoordConverter
                 Central_Meridian = ((6 * Zone - 183) * PI / 180.0 /*+ 0.00000005*/);
             else
                 Central_Meridian = ((6 * Zone + 177) * PI / 180.0 /*+ 0.00000005*/);
-            if (Hemisphere.equals(AVKey.SOUTH))
+            if (Hemisphere.Equals(AVKey.SOUTH))
                 False_Northing = 10000000;
             try
             {
@@ -343,9 +345,9 @@ class UTMCoordConverter
         double lon = lonWGS.radians;
 
         double f = 1 - CLARKE_B / CLARKE_A;
-        double e2 = 2 * f - Math.pow(f, 2);
-        double Rn = CLARKE_A / Math.Sqrt(1 - e2 * Math.pow(Math.Sin(lat), 2.0));
-        double Rm = (CLARKE_A * (1 - e2)) / Math.pow(1 - e2 * Math.pow(Math.Sin(lat), 2.0), 1.5);
+        double e2 = 2 * f - Math.Pow(f, 2);
+        double Rn = CLARKE_A / Math.Sqrt(1 - e2 * Math.Pow(Math.Sin(lat), 2.0));
+        double Rm = (CLARKE_A * (1 - e2)) / Math.Pow(1 - e2 * Math.Pow(Math.Sin(lat), 2.0), 1.5);
         double errLon = (-1 * deltaX * Math.Sin(lon) + deltaY * Math.Cos(lon)) / (Rn * Math.Cos(lat));
         double errLat = (-1 * deltaX * Math.Sin(lat) * Math.Cos(lon) - deltaY * Math.Sin(lat) * Math.Sin(lon)
             + deltaZ * Math.Cos(lat)

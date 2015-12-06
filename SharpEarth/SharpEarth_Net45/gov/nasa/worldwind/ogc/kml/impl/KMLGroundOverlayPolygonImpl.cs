@@ -59,9 +59,9 @@ public class KMLGroundOverlayPolygonImpl extends Polygon implements KMLRenderabl
         String altMode = overlay.getAltitudeMode();
         if (!WWUtil.isEmpty(altMode))
         {
-            if ("relativeToGround".equals(altMode))
+            if ("relativeToGround".Equals(altMode))
                 this.setAltitudeMode(WorldWind.RELATIVE_TO_GROUND);
-            else if ("absolute".equals(altMode))
+            else if ("absolute".Equals(altMode))
             {
                 this.setAltitudeMode(WorldWind.ABSOLUTE);
             }

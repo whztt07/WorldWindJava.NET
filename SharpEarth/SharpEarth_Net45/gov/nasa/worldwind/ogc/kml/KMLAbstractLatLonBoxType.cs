@@ -50,7 +50,7 @@ public abstract class KMLAbstractLatLonBoxType extends KMLAbstractObject
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLAbstractLatLonBoxType))
+        if (!(sourceValues is KMLAbstractLatLonBoxType))
         {
             String message = Logging.getMessage("nullValue.SourceIsNull");
             Logging.logger().warning(message);

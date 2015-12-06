@@ -533,7 +533,7 @@ public class TextureTile extends Tile implements SurfaceTile
         if (levelDelta <= 0)
             return;
 
-        double twoToTheN = Math.pow(2, levelDelta);
+        double twoToTheN = Math.Pow(2, levelDelta);
         double oneOverTwoToTheN = 1 / twoToTheN;
 
         double sShift = oneOverTwoToTheN * (this.getColumn() % twoToTheN);
@@ -554,13 +554,13 @@ public class TextureTile extends Tile implements SurfaceTile
 
         final TextureTile tile = (TextureTile) o;
 
-        return !(this.getTileKey() != null ? !this.getTileKey().equals(tile.getTileKey()) : tile.getTileKey() != null);
+        return !(this.getTileKey() != null ? !this.getTileKey().Equals(tile.getTileKey()) : tile.getTileKey() != null);
     }
 
     @Override
     public override int GetHashCode()
     {
-        return (this.getTileKey() != null ? this.getTileKey().hashCode() : 0);
+        return (this.getTileKey() != null ? this.getTileKey().GetHashCode() : 0);
     }
 
     @Override

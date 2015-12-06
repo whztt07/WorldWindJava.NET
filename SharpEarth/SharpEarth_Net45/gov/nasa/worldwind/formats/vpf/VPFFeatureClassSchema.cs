@@ -46,13 +46,13 @@ public class VPFFeatureClassSchema
 
         VPFFeatureClassSchema that = (VPFFeatureClassSchema) o;
 
-        if (this.className != null ? !this.className.equals(that.className) : that.className != null)
+        if (this.className != null ? !this.className.Equals(that.className) : that.className != null)
             return false;
-        if (this.featureTableName != null ? !this.featureTableName.equals(that.featureTableName)
+        if (this.featureTableName != null ? !this.featureTableName.Equals(that.featureTableName)
             : that.featureTableName != null)
             return false;
         //noinspection RedundantIfStatement
-        if (this.type != null ? !this.type.equals(that.type) : that.type != null)
+        if (this.type != null ? !this.type.Equals(that.type) : that.type != null)
             return false;
 
         return true;
@@ -60,9 +60,9 @@ public class VPFFeatureClassSchema
 
     public override int GetHashCode()
     {
-        int result = this.className != null ? this.className.hashCode() : 0;
-        result = 31 * result + (this.type != null ? this.type.hashCode() : 0);
-        result = 31 * result + (this.featureTableName != null ? this.featureTableName.hashCode() : 0);
+        int result = this.className != null ? this.className.GetHashCode() : 0;
+        result = 31 * result + (this.type != null ? this.type.GetHashCode() : 0);
+        result = 31 * result + (this.featureTableName != null ? this.featureTableName.GetHashCode() : 0);
         return result;
     }
 }

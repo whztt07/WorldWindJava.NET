@@ -37,7 +37,7 @@ public class KMLChange extends AbstractXMLEventParser implements KMLUpdateOperat
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractObject)
+        if (o is KMLAbstractObject)
             this.addObject((KMLAbstractObject) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -62,7 +62,7 @@ public class KMLChange extends AbstractXMLEventParser implements KMLUpdateOperat
                 continue;
 
             Object o = targetRoot.getItemByID(targetId);
-            if (o == null || !(o instanceof KMLAbstractObject))
+            if (o == null || !(o is KMLAbstractObject))
                 continue;
 
             KMLAbstractObject objectToChange = (KMLAbstractObject) o;

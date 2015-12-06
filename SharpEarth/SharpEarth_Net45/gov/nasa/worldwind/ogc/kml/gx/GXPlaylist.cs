@@ -30,7 +30,7 @@ public class GXPlaylist extends KMLAbstractObject
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof GXAbstractTourPrimitive)
+        if (o is GXAbstractTourPrimitive)
             this.addTourPrimitive((GXAbstractTourPrimitive) o);
         else
             super.doAddEventContent(o, ctx, event, args);

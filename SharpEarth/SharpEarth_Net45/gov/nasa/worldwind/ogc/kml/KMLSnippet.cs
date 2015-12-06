@@ -34,7 +34,7 @@ public class KMLSnippet extends KMLAbstractObject
     protected void doAddEventAttribute(Attribute attr, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if ("maxLines".equals(attr.getName().getLocalPart()))
+        if ("maxLines".Equals(attr.getName().getLocalPart()))
             this.setMaxLines(WWUtil.makeInteger(attr.getValue()));
         else
             super.doAddEventAttribute(attr, ctx, event, args);

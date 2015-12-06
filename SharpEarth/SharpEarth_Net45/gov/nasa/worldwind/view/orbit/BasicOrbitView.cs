@@ -753,15 +753,15 @@ public class BasicOrbitView extends BasicView implements OrbitView
             Vec4 p = this.globe.computePointFromPosition(Angle.POS90, Angle.NEG180, 0); // NW
             double far = eyePoint.distanceTo3(p);
             p = this.globe.computePointFromPosition(Angle.POS90, Angle.POS180, 0); // NE
-            far = Math.max(far, eyePoint.distanceTo3(p));
+            far = Math.Max(far, eyePoint.distanceTo3(p));
             p = this.globe.computePointFromPosition(Angle.NEG90, Angle.NEG180, 0); // SW
-            far = Math.max(far, eyePoint.distanceTo3(p));
+            far = Math.Max(far, eyePoint.distanceTo3(p));
             p = this.globe.computePointFromPosition(Angle.NEG90, Angle.POS180, 0); // SE
-            far = Math.max(far, eyePoint.distanceTo3(p));
+            far = Math.Max(far, eyePoint.distanceTo3(p));
             p = this.globe.computePointFromPosition(Angle.ZERO, Angle.POS180, 0); // E
-            far = Math.max(far, eyePoint.distanceTo3(p));
+            far = Math.Max(far, eyePoint.distanceTo3(p));
             p = this.globe.computePointFromPosition(Angle.ZERO, Angle.NEG180, 0); // W
-            far = Math.max(far, eyePoint.distanceTo3(p));
+            far = Math.Max(far, eyePoint.distanceTo3(p));
             return far < MINIMUM_FAR_DISTANCE ? MINIMUM_FAR_DISTANCE : far;
         }
         else

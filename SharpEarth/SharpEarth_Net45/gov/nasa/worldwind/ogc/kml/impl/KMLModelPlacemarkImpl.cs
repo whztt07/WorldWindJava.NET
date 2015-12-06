@@ -247,7 +247,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
         }
 
         Object o = this.parent.getRoot().resolveReference(path);
-        if (o instanceof URL || o instanceof String)
+        if (o is URL || o is String)
             return o.ToString();
 
         return null;
@@ -385,10 +385,10 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
 
             RequestTask that = (RequestTask) o;
 
-            if (!this.address.equals(that.address))
+            if (!this.address.Equals(that.address))
                 return false;
             //noinspection RedundantIfStatement
-            if (!this.placemark.equals(that.placemark))
+            if (!this.placemark.Equals(that.placemark))
                 return false;
 
             return true;
@@ -397,8 +397,8 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
         @Override
         public override int GetHashCode()
         {
-            int result = placemark.hashCode();
-            result = 31 * result + address.hashCode();
+            int result = placemark.GetHashCode();
+            result = 31 * result + address.GetHashCode();
             return result;
         }
 

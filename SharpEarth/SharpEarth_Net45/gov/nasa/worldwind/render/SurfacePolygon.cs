@@ -415,7 +415,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
 
     protected void closeContour(List<Vertex> contour)
     {
-        if (!contour.get(0).equals(contour.get(contour.size() - 1)))
+        if (!contour.get(0).Equals(contour.get(contour.size() - 1)))
         {
             contour.add(contour.get(0));
         }
@@ -463,7 +463,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
     {
         List<Vertex> newVertices = new ArrayList<Vertex>();
 
-        Angle poleLat = AVKey.NORTH.equals(pole) ? Angle.POS90 : Angle.NEG90;
+        Angle poleLat = AVKey.NORTH.Equals(pole) ? Angle.POS90 : Angle.NEG90;
 
         Vertex vertex = null;
         for (Vertex nextVertex : contour)
@@ -856,16 +856,16 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         XMLOutputFactory factory = XMLOutputFactory.newInstance();
         bool closeWriterWhenFinished = true;
 
-        if (output instanceof XMLStreamWriter)
+        if (output is XMLStreamWriter)
         {
             xmlWriter = (XMLStreamWriter) output;
             closeWriterWhenFinished = false;
         }
-        else if (output instanceof Writer)
+        else if (output is Writer)
         {
             xmlWriter = factory.createXMLStreamWriter((Writer) output);
         }
-        else if (output instanceof OutputStream)
+        else if (output is OutputStream)
         {
             xmlWriter = factory.createXMLStreamWriter((OutputStream) output);
         }

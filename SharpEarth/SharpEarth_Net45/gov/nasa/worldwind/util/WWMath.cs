@@ -14,6 +14,8 @@ using SharpEarth.geom;
 using SharpEarth.avlist;
 using SharpEarth;
 using com.jogamp.common.nio.Buffers;
+using System.Collections.Generic;
+
 namespace SharpEarth.util{
 
 
@@ -80,7 +82,7 @@ public class WWMath
     public static int powerOfTwoCeiling(int reference)
     {
         int power = (int) Math.ceil(Math.Log(reference) / Math.Log(2d));
-        return (int) Math.pow(2d, power);
+        return (int) Math.Pow(2d, power);
     }
 
     /**
@@ -93,7 +95,7 @@ public class WWMath
     public static int powerOfTwoFloor(int reference)
     {
         int power = (int) Math.Floor(Math.Log(reference) / Math.Log(2d));
-        return (int) Math.pow(2d, power);
+        return (int) Math.Pow(2d, power);
     }
 
     /**
@@ -743,7 +745,7 @@ public class WWMath
         }
 
         // Include the area connecting the last point to the first point, if they're not already equal.
-        if (!point.equals(firstPoint))
+        if (!point.Equals(firstPoint))
         {
             area += point.x * firstPoint.y;
             area -= firstPoint.x * point.y;
@@ -793,7 +795,7 @@ public class WWMath
         }
 
         // Include the area connecting the last point to the first point, if they're not already equal.
-        if (!location.equals(firstLocation))
+        if (!location.Equals(firstLocation))
         {
             area += location.getLongitude().degrees * firstLocation.getLatitude().degrees;
             area -= firstLocation.getLongitude().degrees * location.getLatitude().degrees;
@@ -839,7 +841,7 @@ public class WWMath
      *
      * @throws ArgumentException if the points Iterable is null.
      */
-    public static Vec4[] computePrincipalAxes(Iterable<? extends Vec4> points)
+    public static Vec4[] computePrincipalAxes(IEnumerable<Vec4> points)
     {
         if (points == null)
         {
@@ -987,7 +989,7 @@ public class WWMath
             lastLocation = iter.next();
         }
 
-        return (lastLocation != null) && lastLocation.equals(firstLocation);
+        return (lastLocation != null) && lastLocation.Equals(firstLocation);
     }
 
     /**
@@ -1127,8 +1129,8 @@ public class WWMath
         double e1 = d1 * t1;
         double e2 = d2 * t2;
 
-        double max_e = Math.max(Math.max(e0, e1), e2);
-        double min_e = Math.min(Math.min(e0, e1), e2);
+        double max_e = Math.Max(Math.Max(e0, e1), e2);
+        double min_e = Math.Min(Math.Min(e0, e1), e2);
 
         double E = e0 + e1 + e2;
 
@@ -1758,7 +1760,7 @@ public class WWMath
         Vec4 perpendicular = backward.cross3(normal);
 
         // If the current point is co-located with either the next or prev points, then reuse the previously computed offset.
-        if (point.equals(prev) || (point.equals(next)) && previousOffset != null)
+        if (point.Equals(prev) || (point.Equals(next)) && previousOffset != null)
         {
             offset = previousOffset;
         }

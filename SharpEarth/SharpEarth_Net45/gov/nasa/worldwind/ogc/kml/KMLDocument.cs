@@ -37,7 +37,7 @@ public class KMLDocument extends KMLAbstractContainer
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLSchema)
+        if (o is KMLSchema)
             this.addSchema((KMLSchema) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -56,7 +56,7 @@ public class KMLDocument extends KMLAbstractContainer
     @Override
     public void applyChange(KMLAbstractObject sourceValues)
     {
-        if (!(sourceValues instanceof KMLDocument))
+        if (!(sourceValues is KMLDocument))
         {
             String message = Logging.getMessage("KML.InvalidElementType", sourceValues.GetType().Name);
             Logging.logger().warning(message);
@@ -91,7 +91,7 @@ public class KMLDocument extends KMLAbstractContainer
                 for (KMLSchema existingSchema : schemaListCopy)
                 {
                     String currentId = existingSchema.getId();
-                    if (!WWUtil.isEmpty(currentId) && currentId.equals(id))
+                    if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
                         this.getSchemas().remove(existingSchema);
                 }
             }

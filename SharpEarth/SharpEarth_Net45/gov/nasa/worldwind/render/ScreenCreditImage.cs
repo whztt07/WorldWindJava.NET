@@ -94,7 +94,7 @@ public class ScreenCreditImage extends ScreenImage implements ScreenCredit
 
         ScreenCreditImage that = (ScreenCreditImage) o;
 
-        if (name != null ? !name.equals(that.name) : that.name != null)
+        if (name != null ? !name.Equals(that.name) : that.name != null)
             return false;
 
         return true;
@@ -103,7 +103,7 @@ public class ScreenCreditImage extends ScreenImage implements ScreenCredit
     @Override
     public override int GetHashCode()
     {
-        return name != null ? name.hashCode() : 0;
+        return name != null ? name.GetHashCode() : 0;
     }
 }
 }

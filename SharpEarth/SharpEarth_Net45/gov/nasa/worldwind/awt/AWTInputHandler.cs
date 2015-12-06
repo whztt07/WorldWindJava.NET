@@ -71,7 +71,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     public void setEventSource(WorldWindow newWorldWindow)
     {
-        if (newWorldWindow != null && !(newWorldWindow instanceof Component))
+        if (newWorldWindow != null && !(newWorldWindow is Component))
         {
             String message = Logging.getMessage("Awt.AWTInputHandler.EventSourceNotAComponent");
             Logging.logger().finer(message);
@@ -119,7 +119,7 @@ public class AWTInputHandler extends WWObjectImpl
         {
             public void selected(SelectEvent event)
             {
-                if (event.getEventAction().equals(SelectEvent.ROLLOVER))
+                if (event.getEventAction().Equals(SelectEvent.ROLLOVER))
                 {
                     doHover(true);
                 }
@@ -373,7 +373,7 @@ public class AWTInputHandler extends WWObjectImpl
 
         // Determine if the mouse point has changed since the last mouse move event. This can happen if user switches to
         // another window, moves the mouse, and then switches back to the World Wind window.
-        bool mousePointChanged = !mouseEvent.getPoint().equals(this.mousePoint);
+        bool mousePointChanged = !mouseEvent.getPoint().Equals(this.mousePoint);
 
         this.mousePoint = mouseEvent.getPoint();
         this.cancelHover();
@@ -420,7 +420,7 @@ public class AWTInputHandler extends WWObjectImpl
         // mouse on the GLJPanel, causing GLJPanel to take the focus in the same manner as GLCanvas. Note that focus is
         // passed only when the user clicks the primary mouse button. See
         // http://issues.worldwind.arc.nasa.gov/jira/browse/WWJ-272.
-        if (MouseEvent.BUTTON1 == mouseEvent.getButton() && this.wwd instanceof GLJPanel)
+        if (MouseEvent.BUTTON1 == mouseEvent.getButton() && this.wwd is GLJPanel)
         {
             ((GLJPanel) this.wwd).requestFocusInWindow();
         }
@@ -633,7 +633,7 @@ public class AWTInputHandler extends WWObjectImpl
                 hover.getParentLayer() != null ? hover.getParentLayer() : null;
             Object ol = last == null ? null : last.getObject() != null ? last.getObject() :
                 last.getParentLayer() != null ? last.getParentLayer() : null;
-            if (oh != null && ol != null && oh.equals(ol))
+            if (oh != null && ol != null && oh.Equals(ol))
             {
                 return; // object picked is the hover object. don't do anything but wait for the timer to expire.
             }
@@ -690,7 +690,7 @@ public class AWTInputHandler extends WWObjectImpl
             return false;
         }
 
-        return lastTop.getObject().equals(newTop.getObject());
+        return lastTop.getObject().Equals(newTop.getObject());
     }
 
     protected void cancelDrag()
@@ -867,7 +867,7 @@ public class AWTInputHandler extends WWObjectImpl
             return;
         }
 
-        if (event.getPropertyName().equals(AVKey.VIEW) &&
+        if (event.getPropertyName().Equals(AVKey.VIEW) &&
             (event.getSource() == this.getWorldWindow().getSceneController()))
         {
             this.wwd.getView().getViewInputHandler().setWorldWindow(this.wwd);

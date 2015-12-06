@@ -35,7 +35,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
 
     protected bool doCanRead(Object source, AVList parameters)
     {
-        if (!(source instanceof java.io.File))
+        if (!(source is java.io.File))
             return false;
 
         java.io.File file = (java.io.File) source;
@@ -51,7 +51,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
 
     protected DataRaster[] doRead(Object source, AVList parameters) throws java.io.IOException
     {
-        if (!(source instanceof java.io.File))
+        if (!(source is java.io.File))
         {
             String message = Logging.getMessage("DataRaster.CannotRead", source);
             Logging.logger().severe(message);
@@ -72,7 +72,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
 
     protected void doReadMetadata(Object source, AVList parameters) throws java.io.IOException
     {
-        if (!(source instanceof java.io.File))
+        if (!(source is java.io.File))
         {
             String message = Logging.getMessage("DataRaster.CannotRead", source);
             Logging.logger().severe(message);
@@ -84,14 +84,14 @@ public class RPFRasterReader extends AbstractDataRasterReader
 
         Object width = parameters.getValue(AVKey.WIDTH);
         Object height = parameters.getValue(AVKey.HEIGHT);
-        if (width == null || height == null || !(width instanceof Integer) || !(height instanceof Integer))
+        if (width == null || height == null || !(width is Integer) || !(height is Integer))
         {
             rpfFile = RPFImageFile.load(file);
             this.readFileSize(rpfFile, parameters);
         }
 
         Object sector = parameters.getValue(AVKey.SECTOR);
-        if (sector == null || !(sector instanceof Sector))
+        if (sector == null || !(sector is Sector))
             this.readFileSector(file, rpfFile, parameters);
 
         if (!params.hasKey(AVKey.PIXEL_FORMAT))
@@ -111,7 +111,7 @@ public class RPFRasterReader extends AbstractDataRasterReader
 
         // If the data source doesn't already have all the necessary metadata, then we attempt to read the metadata.
         Object o = (params != null) ? parameters.getValue(AVKey.SECTOR) : null;
-        if (o == null || !(o instanceof Sector))
+        if (o == null || !(o is Sector))
         {
             AVList values = new AVListImpl();
             this.readFileSector(file, rpfFile, values);

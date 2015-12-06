@@ -201,15 +201,15 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
             throw new ArgumentException(message);
         }
 
-        if (docSource instanceof File)
+        if (docSource is File)
         {
             return new ColladaRoot((File) docSource);
         }
-        else if (docSource instanceof URL)
+        else if (docSource is URL)
         {
             return new ColladaRoot((URL) docSource);
         }
-        else if (docSource instanceof String)
+        else if (docSource is String)
         {
             File file = new File((String) docSource);
             if (file.exists())
@@ -219,7 +219,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
             if (url != null)
                 return new ColladaRoot(url);
         }
-        else if (docSource instanceof InputStream)
+        else if (docSource is InputStream)
         {
             return new ColladaRoot((InputStream) docSource);
         }
@@ -500,7 +500,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
 
             // See if it's an already found and parsed COLLADA file.
             Object o = WorldWind.getSessionCache().get(path);
-            if (o != null && o instanceof ColladaRoot)
+            if (o != null && o is ColladaRoot)
                 return linkRef != null ? ((ColladaRoot) o).getItemByID(linkRef) : o;
 
             URL url = WWIO.makeURL(path);
@@ -667,8 +667,8 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
      */
     protected bool canParseContentType(String mimeType)
     {
-        return ColladaConstants.COLLADA_MIME_TYPE.equals(mimeType)
-            || "text/plain".equals(mimeType) || "text/xml".equals(mimeType);
+        return ColladaConstants.COLLADA_MIME_TYPE.Equals(mimeType)
+            || "text/plain".Equals(mimeType) || "text/xml".Equals(mimeType);
     }
 
     /**
@@ -768,7 +768,7 @@ public class ColladaRoot extends ColladaAbstractObject implements ColladaRendera
                     continue;
 
                 // Allow a <COLLADA> element in any namespace
-                if (event.isStartElement() && event.asStartElement().getName().getLocalPart().equals("COLLADA"))
+                if (event.isStartElement() && event.asStartElement().getName().getLocalPart().Equals("COLLADA"))
                 {
                     super.parse(ctx, event, args);
                     return this;

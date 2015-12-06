@@ -68,7 +68,7 @@ public class WMSLayerInfoURL extends AbstractXMLEventParser
             if (parser != null)
             {
                 Object o = parser.parse(ctx, event, args);
-                if (o != null && o instanceof OGCOnlineResource)
+                if (o != null && o is OGCOnlineResource)
                     this.setOnlineResource((OGCOnlineResource) o);
             }
         }
@@ -84,7 +84,7 @@ public class WMSLayerInfoURL extends AbstractXMLEventParser
         while (iter.hasNext())
         {
             Attribute attr = (Attribute) iter.next();
-            if (attr.getName().getLocalPart().equals("name") && attr.getValue() != null)
+            if (attr.getName().getLocalPart().Equals("name") && attr.getValue() != null)
                 this.setName(attr.getValue());
         }
     }

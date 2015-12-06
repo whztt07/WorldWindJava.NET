@@ -4,6 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.util;
+using System;
+
 namespace SharpEarth.geom{
 
 
@@ -13,8 +15,8 @@ namespace SharpEarth.geom{
  */
 public sealed class Line// Instances are immutable
 {
-    private final Vec4 origin;
-    private final Vec4 direction;
+    private Vec4 origin;
+    private Vec4 direction;
 
     /**
      * Create the line containing a line segement between two points.
@@ -28,7 +30,7 @@ public sealed class Line// Instances are immutable
      */
     public static Line fromSegment(Vec4 pa, Vec4 pb)
     {
-        return new Line(pa, new Vec4(pb.x - pa.x, pb.y - pa.y, pb.z - pa.z, 0));
+        return new Line(pa, new Vec4(pb.x() - pa.x(), pb.y() - pa.y(), pb.z() - pa.z(), 0));
     }
 
     /**
@@ -40,7 +42,7 @@ public sealed class Line// Instances are immutable
      */
     public Line(Vec4 origin, Vec4 direction)
     {
-        String message = null;
+        string message = null;
         if (origin == null)
             message = "nullValue.OriginIsNull";
         else if (direction == null)
@@ -58,22 +60,22 @@ public sealed class Line// Instances are immutable
         this.direction = direction;
     }
 
-    public final Vec4 getDirection()
+    public Vec4 getDirection()
     {
         return direction;
     }
 
-    public final Vec4 getOrigin()
+    public Vec4 getOrigin()
     {
         return origin;
     }
 
-    public final Vec4 getPointAt(double t)
+    public Vec4 getPointAt(double t)
     {
         return Vec4.fromLine3(this.origin, t, this.direction);
     }
 
-    public final double selfDot()
+    public double selfDot()
     {
         return this.origin.dot3(this.direction);
     }
@@ -87,31 +89,29 @@ public sealed class Line// Instances are immutable
      *
      * @return true if these two objects are equal, false otherwise
      */
-    @Override
-    public final bool equals(Object o)
+    public override bool Equals(Object o)
     {
         if (this == o)
             return true;
         if (o == null || GetType() != o.GetType())
             return false;
 
-        final SharpEarth.geom.Line line = (gov.nasa.worldwind.geom.Line) o;
+        Line line = (Line) o;
 
-        if (!direction.equals(line.direction))
+        if (!direction.Equals(line.direction))
             return false;
         //noinspection RedundantIfStatement
-        if (!line.origin.equals(origin))
+        if (!line.origin.Equals(origin))
             return false;
 
         return true;
     }
-
-    @Override
+    
     public override int GetHashCode()
     {
         int result;
-        result = origin.hashCode();
-        result = 29 * result + direction.hashCode();
+        result = origin.GetHashCode();
+        result = 29 * result + direction.GetHashCode();
         return result;
     }
 
@@ -143,7 +143,7 @@ public sealed class Line// Instances are immutable
 //        return Math.Sqrt(bSquared - aSquared);
 //    }
 
-    public final Vec4 nearestPointTo(Vec4 p)
+    public Vec4 nearestPointTo(Vec4 p)
     {
         Vec4 w = p.subtract3(this.origin);
 
@@ -163,7 +163,7 @@ public sealed class Line// Instances are immutable
      *
      * @throws ArgumentException if <code>p</code> is null
      */
-    public final double distanceTo(Vec4 p)
+    public double distanceTo(Vec4 p)
     {
         return p.distanceTo3(this.nearestPointTo(p));
     }
@@ -244,7 +244,7 @@ public sealed class Line// Instances are immutable
         Vec4[] segment = new Vec4[] {pa, pb};
         Vec4[] ipts;
 
-        for (Plane p : frustum.getAllPlanes())
+        foreach (Plane p in frustum.getAllPlanes())
         {
             // See if both points are behind the plane and therefore not in the frustum.
             if (p.onSameSide(segment[0], segment[1]) < 0)
@@ -289,7 +289,7 @@ public sealed class Line// Instances are immutable
 
         // Find the nearest intersection that's in front of the ray origin.
         double nearestDistance = Double.MaxValue;
-        for (Intersection intersection : intersections)
+        foreach (Intersection intersection in intersections)
         {
             // Ignore any intersections behind the line origin.
             if (!this.isPointBehindLineOrigin(intersection.getIntersectionPoint()))

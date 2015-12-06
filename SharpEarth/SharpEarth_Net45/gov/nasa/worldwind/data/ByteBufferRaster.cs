@@ -68,13 +68,13 @@ public class ByteBufferRaster extends BufferWrapperRaster
         Object dataType = parameters.getValue(AVKey.DATA_TYPE);
 
         int sizeOfDataType = 0;
-        if (AVKey.INT8.equals(dataType))
+        if (AVKey.INT8.Equals(dataType))
             sizeOfDataType = (Byte.SIZE / 8);
-        else if (AVKey.INT16.equals(dataType))
+        else if (AVKey.INT16.Equals(dataType))
             sizeOfDataType = (Short.SIZE / 8);
-        else if (AVKey.INT32.equals(dataType))
+        else if (AVKey.INT32.Equals(dataType))
             sizeOfDataType = (Integer.SIZE / 8);
-        else if (AVKey.FLOAT32.equals(dataType))
+        else if (AVKey.FLOAT32.Equals(dataType))
             sizeOfDataType = (Float.SIZE / 8);
 
         int sizeInBytes = sizeOfDataType * width * height;
@@ -151,7 +151,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
         String cs = parameters.getStringValue(AVKey.COORDINATE_SYSTEM);
         if (!params.hasKey(AVKey.PROJECTION_EPSG_CODE))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 // assume WGS84
                 parameters.setValue(AVKey.PROJECTION_EPSG_CODE, GeoTiff.GCS.WGS_84);
@@ -168,7 +168,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
         // will have different pixel size
         if (!params.hasKey(AVKey.PIXEL_WIDTH))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 double pixelWidth = sector.getDeltaLonDegrees() / (double) width;
                 parameters.setValue(AVKey.PIXEL_WIDTH, pixelWidth);
@@ -185,7 +185,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
         // because UTM images will have different pixel size
         if (!params.hasKey(AVKey.PIXEL_HEIGHT))
         {
-            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+            if (AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
             {
                 double pixelHeight = sector.getDeltaLatDegrees() / (double) height;
                 parameters.setValue(AVKey.PIXEL_HEIGHT, pixelHeight);
@@ -207,7 +207,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
         else
         {
             String pixelFormat = parameters.getStringValue(AVKey.PIXEL_FORMAT);
-            if (!AVKey.ELEVATION.equals(pixelFormat) && !AVKey.IMAGE.equals(pixelFormat))
+            if (!AVKey.ELEVATION.Equals(pixelFormat) && !AVKey.IMAGE.Equals(pixelFormat))
             {
                 String msg = Logging.getMessage("generic.UnknownValueForKey", pixelFormat, AVKey.PIXEL_FORMAT);
                 Logging.logger().severe(msg);
@@ -223,10 +223,10 @@ public class ByteBufferRaster extends BufferWrapperRaster
         }
 
         // validate elevation parameters
-        if (AVKey.ELEVATION.equals(params.getValue(AVKey.PIXEL_FORMAT)))
+        if (AVKey.ELEVATION.Equals(params.getValue(AVKey.PIXEL_FORMAT)))
         {
             String type = parameters.getStringValue(AVKey.DATA_TYPE);
-            if (!AVKey.FLOAT32.equals(type) && !AVKey.INT16.equals(type))
+            if (!AVKey.FLOAT32.Equals(type) && !AVKey.INT16.Equals(type))
             {
                 String msg = Logging.getMessage("generic.UnknownValueForKey", type, AVKey.DATA_TYPE);
                 Logging.logger().severe(msg);
@@ -234,7 +234,7 @@ public class ByteBufferRaster extends BufferWrapperRaster
             }
         }
 
-        if (!params.hasKey(AVKey.ORIGIN) && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.equals(cs))
+        if (!params.hasKey(AVKey.ORIGIN) && AVKey.COORDINATE_SYSTEM_GEOGRAPHIC.Equals(cs))
         {
             // set UpperLeft corner as the origin, if not specified
             LatLon origin = new LatLon(sector.getMaxLatitude(), sector.getMinLongitude());

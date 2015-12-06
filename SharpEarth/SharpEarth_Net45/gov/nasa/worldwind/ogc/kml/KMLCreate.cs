@@ -37,7 +37,7 @@ public class KMLCreate extends AbstractXMLEventParser implements KMLUpdateOperat
     protected void doAddEventContent(Object o, XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {
-        if (o instanceof KMLAbstractContainer)
+        if (o is KMLAbstractContainer)
             this.addContainer((KMLAbstractContainer) o);
         else
             super.doAddEventContent(o, ctx, event, args);
@@ -62,7 +62,7 @@ public class KMLCreate extends AbstractXMLEventParser implements KMLUpdateOperat
                 continue;
 
             Object o = targetRoot.getItemByID(targetId);
-            if (o == null || !(o instanceof KMLAbstractContainer))
+            if (o == null || !(o is KMLAbstractContainer))
                 continue;
 
             KMLAbstractContainer receivingContainer = (KMLAbstractContainer) o;

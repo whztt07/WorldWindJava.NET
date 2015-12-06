@@ -5,6 +5,8 @@
  */
 
 using java.awt;
+using System.Drawing;
+
 namespace SharpEarth.geom{
 
 
@@ -12,7 +14,7 @@ namespace SharpEarth.geom{
  * @author tag
  * @version $Id: BarycentricTriangle.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BarycentricTriangle implements BarycentricPlanarShape
+public class BarycentricTriangle : BarycentricPlanarShape
 {
     // TODO: arg checking
     // TODO: account for degenerate quads
@@ -45,9 +47,9 @@ public class BarycentricTriangle implements BarycentricPlanarShape
 
     public BarycentricTriangle(Point p00, Point p10, Point p01)
     {
-        this.p00 = new Vec4(p00.x, p00.y, 0);
-        this.p10 = new Vec4(p10.x, p10.y, 0);
-        this.p01 = new Vec4(p01.x, p01.y, 0);
+        this.p00 = new Vec4(p00.X, p00.Y, 0);
+        this.p10 = new Vec4(p10.X, p10.Y, 0);
+        this.p01 = new Vec4(p01.X, p01.Y, 0);
 
         q1 = this.p10.subtract3(this.p00);
         q3 = this.p01.subtract3(this.p00);
@@ -77,20 +79,20 @@ public class BarycentricTriangle implements BarycentricPlanarShape
         double a, b;
 
         // Choose equations providing best numerical accuracy
-        if (na.x >= na.y && na.x >= na.z)
+        if (na.x() >= na.y() && na.x() >= na.z())
         {
-            a = (q2.y * q3.z - q2.z * q3.y) / n.x;
-            b = (q1.y * q2.z - q1.z * q2.y) / n.y;
+            a = (q2.y() * q3.z() - q2.z() * q3.y()) / n.x();
+            b = (q1.y() * q2.z() - q1.z() * q2.y()) / n.y();
         }
-        else if (na.y >= na.x && na.y >= na.z)
+        else if (na.y() >= na.x() && na.y() >= na.z())
         {
-            a = (q2.z * q3.x - q2.x * q3.z) / n.y;
-            b = (q1.z * q2.x - q1.x * q2.z) / n.y;
+            a = (q2.z() * q3.x() - q2.x() * q3.z()) / n.y();
+            b = (q1.z() * q2.x() - q1.x() * q2.z()) / n.y();
         }
         else
         {
-            a = (q2.x * q3.y - q2.y * q3.x) / n.z;
-            b = (q1.x * q2.y - q1.y * q2.x) / n.z;
+            a = (q2.x() * q3.y() - q2.y() * q3.x()) / n.z();
+            b = (q1.x() * q2.y() - q1.y() * q2.x()) / n.z();
         }
 
         return new double[] {1 - a - b, a, b};
@@ -101,7 +103,7 @@ public class BarycentricTriangle implements BarycentricPlanarShape
         return this.getBarycentricCoords(new Vec4(location.getLongitude().radians, location.getLatitude().radians, 0));
     }
 
-    public bool contains(Vec4 p)
+    public virtual bool contains(Vec4 p)
     {
         return this.getBarycentricCoords(p)[0] >= 0;
     }
@@ -119,7 +121,7 @@ public class BarycentricTriangle implements BarycentricPlanarShape
     {
         Vec4 p = this.getPoint(w);
 
-        return LatLon.fromRadians(p.y, p.x);
+        return LatLon.fromRadians(p.y(), p.x());
     }
 
     public double[] getBilinearCoords(double alpha, double beta)

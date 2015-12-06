@@ -7,6 +7,11 @@ using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.formats.worldfile;
 using SharpEarth.avlist;
+using System;
+using System.Text;
+using System.Drawing;
+using System.Collections.Generic;
+
 namespace SharpEarth.geom{
 
 
@@ -16,7 +21,7 @@ namespace SharpEarth.geom{
  */
 public class Matrix
 {
-    public static final Matrix IDENTITY = new Matrix(
+    public static readonly Matrix IDENTITY = new Matrix(
         1, 0, 0, 0,
         0, 1, 0, 0,
         0, 0, 1, 0,
@@ -24,44 +29,44 @@ public class Matrix
         true);
 
     // Row 1
-    public final double m11;
-    public final double m12;
-    public final double m13;
-    public final double m14;
+    public readonly double _m11;
+    public readonly double _m12;
+    public readonly double _m13;
+    public readonly double _m14;
     // Row 2
-    public final double m21;
-    public final double m22;
-    public final double m23;
-    public final double m24;
+    public readonly double _m21;
+    public readonly double _m22;
+    public readonly double _m23;
+    public readonly double _m24;
     // Row 3
-    public final double m31;
-    public final double m32;
-    public final double m33;
-    public final double m34;
+    public readonly double _m31;
+    public readonly double _m32;
+    public readonly double _m33;
+    public readonly double _m34;
     // Row 4
-    public final double m41;
-    public final double m42;
-    public final double m43;
-    public final double m44;
+    public readonly double _m41;
+    public readonly double _m42;
+    public readonly double _m43;
+    public readonly double _m44;
 
-    protected static final double EPSILON = 1.0e-6;
-    protected static final double NEAR_ZERO_THRESHOLD = 1.0e-8;
+    protected static readonly double EPSILON = 1.0e-6;
+    protected static readonly double NEAR_ZERO_THRESHOLD = 1.0e-8;
 
     // 16 values in a 4x4 matrix.
-    private static final int NUM_ELEMENTS = 16;
+    private static readonly int NUM_ELEMENTS = 16;
     // True when this matrix represents a 3D transform.
-    private final bool isOrthonormalTransform;
+    private readonly bool isOrthonormalTransform;
     // Cached computations.
     private int hashCode;
 
     public Matrix(double value)
-    {
         // 'value' is placed in the diagonal.
-        this(
+        :this(
             value, 0, 0, 0,
             0, value, 0, 0,
             0, 0, value, 0,
-            0, 0, 0, value);
+            0, 0, 0, value)
+    {
     }
 
     public Matrix(
@@ -69,38 +74,38 @@ public class Matrix
         double m21, double m22, double m23, double m24,
         double m31, double m32, double m33, double m34,
         double m41, double m42, double m43, double m44)
-    {
-        this(
+        :this(
             m11, m12, m13, m14,
             m21, m22, m23, m24,
             m31, m32, m33, m34,
             m41, m42, m43, m44,
-            false);
+            false)
+    {
     }
 
-    Matrix(
+    public Matrix(
         double m11, double m12, double m13, double m14,
         double m21, double m22, double m23, double m24,
         double m31, double m32, double m33, double m34,
         double m41, double m42, double m43, double m44,
         bool isOrthonormalTransform)
     {
-        this.m11 = m11;
-        this.m12 = m12;
-        this.m13 = m13;
-        this.m14 = m14;
-        this.m21 = m21;
-        this.m22 = m22;
-        this.m23 = m23;
-        this.m24 = m24;
-        this.m31 = m31;
-        this.m32 = m32;
-        this.m33 = m33;
-        this.m34 = m34;
-        this.m41 = m41;
-        this.m42 = m42;
-        this.m43 = m43;
-        this.m44 = m44;
+        this._m11 = m11;
+        this._m12 = m12;
+        this._m13 = m13;
+        this._m14 = m14;
+        this._m21 = m21;
+        this._m22 = m22;
+        this._m23 = m23;
+        this._m24 = m24;
+        this._m31 = m31;
+        this._m32 = m32;
+        this._m33 = m33;
+        this._m34 = m34;
+        this._m41 = m41;
+        this._m42 = m42;
+        this._m43 = m43;
+        this._m44 = m44;
         this.isOrthonormalTransform = isOrthonormalTransform;
     }
 
@@ -112,10 +117,10 @@ public class Matrix
             return false;
 
         Matrix that = (Matrix) obj;
-        return (this.m11 == that.m11) && (this.m12 == that.m12) && (this.m13 == that.m13) && (this.m14 == that.m14)
-            && (this.m21 == that.m21) && (this.m22 == that.m22) && (this.m23 == that.m23) && (this.m24 == that.m24)
-            && (this.m31 == that.m31) && (this.m32 == that.m32) && (this.m33 == that.m33) && (this.m34 == that.m34)
-            && (this.m41 == that.m41) && (this.m42 == that.m42) && (this.m43 == that.m43) && (this.m44 == that.m44);
+        return (this._m11 == that.m11()) && (this._m12 == that.m12()) && (this._m13 == that.m13()) && (this._m14 == that.m14())
+            && (this._m21 == that.m21()) && (this._m22 == that.m22()) && (this._m23 == that.m23()) && (this._m24 == that.m24())
+            && (this._m31 == that.m31()) && (this._m32 == that.m32()) && (this._m33 == that.m33()) && (this._m34 == that.m34())
+            && (this._m41 == that.m41()) && (this._m42 == that.m42()) && (this._m43 == that.m43()) && (this._m44 == that.m44());
     }
 
     public override int GetHashCode()
@@ -123,39 +128,39 @@ public class Matrix
         if (this.hashCode == 0)
         {
             int result;
-            long tmp;
-            tmp = BitConverter.DoubleToInt64Bits(this.m11);
-            result = (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m12);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m13);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m14);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m21);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m22);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m23);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m24);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m31);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m32);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m33);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m34);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m41);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m42);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m43);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
-            tmp = BitConverter.DoubleToInt64Bits(this.m44);
-            result = 29 * result + (int) (tmp ^ (tmp >>> 32));
+            ulong tmp;
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m11);
+            result = (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m12);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m13);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m14);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m21);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m22);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m23);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m24);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m31);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m32);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m33);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m34);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m41);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m42);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m43);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
+            tmp = (ulong)BitConverter.DoubleToInt64Bits(this._m44);
+            result = 29 * result + (int) (tmp ^ (tmp >> 32));
             this.hashCode = result;
         }
         return this.hashCode;
@@ -169,9 +174,9 @@ public class Matrix
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
-        if ((compArray.length - offset) < NUM_ELEMENTS)
+        if ((compArray.Length - offset) < NUM_ELEMENTS)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -228,7 +233,7 @@ public class Matrix
         }
     }
 
-    public final double[] toArray(double[] compArray, int offset, bool rowMajor)
+    public double[] toArray(double[] compArray, int offset, bool rowMajor)
     {
         if (compArray == null)
         {
@@ -236,9 +241,9 @@ public class Matrix
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
-        if ((compArray.length - offset) < NUM_ELEMENTS)
+        if ((compArray.Length - offset) < NUM_ELEMENTS)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", compArray.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -247,49 +252,49 @@ public class Matrix
         {
             // Row 1
             //noinspection PointlessArithmeticExpression
-            compArray[0 + offset] = this.m11;
-            compArray[1 + offset] = this.m12;
-            compArray[2 + offset] = this.m13;
-            compArray[3 + offset] = this.m14;
+            compArray[0 + offset] = this._m11;
+            compArray[1 + offset] = this._m12;
+            compArray[2 + offset] = this._m13;
+            compArray[3 + offset] = this._m14;
             // Row 2
-            compArray[4 + offset] = this.m21;
-            compArray[5 + offset] = this.m22;
-            compArray[6 + offset] = this.m23;
-            compArray[7 + offset] = this.m24;
+            compArray[4 + offset] = this._m21;
+            compArray[5 + offset] = this._m22;
+            compArray[6 + offset] = this._m23;
+            compArray[7 + offset] = this._m24;
             // Row 3
-            compArray[8 + offset] = this.m31;
-            compArray[9 + offset] = this.m32;
-            compArray[10 + offset] = this.m33;
-            compArray[11 + offset] = this.m34;
+            compArray[8 + offset] = this._m31;
+            compArray[9 + offset] = this._m32;
+            compArray[10 + offset] = this._m33;
+            compArray[11 + offset] = this._m34;
             // Row 4
-            compArray[12 + offset] = this.m41;
-            compArray[13 + offset] = this.m42;
-            compArray[14 + offset] = this.m43;
-            compArray[15 + offset] = this.m44;
+            compArray[12 + offset] = this._m41;
+            compArray[13 + offset] = this._m42;
+            compArray[14 + offset] = this._m43;
+            compArray[15 + offset] = this._m44;
         }
         else
         {
             // Row 1
             //noinspection PointlessArithmeticExpression
-            compArray[0 + offset] = this.m11;
-            compArray[4 + offset] = this.m12;
-            compArray[8 + offset] = this.m13;
-            compArray[12 + offset] = this.m14;
+            compArray[0 + offset] = this._m11;
+            compArray[4 + offset] = this._m12;
+            compArray[8 + offset] = this._m13;
+            compArray[12 + offset] = this._m14;
             // Row 2
-            compArray[1 + offset] = this.m21;
-            compArray[5 + offset] = this.m22;
-            compArray[9 + offset] = this.m23;
-            compArray[13 + offset] = this.m24;
+            compArray[1 + offset] = this._m21;
+            compArray[5 + offset] = this._m22;
+            compArray[9 + offset] = this._m23;
+            compArray[13 + offset] = this._m24;
             // Row 3
-            compArray[2 + offset] = this.m31;
-            compArray[6 + offset] = this.m32;
-            compArray[10 + offset] = this.m33;
-            compArray[14 + offset] = this.m34;
+            compArray[2 + offset] = this._m31;
+            compArray[6 + offset] = this._m32;
+            compArray[10 + offset] = this._m33;
+            compArray[14 + offset] = this._m34;
             // Row 4
-            compArray[3 + offset] = this.m41;
-            compArray[7 + offset] = this.m42;
-            compArray[11 + offset] = this.m43;
-            compArray[15 + offset] = this.m44;
+            compArray[3 + offset] = this._m41;
+            compArray[7 + offset] = this._m42;
+            compArray[11 + offset] = this._m43;
+            compArray[15 + offset] = this._m44;
         }
 
         return compArray;
@@ -298,176 +303,176 @@ public class Matrix
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
-        sb.append(this.m11).append(", ").append(this.m12).append(", ").append(this.m13).append(", ").append(this.m14);
-        sb.append(", \r\n");
-        sb.append(this.m21).append(", ").append(this.m22).append(", ").append(this.m23).append(", ").append(this.m24);
-        sb.append(", \r\n");
-        sb.append(this.m31).append(", ").append(this.m32).append(", ").append(this.m33).append(", ").append(this.m34);
-        sb.append(", \r\n");
-        sb.append(this.m41).append(", ").append(this.m42).append(", ").append(this.m43).append(", ").append(this.m44);
-        sb.append(")");
+        sb.Append("(");
+        sb.Append(this._m11).Append(", ").Append(this._m12).Append(", ").Append(this._m13).Append(", ").Append(this._m14);
+        sb.Append(", \r\n");
+        sb.Append(this._m21).Append(", ").Append(this._m22).Append(", ").Append(this._m23).Append(", ").Append(this._m24);
+        sb.Append(", \r\n");
+        sb.Append(this._m31).Append(", ").Append(this._m32).Append(", ").Append(this._m33).Append(", ").Append(this._m34);
+        sb.Append(", \r\n");
+        sb.Append(this._m41).Append(", ").Append(this._m42).Append(", ").Append(this._m43).Append(", ").Append(this._m44);
+        sb.Append(")");
         return sb.ToString();
     }
 
-    public final double getM11()
+    public double getM11()
     {
-        return this.m11;
+        return this._m11;
     }
 
-    public final double getM12()
+    public double getM12()
     {
-        return this.m12;
+        return this._m12;
     }
 
-    public final double getM13()
+    public double getM13()
     {
-        return this.m13;
+        return this._m13;
     }
 
-    public final double getM14()
+    public double getM14()
     {
-        return this.m14;
+        return this._m14;
     }
 
-    public final double getM21()
+    public double getM21()
     {
-        return this.m21;
+        return this._m21;
     }
 
-    public final double getM22()
+    public double getM22()
     {
-        return this.m22;
+        return this._m22;
     }
 
-    public final double getM23()
+    public double getM23()
     {
-        return this.m23;
+        return this._m23;
     }
 
-    public final double getM24()
+    public double getM24()
     {
-        return this.m24;
+        return this._m24;
     }
 
-    public final double getM31()
+    public double getM31()
     {
-        return this.m31;
+        return this._m31;
     }
 
-    public final double getM32()
+    public double getM32()
     {
-        return this.m32;
+        return this._m32;
     }
 
-    public final double getM33()
+    public double getM33()
     {
-        return this.m33;
+        return this._m33;
     }
 
-    public final double getM34()
+    public double getM34()
     {
-        return this.m34;
+        return this._m34;
     }
 
-    public final double getM41()
+    public double getM41()
     {
-        return this.m41;
+        return this._m41;
     }
 
-    public final double getM42()
+    public double getM42()
     {
-        return this.m42;
+        return this._m42;
     }
 
-    public final double getM43()
+    public double getM43()
     {
-        return this.m43;
+        return this._m43;
     }
 
-    public final double getM44()
+    public double getM44()
     {
-        return this.m44;
+        return this._m44;
     }
 
-    public final double m11()
+    public double m11()
     {
-        return this.m11;
+        return this._m11;
     }
 
-    public final double m12()
+    public double m12()
     {
-        return this.m12;
+        return this._m12;
     }
 
-    public final double m13()
+    public double m13()
     {
-        return this.m13;
+        return this._m13;
     }
 
-    public final double m14()
+    public double m14()
     {
-        return this.m14;
+        return this._m14;
     }
 
-    public final double m21()
+    public double m21()
     {
-        return this.m21;
+        return this._m21;
     }
 
-    public final double m22()
+    public double m22()
     {
-        return this.m22;
+        return this._m22;
     }
 
-    public final double m23()
+    public double m23()
     {
-        return this.m23;
+        return this._m23;
     }
 
-    public final double m24()
+    public double m24()
     {
-        return this.m24;
+        return this._m24;
     }
 
-    public final double m31()
+    public double m31()
     {
-        return this.m31;
+        return this._m31;
     }
 
-    public final double m32()
+    public double m32()
     {
-        return this.m32;
+        return this._m32;
     }
 
-    public final double m33()
+    public double m33()
     {
-        return this.m33;
+        return this._m33;
     }
 
-    public final double m34()
+    public double m34()
     {
-        return this.m34;
+        return this._m34;
     }
 
-    public final double m41()
+    public double m41()
     {
-        return this.m41;
+        return this._m41;
     }
 
-    public final double m42()
+    public double m42()
     {
-        return this.m42;
+        return this._m42;
     }
 
-    public final double m43()
+    public double m43()
     {
-        return this.m43;
+        return this._m43;
     }
 
-    public final double m44()
+    public double m44()
     {
-        return this.m44;
+        return this._m44;
     }
 
     // ============== Factory Functions ======================= //
@@ -498,9 +503,9 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        if (axes.length < 3)
+        if (axes.Length < 3)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", axes.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", axes.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -517,9 +522,9 @@ public class Matrix
         Vec4 u = f.cross3(s).normalize3();
 
         return new Matrix(
-            s.x, u.x, f.x, 0.0,
-            s.y, u.y, f.y, 0.0,
-            s.z, u.z, f.z, 0.0,
+            s.x(), u.x(), f.x(), 0.0,
+            s.y(), u.y(), f.y(), 0.0,
+            s.z(), u.z(), f.z(), 0.0,
             0.0, 0.0, 0.0, 1.0,
             true);
     }
@@ -539,7 +544,7 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        return fromAxisAngle(angle, axis.x, axis.y, axis.z, true);
+        return fromAxisAngle(angle, axis.x(), axis.y(), axis.z(), true);
     }
 
     public static Matrix fromAxisAngle(Angle angle, double axisX, double axisY, double axisZ)
@@ -607,7 +612,7 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        return fromQuaternion(quaternion.x, quaternion.y, quaternion.z, quaternion.w, true);
+        return fromQuaternion(quaternion.x(), quaternion.y(), quaternion.z(), quaternion.w(), true);
     }
 
     private static Matrix fromQuaternion(double x, double y, double z, double w, bool normalize)
@@ -744,7 +749,7 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        return fromScale(scale.x, scale.y, scale.z);
+        return fromScale(scale.x(), scale.y(), scale.z());
     }
 
     public static Matrix fromScale(double scaleX, double scaleY, double scaleZ)
@@ -767,7 +772,7 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        return fromTranslation(translation.x, translation.y, translation.z);
+        return fromTranslation(translation.x(), translation.y(), translation.z());
     }
 
     public static Matrix fromTranslation(double x, double y, double z)
@@ -842,9 +847,9 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        if (axes.length < 3)
+        if (axes.Length < 3)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", axes.length);
+            String msg = Logging.getMessage("generic.ArrayInvalidLength", axes.Length);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -914,13 +919,13 @@ public class Matrix
         u = u.normalize3();
 
         Matrix mAxes = new Matrix(
-            s.x, s.y, s.z, 0.0,
-            u.x, u.y, u.z, 0.0,
-            -f.x, -f.y, -f.z, 0.0,
+            s.x(), s.y(), s.z(), 0.0,
+            u.x(), u.y(), u.z(), 0.0,
+            -f.x(), -f.y(), -f.z(), 0.0,
             0.0, 0.0, 0.0, 1.0,
             true);
         Matrix mEye = Matrix.fromTranslation(
-            -eye.x, -eye.y, -eye.z);
+            -eye.x(), -eye.y(), -eye.z());
         return mAxes.multiply(mEye);
     }
 
@@ -976,13 +981,13 @@ public class Matrix
         u = u.normalize3();
 
         Matrix mAxes = new Matrix(
-            s.x, u.x, f.x, 0.0,
-            s.y, u.y, f.y, 0.0,
-            s.z, u.z, f.z, 0.0,
+            s.x(), u.x(), f.x(), 0.0,
+            s.y(), u.y(), f.y(), 0.0,
+            s.z(), u.z(), f.z(), 0.0,
             0.0, 0.0, 0.0, 1.0,
             true);
         Matrix mEye = Matrix.fromTranslation(
-            eye.x, eye.y, eye.z);
+            eye.x(), eye.y(), eye.z());
         return mEye.multiply(mAxes);
     }
 
@@ -1332,7 +1337,7 @@ public class Matrix
      * @throws ArgumentException if either <code>imagePoints</code> or <code>geoPoints</code> is null or have
      *                                  length less than 3.
      */
-    public static Matrix fromImageToGeographic(java.awt.geom.Point2D[] imagePoints, LatLon[] geoPoints)
+    public static Matrix fromImageToGeographic(Point[] imagePoints, LatLon[] geoPoints)
     {
         if (imagePoints == null)
         {
@@ -1346,15 +1351,15 @@ public class Matrix
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (imagePoints.length < 3)
+        if (imagePoints.Length < 3)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", "imagePoints.length < 3");
+            String message = Logging.getMessage("generic.ArrayInvalidLength", "imagePoints.Length < 3");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (geoPoints.length < 3)
+        if (geoPoints.Length < 3)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", "geoPoints.length < 3");
+            String message = Logging.getMessage("generic.ArrayInvalidLength", "geoPoints.Length < 3");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -1395,12 +1400,12 @@ public class Matrix
         double lon2 = geoPoints[1].getLongitude().degrees;
         double lon3 = geoPoints[2].getLongitude().degrees;
 
-        double x1 = imagePoints[0].getX();
-        double x2 = imagePoints[1].getX();
-        double x3 = imagePoints[2].getX();
-        double y1 = imagePoints[0].getY();
-        double y2 = imagePoints[1].getY();
-        double y3 = imagePoints[2].getY();
+        double x1 = imagePoints[0].X;
+        double x2 = imagePoints[1].X;
+        double x3 = imagePoints[2].X;
+        double y1 = imagePoints[0].Y;
+        double y2 = imagePoints[1].Y;
+        double y3 = imagePoints[2].Y;
 
         double a0 = (x3 - x1) - (x2 - x1) * (y3 - y1) / (y2 - y1);
         double a = (1 / a0) * ((lon3 - lon1) - (lon2 - lon1) * (y3 - y1) / (y2 - y1));
@@ -1419,7 +1424,7 @@ public class Matrix
             0.0, 0.0, 0.0, 0.0);
     }
 
-    public static Matrix fromGeographicToImage(java.awt.geom.Point2D[] imagePoints, LatLon[] geoPoints)
+    public static Matrix fromGeographicToImage(Point[] imagePoints, LatLon[] geoPoints)
     {
         if (imagePoints == null)
         {
@@ -1433,15 +1438,15 @@ public class Matrix
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (imagePoints.length < 3)
+        if (imagePoints.Length < 3)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", "imagePoints.length < 3");
+            String message = Logging.getMessage("generic.ArrayInvalidLength", "imagePoints.Length < 3");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
-        if (geoPoints.length < 3)
+        if (geoPoints.Length < 3)
         {
-            String message = Logging.getMessage("generic.ArrayInvalidLength", "geoPoints.length < 3");
+            String message = Logging.getMessage("generic.ArrayInvalidLength", "geoPoints.Length < 3");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -1482,12 +1487,12 @@ public class Matrix
         double lon2 = geoPoints[1].getLongitude().degrees;
         double lon3 = geoPoints[2].getLongitude().degrees;
 
-        double x1 = imagePoints[0].getX();
-        double x2 = imagePoints[1].getX();
-        double x3 = imagePoints[2].getX();
-        double y1 = imagePoints[0].getY();
-        double y2 = imagePoints[1].getY();
-        double y3 = imagePoints[2].getY();
+        double x1 = imagePoints[0].X;
+        double x2 = imagePoints[1].X;
+        double x3 = imagePoints[2].X;
+        double y1 = imagePoints[0].Y;
+        double y2 = imagePoints[1].Y;
+        double y3 = imagePoints[2].Y;
 
         double a0 = (lon3 - lon1) - (lon2 - lon1) * (lat3 - lat1) / (lat2 - lat1);
         double a = (1 / a0) * ((x3 - x1) - (x2 - x1) * (lat3 - lat1) / (lat2 - lat1));
@@ -1624,7 +1629,7 @@ public class Matrix
      *
      * @throws ArgumentException if the points Iterable is null.
      */
-    public static Matrix fromCovarianceOfVertices(Iterable<? extends Vec4> points)
+    public static Matrix fromCovarianceOfVertices(IEnumerable<Vec4> points)
     {
         if (points == null)
         {
@@ -1645,18 +1650,18 @@ public class Matrix
         double c13 = 0d;
         double c23 = 0d;
 
-        for (Vec4 vec : points)
+        foreach (Vec4 vec in points)
         {
             if (vec == null)
                 continue;
 
             count++;
-            c11 += (vec.x - mean.x) * (vec.x - mean.x);
-            c22 += (vec.y - mean.y) * (vec.y - mean.y);
-            c33 += (vec.z - mean.z) * (vec.z - mean.z);
-            c12 += (vec.x - mean.x) * (vec.y - mean.y); // c12 = c21
-            c13 += (vec.x - mean.x) * (vec.z - mean.z); // c13 = c31
-            c23 += (vec.y - mean.y) * (vec.z - mean.z); // c23 = c32
+            c11 += (vec.x() - mean.x()) * (vec.x() - mean.x());
+            c22 += (vec.y() - mean.y()) * (vec.y() - mean.y());
+            c33 += (vec.z() - mean.z()) * (vec.z() - mean.z());
+            c12 += (vec.x() - mean.x()) * (vec.y() - mean.y()); // c12 = c21
+            c13 += (vec.x() - mean.x()) * (vec.z() - mean.z()); // c13 = c31
+            c23 += (vec.y() - mean.y()) * (vec.z() - mean.z()); // c23 = c32
         }
 
         if (count == 0)
@@ -1732,12 +1737,12 @@ public class Matrix
             double y = coordinates.getDouble(i + 1);
             double z = coordinates.getDouble(i + 2);
             count++;
-            c11 += (x - mean.x) * (x - mean.x);
-            c22 += (y - mean.y) * (y - mean.y);
-            c33 += (z - mean.z) * (z - mean.z);
-            c12 += (x - mean.x) * (y - mean.y); // c12 = c21
-            c13 += (x - mean.x) * (z - mean.z); // c13 = c31
-            c23 += (y - mean.y) * (z - mean.z); // c23 = c32
+            c11 += (x - mean.x()) * (x - mean.x());
+            c22 += (y - mean.y()) * (y - mean.y());
+            c33 += (z - mean.z()) * (z - mean.z());
+            c12 += (x - mean.x()) * (y - mean.y()); // c12 = c21
+            c13 += (x - mean.x()) * (z - mean.z()); // c13 = c31
+            c23 += (y - mean.y()) * (z - mean.z()); // c23 = c32
         }
 
         if (count == 0)
@@ -1775,7 +1780,7 @@ public class Matrix
             throw new ArgumentException(msg);
         }
 
-        if (matrix.m12 != matrix.m21 || matrix.m13 != matrix.m31 || matrix.m23 != matrix.m32)
+        if (matrix.m12() != matrix.m21() || matrix.m13() != matrix.m31() || matrix.m23() != matrix.m32())
         {
             String msg = Logging.getMessage("generic.MatrixNotSymmetric", matrix);
             Logging.logger().severe(msg);
@@ -1785,20 +1790,20 @@ public class Matrix
         // Take from "Mathematics for 3D Game Programming and Computer Graphics, Second Edition" by Eric Lengyel,
         // Listing 14.6 (pages 441-444).
 
-        final double EPSILON = 1.0e-10;
-        final int MAX_SWEEPS = 32;
+        double EPSILON = 1.0e-10;
+        int MAX_SWEEPS = 32;
 
         // Since the Matrix is symmetric, m12=m21, m13=m31, and m23=m32. Therefore we can ignore the values m21, m31,
         // and m32.
-        double m11 = matrix.m11;
-        double m12 = matrix.m12;
-        double m13 = matrix.m13;
-        double m22 = matrix.m22;
-        double m23 = matrix.m23;
-        double m33 = matrix.m33;
+        double m11 = matrix.m11();
+        double m12 = matrix.m12();
+        double m13 = matrix.m13();
+        double m22 = matrix.m22();
+        double m23 = matrix.m23();
+        double m33 = matrix.m33();
 
-        double[][] r = new double[3][3];
-        r[0][0] = r[1][1] = r[2][2] = 1d;
+        double[,] r = new double[3,3];
+        r[0,0] = r[1,1] = r[2,2] = 1d;
 
         for (int a = 0; a < MAX_SWEEPS; a++)
         {
@@ -1828,9 +1833,9 @@ public class Matrix
 
                 for (int i = 0; i < 3; i++)
                 {
-                    temp = c * r[i][0] - s * r[i][1];
-                    r[i][1] = s * r[i][0] + c * r[i][1];
-                    r[i][0] = temp;
+                    temp = c * r[i,0] - s * r[i,1];
+                    r[i,1] = s * r[i,0] + c * r[i,1];
+                    r[i,0] = temp;
                 }
             }
 
@@ -1856,9 +1861,9 @@ public class Matrix
 
                 for (int i = 0; i < 3; i++)
                 {
-                    temp = c * r[i][0] - s * r[i][2];
-                    r[i][2] = s * r[i][0] + c * r[i][2];
-                    r[i][0] = temp;
+                    temp = c * r[i,0] - s * r[i,2];
+                    r[i,2] = s * r[i,0] + c * r[i,2];
+                    r[i,0] = temp;
                 }
             }
 
@@ -1884,9 +1889,9 @@ public class Matrix
 
                 for (int i = 0; i < 3; i++)
                 {
-                    temp = c * r[i][1] - s * r[i][2];
-                    r[i][2] = s * r[i][1] + c * r[i][2];
-                    r[i][1] = temp;
+                    temp = c * r[i,1] - s * r[i,2];
+                    r[i,2] = s * r[i,1] + c * r[i,2];
+                    r[i,1] = temp;
                 }
             }
         }
@@ -1895,16 +1900,16 @@ public class Matrix
         outEigenvalues[1] = m22;
         outEigenvalues[2] = m33;
 
-        outEigenvectors[0] = new Vec4(r[0][0], r[1][0], r[2][0]);
-        outEigenvectors[1] = new Vec4(r[0][1], r[1][1], r[2][1]);
-        outEigenvectors[2] = new Vec4(r[0][2], r[1][2], r[2][2]);
+        outEigenvectors[0] = new Vec4(r[0,0], r[1,0], r[2,0]);
+        outEigenvectors[1] = new Vec4(r[0,1], r[1,1], r[2,1]);
+        outEigenvectors[2] = new Vec4(r[0,2], r[1,2], r[2,2]);
     }
 
     // ============== Arithmetic Functions ======================= //
     // ============== Arithmetic Functions ======================= //
     // ============== Arithmetic Functions ======================= //
 
-    public final Matrix add(Matrix matrix)
+    public Matrix add(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -1914,13 +1919,13 @@ public class Matrix
         }
 
         return new Matrix(
-            this.m11 + matrix.m11, this.m12 + matrix.m12, this.m13 + matrix.m13, this.m14 + matrix.m14,
-            this.m21 + matrix.m21, this.m22 + matrix.m22, this.m23 + matrix.m23, this.m24 + matrix.m24,
-            this.m31 + matrix.m31, this.m32 + matrix.m32, this.m33 + matrix.m33, this.m34 + matrix.m34,
-            this.m41 + matrix.m41, this.m42 + matrix.m42, this.m43 + matrix.m43, this.m44 + matrix.m44);
+            this._m11 + matrix.m11(), this._m12 + matrix.m12(), this._m13 + matrix.m13(), this._m14 + matrix.m14(),
+            this._m21 + matrix.m21(), this._m22 + matrix.m22(), this._m23 + matrix.m23(), this._m24 + matrix.m24(),
+            this._m31 + matrix.m31(), this._m32 + matrix.m32(), this._m33 + matrix.m33(), this._m34 + matrix.m34(),
+            this._m41 + matrix.m41(), this._m42 + matrix.m42(), this._m43 + matrix.m43(), this._m44 + matrix.m44());
     }
 
-    public final Matrix subtract(Matrix matrix)
+    public Matrix subtract(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -1930,22 +1935,22 @@ public class Matrix
         }
 
         return new Matrix(
-            this.m11 - matrix.m11, this.m12 - matrix.m12, this.m13 - matrix.m13, this.m14 - matrix.m14,
-            this.m21 - matrix.m21, this.m22 - matrix.m22, this.m23 - matrix.m23, this.m24 - matrix.m24,
-            this.m31 - matrix.m31, this.m32 - matrix.m32, this.m33 - matrix.m33, this.m34 - matrix.m34,
-            this.m41 - matrix.m41, this.m42 - matrix.m42, this.m43 - matrix.m43, this.m44 - matrix.m44);
+            this._m11 - matrix.m11(), this._m12 - matrix.m12(), this._m13 - matrix.m13(), this._m14 - matrix.m14(),
+            this._m21 - matrix.m21(), this._m22 - matrix.m22(), this._m23 - matrix.m23(), this._m24 - matrix.m24(),
+            this._m31 - matrix.m31(), this._m32 - matrix.m32(), this._m33 - matrix.m33(), this._m34 - matrix.m34(),
+            this._m41 - matrix.m41(), this._m42 - matrix.m42(), this._m43 - matrix.m43(), this._m44 - matrix.m44());
     }
 
-    public final Matrix multiplyComponents(double value)
+    public Matrix multiplyComponents(double value)
     {
         return new Matrix(
-            this.m11 * value, this.m12 * value, this.m13 * value, this.m14 * value,
-            this.m21 * value, this.m22 * value, this.m23 * value, this.m24 * value,
-            this.m31 * value, this.m32 * value, this.m33 * value, this.m34 * value,
-            this.m41 * value, this.m42 * value, this.m43 * value, this.m44 * value);
+            this._m11 * value, this._m12 * value, this._m13 * value, this._m14 * value,
+            this._m21 * value, this._m22 * value, this._m23 * value, this._m24 * value,
+            this._m31 * value, this._m32 * value, this._m33 * value, this._m34 * value,
+            this._m41 * value, this._m42 * value, this._m43 * value, this._m44 * value);
     }
 
-    public final Matrix multiply(Matrix matrix)
+    public Matrix multiply(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -1956,30 +1961,30 @@ public class Matrix
 
         return new Matrix(
             // Row 1
-            (this.m11 * matrix.m11) + (this.m12 * matrix.m21) + (this.m13 * matrix.m31) + (this.m14 * matrix.m41),
-            (this.m11 * matrix.m12) + (this.m12 * matrix.m22) + (this.m13 * matrix.m32) + (this.m14 * matrix.m42),
-            (this.m11 * matrix.m13) + (this.m12 * matrix.m23) + (this.m13 * matrix.m33) + (this.m14 * matrix.m43),
-            (this.m11 * matrix.m14) + (this.m12 * matrix.m24) + (this.m13 * matrix.m34) + (this.m14 * matrix.m44),
+            (this._m11 * matrix.m11()) + (this._m12 * matrix.m21()) + (this._m13 * matrix.m31()) + (this._m14 * matrix.m41()),
+            (this._m11 * matrix.m12()) + (this._m12 * matrix.m22()) + (this._m13 * matrix.m32()) + (this._m14 * matrix.m42()),
+            (this._m11 * matrix.m13()) + (this._m12 * matrix.m23()) + (this._m13 * matrix.m33()) + (this._m14 * matrix.m43()),
+            (this._m11 * matrix.m14()) + (this._m12 * matrix.m24()) + (this._m13 * matrix.m34()) + (this._m14 * matrix.m44()),
             // Row 2
-            (this.m21 * matrix.m11) + (this.m22 * matrix.m21) + (this.m23 * matrix.m31) + (this.m24 * matrix.m41),
-            (this.m21 * matrix.m12) + (this.m22 * matrix.m22) + (this.m23 * matrix.m32) + (this.m24 * matrix.m42),
-            (this.m21 * matrix.m13) + (this.m22 * matrix.m23) + (this.m23 * matrix.m33) + (this.m24 * matrix.m43),
-            (this.m21 * matrix.m14) + (this.m22 * matrix.m24) + (this.m23 * matrix.m34) + (this.m24 * matrix.m44),
+            (this._m21 * matrix.m11()) + (this._m22 * matrix.m21()) + (this._m23 * matrix.m31()) + (this._m24 * matrix.m41()),
+            (this._m21 * matrix.m12()) + (this._m22 * matrix.m22()) + (this._m23 * matrix.m32()) + (this._m24 * matrix.m42()),
+            (this._m21 * matrix.m13()) + (this._m22 * matrix.m23()) + (this._m23 * matrix.m33()) + (this._m24 * matrix.m43()),
+            (this._m21 * matrix.m14()) + (this._m22 * matrix.m24()) + (this._m23 * matrix.m34()) + (this._m24 * matrix.m44()),
             // Row 3
-            (this.m31 * matrix.m11) + (this.m32 * matrix.m21) + (this.m33 * matrix.m31) + (this.m34 * matrix.m41),
-            (this.m31 * matrix.m12) + (this.m32 * matrix.m22) + (this.m33 * matrix.m32) + (this.m34 * matrix.m42),
-            (this.m31 * matrix.m13) + (this.m32 * matrix.m23) + (this.m33 * matrix.m33) + (this.m34 * matrix.m43),
-            (this.m31 * matrix.m14) + (this.m32 * matrix.m24) + (this.m33 * matrix.m34) + (this.m34 * matrix.m44),
+            (this._m31 * matrix.m11()) + (this._m32 * matrix.m21()) + (this._m33 * matrix.m31()) + (this._m34 * matrix.m41()),
+            (this._m31 * matrix.m12()) + (this._m32 * matrix.m22()) + (this._m33 * matrix.m32()) + (this._m34 * matrix.m42()),
+            (this._m31 * matrix.m13()) + (this._m32 * matrix.m23()) + (this._m33 * matrix.m33()) + (this._m34 * matrix.m43()),
+            (this._m31 * matrix.m14()) + (this._m32 * matrix.m24()) + (this._m33 * matrix.m34()) + (this._m34 * matrix.m44()),
             // Row 4
-            (this.m41 * matrix.m11) + (this.m42 * matrix.m21) + (this.m43 * matrix.m31) + (this.m44 * matrix.m41),
-            (this.m41 * matrix.m12) + (this.m42 * matrix.m22) + (this.m43 * matrix.m32) + (this.m44 * matrix.m42),
-            (this.m41 * matrix.m13) + (this.m42 * matrix.m23) + (this.m43 * matrix.m33) + (this.m44 * matrix.m43),
-            (this.m41 * matrix.m14) + (this.m42 * matrix.m24) + (this.m43 * matrix.m34) + (this.m44 * matrix.m44),
+            (this._m41 * matrix.m11()) + (this._m42 * matrix.m21()) + (this._m43 * matrix.m31()) + (this._m44 * matrix.m41()),
+            (this._m41 * matrix.m12()) + (this._m42 * matrix.m22()) + (this._m43 * matrix.m32()) + (this._m44 * matrix.m42()),
+            (this._m41 * matrix.m13()) + (this._m42 * matrix.m23()) + (this._m43 * matrix.m33()) + (this._m44 * matrix.m43()),
+            (this._m41 * matrix.m14()) + (this._m42 * matrix.m24()) + (this._m43 * matrix.m34()) + (this._m44 * matrix.m44()),
             // Product of orthonormal 3D transform matrices is also an orthonormal 3D transform.
             this.isOrthonormalTransform && matrix.isOrthonormalTransform);
     }
 
-    public final Matrix divideComponents(double value)
+    public Matrix divideComponents(double value)
     {
         if (isZero(value))
         {
@@ -1989,13 +1994,13 @@ public class Matrix
         }
 
         return new Matrix(
-            this.m11 / value, this.m12 / value, this.m13 / value, this.m14 / value,
-            this.m21 / value, this.m22 / value, this.m23 / value, this.m24 / value,
-            this.m31 / value, this.m32 / value, this.m33 / value, this.m34 / value,
-            this.m41 / value, this.m42 / value, this.m43 / value, this.m44 / value);
+            this._m11 / value, this._m12 / value, this._m13 / value, this._m14 / value,
+            this._m21 / value, this._m22 / value, this._m23 / value, this._m24 / value,
+            this._m31 / value, this._m32 / value, this._m33 / value, this._m34 / value,
+            this._m41 / value, this._m42 / value, this._m43 / value, this._m44 / value);
     }
 
-    public final Matrix divideComponents(Matrix matrix)
+    public Matrix divideComponents(Matrix matrix)
     {
         if (matrix == null)
         {
@@ -2005,24 +2010,24 @@ public class Matrix
         }
 
         return new Matrix(
-            this.m11 / matrix.m11, this.m12 / matrix.m12, this.m13 / matrix.m13, this.m14 / matrix.m14,
-            this.m21 / matrix.m21, this.m22 / matrix.m22, this.m23 / matrix.m23, this.m24 / matrix.m24,
-            this.m31 / matrix.m31, this.m32 / matrix.m32, this.m33 / matrix.m33, this.m34 / matrix.m34,
-            this.m41 / matrix.m41, this.m42 / matrix.m42, this.m43 / matrix.m43, this.m44 / matrix.m44);
+            this._m11 / matrix.m11(), this._m12 / matrix.m12(), this._m13 / matrix.m13(), this._m14 / matrix.m14(),
+            this._m21 / matrix.m21(), this._m22 / matrix.m22(), this._m23 / matrix.m23(), this._m24 / matrix.m24(),
+            this._m31 / matrix.m31(), this._m32 / matrix.m32(), this._m33 / matrix.m33(), this._m34 / matrix.m34(),
+            this._m41 / matrix.m41(), this._m42 / matrix.m42(), this._m43 / matrix.m43(), this._m44 / matrix.m44());
     }
 
-    public final Matrix negate()
+    public Matrix negate()
     {
         return new Matrix(
-            0.0 - this.m11, 0.0 - this.m12, 0.0 - this.m13, 0.0 - this.m14,
-            0.0 - this.m21, 0.0 - this.m22, 0.0 - this.m23, 0.0 - this.m24,
-            0.0 - this.m31, 0.0 - this.m32, 0.0 - this.m33, 0.0 - this.m34,
-            0.0 - this.m41, 0.0 - this.m42, 0.0 - this.m43, 0.0 - this.m44,
+            0.0 - this._m11, 0.0 - this._m12, 0.0 - this._m13, 0.0 - this._m14,
+            0.0 - this._m21, 0.0 - this._m22, 0.0 - this._m23, 0.0 - this._m24,
+            0.0 - this._m31, 0.0 - this._m32, 0.0 - this._m33, 0.0 - this._m34,
+            0.0 - this._m41, 0.0 - this._m42, 0.0 - this._m43, 0.0 - this._m44,
             // Negative of orthonormal 3D transform matrix is also an orthonormal 3D transform.
             this.isOrthonormalTransform);
     }
 
-    public final Vec4 transformBy3(Matrix matrix, double x, double y, double z)
+    public Vec4 transformBy3(Matrix matrix, double x, double y, double z)
     {
         if (matrix == null)
         {
@@ -2032,56 +2037,56 @@ public class Matrix
         }
 
         return new Vec4(
-            (matrix.m11 * x) + (matrix.m12 * y) + (matrix.m13 * z),
-            (matrix.m21 * x) + (matrix.m22 * y) + (matrix.m23 * z),
-            (matrix.m31 * x) + (matrix.m32 * y) + (matrix.m33 * z));
+            (matrix.m11() * x) + (matrix.m12() * y) + (matrix.m13() * z),
+            (matrix.m21() * x) + (matrix.m22() * y) + (matrix.m23() * z),
+            (matrix.m31() * x) + (matrix.m32() * y) + (matrix.m33() * z));
     }
 
     // ============== Matrix Arithmetic Functions ======================= //
     // ============== Matrix Arithmetic Functions ======================= //
     // ============== Matrix Arithmetic Functions ======================= //
 
-    public final double getDeterminant()
+    public double getDeterminant()
     {
         double result = 0.0;
         // Columns 2, 3, 4.
-        result += this.m11 *
-            (this.m22 * (this.m33 * this.m44 - this.m43 * this.m34)
-                - this.m23 * (this.m32 * this.m44 - this.m42 * this.m34)
-                + this.m24 * (this.m32 * this.m43 - this.m42 * this.m33));
+        result += this._m11 *
+            (this._m22 * (this._m33 * this._m44 - this._m43 * this._m34)
+                - this._m23 * (this._m32 * this._m44 - this._m42 * this._m34)
+                + this._m24 * (this._m32 * this._m43 - this._m42 * this._m33));
         // Columns 1, 3, 4.
-        result -= this.m12 *
-            (this.m21 * (this.m33 * this.m44 - this.m43 * this.m34)
-                - this.m23 * (this.m31 * this.m44 - this.m41 * this.m34)
-                + this.m24 * (this.m31 * this.m43 - this.m41 * this.m33));
+        result -= this._m12 *
+            (this._m21 * (this._m33 * this._m44 - this._m43 * this._m34)
+                - this._m23 * (this._m31 * this._m44 - this._m41 * this._m34)
+                + this._m24 * (this._m31 * this._m43 - this._m41 * this._m33));
         // Columns 1, 2, 4.
-        result += this.m13 *
-            (this.m21 * (this.m32 * this.m44 - this.m42 * this.m34)
-                - this.m22 * (this.m31 * this.m44 - this.m41 * this.m34)
-                + this.m24 * (this.m31 * this.m42 - this.m41 * this.m32));
+        result += this._m13 *
+            (this._m21 * (this._m32 * this._m44 - this._m42 * this._m34)
+                - this._m22 * (this._m31 * this._m44 - this._m41 * this._m34)
+                + this._m24 * (this._m31 * this._m42 - this._m41 * this._m32));
         // Columns 1, 2, 3.
-        result -= this.m14 *
-            (this.m21 * (this.m32 * this.m43 - this.m42 - this.m33)
-                - this.m22 * (this.m31 * this.m43 - this.m41 * this.m33)
-                + this.m23 * (this.m31 * this.m42 - this.m41 * this.m32));
+        result -= this._m14 *
+            (this._m21 * (this._m32 * this._m43 - this._m42 - this._m33)
+                - this._m22 * (this._m31 * this._m43 - this._m41 * this._m33)
+                + this._m23 * (this._m31 * this._m42 - this._m41 * this._m32));
         return result;
     }
 
-    public final Matrix getTranspose()
+    public Matrix getTranspose()
     {
         // Swap rows with columns.
         return new Matrix(
-            this.m11, this.m21, this.m31, this.m41,
-            this.m12, this.m22, this.m32, this.m42,
-            this.m13, this.m23, this.m33, this.m43,
-            this.m14, this.m24, this.m34, this.m44,
+            this._m11, this._m21, this._m31, this._m41,
+            this._m12, this._m22, this._m32, this._m42,
+            this._m13, this._m23, this._m33, this._m43,
+            this._m14, this._m24, this._m34, this._m44,
             // Transpose of orthonormal 3D transform matrix is not an orthonormal 3D transform matrix.
             false);
     }
 
-    public final double getTrace()
+    public double getTrace()
     {
-        return this.m11 + this.m22 + this.m33 + this.m44;
+        return this._m11 + this._m22 + this._m33 + this._m44;
     }
 
     /**
@@ -2089,7 +2094,7 @@ public class Matrix
      *
      * @return the inverse of this matrix, or <code>null</code> if this matrix has no inverse.
      */
-    public final Matrix getInverse()
+    public Matrix getInverse()
     {
         if (this.isOrthonormalTransform)
             return computeTransformInverse(this);
@@ -2102,9 +2107,9 @@ public class Matrix
         // 'a' is assumed to contain a 3D transformation matrix.
         // Upper-3x3 is inverted, translation is transformed by inverted-upper-3x3 and negated.
         return new Matrix(
-            a.m11, a.m21, a.m31, 0.0 - (a.m11 * a.m14) - (a.m21 * a.m24) - (a.m31 * a.m34),
-            a.m12, a.m22, a.m32, 0.0 - (a.m12 * a.m14) - (a.m22 * a.m24) - (a.m32 * a.m34),
-            a.m13, a.m23, a.m33, 0.0 - (a.m13 * a.m14) - (a.m23 * a.m24) - (a.m33 * a.m34),
+            a.m11(), a.m21(), a.m31(), 0.0 - (a.m11() * a.m14()) - (a.m21() * a.m24()) - (a.m31() * a.m34()),
+            a.m12(), a.m22(), a.m32(), 0.0 - (a.m12() * a.m14()) - (a.m22() * a.m24()) - (a.m32() * a.m34()),
+            a.m13(), a.m23(), a.m33(), 0.0 - (a.m13() * a.m14()) - (a.m23() * a.m24()) - (a.m33() * a.m34()),
             0.0, 0.0, 0.0, 1.0,
             false); // Inverse of an orthogonal, 3D transform matrix is not an orthogonal 3D transform.
     }
@@ -2112,23 +2117,23 @@ public class Matrix
     private static Matrix computeGeneralInverse(Matrix a)
     {
         // Copy the specified matrix into a mutable two-dimensional array.
-        double[][] A = new double[4][4];
-        A[0][0] = a.m11;
-        A[0][1] = a.m12;
-        A[0][2] = a.m13;
-        A[0][3] = a.m14;
-        A[1][0] = a.m21;
-        A[1][1] = a.m22;
-        A[1][2] = a.m23;
-        A[1][3] = a.m24;
-        A[2][0] = a.m31;
-        A[2][1] = a.m32;
-        A[2][2] = a.m33;
-        A[2][3] = a.m34;
-        A[3][0] = a.m41;
-        A[3][1] = a.m42;
-        A[3][2] = a.m43;
-        A[3][3] = a.m44;
+        double[,] A = new double[4,4];
+        A[0,0] = a.m11();
+        A[0,1] = a.m12();
+        A[0,2] = a.m13();
+        A[0,3] = a.m14();
+        A[1,0] = a.m21();
+        A[1,1] = a.m22();
+        A[1,2] = a.m23();
+        A[1,3] = a.m24();
+        A[2,0] = a.m31();
+        A[2,1] = a.m32();
+        A[2,2] = a.m33();
+        A[2,3] = a.m34();
+        A[3,0] = a.m41();
+        A[3,1] = a.m42();
+        A[3,2] = a.m43();
+        A[3,3] = a.m44();
 
         int[] indx = new int[4];
         double d = ludcmp(A, indx);
@@ -2136,14 +2141,14 @@ public class Matrix
         // Compute the matrix's determinant.
         for (int i = 0; i < 4; i++)
         {
-            d *= A[i][i];
+            d *= A[i,i];
         }
 
         // The matrix is singular if its determinant is zero or very close to zero.
         if (Math.Abs(d) < NEAR_ZERO_THRESHOLD)
             return null;
 
-        double[][] Y = new double[4][4];
+        double[,] Y = new double[4,4];
         double[] col = new double[4];
         for (int j = 0; j < 4; j++)
         {
@@ -2157,19 +2162,19 @@ public class Matrix
 
             for (int i = 0; i < 4; i++)
             {
-                Y[i][j] = col[i];
+                Y[i,j] = col[i];
             }
         }
 
         return new Matrix(
-            Y[0][0], Y[0][1], Y[0][2], Y[0][3],
-            Y[1][0], Y[1][1], Y[1][2], Y[1][3],
-            Y[2][0], Y[2][1], Y[2][2], Y[2][3],
-            Y[3][0], Y[3][1], Y[3][2], Y[3][3]);
+            Y[0,0], Y[0,1], Y[0,2], Y[0,3],
+            Y[1,0], Y[1,1], Y[1,2], Y[1,3],
+            Y[2,0], Y[2,1], Y[2,2], Y[2,3],
+            Y[3,0], Y[3,1], Y[3,2], Y[3,3]);
     }
 
     // Method "lubksb" derived from "Numerical Recipes in C", Press et al., 1988
-    private static void lubksb(double[][] A, int[] indx, double[] b)
+    private static void lubksb(double[,] A, int[] indx, double[] b)
     {
         int ii = -1;
         for (int i = 0; i < 4; i++)
@@ -2182,7 +2187,7 @@ public class Matrix
             {
                 for (int j = ii; j <= i - 1; j++)
                 {
-                    sum -= A[i][j] * b[j];
+                    sum -= A[i,j] * b[j];
                 }
             }
             else if (sum != 0.0)
@@ -2198,17 +2203,17 @@ public class Matrix
             double sum = b[i];
             for (int j = i + 1; j < 4; j++)
             {
-                sum -= A[i][j] * b[j];
+                sum -= A[i,j] * b[j];
             }
 
-            b[i] = sum / A[i][i];
+            b[i] = sum / A[i,i];
         }
     }
 
     // Method "ludcmp" derived from "Numerical Recipes in C", Press et al., 1988
-    private static double ludcmp(double[][] A, int[] indx)
+    private static double ludcmp(double[,] A, int[] indx)
     {
-        final double TINY = 1.0e-20;
+        double TINY = 1.0e-20;
 
         double[] vv = new double[4];
         double d = 1.0;
@@ -2218,7 +2223,7 @@ public class Matrix
             double big = 0.0;
             for (int j = 0; j < 4; j++)
             {
-                if ((temp = Math.Abs(A[i][j])) > big)
+                if ((temp = Math.Abs(A[i,j])) > big)
                     big = temp;
             }
 
@@ -2233,13 +2238,13 @@ public class Matrix
         {
             for (int i = 0; i < j; i++)
             {
-                sum = A[i][j];
+                sum = A[i,j];
                 for (int k = 0; k < i; k++)
                 {
-                    sum -= A[i][k] * A[k][j];
+                    sum -= A[i,k] * A[k,j];
                 }
 
-                A[i][j] = sum;
+                A[i,j] = sum;
             }
 
             double big = 0.0;
@@ -2247,13 +2252,13 @@ public class Matrix
             int imax = -1;
             for (int i = j; i < 4; i++)
             {
-                sum = A[i][j];
+                sum = A[i,j];
                 for (int k = 0; k < j; k++)
                 {
-                    sum -= A[i][k] * A[k][j];
+                    sum -= A[i,k] * A[k,j];
                 }
 
-                A[i][j] = sum;
+                A[i,j] = sum;
 
                 if ((dum = vv[i] * Math.Abs(sum)) >= big)
                 {
@@ -2266,9 +2271,9 @@ public class Matrix
             {
                 for (int k = 0; k < 4; k++)
                 {
-                    dum = A[imax][k];
-                    A[imax][k] = A[j][k];
-                    A[j][k] = dum;
+                    dum = A[imax,k];
+                    A[imax,k] = A[j,k];
+                    A[j,k] = dum;
                 }
 
                 d = -d;
@@ -2276,15 +2281,15 @@ public class Matrix
             }
 
             indx[j] = imax;
-            if (A[j][j] == 0.0)
-                A[j][j] = TINY;
+            if (A[j,j] == 0.0)
+                A[j,j] = TINY;
 
             if (j != 3)
             {
-                dum = 1.0 / A[j][j];
+                dum = 1.0 / A[j,j];
                 for (int i = j + 1; i < 4; i++)
                 {
-                    A[i][j] *= dum;
+                    A[i,j] *= dum;
                 }
             }
         }
@@ -2296,9 +2301,9 @@ public class Matrix
     // ============== Accessor Functions ======================= //
     // ============== Accessor Functions ======================= //
 
-    public final Angle getRotationX()
+    public Angle getRotationX()
     {
-        double yRadians = Math.Asin(this.m13);
+        double yRadians = Math.Asin(this._m13);
         double cosY = Math.Cos(yRadians);
         if (isZero(cosY))
             return null;
@@ -2307,7 +2312,7 @@ public class Matrix
         // No Gimball lock.
         if (Math.Abs(cosY) > 0.005)
         {
-            xRadians = Math.Atan2(-this.m23 / cosY, this.m33 / cosY);
+            xRadians = Math.Atan2(-this._m23 / cosY, this._m33 / cosY);
         }
         // Gimball lock has occurred. Rotation around X axis becomes rotation around Z axis.
         else
@@ -2321,18 +2326,18 @@ public class Matrix
         return Angle.fromRadians(xRadians);
     }
 
-    public final Angle getRotationY()
+    public Angle getRotationY()
     {
-        double yRadians = Math.Asin(this.m13);
+        double yRadians = Math.Asin(this._m13);
         if (Double.IsNaN(yRadians))
             return null;
 
         return Angle.fromRadians(yRadians);
     }
 
-    public final Angle getRotationZ()
+    public Angle getRotationZ()
     {
-        double yRadians = Math.Asin(this.m13);
+        double yRadians = Math.Asin(this._m13);
         double cosY = Math.Cos(yRadians);
         if (isZero(cosY))
             return null;
@@ -2341,12 +2346,12 @@ public class Matrix
         // No Gimball lock.
         if (Math.Abs(cosY) > 0.005)
         {
-            zRadians = Math.Atan2(-this.m12 / cosY, this.m11 / cosY);
+            zRadians = Math.Atan2(-this._m12 / cosY, this._m11 / cosY);
         }
         // Gimball lock has occurred. Rotation around X axis becomes rotation around Z axis.
         else
         {
-            zRadians = Math.Atan2(this.m21, this.m22);
+            zRadians = Math.Atan2(this._m21, this._m22);
         }
 
         if (Double.IsNaN(zRadians))
@@ -2355,18 +2360,18 @@ public class Matrix
         return Angle.fromRadians(zRadians);
     }
 
-    public final Angle getKMLRotationX()    // KML assumes the order of rotations is YXZ, positive CW
+    public Angle getKMLRotationX()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.Asin(-this.m23);
+        double xRadians = Math.Asin(-this._m23);
         if (Double.IsNaN(xRadians))
             return null;
 
         return Angle.fromRadians(-xRadians);    // negate to make angle CW
     }
 
-    public final Angle getKMLRotationY()    // KML assumes the order of rotations is YXZ, positive CW
+    public Angle getKMLRotationY()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.Asin(-this.m23);
+        double xRadians = Math.Asin(-this._m23);
         if (Double.IsNaN(xRadians))
             return null;
 
@@ -2375,16 +2380,16 @@ public class Matrix
         {
             if (xRadians > -Math.PI / 2)
             {
-                yRadians = Math.Atan2(this.m13, this.m33);
+                yRadians = Math.Atan2(this._m13, this._m33);
             }
             else
             {
-                yRadians = -Math.Atan2(-this.m12, this.m11);
+                yRadians = -Math.Atan2(-this._m12, this._m11);
             }
         }
         else
         {
-            yRadians = Math.Atan2(-this.m12, this.m11);
+            yRadians = Math.Atan2(-this._m12, this._m11);
         }
 
         if (Double.IsNaN(yRadians))
@@ -2393,16 +2398,16 @@ public class Matrix
         return Angle.fromRadians(-yRadians);    // negate angle to make it CW
     }
 
-    public final Angle getKMLRotationZ()    // KML assumes the order of rotations is YXZ, positive CW
+    public Angle getKMLRotationZ()    // KML assumes the order of rotations is YXZ, positive CW
     {
-        double xRadians = Math.Asin(-this.m23);
+        double xRadians = Math.Asin(-this._m23);
         if (Double.IsNaN(xRadians))
             return null;
 
         double zRadians;
         if (xRadians < Math.PI / 2 && xRadians > -Math.PI / 2)
         {
-            zRadians = Math.Atan2(this.m21, this.m22);
+            zRadians = Math.Atan2(this._m21, this._m22);
         }
         else
         {
@@ -2415,9 +2420,9 @@ public class Matrix
         return Angle.fromRadians(-zRadians);    // negate angle to make it CW
     }
 
-    public final Vec4 getTranslation()
+    public Vec4 getTranslation()
     {
-        return new Vec4(this.m14, this.m24, this.m34);
+        return new Vec4(this._m14, this._m24, this._m34);
     }
 
     /**
@@ -2436,9 +2441,9 @@ public class Matrix
         // The eye point of a modelview matrix is computed by transforming the origin (0, 0, 0, 1) by the matrix's
         // inverse. This is equivalent to transforming the inverse of this matrix's translation components in the
         // rightmost column by the transpose of its upper 3x3 components.
-        double x = -(m11 * m14) - (m21 * m24) - (m31 * m34);
-        double y = -(m12 * m14) - (m22 * m24) - (m32 * m34);
-        double z = -(m13 * m14) - (m23 * m24) - (m33 * m34);
+        double x = -(m11() * m14()) - (m21() * m24()) - (m31() * m34());
+        double y = -(m12() * m14()) - (m22() * m24()) - (m32() * m34());
+        double z = -(m13() * m14()) - (m23() * m24()) - (m33() * m34());
 
         return new Vec4(x, y, z);
     }
@@ -2458,7 +2463,7 @@ public class Matrix
     {
         // The forward vector of a modelview matrix is computed by transforming the negative Z axis (0, 0, -1, 0) by the
         // matrix's inverse. We have pre-computed the result inline here to simplify this computation.
-        return new Vec4(-this.m31, -this.m32, -this.m33);
+        return new Vec4(-this._m31, -this._m32, -this._m33);
     }
 
     /**
@@ -2522,16 +2527,16 @@ public class Matrix
         // TODO: Document how these parameters are extracted. See [WWMatrix extractViewingParameters] in WWiOS.
 
         Matrix m = modelviewLocal;
-        double range = -m.m34;
+        double range = -m.m34();
 
-        double ct = m.m33;
-        double st = Math.Sqrt(m.m13 * m.m13 + m.m23 * m.m23);
+        double ct = m.m33();
+        double st = Math.Sqrt(m.m13() * m.m13() + m.m23() * m.m23() );
         double tilt = Math.Atan2(st, ct);
 
         double cr = Math.Cos(roll.radians);
         double sr = Math.Sin(roll.radians);
-        double ch = cr * m.m11 - sr * m.m21;
-        double sh = sr * m.m22 - cr * m.m12;
+        double ch = cr * m.m11() - sr * m.m21();
+        double sh = sr * m.m22() - cr * m.m12();
         double heading = Math.Atan2(sh, ch);
 
         AVList parameters = new AVListImpl();
@@ -2548,14 +2553,14 @@ public class Matrix
     // ============== Helper Functions ======================= //
     // ============== Helper Functions ======================= //
 
-    private static final Double POSITIVE_ZERO = +0.0d;
+    private static Double POSITIVE_ZERO = +0.0d;
 
-    private static final Double NEGATIVE_ZERO = -0.0d;
+    private static Double NEGATIVE_ZERO = -0.0d;
 
     private static bool isZero(double value)
     {
-        return (POSITIVE_ZERO.compareTo(value) == 0)
-            || (NEGATIVE_ZERO.compareTo(value) == 0);
+        return (POSITIVE_ZERO.CompareTo(value) == 0)
+            || (NEGATIVE_ZERO.CompareTo(value) == 0);
     }
 }
 }
