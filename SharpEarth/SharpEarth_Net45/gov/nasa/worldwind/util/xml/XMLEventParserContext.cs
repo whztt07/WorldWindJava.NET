@@ -314,5 +314,5 @@ public interface XMLeventParserContext : SharpEarth.avlist.AVList
      * @param booleanIntegerFields the string parser.
      */
     void addBooleanIntegerParsers(string namespaces, string[] booleanIntegerFields);
-}
+  }
 }

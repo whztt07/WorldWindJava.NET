@@ -4,9 +4,6 @@
  * All Rights Reserved.
  */
 
-using java.beans.PropertyChangeEvent;
-using javax.xml.stream.events.XMLEvent;
-using SharpEarth.util;
 namespace SharpEarth.util.xml{
 
 
@@ -21,8 +18,8 @@ namespace SharpEarth.util.xml{
  * @see SharpEarth.util.xml.XMLEventParserContext#setNotificationListener(XMLParserNotificationListener)
  * @see SharpEarth.util.xml.XMLParserNotificationListener
  */
-public class XMLParserNotification extends PropertyChangeEvent
-{
+public class XMLParserNotification : java.beans.PropertyChangeEvent
+  {
     /** A notification type indicating that an exception occurred during parsing. */
     public static final String EXCEPTION = "gov.nasa.worldwind.util.xml.XMLParserNotification.Exception";
     /** A notification type indicating that a parser encounter an element it did not recognize. */

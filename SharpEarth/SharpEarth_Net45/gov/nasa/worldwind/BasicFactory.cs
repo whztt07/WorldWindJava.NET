@@ -12,6 +12,10 @@ using SharpEarth.ogc.wcs.wcs100.WCS100Capabilities;
 using SharpEarth.ogc.OGCCapabilities;
 using SharpEarth.exception;
 using SharpEarth.avlist;
+using System;
+using SharpEarth.java.org.w3c.dom;
+using.QName.SharpEarth.ogc;
+
 namespace SharpEarth{
 
 
@@ -22,31 +26,31 @@ namespace SharpEarth{
  * @author tag
  * @version $Id: BasicFactory.java 2072 2014-06-21 21:20:25Z tgaskins $
  */
-public class BasicFactory implements Factory
+public class BasicFactory : Factory
 {
     /**
      * Static method to create an object from a factory and configuration source.
      *
      * @param factoryKey   the key identifying the factory in {@link Configuration}.
      * @param configSource the configuration source. May be any of the types listed for {@link
-     *                     #createFromConfigSource(Object, SharpEarth.avlist.AVList)}
+     *                     #createFromConfigSource(object, SharpEarth.avlist.AVList)}
      *
      * @return a new instance of the requested object.
      *
      * @throws ArgumentException if the factory key is null, or if the configuration source is null or an empty
      *                                  string.
      */
-    public static Object create(String factoryKey, Object configSource)
+    public static object create(string factoryKey, object configSource)
     {
         if (factoryKey == null)
         {
-            String message = Logging.getMessage("generic.FactoryKeyIsNull");
+            string message = Logging.getMessage("generic.FactoryKeyIsNull");
             throw new ArgumentException(message);
         }
 
         if (WWUtil.isEmpty(configSource))
         {
-            String message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
+            string message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
             throw new ArgumentException(message);
         }
 
@@ -60,7 +64,7 @@ public class BasicFactory implements Factory
      *
      * @param factoryKey   the key identifying the factory in {@link Configuration}.
      * @param configSource the configuration source. May be any of the types listed for {@link
-     *                     #createFromConfigSource(Object, SharpEarth.avlist.AVList)}
+     *                     #createFromConfigSource(object, SharpEarth.avlist.AVList)}
      * @param parameters       key-value parameters to override or supplement the information provided in the specified
      *                     configuration source. May be null.
      *
@@ -69,17 +73,17 @@ public class BasicFactory implements Factory
      * @throws ArgumentException if the factory key is null, or if the configuration source is null or an empty
      *                                  string.
      */
-    public static Object create(String factoryKey, Object configSource, AVList parameters)
+    public static object create(string factoryKey, object configSource, AVList parameters)
     {
         if (factoryKey == null)
         {
-            String message = Logging.getMessage("generic.FactoryKeyIsNull");
+            string message = Logging.getMessage("generic.FactoryKeyIsNull");
             throw new ArgumentException(message);
         }
 
         if (WWUtil.isEmpty(configSource))
         {
-            String message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
+            string message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
             throw new ArgumentException(message);
         }
 
@@ -92,7 +96,7 @@ public class BasicFactory implements Factory
      * java.net.URL}</li> <li>{@link java.io.File}</li> <li>{@link java.io.InputStream}</li> <li>{@link Element}</li>
      * <li>{@link SharpEarth.ogc.OGCCapabilities}</li>
      * <li>{@link SharpEarth.ogc.wcs.wcs100.WCS100Capabilities}</li>
-     * <li>{@link String} holding a file name, a name of a resource on the classpath, or a string representation of a
+     * <li>{@link string} holding a file name, a name of a resource on the classpath, or a string representation of a
      * URL</li></ul>
      * <p/>
      *
@@ -107,16 +111,16 @@ public class BasicFactory implements Factory
      * @throws WWRuntimeException       if object creation fails. The exception indicating the source of the failure is
      *                                  included as the {@link Exception#initCause(Throwable)}.
      */
-    public Object createFromConfigSource(Object configSource, AVList parameters)
+    public object createFromConfigSource(object configSource, AVList parameters)
     {
         if (WWUtil.isEmpty(configSource))
         {
-            String message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
+            string message = Logging.getMessage("generic.ConfigurationSourceIsInvalid", configSource);
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        Object o = null;
+        object o = null;
 
         try
         {
@@ -137,7 +141,7 @@ public class BasicFactory implements Factory
         }
         catch (Exception e)
         {
-            String msg = Logging.getMessage("generic.CreationFromConfigurationFileFailed", configSource);
+            string msg = Logging.getMessage("generic.CreationFromConfigurationFileFailed", configSource);
             throw new WWRuntimeException(msg, e);
         }
 
@@ -165,11 +169,11 @@ public class BasicFactory implements Factory
      *                                  The exception indicating the source of the failure is included as the {@link
      *                                  Exception#initCause(Throwable)}.
      */
-    public Object createFromCapabilities(String capsFileName, AVList parameters)
+    public object createFromCapabilities(string capsFileName, AVList parameters)
     {
         if (WWUtil.isEmpty(capsFileName))
         {
-            String message = Logging.getMessage("nullValue.FilePathIsNull");
+            string message = Logging.getMessage("nullValue.FilePathIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -180,9 +184,9 @@ public class BasicFactory implements Factory
         {
             caps.parse();
         }
-        catch (XMLStreamException e)
+        catch (javax.xml.stream.XMLStreamException e)
         {
-            String message = Logging.getMessage("generic.CannotParseCapabilities", capsFileName);
+            string message = Logging.getMessage("generic.CannotParseCapabilities", capsFileName);
             Logging.logger().log(Level.SEVERE, message, e);
             throw new WWRuntimeException(message, e);
         }
@@ -202,7 +206,7 @@ public class BasicFactory implements Factory
      *
      * @return the requested object.
      */
-    protected Object doCreateFromCapabilities(OGCCapabilities caps, AVList parameters)
+    protected object doCreateFromCapabilities(OGCCapabilities caps, AVList parameters)
     {
         return null;
     }
@@ -217,12 +221,12 @@ public class BasicFactory implements Factory
      *
      * @return the requested object.
      */
-    protected Object doCreateFromCapabilities(WCS100Capabilities caps, AVList parameters)
+    protected object doCreateFromCapabilities(WCS100Capabilities caps, AVList parameters)
     {
         return null;
     }
 
-    protected Object doCreateFromElement(Element domElement, AVList parameters) throws Exception
+    protected object doCreateFromElement(Element domElement, AVList parameters) throws Exception
     {
         return null;
     }

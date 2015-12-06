@@ -4,15 +4,7 @@
  * All Rights Reserved.
  */
 
-using java.util;
-using java.lang.reflect.Constructor;
-using javax.xml.stream.events;
-using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
-using SharpEarth.util;
-using SharpEarth.avlist;
 namespace SharpEarth.util.xml{
-
 
 
 /**
@@ -33,13 +25,13 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: AbstractXMLEventParser.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-abstract public class AbstractXMLEventParser implements XMLEventParser
+abstract public class AbstractXMLEventParser : XMLEventParser
 {
-    protected static final String CHARACTERS_CONTENT = "CharactersContent";
+    protected const string CHARACTERS_CONTENT = "CharactersContent";
 
-    protected String namespaceURI;
+    protected string namespaceURI;
 
-    protected AVList fields;
+    protected avlist.AVList fields;
     protected XMLEventParser parent;
 
     /** Construct a parser with no qualifying namespace. */
@@ -53,7 +45,7 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
      *
      * @param namespaceURI the qualifying namespace URI. May be null to indicate no namespace qualification.
      */
-    public AbstractXMLEventParser(String namespaceURI)
+    public AbstractXMLEventParser(string namespaceURI)
     {
         this.namespaceURI = namespaceURI;
     }
@@ -63,19 +55,19 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
      *
      * @return the namespace URI. Returns null if no name space was specified at construction.
      */
-    public String getNamespaceURI()
+    public string getNamespaceURI()
     {
         return this.namespaceURI;
     }
 
-    protected void setNamespaceURI(String namespaceURI)
+    protected void setNamespaceURI(string namespaceURI)
     {
         this.namespaceURI = namespaceURI;
     }
 
-    public XMLEventParser newInstance() throws Exception
+    public XMLEventParser newInstance()
     {
-        Constructor<? extends AbstractXMLEventParser> constructor = this.getAConstructor(String.class);
+      java.lang.reflect.Constructor <AbstractXMLEventParser> constructor = this.getAConstructor(typeof(string));
         if (constructor != null)
             return constructor.newInstance(this.getNamespaceURI());
 
@@ -86,51 +78,49 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
         return null;
     }
 
-    public void setField(QName keyName, Object value)
+    public void setField(javax.xml.namespaces.QName keyName, object value)
     {
         this.setField(keyName.getLocalPart(), value);
     }
 
-    public void setField(String keyName, Object value)
+    public void setField(string keyName, object value)
     {
         if (this.fields == null)
-            this.fields = new AVListImpl();
+            this.fields = new avlist.AVListImpl();
 
         this.fields.setValue(keyName, value);
     }
 
-    public void setFields(Map<String, Object> newFields)
+    public void setFields(System.Collections.Generic.IDictionary<string, object> newFields)
     {
         if (this.fields == null)
-            this.fields = new AVListImpl();
+            this.fields = new avlist.AVListImpl();
 
-        for (Map.Entry<String, Object> nf : newFields.entrySet())
-        {
-            this.setField(nf.getKey(), nf.getValue());
-        }
+      foreach (var pair in newFields)
+        this.setField(pair.Key, pair.Value);
     }
 
-    public Object getField(QName keyName)
+    public object getField(javax.xml.namespaces.QName keyName)
     {
         return this.fields != null ? this.getField(keyName.getLocalPart()) : null;
     }
 
-    public Object getField(String keyName)
+    public object getField(string keyName)
     {
         return this.fields != null ? this.fields.getValue(keyName) : null;
     }
 
-    public bool hasField(QName keyName)
+    public bool hasField(javax.xml.namespaces.QName keyName)
     {
         return this.hasField(keyName.getLocalPart());
     }
 
-    public bool hasField(String keyName)
+    public bool hasField(string keyName)
     {
         return this.fields != null && this.fields.hasKey(keyName);
     }
 
-    public void removeField(String keyName)
+    public void removeField(string keyName)
     {
         if (this.fields != null)
             this.fields.removeKey(keyName);
@@ -141,30 +131,28 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
         return this.fields != null;
     }
 
-    public AVList getFields()
+    public avlist.AVList getFields()
     {
         return this.fields;
     }
 
     protected AbstractXMLEventParser mergeFields(AbstractXMLEventParser s1, AbstractXMLEventParser s2)
     {
-        for (Map.Entry<String, Object> entry : s2.getFields().getEntries())
-        {
-            if (!s1.hasField(entry.getKey()))
-                s1.setField(entry.getKey(), entry.getValue());
-        }
+      foreach (var pair in s2.getFields().getEntries())
+      {
+        if (!s1.hasField(pair.Key))
+          s1.setField(pair.Key, pair.Value);
+      }
 
-        return this;
+      return this;
     }
 
     protected AbstractXMLEventParser overrideFields(AbstractXMLEventParser s1, AbstractXMLEventParser s2)
     {
         if (s2.getFields() != null)
         {
-            for (Map.Entry<String, Object> entry : s2.getFields().getEntries())
-            {
-                s1.setField(entry.getKey(), entry.getValue());
-            }
+        foreach (var pair in s2.getFields().getEntries())
+          s1.setField(pair.Key, pair.Value);
         }
 
         return this;
@@ -185,13 +173,13 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
         // Override in subclass to free any large resources.
     }
 
-    protected Constructor<? extends AbstractXMLEventParser> getAConstructor(Class... parameterTypes)
+    protected java.lang.reflect.Constructor<AbstractXMLEventParser> getAConstructor(params System.Type[] parameterTypes)
     {
         try
         {
-            return this.GetType().getConstructor(parameterTypes);
+            return this.GetType().GetConstructor(parameterTypes);
         }
-        catch (NoSuchMethodException e)
+        catch (java.lang.NoSuchMethodException e)
         {
             return null;
         }
@@ -219,16 +207,16 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
      *
      * @return the new parser.
      */
-    public XMLEventParser allocate(XMLEventParserContext ctx, XMLEvent event)
+    public XMLEventParser allocate(SharpEarth.util.xml.XMLEventParserContext ctx, javax.xml.stream.events.XMLEvent @event)
     {
         if (ctx == null)
         {
-            String message = Logging.getMessage("nullValue.ParserContextIsNull");
+            string message = Logging.getMessage("nullValue.ParserContextIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new System.ArgumentException(message);
         }
 
-        XMLEventParser parser = ctx.allocate(event);
+        XMLEventParser parser = ctx.allocate(@event);
         if (parser != null)
             parser.setParent(this);
 
@@ -236,20 +224,20 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
     }
 
     /** {@inheritDoc} */
-    public Object parse(XMLEventParserContext ctx, XMLEvent inputEvent, Object... args) throws XMLStreamException
+    public object parse(XMLEventParserContext ctx, javax.xml.stream.events.XMLEvent inputEvent, params object[] args)
     {
         if (ctx == null)
         {
-            String message = Logging.getMessage("nullValue.ParserContextIsNull");
+            string message = Logging.getMessage("nullValue.ParserContextIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new System.ArgumentException(message);
         }
 
         if (inputEvent == null)
         {
-            String message = Logging.getMessage("nullValue.EventIsNull");
+            string message = Logging.getMessage("nullValue.EventIsNull");
             Logging.logger().severe(message);
-            throw new ArgumentException(message);
+            throw new System.ArgumentException(message);
         }
 
         try
@@ -258,11 +246,11 @@ abstract public class AbstractXMLEventParser implements XMLEventParser
             this.doParseEventAttributes(ctx, inputEvent, args);
 
             // Build the symbol table
-            String id = (String) this.getField("id");
+            string id = (string) this.getField("id");
             if (id != null)
                 ctx.addId(id, this);
         }
-        catch (XMLStreamException e)
+        catch (javax.xml.stream.XMLStreamException e)
         {
             ctx.firePropertyChange(new XMLParserNotification(ctx, XMLParserNotification.EXCEPTION, inputEvent,
                 "XML.ExceptionParsingElement", null, e));

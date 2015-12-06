@@ -8,11 +8,15 @@ using SharpEarth.avlist;
 namespace SharpEarth.util{
 
 
-/**
- * @author tag
- * @version $Id: Level.java 1171 2013-02-11 21:45:02Z dcollins $
- */
-public class Level extends AVListImpl implements Comparable<Level>
+  /**
+   * @author tag
+   * @version $Id: Level.java 1171 2013-02-11 21:45:02Z dcollins $
+   */
+  public class Level
+  {
+    public static object SEVERE { get; internal set; }
+  }
+  extends AVListImpl implements Comparable<Level>
 {
     protected AVList parameters;
     protected int levelNumber;

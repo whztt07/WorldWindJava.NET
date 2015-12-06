@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpEarth.java.net
+namespace SharpEarth.javax.xml.namespaces
 {
-  public class URL : File
+  public class QName
   {
-    internal string getPath()
+    internal QName getLocalPart()
     {
       throw new NotImplementedException();
     }

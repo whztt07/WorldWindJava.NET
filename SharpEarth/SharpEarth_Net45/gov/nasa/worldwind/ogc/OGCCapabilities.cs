@@ -4,12 +4,6 @@
  * All Rights Reserved.
  */
 
-using java.util.Iterator;
-using javax.xml.stream.events;
-using javax.xml.stream;
-using javax.xml.namespace.QName;
-using SharpEarth.util.xml;
-using SharpEarth.util;
 namespace SharpEarth.ogc{
 
 
@@ -20,7 +14,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCCapabilities.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-abstract public class OGCCapabilities extends AbstractXMLEventParser
+abstract public class OGCCapabilities : AbstractXMLEventParser
 {
     /**
      * Returns the default namespace URI. Must be overridden by subclasses to provide a specific URI. The default
@@ -28,7 +22,7 @@ abstract public class OGCCapabilities extends AbstractXMLEventParser
      *
      * @return the default namespace URI.
      */
-    abstract public String getDefaultNamespaceURI();
+    abstract public string getDefaultNamespaceURI();
 
     // Element names, constructed when the namespaceURI is known
     protected QName SERVICE;
