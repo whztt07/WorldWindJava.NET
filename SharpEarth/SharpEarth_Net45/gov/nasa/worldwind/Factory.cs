@@ -4,7 +4,8 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.avlist.AVList;
+using SharpEarth.avlist;
+
 namespace SharpEarth{
 
 
@@ -31,6 +32,6 @@ public interface Factory
      *                                  if object creation fails. The exception indicating the source of the failure is
      *                                  included as the {@link Exception#initCause(Throwable)}.
      */
-    Object createFromConfigSource(Object configSource, AVList parameters);
+    object createFromConfigSource(object configSource, AVList parameters);
 }
 }
