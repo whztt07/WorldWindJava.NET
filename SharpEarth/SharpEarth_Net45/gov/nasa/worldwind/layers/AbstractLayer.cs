@@ -20,13 +20,13 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: AbstractLayer.java 2254 2014-08-22 17:02:46Z tgaskins $
  */
-public abstract class AbstractLayer extends WWObjectImpl implements Layer
+public abstract class AbstractLayer : WWObjectImpl, Layer
 {
     private bool enabled = true;
     private bool pickable = true;
     private double opacity = 1d;
-    private double minActiveAltitude = -Double.MaxValue;
-    private double maxActiveAltitude = Double.MaxValue;
+    private double minActiveAltitude = -double.MaxValue;
+    private double maxActiveAltitude = double.MaxValue;
     private bool networkDownloadEnabled = true;
     private long expiryTime = 0;
     private ScreenCredit screenCredit = null;
@@ -42,35 +42,35 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         return pickable;
     }
 
-    public void setPickEnabled(boolean pickable)
+    public void setPickEnabled(bool pickable)
     {
         this.pickable = pickable;
     }
 
-    public void setEnabled(boolean enabled)
+    public void setEnabled(bool enabled)
     {
-        Boolean oldEnabled = this.enabled;
+        bool oldEnabled = this.enabled;
         this.enabled = enabled;
         this.propertyChange(new PropertyChangeEvent(this, "Enabled", oldEnabled, this.enabled));
     }
 
-    public String getName()
+    public string getName()
     {
-        Object n = this.getValue(AVKey.DISPLAY_NAME);
+        object n = this.getValue(AVKey.DISPLAY_NAME);
 
         return n != null ? n.ToString() : this.ToString();
     }
 
-    public void setName(String name)
+    public void setName(string name)
     {
         this.setValue(AVKey.DISPLAY_NAME, name);
     }
 
     public override string ToString()
     {
-        Object n = this.getValue(AVKey.DISPLAY_NAME);
+        object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.ToString() : super.ToString();
+        return n != null ? n.ToString() : base.ToString();
     }
 
     public double getOpacity()
@@ -103,20 +103,20 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         this.maxActiveAltitude = maxActiveAltitude;
     }
 
-    public Double getMinEffectiveAltitude(Double radius)
+    public double getMinEffectiveAltitude(double radius)
     {
         return null;
     }
 
-    public Double getMaxEffectiveAltitude(Double radius)
+    public double getMaxEffectiveAltitude(double radius)
     {
         return null;
     }
 
     public double getScale()
     {
-        Object o = this.getValue(AVKey.MAP_SCALE);
-        return o != null && o is Double ? (Double) o : 1;
+        object o = this.getValue(AVKey.MAP_SCALE);
+        return o != null && o is double ? (double) o : 1;
     }
 
     public bool isNetworkRetrievalEnabled()
@@ -124,7 +124,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         return networkDownloadEnabled;
     }
 
-    public void setNetworkRetrievalEnabled(boolean networkDownloadEnabled)
+    public void setNetworkRetrievalEnabled(bool networkDownloadEnabled)
     {
         this.networkDownloadEnabled = networkDownloadEnabled;
     }
@@ -138,7 +138,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         if (fileStore == null)
         {
-            String message = Logging.getMessage("nullValue.FileStoreIsNull");
+            string message = Logging.getMessage("nullValue.FileStoreIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -150,7 +150,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         if (dc == null)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -162,14 +162,14 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         if (dc == null)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getView())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
+        string message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -189,21 +189,21 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
 
         if (null == dc)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getGlobe())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getView())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -230,21 +230,21 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
 
         if (null == dc)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getGlobe())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getView())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -265,21 +265,21 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
 
         if (null == dc)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getGlobe())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (null == dc.getView())
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
+            string message = Logging.getMessage("layers.AbstractLayer.NoViewSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -323,14 +323,14 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
         return false;
     }
 
-    public String getRestorableState()
+    public string getRestorableState()
     {
         return null;
     }
 
-    public void restoreState(String stateInXml)
+    public void restoreState(string stateInXml)
     {
-        String message = Logging.getMessage("RestorableSupport.RestoreNotSupported");
+        string message = Logging.getMessage("RestorableSupport.RestoreNotSupported");
         Logging.logger().severe(message);
         throw new UnsupportedOperationException(message);
     }
@@ -372,7 +372,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         if (domElement == null)
         {
-            String message = Logging.getMessage("nullValue.DocumentIsNull");
+            string message = Logging.getMessage("nullValue.DocumentIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -386,7 +386,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     /**
      * Appends layer configuration parameters as elements to the specified context. This appends elements for the
      * following parameters: <table> <tr><th>Parameter</th><th>Element Path</th><th>Type</th></tr> <tr><td>{@link
-     * AVKey#DISPLAY_NAME}</td><td>DisplayName</td><td>String</td></tr> <tr><td>{@link
+     * AVKey#DISPLAY_NAME}</td><td>DisplayName</td><td>string</td></tr> <tr><td>{@link
      * AVKey#OPACITY}</td><td>Opacity</td><td>Double</td></tr> <tr><td>{@link AVKey#MAX_ACTIVE_ALTITUDE}</td><td>ActiveAltitudes/@max</td><td>Double</td></tr>
      * <tr><td>{@link AVKey#MIN_ACTIVE_ALTITUDE}</td><td>ActiveAltitudes/@min</td><td>Double</td></tr> <tr><td>{@link
      * AVKey#NETWORK_RETRIEVAL_ENABLED}</td><td>NetworkRetrievalEnabled</td><td>Boolean</td></tr> <tr><td>{@link
@@ -402,25 +402,25 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
      */
     public static Element createLayerConfigElements(AVList parameters, Element context)
     {
-        if (params == null)
+        if (parameters == null)
         {
-            String message = Logging.getMessage("nullValue.ParametersIsNull");
+            string message = Logging.getMessage("nullValue.ParametersIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         if (context == null)
         {
-            String message = Logging.getMessage("nullValue.ContextIsNull");
+            string message = Logging.getMessage("nullValue.ContextIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        WWXML.checkAndAppendTextElement(params, AVKey.DISPLAY_NAME, context, "DisplayName");
-        WWXML.checkAndAppendDoubleElement(params, AVKey.OPACITY, context, "Opacity");
+        WWXML.checkAndAppendTextElement(parameters, AVKey.DISPLAY_NAME, context, "DisplayName");
+        WWXML.checkAndAppendDoubleElement(parameters, AVKey.OPACITY, context, "Opacity");
 
-        Double maxAlt = AVListImpl.getDoubleValue(params, AVKey.MAX_ACTIVE_ALTITUDE);
-        Double minAlt = AVListImpl.getDoubleValue(params, AVKey.MIN_ACTIVE_ALTITUDE);
+        double maxAlt = AVListImpl.getDoubleValue(parameters, AVKey.MAX_ACTIVE_ALTITUDE);
+      double minAlt = AVListImpl.getDoubleValue(parameters, AVKey.MIN_ACTIVE_ALTITUDE);
         if (maxAlt != null || minAlt != null)
         {
             Element el = WWXML.appendElementPath(context, "ActiveAltitudes");
@@ -430,10 +430,10 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
                 WWXML.setDoubleAttribute(el, "min", minAlt);
         }
 
-        WWXML.checkAndAppendBooleanElement(params, AVKey.NETWORK_RETRIEVAL_ENABLED, context, "NetworkRetrievalEnabled");
-        WWXML.checkAndAppendDoubleElement(params, AVKey.MAP_SCALE, context, "MapScale");
-        WWXML.checkAndAppendScreenCreditElement(params, AVKey.SCREEN_CREDIT, context, "ScreenCredit");
-        WWXML.checkAndAppendBooleanElement(params, AVKey.PICK_ENABLED, context, "PickEnabled");
+        WWXML.checkAndAppendBooleanElement(parameters, AVKey.NETWORK_RETRIEVAL_ENABLED, context, "NetworkRetrievalEnabled");
+        WWXML.checkAndAppendDoubleElement(parameters, AVKey.MAP_SCALE, context, "MapScale");
+        WWXML.checkAndAppendScreenCreditElement(parameters, AVKey.SCREEN_CREDIT, context, "ScreenCredit");
+        WWXML.checkAndAppendBooleanElement(parameters, AVKey.PICK_ENABLED, context, "PickEnabled");
 
         return context;
     }
@@ -442,7 +442,7 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
      * Parses layer configuration parameters from the specified DOM document. This writes output as key-value pairs to
      * parameters. If a parameter from the XML document already exists in parameters, that parameter is ignored. Supported key
      * and parameter names are: <table> <tr><th>Parameter</th><th>Element Path</th><th>Type</th></tr> <tr><td>{@link
-     * AVKey#DISPLAY_NAME}</td><td>DisplayName</td><td>String</td></tr> <tr><td>{@link
+     * AVKey#DISPLAY_NAME}</td><td>DisplayName</td><td>string</td></tr> <tr><td>{@link
      * AVKey#OPACITY}</td><td>Opacity</td><td>Double</td></tr> <tr><td>{@link AVKey#MAX_ACTIVE_ALTITUDE}</td><td>ActiveAltitudes/@max</td><td>Double</td></tr>
      * <tr><td>{@link AVKey#MIN_ACTIVE_ALTITUDE}</td><td>ActiveAltitudes/@min</td><td>Double</td></tr> <tr><td>{@link
      * AVKey#NETWORK_RETRIEVAL_ENABLED}</td><td>NetworkRetrievalEnabled</td><td>Boolean</td></tr> <tr><td>{@link
@@ -461,12 +461,12 @@ public abstract class AbstractLayer extends WWObjectImpl implements Layer
     {
         if (domElement == null)
         {
-            String message = Logging.getMessage("nullValue.DocumentIsNull");
+            string message = Logging.getMessage("nullValue.DocumentIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if (parameters == null)
             parameters = new AVListImpl();
 
         XPath xpath = WWXML.makeXPath();
