@@ -3,6 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using java.awt.events;
+
 namespace SharpEarth.awt{
 
 /**
@@ -11,9 +14,10 @@ namespace SharpEarth.awt{
  */
 public interface KeyInputActionHandler
 {
-    public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
+    bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, string target,
+
         ViewInputAttributes.ActionAttributes viewAction);
-    public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
+    bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEvent keyEvent,
         ViewInputAttributes.ActionAttributes viewAction);
 
 }
