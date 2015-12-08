@@ -3,8 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using java.util;
-using java.net;
+using SharpEarth.java.net;
 using SharpEarth.util;
 namespace SharpEarth.wms{
 
@@ -38,9 +40,8 @@ public abstract class Request
      *
      * @throws URISyntaxException if the web service address is not a valid URI.
      */
-    protected Request(URI uri) throws URISyntaxException
+    protected Request(URI uri) : this(uri, null)
     {
-        this(uri, null);
     }
 
     /**
@@ -52,7 +53,7 @@ public abstract class Request
      *
      * @throws URISyntaxException if the web service address is not a valid URI.
      */
-    protected Request(URI uri, String service) throws URISyntaxException
+    protected Request(URI uri, string service)
     {
         if (uri != null)
         {
@@ -78,11 +79,11 @@ public abstract class Request
      * @throws ArgumentException if copy source is null.
      * @throws URISyntaxException       if the web service address is not a valid URI.
      */
-    public Request(Request sourceRequest) throws URISyntaxException
+    public Request(Request sourceRequest)
     {
         if (sourceRequest == null)
         {
-            String message = Logging.getMessage("nullValue.CopyConstructorSourceIsNull");
+            string message = Logging.getMessage("nullValue.CopyConstructorSourceIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -91,9 +92,9 @@ public abstract class Request
         this.setUri(sourceRequest.getUri());
     }
 
-    protected void initialize(String service)
+    protected void initialize(string service)
     {
-        this.queryParams.put("SERVICE", service != null ? service : "WMS");
+        this.queryParams.put("SERVICE", service ?? "WMS");
         this.queryParams.put("EXCEPTIONS", "application/vnd.ogc.se_xml");
     }
 
@@ -112,7 +113,7 @@ public abstract class Request
         }
     }
 
-    protected void setUri(URI uri) throws URISyntaxException
+    protected void setUri(URI uri)
     {
         if (uri == null)
         {
@@ -128,23 +129,23 @@ public abstract class Request
         }
         catch (URISyntaxException e)
         {
-            String message = Logging.getMessage("generic.URIInvalid", uri.ToString());
+        string message = Logging.getMessage("generic.URIInvalid", uri.ToString());
             Logging.logger().fine(message);
             throw e;
         }
     }
 
-    public String getRequestName()
+    public string getRequestName()
     {
         return this.getParam("REQUEST");
     }
 
-    public String getVersion()
+    public string getVersion()
     {
         return this.getParam("VERSION");
     }
 
-    public void setVersion(String version)
+    public void setVersion( string version )
     {
         if (version == null)
         {
@@ -156,12 +157,12 @@ public abstract class Request
         this.setParam("VERSION", version);
     }
 
-    public String getService()
+    public string getService()
     {
         return this.getParam("SERVICE");
     }
 
-    public void setService(String service)
+    public void setService( string service )
     {
         if (service == null)
         {
@@ -173,18 +174,18 @@ public abstract class Request
         this.setParam("SERVICE", service);
     }
 
-    public void setParam(String key, String value)
+    public void setParam( string key, string value )
     {
         if (key != null)
             this.queryParams.put(key, value);
     }
 
-    public String getParam(String key)
+    public string getParam( string key )
     {
         return key != null ? this.queryParams.get(key) : null;
     }
 
-    public URI getUri() throws URISyntaxException
+    public URI getUri()
     {
         if (this.uri == null)
             return null;
@@ -196,13 +197,13 @@ public abstract class Request
         }
         catch (URISyntaxException e)
         {
-            String message = Logging.getMessage("generic.URIInvalid", uri.ToString());
+            string message = Logging.getMessage("generic.URIInvalid", uri.ToString());
             Logging.logger().fine(message);
             throw e;
         }
     }
 
-    private String buildQueryString(String existingQueryString)
+    private string buildQueryString( string existingQueryString )
     {
         StringBuffer queryString = new StringBuffer(existingQueryString != null ? existingQueryString : "");
 
@@ -233,10 +234,10 @@ public abstract class Request
 
     public override string ToString()
     {
-        String errorMessage = "Error converting wms-request URI to string.";
+        string errorMessage = "Error converting wms-request URI to string.";
         try
         {
-            java.net.URI fullUri = this.getUri();
+            URI fullUri = this.getUri();
             return fullUri != null ? fullUri.ToString() : errorMessage;
         }
         catch (URISyntaxException e)

@@ -777,6 +777,7 @@
     <Compile Include="java\lang\NoSuchMethodException.cs" />
     <Compile Include="java\lang\reflect\Constructor.cs" />
     <Compile Include="java\lang\UnsupportedOperationException.cs" />
+    <Compile Include="java\net\URI.cs" />
     <Compile Include="java\net\URL.cs" />
     <Compile Include="java\nio\FloatBuffer.cs" />
     <Compile Include="java\nio\IntBuffer.cs" />
@@ -789,6 +790,7 @@
     <Compile Include="java\io\Serializable.cs" />
     <Compile Include="java\util\GL.cs" />
     <Compile Include="java\util\GL2.cs" />
+    <Compile Include="java\util\logging\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
