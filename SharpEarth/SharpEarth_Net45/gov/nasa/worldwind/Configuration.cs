@@ -4,6 +4,9 @@
  * All Rights Reserved.
  */
 
+using System;
+using System.IO;
+using System.Runtime.CompilerServices;
 using java.util.logging.Level;
 using java.util;
 using java.io;
@@ -13,6 +16,10 @@ using org.w3c.dom;
 using SharpEarth.util;
 using SharpEarth.geom.Angle;
 using SharpEarth.avlist;
+using SharpEarth.geom;
+using SharpEarth.java.org.w3c.dom;
+using SharpEarth.javax.xml.xpath;
+
 namespace SharpEarth{
 
 
@@ -183,7 +190,7 @@ public class Configuration // Singleton
         java.util.TimeZone tz = java.util.Calendar.getInstance().getTimeZone();
         if (tz != null)
             defaults.setProperty(AVKey.INITIAL_LONGITUDE,
-                Double.ToString(
+                System.Double.ToString(
                     Angle.fromDegrees(180.0 * tz.getOffset(System.currentTimeMillis()) / (12.0 * 3.6e6)).degrees));
         return defaults;
     }
@@ -240,7 +247,8 @@ public class Configuration // Singleton
      *
      * @return the value associated with the key, or the specified default value if the key does not exist.
      */
-    public static synchronized String getStringValue(String key, String defaultValue)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static string getStringValue( string key, string defaultValue )
     {
         String v = getStringValue(key);
         return v != null ? v : defaultValue;
@@ -253,7 +261,8 @@ public class Configuration // Singleton
      *
      * @return the value associated with the key, or null if the key does not exist.
      */
-    public static synchronized String getStringValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static string getStringValue( string key )
     {
         Object o = getInstance().properties.getProperty(key);
         return o != null ? o.ToString() : null;
@@ -370,7 +379,7 @@ public class Configuration // Singleton
 
         try
         {
-            return Double.parseDouble(v);
+            return System.Double.parseDouble(v);
         }
         catch (NumberFormatException e)
         {
