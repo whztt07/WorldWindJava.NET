@@ -5,7 +5,8 @@
  */
 
 using System.Collections.Generic;
-using java.util;
+using java.beans;
+
 namespace SharpEarth.avlist{
 
 
@@ -104,7 +105,7 @@ public interface AVList
      * @throws ArgumentException if either <code>propertyName</code> or <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void addPropertyChangeListener(string propertyName, java.beans.PropertyChangeListener listener);
+    void addPropertyChangeListener(string propertyName, PropertyChangeListener listener);
 
     /**
      * Removes a property change listener associated with the specified key.
@@ -115,7 +116,7 @@ public interface AVList
      * @throws ArgumentException if either <code>propertyName</code> or <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void removePropertyChangeListener(string propertyName, java.beans.PropertyChangeListener listener);
+    void removePropertyChangeListener(string propertyName, PropertyChangeListener listener );
 
     /**
      * Adds the specified all-property property change listener that will be called for all list changes.
@@ -125,7 +126,7 @@ public interface AVList
      * @throws ArgumentException if <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void addPropertyChangeListener(java.beans.PropertyChangeListener listener);
+    void addPropertyChangeListener( PropertyChangeListener listener );
 
     /**
      * Removes the specified all-property property change listener.
@@ -135,7 +136,7 @@ public interface AVList
      * @throws ArgumentException if <code>listener</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void removePropertyChangeListener(java.beans.PropertyChangeListener listener);
+    void removePropertyChangeListener( PropertyChangeListener listener );
 
     /**
      * Calls all property change listeners associated with the specified key. No listeners are called if
@@ -158,7 +159,7 @@ public interface AVList
      * @throws ArgumentException if <code>propertyChangeEvent</code> is null
      * @see java.beans.PropertyChangeSupport
      */
-    void firePropertyChange(java.beans.PropertyChangeEvent propertyChangeEvent);
+    void firePropertyChange(PropertyChangeEvent propertyChangeEvent);
 
     /**
      * Returns a shallow copy of this <code>AVList</code> instance: the keys and values themselves are not cloned.

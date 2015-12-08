@@ -4,6 +4,9 @@
  * All Rights Reserved.
  */
 
+using System;
+using System.Runtime.CompilerServices;
+using java.beans;
 using java.util.logging.Level;
 using java.beans.PropertyChangeListener;
 using javax.media.opengl.GL;
@@ -17,6 +20,13 @@ using SharpEarth.cache.MemoryCacheSet;
 using SharpEarth.cache.MemoryCache;
 using SharpEarth.cache.FileStore;
 using SharpEarth.avlist;
+using SharpEarth.cache;
+using SharpEarth.exception;
+using SharpEarth.formats.tiff;
+using SharpEarth.java.lang;
+using SharpEarth.java.util;
+using SharpEarth.retrieve;
+
 namespace SharpEarth{
 
 
@@ -122,7 +132,8 @@ public sealed class WorldWind
         return instance.memoryCacheSet;
     }
 
-    public static synchronized MemoryCache getMemoryCache(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static MemoryCache getMemoryCache(string key)
     {
         return instance.memoryCacheSet.getCache(key);
     }

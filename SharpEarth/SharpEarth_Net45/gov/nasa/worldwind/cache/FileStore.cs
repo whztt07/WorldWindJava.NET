@@ -3,8 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.net.URL;
-using SharpEarth.WWObject;
+using SharpEarth;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,14 +23,14 @@ public interface FileStore : WWObject
      *
      * @return the list of locations the file store will search when a file is requested.
      */
-    IList<File> getLocations();
+    IList<FileInfo> getLocations();
 
     /**
      * Returns the location that additions to the file store are placed.
      *
      * @return the location at which new entries are placed.
      */
-    File getWriteLocation();
+    FileInfo getWriteLocation();
 
     /**
      * Adds a location to search when files are requested from the file store.

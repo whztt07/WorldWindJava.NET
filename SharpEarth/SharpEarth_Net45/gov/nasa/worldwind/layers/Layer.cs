@@ -13,7 +13,7 @@ namespace SharpEarth.layers{
  * @author Tom Gaskins
  * @version $Id: Layer.java 1824 2014-01-22 22:41:10Z dcollins $
  */
-public interface Layer extends WWObject, Disposable, Restorable
+public interface Layer : WWObject, Disposable, Restorable
 {
     /**
      * Indicates whether the layer is enabled for rendering and selection.
@@ -27,14 +27,14 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @param enabled <code>true</code> if the layer is enabled, else <code>false</code>.
      */
-    void setEnabled(boolean enabled);
+    void setEnabled(bool enabled);
 
     /**
      * Returns the layer's name, as specified in the most recent call to {@link #setName}.
      *
      * @return the layer's name.
      */
-    String getName();
+    string getName();
 
     /**
      * Set the layer's name. The name is a convenience attribute typically used to identify the layer in user
@@ -42,7 +42,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @param name the name to assign to the layer.
      */
-    void setName(String name);
+    void setName(string name);
 
     /**
      * Returns the layer's opacity, the degree to which it is blended with underlying layers.
@@ -83,7 +83,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @param isPickable <code>true</code> if the layer should perform picking, else <code>false</code>.
      */
-    void setPickEnabled(boolean isPickable);
+    void setPickEnabled(bool isPickable);
 
     /**
      * Causes the layer to perform any actions necessary to subsequently render the layer. The layer has exclusive
@@ -151,7 +151,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @param networkRetrievalEnabled <code>true</code> if network retrieval is allowed, else <code>false</code>.
      */
-    void setNetworkRetrievalEnabled(boolean networkRetrievalEnabled);
+    void setNetworkRetrievalEnabled(bool networkRetrievalEnabled);
 
     /**
      * Specifies the time of the layer's most recent dataset update. If greater than zero, the layer ignores and
@@ -234,7 +234,7 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return the layer's maximum effective altitude.
      */
-    Double getMaxEffectiveAltitude(Double radius);
+    double? getMaxEffectiveAltitude(double? radius);
 
     /**
      * Indicates the altitude below which this layer likely has low value or is not expected to be active. This value is
@@ -249,6 +249,6 @@ public interface Layer extends WWObject, Disposable, Restorable
      *
      * @return the layer's minimum effective altitude.
      */
-    Double getMinEffectiveAltitude(Double radius);
+    double? getMinEffectiveAltitude( double? radius );
 }
 }

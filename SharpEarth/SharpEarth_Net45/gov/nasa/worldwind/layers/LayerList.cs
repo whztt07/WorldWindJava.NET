@@ -19,7 +19,7 @@ namespace SharpEarth.layers{
  * @author Tom Gaskins
  * @version $Id: LayerList.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class LayerList extends CopyOnWriteArrayList<Layer> implements WWObject
+public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 {
     private WWObjectImpl wwo = new WWObjectImpl(this);
 

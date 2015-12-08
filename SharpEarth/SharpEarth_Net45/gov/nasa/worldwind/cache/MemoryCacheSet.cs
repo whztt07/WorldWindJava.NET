@@ -3,8 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System.Collections.Generic;
 using java.util;
-using SharpEarth.util.PerformanceStatistic;
+using SharpEarth.util;
 namespace SharpEarth.cache{
 
 
@@ -15,16 +17,16 @@ namespace SharpEarth.cache{
  */
 public interface MemoryCacheSet
 {
-    bool containsCache(String key);
+    bool containsCache(string key);
 
-    MemoryCache getCache(String cacheKey);
+    MemoryCache getCache(string cacheKey);
 
-    MemoryCache addCache(String key, MemoryCache cache);
+    MemoryCache addCache(string key, MemoryCache cache);
 
-    Collection<PerformanceStatistic> getPerformanceStatistics();
+    IEnumerable<PerformanceStatistic> getPerformanceStatistics();
 
     void clear();
 
-    Map<String, MemoryCache> getAllCaches();
+    IDictionary<string, MemoryCache> getAllCaches();
 }
 }

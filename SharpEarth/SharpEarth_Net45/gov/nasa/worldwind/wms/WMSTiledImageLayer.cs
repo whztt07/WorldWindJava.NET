@@ -3,17 +3,21 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using java.net;
 using java.io;
 using java.awt.image;
 using javax.imageio.ImageIO;
-using org.w3c.dom;
 using SharpEarth.util;
-using SharpEarth.ogc.wms.WMSCapabilities;
+using SharpEarth.ogc.wms;
 using SharpEarth.layers;
 using SharpEarth.geom;
-using SharpEarth.exception.WWRuntimeException;
+using SharpEarth.exception;
 using SharpEarth.avlist;
+using SharpEarth.java.net;
+using SharpEarth.java.org.w3c.dom;
+
 namespace SharpEarth.wms{
 
 
@@ -88,13 +92,13 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if ( parameters == null)
             parameters = new AVListImpl();
 
         DataConfigurationUtils.getWMSLayerConfigParams(domElement, parameters);
         BasicTiledImageLayer.getParamsFromDocument(domElement, parameters);
 
-        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(params));
+        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder( parameters ) );
 
         return parameters;
     }
@@ -120,7 +124,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if ( parameters == null)
             parameters = new AVListImpl();
 
         try
@@ -140,7 +144,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
             throw new ArgumentException(message, e);
         }
 
-        setFallbacks(params);
+        setFallbacks( parameters );
 
         // Setup WMS URL builder.
         parameters.setValue(AVKey.WMS_VERSION, caps.getVersion());
@@ -152,7 +156,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
     }
 
     // TODO: consolidate common code in WMSTiledImageLayer.URLBuilder and WMSBasicElevationModel.URLBuilder
-    public static class URLBuilder implements TileUrlBuilder
+    public static class URLBuilder : TileUrlBuilder
     {
         private static final String MAX_VERSION = "1.3.0";
 
@@ -191,7 +195,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
             this.crs = coordSystemKey + (coordinateSystem != null ? coordinateSystem : defaultCS);
         }
 
-        public URL getURL(Tile tile, String altImageFormat) throws MalformedURLException
+        public URL getURL(Tile tile, String altImageFormat)
         {
             StringBuffer sb;
             if (this.URLTemplate == null)
@@ -253,14 +257,13 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
         }
     }
 
-    protected static class ComposeImageTile extends TextureTile
+    protected static class ComposeImageTile : TextureTile
     {
         protected int width;
         protected int height;
         protected File file;
 
         public ComposeImageTile(Sector sector, String mimeType, Level level, int width, int height)
-            throws IOException
         {
             super(sector, level, -1, -1); // row and column aren't used and need to signal that
 
@@ -270,20 +273,17 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
             this.file = File.createTempFile(WWIO.DELETE_ON_EXIT_PREFIX, WWIO.makeSuffixForMimeType(mimeType));
         }
 
-        @Override
-        public int getWidth()
+        public override int getWidth()
         {
             return this.width;
         }
 
-        @Override
-        public int getHeight()
+        public override int getHeight()
         {
             return this.height;
         }
 
-        @Override
-        public String getPath()
+        public override String getPath()
         {
             return this.file.getPath();
         }
@@ -294,9 +294,8 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
         }
     }
 
-    @Override
     public BufferedImage composeImageForSector(Sector sector, int canvasWidth, int canvasHeight, double aspectRatio,
-        int levelNumber, String mimeType, bool abortOnError, BufferedImage image, int timeout) throws Exception
+        int levelNumber, String mimeType, bool abortOnError, BufferedImage image, int timeout)
     {
         if (sector == null)
         {

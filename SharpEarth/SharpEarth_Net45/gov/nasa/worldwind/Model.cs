@@ -4,8 +4,10 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.layers.LayerList;
+using SharpEarth.geom;
 using SharpEarth.globes;
+using SharpEarth.layers;
+
 namespace SharpEarth{
 
 
@@ -17,14 +19,14 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: Model.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface Model extends WWObject
+public interface Model : WWObject
 {
     /**
      * Returns the bounding sphere in Cartesian world coordinates of the model.
      *
      * @return the model's bounding sphere in Cartesian coordinates, or null if the extent cannot be determined.
      */
-    SharpEarth.geom.Extent getExtent();
+    Extent getExtent();
 
     /**
      * Indicates the globe in this model.
@@ -61,14 +63,14 @@ public interface Model extends WWObject
      *
      * @param show true causes the geometry to be shown, false, the default, does not.
      */
-    void setShowWireframeInterior(boolean show);
+    void setShowWireframeInterior(bool show);
 
     /**
      * Specifies whether to display as wireframe the exterior geometry of the tessellated globe surface.
      *
      * @param show true causes the geometry to be shown, false, the default, does not.
      */
-    void setShowWireframeExterior(boolean show);
+    void setShowWireframeExterior( bool show );
 
     /**
      * Indicates whether the globe surface's interior geometry is to be drawn.
@@ -96,6 +98,6 @@ public interface Model extends WWObject
      *
      * @param showTileBoundingVolumes true if the bounding volumes should be drawn, false, the default, if not.
      */
-    void setShowTessellationBoundingVolumes(boolean showTileBoundingVolumes);
+    void setShowTessellationBoundingVolumes( bool showTileBoundingVolumes );
 }
 }

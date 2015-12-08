@@ -4,16 +4,18 @@
  * All Rights Reserved.
  */
 
+using System;
+using System.Collections.ObjectModel;
 using java.util;
 using java.awt;
-using javax.swing.event;
 using SharpEarth.util;
 using SharpEarth.pick;
-using SharpEarth.layers.Layer;
-using SharpEarth.geom.Position;
+using SharpEarth.layers;
+using SharpEarth.geom;
 using SharpEarth.events;
 using SharpEarth.cache;
 using SharpEarth.avlist;
+
 namespace SharpEarth{
 
 
@@ -25,10 +27,10 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: WorldWindowImpl.java 1855 2014-02-28 23:01:02Z tgaskins $
  */
-public abstract class WorldWindowImpl extends WWObjectImpl implements WorldWindow
+public abstract class WorldWindowImpl : WWObjectImpl, WorldWindow
 {
     private SceneController sceneController;
-    private final EventListenerList eventListeners = new EventListenerList();
+    private readonly EventListenerList eventListeners = new EventListenerList();
     private InputHandler inputHandler;
     protected GpuResourceCache gpuResourceCache;
 
@@ -62,7 +64,7 @@ public abstract class WorldWindowImpl extends WWObjectImpl implements WorldWindo
         // Dispose all the layers //  TODO: Need per-window dispose for layers
         if (this.getModel() != null && this.getModel().getLayers() != null)
         {
-            for (Layer layer : this.getModel().getLayers())
+            foreach (Layer layer in this.getModel().getLayers())
             {
                 try
                 {
