@@ -5,32 +5,34 @@
  */
 
 using System;
-using java.util;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using java.net;
 using SharpEarth.java.net;
 using SharpEarth.util;
-namespace SharpEarth.wms{
 
-
-
+namespace SharpEarth.wms
+{
 /**
  * This class provides a means to construct an OGC web service request, such as WMS GetMap or WFS GetCapabilities.
  *
  * @author tag
  * @version $Id: Request.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class Request
-{
-    private URI uri;
 
+  public abstract class Request
+  {
     // Use a TreeMap to hold the query parameters so that they'll always be attached to the
     // URL query string in the same order. This allows a simple string comparison to
     // determine whether two url strings address the same document.
-    private TreeMap<String, String> queryParams = new TreeMap<String, String>();
-
+    private readonly SortedDictionary<string, string> queryParams = new SortedDictionary<string, string>();
+    private URI uri;
     /** Constructs a request for the default service, WMS. */
+
     protected Request()
     {
-        this.initialize(null);
+      initialize( null );
     }
 
     /**
@@ -40,7 +42,8 @@ public abstract class Request
      *
      * @throws URISyntaxException if the web service address is not a valid URI.
      */
-    protected Request(URI uri) : this(uri, null)
+
+    protected Request( URI uri ) : this( uri, null )
     {
     }
 
@@ -53,22 +56,23 @@ public abstract class Request
      *
      * @throws URISyntaxException if the web service address is not a valid URI.
      */
-    protected Request(URI uri, string service)
-    {
-        if (uri != null)
-        {
-            try
-            {
-                this.setUri(uri);
-            }
-            catch (URISyntaxException e)
-            {
-                Logging.logger().fine(Logging.getMessage("generic.URIInvalid", uri.ToString()));
-                throw e;
-            }
-        }
 
-        this.initialize(service);
+    protected Request( URI uri, string service )
+    {
+      if ( uri != null )
+      {
+        try
+        {
+          setUri( uri );
+        }
+        catch ( URISyntaxException e )
+        {
+          Logging.logger().fine( Logging.getMessage( "generic.URIInvalid", uri.ToString() ) );
+          throw e;
+        }
+      }
+
+      initialize( service );
     }
 
     /**
@@ -79,171 +83,166 @@ public abstract class Request
      * @throws ArgumentException if copy source is null.
      * @throws URISyntaxException       if the web service address is not a valid URI.
      */
-    public Request(Request sourceRequest)
-    {
-        if (sourceRequest == null)
-        {
-            string message = Logging.getMessage("nullValue.CopyConstructorSourceIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
 
-        sourceRequest.copyParamsTo(this);
-        this.setUri(sourceRequest.getUri());
+    protected Request( Request sourceRequest )
+    {
+      if ( sourceRequest == null )
+      {
+        var message = Logging.getMessage( "nullValue.CopyConstructorSourceIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
+
+      sourceRequest.copyParamsTo( this );
+      setUri( sourceRequest.getUri() );
     }
 
-    protected void initialize(string service)
+    protected void initialize( string service )
     {
-        this.queryParams.put("SERVICE", service ?? "WMS");
-        this.queryParams.put("EXCEPTIONS", "application/vnd.ogc.se_xml");
+      queryParams.Add( "SERVICE", service ?? "WMS" );
+      queryParams.Add( "EXCEPTIONS", "application/vnd.ogc.se_xml" );
     }
 
-    private void copyParamsTo(Request destinationRequest)
+    private void copyParamsTo( Request destinationRequest )
     {
-        if (destinationRequest == null)
-        {
-            String message = Logging.getMessage("nullValue.CopyTargetIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
+      if ( destinationRequest == null )
+      {
+        var message = Logging.getMessage( "nullValue.CopyTargetIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
 
-        for (Map.Entry<String, String> entry : this.queryParams.entrySet())
-        {
-            destinationRequest.setParam((String) ((Map.Entry) entry).getKey(), (String) ((Map.Entry) entry).getValue());
-        }
+      foreach ( var entry in queryParams )
+        destinationRequest.queryParams.Add( entry.Key, entry.Value );
     }
 
-    protected void setUri(URI uri)
+    protected void setUri( URI uri )
     {
-        if (uri == null)
-        {
-            String message = Logging.getMessage("nullValue.URIIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
+      if ( uri == null )
+      {
+        var message = Logging.getMessage( "nullValue.URIIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
 
-        try
-        {
-            this.uri = new URI(uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(),
-                this.buildQueryString(uri.getQuery()), null);
-        }
-        catch (URISyntaxException e)
-        {
-        string message = Logging.getMessage("generic.URIInvalid", uri.ToString());
-            Logging.logger().fine(message);
-            throw e;
-        }
+      try
+      {
+        this.uri = new URI( uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(), uri.getPath(),
+          buildQueryString( uri.getQuery() ), null );
+      }
+      catch ( URISyntaxException e )
+      {
+        var message = Logging.getMessage( "generic.URIInvalid", uri.ToString() );
+        Logging.logger().fine( message );
+        throw e;
+      }
     }
 
     public string getRequestName()
     {
-        return this.getParam("REQUEST");
+      return getParam( "REQUEST" );
     }
 
     public string getVersion()
     {
-        return this.getParam("VERSION");
+      return getParam( "VERSION" );
     }
 
     public void setVersion( string version )
     {
-        if (version == null)
-        {
-            String message = Logging.getMessage("nullValue.WMSVersionIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
+      if ( version == null )
+      {
+        var message = Logging.getMessage( "nullValue.WMSVersionIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
 
-        this.setParam("VERSION", version);
+      setParam( "VERSION", version );
     }
 
     public string getService()
     {
-        return this.getParam("SERVICE");
+      return getParam( "SERVICE" );
     }
 
     public void setService( string service )
     {
-        if (service == null)
-        {
-            String message = Logging.getMessage("nullValue.WMSServiceNameIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
+      if ( service == null )
+      {
+        var message = Logging.getMessage( "nullValue.WMSServiceNameIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
 
-        this.setParam("SERVICE", service);
+      setParam( "SERVICE", service );
     }
 
     public void setParam( string key, string value )
     {
-        if (key != null)
-            this.queryParams.put(key, value);
+      if ( key != null )
+        queryParams.Add( key, value );
     }
 
     public string getParam( string key )
     {
-        return key != null ? this.queryParams.get(key) : null;
+      string value;
+      return queryParams.TryGetValue( key, out value ) ? value : null;
     }
 
     public URI getUri()
     {
-        if (this.uri == null)
-            return null;
+      if ( uri == null )
+        return null;
 
-        try
-        {
-            return new URI(this.uri.getScheme(), this.uri.getUserInfo(), this.uri.getHost(), this.uri.getPort(),
-                uri.getPath(), this.buildQueryString(uri.getQuery()), null);
-        }
-        catch (URISyntaxException e)
-        {
-            string message = Logging.getMessage("generic.URIInvalid", uri.ToString());
-            Logging.logger().fine(message);
-            throw e;
-        }
+      try
+      {
+        return new URI( uri.getScheme(), uri.getUserInfo(), uri.getHost(), uri.getPort(),
+          uri.getPath(), buildQueryString( uri.getQuery() ), null );
+      }
+      catch ( URISyntaxException e )
+      {
+        var message = Logging.getMessage( "generic.URIInvalid", uri.ToString() );
+        Logging.logger().fine( message );
+        throw e;
+      }
     }
 
     private string buildQueryString( string existingQueryString )
     {
-        StringBuffer queryString = new StringBuffer(existingQueryString != null ? existingQueryString : "");
+      if ( existingQueryString.Length > 1 && !existingQueryString.EndsWith( "&" ) )
+        existingQueryString += "&";
+      var queryString = new StringBuilder( existingQueryString );
 
-        if (queryString.length() > 1 && queryString.lastIndexOf("&") != queryString.length() - 1)
-            queryString = queryString.append("&");
 
-        for (Map.Entry<String, String> entry : this.queryParams.entrySet())
-        {
-            if (((Map.Entry) entry).getKey() != null && ((Map.Entry) entry).getValue() != null)
-            {
-                queryString.append(((Map.Entry) entry).getKey());
-                queryString.append("=");
-                queryString.append(((Map.Entry) entry).getValue());
-                queryString.append("&");
-            }
-        }
+      foreach ( var entry in queryParams )
+      {
+        queryString.Append( $"{entry.Key}={entry.Value}&" );
+      }
 
-        // Remove a trailing ampersand
-        if (WWUtil.isEmpty(existingQueryString))
-        {
-            int trailingAmpersandPosition = queryString.lastIndexOf("&");
-            if (trailingAmpersandPosition >= 0)
-                queryString.deleteCharAt(trailingAmpersandPosition);
-        }
 
-        return queryString.ToString();
+      var finalString = queryString.ToString();
+
+      // Remove a trailing ampersand
+      if ( string.IsNullOrWhiteSpace( existingQueryString ) )
+      {
+        finalString = finalString.TrimEnd( '&' );
+      }
+
+      return finalString;
     }
 
     public override string ToString()
     {
-        string errorMessage = "Error converting wms-request URI to string.";
-        try
-        {
-            URI fullUri = this.getUri();
-            return fullUri != null ? fullUri.ToString() : errorMessage;
-        }
-        catch (URISyntaxException e)
-        {
-            return errorMessage;
-        }
+      var errorMessage = "Error converting wms-request URI to string.";
+      try
+      {
+        var fullUri = getUri();
+        return fullUri != null ? fullUri.ToString() : errorMessage;
+      }
+      catch ( URISyntaxException e )
+      {
+        return errorMessage;
+      }
     }
-}
+  }
 }

@@ -30,16 +30,15 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: BasicTiledImageLayer.java 2684 2015-01-26 18:31:22Z tgaskins $
  */
-public class BasicTiledImageLayer extends TiledImageLayer implements BulkRetrievable
+public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
 {
-    protected final Object fileLock = new Object();
+    protected readonly object fileLock = new object();
 
     // Layer resource properties.
-    protected static final int RESOURCE_ID_OGC_CAPABILITIES = 1;
+    protected static readonly int RESOURCE_ID_OGC_CAPABILITIES = 1;
 
-    public BasicTiledImageLayer(LevelSet levelSet)
+    public BasicTiledImageLayer(LevelSet levelSet) : base(levelSet)
     {
-        super(levelSet);
     }
 
     public BasicTiledImageLayer(AVList parameters)

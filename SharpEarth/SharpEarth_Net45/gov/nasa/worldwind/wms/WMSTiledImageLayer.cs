@@ -22,21 +22,19 @@ namespace SharpEarth.wms{
  * @author tag
  * @version $Id: WMSTiledImageLayer.java 1957 2014-04-23 23:32:39Z tgaskins $
  */
-public class WMSTiledImageLayer extends BasicTiledImageLayer
+public class WMSTiledImageLayer : BasicTiledImageLayer
 {
-    private static final String[] formatOrderPreference = new String[]
+    private static readonly string[] formatOrderPreference = new string[]
         {
             "image/dds", "image/png", "image/jpeg"
         };
 
-    public WMSTiledImageLayer(AVList parameters)
+    public WMSTiledImageLayer(AVList parameters) : base(parameters)
     {
-        super(params);
     }
 
-    public WMSTiledImageLayer(Document dom, AVList parameters)
+    public WMSTiledImageLayer(Document dom, AVList parameters) : this( dom.getDocumentElement(), parameters)
     {
-        this(dom.getDocumentElement(), parameters);
     }
 
     public WMSTiledImageLayer(Element domElement, AVList parameters)

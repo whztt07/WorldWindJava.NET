@@ -778,6 +778,7 @@
     <Compile Include="java\lang\reflect\Constructor.cs" />
     <Compile Include="java\lang\UnsupportedOperationException.cs" />
     <Compile Include="java\net\URI.cs" />
+    <Compile Include="java\net\URISyntaxException.cs" />
     <Compile Include="java\net\URL.cs" />
     <Compile Include="java\nio\FloatBuffer.cs" />
     <Compile Include="java\nio\IntBuffer.cs" />

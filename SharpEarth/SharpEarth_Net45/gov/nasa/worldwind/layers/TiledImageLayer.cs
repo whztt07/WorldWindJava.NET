@@ -28,7 +28,7 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: TiledImageLayer.java 2922 2015-03-24 23:56:58Z tgaskins $
  */
-public abstract class TiledImageLayer extends AbstractLayer
+public abstract class TiledImageLayer : AbstractLayer
 {
     // Infrastructure
     protected static final LevelComparer levelComparer = new LevelComparer();

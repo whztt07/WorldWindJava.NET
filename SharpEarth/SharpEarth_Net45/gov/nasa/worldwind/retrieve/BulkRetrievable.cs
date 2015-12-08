@@ -3,9 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.geom.Sector;
-using SharpEarth.events.BulkRetrievalListener;
-using SharpEarth.cache.FileStore;
+using SharpEarth.geom;
+using SharpEarth.events;
+using SharpEarth.cache;
 namespace SharpEarth.retrieve {
 
 
@@ -80,6 +80,6 @@ public interface BulkRetrievable
     BulkRetrievalThread makeLocal(Sector sector, double resolution, FileStore fileStore,
         BulkRetrievalListener listener);
     
-    String getName();
+    string getName();
 }
 }
