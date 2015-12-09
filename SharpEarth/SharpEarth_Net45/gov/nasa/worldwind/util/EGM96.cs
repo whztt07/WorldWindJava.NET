@@ -5,10 +5,13 @@
  */
 
 using System;
+using System.IO;
 using java.io;
-using SharpEarth.geom.Angle;
-using SharpEarth.exception.WWRuntimeException;
+using SharpEarth.geom;
+using SharpEarth.exception;
 using SharpEarth.avlist;
+using SharpEarth.java.io;
+
 namespace SharpEarth.util{
 
 
@@ -53,8 +56,8 @@ public class EGM96
 
     protected void loadOffsetFile()
     {
-        InputStream is = WWIO.openFileOrResourceStream(this.offsetsFilePath, EGM96.class);
-        if (is == null)
+        InputStream inputStream = WWIO.openFileOrResourceStream(this.offsetsFilePath, typeof(EGM96));
+        if (inputStream == null)
         {
             String msg = Logging.getMessage("generic.CannotOpenFile", this.offsetsFilePath);
             Logging.logger().severe(msg);

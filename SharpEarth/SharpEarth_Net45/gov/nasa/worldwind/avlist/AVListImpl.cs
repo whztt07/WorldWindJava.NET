@@ -222,7 +222,7 @@ public class AVListImpl : AVList
     }
 
     [MethodImpl( MethodImplOptions.Synchronized )]
-    public void addPropertyChangeListener(String propertyName, java.beans.PropertyChangeListener listener)
+    public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener)
     {
         if (propertyName == null)
         {
@@ -240,8 +240,7 @@ public class AVListImpl : AVList
     }
 
     [MethodImpl( MethodImplOptions.Synchronized )]
-    public void removePropertyChangeListener(String propertyName,
-        java.beans.PropertyChangeListener listener)
+    public void removePropertyChangeListener(string propertyName, PropertyChangeListener listener)
     {
         if (propertyName == null)
         {
@@ -259,7 +258,7 @@ public class AVListImpl : AVList
     }
 
     [MethodImpl( MethodImplOptions.Synchronized )]
-    public void addPropertyChangeListener(java.beans.PropertyChangeListener listener)
+    public void addPropertyChangeListener(PropertyChangeListener listener)
     {
         if (listener == null)
         {
@@ -271,7 +270,7 @@ public class AVListImpl : AVList
     }
 
     [MethodImpl( MethodImplOptions.Synchronized )]
-    public void removePropertyChangeListener(java.beans.PropertyChangeListener listener)
+    public void removePropertyChangeListener(PropertyChangeListener listener)
     {
         if (listener == null)
         {
@@ -305,7 +304,7 @@ public class AVListImpl : AVList
     }
 
     // Static AVList utilities.
-    public static String getStringValue(AVList avList, String key, String defaultValue)
+    public static string getStringValue(AVList avList, String key, String defaultValue)
     {
         String v = getStringValue(avList, key);
         return v != null ? v : defaultValue;

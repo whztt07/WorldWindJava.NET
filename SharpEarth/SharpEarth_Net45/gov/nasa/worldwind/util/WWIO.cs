@@ -205,7 +205,7 @@ public class WWIO
         return null;
     }
 
-    internal static InputStream openFileOrResourceStream(string filePath, Class c)
+    internal static InputStream openFileOrResourceStream(string filePath, Type c)
     {
       throw new NotImplementedException();
     }

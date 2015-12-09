@@ -13,6 +13,7 @@ using SharpEarth.geom;
 using SharpEarth.avlist;
 using SharpEarth.globes;
 using SharpEarth;
+using SharpEarth.java.lang;
 
 namespace SharpEarth.globes
 {
@@ -84,7 +85,7 @@ namespace SharpEarth.globes
       protected double verticalExaggeration;
       protected ElevationModel elevationModel;
 
-      public StateKey( DrawContext dc )
+      public StateKey( DrawContext dc, EllipsoidalGlobe ellipsoidalGlobe )
       {
         if ( dc == null )
         {
@@ -94,16 +95,15 @@ namespace SharpEarth.globes
         }
 
         this.globe = dc.getGlobe();
-        this._tessellator = _tessellator;
-        this._tessellator = EllipsoidalGlobe.this.tessellator;
+        this._tessellator = ellipsoidalGlobe._tessellator;
         this.verticalExaggeration = dc.getVerticalExaggeration();
         this.elevationModel = this.globe.getElevationModel();
       }
 
-      public StateKey( Globe globe )
+      public StateKey( EllipsoidalGlobe ellipsoidalGlobe  )
       {
-        this.globe = globe;
-        this._tessellator = EllipsoidalGlobe.this.tessellator;
+        this.globe = ellipsoidalGlobe;
+        this._tessellator = ellipsoidalGlobe._tessellator;
         this.verticalExaggeration = 1;
         this.elevationModel = this.globe.getElevationModel();
       }
@@ -129,7 +129,7 @@ namespace SharpEarth.globes
           return false;
         if ( globe != null ? !globe.Equals( stateKey.globe ) : stateKey.globe != null )
           return false;
-        if ( tessellator != null ? !tessellator.Equals( stateKey.tessellator ) : stateKey.tessellator != null )
+        if ( _tessellator != null ? !_tessellator.Equals( stateKey._tessellator ) : stateKey._tessellator != null )
           return false;
 
         return true;
@@ -140,9 +140,9 @@ namespace SharpEarth.globes
         int result;
         long temp;
         result = globe != null ? globe.GetHashCode() : 0;
-        result = 31 * result + ( tessellator != null ? tessellator.GetHashCode() : 0 );
+        result = 31 * result + ( _tessellator != null ? _tessellator.GetHashCode() : 0 );
         temp = verticalExaggeration != +0.0d ? BitConverter.DoubleToInt64Bits( verticalExaggeration ) : 0L;
-        result = 31 * result + (int)( temp ^ ( temp >> > 32 ) );
+        result = 31 * result + (int)( temp ^ ( (int)( (uint)temp >> 32 ) ) );
         result = 31 * result + ( elevationModel != null ? elevationModel.GetHashCode() : 0 );
         return result;
       }
@@ -155,7 +155,7 @@ namespace SharpEarth.globes
 
     public GlobeStateKey getGlobeStateKey( DrawContext dc )
     {
-      return new StateKey( dc );
+      return new StateKey( dc, this );
     }
 
     public GlobeStateKey getGlobeStateKey()
@@ -250,6 +250,11 @@ namespace SharpEarth.globes
       return this.center;
     }
 
+    public double[] getElevations<T>( Sector sector, List<T> latlons, double[] targetResolution, double[] elevations ) where T : LatLon
+    {
+      throw new NotImplementedException();
+    }
+
     public double getMaxElevation()
     {
       return this._elevationModel != null ? this._elevationModel.getMaxElevation() : 0;
@@ -279,7 +284,7 @@ namespace SharpEarth.globes
     {
       if ( sector == null )
       {
-        String message = Logging.getMessage( "nullValue.SectorIsNull" );
+        string message = Logging.getMessage( "nullValue.SectorIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentNullException( message );
       }
@@ -301,7 +306,7 @@ namespace SharpEarth.globes
     {
       if ( frustum == null )
       {
-        String message = Logging.getMessage( "nullValue.FrustumIsNull" );
+        string message = Logging.getMessage( "nullValue.FrustumIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentNullException( message );
       }
@@ -431,7 +436,7 @@ namespace SharpEarth.globes
     {
       if ( view == null )
       {
-        String message = Logging.getMessage( "nullValue.ViewIsNull" );
+        string message = Logging.getMessage( "nullValue.ViewIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentNullException( message );
       }
@@ -447,42 +452,39 @@ namespace SharpEarth.globes
         this.egm96 = null;
     }
 
-    public double getElevationsResolution<T>( Sector sector, List<T> latlons, double targetResolution,
-      double[] elevations ) where T : LatLon
+    public double getElevationsAndResolution<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon
     {
-      if ( this._elevationModel == null )
+      if ( _elevationModel == null )
         return 0;
 
+      double resolution = _elevationModel.getElevations( sector, latlons, targetResolution, elevations );
 
-      double resolution = this._elevationModel.getElevations<T>( sector, latlons, targetResolution, elevations );
+      if ( egm96 == null )
+        return resolution;
 
-      if ( this.egm96 != null )
+      for ( int i = 0; i < elevations.Length; i++ )
       {
-        for ( int i = 0; i < elevations.length; i++ )
-        {
-          LatLon latLon = latlons.get( i );
-          elevations[i] = elevations[i] + this.egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
-        }
+        LatLon latLon = latlons[i];
+        elevations[i] += + egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
       }
 
       return resolution;
     }
 
-    public double getElevationResolutions<T>( Sector sector, List<T> latlons, double targetResolution,
-         double[] elevations ) where T : LatLon
+    public double[] getElevationsAndResolutions<T>( Sector sector, List<T> latLons, double[] targetResolution, double[] elevations ) where T : LatLon
     {
-      if ( this.elevationModel == null )
+      if ( _elevationModel == null )
         return new double[] { 0 };
 
-      double[] resolution = this.elevationModel.getElevations( sector, latLons, targetResolution, elevations );
+      double[] resolution = _elevationModel.getElevations( sector, latLons, targetResolution, elevations );
 
-      if ( this.egm96 != null )
+      if(egm96 == null)
+        return resolution;
+
+      for ( int i = 0; i < elevations.Length; i++ )
       {
-        for ( int i = 0; i < elevations.length; i++ )
-        {
-          LatLon latLon = latLons.get( i );
-          elevations[i] = elevations[i] + this.egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
-        }
+        LatLon latLon = latLons[i];
+        elevations[i] += egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
       }
 
       return resolution;
@@ -492,18 +494,18 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      if ( this.elevationModel == null )
+      if ( _elevationModel == null )
         return 0;
 
-      double elevation = this.elevationModel.getElevation( latitude, longitude );
+      double elevation = _elevationModel.getElevation( latitude, longitude );
 
-      if ( this.egm96 != null )
-        elevation += this.egm96.getOffset( latitude, longitude );
+      if ( egm96 != null )
+        elevation += egm96.getOffset( latitude, longitude );
 
       return elevation;
     }
@@ -512,94 +514,93 @@ namespace SharpEarth.globes
     {
       if ( position == null )
       {
-        String message = Logging.getMessage( "nullValue.PositionIsNull" );
+        string message = Logging.getMessage( "nullValue.PositionIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.geodeticToCartesian( position.getLatitude(), position.getLongitude(), position.getElevation() );
+      return geodeticToCartesian( position.getLatitude(), position.getLongitude(), position.getElevation() );
     }
 
     public Vec4 computePointFromLocation( LatLon location )
     {
       if ( location == null )
       {
-        String message = Logging.getMessage( "nullValue.PositionIsNull" );
+        string message = Logging.getMessage( "nullValue.PositionIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.geodeticToCartesian( location.getLatitude(), location.getLongitude(), 0 );
+      return geodeticToCartesian( location.getLatitude(), location.getLongitude(), 0 );
     }
 
     public Vec4 computePointFromPosition( LatLon latLon, double metersElevation )
     {
       if ( latLon == null )
       {
-        String message = Logging.getMessage( "nullValue.LatLonIsNull" );
+        string message = Logging.getMessage( "nullValue.LatLonIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.geodeticToCartesian( latLon.getLatitude(), latLon.getLongitude(), metersElevation );
+      return geodeticToCartesian( latLon.getLatitude(), latLon.getLongitude(), metersElevation );
     }
 
     public Vec4 computePointFromPosition( Angle latitude, Angle longitude, double metersElevation )
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.geodeticToCartesian( latitude, longitude, metersElevation );
+      return geodeticToCartesian( latitude, longitude, metersElevation );
     }
 
     public Position computePositionFromPoint( Vec4 point )
     {
       if ( point == null )
       {
-        String message = Logging.getMessage( "nullValue.PointIsNull" );
+        string message = Logging.getMessage( "nullValue.PointIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.cartesianToGeodetic( point );
+      return cartesianToGeodetic( point );
     }
 
-    public void computePointsFromPositions( Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] out )
+    public void computePointsFromPositions( Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] outVector )
     {
       if ( sector == null )
       {
-        String message = Logging.getMessage( "nullValue.SectorIsNull" );
+        string message = Logging.getMessage( "nullValue.SectorIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
       if ( numLat <= 0 || numLon <= 0 )
       {
-        String message = Logging.getMessage( "generic.ArgumentOutOfRange", "numLat <= 0 or numLon <= 0" );
+        string message = Logging.getMessage( "generic.ArgumentOutOfRange", "numLat <= 0 or numLon <= 0" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
       if ( metersElevation == null )
       {
-        String message = Logging.getMessage( "nullValue.ElevationsIsNull" );
+        string message = Logging.getMessage( "nullValue.ElevationsIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      if ( out ==
-      null)
+      if ( outVector == null)
       {
-        String message = Logging.getMessage( "nullValue.OutputIsNull" );
+        string message = Logging.getMessage( "nullValue.OutputIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      this.geodeticToCartesian( sector, numLat, numLon, metersElevation, out  );
+      geodeticToCartesian( sector, numLat, numLon, metersElevation, outVector );
     }
 
     /**
@@ -615,12 +616,12 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.computeEllipsoidalNormalAtLocation( latitude, longitude );
+      return computeEllipsoidalNormalAtLocation( latitude, longitude );
     }
 
     /**
@@ -635,17 +636,17 @@ namespace SharpEarth.globes
     {
       if ( point == null )
       {
-        String msg = Logging.getMessage( "nullValue.PointIsNull" );
-        Logging.logger().severe( msg );
-        throw new ArgumentException( msg );
+        string message = Logging.getMessage( "nullValue.PointIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
       }
 
-      double eqSquared = this.equatorialRadius * this.equatorialRadius;
-      double polSquared = this.polarRadius * this.polarRadius;
+      double eqSquared = equatorialRadius * equatorialRadius;
+      double polSquared = polarRadius * polarRadius;
 
-      double x = ( point.x - this.center.x ) / eqSquared;
-      double y = ( point.y - this.center.y ) / polSquared;
-      double z = ( point.z - this.center.z ) / eqSquared;
+      double x = ( point.x() - center.x() ) / eqSquared;
+      double y = ( point.y() - center.y() ) / polSquared;
+      double z = ( point.z() - center.z() ) / eqSquared;
 
       return new Vec4( x, y, z ).normalize3();
     }
@@ -654,7 +655,7 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -687,31 +688,31 @@ namespace SharpEarth.globes
 
     public Matrix computeModelCoordinateOriginTransform( Angle latitude, Angle longitude, double metersElevation )
     {
-      return this.computeSurfaceOrientationAtPosition( latitude, longitude, metersElevation );
+      return computeSurfaceOrientationAtPosition( latitude, longitude, metersElevation );
     }
 
     public Matrix computeModelCoordinateOriginTransform( Position position )
     {
-      return this.computeSurfaceOrientationAtPosition( position );
+      return computeSurfaceOrientationAtPosition( position );
     }
 
     public Matrix computeSurfaceOrientationAtPosition( Angle latitude, Angle longitude, double metersElevation )
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
 
-      return this.computeEllipsoidalOrientationAtPosition( latitude, longitude, metersElevation );
+      return computeEllipsoidalOrientationAtPosition( latitude, longitude, metersElevation );
     }
 
     public Matrix computeSurfaceOrientationAtPosition( Position position )
     {
       if ( position == null )
       {
-        String message = Logging.getMessage( "nullValue.PositionIsNull" );
+        string message = Logging.getMessage( "nullValue.PositionIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -724,7 +725,7 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -736,7 +737,7 @@ namespace SharpEarth.globes
     {
       if ( position == null )
       {
-        String message = Logging.getMessage( "nullValue.PositionIsNull" );
+        string message = Logging.getMessage( "nullValue.PositionIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -749,7 +750,7 @@ namespace SharpEarth.globes
     {
       if ( location == null )
       {
-        String message = Logging.getMessage( "nullValue.LocationIsNull" );
+        string message = Logging.getMessage( "nullValue.LocationIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -761,7 +762,7 @@ namespace SharpEarth.globes
     {
       if ( ellipsoidalPoint == null )
       {
-        String message = Logging.getMessage( "nullValue.PointIsNull" );
+        string message = Logging.getMessage( "nullValue.PointIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -773,7 +774,7 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -798,7 +799,7 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -820,16 +821,16 @@ namespace SharpEarth.globes
     {
       if ( line == null )
       {
-        String msg = Logging.getMessage( "nullValue.LineIsNull" );
-        Logging.logger().severe( msg );
-        throw new ArgumentException( msg );
+        string message = Logging.getMessage( "nullValue.LineIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
       }
 
-      Intersection[] intersections = this.intersect( line );
+      Intersection[] intersections = intersect( line );
       if ( intersections == null )
         return null;
 
-      return this.computePositionFromPoint( intersections[0].getIntersectionPoint() );
+      return computePositionFromPoint( intersections[0].getIntersectionPoint() );
     }
 
     /**
@@ -847,7 +848,7 @@ namespace SharpEarth.globes
 
     protected Vec4 geodeticToCartesian( Angle latitude, Angle longitude, double metersElevation )
     {
-      return this.geodeticToEllipsoidal( latitude, longitude, metersElevation );
+      return geodeticToEllipsoidal( latitude, longitude, metersElevation );
     }
 
     /**
@@ -869,7 +870,7 @@ namespace SharpEarth.globes
     {
       if ( latitude == null || longitude == null )
       {
-        String message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
+        string message = Logging.getMessage( "nullValue.LatitudeOrLongitudeIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -879,8 +880,8 @@ namespace SharpEarth.globes
       double cosLon = Math.Cos( longitude.radians );
       double sinLon = Math.Sin( longitude.radians );
 
-      double rpm = // getRadius (in meters) of vertical in prime meridian
-        this.equatorialRadius / Math.Sqrt( 1.0 - this.es * sinLat * sinLat );
+      // getRadius (in meters) of vertical in prime meridian
+      double rpm =  equatorialRadius / Math.Sqrt( 1.0 - this.es * sinLat * sinLat );
 
       double x = ( rpm + metersElevation ) * cosLat * sinLon;
       double y = ( rpm * ( 1.0 - this.es ) + metersElevation ) * sinLat;
@@ -963,49 +964,7 @@ namespace SharpEarth.globes
           outVector[pos++] = new Vec4( x, y, z );
         }
       }
-    }
-
-//    protected Position cartesianToGeodeticOriginal(Vec4 cart)
-//    {
-//        if (cart == null)
-//        {
-//            String message = Logging.getMessage("nullValue.PointIsNull");
-//            Logging.logger().severe(message);
-//            throw new ArgumentException(message);
-//        }
-//
-//        // according to
-//        // H. Vermeille,
-//        // Direct transformation from geocentric to geodetic ccordinates,
-//        // Journal of Geodesy (2002) 76:451-454
-//        double ra2 = 1 / (this.equatorialRadius * equatorialRadius);
-//
-//        double X = cart.z;
-//        //noinspection SuspiciousNameCombination
-//        double Y = cart.x;
-//        double Z = cart.y;
-//        double e2 = this.es;
-//        double e4 = e2 * e2;
-//
-//        double XXpYY = X * X + Y * Y;
-//        double sqrtXXpYY = Math.Sqrt(XXpYY);
-//        double p = XXpYY * ra2;
-//        double q = Z * Z * (1 - e2) * ra2;
-//        double r = 1 / 6.0 * (p + q - e4);
-//        double s = e4 * p * q / (4 * r * r * r);
-//        double t = Math.Pow(1 + s + Math.Sqrt(s * (2 + s)), 1 / 3.0);
-//        double u = r * (1 + t + 1 / t);
-//        double v = Math.Sqrt(u * u + e4 * q);
-//        double w = e2 * (u + v - q) / (2 * v);
-//        double k = Math.Sqrt(u + v + w * w) - w;
-//        double D = k * sqrtXXpYY / (k + e2);
-//        double lon = 2 * Math.Atan2(Y, X + sqrtXXpYY);
-//        double sqrtDDpZZ = Math.Sqrt(D * D + Z * Z);
-//        double lat = 2 * Math.Atan2(Z, D + sqrtDDpZZ);
-//        double elevation = (k + e2 - 1) * sqrtDDpZZ / k;
-//
-//        return Position.fromRadians(lat, lon, elevation);
-//    }
+    }    
 
     /**
      * Compute the geographic position to corresponds to a Cartesian point.
@@ -1016,10 +975,9 @@ namespace SharpEarth.globes
      *
      * @see #geodeticToCartesian(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)
      */
-
     protected Position cartesianToGeodetic( Vec4 cart )
     {
-      return this.ellipsoidalToGeodetic( cart );
+      return ellipsoidalToGeodetic( cart );
     }
 
     /**
@@ -1031,14 +989,13 @@ namespace SharpEarth.globes
      *
      * @see #geodeticToEllipsoidal(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)
      */
-
     protected Position ellipsoidalToGeodetic( Vec4 cart )
     {
       // Contributed by Nathan Kronenfeld. Integrated 1/24/2011. Brings this calculation in line with Vermeille's
       // most recent update.
       if ( null == cart )
       {
-        String message = Logging.getMessage( "nullValue.PointIsNull" );
+        string message = Logging.getMessage( "nullValue.PointIsNull" );
         Logging.logger().severe( message );
         throw new ArgumentException( message );
       }
@@ -1048,9 +1005,9 @@ namespace SharpEarth.globes
       // "An analytical method to transform geocentric into geodetic coordinates"
       // http://www.springerlink.com/content/3t6837t27t351227/fulltext.pdf
       // Journal of Geodesy, accepted 10/2010, not yet published
-      double X = cart.z;
-      double Y = cart.x;
-      double Z = cart.y;
+      double X = cart.z();
+      double Y = cart.x();
+      double Z = cart.y();
       double XXpYY = X * X + Y * Y;
       double sqrtXXpYY = Math.Sqrt( XXpYY );
 
@@ -1081,13 +1038,13 @@ namespace SharpEarth.globes
           // 10*e2 is my arbitrary decision of what Vermeille means by "near... the cusps of the evolute".
           if ( evoluteBorderTest > 10 * e2 )
           {
-            double rad3 = Math.cbrt( ( rad1 + rad2 ) * ( rad1 + rad2 ) );
+            double rad3 = Math.Pow( ( rad1 + rad2 ) * ( rad1 + rad2 ), (1.0 / 3.0) );
             u = r + 0.5 * rad3 + 2 * r * r / rad3;
           }
           else
           {
-            u = r + 0.5 * Math.cbrt( ( rad1 + rad2 ) * ( rad1 + rad2 ) ) + 0.5 * Math.cbrt(
-              ( rad1 - rad2 ) * ( rad1 - rad2 ) );
+            u = r + 0.5 * Math.Pow( ( rad1 + rad2 ) * ( rad1 + rad2 ), (1.0 / 3.0) ) + 0.5 * Math.Pow(
+              ( rad1 - rad2 ) * ( rad1 - rad2 ), (1.0 / 3.0) );
           }
         }
         else
@@ -1144,164 +1101,21 @@ namespace SharpEarth.globes
       return Position.fromRadians( phi, lambda, h );
     }
 
-//
-//    /**
-//     * Returns a cylinder that minimally surrounds the sector at a specified vertical exaggeration.
-//     *
-//     * @param verticalExaggeration the vertical exaggeration to apply to the globe's elevations when computing the
-//     *                             cylinder.
-//     * @param sector               the sector to return the bounding cylinder for.
-//     *
-//     * @return The minimal bounding cylinder in Cartesian coordinates.
-//     *
-//     * @throws ArgumentException if <code>sector</code> is null
-//     */
-//    public Cylinder computeBoundingCylinder(double verticalExaggeration, Sector sector)
-//    {
-//        if (sector == null)
-//        {
-//            String msg = Logging.getMessage("nullValue.SectorIsNull");
-//            Logging.logger().severe(msg);
-//            throw new ArgumentException(msg);
-//        }
-//
-//        return Sector.computeBoundingCylinder(this, verticalExaggeration, sector);
-//    }
-//
-//    /**
-//     * Returns a cylinder that minimally surrounds the specified minimum and maximum elevations in the sector at a
-//     * specified vertical exaggeration.
-//     *
-//     * @param verticalExaggeration the vertical exaggeration to apply to the minimum and maximum elevations when
-//     *                             computing the cylinder.
-//     * @param sector               the sector to return the bounding cylinder for.
-//     * @param minElevation         the minimum elevation of the bounding cylinder.
-//     * @param maxElevation         the maximum elevation of the bounding cylinder.
-//     *
-//     * @return The minimal bounding cylinder in Cartesian coordinates.
-//     *
-//     * @throws ArgumentException if <code>sector</code> is null
-//     */
-//    public Cylinder computeBoundingCylinder(double verticalExaggeration, Sector sector,
-//        double minElevation, double maxElevation)
-//    {
-//        if (sector == null)
-//        {
-//            String msg = Logging.getMessage("nullValue.SectorIsNull");
-//            Logging.logger().severe(msg);
-//            throw new ArgumentException(msg);
-//        }
-//
-//        // Compute the exaggerated minimum and maximum heights.
-//        double minHeight = minElevation * verticalExaggeration;
-//        double maxHeight = maxElevation * verticalExaggeration;
-//
-//        if (minHeight == maxHeight)
-//            maxHeight = minHeight + 1; // ensure the top and bottom of the cylinder won't be coincident
-//
-//        // If the sector spans both poles in latitude, or spans greater than 180 degrees in longitude, we cannot use the
-//        // sector's Cartesian quadrilateral to compute a bounding cylinde. This is because the quadrilateral is either
-//        // smaller than the geometry defined by the sector (when deltaLon >= 180), or the quadrilateral degenerates to
-//        // two points (when deltaLat >= 180). So we compute a bounging cylinder that spans the equator and covers the
-//        // sector's latitude range. In some cases this cylinder may be too large, but we're typically not interested
-//        // in culling these cylinders since the sector will span most of the globe.
-//        if (sector.getDeltaLatDegrees() >= 180d || sector.getDeltaLonDegrees() >= 180d)
-//        {
-//            return this.computeBoundsFromSectorLatitudeRange(sector, minHeight, maxHeight);
-//        }
-//        // Otherwise, create a standard bounding cylinder that minimally surrounds the specified sector and elevations.
-//        else
-//        {
-//            return this.computeBoundsFromSectorQuadrilateral(sector, minHeight, maxHeight);
-//        }
-//    }
-//
-//    public Cylinder computeBoundingCylinderNew(double verticalExaggeration, Sector sector, double minElevation,
-//        double maxElevation)
-//    {
-//        if (sector == null)
-//        {
-//            String msg = Logging.getMessage("nullValue.SectorIsNull");
-//            Logging.logger().severe(msg);
-//            throw new ArgumentException(msg);
-//        }
-//
-//        // Compute the exaggerated minimum and maximum heights.
-//        double minHeight = minElevation * verticalExaggeration;
-//        double maxHeight = maxElevation * verticalExaggeration;
-//
-//        if (minHeight == maxHeight)
-//            maxHeight = minHeight + 1; // ensure the top and bottom of the cylinder won't be coincident
-//
-//        List<Vec4> points = new ArrayList<Vec4>();
-//        for (LatLon ll : sector)
-//        {
-//            points.add(this.computePointFromPosition(ll, minHeight));
-//            points.add(this.computePointFromPosition(ll, maxHeight));
-//        }
-//        if (sector.getDeltaLatDegrees() >= 180d || sector.getDeltaLonDegrees() >= 180d)
-//            points.add(this.computePointFromPosition(sector.getCentroid(), maxHeight));
-//
-//        try
-//        {
-//            return Cylinder.compute(points);
-//        }
-//        catch (Exception e)
-//        {
-//            return new Cylinder(points.get(0), points.get(0).add3(Vec4.UNIT_Y), 1);
-//        }
-//    }
-//
-//    public static void main(String[] args)
-//    {
-//        EllipsoidalGlobe globe = new Earth();
-//        Sector sector = Sector.fromDegrees(0, 1, 0, 1);
-//
-//        int n = 1000000;
-//
-//        long start = System.currentTimeMillis();
-//        for (int i = 0; i < n; i++)
-//        {
-//            Extent cyl1 = globe.computeBoundingVolume(1d, sector, 0, 100);
-//        }
-//        System.out.println(System.currentTimeMillis() - start);
-//
-//        start = System.currentTimeMillis();
-//        for (int i = 0; i < n; i++)
-//        {
-//            Cylinder cyl2 = globe.computeBoundingCylinder2(1d, sector, 0, 100);
-//        }
-//        System.out.println(System.currentTimeMillis() - start);
-//    }
-//
-//    public Cylinder computeBoundingCylinder(double verticalExaggeration, Iterable<? extends Position> positions)
-//    {
-//        List<Vec4> points = new ArrayList<Vec4>();
-//
-//        for (Position pos : positions)
-//        {
-//            if (pos != null)
-//                points.add(this.computePointFromPosition(pos, pos.elevation * verticalExaggeration));
-//        }
-//
-//        return Cylinder.compute(points);
-//    }
-
     public SectorGeometryList tessellate( DrawContext dc )
     {
-      if ( this.tessellator == null )
+      if ( _tessellator == null )
       {
-        this.tessellator = (Tessellator)WorldWind.createConfigurationComponent( AVKey.TESSELLATOR_CLASS_NAME );
+        _tessellator = (Tessellator)WorldWind.createConfigurationComponent( AVKey.TESSELLATOR_CLASS_NAME );
 
-        if ( this.tessellator == null )
+        if ( _tessellator == null )
         {
-          String msg = Logging.getMessage( "Tessellator.TessellatorUnavailable" );
-          Logging.logger().severe( msg );
-          throw new IllegalStateException( msg );
+          string message = Logging.getMessage( "Tessellator.TessellatorUnavailable" );
+          Logging.logger().severe( message );
+          throw new IllegalStateException( message );
         }
       }
 
-      return this.tessellator.tessellate( dc );
+      return _tessellator.tessellate( dc );
     }
 
     /**
@@ -1312,7 +1126,6 @@ namespace SharpEarth.globes
      *
      * @return true if the given point is above the given elevation.
      */
-
     public bool isPointAboveElevation( Vec4 point, double elevation )
     {
       //noinspection SimplifiableIfStatement
@@ -1333,7 +1146,6 @@ namespace SharpEarth.globes
      *
      * @return a new elevation model configured according to the configuration source.
      */
-
     public static ElevationModel makeElevationModel( string key, string defaultValue )
     {
       if ( key == null )

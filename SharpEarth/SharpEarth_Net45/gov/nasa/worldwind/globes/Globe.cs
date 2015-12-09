@@ -130,7 +130,7 @@ public interface Globe : WWObject, Extent
      * @throws ArgumentException if either the sector, latlons list or elevations array is null.
      * @see #getElevationModel()
      */
-  double getElevations<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon;
+  double getElevationsAndResolution<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
@@ -157,7 +157,7 @@ public interface Globe : WWObject, Extent
      *                                  is null.
      * @see #getElevationModel()
      */
-    double[] getElevations<T>(Sector sector, List<T> latlons, double[] targetResolution, double[] elevations ) where T : LatLon;
+  double[] getElevationsAndResolutions<T>( Sector sector, List<T> latLons, double[] targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the maximum elevation on this globe, in meters.

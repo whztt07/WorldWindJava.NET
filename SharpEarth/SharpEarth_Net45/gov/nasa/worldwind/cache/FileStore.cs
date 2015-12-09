@@ -23,14 +23,14 @@ public interface FileStore : WWObject
      *
      * @return the list of locations the file store will search when a file is requested.
      */
-    IList<FileInfo> getLocations();
+    IList<FileSystemInfo> getLocations();
 
     /**
      * Returns the location that additions to the file store are placed.
      *
      * @return the location at which new entries are placed.
      */
-    FileInfo getWriteLocation();
+    FileSystemInfo getWriteLocation();
 
     /**
      * Adds a location to search when files are requested from the file store.
