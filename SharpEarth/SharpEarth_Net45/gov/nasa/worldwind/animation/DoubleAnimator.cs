@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 namespace SharpEarth.animation{
 
@@ -13,17 +15,16 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: DoubleAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DoubleAnimator extends BasicAnimator
+public class DoubleAnimator : BasicAnimator
 {
-    protected double begin;
-    protected double end;
-    protected final PropertyAccessor.DoubleAccessor propertyAccessor;
+    public double Begin { get; set; }
+    public double End { get; set; }
+    public PropertyAccessor.DoubleAccessor propertyAccessor { get; protected set; }
 
     public DoubleAnimator(Interpolator interpolator,
        double begin, double end,
-       PropertyAccessor.DoubleAccessor propertyAccessor)
+       PropertyAccessor.DoubleAccessor propertyAccessor) : base(interpolator)
     {
-       super(interpolator);
        if (interpolator == null)
        {
            this.interpolator = new ScheduledInterpolator(10000);
@@ -31,44 +32,19 @@ public class DoubleAnimator extends BasicAnimator
        
        if (propertyAccessor == null)
        {
-           String message = Logging.getMessage("nullValue.ViewPropertyAccessorIsNull");
+           string message = Logging.getMessage("nullValue.ViewPropertyAccessorIsNull");
            Logging.logger().severe(message);
            throw new ArgumentException(message);
        }
 
-       this.begin = begin;
-       this.end = end;
+       Begin= begin;
+       End = end;
        this.propertyAccessor = propertyAccessor;
     }
 
-    public void setBegin(Double begin)
+    protected void setImpl(double? interpolant)
     {
-        this.begin = begin;
-    }
-
-    public void setEnd(Double end)
-    {
-        this.end = end;
-    }
-
-    public final Double getBegin()
-    {
-       return this.begin;
-    }
-
-    public final Double getEnd()
-    {
-       return this.end;
-    }
-
-    public final PropertyAccessor.DoubleAccessor getPropertyAccessor()
-    {
-       return this.propertyAccessor;
-    }
-
-    protected void setImpl(double interpolant)
-    {
-       Double newValue = this.nextDouble(interpolant);
+       double newValue = nextDouble(interpolant);
        if (newValue == null)
            return;
 
@@ -81,15 +57,9 @@ public class DoubleAnimator extends BasicAnimator
            this.stop();
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
-    public Double nextDouble(double interpolant)
+    public double nextDouble(double interpolant)
     {
-       return AnimationSupport.mixDouble(
-           interpolant,
-           this.begin,
-           this.end);
+       return AnimationSupport.mixDouble( interpolant, Begin, End);
     }
-
-    
 }
 }

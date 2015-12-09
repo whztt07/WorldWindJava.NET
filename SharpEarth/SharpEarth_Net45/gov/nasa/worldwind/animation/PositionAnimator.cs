@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 using SharpEarth.geom;
 namespace SharpEarth.animation{
@@ -12,33 +14,32 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: PositionAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PositionAnimator extends BasicAnimator
+public class PositionAnimator : BasicAnimator
 {
     
     protected Position begin;
     protected Position end;
-    protected final PropertyAccessor.PositionAccessor propertyAccessor;
+    protected readonly PropertyAccessor.PositionAccessor propertyAccessor;
 
     public PositionAnimator(
         Interpolator interpolator,
         Position begin,
         Position end,
-        PropertyAccessor.PositionAccessor propertyAccessor)
+        PropertyAccessor.PositionAccessor propertyAccessor) : base(interpolator)
     {
-        super(interpolator);
         if (interpolator == null)
         {
            this.interpolator = new ScheduledInterpolator(10000);
         }
         if (begin == null || end == null)
         {
-           String message = Logging.getMessage("nullValue.PositionIsNull");
+           string message = Logging.getMessage("nullValue.PositionIsNull");
            Logging.logger().severe(message);
            throw new ArgumentException(message);
         }
         if (propertyAccessor == null)
         {
-           String message = Logging.getMessage("nullValue.ViewPropertyAccessorIsNull");
+           string message = Logging.getMessage("nullValue.ViewPropertyAccessorIsNull");
            Logging.logger().severe(message);
            throw new ArgumentException(message);
         }

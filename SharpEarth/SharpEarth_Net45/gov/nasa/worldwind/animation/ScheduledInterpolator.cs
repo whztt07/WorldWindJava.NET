@@ -4,7 +4,9 @@
  * All Rights Reserved.
  */
 
+using System;
 using SharpEarth.util;
+using SharpEarth.java;
 
 namespace SharpEarth.animation{
 
@@ -23,32 +25,25 @@ public class ScheduledInterpolator : Interpolator
     {
     }
 
-    public ScheduledInterpolator(Date startTime, long lengthMillis)
+    public ScheduledInterpolator(DateTime? startTime, long lengthMillis)
     {
         if (lengthMillis < 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", lengthMillis);
+            string message = Logging.getMessage("generic.ArgumentOutOfRange", lengthMillis);
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         if (startTime != null)
-            this.startTime = startTime.getTime();
+            this.startTime = startTime.Value.getTime();
         this.length = lengthMillis;
     }
 
-    public ScheduledInterpolator(Date startTime, Date stopTime)
+    public ScheduledInterpolator( DateTime startTime, DateTime stopTime )
     {
-        if (startTime == null || stopTime == null)
-        {
-            String message = Logging.getMessage("nullValue.DateIsNull");
-            Logging.logger().severe(message);
-            throw new ArgumentException(message);
-        }
-
         if (startTime.after(stopTime))
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", startTime);
+        string message = Logging.getMessage("generic.ArgumentOutOfRange", startTime);
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -59,7 +54,7 @@ public class ScheduledInterpolator : Interpolator
 
     public double nextInterpolant()
     {
-      long currentTime = global::java.System.currentTimeMillis();
+      long currentTime = java.System.currentTimeMillis();
         // When no start time is specified, begin counting time on the first run.
         if (this.startTime < 0)
             this.startTime = currentTime;

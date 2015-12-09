@@ -3,11 +3,15 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using SharpEarth.geom;
 using SharpEarth.util;
-using SharpEarth.geom.Angle;
-namespace SharpEarth.animation{
 
-
+namespace SharpEarth.animation
+{
 /**
  * @author jym
  * @version $Id: AngleAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
@@ -17,9 +21,13 @@ namespace SharpEarth.animation{
  * Animates angles, via an interpolator.  {@link #begin} and {@link #end} values can be reset
  * once the animation is already in motion.
  */
-public class AngleAnimator extends BasicAnimator
-{
-
+  public class AngleAnimator : BasicAnimator
+  {
+    /**
+     * The @link SharpEarth.util.PropertyAccessor used to modify
+     * the data value being animated.
+     */
+    protected readonly PropertyAccessor.AngleAccessor propertyAccessor;
     /**
      * The angle the animation begins at.
      */
@@ -29,12 +37,6 @@ public class AngleAnimator extends BasicAnimator
      */
     protected Angle end;
     /**
-     * The @link SharpEarth.util.PropertyAccessor used to modify
-     * the data value being animated.
-     */
-    protected final PropertyAccessor.AngleAccessor propertyAccessor;
-
-    /**
      * Construct an AngleAnimator
      *
      * @param interpolator the {@link SharpEarth.animation.Interpolator}
@@ -43,31 +45,30 @@ public class AngleAnimator extends BasicAnimator
      * @param propertyAccessor The {@link SharpEarth.util.PropertyAccessor} used to modify
      * the data value being animated.
      */
-    public AngleAnimator(Interpolator interpolator,
-       Angle begin, Angle end,
-       PropertyAccessor.AngleAccessor propertyAccessor)
-    {
-       super(interpolator);
-       if (interpolator == null)
-       {
-           this.interpolator = new ScheduledInterpolator(10000);
-       }
-       if (begin == null || end == null)
-       {
-           String message = Logging.getMessage("nullValue.AngleIsNull");
-           Logging.logger().severe(message);
-           throw new ArgumentException(message);
-       }
-       if (propertyAccessor == null)
-       {
-           String message = Logging.getMessage("nullValue.ViewPropertyAccessorIsNull");
-           Logging.logger().severe(message);
-           throw new ArgumentException(message);
-       }
 
-       this.begin = begin;
-       this.end = end;
-       this.propertyAccessor = propertyAccessor;
+    public AngleAnimator( Interpolator interpolator, Angle begin, Angle end, PropertyAccessor.AngleAccessor propertyAccessor ) : 
+      base( interpolator )
+    {
+      if ( interpolator == null )
+      {
+        this.interpolator = new ScheduledInterpolator( 10000 );
+      }
+      if ( begin == null || end == null )
+      {
+        var message = Logging.getMessage( "nullValue.AngleIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
+      if ( propertyAccessor == null )
+      {
+        var message = Logging.getMessage( "nullValue.ViewPropertyAccessorIsNull" );
+        Logging.logger().severe( message );
+        throw new ArgumentException( message );
+      }
+
+      this.begin = begin;
+      this.end = end;
+      this.propertyAccessor = propertyAccessor;
     }
 
     /**
@@ -75,9 +76,9 @@ public class AngleAnimator extends BasicAnimator
      *
      * @param begin the new {@link #begin} value.
      */
-    public void setBegin(Angle begin)
+    public void setBegin( Angle begin )
     {
-        this.begin = begin;
+      this.begin = begin;
     }
 
     /**
@@ -85,9 +86,9 @@ public class AngleAnimator extends BasicAnimator
      *
      * @param end the new {@link #end} value.
      */
-    public void setEnd(Angle end)
+    public void setEnd( Angle end )
     {
-        this.end = end;
+      this.end = end;
     }
 
     /**
@@ -97,7 +98,7 @@ public class AngleAnimator extends BasicAnimator
      */
     public Angle getBegin()
     {
-       return this.begin;
+      return begin;
     }
 
     /**
@@ -107,7 +108,7 @@ public class AngleAnimator extends BasicAnimator
      */
     public Angle getEnd()
     {
-       return this.end;
+      return end;
     }
 
     /**
@@ -117,7 +118,7 @@ public class AngleAnimator extends BasicAnimator
      */
     public PropertyAccessor.AngleAccessor getPropertyAccessor()
     {
-       return this.propertyAccessor;
+      return propertyAccessor;
     }
 
     /**
@@ -128,30 +129,23 @@ public class AngleAnimator extends BasicAnimator
      * @param interpolant the interpolant used to generate the next value that will be set by the
      * {@link SharpEarth.util.PropertyAccessor}
      */
-    protected void setImpl(double interpolant)
+    protected void setImpl( double interpolant )
     {
-        Angle newValue = this.nextAngle(interpolant);
-        if (newValue == null)
-           return;
-        bool success = this.propertyAccessor.setAngle(newValue);
-        if (!success)
-        {
-           flagLastStateInvalid();
-        }
-        if (interpolant >= 1)
-            this.stop();
+      var newValue = nextAngle( interpolant );
+      if ( newValue == null )
+        return;
+      var success = propertyAccessor.setAngle( newValue );
+      if ( !success )
+      {
+        flagLastStateInvalid();
+      }
+      if ( interpolant >= 1 )
+        stop();
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
-    private Angle nextAngle(double interpolant)
+    private Angle nextAngle( double interpolant )
     {
-
-       return Angle.mix(
-           interpolant,
-           this.begin,
-           this.end);
-
-        
+      return Angle.mix( interpolant, begin, end );
     }
-}
+  }
 }

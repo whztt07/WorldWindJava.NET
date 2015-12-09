@@ -3,8 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.PropertyAccessor;
-using SharpEarth.geom.Angle;
+
+using System;
+using SharpEarth.util;
+using SharpEarth.geom;
 namespace SharpEarth.animation{
 
 
@@ -12,15 +14,15 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: RotateToAngleAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RotateToAngleAnimator extends AngleAnimator
+public class RotateToAngleAnimator : AngleAnimator
 {
     private double minEpsilon = 1e-4;
-    private double smoothing = .9;
+    private double smoothing = .9
+      ;
     public RotateToAngleAnimator(
        Angle begin, Angle end, double smoothing,
-       PropertyAccessor.AngleAccessor propertyAccessor)
+       PropertyAccessor.AngleAccessor propertyAccessor) : base(null, begin, end, propertyAccessor)
     {
-        super(null, begin, end, propertyAccessor);
         this.smoothing = smoothing;
     }
 
@@ -44,7 +46,6 @@ public class RotateToAngleAnimator extends AngleAnimator
             this.stop();
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public Angle nextAngle(double interpolant)
     {
 

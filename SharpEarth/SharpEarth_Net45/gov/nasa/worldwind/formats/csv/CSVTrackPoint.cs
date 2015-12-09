@@ -3,8 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.tracks;
-using SharpEarth.geom.Position;
+using SharpEarth.geom;
 using SharpEarth.util;
 namespace SharpEarth.formats.csv{
 
@@ -13,9 +15,9 @@ namespace SharpEarth.formats.csv{
  * @author tag
  * @version $Id: CSVTrackPoint.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class CSVTrackPoint implements TrackPoint
+public class CSVTrackPoint : TrackPoint
 {
-    String time = "";
+    string time = "";
     private double latitude;
     private double longitude;
     private double altitude;
@@ -24,17 +26,17 @@ public class CSVTrackPoint implements TrackPoint
      * @param words
      * @throws ArgumentException if <code>words</code> is null or has length less than 1
      */
-    public CSVTrackPoint(String[] words)
+    public CSVTrackPoint(string[] words)
     {
         if (words == null)
         {
-            String msg = Logging.getMessage("nullValue.ArrayIsNull");
+            string msg = Logging.getMessage("nullValue.ArrayIsNull");
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
-        if (words.length < 2)
+        if (words.Length < 2)
         {
-            String msg = Logging.getMessage("generic.ArrayInvalidLength", words.length);
+            string msg = Logging.getMessage("generic.ArrayInvalidLength", words.Length );
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -42,30 +44,35 @@ public class CSVTrackPoint implements TrackPoint
         this.doValues(words);
     }
 
-    private void doValues(String[] words)
+    private void doValues(string[] words)
     {
         this.latitude = this.parseLatitude(words[1]);
         this.longitude = this.parseLongitude(words[2]);
-        if (words.length > 3)
+        if (words.Length > 3)
             this.altitude = this.parseElevation(words[3], "M");
     }
 
-    private double parseLatitude(String angle)
+    private double parseLatitude(string angle)
     {
-        return angle.length() == 0 ? 0 : Double.parseDouble(angle);
+      double value;
+      double.TryParse( angle, out value );
+      return value;
     }
 
-    private double parseLongitude(String angle)
+    private double parseLongitude(string angle)
     {
-        return angle.length() == 0 ? 0 : Double.parseDouble(angle);
+      double value;
+      double.TryParse( angle, out value );
+      return value;
     }
 
-    private double parseElevation(String alt, String units)
+    private double parseElevation(string alt, string units)
     {
-        return alt.length() == 0 ? 0 : Double.parseDouble(alt) * unitsToMeters(units);
+      double value;
+      return double.TryParse( alt, out value ) ? unitsToMeters( units ) : 0;
     }
 
-    private double unitsToMeters(String units)
+    private double unitsToMeters(string units)
     {
         double f;
 
@@ -94,7 +101,7 @@ public class CSVTrackPoint implements TrackPoint
     {
         if (latitude > 90 || latitude < -90)
         {
-            String msg = Logging.getMessage("generic.AngleOutOfRange", latitude);
+            string msg = Logging.getMessage("generic.AngleOutOfRange", latitude);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -115,7 +122,7 @@ public class CSVTrackPoint implements TrackPoint
     {
         if (longitude > 180 || longitude < -180)
         {
-            String msg = Logging.getMessage("generic.AngleOutOfRange", longitude);
+            string msg = Logging.getMessage("generic.AngleOutOfRange", longitude);
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -132,7 +139,7 @@ public class CSVTrackPoint implements TrackPoint
     {
         if (position == null)
         {
-            String msg = Logging.getMessage("nullValue.PositionIsNull");
+            string msg = Logging.getMessage("nullValue.PositionIsNull");
             Logging.logger().severe(msg);
             throw new ArgumentException(msg);
         }
@@ -152,21 +159,19 @@ public class CSVTrackPoint implements TrackPoint
         this.altitude = elevation;
     }
 
-    public String getTime()
+    public string getTime()
     {
         return null;
     }
 
-    public void setTime(String time)
+    public void setTime(string time)
     {
         this.time = time;
     }
 
-    @Override
     public override string ToString()
     {
-        return String.Format("(%10.8f\u00B0, %11.8f\u00B0, %10.4g m, %s)", this.latitude, this.longitude,
-            this.altitude, this.time);
+        return string.Format("(%10.8f\u00B0, %11.8f\u00B0, %10.4g m, %s)", this.latitude, this.longitude, this.altitude, this.time);
     }
 }
 }

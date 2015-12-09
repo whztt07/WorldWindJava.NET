@@ -13,11 +13,11 @@ namespace SharpEarth.animation{
 /**
  * A base class for an interpolating <code>Animator</code>.
  */
-public class BasicAnimator implements Animator
+public class BasicAnimator : Animator
 {
-    private bool stopOnInvalidState = false;
-    private bool lastStateValid = true;
-    private bool hasNext = true;
+    private bool _stopOnInvalidState = false;
+    private bool _lastStateValid = true;
+    private bool _hasNext = true;
 
     /**
      * Used to drive the animators next value based on the interpolant returned by the
@@ -52,7 +52,7 @@ public class BasicAnimator implements Animator
      */
     public void next()
     {
-        set(this.interpolator.nextInterpolant());
+        set(interpolator.nextInterpolant());
     }
 
     /**
@@ -63,7 +63,7 @@ public class BasicAnimator implements Animator
      */
     public void set(double interpolant)
     {
-        this.setImpl(interpolant);
+        setImpl(interpolant);
         if (isStopOnInvalidState() && !isLastStateValid())
         {
             this.stop();
@@ -77,7 +77,7 @@ public class BasicAnimator implements Animator
      */
     public bool hasNext()
     {
-        return this.hasNext;
+        return _hasNext;
     }
 
     /**
@@ -85,7 +85,7 @@ public class BasicAnimator implements Animator
      */
     public void start()
     {
-        this.hasNext = true;
+      _hasNext = true;
     }
 
     /**
@@ -93,7 +93,7 @@ public class BasicAnimator implements Animator
      */
     public void stop()
     {
-        this.hasNext = false;
+      _hasNext = false;
     }
 
     /**
@@ -102,29 +102,29 @@ public class BasicAnimator implements Animator
      *
      * @param interpolant A value between 0 and 1.
      */
-    protected void setImpl(double interpolant)
+    protected virtual void setImpl(double interpolant)
     {
 
     }
 
-    public void setStopOnInvalidState(boolean stop)
+    public void setStopOnInvalidState(bool stop)
     {
-       this.stopOnInvalidState = stop;
+       _stopOnInvalidState = stop;
     }
 
     public bool isStopOnInvalidState()
     {
-       return this.stopOnInvalidState;
+       return _stopOnInvalidState;
     }
 
     protected void flagLastStateInvalid()
     {
-       this.lastStateValid = false;
+       _lastStateValid = false;
     }
 
     protected bool isLastStateValid()
     {
-       return this.lastStateValid;
+       return _lastStateValid;
     }
 }
 }

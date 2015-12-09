@@ -13,26 +13,21 @@ namespace SharpEarth.util{
  */
 public class PropertyAccessor
 {
-
-    public PropertyAccessor()
-    {
-    }
-
-    public static interface AngleAccessor
+    public interface AngleAccessor
     {
         Angle getAngle();
 
         bool setAngle(Angle value);
     }
 
-    public static interface DoubleAccessor
+    public interface DoubleAccessor
     {
-        Double getDouble();
+        double getDouble();
 
-        bool setDouble(Double value);
+        bool setDouble( double value );
     }
 
-    public static interface PositionAccessor
+    public interface PositionAccessor
     {
         Position getPosition();
 

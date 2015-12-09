@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 using SharpEarth.geom;
 namespace SharpEarth.animation{
@@ -27,7 +29,7 @@ public class AnimationSupport
      * @return The scaled time in milliseconds.
      */
     public static long getScaledTimeMillisecs(
-            LatLon beginLatLon, LatLon endLatLon,
+LatLon beginLatLon, LatLon endLatLon,
             long minTimeMillis, long maxTimeMillis)
     {
         Angle sphericalDistance = LatLon.greatCircleDistance(beginLatLon, endLatLon);

@@ -6,11 +6,9 @@
 
 using System.Collections.Generic;
 using SharpEarth.geom;
-using SharpEarth;
-namespace SharpEarth.globes{
 
-
-
+namespace SharpEarth.globes
+{
 /**
  * <p/>
  * Provides the elevations to a {@link Globe} or other object holding elevations.
@@ -26,8 +24,8 @@ namespace SharpEarth.globes{
  * @author Tom Gaskins
  * @version $Id: ElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
  */
-public interface ElevationModel : WWObject, Restorable, Disposable
-{
+  public interface ElevationModel : WWObject, Restorable, Disposable
+  {
     /**
      * Returns the elevation model's name.
      *
@@ -36,15 +34,13 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #setName(String)
      */
     string getName();
-
     /**
      * Set the elevation model's name. The name is a convenience attribute typically used to identify the elevation
      * model in user interfaces. By default, an elevation model has no name.
      *
      * @param name the name to give the elevation model.
      */
-    void setName(string name);
-
+    void setName( string name );
     /**
      * Indicates whether the elevation model is allowed to retrieve data from the network. Some elevation models have no
      * need to retrieve data from the network. This flag is meaningless for such elevation models.
@@ -52,15 +48,13 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @return <code>true</code> if the elevation model is enabled to retrieve network data, else <code>false</code>.
      */
     bool isNetworkRetrievalEnabled();
-
     /**
      * Controls whether the elevation model is allowed to retrieve data from the network. Some elevation models have no
      * need for data from the network. This flag may be set but is meaningless for such elevation models.
      *
      * @param networkRetrievalEnabled <code>true</code> if network retrieval is allowed, else <code>false</code>.
      */
-    void setNetworkRetrievalEnabled(bool networkRetrievalEnabled);
-
+    void setNetworkRetrievalEnabled( bool networkRetrievalEnabled );
     /**
      * Returns the current expiry time.
      *
@@ -69,7 +63,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #setExpiryTime(long)
      */
     long getExpiryTime();
-
     /**
      * Specifies the time of the elevation model's most recent dataset update. If greater than zero, the model ignores
      * and eliminates any previously cached data older than the time specified, and requests new information from the
@@ -80,8 +73,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @see System#currentTimeMillis() for a description of milliseconds beyond the epoch.
      */
-    void setExpiryTime(long expiryTime);
-
+    void setExpiryTime( long expiryTime );
     /**
      * Specifies the value used to identify missing data in an elevation model. Locations with this elevation value are
      * assigned the missing-data replacement value, specified by {@link #setMissingDataReplacement(double)}.
@@ -95,8 +87,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #setMissingDataReplacement(double)
      * @see #getMissingDataSignal
      */
-    void setMissingDataSignal(double flag);
-
+    void setMissingDataSignal( double flag );
     /**
      * Returns the current missing-data signal.
      *
@@ -105,7 +96,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #getMissingDataReplacement()
      */
     double getMissingDataSignal();
-
     /**
      * Indicates whether the elevation model covers a specified sector either partially or fully.
      *
@@ -114,8 +104,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @return 0 if the elevation model fully contains the sector, 1 if the elevation model intersects the sector but
      *         does not fully contain it, or -1 if the sector does not intersect the elevation model.
      */
-    int intersects(Sector sector);
-
+    int intersects( Sector sector );
     /**
      * Indicates whether a specified location is within the elevation model's domain.
      *
@@ -124,8 +113,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @return true if the location is within the elevation model's domain, otherwise false.
      */
-    bool contains(Angle latitude, Angle longitude);
-
+    bool contains( Angle latitude, Angle longitude );
     /**
      * Returns the maximum elevation contained in the elevation model. When the elevation model is associated with a
      * globe, this value is the elevation of the highest point on the globe.
@@ -133,7 +121,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @return The maximum elevation of the elevation model.
      */
     double getMaxElevation();
-
     /**
      * Returns the minimum elevation contained in the elevation model. When associated with a globe, this value is the
      * elevation of the lowest point on the globe. It may be negative, indicating a value below mean surface level. (Sea
@@ -142,7 +129,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @return The minimum elevation of the model.
      */
     double getMinElevation();
-
     /**
      * Returns the minimum and maximum elevations at a specified location.
      *
@@ -153,8 +139,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *         the specified location. These values are the global minimum and maximum if the local minimum and maximum
      *         values are currently unknown.
      */
-    double[] getExtremeElevations(Angle latitude, Angle longitude);
-
+    double[] getExtremeElevations( Angle latitude, Angle longitude );
     /**
      * Returns the minimum and maximum elevations within a specified sector of the elevation model.
      *
@@ -164,8 +149,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *         elevations. These elements are the global minimum and maximum if the local minimum and maximum values are
      *         currently unknown.
      */
-    double[] getExtremeElevations(Sector sector);
-
+    double[] getExtremeElevations( Sector sector );
     /**
      * Indicates the best resolution attainable for a specified sector.
      *
@@ -175,9 +159,9 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @return the best resolution attainable for the specified sector, in radians, or {@link Double#MAX_VALUE} if the
      *         sector does not intersect the elevation model.
      */
-    double getBestResolution(Sector sector);
+    double getBestResolution( Sector sector );
 
-    double[] getBestResolutions(Sector sector);
+    double[] getBestResolutions( Sector sector );
 
     /**
      * Returns the detail hint associated with the specified sector. If the elevation model does not have any detail
@@ -189,8 +173,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @throws ArgumentException if <code>sector</code> is null.
      */
-    double getDetailHint(Sector sector);
-
+    double getDetailHint( Sector sector );
     /**
      * Returns the elevation at a specified location. If the elevation at the specified location is the elevation
      * model's missing data signal, or if the location specified is outside the elevation model's coverage area, the
@@ -208,8 +191,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #setMissingDataSignal(double)
      * @see #getUnmappedElevation(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle)
      */
-    double getElevation(Angle latitude, Angle longitude);
-
+    double getElevation( Angle latitude, Angle longitude );
     /**
      * Returns the elevation at a specified location, but without replacing missing data with the elevation model's
      * missing data replacement value. When a missing data signal is found, the signal value is returned, not the
@@ -222,8 +204,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *         currently in memory for the location, and the location is within the elevation model's coverage area, the
      *         elevation model's minimum elevation at that location is returned.
      */
-    double getUnmappedElevation(Angle latitude, Angle longitude);
-
+    double getUnmappedElevation( Angle latitude, Angle longitude );
     /**
      * Returns the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
      * data signal with the elevation model's missing data replacement value. If a location within the elevation model's
@@ -247,8 +228,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @throws ArgumentException if either the sector, latlons list or elevations array is null.
      * @see #setMissingDataSignal(double)
      */
-    double getElevations<T>(Sector sector, List<T> latlons, double targetResolution, double[] buffer) where T : LatLon;
-
+    double getElevations<T>( Sector sector, List<T> latlons, double targetResolution, double[] buffer ) where T : LatLon;
     /**
      * Returns the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
      * data signal with the elevation model's missing data replacement value. If a location within the elevation model's
@@ -277,8 +257,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *                                  is null.
      * @see #setMissingDataSignal(double)
      */
-  double[] getElevations<T>( Sector sector, List<T> latlons, double[] targetResolution, double[] buffer ) where T : LatLon;
-
+    double[] getElevations<T>( Sector sector, List<T> latlons, double[] targetResolution, double[] buffer ) where T : LatLon;
     /**
      * Returns the elevations of a collection of locations. <em>Does not</em> replace any elevation values corresponding
      * to the missing data signal with the elevation model's missing data replacement value. If a location within the
@@ -301,8 +280,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @see #setMissingDataSignal(double)
      */
-    double getUnmappedElevations<T>(Sector sector, List<T> latlons, double targetResolution, double[] buffer) where T : LatLon;
-
+    double getUnmappedElevations<T>( Sector sector, List<T> latlons, double targetResolution, double[] buffer ) where T : LatLon;
     /**
      * Returns the elevations of a collection of locations. <em>Does not</em> replace any elevation values corresponding
      * to the missing data signal with the elevation model's missing data replacement value. If a location within the
@@ -331,8 +309,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *                                  array
      * @see #setMissingDataSignal(double)
      */
-    double[] getUnmappedElevations<T>(Sector sector, List<T> latlons, double[] targetResolution, double[] buffer) where T : LatLon;
-
+    double[] getUnmappedElevations<T>( Sector sector, List<T> latlons, double[] targetResolution, double[] buffer ) where T : LatLon;
     /**
      * Returns the elevation used for missing values in the elevation model.
      *
@@ -342,7 +319,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #getMissingDataSignal
      */
     double getMissingDataReplacement();
-
     /**
      * Specifies the elevation used for missing values in the elevation model.
      *
@@ -350,8 +326,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @see #setMissingDataSignal(double)
      */
-    void setMissingDataReplacement(double missingDataValue);
-
+    void setMissingDataReplacement( double missingDataValue );
     /**
      * Determines the elevations at specified locations within a specified {@link Sector}.
      *
@@ -366,8 +341,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *                                  not at least as large as the location list, or the tile width is greater than
      *                                  the locations list length or less than 1.
      */
-    void composeElevations<T>(Sector sector, List<T> latlons, int tileWidth, double[] buffer) where T : LatLon;
-
+    void composeElevations<T>( Sector sector, List<T> latlons, int tileWidth, double[] buffer ) where T : LatLon;
     /**
      * Returns the proportion of this elevation model's data that is local -- in the computer's data cache or installed
      * data filestore -- for a specified sector and target resolution.
@@ -380,22 +354,19 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @return the fraction of the data that is local. A value of 1.0 indicates that all the data is available.
      */
-    double getLocalDataAvailability(Sector sector, double targetResolution);
-
+    double getLocalDataAvailability( Sector sector, double targetResolution );
     /**
      * Indicates whether this elevation model is used or ignored.
      *
      * @param enabled true if this elevation model is used, otherwise false.
      */
-    void setEnabled(bool enabled);
-
+    void setEnabled( bool enabled );
     /**
      * Indicates whether this elevation model is used or ignored.
      *
      * @return true if this elevation model is used, otherwise false.
      */
     bool isEnabled();
-
     /**
      * Indicates whether extreme values of sectors should be cached as they're computed. Caching should be disabled if
      * especially many sectors are to be used when querying extreme elevations of this elevation model, such as during
@@ -404,8 +375,7 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      *
      * @param enabled true if extreme value caching should be performed.
      */
-    void setExtremesCachingEnabled(bool enabled);
-
+    void setExtremesCachingEnabled( bool enabled );
     /**
      * Indicates whether extreme value caching is enabled.
      *
@@ -414,7 +384,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * @see #setExtremesCachingEnabled(boolean)
      */
     bool isExtremesCachingEnabled();
-
     /**
      * Returns the elevation for this elevation model's highest level of detail if the source file for that level and
      * the specified location exists in the local elevation cache on disk. This method is useful only when an elevation
@@ -425,6 +394,6 @@ public interface ElevationModel : WWObject, Restorable, Disposable
      * source file for the highest-resolution elevation at that location exists in the current disk cache. Otherwise
      * this elevation model's missing data signal is returned (see {@link #getMissingDataSignal()}).
      */
-    double getUnmappedLocalSourceElevation(Angle latitude, Angle longitude);
-}
+    double getUnmappedLocalSourceElevation( Angle latitude, Angle longitude );
+  }
 }

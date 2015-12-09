@@ -3,6 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System.Collections.Generic;
+using System.Linq;
 using java.util;
 namespace SharpEarth.animation{
 
@@ -14,8 +17,7 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: AnimationController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AnimationController extends
-            HashMap<Object, Animator>
+public class AnimationController :  Dictionary<string, Animator>
 {
 
     /**
@@ -23,11 +25,10 @@ public class AnimationController extends
      */
     public void startAnimations()
     {
-        Collection<Animator> animators = this.values();
-        for (Animator a : animators)
-        {
-            a.start();
-        }
+      foreach ( var animator in Values )
+      {
+        animator.start();
+      }
     }
 
     /**
@@ -35,12 +36,10 @@ public class AnimationController extends
      */
     public void stopAnimations()
     {
-        Collection<Animator> animators = this.values();
-        for (Animator a : animators)
-        {
-            a.stop();
-        }
-
+      foreach ( var animator in Values )
+      {
+        animator.stop();
+      }
     }
 
     /**
@@ -48,18 +47,30 @@ public class AnimationController extends
      *
      * @param animationName the name of the animation to be started.
      */
-    public void startAnimation(Object animationName)
+    public bool startAnimation(string animationName)
     {
-        this.get(animationName).start();
+      Animator animator;
+      if ( TryGetValue( animationName, out animator ) )
+      {
+        animator.start();
+        return true;
+      }
+      return false;
     }
 
     /**
      * Stops the <code>Animator</code> associated with <code>animationName</code>
      * @param animationName the name of the animation to be stopped
      */
-    public void stopAnimation(Object animationName)
+    public bool stopAnimation( string animationName )
     {
-        this.get(animationName).stop();
+      Animator animator;
+      if ( TryGetValue( animationName, out animator ) )
+      {
+        animator.stop();
+        return true;
+      }
+      return false;
     }
 
     /**
@@ -68,18 +79,12 @@ public class AnimationController extends
      */
     public bool stepAnimators()
     {
-        bool didStep = false;
-        Collection<Animator> animators = this.values();
-        for (Animator a : animators)
-        {
-            if (a.hasNext())
-            {
-                didStep = true;
-                a.next();
-            }
-        }
-        return didStep;
-
+      var steps = Values.Where( animator => animator.hasNext() ).ToArray();
+      foreach ( var step in steps )
+      {
+        step.next();
+      }
+      return steps.Length > 0;
     }
 
     /**
@@ -89,18 +94,7 @@ public class AnimationController extends
      */
     public bool hasActiveAnimation()
     {
-
-        Collection<Animator> animators = this.values();
-        for (Animator a : animators)
-        {
-            if (a.hasNext())
-            {
-                return true;
-            }
-        }
-        return false;
+      return Values.Any( animator => animator.hasNext() );
     }
-
-
 }
 }

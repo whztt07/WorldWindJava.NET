@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 using SharpEarth.geom;
 namespace SharpEarth.animation{
@@ -12,7 +14,7 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: MoveToPositionAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class MoveToPositionAnimator extends PositionAnimator
+public class MoveToPositionAnimator : PositionAnimator
 {
 
     protected double positionMinEpsilon = 1e-9;
@@ -23,9 +25,8 @@ public class MoveToPositionAnimator extends PositionAnimator
         Position begin,
         Position end,
         double smoothing,
-        PropertyAccessor.PositionAccessor propertyAccessor)
+        PropertyAccessor.PositionAccessor propertyAccessor) : base(null, begin, end, propertyAccessor)
     {
-        super(null, begin, end, propertyAccessor);
         this.interpolator = null;
         this.smoothing = smoothing;
     }

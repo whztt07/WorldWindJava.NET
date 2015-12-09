@@ -3,7 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.PropertyAccessor;
+
+using System;
+using SharpEarth.util;
+
 namespace SharpEarth.animation{
 
 
@@ -16,7 +19,7 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: MoveToDoubleAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class MoveToDoubleAnimator extends DoubleAnimator
+public class MoveToDoubleAnimator : DoubleAnimator
 {
     /**
      * The amount of delta between the end value and the current value that is required to stop the animation. Defaults
@@ -35,11 +38,10 @@ public class MoveToDoubleAnimator extends DoubleAnimator
      * @param propertyAccessor The accessor used to access the animated value.
      */
     public MoveToDoubleAnimator(
-        Double end, double smoothing,
-        PropertyAccessor.DoubleAccessor propertyAccessor)
+        double end, double smoothing,
+        PropertyAccessor.DoubleAccessor propertyAccessor) : base(null, 0, end, propertyAccessor)
     {
-        super(null, 0, end, propertyAccessor);
-        this.interpolator = null;
+        interpolator = null;
         this.smoothing = smoothing;
     }
 
@@ -54,10 +56,9 @@ public class MoveToDoubleAnimator extends DoubleAnimator
      * @param propertyAccessor The double accessor used to access the animated value.
      */
     public MoveToDoubleAnimator(
-        Double end, double smoothing, double minEpsilon,
-        PropertyAccessor.DoubleAccessor propertyAccessor)
+        double end, double smoothing, double minEpsilon,
+        PropertyAccessor.DoubleAccessor propertyAccessor) : base(null, 0, end, propertyAccessor)
     {
-        super(null, 0, end, propertyAccessor);
         this.interpolator = null;
         this.smoothing = smoothing;
         this.minEpsilon = minEpsilon;
@@ -81,12 +82,12 @@ public class MoveToDoubleAnimator extends DoubleAnimator
      *
      * @return the interpolated value.
      */
-    public Double nextDouble(double interpolant)
+    public double? nextDouble(double interpolant)
     {
-        double newValue = (1 - interpolant) * propertyAccessor.getDouble() + interpolant * this.end;
+        double newValue = (1 - interpolant) * propertyAccessor.getDouble() + interpolant * this.End;
         if (Math.Abs(newValue - propertyAccessor.getDouble()) < minEpsilon)
         {
-            this.stop();
+            stop();
             return (null);
         }
         return newValue;

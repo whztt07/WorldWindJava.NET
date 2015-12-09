@@ -3,6 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using java.util.Arrays;
 using SharpEarth.util;
 namespace SharpEarth.animation{
@@ -16,7 +20,7 @@ namespace SharpEarth.animation{
  * @author jym
  * @version $Id: CompoundAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class CompoundAnimator extends BasicAnimator
+public class CompoundAnimator : BasicAnimator
 {
     protected Animator[] animators;
 
@@ -24,10 +28,9 @@ public class CompoundAnimator extends BasicAnimator
      * Construct a CompoundAnimator with the given {@link Interpolator}
      * @param interpolator the {@link Interpolator} to use to drive the animation.
      */
-    public CompoundAnimator(Interpolator interpolator)
+    public CompoundAnimator(Interpolator interpolator) : base(interpolator)
     {
-        super(interpolator);
-        this.animators = null;
+        animators = null;
     }
 
     /**
@@ -36,39 +39,34 @@ public class CompoundAnimator extends BasicAnimator
      * @param interpolator The {@link Interpolator} to use to drive the {@link Animator}s
      * @param animators The {@link Animator}s that will be driven by this {@link CompoundAnimator}
      */
-    public CompoundAnimator(Interpolator interpolator, Animator... animators)
+    public CompoundAnimator(Interpolator interpolator, params Animator[] animators) : base(interpolator)
     {
-        super(interpolator);
-        if (animators == null)
-            {
-                String message = Logging.getMessage("nullValue.ArrayIsNull");
-                Logging.logger().severe(message);
-                throw new ArgumentException(message);
-            }
-
-        int numAnimators = animators.length;
-        this.animators = new Animator[numAnimators];
-        System.arraycopy(animators, 0, this.animators, 0, numAnimators);
+    if (animators == null)
+        {
+            string message = Logging.getMessage("nullValue.ArrayIsNull");
+            Logging.logger().severe(message);
+            throw new ArgumentException(message);
+        }
+      int numAnimators = animators.Length;
+      this.animators = animators;
     }
 
     /**
      * Set the {@link Animator}s to be driven by this {@link CompoundAnimator}
      * @param animators the {@link Animator}s to be driven by this {@link CompoundAnimator}
      */
-    public void setAnimators(Animator... animators)
+    public void setAnimators( params Animator[] animators )
     {
-        int numAnimators = animators.length;
-        this.animators = new Animator[numAnimators];
-        System.arraycopy(animators, 0, this.animators, 0, numAnimators);
+      this.animators = animators;
     }
 
     /**
      * Get an {@link Iterable} list of the {@link Animator}
      * @return the list of {@link Animator}s
      */
-    public final Iterable<Animator> getAnimators()
+    public IEnumerable<Animator> getAnimators()
     {
-        return Arrays.asList(this.animators);
+      return animators;
     }
 
     /**
@@ -79,22 +77,15 @@ public class CompoundAnimator extends BasicAnimator
     protected void setImpl(double interpolant)
     {
         bool allStopped = true;
-        for (Animator a : animators)
+        foreach ( Animator a in animators.Where( a => a != null ).Where( a => a.hasNext() ) )
         {
-            if (a != null)
-            {
-                if (a.hasNext())
-                {
-                    allStopped = false;
-                    a.set(interpolant);
-                }
-            }
+          allStopped = false;
+          a.set(interpolant);
         }
         if (allStopped)
         {
             this.stop();
         }
     }
-
 }
 }
