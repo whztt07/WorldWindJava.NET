@@ -22,9 +22,9 @@ public class PropertyAccessor
 
     public interface DoubleAccessor
     {
-        double getDouble();
+        double? getDouble();
 
-        bool setDouble( double value );
+        bool setDouble( double? value );
     }
 
     public interface PositionAccessor

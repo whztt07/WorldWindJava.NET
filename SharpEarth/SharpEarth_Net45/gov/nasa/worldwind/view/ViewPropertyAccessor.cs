@@ -3,225 +3,202 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.PropertyAccessor;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using SharpEarth.geom;
-using SharpEarth;
-namespace SharpEarth.view{
+using SharpEarth.util;
 
-
+namespace SharpEarth.view
+{
 /**
  * @author jym
  * @version $Id: ViewPropertyAccessor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ViewPropertyAccessor
-{
-    public ViewPropertyAccessor()
+
+  public class ViewPropertyAccessor
+  {
+    public static PropertyAccessor.DoubleAccessor createElevationAccessor( View view )
     {
+      return new ElevationAccessor( view );
     }
 
-    public static PropertyAccessor.DoubleAccessor createElevationAccessor(View view)
+    public static PropertyAccessor.AngleAccessor createHeadingAccessor( View view )
     {
-        return new ElevationAccessor(view);
+      return new HeadingAccessor( view );
     }
 
-    public static PropertyAccessor.AngleAccessor createHeadingAccessor(View view)
+    public static PropertyAccessor.AngleAccessor createPitchAccessor( View view )
     {
-        return new HeadingAccessor(view);
+      return new PitchAccessor( view );
     }
 
-    public static PropertyAccessor.AngleAccessor createPitchAccessor(View view)
+    public static PropertyAccessor.AngleAccessor createRollAccessor( View view )
     {
-        return new PitchAccessor(view);
+      return new RollAccessor( view );
     }
 
-    public static PropertyAccessor.AngleAccessor createRollAccessor(View view)
+    public static PropertyAccessor.PositionAccessor createEyePositionAccessor( View view )
     {
-        return new RollAccessor(view);
+      return new EyePositionAccessor( view );
     }
 
-    public static PropertyAccessor.PositionAccessor createEyePositionAccessor(View view)
+    public class HeadingAccessor : PropertyAccessor.AngleAccessor
     {
-        return new EyePositionAccessor(view);
+      protected View view;
+
+      public HeadingAccessor( View view )
+      {
+        this.view = view;
+      }
+
+      public Angle getAngle()
+      {
+        return view != null ? view.getHeading() : null;
+      }
+
+      public bool setAngle( Angle value )
+      {
+        if ( view == null || value == null )
+          return false;
+        try
+        {
+          view.setHeading( value );
+          return true;
+        }
+        catch ( Exception e )
+        {
+          return false;
+        }
+      }
     }
 
-    public static class HeadingAccessor implements PropertyAccessor.AngleAccessor
+    public class PitchAccessor : PropertyAccessor.AngleAccessor
     {
-        protected View view;
+      protected View view;
 
-        HeadingAccessor(View view)
+      public PitchAccessor( View view )
+      {
+        this.view = view;
+      }
+
+      public Angle getAngle()
+      {
+        if ( view == null )
+          return null;
+
+        return view.getPitch();
+      }
+
+      public bool setAngle( Angle value )
+      {
+        //noinspection SimplifiableIfStatement
+        if ( view == null || value == null )
+          return false;
+
+        try
         {
-            this.view = view;
+          view.setPitch( value );
+          return true;
         }
-
-        public final Angle getAngle()
+        catch ( Exception e )
         {
-            if (this.view == null)
-                return null;
-
-            return this.view.getHeading();
+          return false;
         }
-
-        public final bool setAngle(Angle value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.view == null || value == null)
-                return false;
-
-            try
-            {
-                this.view.setHeading(value);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
 
-    public static class PitchAccessor implements PropertyAccessor.AngleAccessor
+    public class RollAccessor : PropertyAccessor.AngleAccessor
     {
-        protected View view;
+      protected View view;
 
-        PitchAccessor(View view)
+      public RollAccessor( View view )
+      {
+        this.view = view;
+      }
+
+      public Angle getAngle()
+      {
+        return view != null ? view.getRoll() : null;
+      }
+
+      public bool setAngle( Angle value )
+      {
+        if ( view == null || value == null )
+          return false;
+        try
         {
-            this.view = view;
+          view.setRoll( value );
+          return true;
         }
-
-        public final Angle getAngle()
+        catch ( Exception e )
         {
-            if (this.view == null)
-                return null;
-
-            return view.getPitch();
+          return false;
         }
-
-        public final bool setAngle(Angle value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.view == null || value == null)
-                return false;
-
-            try
-            {
-                this.view.setPitch(value);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
 
-    public static class RollAccessor implements PropertyAccessor.AngleAccessor
+    public class EyePositionAccessor : PropertyAccessor.PositionAccessor
     {
-        protected View view;
+      protected View view;
 
-        RollAccessor(View view)
+      public EyePositionAccessor( View view )
+      {
+        this.view = view;
+      }
+
+      public Position getPosition()
+      {
+        return view != null ? view.getEyePosition() : null;
+      }
+
+      public bool setPosition( Position value )
+      {
+        if ( view == null || value == null )
+          return false;
+        try
         {
-            this.view = view;
+          view.setEyePosition( value );
+          return true;
         }
-
-        public final Angle getAngle()
+        catch ( Exception e )
         {
-            if (this.view == null)
-                return null;
-
-            return view.getRoll();
+          return false;
         }
-
-        public final bool setAngle(Angle value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.view == null || value == null)
-                return false;
-
-            try
-            {
-                this.view.setRoll(value);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
 
-    public static class EyePositionAccessor implements
-        PropertyAccessor.PositionAccessor
+    public class ElevationAccessor : PropertyAccessor.DoubleAccessor
     {
+      protected View view;
 
-        protected View view;
+      public ElevationAccessor( View view )
+      {
+        this.view = view;
+      }
 
-        EyePositionAccessor(View view)
+      public double? getDouble()
+      {
+        if ( view == null )
+          return null;
+        return view.getEyePosition().getElevation();
+      }
+
+      public bool setDouble( double? value )
+      {
+        if ( view == null || value == null )
+          return false;
+        try
         {
-            this.view = view;
+          view.setEyePosition( new Position( view.getCurrentEyePosition(), value.Value ) );
+          return true;
         }
-
-        public Position getPosition()
+        catch ( Exception e )
         {
-            if (this.view == null)
-                return null;
-
-            return this.view.getEyePosition();
+          return false;
         }
-
-        public bool setPosition(Position value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.view == null || value == null)
-                return false;
-
-            try
-            {
-                this.view.setEyePosition(value);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
-
-    public static class ElevationAccessor implements
-        PropertyAccessor.DoubleAccessor
-    {
-        protected View view;
-
-        ElevationAccessor(View view)
-        {
-            this.view = view;
-        }
-
-        public Double getDouble()
-        {
-            if (this.view == null)
-                return null;
-
-            return this.view.getEyePosition().getElevation();
-        }
-
-        public bool setDouble(Double value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.view == null || value == null)
-                return false;
-
-            try
-            {
-
-                this.view.setEyePosition(
-                    new Position(this.view.getCurrentEyePosition(), value));
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
-    }
-}
+  }
 }

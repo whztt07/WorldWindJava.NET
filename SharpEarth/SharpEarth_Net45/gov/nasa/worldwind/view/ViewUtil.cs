@@ -3,6 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using System.Drawing;
 using java.awt;
 using javax.media.opengl.glu.gl2.GLUgl2;
 using javax.media.opengl.glu.GLU;
@@ -12,6 +15,8 @@ using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
 using SharpEarth;
+using SharpEarth.java.lang;
+
 namespace SharpEarth.view{
 
 
@@ -22,7 +27,7 @@ namespace SharpEarth.view{
  */
 public class ViewUtil
 {
-    public static class ViewState
+    public class ViewState
     {
         protected Position position;
         protected Angle heading;
@@ -96,8 +101,8 @@ public class ViewUtil
             throw new ArgumentException(message);
         }
 
-        final long MIN_LENGTH_MILLIS = 500;
-        final long MAX_LENGTH_MILLIS = 3000;
+        const long MIN_LENGTH_MILLIS = 500;
+        const  long MAX_LENGTH_MILLIS = 3000;
         long lengthMillis = AnimationSupport.getScaledTimeMillisecs(
             begin, end, Angle.POS180,
             MIN_LENGTH_MILLIS, MAX_LENGTH_MILLIS);
@@ -124,8 +129,8 @@ public class ViewUtil
             throw new ArgumentException(message);
         }
 
-        final long MIN_LENGTH_MILLIS = 500;
-        final long MAX_LENGTH_MILLIS = 3000;
+        const long MIN_LENGTH_MILLIS = 500;
+        const long MAX_LENGTH_MILLIS = 3000;
         long lengthMillis = AnimationSupport.getScaledTimeMillisecs(
             begin, end, Angle.POS180,
             MIN_LENGTH_MILLIS, MAX_LENGTH_MILLIS);
@@ -152,8 +157,8 @@ public class ViewUtil
             throw new ArgumentException(message);
         }
 
-        final long MIN_LENGTH_MILLIS = 500;
-        final long MAX_LENGTH_MILLIS = 3000;
+        const long MIN_LENGTH_MILLIS = 500;
+        const long MAX_LENGTH_MILLIS = 3000;
         long lengthMillis = AnimationSupport.getScaledTimeMillisecs(
             begin, end, Angle.POS180,
             MIN_LENGTH_MILLIS, MAX_LENGTH_MILLIS);
@@ -186,8 +191,8 @@ public class ViewUtil
             throw new ArgumentException(message);
         }
 
-        final long MIN_LENGTH_MILLIS = 500;
-        final long MAX_LENGTH_MILLIS = 3000;
+        const long MIN_LENGTH_MILLIS = 500;
+        const long MAX_LENGTH_MILLIS = 3000;
         long headingLengthMillis = AnimationSupport.getScaledTimeMillisecs(
             beginHeading, endHeading, Angle.POS180,
             MIN_LENGTH_MILLIS, MAX_LENGTH_MILLIS);
@@ -218,9 +223,7 @@ public class ViewUtil
 
     public static Point subtract(Point a, Point b)
     {
-        if (a == null || b == null)
-            return null;
-        return new Point((int) (a.getX() - b.getX()), (int) (a.getY() - b.getY()));
+        return new Point(a.X- b.Y, a.Y- b.Y);
     }
 
     public static Matrix computeTransformMatrix(Globe globe, Position position, Angle heading, Angle pitch, Angle roll)
