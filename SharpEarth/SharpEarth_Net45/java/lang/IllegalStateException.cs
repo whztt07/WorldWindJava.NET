@@ -9,5 +9,9 @@ namespace SharpEarth.java.lang
     {
 
     }
+
+    public IllegalStateException(string message, Exception innerException) : base(message, innerException)
+    {
+    }
   }
 }

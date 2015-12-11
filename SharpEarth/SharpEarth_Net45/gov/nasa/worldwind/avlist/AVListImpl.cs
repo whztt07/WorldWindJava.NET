@@ -14,6 +14,7 @@ using java.beans;
 using SharpEarth.util;
 using SharpEarth.exception;
 using SharpEarth.view.orbit;
+using SharpEarth.java.beans;
 
 namespace SharpEarth.avlist{
 
@@ -322,97 +323,97 @@ public class AVListImpl : AVList
         }
     }
 
-    public static Integer getIntegerValue(AVList avList, String key, Integer defaultValue)
+    public static int? getIntegerValue(AVList avList, string key, int? defaultValue)
     {
-        Integer v = getIntegerValue(avList, key);
+        int? v = getIntegerValue(avList, key);
         return v != null ? v : defaultValue;
     }
 
-    public static Integer getIntegerValue(AVList avList, String key)
+    public static int? getIntegerValue(AVList avList, string key)
     {
-        Object o = avList.getValue(key);
+        object o = avList.getValue(key);
         if (o == null)
             return null;
 
-        if (o is Integer)
-            return (Integer) o;
+        if (o is int?)
+            return (int?) o;
 
-        String v = getStringValue(avList, key);
+        string v = getStringValue(avList, key);
         if (v == null)
             return null;
 
         try
         {
-            return Integer.parseInt(v);
+            return int.Parse(v);
         }
-        catch (NumberFormatException e)
+        catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
             return null;
         }
     }
 
-    public static Long getLongValue(AVList avList, String key, Long defaultValue)
+    public static long? getLongValue(AVList avList, string key, long? defaultValue)
     {
-        Long v = getLongValue(avList, key);
+        long? v = getLongValue(avList, key);
         return v != null ? v : defaultValue;
     }
 
-    public static Long getLongValue(AVList avList, String key)
+    public static long? getLongValue(AVList avList, string key)
     {
         Object o = avList.getValue(key);
         if (o == null)
             return null;
 
-        if (o is Long)
-            return (Long) o;
+        if (o is long?)
+            return (long?) o;
 
-        String v = getStringValue(avList, key);
+        string v = getStringValue(avList, key);
         if (v == null)
             return null;
 
         try
         {
-            return Long.parseLong(v);
+            return long.Parse(v);
         }
-        catch (NumberFormatException e)
+        catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
             return null;
         }
     }
 
-    public static Double getDoubleValue(AVList avList, String key, Double defaultValue)
+    public static double? getDoubleValue(AVList avList, string key, double? defaultValue)
     {
-        Double v = getDoubleValue(avList, key);
+      double? v = getDoubleValue(avList, key);
         return v != null ? v : defaultValue;
     }
 
-    public static Double getDoubleValue(AVList avList, String key)
+    public static double? getDoubleValue(AVList avList, string key)
     {
-        Object o = avList.getValue(key);
+        object o = avList.getValue(key);
         if (o == null)
             return null;
 
-        if (o is Double)
-            return (Double) o;
+        if (o is double)
+            return (double) o;
 
-        String v = getStringValue(avList, key);
+        string v = getStringValue(avList, key);
         if (v == null)
             return null;
 
         try
         {
-            return Double.parseDouble(v);
+            return double.Parse(v);
         }
-        catch (NumberFormatException e)
+        catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
             return null;
         }
     }
 
-    public void getRestorableStateForAVPair(String key, Object value, RestorableSupport rs,
+    public void getRestorableStateForAVPair(string key, object value, RestorableSupport rs,
         RestorableSupport.StateObject context)
     {
         if (value == null)
@@ -431,9 +432,9 @@ public class AVListImpl : AVList
         rs.addStateValueAsString(context, key, value.ToString());
     }
 
-    public static Boolean getBooleanValue(AVList avList, String key, Boolean defaultValue)
+    public static bool? getBooleanValue(AVList avList, string key, bool? defaultValue)
     {
-        Boolean v = getBooleanValue(avList, key);
+        bool? v = getBooleanValue(avList, key);
         return v != null ? v : defaultValue;
     }
 
@@ -461,8 +462,8 @@ public class AVListImpl : AVList
       {
         return result;
       }
-      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", new NumberFormatException() );
+      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", new Exception().Message );
       return null;
     }
-}
+  }
 }

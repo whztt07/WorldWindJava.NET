@@ -10,15 +10,15 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: AttributesOnlyXMLEventParser.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public class AttributesOnlyXMLEventParser extends AbstractXMLEventParser
+public class AttributesOnlyXMLEventParser : AbstractXMLEventParser
 {
     public AttributesOnlyXMLEventParser()
     {
     }
 
-    public AttributesOnlyXMLEventParser(String namespaceURI)
+    public AttributesOnlyXMLEventParser(string namespaceURI)
+      : base (namespaceURI)
     {
-        super(namespaceURI);
     }
-}
+  }
 }

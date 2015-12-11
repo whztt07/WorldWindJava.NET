@@ -3,15 +3,12 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
-using java.util;
-using java.awt;
-using SharpEarth.render.OffsetsList;
-using SharpEarth.geom;
-using SharpEarth.avlist;
+using SharpEarth.java.lang;
+using SharpEarth.java.org.w3c.dom;
+using System;
+using System.IO;
+
 namespace SharpEarth.util{
-
-
 
 /**
  * RestorableSupport provides convenient read and write access to restorable state located in a simple XML document
@@ -42,25 +39,25 @@ namespace SharpEarth.util{
  */
 public class RestorableSupport
 {
-    protected static final String DEFAULT_DOCUMENT_ELEMENT_TAG_NAME = "restorableState";
-    protected static final String DEFAULT_STATE_OBJECT_TAG_NAME = "stateObject";
+    protected const string DEFAULT_DOCUMENT_ELEMENT_TAG_NAME = "restorableState";
+    protected const string DEFAULT_STATE_OBJECT_TAG_NAME = "stateObject";
 
-    protected org.w3c.dom.Document doc;
+    protected Document doc;
     protected javax.xml.xpath.XPath xpath;
-    protected String stateObjectTagName;
+    protected string stateObjectTagName;
 
     /**
-     * Creates a new RestorableSupport with no contents and using a specified {@link org.w3c.dom.Document}.
+     * Creates a new RestorableSupport with no contents and using a specified {@link Document}.
      *
      * @param doc the document to hold the restorable state.
      *
      * @throws ArgumentException if the document reference is null.
      */
-    protected RestorableSupport(org.w3c.dom.Document doc)
+    protected RestorableSupport(Document doc)
     {
         if (doc == null)
         {
-            String message = Logging.getMessage("nullValue.DocumentIsNull");
+            string message = Logging.getMessage("nullValue.DocumentIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -84,7 +81,7 @@ public class RestorableSupport
     {
         if (WWUtil.isEmpty(documentElementName))
         {
-            String message = Logging.getMessage("nullValue.DocumentElementNameIsNull");
+            string message = Logging.getMessage("nullValue.DocumentElementNameIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -95,14 +92,14 @@ public class RestorableSupport
         try
         {
             javax.xml.parsers.DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            org.w3c.dom.Document doc = docBuilder.newDocument();
+            Document doc = docBuilder.newDocument();
             // Create the "restorableState" document root element.
             createDocumentElement(doc, documentElementName);
             return new RestorableSupport(doc);
         }
         catch (javax.xml.parsers.ParserConfigurationException e)
         {
-            String message = Logging.getMessage("generic.ExceptionCreatingParser");
+            string message = Logging.getMessage("generic.ExceptionCreatingParser");
             Logging.logger().severe(message);
             throw new IllegalStateException(message, e);
         }
@@ -143,8 +140,8 @@ public class RestorableSupport
         try
         {
             javax.xml.parsers.DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            org.w3c.dom.Document doc = docBuilder.parse(
-                new org.xml.sax.InputSource(new java.io.StringReader(stateInXml)));
+            Document doc = docBuilder.parse(
+                new org.xml.sax.InputSource(new StringReader(stateInXml)));
             return new RestorableSupport(doc);
         }
         catch (java.io.IOException e)
@@ -167,12 +164,12 @@ public class RestorableSupport
         }
     }
 
-    protected org.w3c.dom.Element getDocumentElement()
+    protected Element getDocumentElement()
     {
         return this.doc.getDocumentElement();
     }
 
-    protected static void createDocumentElement(org.w3c.dom.Document doc, String tagName)
+    protected static void createDocumentElement(Document doc, String tagName)
     {
         if (doc == null)
         {
@@ -191,7 +188,7 @@ public class RestorableSupport
         if (doc.getDocumentElement() != null)
             return;
 
-        org.w3c.dom.Element elem = doc.createElement(tagName);
+        Element elem = doc.createElement(tagName);
         doc.appendChild(elem);
     }
 
@@ -248,11 +245,11 @@ public class RestorableSupport
      * <code>stateObject</code> can be queried or set through StateObject. This also serves as a context through which
      * nested <code>stateObjects</code> can be found or created.
      */
-    public static class StateObject
+    public class StateObject
     {
-        final org.w3c.dom.Element elem;
+        Element elem;
 
-        public StateObject(org.w3c.dom.Element element)
+        public StateObject(Element element)
         {
             if (element == null)
             {
@@ -369,7 +366,7 @@ public class RestorableSupport
         this.stateObjectTagName = stateObjectTagName;
     }
 
-    protected StateObject findStateObject(org.w3c.dom.Node context, String name)
+    protected StateObject findStateObject(Node context, String name)
     {
         if (name == null)
         {
@@ -393,7 +390,7 @@ public class RestorableSupport
 
             // If the result is an Element node, return a new StateObject with the result as its content.
             // Otherwise return null.
-            return (result is org.w3c.dom.Element) ? new StateObject((org.w3c.dom.Element) result) : null;
+            return (result is Element) ? new StateObject((Element) result) : null;
         }
         catch (javax.xml.xpath.XPathExpressionException e)
         {
@@ -401,7 +398,7 @@ public class RestorableSupport
         }
     }
 
-    protected StateObject[] findAllStateObjects(org.w3c.dom.Node context, String name)
+    protected StateObject[] findAllStateObjects(Node context, String name)
     {
         if (name == null)
         {
@@ -426,21 +423,21 @@ public class RestorableSupport
                 (context != null ? context : getDocumentElement()),
                 javax.xml.xpath.XPathConstants.NODESET);
             if (result == null
-                || !(result is org.w3c.dom.NodeList)
-                || ((org.w3c.dom.NodeList) result).getLength() == 0)
+                || !(result is NodeList)
+                || ((NodeList) result).getLength() == 0)
             {
                 return null;
             }
 
             // If the result is a NodeList, return an array of StateObjects for each Element node in that list.
-            org.w3c.dom.NodeList nodeList = (org.w3c.dom.NodeList) result;
+            NodeList nodeList = (NodeList) result;
             ArrayList<StateObject> stateObjectList = new ArrayList<StateObject>();
             for (int i = 0; i < nodeList.getLength(); i++)
             {
-                org.w3c.dom.Node node = nodeList.item(i);
-                if (node is org.w3c.dom.Element)
+                Node node = nodeList.item(i);
+                if (node is Element)
                 {
-                    stateObjectList.add(new StateObject((org.w3c.dom.Element) node));
+                    stateObjectList.add(new StateObject((Element) node));
                 }
             }
             StateObject[] stateObjectArray = new StateObject[stateObjectList.size()];
@@ -453,21 +450,21 @@ public class RestorableSupport
         }
     }
 
-    protected StateObject[] extractStateObjects(org.w3c.dom.Element context)
+    protected StateObject[] extractStateObjects(Element context)
     {
-        org.w3c.dom.NodeList nodeList = (context != null ? context : getDocumentElement()).getChildNodes();
+        NodeList nodeList = (context != null ? context : getDocumentElement()).getChildNodes();
 
         ArrayList<StateObject> stateObjectList = new ArrayList<StateObject>();
         if (nodeList != null)
         {
             for (int i = 0; i < nodeList.getLength(); i++)
             {
-                org.w3c.dom.Node node = nodeList.item(i);
-                if (node is org.w3c.dom.Element
+                Node node = nodeList.item(i);
+                if (node is Element
                     && node.getNodeName() != null
                     && node.getNodeName().Equals(getStateObjectTagName()))
                 {
-                    stateObjectList.add(new StateObject((org.w3c.dom.Element) node));
+                    stateObjectList.add(new StateObject((Element) node));
                 }
             }
         }
@@ -477,14 +474,14 @@ public class RestorableSupport
         return stateObjectArray;
     }
 
-    protected StateObject createStateObject(org.w3c.dom.Element context, String name, String value)
+    protected StateObject createStateObject(Element context, String name, String value)
     {
         return createStateObject(context, name, value, false);
     }
 
-    protected StateObject createStateObject(org.w3c.dom.Element context, String name, String value, bool escapeValue)
+    protected StateObject createStateObject(Element context, String name, String value, bool escapeValue)
     {
-        org.w3c.dom.Element elem = this.doc.createElement(getStateObjectTagName());
+        Element elem = this.doc.createElement(getStateObjectTagName());
 
         // If non-null, name goes in an attribute entitled "name".
         if (name != null)
@@ -508,7 +505,7 @@ public class RestorableSupport
         return new StateObject(elem);
     }
 
-    protected bool containsElement(org.w3c.dom.Element elem)
+    protected bool containsElement(Element elem)
     {
         if (elem == null)
         {
