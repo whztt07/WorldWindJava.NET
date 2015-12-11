@@ -298,7 +298,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
 
             return tile != null ? this.getSurfacePoint(tile, latitude, longitude, metersOffset) : null;
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             throw new WWRuntimeException(e);
         }
@@ -381,7 +381,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
 
             return this.doIntersect(pA, pB);
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             throw new WWRuntimeException(e);
         }
@@ -447,9 +447,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      *                  positions[3], etc.
      * @param callback  An object to call in order to return the computed intersections.
      *
-     * @throws InterruptedException
+     * @throws ThreadInterruptedException
      */
-    public void intersect(List<Position> positions, final IntersectionCallback callback) throws InterruptedException
+    public void intersect(List<Position> positions, final IntersectionCallback callback) throws ThreadInterruptedException
     {
         ExecutorService service = Executors.newFixedThreadPool(10);
 
@@ -494,10 +494,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * @param pB the line's second position.
      *
      * @throws ArgumentException if either position is null.
-     * @throws InterruptedException     if the operation is interrupted. if the current timeout is exceeded while
+     * @throws ThreadInterruptedException     if the operation is interrupted. if the current timeout is exceeded while
      *                                  retrieving terrain data.
      */
-    public void cacheIntersectingTiles(Position pA, Position pB) throws InterruptedException
+    public void cacheIntersectingTiles(Position pA, Position pB) throws ThreadInterruptedException
     {
         if (pA == null || pB == null)
         {
@@ -542,10 +542,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * @param sector the sector for which to cache elevation data.
      *
      * @throws ArgumentException if the specified sector is null.
-     * @throws InterruptedException     if the operation is interrupted. if the current timeout is exceeded while
+     * @throws ThreadInterruptedException     if the operation is interrupted. if the current timeout is exceeded while
      *                                  retrieving terrain data.
      */
-    public void cacheIntersectingTiles(Sector sector) throws InterruptedException
+    public void cacheIntersectingTiles(Sector sector) throws ThreadInterruptedException
     {
         if (sector == null)
         {
@@ -573,7 +573,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         }
     }
 
-    public List<Sector> getIntersectionTiles(Position pA, Position pB) throws InterruptedException
+    public List<Sector> getIntersectionTiles(Position pA, Position pB) throws ThreadInterruptedException
     {
         Line line = this.makeLineFromPositions(pA, pB);
         if (line == null)
@@ -699,7 +699,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
         return (int) (s * (double) (this.numCols - 1));
     }
 
-    protected Line makeLineFromPositions(Position pA, Position pB) throws InterruptedException
+    protected Line makeLineFromPositions(Position pA, Position pB) throws ThreadInterruptedException
     {
         if (pA == null || pB == null)
         {
@@ -733,9 +733,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      *
      * @return an array of intersections, or null if no intersections occur.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      */
-    protected Intersection[] doIntersect(Position pA, Position pB) throws InterruptedException
+    protected Intersection[] doIntersect(Position pA, Position pB) throws ThreadInterruptedException
     {
         Line line = this.makeLineFromPositions(pA, pB);
         if (line == null)
@@ -897,10 +897,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      *
      * @param tile the tile to compute vertices for
      *
-     * @throws InterruptedException                            if the operation is interrupted.
+     * @throws ThreadInterruptedException                            if the operation is interrupted.
      * @throws SharpEarth.exception.WWTimeoutException if terrain data retrieval exceeds the current timeout.
      */
-    protected void makeVerts(RectTile tile) throws InterruptedException
+    protected void makeVerts(RectTile tile) throws ThreadInterruptedException
     {
         // First see if the vertices have been previously computed and are in the cache.
         tile.ri = (RenderInfo) this.geometryCache.getObject(tile.sector);
@@ -921,10 +921,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      *
      * @return the computed vertex information.
      *
-     * @throws InterruptedException                            if the operation is interrupted.
+     * @throws ThreadInterruptedException                            if the operation is interrupted.
      * @throws SharpEarth.exception.WWTimeoutException if terrain data retrieval exceeds the current timeout.
      */
-    protected RenderInfo buildVerts(RectTile tile) throws InterruptedException
+    protected RenderInfo buildVerts(RectTile tile) throws ThreadInterruptedException
     {
         int density = tile.density;
         int numVertices = (density + 1) * (density + 1);
@@ -1023,7 +1023,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
     }
 
     protected void getElevations(Sector sector, List<LatLon> latlons, double[] targetResolution, double[] elevations)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         if (this.useCachedElevationsOnly) {
             this.getCachedElevations(latlons, elevations);
@@ -1145,11 +1145,11 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * @throws ArgumentException                        if the latitude or longitude are null.
      * @throws SharpEarth.exception.WWTimeoutException if the current timeout is exceeded while retrieving
      *                                                         terrain data.
-     * @throws InterruptedException                            if the operation is interrupted.
+     * @throws ThreadInterruptedException                            if the operation is interrupted.
      * @see #setTimeout(Long)
      */
     protected Vec4 getSurfacePoint(RectTile tile, Angle latitude, Angle longitude, double metersOffset)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         Vec4 result = this.getSurfacePoint(tile, latitude, longitude);
         if (metersOffset != 0 && result != null)
@@ -1189,10 +1189,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * @throws ArgumentException                        if the latitude or longitude are null.
      * @throws SharpEarth.exception.WWTimeoutException if the current timeout is exceeded while retrieving
      *                                                         terrain data.
-     * @throws InterruptedException                            if the operation is interrupted.
+     * @throws ThreadInterruptedException                            if the operation is interrupted.
      * @see #setTimeout(Long)
      */
-    protected Vec4 getSurfacePoint(RectTile tile, Angle latitude, Angle longitude) throws InterruptedException
+    protected Vec4 getSurfacePoint(RectTile tile, Angle latitude, Angle longitude) throws ThreadInterruptedException
     {
         if (latitude == null || longitude == null)
         {
@@ -1308,9 +1308,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      *
      * @return an array of intersections, or null if no intersections occur.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      */
-    protected Intersection[] intersect(RectTile tile, Line line) throws InterruptedException
+    protected Intersection[] intersect(RectTile tile, Line line) throws ThreadInterruptedException
     {
         if (tile.ri == null)
             this.makeVerts(tile);
@@ -1398,9 +1398,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * the Cartesian coordinates of the intersection point with one terrain triangle. In the cases of co-planar
      * triangles, all three vertices of the terrain triangle are returned, in a three-element array.
      *
-     * @throws InterruptedException if the operation is interrupted before it completes.
+     * @throws ThreadInterruptedException if the operation is interrupted before it completes.
      */
-    protected List<Vec4[]> intersect(RectTile tile, Vec4[] triangle) throws InterruptedException
+    protected List<Vec4[]> intersect(RectTile tile, Vec4[] triangle) throws ThreadInterruptedException
     {
         if (tile.ri == null)
             this.makeVerts(tile);
@@ -1481,10 +1481,10 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * @param trianglePositions     The geographic coordinates of the triangle.
      * @param intersectPositionsOut A list in which to place the intersection positions. May not be null.
      *
-     * @throws InterruptedException if the operation is interrupted before it completes.
+     * @throws ThreadInterruptedException if the operation is interrupted before it completes.
      */
     public void intersectTriangle(Vec4[] triangleCoordinates, Position[] trianglePositions,
-        List<Position[]> intersectPositionsOut) throws InterruptedException
+        List<Position[]> intersectPositionsOut) throws ThreadInterruptedException
     {
         // Get the tiles intersecting the specified sector. Compute the sector from geographic coordinates.
         Sector sector = Sector.boundingSector(Arrays.asList(trianglePositions));
@@ -1515,7 +1515,7 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
     }
 
     protected List<RectTile> eliminateLowAltitudeTiles(List<RectTile> tiles, double minAltitude)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         List<RectTile> filteredTiles = new ArrayList<RectTile>();
 
@@ -1558,9 +1558,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * minimum as at index 0 in the array, the maximum is at index 1. If either cannot be determined, null is given in
      * the respective array position.
      *
-     * @throws InterruptedException if the operation is interrupted before it completes.
+     * @throws ThreadInterruptedException if the operation is interrupted before it completes.
      */
-    public Position[] getExtremeElevations(Sector sector) throws InterruptedException
+    public Position[] getExtremeElevations(Sector sector) throws ThreadInterruptedException
     {
         // Get the tiles intersecting the specified sector.
         List<RectTile> tiles = this.getIntersectingTiles(sector);
@@ -1600,9 +1600,9 @@ public class HighResolutionTerrain extends WWObjectImpl implements Terrain
      * quadrilateral. The minimum as at index 0 in the array, the maximum is at index 1. If either cannot be determined,
      * null is given in the respective array position.
      *
-     * @throws InterruptedException if the operation is interrupted before it completes.
+     * @throws ThreadInterruptedException if the operation is interrupted before it completes.
      */
-    public Position[] getExtremeElevations(LatLon center, double width, double height) throws InterruptedException
+    public Position[] getExtremeElevations(LatLon center, double width, double height) throws ThreadInterruptedException
     {
         // Compute the quad's geographic corners.
         SurfaceQuad quad = new SurfaceQuad(center, width, height);

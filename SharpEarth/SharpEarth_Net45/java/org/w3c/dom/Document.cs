@@ -8,5 +8,15 @@ namespace SharpEarth.java.org.w3c.dom
     {
       throw new NotImplementedException();
     }
+
+    internal Element createElement(string tagName)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void appendChild(Element elem)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

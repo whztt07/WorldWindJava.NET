@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using org.xml.sax;
-using SharpEarth.java.org.w3c.dom;
 
-namespace SharpEarth.javax.xml.parsers
+namespace SharpEarth.javax.xml.stream.events
 {
-  public class DocumentBuilder
+  public class Attribute
   {
-    internal Document newDocument()
+    internal object getName()
     {
       throw new NotImplementedException();
     }
 
-    internal Document parse(InputSource inputSource)
+    internal string getValue()
     {
       throw new NotImplementedException();
     }

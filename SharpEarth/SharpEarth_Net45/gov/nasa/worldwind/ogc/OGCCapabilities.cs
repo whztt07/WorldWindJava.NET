@@ -4,6 +4,10 @@
  * All Rights Reserved.
  */
 
+using SharpEarth.javax.xml.namespaces;
+using SharpEarth.util.xml;
+using System;
+
 namespace SharpEarth.ogc{
 
 
@@ -76,6 +80,11 @@ abstract public class OGCCapabilities : AbstractXMLEventParser
 
         this.getParserContext().registerParser(SERVICE, new OGCServiceInformation(this.getNamespaceURI()));
         // Capability parser is registered by subclass.
+    }
+
+    internal object getServiceInformation()
+    {
+      throw new NotImplementedException();
     }
 
     protected XMLEventReader createReader(Object docSource)

@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpEarth.javax.xml.stream.events
+namespace SharpEarth.java.io
 {
-  public interface StartElement
+  public class IOException : Exception
   {
-    Iterator getAttributes();
   }
 }

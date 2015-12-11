@@ -14,6 +14,7 @@ using System.Drawing;
 using SharpEarth.java.org.w3c.dom;
 using System;
 using SharpEarth.javax.xml.xpath;
+using SharpEarth.java.awt;
 
 namespace SharpEarth.layers{
 
@@ -261,7 +262,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         this.doRender(dc);
     }
 
-    public void pick(DrawContext dc, Point point)
+    public void pick(DrawContext dc, java.awt.Point point)
     {
         if (!this.enabled)
             return; // Don't check for arg errors if we're disabled
@@ -296,7 +297,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         this.doPick(dc, point);
     }
 
-    protected void doPick(DrawContext dc, Point point)
+    protected void doPick(DrawContext dc, java.awt.Point point)
     {
         // any state that could change the color needs to be disabled, such as GL_TEXTURE, GL_LIGHTING or GL_FOG.
         // re-draw with unique colors
@@ -422,15 +423,15 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
         WWXML.checkAndAppendTextElement(parameters, AVKey.DISPLAY_NAME, context, "DisplayName");
         WWXML.checkAndAppendDoubleElement(parameters, AVKey.OPACITY, context, "Opacity");
 
-        double maxAlt = AVListImpl.getDoubleValue(parameters, AVKey.MAX_ACTIVE_ALTITUDE);
-      double minAlt = AVListImpl.getDoubleValue(parameters, AVKey.MIN_ACTIVE_ALTITUDE);
+        double? maxAlt = AVListImpl.getDoubleValue(parameters, AVKey.MAX_ACTIVE_ALTITUDE);
+        double? minAlt = AVListImpl.getDoubleValue(parameters, AVKey.MIN_ACTIVE_ALTITUDE);
         if (maxAlt != null || minAlt != null)
         {
             Element el = WWXML.appendElementPath(context, "ActiveAltitudes");
             if (maxAlt != null)
-                WWXML.setDoubleAttribute(el, "max", maxAlt);
+                WWXML.setDoubleAttribute(el, "max", maxAlt.Value);
             if (minAlt != null)
-                WWXML.setDoubleAttribute(el, "min", minAlt);
+                WWXML.setDoubleAttribute(el, "min", minAlt.Value);
         }
 
         WWXML.checkAndAppendBooleanElement(parameters, AVKey.NETWORK_RETRIEVAL_ENABLED, context, "NetworkRetrievalEnabled");
@@ -490,5 +491,15 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
 
         return parameters;
     }
-}
+
+    public double? getMaxEffectiveAltitude(double? radius)
+    {
+      throw new NotImplementedException();
+    }
+
+    public double? getMinEffectiveAltitude(double? radius)
+    {
+      throw new NotImplementedException();
+    }
+  }
 }

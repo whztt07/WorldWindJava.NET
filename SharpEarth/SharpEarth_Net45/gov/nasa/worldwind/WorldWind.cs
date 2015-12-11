@@ -38,23 +38,23 @@ namespace SharpEarth{
  */
 public sealed class WorldWind
 {
-    public static final String SHUTDOWN_EVENT = "gov.nasa.worldwind.ShutDown";
+    public static readonly String SHUTDOWN_EVENT = "gov.nasa.worldwind.ShutDown";
 
     // Altitude modes
-    public static final int ABSOLUTE = 0;
-    public static final int CLAMP_TO_GROUND = 1;
-    public static final int RELATIVE_TO_GROUND = 2;
-    public static final int CONSTANT = 3;
+    public static readonly int ABSOLUTE = 0;
+    public static readonly int CLAMP_TO_GROUND = 1;
+    public static readonly int RELATIVE_TO_GROUND = 2;
+    public static readonly int CONSTANT = 3;
 
     // Path types (Don't use these. Use the AVKey versions instead. Only Polyline still uses these.)
-    public final static int GREAT_CIRCLE = 0;
-    public final static int LINEAR = 1;
-    public final static int RHUMB_LINE = 2;
+    public readonly static int GREAT_CIRCLE = 0;
+    public readonly static int LINEAR = 1;
+    public readonly static int RHUMB_LINE = 2;
 
     // Anti-alias hints
-    public final static int ANTIALIAS_DONT_CARE = GL.GL_DONT_CARE;
-    public final static int ANTIALIAS_FASTEST = GL.GL_FASTEST;
-    public final static int ANTIALIAS_NICEST = GL.GL_NICEST;
+    public readonly static int ANTIALIAS_DONT_CARE = GL.GL_DONT_CARE;
+    public readonly static int ANTIALIAS_FASTEST = GL.GL_FASTEST;
+    public readonly static int ANTIALIAS_NICEST = GL.GL_NICEST;
 
     private static WorldWind instance = new WorldWind();
 

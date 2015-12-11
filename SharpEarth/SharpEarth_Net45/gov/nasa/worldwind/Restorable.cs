@@ -30,13 +30,13 @@ public interface Restorable
      * 
      * @return an XML document string describing the object's state.
      */
-    String getRestorableState();
+    string getRestorableState();
 
     /**
      * Restores the object's state to what is described in the specified XML document string.
      *
      * @param stateInXml an XML document string describing an object's state.
      */
-    void restoreState(String stateInXml);
+    void restoreState(string stateInXml);
 }
 }

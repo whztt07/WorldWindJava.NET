@@ -4,21 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharpEarth.javax.xml.stream.events
+namespace SharpEarth.java.util
 {
-  public class XMLEvent
+  public class Iterator<T>
   {
-    internal bool isStartElement()
+    internal bool hasNext()
     {
       throw new NotImplementedException();
     }
 
-    internal StartElement asStartElement()
+    internal T next()
+    {
+      throw new NotImplementedException();
+    }
+  }
+
+  public class Iterator
+  {
+    internal bool hasNext()
     {
       throw new NotImplementedException();
     }
 
-    internal bool isCharacters()
+    internal object next()
     {
       throw new NotImplementedException();
     }

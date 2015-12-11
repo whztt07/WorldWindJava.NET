@@ -4,14 +4,14 @@
  * All Rights Reserved.
  */
 
-using java.util.Iterator;
-using javax.xml.stream.events;
-using javax.xml.namespace.QName;
+using SharpEarth.java.util;
+using SharpEarth.javax.xml.namespaces;
+using SharpEarth.javax.xml.stream.events;
+using SharpEarth.util;
 using SharpEarth.util.xml;
-using SharpEarth.util.WWXML;
+using System.Text;
+
 namespace SharpEarth.ogc{
-
-
 
 /**
  * Parses an OGC OnlineResource element.
@@ -19,18 +19,17 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCOnlineResource.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCOnlineResource extends AbstractXMLEventParser
+public class OGCOnlineResource : AbstractXMLEventParser
 {
     protected QName HREF;
     protected QName TYPE;
 
-    protected String type;
-    protected String href;
+    protected string type;
+    protected string href;
 
-    public OGCOnlineResource(String namespaceURI)
+    public OGCOnlineResource(string namespaceURI)
+      : base(namespaceURI)
     {
-        super(namespaceURI);
-
         this.initialize();
     }
 
@@ -40,16 +39,15 @@ public class OGCOnlineResource extends AbstractXMLEventParser
         TYPE = new QName(WWXML.XLINK_URI, "type");
     }
 
-    @Override
-    protected void doParseEventAttributes(XMLEventParserContext ctx, XMLEvent event, Object... args)
+    protected void doParseEventAttributes(SharpEarth.util.xml.XMLEventParserContext ctx, XMLEvent @event, params object[] args)
     {
-        Iterator iter = event.asStartElement().getAttributes();
+        Iterator<Attribute> iter = @event.asStartElement().getAttributes();
         if (iter == null)
             return;
 
         while (iter.hasNext())
         {
-            Attribute attr = (Attribute) iter.next();
+            Attribute attr = iter.next();
             if (ctx.isSameAttributeName(attr.getName(), HREF))
                 this.setHref(attr.getValue());
             else if (ctx.isSameAttributeName(attr.getName(), TYPE))
@@ -57,33 +55,32 @@ public class OGCOnlineResource extends AbstractXMLEventParser
         }
     }
 
-    public String getType()
+    public string getType()
     {
         return type;
     }
 
-    protected void setType(String type)
+    protected void setType(string type)
     {
         this.type = type;
     }
 
-    public String getHref()
+    public string getHref()
     {
         return href;
     }
 
-    protected void setHref(String href)
+    protected void setHref(string href)
     {
         this.href = href;
     }
 
-    @Override
     public override string ToString()
     {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("href: ").append(this.href != null ? this.href : "null");
-        sb.append(", type: ").append(this.type != null ? this.type : "null");
+        sb.Append("href: ").Append(this.href != null ? this.href : "null");
+        sb.Append(", type: ").Append(this.type != null ? this.type : "null");
 
         return sb.ToString();
     }

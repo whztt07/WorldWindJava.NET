@@ -4,16 +4,8 @@
  * All Rights Reserved.
  */
 
-using java.util.logging.Level;
-using java.util.concurrent.ConcurrentHashMap;
-using java.util;
-using java.beans;
-using javax.xml.stream.events.XMLEvent;
-using javax.xml.stream;
-using javax.xml.namespace.QName;
-using javax.xml.XMLConstants;
-using SharpEarth.util;
-using SharpEarth.avlist.AVListImpl;
+using SharpEarth.avlist;
+
 namespace SharpEarth.util.xml{
 
 
@@ -25,7 +17,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: BasicXMLEventParserContext.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public class BasicXMLEventParserContext extends AVListImpl implements XMLEventParserContext
+public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
 {
     /** The parser name of the default double parser. */
     public static QName DOUBLE = new QName("Double");

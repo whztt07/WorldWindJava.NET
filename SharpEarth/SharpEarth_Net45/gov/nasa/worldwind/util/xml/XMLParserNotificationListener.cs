@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.util.xml{
+namespace SharpEarth.util.xml {
 
 /**
  * The interface that receives {@link SharpEarth.util.xml.XMLEventParserContext} notifications.
@@ -19,6 +19,6 @@ public interface XMLParserNotificationListener
      *
      * @param notification the notification object containing the notificaton type and data.
      */
-    public void notify(XMLParserNotification notification);
-}
+    void notify(XMLParserNotification notification);
+  }
 }

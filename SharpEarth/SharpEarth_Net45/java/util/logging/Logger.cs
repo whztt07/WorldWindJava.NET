@@ -13,5 +13,10 @@ namespace java.util.logging
     {
       throw new NotImplementedException();
     }
+
+    internal void log(object sEVERE, string v1, string v2)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
