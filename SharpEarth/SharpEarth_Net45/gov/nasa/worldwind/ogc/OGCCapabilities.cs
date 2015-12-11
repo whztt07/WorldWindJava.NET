@@ -4,6 +4,10 @@
  * All Rights Reserved.
  */
 
+using SharpEarth.javax.xml.namespaces;
+using SharpEarth.util.xml;
+using System;
+
 namespace SharpEarth.ogc{
 
 

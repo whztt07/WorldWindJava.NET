@@ -8,5 +8,6 @@ namespace SharpEarth.javax.xml.stream.events
 {
   public interface StartElement
   {
+    Iterator getAttributes();
   }
 }

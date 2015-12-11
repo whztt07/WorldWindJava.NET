@@ -6,19 +6,14 @@ using System.Threading.Tasks;
 
 namespace SharpEarth.javax.xml.stream.events
 {
-  public class XMLEvent
+  public class Attribute
   {
-    internal bool isStartElement()
+    internal object getName()
     {
       throw new NotImplementedException();
     }
 
-    internal StartElement asStartElement()
-    {
-      throw new NotImplementedException();
-    }
-
-    internal bool isCharacters()
+    internal string getValue()
     {
       throw new NotImplementedException();
     }

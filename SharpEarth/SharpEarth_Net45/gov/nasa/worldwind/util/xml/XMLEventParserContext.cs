@@ -4,7 +4,9 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.util.xml{
+using SharpEarth.avlist;
+
+namespace SharpEarth.util.xml {
 
 
 
@@ -14,7 +16,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: XMLeventParserContext.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public interface XMLeventParserContext : SharpEarth.avlist.AVList
+public interface XMLeventParserContext : AVList
   {
     /**
      * Identifies the name of the parser handling unrecognized elements. Can be used to explicitly specify the context's

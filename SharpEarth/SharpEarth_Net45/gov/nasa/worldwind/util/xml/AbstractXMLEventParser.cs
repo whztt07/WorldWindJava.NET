@@ -4,6 +4,9 @@
  * All Rights Reserved.
  */
 
+using SharpEarth.javax.xml.stream.events;
+using System.Text;
+
 namespace SharpEarth.util.xml{
 
 
@@ -384,33 +387,31 @@ abstract public class AbstractXMLEventParser : XMLEventParser
         }
     }
 
-    protected void doAddEventAttribute(Attribute attr, XMLEventParserContext ctx, XMLEvent event, Object... args)
+    protected void doAddEventAttribute(Attribute attr, XMLEventParserContext ctx, XMLEvent @event, params object[] args)
         throws XMLStreamException
     {
         // Override in subclass if need to react to certain attributes.
         this.setField(attr.getName(), attr.getValue());
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
-    protected String parseCharacterContent(XMLEventParserContext ctx, XMLEvent stringEvent, Object... args)
-        throws XMLStreamException
+    protected string parseCharacterContent(XMLEventParserContext ctx, XMLEvent stringEvent, params object[] args)
     {
         StringBuilder value = new StringBuilder();
 
-        for (XMLEvent event = ctx.nextEvent(); event != null; event = ctx.nextEvent())
+        for (XMLEvent @event = ctx.nextEvent(); @event != null; @event = ctx.nextEvent())
         {
-            if (ctx.isEndElement(event, stringEvent))
-                return value.length() > 0 ? value.ToString() : null;
+            if (ctx.isEndElement(@event, stringEvent))
+                return value.Length> 0 ? value.ToString() : null;
 
-            if (event.isCharacters())
+            if (@event.isCharacters())
             {
-                String s = ctx.getCharacters(event);
+                string s = ctx.getCharacters(@event);
                 if (s != null)
-                    value.append(s);
+                    value.Append(s);
             }
         }
 
         return null;
     }
-}
+  }
 }

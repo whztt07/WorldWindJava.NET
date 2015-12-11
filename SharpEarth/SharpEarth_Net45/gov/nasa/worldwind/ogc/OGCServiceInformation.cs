@@ -5,10 +5,11 @@
  */
 
 using java.util;
-using javax.xml.stream.events.XMLEvent;
-using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
 using SharpEarth.util.xml;
+using SharpEarth.javax.xml.namespaces;
+using System;
+using System.Collections.Generic;
+
 namespace SharpEarth.ogc{
 
 
@@ -19,7 +20,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCServiceInformation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCServiceInformation extends AbstractXMLEventParser
+public class OGCServiceInformation : AbstractXMLEventParser
 {
     protected QName NAME;
     protected QName TITLE;
@@ -31,12 +32,12 @@ public class OGCServiceInformation extends AbstractXMLEventParser
     protected QName ONLINE_RESOURCE;
     protected QName CONTACT_INFORMATION;
 
-    protected String serviceName;
-    protected String serviceTitle;
-    protected String serviceAbstract;
-    protected String fees;
-    protected String accessConstraints;
-    protected Set<String> keywords;
+    protected string serviceName;
+    protected string serviceTitle;
+    protected string serviceAbstract;
+    protected string fees;
+    protected string accessConstraints;
+    protected HashSet<String> keywords;
     protected OGCOnlineResource onlineResource;
     protected OGCContactInformation contactInformation;
 

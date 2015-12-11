@@ -4,14 +4,14 @@
  * All Rights Reserved.
  */
 using java.util;
-using org.w3c.dom.Element;
-using SharpEarth.wms.WMSTiledImageLayer;
 using SharpEarth.util;
 using SharpEarth.ogc.wms;
 using SharpEarth.ogc;
 using SharpEarth.exception;
 using SharpEarth.avlist;
 using SharpEarth;
+using System;
+
 namespace SharpEarth.layers{
 
 
@@ -22,7 +22,7 @@ namespace SharpEarth.layers{
  * @author dcollins
  * @version $Id: BasicLayerFactory.java 2348 2014-09-25 23:35:46Z dcollins $
  */
-public class BasicLayerFactory extends BasicFactory
+public class BasicLayerFactory : BasicFactory
 {
     /** Creates an instance of BasicLayerFactory; otherwise does nothing. */
     public BasicLayerFactory()
@@ -50,35 +50,34 @@ public class BasicLayerFactory extends BasicFactory
      * @throws WWRuntimeException       if object creation fails. The exception indicating the source of the failure is
      *                                  included as the {@link Exception#initCause(Throwable)}.
      */
-    public Object createFromConfigSource(Object configSource, AVList parameters)
+    public object createFromConfigSource(object configSource, AVList parameters)
     {
-        Object layerOrLists = super.createFromConfigSource(configSource, parameters);
+      object layerOrLists = base.createFromConfigSource(configSource, parameters);
 
         if (layerOrLists == null)
         {
-            String msg = Logging.getMessage("generic.UnrecognizedDocument", configSource);
+            string msg = Logging.getMessage("generic.UnrecognizedDocument", configSource);
             throw new WWUnrecognizedException(msg);
         }
 
         return layerOrLists;
     }
 
-    @Override
     protected Layer doCreateFromCapabilities(OGCCapabilities caps, AVList parameters)
     {
-        String serviceName = caps.getServiceInformation().getServiceName();
+        string serviceName = caps.getServiceInformation().getServiceName();
         if (serviceName == null || !(serviceName.equalsIgnoreCase(OGCConstants.WMS_SERVICE_NAME)
-            || serviceName.contains("WMS")))
+            || serviceName.Contains("WMS")))
         {
-            String message = Logging.getMessage("WMS.NotWMSService", serviceName != null ? serviceName : "null");
+            string message = Logging.getMessage("WMS.NotWMSService", serviceName != null ? serviceName : "null");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if (parameters == null)
             parameters = new AVListImpl();
 
-        if (params.getStringValue(AVKey.LAYER_NAMES) == null)
+        if (parameters.getStringValue(AVKey.LAYER_NAMES) == null)
         {
             // Use the first named layer since no other guidance given
             List<WMSLayerCapabilities> namedLayers = ((WMSCapabilities) caps).getNamedLayers();
