@@ -792,6 +792,7 @@
     <Compile Include="java\util\GL.cs" />
     <Compile Include="java\util\GL2.cs" />
     <Compile Include="java\util\logging\Logger.cs" />
+    <Compile Include="Maybe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
