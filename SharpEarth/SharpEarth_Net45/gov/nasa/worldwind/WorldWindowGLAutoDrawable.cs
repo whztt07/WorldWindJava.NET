@@ -511,7 +511,7 @@ public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldW
                     public void run()
                     {
                         WorldWindowGLAutoDrawable.this.onMessage(
-                            new Message(View.VIEW_STOPPED, WorldWindowGLAutoDrawable.this));
+                            new Message( ViewContansts.VIEW_STOPPED, WorldWindowGLAutoDrawable.this));
                     }
                 });
             }

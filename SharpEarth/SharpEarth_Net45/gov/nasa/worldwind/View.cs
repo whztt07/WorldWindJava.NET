@@ -4,42 +4,49 @@
  * All Rights Reserved.
  */
 
+using SharpEarth.animation;
 using SharpEarth.view.ViewPropertyLimits;
 using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.awt.ViewInputHandler;
 using SharpEarth.animation.Animator;
+using SharpEarth.awt;
+using SharpEarth.view;
+
 namespace SharpEarth{
 
 
-/**
- * The <code>View</code> interface provides a coordinate transformation from model coordinates to eye coordinates. This
- * follows the OpenGL convention of a right-handed coordinate system with the origin at the eye point and looking down
- * the negative Z axis. <code>View</code> also provides a transformation from eye coordinates to screen coordinates,
- * following the OpenGL convention of an origin in the lower left hand screen corner.
- * <p/>
- * Most of the accessor and computation methods on <code>View</code> will use viewing state computed in the last call to
- * {@link #apply(gov.nasa.worldwind.render.DrawContext) apply}.
- * <p/>
- * The following methods return state values <i>updated in the most recent call to apply</i>. <code> <ul>
- * <li>getEyePosition</li> <li>getEyePoint</li> <li>getUpVector</li> <li>getForwardVector</li>
- * <li>getModelviewMatrix</li> <li>getViewport</li> <li>getFrustum</li> <li>getFrustumInModelCoordinates</li>
- * <li>getProjectionMatrix</li> </code> </ul>
- * <p/>
- * The following methods return computed values using state that was updated in the most recent call to
- * <code>apply</code>. <code> <ul> <li>project</li> <li>unproject</li> <li>computeRayFromScreenPoint</li>
- * <li>computePositionFromScreenPoint</li> <li>computePixelSizeAtDistance</li> <li>computeHorizonDistance</li> </ul>
- * </code>
- *
- * @author Paul Collins
- * @version $Id: View.java 1171 2013-02-11 21:45:02Z dcollins $
- * @see SharpEarth.view.orbit.OrbitView
- */
+  /**
+   * The <code>View</code> interface provides a coordinate transformation from model coordinates to eye coordinates. This
+   * follows the OpenGL convention of a right-handed coordinate system with the origin at the eye point and looking down
+   * the negative Z axis. <code>View</code> also provides a transformation from eye coordinates to screen coordinates,
+   * following the OpenGL convention of an origin in the lower left hand screen corner.
+   * <p/>
+   * Most of the accessor and computation methods on <code>View</code> will use viewing state computed in the last call to
+   * {@link #apply(gov.nasa.worldwind.render.DrawContext) apply}.
+   * <p/>
+   * The following methods return state values <i>updated in the most recent call to apply</i>. <code> <ul>
+   * <li>getEyePosition</li> <li>getEyePoint</li> <li>getUpVector</li> <li>getForwardVector</li>
+   * <li>getModelviewMatrix</li> <li>getViewport</li> <li>getFrustum</li> <li>getFrustumInModelCoordinates</li>
+   * <li>getProjectionMatrix</li> </code> </ul>
+   * <p/>
+   * The following methods return computed values using state that was updated in the most recent call to
+   * <code>apply</code>. <code> <ul> <li>project</li> <li>unproject</li> <li>computeRayFromScreenPoint</li>
+   * <li>computePositionFromScreenPoint</li> <li>computePixelSizeAtDistance</li> <li>computeHorizonDistance</li> </ul>
+   * </code>
+   *
+   * @author Paul Collins
+   * @version $Id: View.java 1171 2013-02-11 21:45:02Z dcollins $
+   * @see SharpEarth.view.orbit.OrbitView
+   */
+public static class ViewContansts
+{
+  public static string VIEW_STOPPED = "gov.nasa.worldwind.View.ViewStopped";
+}
+
 public interface View : WWObject, Restorable
 {
-
-    final String VIEW_STOPPED = "gov.nasa.worldwind.View.ViewStopped";
 
     /** Stops any movement associated with this <code>View</code>. */
     void stopMovement();

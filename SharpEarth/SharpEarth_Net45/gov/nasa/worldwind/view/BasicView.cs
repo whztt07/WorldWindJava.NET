@@ -3,15 +3,21 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using javax.media.opengl.GL2;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.awt.ViewInputHandler;
+using SharpEarth.awt;
 using SharpEarth.avlist;
-using SharpEarth.animation.Animator;
+using SharpEarth.animation;
 using SharpEarth;
+using SharpEarth.java.awt;
+using SharpEarth.java.lang;
+using SharpEarth.java.util;
+
 namespace SharpEarth.view{
 
 
@@ -28,7 +34,7 @@ namespace SharpEarth.view{
  * @author jym
  * @version $Id: BasicView.java 2204 2014-08-07 23:35:03Z dcollins $
  */
-public class BasicView extends WWObjectImpl implements View
+public class BasicView : WWObjectImpl, View
 {
     /** The field of view in degrees. */
     protected Angle fieldOfView = Angle.fromDegrees(45);
@@ -43,14 +49,14 @@ public class BasicView extends WWObjectImpl implements View
     protected Matrix modelview = Matrix.IDENTITY;
     protected Matrix modelviewInv = Matrix.IDENTITY;
     protected Matrix projection = Matrix.IDENTITY;
-    protected java.awt.Rectangle viewport = new java.awt.Rectangle();
+    protected Rectangle viewport = new Rectangle();
     protected Frustum frustum = new Frustum();
     protected Frustum lastFrustumInModelCoords = null;
     protected ViewPropertyLimits viewLimits;
 
     protected DrawContext dc;
     protected bool detectCollisions = true;
-    protected bool hadCollisions;
+    protected bool HadCollisions;
     protected ViewInputHandler viewInputHandler;
     protected Globe globe;
     protected Position eyePosition = Position.ZERO;
@@ -70,16 +76,16 @@ public class BasicView extends WWObjectImpl implements View
     protected long viewStateID;
 
     // TODO: make configurable
-    protected static final double MINIMUM_NEAR_DISTANCE = 1;
-    protected static final double MINIMUM_FAR_DISTANCE = 1000;
+    protected static readonly double MINIMUM_NEAR_DISTANCE = 1;
+    protected static readonly double MINIMUM_FAR_DISTANCE = 1000;
     /**
      * The views's default worst-case depth resolution, in meters. May be specified in the World Wind configuration file
      * as the <code>gov.nasa.worldwind.avkey.DepthResolution</code> property. The default if not specified in the
      * configuration is 3.0 meters.
      */
-    protected static final double DEFAULT_DEPTH_RESOLUTION = Configuration.getDoubleValue(AVKey.DEPTH_RESOLUTION, 3.0);
-    protected static final double COLLISION_THRESHOLD = 10;
-    protected static final int COLLISION_NUM_ITERATIONS = 4;
+    protected static readonly double DEFAULT_DEPTH_RESOLUTION = Configuration.getDoubleValue(AVKey.DEPTH_RESOLUTION, 3.0);
+    protected static readonly double COLLISION_THRESHOLD = 10;
+    protected static int COLLISION_NUM_ITERATIONS = 4;
 
     /** Construct a BasicView */
     public BasicView()
@@ -121,15 +127,15 @@ public class BasicView extends WWObjectImpl implements View
         return this.detectCollisions;
     }
 
-    public void setDetectCollisions(boolean detectCollisions)
+    public void setDetectCollisions(bool detectCollisions)
     {
         this.detectCollisions = detectCollisions;
     }
 
     public bool hadCollisions()
     {
-        bool result = this.hadCollisions;
-        this.hadCollisions = false;
+        bool result = this.HadCollisions;
+        this.HadCollisions = false;
         return result;
     }
 
@@ -149,21 +155,21 @@ public class BasicView extends WWObjectImpl implements View
     {
         if (dc == null)
         {
-            String message = Logging.getMessage("nullValue.DrawContextIsNull");
+            string message = Logging.getMessage("nullValue.DrawContextIsNull");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         if (dc.getGL() == null)
         {
-            String message = Logging.getMessage("nullValue.DrawingContextGLIsNull");
+        string message = Logging.getMessage("nullValue.DrawingContextGLIsNull");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
 
         if (dc.getGlobe() == null)
         {
-            String message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
+        string message = Logging.getMessage("layers.AbstractLayer.NoGlobeSpecifiedInDrawingContext");
             Logging.logger().severe(message);
             throw new IllegalStateException(message);
         }
@@ -183,13 +189,13 @@ public class BasicView extends WWObjectImpl implements View
 
     public void stopMovement()
     {
-        this.firePropertyChange(VIEW_STOPPED, null, this);
+        this.firePropertyChange( ViewContansts.VIEW_STOPPED, null, this);
     }
 
-    public java.awt.Rectangle getViewport()
+    public Rectangle getViewport()
     {
         // java.awt.Rectangle is mutable, so we defensively copy the viewport.
-        return new java.awt.Rectangle(this.viewport);
+        return new Rectangle(this.viewport);
     }
 
     public Frustum getFrustum()

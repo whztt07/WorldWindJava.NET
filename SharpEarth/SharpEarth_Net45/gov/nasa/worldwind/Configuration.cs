@@ -70,15 +70,15 @@ namespace SharpEarth{
  */
 public class Configuration // Singleton
 {
-    public static final String DEFAULT_LOGGER_NAME = "gov.nasa.worldwind";
+    public static readonly string DEFAULT_LOGGER_NAME = "gov.nasa.worldwind";
 
-    private static final String CONFIG_PROPERTIES_FILE_NAME = "config/worldwind.properties";
-    private static final String CONFIG_FILE_PROPERTY_KEY = "gov.nasa.worldwind.config.file";
+    private static readonly string CONFIG_PROPERTIES_FILE_NAME = "config/worldwind.properties";
+    private static readonly string CONFIG_FILE_PROPERTY_KEY = "gov.nasa.worldwind.config.file";
 
-    private static final String CONFIG_WW_DOCUMENT_KEY = "gov.nasa.worldwind.config.document";
-    private static final String CONFIG_WW_DOCUMENT_NAME = "config/worldwind.xml";
+    private static readonly string CONFIG_WW_DOCUMENT_KEY = "gov.nasa.worldwind.config.document";
+    private static readonly string CONFIG_WW_DOCUMENT_NAME = "config/worldwind.xml";
 
-    private static final String CONFIG_APP_DOCUMENT_KEY = "gov.nasa.worldwind.app.config.document";
+    private static readonly string CONFIG_APP_DOCUMENT_KEY = "gov.nasa.worldwind.app.config.document";
 
     private static Configuration ourInstance = new Configuration();
 
@@ -87,8 +87,8 @@ public class Configuration // Singleton
         return ourInstance;
     }
 
-    private final Properties properties;
-    private final ArrayList<Document> configDocs = new ArrayList<Document>();
+    private readonly Properties properties;
+    private readonly ArrayList<Document> configDocs = new ArrayList<Document>();
 
     /** Private constructor invoked only internally. */
     private Configuration()
@@ -250,8 +250,7 @@ public class Configuration // Singleton
     [MethodImpl( MethodImplOptions.Synchronized )]
     public static string getStringValue( string key, string defaultValue )
     {
-        String v = getStringValue(key);
-        return v != null ? v : defaultValue;
+        return getStringValue(key) ?? defaultValue;
     }
 
     /**
@@ -264,8 +263,7 @@ public class Configuration // Singleton
     [MethodImpl( MethodImplOptions.Synchronized )]
     public static string getStringValue( string key )
     {
-        Object o = getInstance().properties.getProperty(key);
-        return o != null ? o.ToString() : null;
+        return getInstance().properties.getProperty(key);
     }
 
     /**
@@ -277,10 +275,10 @@ public class Configuration // Singleton
      * @return the value associated with the key, or the specified default value if the key does not exist or is not an
      *         Integer or string representation of an Integer.
      */
-    public static synchronized Integer getIntegerValue(String key, Integer defaultValue)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static int? getIntegerValue(string key, int defaultValue)
     {
-        Integer v = getIntegerValue(key);
-        return v != null ? v : defaultValue;
+        return getIntegerValue(key) ?? defaultValue;
     }
 
     /**
@@ -291,21 +289,17 @@ public class Configuration // Singleton
      * @return the value associated with the key, or null if the key does not exist or is not an Integer or string
      *         representation of an Integer.
      */
-    public static synchronized Integer getIntegerValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static int? getIntegerValue(string key)
     {
-        String v = getStringValue(key);
+        string v = getStringValue(key);
         if (v == null)
             return null;
-
-        try
-        {
-            return Integer.parseInt(v);
-        }
-        catch (NumberFormatException e)
-        {
-            Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
-            return null;
-        }
+      int output;
+      if(int.TryParse(v, out output))
+        return output;
+      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", v );
+      return null;
     }
 
     /**
@@ -317,10 +311,10 @@ public class Configuration // Singleton
      * @return the value associated with the key, or the specified default value if the key does not exist or is not a
      *         Long or string representation of a Long.
      */
-    public static synchronized Long getLongValue(String key, Long defaultValue)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static long? getLongValue(string key, long defaultValue)
     {
-        Long v = getLongValue(key);
-        return v != null ? v : defaultValue;
+        return getLongValue(key) ?? defaultValue;
     }
 
     /**
@@ -331,21 +325,17 @@ public class Configuration // Singleton
      * @return the value associated with the key, or null if the key does not exist or is not a Long or string
      *         representation of a Long.
      */
-    public static synchronized Long getLongValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static long? getLongValue(string key)
     {
-        String v = getStringValue(key);
+      string v = getStringValue(key);
         if (v == null)
             return null;
-
-        try
-        {
-            return Long.parseLong(v);
-        }
-        catch (NumberFormatException e)
-        {
-            Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
-            return null;
-        }
+      long output;
+      if(long.TryParse(v, out output))
+        return output;
+      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", v );
+      return null;
     }
 
     /**
@@ -357,10 +347,10 @@ public class Configuration // Singleton
      * @return the value associated with the key, or the specified default value if the key does not exist or is not an
      *         Double or string representation of an Double.
      */
-    public static synchronized Double getDoubleValue(String key, Double defaultValue)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static double getDoubleValue(string key, double defaultValue)
     {
-        Double v = getDoubleValue(key);
-        return v != null ? v : defaultValue;
+      return getDoubleValue(key) ?? defaultValue;
     }
 
     /**
@@ -371,21 +361,18 @@ public class Configuration // Singleton
      * @return the value associated with the key, or null if the key does not exist or is not an Double or string
      *         representation of an Double.
      */
-    public static synchronized Double getDoubleValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static double? getDoubleValue(string key)
     {
-        String v = getStringValue(key);
-        if (v == null)
-            return null;
+      string v = getStringValue(key);
+      if (v == null)
+          return null;
 
-        try
-        {
-            return System.Double.parseDouble(v);
-        }
-        catch (NumberFormatException e)
-        {
-            Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
-            return null;
-        }
+      double output;
+      if(double.TryParse( v, out output ))
+        return output;
+      Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", v );
+      return null;
     }
 
     /**
@@ -400,10 +387,10 @@ public class Configuration // Singleton
      * @return the value associated with the key, or the specified default value if the key does not exist or is not a
      *         Boolean or string representation of an Boolean.
      */
-    public static synchronized Boolean getBooleanValue(String key, Boolean defaultValue)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static bool? getBooleanValue(string key, bool defaultValue)
     {
-        Boolean v = getBooleanValue(key);
-        return v != null ? v : defaultValue;
+        return getBooleanValue(key) ?? defaultValue;
     }
 
     /**
@@ -417,25 +404,29 @@ public class Configuration // Singleton
      * @return the value associated with the key, or null if the key does not exist or is not a Boolean or string
      *         representation of an Boolean.
      */
-    public static synchronized Boolean getBooleanValue(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static bool? getBooleanValue(string key)
     {
-        String v = getStringValue(key);
+        string v = getStringValue(key);
         if (v == null)
             return null;
-
-        if (v.trim().toUpperCase().startsWith("T") || v.trim().Equals("1"))
-        {
-            return true;
-        }
-        else if (v.trim().toUpperCase().startsWith("F") || v.trim().Equals("0"))
-        {
-            return false;
-        }
-        else
-        {
-            Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
-            return null;
-        }
+      string formatted= v.Trim().ToUpper();
+      if(formatted.Length == 0)
+      {
+        Logging.logger().log( Level.SEVERE, "Configuration.ConversionError", v );
+        return null;
+      }
+      char boolChar = formatted[0];
+      if ( boolChar == 'F' || boolChar == '1')
+      {
+          return true;
+      }
+      if ( boolChar  == 'F' || boolChar == '0')
+      {
+          return false;
+      }
+      Logging.logger().log(Level.SEVERE, "Configuration.ConversionError", v);
+      return null;
     }
 
     /**
@@ -445,7 +436,8 @@ public class Configuration // Singleton
      *
      * @return true if the key exists, otherwise false.
      */
-    public static synchronized bool hasKey(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static bool hasKey(string key)
     {
         return getInstance().properties.contains(key);
     }
@@ -455,7 +447,8 @@ public class Configuration // Singleton
      *
      * @param key the key of interest.
      */
-    public static synchronized void removeKey(String key)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static void removeKey(string key)
     {
         getInstance().properties.remove(key);
     }
@@ -467,7 +460,8 @@ public class Configuration // Singleton
      * @param key   the key to set.
      * @param value the value to associate with the key.
      */
-    public static synchronized void setValue(String key, Object value)
+    [MethodImpl( MethodImplOptions.Synchronized )]
+    public static void setValue(String key, Object value)
     {
         getInstance().properties.put(key, value.ToString());
     }

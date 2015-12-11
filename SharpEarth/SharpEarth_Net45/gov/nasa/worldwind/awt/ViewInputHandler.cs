@@ -3,11 +3,12 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.awt.event;
+using java.awt.events;
 using java.awt;
+using SharpEarth.animation;
 using SharpEarth.geom;
-using SharpEarth.animation.Animator;
-using SharpEarth.WorldWindow;
+using SharpEarth.animation.;
+using SharpEarth;
 namespace SharpEarth.awt{
 
 
@@ -16,8 +17,7 @@ namespace SharpEarth.awt{
  * @author dcollins
  * @version $Id: ViewInputHandler.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface ViewInputHandler
-    extends KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, FocusListener
+public interface ViewInputHandler : KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, FocusListener
 {
     /**
      * Return the <code>WorldWindow</code> this ViewInputHandler is listening to for input events, and will modify in

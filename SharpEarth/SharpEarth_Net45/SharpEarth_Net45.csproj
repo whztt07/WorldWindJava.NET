@@ -773,6 +773,7 @@
     <Compile Include="java\awt\events\MouseWheelEvent.cs" />
     <Compile Include="java\awt\events\MouseWheelListener.cs" />
     <Compile Include="java\awt\Point.cs" />
+    <Compile Include="java\awt\Rectangle.cs" />
     <Compile Include="java\beans\PropertyChangeEvent.cs" />
     <Compile Include="java\beans\PropertyChangeListener.cs" />
     <Compile Include="java\beans\PropertyChangeSupport.cs" />

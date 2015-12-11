@@ -224,7 +224,7 @@ public class KMLLink extends KMLAbstractObject
     public void onMessage(Message msg)
     {
         String viewRefreshMode = this.getViewRefreshMode();
-        if (View.VIEW_STOPPED.Equals(msg.getName()) && KMLConstants.ON_STOP.Equals(viewRefreshMode))
+        if ( ViewContansts.VIEW_STOPPED.Equals(msg.getName()) && KMLConstants.ON_STOP.Equals(viewRefreshMode))
         {
             Double refreshTime = this.getViewRefreshTime();
             if (refreshTime != null)

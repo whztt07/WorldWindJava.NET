@@ -946,7 +946,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         super.handlePropertyChange(e);
 
             //noinspection StringEquality
-        if (e.getPropertyName() == View.VIEW_STOPPED)
+        if (e.getPropertyName() == ViewContansts.VIEW_STOPPED)
         {
             this.handleViewStopped();
         }
