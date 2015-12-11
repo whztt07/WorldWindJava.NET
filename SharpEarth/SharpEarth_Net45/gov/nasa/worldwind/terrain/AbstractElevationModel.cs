@@ -4,14 +4,15 @@
  * All Rights Reserved.
  */
 
+using java.util.List;
+using javax.xml.xpath.XPath;
+using org.w3c.dom.Element;
 using SharpEarth.util;
-using SharpEarth.globes;
+using SharpEarth.globes.ElevationModel;
 using SharpEarth.geom;
-using SharpEarth.cache;
+using SharpEarth.cache.FileStore;
 using SharpEarth.avlist;
 using SharpEarth;
-using System;
-
 namespace SharpEarth.terrain{
 
 
@@ -20,7 +21,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: AbstractElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
  */
-public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
+abstract public class AbstractElevationModel extends WWObjectImpl implements ElevationModel
 {
     protected FileStore dataFileStore = WorldWind.getDataFileStore();
     protected double missingDataFlag = -Double.MaxValue;
@@ -50,7 +51,7 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
     {
         Object n = this.getValue(AVKey.DISPLAY_NAME);
 
-        return n != null ? n.ToString() : base.ToString();
+        return n != null ? n.ToString() : super.ToString();
     }
 
     public bool isNetworkRetrievalEnabled()
@@ -58,7 +59,7 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
         return this.networkRetrievalEnabled;
     }
 
-    public void setNetworkRetrievalEnabled(bool enabled)
+    public void setNetworkRetrievalEnabled(boolean enabled)
     {
         this.networkRetrievalEnabled = enabled;
     }
@@ -73,7 +74,7 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
         this.expiryTime = expiryTime;
     }
 
-    public void setEnabled(bool enabled)
+    public void setEnabled(boolean enabled)
     {
         this.enabled = enabled;
     }
@@ -138,13 +139,13 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
         return e == this.missingDataFlag ? this.missingDataValue : e;
     }
 
-    public double[] getElevations(Sector sector, List<LatLon> latLons, double[] targetResolutions,
+    public double[] getElevations(Sector sector, List<? extends LatLon> latLons, double[] targetResolutions,
         double[] elevations)
     {
         return new double[] {this.getElevations(sector, latLons, targetResolutions[0], elevations)};
     }
 
-    public double[] getUnmappedElevations(Sector sector, List<LatLon> latLons, double[] targetResolutions,
+    public double[] getUnmappedElevations(Sector sector, List<? extends LatLon> latLons, double[] targetResolutions,
         double[] elevations)
     {
         return new double[] {this.getElevations(sector, latLons, targetResolutions[0], elevations)};
@@ -164,10 +165,11 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
     {
         String message = Logging.getMessage("RestorableSupport.RestoreNotSupported");
         Logging.logger().severe(message);
-        throw new NotSupportedException(message);
+        throw new UnsupportedOperationException(message);
     }
 
-    public void composeElevations(Sector sector, List<LatLon> latlons, int tileWidth, double[] buffer)
+    public void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth, double[] buffer)
+        throws Exception
     {
         if (sector == null)
         {
@@ -265,7 +267,7 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
      */
     public static Element createElevationModelConfigElements(AVList parameters, Element context)
     {
-        if ( parameters == null)
+        if (params == null)
         {
             String message = Logging.getMessage("nullValue.ParametersIsNull");
             Logging.logger().severe(message);
@@ -279,26 +281,26 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
             throw new ArgumentException(message);
         }
 
-        WWXML.checkAndAppendTextElement( parameters, AVKey.DISPLAY_NAME, context, "DisplayName");
-        WWXML.checkAndAppendBooleanElement( parameters, AVKey.NETWORK_RETRIEVAL_ENABLED, context, "NetworkRetrievalEnabled");
+        WWXML.checkAndAppendTextElement(params, AVKey.DISPLAY_NAME, context, "DisplayName");
+        WWXML.checkAndAppendBooleanElement(params, AVKey.NETWORK_RETRIEVAL_ENABLED, context, "NetworkRetrievalEnabled");
 
-        if ( parameters.getValue(AVKey.MISSING_DATA_SIGNAL) != null ||
+        if (params.getValue(AVKey.MISSING_DATA_SIGNAL) != null ||
             parameters.getValue(AVKey.MISSING_DATA_REPLACEMENT) != null)
         {
             Element el = WWXML.getElement(context, "MissingData", null);
             if (el == null)
                 el = WWXML.appendElementPath(context, "MissingData");
 
-            Double d = AVListImpl.getDoubleValue( parameters, AVKey.MISSING_DATA_SIGNAL);
+            Double d = AVListImpl.getDoubleValue(params, AVKey.MISSING_DATA_SIGNAL);
             if (d != null)
                 WWXML.setDoubleAttribute(el, "signal", d);
 
-            d = AVListImpl.getDoubleValue( parameters, AVKey.MISSING_DATA_REPLACEMENT);
+            d = AVListImpl.getDoubleValue(params, AVKey.MISSING_DATA_REPLACEMENT);
             if (d != null)
                 WWXML.setDoubleAttribute(el, "replacement", d);
         }
 
-        WWXML.checkAndAppendDoubleElement( parameters, AVKey.DETAIL_HINT, context, "DataDetailHint");
+        WWXML.checkAndAppendDoubleElement(params, AVKey.DETAIL_HINT, context, "DataDetailHint");
 
         return context;
     }
@@ -331,7 +333,7 @@ public abstract class AbstractElevationModel : WWObjectImpl, ElevationModel
             throw new ArgumentException(message);
         }
 
-        if ( parameters == null)
+        if (params == null)
             parameters = new AVListImpl();
 
         XPath xpath = WWXML.makeXPath();

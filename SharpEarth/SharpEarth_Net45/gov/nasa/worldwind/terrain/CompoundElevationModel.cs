@@ -481,7 +481,7 @@ public class CompoundElevationModel extends AbstractElevationModel
      * @return the resolution achieved, in radians, or {@link Double#MAX_VALUE} if individual elevations cannot be
      * determined for all of the locations.
      */
-    public double getElevations(Sector sector, List<LatLon> latlons, double targetResolution, double[] buffer)
+    public double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution, double[] buffer)
     {
         double[] targetResolutions = new double[this.elevationModels.size()];
         for (int i = 0; i < targetResolutions.length; i++)
@@ -512,7 +512,7 @@ public class CompoundElevationModel extends AbstractElevationModel
      * @return the resolution achieved, in radians, or {@link Double#MAX_VALUE} if individual elevations cannot be
      * determined for all of the locations.
      */
-    public double getUnmappedElevations(Sector sector, List<LatLon> latlons, double targetResolution,
+    public double getUnmappedElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
         double[] buffer)
     {
         double[] targetResolutions = new double[this.elevationModels.size()];
@@ -525,20 +525,20 @@ public class CompoundElevationModel extends AbstractElevationModel
     }
 
     @Override
-    public double[] getElevations(Sector sector, List<LatLon> latLons, double[] targetResolutions,
+    public double[] getElevations(Sector sector, List<? extends LatLon> latLons, double[] targetResolutions,
         double[] elevations)
     {
         return this.doGetElevations(sector, latLons, targetResolutions, elevations, false);
     }
 
     @Override
-    public double[] getUnmappedElevations(Sector sector, List<LatLon> latLons, double[] targetResolutions,
+    public double[] getUnmappedElevations(Sector sector, List<? extends LatLon> latLons, double[] targetResolutions,
         double[] elevations)
     {
         return this.doGetElevations(sector, latLons, targetResolutions, elevations, false);
     }
 
-    protected double[] doGetElevations(Sector sector, List<LatLon> latlons, double[] targetResolution,
+    protected double[] doGetElevations(Sector sector, List<? extends LatLon> latlons, double[] targetResolution,
         double[] buffer, bool mapMissingData)
     {
         if (sector == null)
@@ -605,7 +605,7 @@ public class CompoundElevationModel extends AbstractElevationModel
         return resolutionAchieved;
     }
 
-    public void composeElevations(Sector sector, List<LatLon> latlons, int tileWidth,
+    public void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth,
         double[] buffer) throws Exception
     {
         if (sector == null)

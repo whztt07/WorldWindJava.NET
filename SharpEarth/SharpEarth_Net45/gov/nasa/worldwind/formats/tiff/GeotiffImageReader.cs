@@ -67,19 +67,19 @@ public class GeotiffImageReader extends ImageReader
     @Override
     public Iterator<ImageTypeSpecifier> getImageTypes(int imageIndex) throws IOException
     {
-        throw new NotSupportedException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public IIOMetadata getStreamMetadata() throws IOException
     {
-        throw new NotSupportedException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public IIOMetadata getImageMetadata(int imageIndex) throws IOException
     {
-        throw new NotSupportedException("Not supported yet.");
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override

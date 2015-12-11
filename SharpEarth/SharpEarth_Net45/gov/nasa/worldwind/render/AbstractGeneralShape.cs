@@ -287,7 +287,7 @@ public abstract class AbstractGeneralShape extends AbstractShape
     {
         String message = Logging.getMessage("unsupportedOperation.doExportAsKML");
         Logging.logger().severe(message);
-        throw new NotSupportedException(message);
+        throw new UnsupportedOperationException(message);
     }
 
     /** {@inheritDoc} Not currently supported. */

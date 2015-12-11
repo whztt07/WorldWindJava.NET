@@ -209,7 +209,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
     @SuppressWarnings({"UnusedDeclaration"})
     protected Collection<? extends VPFFeature> doCreateComplexFeatures(VPFFeatureClass featureClass)
     {
-        throw new NotSupportedException();
+        throw new UnsupportedOperationException();
     }
 
     //**************************************************************//

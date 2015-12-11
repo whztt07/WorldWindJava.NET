@@ -141,7 +141,7 @@ public interface SectorGeometry extends Renderable
      *
      * @throws ArgumentException if either the draw context or list of pick points is null.
      */
-    PickedObject[] pick(DrawContext dc, java.util.List<Point> pickPoints);
+    PickedObject[] pick(DrawContext dc, java.util.List<? extends Point> pickPoints);
 
     /**
      * Computes the Cartesian coordinates of a line's intersections with the geometry.

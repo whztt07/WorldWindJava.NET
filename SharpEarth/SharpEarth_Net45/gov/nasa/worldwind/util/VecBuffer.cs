@@ -1130,7 +1130,7 @@ public class VecBuffer
 
         public void remove()
         {
-            throw new NotSupportedException();
+            throw new UnsupportedOperationException();
         }
     }
 
@@ -1166,7 +1166,7 @@ public class VecBuffer
 
         public void remove()
         {
-            throw new NotSupportedException();
+            throw new UnsupportedOperationException();
         }
     }
 

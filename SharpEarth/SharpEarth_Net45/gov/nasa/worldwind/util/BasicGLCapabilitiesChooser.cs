@@ -43,7 +43,7 @@ public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
      */
     @Override
     public int chooseCapabilities(CapabilitiesImmutable desired,
-        List<CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
+        List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
     {
         if (desired is GLCapabilities && ((GLCapabilities) desired).getStereo())
         {
@@ -67,7 +67,7 @@ public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
      * @return an index into the list of available GL capabilities.
      */
     protected int chooseStereoCapabilities(CapabilitiesImmutable desired,
-        List<CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
+        List<? extends CapabilitiesImmutable> available, int windowSystemRecommendedChoice)
     {
         try
         {

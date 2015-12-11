@@ -335,7 +335,7 @@ public abstract class AbstractLayer : WWObjectImpl, Layer
     {
         string message = Logging.getMessage("RestorableSupport.RestoreNotSupported");
         Logging.logger().severe(message);
-        throw new NotSupportedException(message);
+        throw new UnsupportedOperationException(message);
     }
 
     public void setExpiryTime(long expiryTime)

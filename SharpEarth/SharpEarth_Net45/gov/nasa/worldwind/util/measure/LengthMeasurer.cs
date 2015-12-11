@@ -35,8 +35,8 @@ public class LengthMeasurer implements MeasurableLength
     private static final double DEFAULT_MAX_SEGMENT_LENGTH = 100e3; // size above which segments are subdivided
     private static final double DEFAULT_MIN_SEGMENT_LENGTH = 30; // minimum length of a terrain following subdivision
 
-    private ArrayList<Position> positions;
-    private ArrayList<Position> subdividedPositions;
+    private ArrayList<? extends Position> positions;
+    private ArrayList<? extends Position> subdividedPositions;
     private bool followTerrain = false;
     private int pathType = Polyline.GREAT_CIRCLE;
     private double maxSegmentLength = DEFAULT_MAX_SEGMENT_LENGTH;
@@ -48,7 +48,7 @@ public class LengthMeasurer implements MeasurableLength
     {
     }
 
-    public LengthMeasurer(ArrayList<Position> positions)
+    public LengthMeasurer(ArrayList<? extends Position> positions)
     {
         this.setPositions(positions);
     }
@@ -59,12 +59,12 @@ public class LengthMeasurer implements MeasurableLength
         this.length = -1;
     }
 
-    public ArrayList<Position> getPositions()
+    public ArrayList<? extends Position> getPositions()
     {
         return this.positions;
     }
 
-    public void setPositions(ArrayList<LatLon> positions, double elevation)
+    public void setPositions(ArrayList<? extends LatLon> positions, double elevation)
     {
         if (positions == null)
         {
@@ -82,7 +82,7 @@ public class LengthMeasurer implements MeasurableLength
         setPositions(newPositions);
     }
 
-    public void setPositions(ArrayList<Position> positions)
+    public void setPositions(ArrayList<? extends Position> positions)
     {
         if (positions == null)
         {
@@ -315,8 +315,8 @@ public class LengthMeasurer implements MeasurableLength
      *
      * @return a list of positions with no segment longer then maxLength and elevations following terrain or not.
      */
-    protected static ArrayList<Position> subdividePositions(Globe globe,
-        ArrayList<Position> positions,
+    protected static ArrayList<? extends Position> subdividePositions(Globe globe,
+        ArrayList<? extends Position> positions,
         double maxLength, bool followTerrain, int pathType)
     {
         return subdividePositions(globe, positions, maxLength, followTerrain, pathType, 0, positions.size());
@@ -339,8 +339,8 @@ public class LengthMeasurer implements MeasurableLength
      *
      * @return a list of positions with no segment longer then maxLength and elevations following terrain or not.
      */
-    protected static ArrayList<Position> subdividePositions(Globe globe,
-        ArrayList<Position> positions,
+    protected static ArrayList<? extends Position> subdividePositions(Globe globe,
+        ArrayList<? extends Position> positions,
         double maxLength, bool followTerrain, int pathType,
         int start, int count)
     {
