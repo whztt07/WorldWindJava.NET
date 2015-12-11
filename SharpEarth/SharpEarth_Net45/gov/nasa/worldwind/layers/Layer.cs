@@ -4,10 +4,8 @@
  * All Rights Reserved.
  */
 using SharpEarth.render;
-using SharpEarth.events.SelectEvent;
-using SharpEarth;
-namespace SharpEarth.layers{
 
+namespace SharpEarth.layers{
 
 /**
  * @author Tom Gaskins
