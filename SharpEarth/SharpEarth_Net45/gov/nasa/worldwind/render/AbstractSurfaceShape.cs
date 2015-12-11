@@ -1775,10 +1775,10 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
      *                 format (see above).
      *
      * @throws java.io.IOException           If an exception occurs writing to the output object.
-     * @throws UnsupportedOperationException if the format is not supported by this object, or if the {@code output}
+     * @throws NotSupportedException if the format is not supported by this object, or if the {@code output}
      *                                       argument is not of a supported type.
      */
-    public void export(String mimeType, Object output) throws IOException, UnsupportedOperationException
+    public void export(String mimeType, Object output) throws IOException, NotSupportedException
     {
         if (mimeType == null)
         {
@@ -1810,7 +1810,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
     }
 

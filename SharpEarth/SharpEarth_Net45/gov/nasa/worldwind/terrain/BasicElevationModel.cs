@@ -1935,7 +1935,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         //                    condition.wait(1000);
         //                }
         //            }
-        //            catch (InterruptedException e)
+        //            catch (ThreadInterruptedException e)
         //            {
         //                e.printStackTrace();
         //            }
@@ -2484,7 +2484,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
     {
         String message = Logging.getMessage("RestorableSupport.RestoreRequiresConstructor");
         Logging.logger().severe(message);
-        throw new UnsupportedOperationException(message);
+        throw new NotSupportedException(message);
     }
 
     protected void doGetRestorableState(RestorableSupport rs, RestorableSupport.StateObject context)

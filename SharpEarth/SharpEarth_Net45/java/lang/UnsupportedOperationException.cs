@@ -2,9 +2,9 @@
 
 namespace SharpEarth.java.lang
 {
-  public class UnsupportedOperationException : Exception
+  public class NotSupportedException : Exception
   {
-    public UnsupportedOperationException(string message)
+    public NotSupportedException(string message)
       : base(message)
     {
 

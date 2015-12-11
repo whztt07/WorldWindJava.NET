@@ -1409,12 +1409,12 @@ public class ImageUtil
      * @return a new image containing the original image but reprojected to align to the bounding sector. Pixels in the
      *         new image that have no correspondence with the source image are transparent.
      *
-     * @throws InterruptedException if any thread has interrupted the current thread while alignImage is running. The
+     * @throws ThreadInterruptedException if any thread has interrupted the current thread while alignImage is running. The
      *                              <i>interrupted status</i> of the current thread is cleared when this exception is
      *                              thrown.
      */
     public static AlignedImage alignImage(BufferedImage sourceImage, float[] latitudes, float[] longitudes)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         return alignImage(sourceImage, latitudes, longitudes, null, null);
     }
@@ -1435,12 +1435,12 @@ public class ImageUtil
      * @return a new image containing the original image but reprojected to align to the sector. Pixels in the new image
      *         that have no correspondence with the source image are transparent.
      *
-     * @throws InterruptedException if any thread has interrupted the current thread while alignImage is running. The
+     * @throws ThreadInterruptedException if any thread has interrupted the current thread while alignImage is running. The
      *                              <i>interrupted status</i> of the current thread is cleared when this exception is
      *                              thrown.
      */
     public static AlignedImage alignImage(BufferedImage sourceImage, float[] latitudes, float[] longitudes,
-        Sector sector, Dimension dimension) throws InterruptedException
+        Sector sector, Dimension dimension) throws ThreadInterruptedException
     {
         if (sourceImage == null)
         {
@@ -1520,7 +1520,7 @@ public class ImageUtil
         // geographic size.
         for (int j = 0; j < dimension.height; j++)
         {
-            // Generate an InterruptedException if the current thread is interrupted. Responding to thread interruptions
+            // Generate an ThreadInterruptedException if the current thread is interrupted. Responding to thread interruptions
             // before processing each image row ensures that this method terminates in a reasonable amount of time after
             // the currently executing thread is interrupted, but without consuming unecessary CPU time. Using either
             // Thread.sleep(1), or executing Thread.sleep() for each pixel would unecessarily increase the this methods

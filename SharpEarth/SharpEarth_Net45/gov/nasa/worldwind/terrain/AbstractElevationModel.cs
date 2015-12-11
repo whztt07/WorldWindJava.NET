@@ -165,7 +165,7 @@ abstract public class AbstractElevationModel extends WWObjectImpl implements Ele
     {
         String message = Logging.getMessage("RestorableSupport.RestoreNotSupported");
         Logging.logger().severe(message);
-        throw new UnsupportedOperationException(message);
+        throw new NotSupportedException(message);
     }
 
     public void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth, double[] buffer)

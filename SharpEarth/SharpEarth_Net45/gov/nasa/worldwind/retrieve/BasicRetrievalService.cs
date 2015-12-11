@@ -279,7 +279,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
                     Logging.logger().log(Level.FINE, message, e);
                 }
             }
-            catch (InterruptedException e)
+            catch (ThreadInterruptedException e)
             {
                 Logging.logger().log(Level.FINE, Logging.getMessage("BasicRetrievalService.RetrievalInterrupted",
                     task.getRetriever().getName()), e);

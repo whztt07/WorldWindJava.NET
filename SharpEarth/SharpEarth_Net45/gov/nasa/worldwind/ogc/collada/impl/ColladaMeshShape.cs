@@ -291,7 +291,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      * @return Always returns {@code null}.
      */
     @Override
-    public List<Intersection> intersect(Line line, Terrain terrain) throws InterruptedException
+    public List<Intersection> intersect(Line line, Terrain terrain) throws ThreadInterruptedException
     {
         return null;
     }

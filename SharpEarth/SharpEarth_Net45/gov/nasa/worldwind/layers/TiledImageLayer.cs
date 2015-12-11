@@ -1331,14 +1331,14 @@ public abstract class TiledImageLayer : AbstractLayer
                 try
                 {
                     tileImage = this.getImage(tile, mimeType, timeout);
-                    Thread.sleep(1); // generates InterruptedException if thread has been interupted
+                    Thread.sleep(1); // generates ThreadInterruptedException if thread has been interupted
 
                     if (tileImage != null)
                         ImageUtil.mergeImage(sector, tile.getSector(), aspectRatio, tileImage, image);
 
                     this.firePropertyChange(AVKey.PROGRESS, tileCount / numTiles, ++tileCount / numTiles);
                 }
-                catch (InterruptedException e)
+                catch (ThreadInterruptedException e)
                 {
                     throw e;
                 }
@@ -1458,7 +1458,7 @@ public abstract class TiledImageLayer : AbstractLayer
     {
         // Read the image from disk.
         BufferedImage image = this.requestImage(tile, mimeType);
-        Thread.sleep(1); // generates InterruptedException if thread has been interrupted
+        Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
         if (image != null)
             return image;
 
@@ -1467,7 +1467,7 @@ public abstract class TiledImageLayer : AbstractLayer
 
         // Try to read from disk again after retrieving it from the net.
         image = this.requestImage(tile, mimeType);
-        Thread.sleep(1); // generates InterruptedException if thread has been interupted
+        Thread.sleep(1); // generates ThreadInterruptedException if thread has been interupted
         if (image == null)
         {
             String message =

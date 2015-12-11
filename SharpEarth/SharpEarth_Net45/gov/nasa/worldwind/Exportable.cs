@@ -61,17 +61,17 @@ public interface Exportable
      *
      * @param mimeType Desired export format. Call {@link #isExportFormatSupported(String)} to make sure that the object
      *                 supports the format before trying to export, or be prepared to handle {@code
-     *                 UnsupportedOperationException}.
+     *                 NotSupportedException}.
      * @param output   Object that will receive the exported data. The type of this object depends on the export format.
      *                 All formats should support {@code java.io.OutputStream}. Text based format (for example, XML
      *                 formats) should also support {@code java.io.Writer}. Certain formats may also support other
      *                 object types.
      *
      * @throws IOException                   if an exception occurs while exporting the data.
-     * @throws UnsupportedOperationException if the format is not supported by this object, or if the {@code output}
+     * @throws NotSupportedException if the format is not supported by this object, or if the {@code output}
      *                                       argument is not of a supported type.
      * @see #isExportFormatSupported(String)
      */
-    void export(String mimeType, Object output) throws IOException, UnsupportedOperationException;
+    void export(String mimeType, Object output) throws IOException, NotSupportedException;
 }
 }

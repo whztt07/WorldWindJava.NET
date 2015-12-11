@@ -76,10 +76,10 @@ public abstract class AbstractShape extends WWObjectImpl
      * @return a list of intersections identifying where the line intersects the shape, or null if the line does not
      * intersect the shape.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      * @see Terrain
      */
-    abstract public java.util.List<Intersection> intersect(Line line, Terrain terrain) throws InterruptedException;
+    abstract public java.util.List<Intersection> intersect(Line line, Terrain terrain) throws ThreadInterruptedException;
 
     /**
      * Called during construction to establish any subclass-specific state such as different default values than those
@@ -1620,7 +1620,7 @@ public abstract class AbstractShape extends WWObjectImpl
             return Exportable.FORMAT_NOT_SUPPORTED;
     }
 
-    public void export(String mimeType, Object output) throws IOException, UnsupportedOperationException
+    public void export(String mimeType, Object output) throws IOException, NotSupportedException
     {
         if (mimeType == null)
         {
@@ -1641,7 +1641,7 @@ public abstract class AbstractShape extends WWObjectImpl
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         if (KMLConstants.KML_MIME_TYPE.equalsIgnoreCase(mimeType))
@@ -1660,7 +1660,7 @@ public abstract class AbstractShape extends WWObjectImpl
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
     }
 

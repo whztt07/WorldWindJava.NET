@@ -938,7 +938,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
     {
         String message = Logging.getMessage("RestorableSupport.RestoreRequiresConstructor");
         Logging.logger().severe(message);
-        throw new UnsupportedOperationException(message);
+        throw new NotSupportedException(message);
     }
 
     protected void doGetRestorableState(RestorableSupport rs, RestorableSupport.StateObject context)

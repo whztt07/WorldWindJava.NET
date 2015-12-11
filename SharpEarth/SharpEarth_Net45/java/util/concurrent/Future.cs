@@ -30,7 +30,7 @@ namespace SharpEarth.java.util.concurrent
    *   ExecutorService executor = ...
    *   ArchiveSearcher searcher = ...
    *   void showSearch(final String target)
-   *       throws InterruptedException {
+   *       throws ThreadInterruptedException {
    *     Future<String> future
    *       = executor.submit(new Callable<String>() {
    *         public String call() {
@@ -117,7 +117,7 @@ namespace SharpEarth.java.util.concurrent
      * @throws CancellationException if the computation was cancelled
      * @throws ExecutionException if the computation threw an
      * exception
-     * @throws InterruptedException if the current thread was interrupted
+     * @throws ThreadInterruptedException if the current thread was interrupted
      * while waiting
      */
     V get();
@@ -132,7 +132,7 @@ namespace SharpEarth.java.util.concurrent
      * @throws CancellationException if the computation was cancelled
      * @throws ExecutionException if the computation threw an
      * exception
-     * @throws InterruptedException if the current thread was interrupted
+     * @throws ThreadInterruptedException if the current thread was interrupted
      * while waiting
      * @throws TimeoutException if the wait timed out
      */

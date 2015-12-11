@@ -2465,7 +2465,7 @@ public class Path extends AbstractShape
     }
 
     @Override
-    public List<Intersection> intersect(Line line, Terrain terrain) throws InterruptedException // TODO
+    public List<Intersection> intersect(Line line, Terrain terrain) throws ThreadInterruptedException // TODO
     {
         return null;
     }

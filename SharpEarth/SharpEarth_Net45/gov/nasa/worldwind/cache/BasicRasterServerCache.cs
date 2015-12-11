@@ -157,7 +157,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
                     }
                 }
             }
-            catch (InterruptedException ignore)
+            catch (ThreadInterruptedException ignore)
             {
             }
             finally
@@ -180,7 +180,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
                     removeExpiredEntries();
                 }
             }
-            catch (InterruptedException ignore)
+            catch (ThreadInterruptedException ignore)
             {
             }
             finally
