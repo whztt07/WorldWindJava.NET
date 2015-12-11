@@ -1325,10 +1325,10 @@ public class Polygon extends AbstractShape
      * @return a list of intersections identifying where the line intersects the polygon, or null if the line does not
      * intersect the polygon.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      * @see Terrain
      */
-    public List<Intersection> intersect(Line line, Terrain terrain) throws InterruptedException
+    public List<Intersection> intersect(Line line, Terrain terrain) throws ThreadInterruptedException
     {
         Position refPos = this.getReferencePosition();
         if (refPos == null)
@@ -1401,7 +1401,7 @@ public class Polygon extends AbstractShape
     }
 
     protected void intersect(Line line, ShapeData shapeData, List<Intersection> intersections)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         if (shapeData.cb.getPrims() == null)
             return;

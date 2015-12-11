@@ -317,13 +317,13 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
                 image = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_RGB);
 
             downloadImage(tile, mimeType, timeout);
-            Thread.sleep(1); // generates InterruptedException if thread has been interupted
+            Thread.sleep(1); // generates ThreadInterruptedException if thread has been interupted
 
             BufferedImage tileImage = ImageIO.read(tile.getFile());
-            Thread.sleep(1); // generates InterruptedException if thread has been interupted
+            Thread.sleep(1); // generates ThreadInterruptedException if thread has been interupted
 
             ImageUtil.mergeImage(sector, tile.getSector(), aspectRatio, tileImage, image);
-            Thread.sleep(1); // generates InterruptedException if thread has been interupted
+            Thread.sleep(1); // generates ThreadInterruptedException if thread has been interupted
 
             this.firePropertyChange(AVKey.PROGRESS, 0d, 1d);
         }

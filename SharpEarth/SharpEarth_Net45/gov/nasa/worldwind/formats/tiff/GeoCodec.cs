@@ -53,7 +53,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadTiePoints");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         for (int i = 0; i < values.length; i += 6)
@@ -86,7 +86,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadPixelValues");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         this.setModelPixelScale( values[0], values[1], values[2] );
@@ -121,7 +121,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadMatrix");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         this.setModelTransformation( Matrix.fromArray(matrix, 0, true) );
@@ -146,7 +146,7 @@ class GeoCodec
 
     /**
      * Returns the bounding box of an image that is width X height pixels, as determined by this GeoCodec. Returns
-     * UnsupportedOperationException if the transformation can not be determined (see getXYZAtPixel()). The bounding Box
+     * NotSupportedException if the transformation can not be determined (see getXYZAtPixel()). The bounding Box
      * is returned as an array of double of length 4: [0] is x coordinate of upper-left corner [1] is y coordinate of
      * upper-left corner [2] is x coordinate of lower-right corner [3] is y coordinate of lower-right corner Note that
      * coordinate units are those of the underlying modeling transformation, and are not guaranteed to be in lon/lat.
@@ -154,9 +154,9 @@ class GeoCodec
      * @param width  Width of a hypothetical image.
      * @param height Height of a hypothetical image.
      * @return Returns xUL, yUL, xLR, yLR of bounding box.
-     * @throws UnsupportedOperationException if georeferencing can not be computed.
+     * @throws NotSupportedException if georeferencing can not be computed.
      */
-    public double[] getBoundingBox(int width, int height) throws UnsupportedOperationException
+    public double[] getBoundingBox(int width, int height) throws NotSupportedException
     {
         double[] bbox = new double[4];
         double[] pnt = getXYAtPixel(0, 0);
@@ -172,7 +172,7 @@ class GeoCodec
      * Returns the geocoordinates for a given pixel, as determined by the modeling coordinate tranformation embodied in
      * the GeoCodec.
      * <p/>
-     * TODO: Also throws UnsupportedOperationException if this is anything other than a "simple" georeferenced mapping,
+     * TODO: Also throws NotSupportedException if this is anything other than a "simple" georeferenced mapping,
      * meaning that there's a single tie-point known about the point 0,0, we know the inter-pixel spacing, and there's
      * no rotation of the image required.  Geo referencing may also be specified via a general 4x4 matrix, or by a list
      * if tie-points, implying a rubbersheeting transformation. These two cases remain to be implemented.
@@ -182,15 +182,15 @@ class GeoCodec
      * @param col pixel-column index
      * @return double[2] containing x,y coordinate of pixel in modelling coordinate units.
      * @throws ArgumentException      if row or column outside image bounds.
-     * @throws UnsupportedOperationException if georeferencing can not be determined.
+     * @throws NotSupportedException if georeferencing can not be determined.
      */
-    public double[] getXYAtPixel(int row, int col) throws UnsupportedOperationException
+    public double[] getXYAtPixel(int row, int col) throws NotSupportedException
     {
         if (this.tiePoints.size() == 0 )
         {
             String message = Logging.getMessage("GeotiffReader.NotSimpleGeotiff");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         double[] xy = new double[2];
@@ -220,7 +220,7 @@ class GeoCodec
             {
                 String message = Logging.getMessage("GeoCodec.NotIntegerKey", key);
                 Logging.logger().severe(message);
-                throw new UnsupportedOperationException(message);
+                throw new NotSupportedException(message);
             }
 
             vals = new int[entry.count];

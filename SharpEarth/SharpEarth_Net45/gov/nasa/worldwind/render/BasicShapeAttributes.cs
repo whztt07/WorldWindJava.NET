@@ -546,7 +546,7 @@ public class BasicShapeAttributes implements ShapeAttributes
     }
 
     /** {@inheritDoc} */
-    public void export(String mimeType, Object output) throws IOException, UnsupportedOperationException
+    public void export(String mimeType, Object output) throws IOException, NotSupportedException
     {
         if (mimeType == null)
         {
@@ -578,7 +578,7 @@ public class BasicShapeAttributes implements ShapeAttributes
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
     }
 

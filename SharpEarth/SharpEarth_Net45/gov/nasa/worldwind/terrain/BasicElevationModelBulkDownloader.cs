@@ -122,7 +122,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
             this.progress.setTotalCount(this.progress.getCurrentCount());
             this.progress.setTotalSize(this.progress.getCurrentSize());
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             String message = Logging.getMessage("generic.BulkRetrievalInterrupted", elevationModel.getName());
             Logging.logger().log(java.util.logging.Level.WARNING, message, e);
@@ -135,7 +135,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         }
     }
 
-//    protected int countMissingTiles() throws InterruptedException
+//    protected int countMissingTiles() throws ThreadInterruptedException
 //    {
 //        int count = 0;
 //        for (int levelNumber = 0; levelNumber <= this.level; levelNumber++)
@@ -149,13 +149,13 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
 //        return count;
 //    }
 
-    protected synchronized void submitMissingTilesRequests() throws InterruptedException
+    protected synchronized void submitMissingTilesRequests() throws ThreadInterruptedException
     {
         RetrievalService rs = WorldWind.getRetrievalService();
         int i = 0;
         while (this.missingTiles.size() > i && rs.isAvailable())
         {
-            Thread.sleep(1); // generates InterruptedException if thread has been interrupted
+            Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
             Tile tile = this.missingTiles.get(i);
 
@@ -278,7 +278,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
                 }
             }
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             return 0;
         }
@@ -487,7 +487,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         return sectorTiles;
     }
 
-    protected ArrayList<Tile> getMissingTilesInSector(Sector sector, int levelNumber) throws InterruptedException
+    protected ArrayList<Tile> getMissingTilesInSector(Sector sector, int levelNumber) throws ThreadInterruptedException
     {
         ArrayList<Tile> tiles = new ArrayList<Tile>();
 
@@ -496,7 +496,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         {
             for (Tile tile : row)
             {
-                Thread.sleep(1); // generates InterruptedException if thread has been interrupted
+                Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
                 if (tile == null)
                     continue;

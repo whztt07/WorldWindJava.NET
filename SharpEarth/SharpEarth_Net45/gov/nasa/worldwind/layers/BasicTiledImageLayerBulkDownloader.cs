@@ -120,7 +120,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
             this.progress.setTotalCount(this.progress.getCurrentCount());
             this.progress.setTotalSize(this.progress.getCurrentSize());
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             String message = Logging.getMessage("generic.BulkRetrievalInterrupted", this.layer.getName());
             Logging.logger().log(java.util.logging.Level.WARNING, message, e);
@@ -133,7 +133,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         }
     }
 
-//    protected int countMissingTiles() throws InterruptedException
+//    protected int countMissingTiles() throws ThreadInterruptedException
 //    {
 //        int count = 0;
 //        for (int levelNumber = 0; levelNumber <= this.level; levelNumber++)
@@ -147,13 +147,13 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
 //        return count;
 //    }
 
-    protected synchronized void submitMissingTilesRequests() throws InterruptedException
+    protected synchronized void submitMissingTilesRequests() throws ThreadInterruptedException
     {
         RetrievalService rs = WorldWind.getRetrievalService();
         int i = 0;
         while (this.missingTiles.size() > i && rs.isAvailable())
         {
-            Thread.sleep(1); // generates InterruptedException if thread has been interrupted
+            Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
             TextureTile tile = this.missingTiles.get(i);
 
@@ -287,7 +287,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
                 }
             }
         }
-        catch (InterruptedException e)
+        catch (ThreadInterruptedException e)
         {
             return 0;
         }
@@ -378,7 +378,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
     }
 
     protected ArrayList<TextureTile> getMissingTilesInSector(Sector sector, int levelNumber)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         ArrayList<TextureTile> tiles = new ArrayList<TextureTile>();
 
@@ -387,7 +387,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         {
             for (TextureTile tile : row)
             {
-                Thread.sleep(1); // generates InterruptedException if thread has been interrupted
+                Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
                 if (tile == null)
                     continue;

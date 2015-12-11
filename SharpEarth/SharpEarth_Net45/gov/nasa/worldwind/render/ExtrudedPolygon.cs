@@ -2252,10 +2252,10 @@ public class ExtrudedPolygon extends AbstractShape
      * @return a list of intersections identifying where the line intersects the extruded polygon, or null if the line
      *         does not intersect the extruded polygon.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      * @see Terrain
      */
-    public List<Intersection> intersect(Line line, Terrain terrain) throws InterruptedException
+    public List<Intersection> intersect(Line line, Terrain terrain) throws ThreadInterruptedException
     {
         if (!this.isEnableSides() && !this.isEnableCap())
             return null;
@@ -2351,10 +2351,10 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return the computed intersections, or null if there are no intersections.
      *
-     * @throws InterruptedException if the operation is interrupted.
+     * @throws ThreadInterruptedException if the operation is interrupted.
      */
     protected List<Intersection> intersectBoundarySides(Line line, ExtrudedBoundaryInfo boundary)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         List<Intersection> intersections = new ArrayList<Intersection>();
         Vec4[] topVertices = boundary.capVertices;
@@ -2381,7 +2381,7 @@ public class ExtrudedPolygon extends AbstractShape
     }
 
     protected void intersectCap(Line line, ShapeData shapeData, List<Intersection> intersections)
-        throws InterruptedException
+        throws ThreadInterruptedException
     {
         if (shapeData.cb.getPrimTypes() == null)
             return;
