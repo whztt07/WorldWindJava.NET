@@ -6,7 +6,12 @@
 using SharpEarth.java.lang;
 using SharpEarth.java.org.w3c.dom;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using SharpEarth.avlist;
+using SharpEarth.geom;
+using SharpEarth.render;
 
 namespace SharpEarth.util{
 

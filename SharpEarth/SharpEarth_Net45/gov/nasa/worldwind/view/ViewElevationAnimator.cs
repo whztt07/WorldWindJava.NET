@@ -3,11 +3,12 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
-using SharpEarth.WorldWind;
 namespace SharpEarth.view{
 
 
@@ -18,14 +19,14 @@ namespace SharpEarth.view{
  * @author jym
  * @version $Id: ViewElevationAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ViewElevationAnimator extends DoubleAnimator
+public class ViewElevationAnimator : DoubleAnimator
 {
     protected Globe globe;
     protected LatLon endLatLon;
     protected int altitudeMode;
 
     protected double midZoom;
-    protected bool useMidZoom = true;
+    protected bool UseMidZoom = true;
     protected double trueEndZoom;
 
     /**
@@ -44,28 +45,26 @@ public class ViewElevationAnimator extends DoubleAnimator
      * @param propertyAccessor Accessor to set elevation.
      */
     public ViewElevationAnimator(Globe globe, double beginZoom, double endZoom, LatLon beginLatLon,
-        LatLon endLatLon, int altitudeMode, PropertyAccessor.DoubleAccessor propertyAccessor)
+        LatLon endLatLon, int altitudeMode, PropertyAccessor.DoubleAccessor propertyAccessor) : base( null, beginZoom, endZoom, propertyAccessor )
     {
-        super(null, beginZoom, endZoom, propertyAccessor);
-
         this.endLatLon = endLatLon;
         this.altitudeMode = altitudeMode;
 
         if (globe == null)
         {
-            useMidZoom = false;
+          UseMidZoom = false;
         }
         else
         {
             this.globe = globe;
             this.midZoom = computeMidZoom(globe, beginLatLon, endLatLon, beginZoom, endZoom);
-            useMidZoom = useMidZoom(beginZoom, endZoom, midZoom);
+        UseMidZoom = useMidZoom(beginZoom, endZoom, midZoom);
         }
 
-        if (useMidZoom)
+        if ( UseMidZoom )
         {
             this.trueEndZoom = endZoom;
-            this.end = this.midZoom;
+            this.End = this.midZoom;
         }
     }
 
@@ -86,7 +85,7 @@ public class ViewElevationAnimator extends DoubleAnimator
      */
     public bool getUseMidZoom()
     {
-        return useMidZoom;
+        return UseMidZoom;
     }
 
     /**
@@ -94,13 +93,12 @@ public class ViewElevationAnimator extends DoubleAnimator
      *
      * @param end New end zoom.
      */
-    @Override
-    public void setEnd(Double end)
+    public void setEnd(double end)
     {
         if (this.getUseMidZoom())
             this.trueEndZoom = end;
         else
-            this.end = end;
+            this.End = end;
     }
 
     /**
@@ -109,31 +107,31 @@ public class ViewElevationAnimator extends DoubleAnimator
      */
     public void set(double interpolant)
     {
-        final int MAX_SMOOTHING = 1;
-        final double ZOOM_START = 0.0;
-        final double ZOOM_STOP = 1.0;
+        const int MAX_SMOOTHING = 1;
+        const double ZOOM_START = 0.0;
+        const double ZOOM_STOP = 1.0;
         if (interpolant >= 1.0)
             this.stop();
         double  zoomInterpolant;
 
-        if (this.useMidZoom)
+        if (this.UseMidZoom)
         {
             double value;
             zoomInterpolant = this.zoomInterpolant(interpolant, ZOOM_START, ZOOM_STOP, MAX_SMOOTHING);
             if (interpolant <= .5)
             {
-                value = nextDouble(zoomInterpolant, this.begin, this.end);
+                value = nextDouble(zoomInterpolant, this.Begin, this.End);
             }
             else
             {
-                value = nextDouble(zoomInterpolant, this.end, this.trueEndZoom);
+                value = nextDouble(zoomInterpolant, this.End, this.trueEndZoom);
             }
             this.propertyAccessor.setDouble(value);
         }
         else
         {
             zoomInterpolant = AnimationSupport.basicInterpolant(interpolant, ZOOM_START, ZOOM_STOP, MAX_SMOOTHING);
-            super.set(zoomInterpolant);
+            base.set(zoomInterpolant);
         }
 
     }
@@ -159,10 +157,10 @@ public class ViewElevationAnimator extends DoubleAnimator
         return AnimationSupport.interpolantSmoothed(normalizedInterpolant, maxSmoothing);
     }
 
-    @Override
-    public Double nextDouble(double interpolant)
+    
+    public double? nextDouble(double interpolant)
     {
-        return this.nextDouble(interpolant, this.begin, this.end);
+        return this.nextDouble(interpolant, this.Begin, this.End);
     }
 
     /**
@@ -208,7 +206,7 @@ public class ViewElevationAnimator extends DoubleAnimator
 
     protected void setImpl(double interpolant)
     {
-       Double newValue = this.nextDouble(interpolant);
+       double? newValue = this.nextDouble(interpolant);
        if (newValue == null)
            return;
 
@@ -232,8 +230,8 @@ public class ViewElevationAnimator extends DoubleAnimator
         double scaleFactor = AnimationSupport.angularRatio(sphericalDistance, Angle.POS180);
 
         // Mid-point zoom is interpolated value between minimum and maximum zoom.
-        final double MIN_ZOOM = Math.Min(beginZoom, endZoom);
-        final double MAX_ZOOM = 3.0 * globe.getRadius();
+        double MIN_ZOOM = Math.Min(beginZoom, endZoom);
+        double MAX_ZOOM = 3.0 * globe.getRadius();
         return AnimationSupport.mixDouble(scaleFactor, MIN_ZOOM, MAX_ZOOM);
     }
 

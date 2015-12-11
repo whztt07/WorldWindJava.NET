@@ -3,9 +3,10 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.util.RestorableSupport;
 using SharpEarth.geom;
 using SharpEarth;
+using SharpEarth.util;
+
 namespace SharpEarth.view{
 
 
