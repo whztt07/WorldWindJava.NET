@@ -631,7 +631,7 @@ public class PointPlacemarkAttributes implements Exportable
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
     }
 

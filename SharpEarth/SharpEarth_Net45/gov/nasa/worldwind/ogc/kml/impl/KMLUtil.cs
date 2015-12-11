@@ -229,7 +229,7 @@ public class KMLUtil
      *
      * @return A new list of positions with altitudes set based on {@code altitudeMode}.
      */
-    public static java.util.List<Position> computeAltitude(Globe globe, java.util.List<? extends Position> positions,
+    public static java.util.List<Position> computeAltitude(Globe globe, java.util.List<Position> positions,
         String altitudeMode)
     {
         java.util.List<Position> outPositions = new ArrayList<Position>(positions.size());

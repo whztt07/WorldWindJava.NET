@@ -99,7 +99,7 @@ public class Polygon extends AbstractShape
             }
 
             // Copy the shape's boundaries.
-            for (List<? extends Position> boundary : shape.boundaries)
+            for (List<Position> boundary : shape.boundaries)
             {
                 this.boundaries.add(new BoundaryInfo(boundary));
             }
@@ -160,7 +160,7 @@ public class Polygon extends AbstractShape
     protected static class BoundaryInfo
     {
         /** The shape's boundary positions. */
-        protected List<? extends Position> positions;
+        protected List<Position> positions;
         /** The shape's computed vertices, arranged in one array. */
         protected Vec4[] vertices; // TODO: eliminate need for this; use the vertex buffer instead
         /** The shape's computed vertices, arranged in a buffer. */
@@ -171,7 +171,7 @@ public class Polygon extends AbstractShape
          *
          * @param positions the boundary positions.
          */
-        public BoundaryInfo(List<? extends Position> positions)
+        public BoundaryInfo(List<Position> positions)
         {
             this.positions = positions;
         }
@@ -190,7 +190,7 @@ public class Polygon extends AbstractShape
      * The location of each vertex in this shape's boundaries. There is one list per boundary. There is always an entry
      * for the outer boundary, but its list is empty if an outer boundary has not been specified.
      */
-    protected List<List<? extends Position>> boundaries; // the defining locations or positions of the boundary
+    protected List<List<Position>> boundaries; // the defining locations or positions of the boundary
     /** The total number of positions in the entire polygon. */
     protected int numPositions;
 
@@ -212,7 +212,7 @@ public class Polygon extends AbstractShape
     /** Construct a polygon with an empty outer boundary. */
     public Polygon()
     {
-        this.boundaries = new ArrayList<List<? extends Position>>();
+        this.boundaries = new ArrayList<List<Position>>();
         this.boundaries.add(new ArrayList<Position>()); // placeholder for outer boundary
     }
 
@@ -271,7 +271,7 @@ public class Polygon extends AbstractShape
     {
         // Assumes that the boundary lists have already been established.
 
-        for (List<? extends Position> boundary : this.boundaries)
+        for (List<Position> boundary : this.boundaries)
         {
             if (boundary == null || boundary.size() < 3)
                 continue;
@@ -299,7 +299,7 @@ public class Polygon extends AbstractShape
     {
         int count = 0;
 
-        for (List<? extends Position> boundary : this.boundaries)
+        for (List<Position> boundary : this.boundaries)
         {
             count += boundary.size();
         }
@@ -322,7 +322,7 @@ public class Polygon extends AbstractShape
      *
      * @return this polygon's outer boundary. The list may be empty but will not be null.
      */
-    public List<? extends Position> outerBoundary()
+    public List<Position> outerBoundary()
     {
         return this.boundaries.get(0);
     }
@@ -364,7 +364,7 @@ public class Polygon extends AbstractShape
      *
      * @return a list of the boundary positions.
      */
-    protected List<? extends Position> fillBoundary(Iterable<? extends Position> corners)
+    protected List<Position> fillBoundary(Iterable<? extends Position> corners)
     {
         ArrayList<Position> list = new ArrayList<Position>();
 
@@ -420,7 +420,7 @@ public class Polygon extends AbstractShape
      *
      * @return this shape's boundaries.
      */
-    public List<List<? extends Position>> getBoundaries()
+    public List<List<Position>> getBoundaries()
     {
         return this.boundaries;
     }
@@ -584,7 +584,7 @@ public class Polygon extends AbstractShape
 
         polygon.setLocations(this.getOuterBoundary());
 
-        List<List<? extends Position>> bounds = this.getBoundaries();
+        List<List<Position>> bounds = this.getBoundaries();
         for (int i = 1; i < bounds.size(); i++)
         {
             polygon.addInnerBoundary(bounds.get(i));
@@ -1441,9 +1441,9 @@ public class Polygon extends AbstractShape
         if (oldPosition == null)
             return;
 
-        List<List<? extends Position>> newBoundaries = new ArrayList<List<? extends Position>>(this.boundaries.size());
+        List<List<Position>> newBoundaries = new ArrayList<List<Position>>(this.boundaries.size());
 
-        for (List<? extends Position> boundary : this.boundaries)
+        for (List<Position> boundary : this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;
@@ -1492,9 +1492,9 @@ public class Polygon extends AbstractShape
         if (oldPosition == null)
             return;
 
-        List<List<? extends Position>> newBoundaries = new ArrayList<List<? extends Position>>(this.boundaries.size());
+        List<List<Position>> newBoundaries = new ArrayList<List<Position>>(this.boundaries.size());
 
-        for (List<? extends Position> boundary : this.boundaries)
+        for (List<Position> boundary : this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;

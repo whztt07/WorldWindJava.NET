@@ -53,7 +53,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadTiePoints");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         for (int i = 0; i < values.length; i += 6)
@@ -86,7 +86,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadPixelValues");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         this.setModelPixelScale( values[0], values[1], values[2] );
@@ -121,7 +121,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeoCodec.BadMatrix");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         this.setModelTransformation( Matrix.fromArray(matrix, 0, true) );
@@ -190,7 +190,7 @@ class GeoCodec
         {
             String message = Logging.getMessage("GeotiffReader.NotSimpleGeotiff");
             Logging.logger().severe(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         double[] xy = new double[2];
@@ -220,7 +220,7 @@ class GeoCodec
             {
                 String message = Logging.getMessage("GeoCodec.NotIntegerKey", key);
                 Logging.logger().severe(message);
-                throw new UnsupportedOperationException(message);
+                throw new NotSupportedException(message);
             }
 
             vals = new int[entry.count];

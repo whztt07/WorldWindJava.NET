@@ -288,7 +288,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
             this.tessellator.renderTileID(dc, this);
         }
 
-        public PickedObject[] pick(DrawContext dc, List<? extends Point> pickPoints)
+        public PickedObject[] pick(DrawContext dc, List<Point> pickPoints)
         {
             return this.tessellator.pick(dc, this, pickPoints);
         }
@@ -1136,7 +1136,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
         }
     }
 
-    protected PickedObject[] pick(DrawContext dc, RectTile tile, List<? extends Point> pickPoints)
+    protected PickedObject[] pick(DrawContext dc, RectTile tile, List<Point> pickPoints)
     {
         if (dc == null)
         {

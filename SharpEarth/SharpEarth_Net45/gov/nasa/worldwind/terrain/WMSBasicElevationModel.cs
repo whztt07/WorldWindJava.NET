@@ -417,7 +417,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
         }
     }
 
-    public void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth, double[] buffer)
+    public void composeElevations(Sector sector, List<LatLon> latlons, int tileWidth, double[] buffer)
         throws Exception
     {
         if (sector == null)

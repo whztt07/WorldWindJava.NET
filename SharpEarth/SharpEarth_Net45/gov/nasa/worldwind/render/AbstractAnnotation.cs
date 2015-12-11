@@ -228,7 +228,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         this.maxActiveAltitude = maxActiveAltitude;
     }
 
-    public java.util.List<? extends Annotation> getChildren()
+    public java.util.List<Annotation> getChildren()
     {
         return java.util.Collections.unmodifiableList(this.childList);
     }

@@ -1641,7 +1641,7 @@ public abstract class AbstractShape extends WWObjectImpl
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
 
         if (KMLConstants.KML_MIME_TYPE.equalsIgnoreCase(mimeType))
@@ -1660,7 +1660,7 @@ public abstract class AbstractShape extends WWObjectImpl
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new UnsupportedOperationException(message);
+            throw new NotSupportedException(message);
         }
     }
 

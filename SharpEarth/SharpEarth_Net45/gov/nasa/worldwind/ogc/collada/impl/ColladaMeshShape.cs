@@ -264,7 +264,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      * @param geometries Geometries to render. All geometries must be of the same type (either {@link ColladaTriangles}
      *                   or {@link ColladaLines}.
      */
-    protected ColladaMeshShape(List<? extends ColladaAbstractGeometry> geometries)
+    protected ColladaMeshShape(List<ColladaAbstractGeometry> geometries)
     {
         if (WWUtil.isEmpty(geometries))
         {

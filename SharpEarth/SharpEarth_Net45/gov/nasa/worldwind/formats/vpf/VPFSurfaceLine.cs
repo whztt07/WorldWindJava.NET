@@ -48,7 +48,7 @@ public class VPFSurfaceLine extends SurfacePolyline // TODO: consolidate with Su
 
     public void setLocations(Iterable<? extends LatLon> iterable)
     {
-        throw new UnsupportedOperationException();
+        throw new NotSupportedException();
     }
 
     @Override

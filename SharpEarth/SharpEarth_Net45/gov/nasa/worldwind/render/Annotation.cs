@@ -60,7 +60,7 @@ public interface Annotation extends Renderable, Disposable, Restorable
 
     void setAttributes(AnnotationAttributes attrs);
 
-    java.util.List<? extends Annotation> getChildren();
+    java.util.List<Annotation> getChildren();
 
     void addChild(Annotation annotation);
 

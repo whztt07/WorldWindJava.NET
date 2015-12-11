@@ -117,7 +117,7 @@ public class FileTree implements Iterable<File>
         }
 
         public void remove() {
-            throw new UnsupportedOperationException();
+            throw new NotSupportedException();
         }
 
         private void expandUntilFilesFound() {
