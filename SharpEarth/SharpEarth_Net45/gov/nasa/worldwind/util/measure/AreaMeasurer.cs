@@ -36,7 +36,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
 {
     private static final double DEFAULT_AREA_SAMPLING_STEPS = 32; // sampling grid max rows or cols
 
-    private ArrayList<Position> subdividedPositions;
+    private ArrayList<? extends Position> subdividedPositions;
     private Cell[][] sectorCells;
     private Double[][] sectorElevations;
     private double areaTerrainSamplingSteps = DEFAULT_AREA_SAMPLING_STEPS;
@@ -47,7 +47,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
     {
     }
 
-    public AreaMeasurer(ArrayList<Position> positions)
+    public AreaMeasurer(ArrayList<? extends Position> positions)
     {
         super(positions);
     }
@@ -60,7 +60,7 @@ public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
         this.surfaceArea = -1;
     }
 
-    public void setPositions(ArrayList<Position> positions)
+    public void setPositions(ArrayList<? extends Position> positions)
     {
         Sector oldSector = getBoundingSector();
         super.setPositions(positions); // will call clearCachedData()

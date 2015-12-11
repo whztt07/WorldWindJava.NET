@@ -1262,18 +1262,18 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         return tile != null ? this.lookupElevation(latitude, longitude, tile) : this.getMissingDataSignal();
     }
 
-    public double getElevations(Sector sector, List<LatLon> latlons, double targetResolution, double[] buffer)
+    public double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution, double[] buffer)
     {
         return this.getElevations(sector, latlons, targetResolution, buffer, true);
     }
 
-    public double getUnmappedElevations(Sector sector, List<LatLon> latlons, double targetResolution,
+    public double getUnmappedElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
         double[] buffer)
     {
         return this.getElevations(sector, latlons, targetResolution, buffer, false);
     }
 
-    protected double getElevations(Sector sector, List<LatLon> latlons, double targetResolution,
+    protected double getElevations(Sector sector, List<? extends LatLon> latlons, double targetResolution,
         double[] buffer, bool mapMissingData)
     {
         if (sector == null)
@@ -2484,7 +2484,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
     {
         String message = Logging.getMessage("RestorableSupport.RestoreRequiresConstructor");
         Logging.logger().severe(message);
-        throw new NotSupportedException(message);
+        throw new UnsupportedOperationException(message);
     }
 
     protected void doGetRestorableState(RestorableSupport rs, RestorableSupport.StateObject context)

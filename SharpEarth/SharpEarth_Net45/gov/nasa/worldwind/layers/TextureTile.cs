@@ -78,7 +78,7 @@ public class TextureTile extends Tile implements SurfaceTile
         return size;
     }
 
-    public List<LatLon> getCorners()
+    public List<? extends LatLon> getCorners()
     {
         ArrayList<LatLon> list = new ArrayList<LatLon>(4);
         for (LatLon ll : this.getSector())

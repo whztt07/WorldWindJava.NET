@@ -753,10 +753,13 @@
     <Compile Include="javax\xml\parsers\DocumentBuilder.cs" />
     <Compile Include="javax\xml\parsers\DocumentBuilderFactory.cs" />
     <Compile Include="javax\xml\parsers\ParserConfigurationException.cs" />
+    <Compile Include="javax\xml\stream\events\Attribute.cs" />
     <Compile Include="javax\xml\stream\events\StartElement.cs" />
     <Compile Include="javax\xml\stream\events\XMLEvent.cs" />
     <Compile Include="javax\xml\stream\events\XMLEventReader.cs" />
     <Compile Include="javax\xml\stream\XMLStreamException.cs" />
+    <Compile Include="javax\xml\transform\dom\DOMSource.cs" />
+    <Compile Include="javax\xml\transform\stream\StreamResult.cs" />
     <Compile Include="javax\xml\transform\Transformer.cs" />
     <Compile Include="javax\xml\transform\TransformerConfigurationException.cs" />
     <Compile Include="javax\xml\transform\TransformerFactory.cs" />
@@ -769,9 +772,12 @@
     <Compile Include="java\awt\events\MouseMotionListener.cs" />
     <Compile Include="java\awt\events\MouseWheelEvent.cs" />
     <Compile Include="java\awt\events\MouseWheelListener.cs" />
+    <Compile Include="java\awt\Point.cs" />
     <Compile Include="java\beans\PropertyChangeEvent.cs" />
     <Compile Include="java\beans\PropertyChangeListener.cs" />
+    <Compile Include="java\beans\PropertyChangeSupport.cs" />
     <Compile Include="java\io\InputStream.cs" />
+    <Compile Include="java\io\IOException.cs" />
     <Compile Include="java\lang\Class.cs" />
     <Compile Include="java\lang\IllegalStateException.cs" />
     <Compile Include="java\lang\NoSuchMethodException.cs" />
@@ -791,8 +797,13 @@
     <Compile Include="java\io\Serializable.cs" />
     <Compile Include="java\util\GL.cs" />
     <Compile Include="java\util\GL2.cs" />
+    <Compile Include="java\util\Iterator.cs" />
     <Compile Include="java\util\logging\Logger.cs" />
+    <Compile Include="org\xml\sax\InputSource.cs" />
+    <Compile Include="org\xml\sax\SAXException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SharpEarth\javax\xml\transform\TransformerException.cs" />
+    <Compile Include="SharpEarth\java\io\StringWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="gov\nasa\worldwind\util\MessageStrings.properties" />

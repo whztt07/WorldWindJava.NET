@@ -1777,7 +1777,7 @@ public class PointPlacemark extends WWObjectImpl
         {
             String message = Logging.getMessage("Export.UnsupportedFormat", mimeType);
             Logging.logger().warning(message);
-            throw new NotSupportedException(message);
+            throw new UnsupportedOperationException(message);
         }
     }
 

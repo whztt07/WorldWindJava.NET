@@ -82,6 +82,11 @@ abstract public class OGCCapabilities : AbstractXMLEventParser
         // Capability parser is registered by subclass.
     }
 
+    internal object getServiceInformation()
+    {
+      throw new NotImplementedException();
+    }
+
     protected XMLEventReader createReader(Object docSource)
     {
         return WWXML.openEventReader(docSource);

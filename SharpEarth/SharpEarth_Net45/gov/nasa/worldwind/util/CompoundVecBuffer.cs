@@ -543,7 +543,7 @@ public abstract class CompoundVecBuffer
 
         public void remove()
         {
-            throw new NotSupportedException();
+            throw new UnsupportedOperationException();
         }
 
         protected void updateSubIterator()

@@ -19,6 +19,6 @@ public interface SurfaceTile
     void applyInternalTransform(DrawContext dc, bool textureIdentityActive);
     Sector getSector();
     Extent getExtent(DrawContext dc);
-    List<LatLon> getCorners();
+    List<? extends LatLon> getCorners();
 }
 }

@@ -135,7 +135,7 @@ public class ExtrudedPolygon extends AbstractShape
             }
 
             // Copy the shape's boundaries.
-            for (List<LatLon> boundary : shape.boundaries)
+            for (List<? extends LatLon> boundary : shape.boundaries)
             {
                 this.boundaries.add(new ExtrudedBoundaryInfo(boundary));
             }
@@ -201,7 +201,7 @@ public class ExtrudedPolygon extends AbstractShape
     protected static class ExtrudedBoundaryInfo
     {
         /** The boundary vertices. This is merely a reference to the paren't shape's boundaries. */
-        protected List<LatLon> locations;
+        protected List<? extends LatLon> locations;
         /** The number of faces in the boundary. (The number of positions - 1.) */
         protected int faceCount;
 
@@ -241,7 +241,7 @@ public class ExtrudedPolygon extends AbstractShape
          *
          * @param locations the boundary locations. Only this reference is kept; the boundaries are not copied.
          */
-        public ExtrudedBoundaryInfo(List<LatLon> locations)
+        public ExtrudedBoundaryInfo(List<? extends LatLon> locations)
         {
             this.locations = locations;
             this.faceCount = locations.size() - 1;
@@ -261,7 +261,7 @@ public class ExtrudedPolygon extends AbstractShape
      * The location of each vertex in this shape's boundaries. There is one list per boundary. There is always an entry
      * for the outer boundary, but its list is empty if an outer boundary has not been specified.
      */
-    protected List<List<LatLon>> boundaries;
+    protected List<List<? extends LatLon>> boundaries;
     /** The total number of locations in all boundaries. */
     protected int totalNumLocations;
     /** The total number of faces in all this shape's boundaries. */
@@ -298,7 +298,7 @@ public class ExtrudedPolygon extends AbstractShape
     /** Constructs an extruded polygon with an empty outer boundary and a default height of 1 meter. */
     public ExtrudedPolygon()
     {
-        this.boundaries = new ArrayList<List<LatLon>>();
+        this.boundaries = new ArrayList<List<? extends LatLon>>();
         this.boundaries.add(new ArrayList<LatLon>()); // placeholder for outer boundary
     }
 
@@ -430,7 +430,7 @@ public class ExtrudedPolygon extends AbstractShape
     {
         // Assumes that the boundary lists have already been established.
 
-        for (List<LatLon> locations : this.boundaries)
+        for (List<? extends LatLon> locations : this.boundaries)
         {
             if (locations == null || locations.size() < 3)
                 continue;
@@ -458,7 +458,7 @@ public class ExtrudedPolygon extends AbstractShape
     {
         int count = 0;
 
-        for (List<LatLon> locations : this.boundaries)
+        for (List<? extends LatLon> locations : this.boundaries)
         {
             count += locations.size();
         }
@@ -483,7 +483,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return this polygon's outer boundary.
      */
-    protected List<LatLon> outerBoundary()
+    protected List<? extends LatLon> outerBoundary()
     {
         return this.boundaries.get(0);
     }
@@ -572,7 +572,7 @@ public class ExtrudedPolygon extends AbstractShape
         this.reset();
     }
 
-    protected List<LatLon> fillBoundary(Iterable<? extends LatLon> corners)
+    protected List<? extends LatLon> fillBoundary(Iterable<? extends LatLon> corners)
     {
         ArrayList<LatLon> list = new ArrayList<LatLon>();
         for (LatLon corner : corners)
@@ -658,7 +658,7 @@ public class ExtrudedPolygon extends AbstractShape
      *
      * @return this shape's boundaries.
      */
-    protected List<List<LatLon>> getBoundaries()
+    protected List<List<? extends LatLon>> getBoundaries()
     {
         return this.boundaries;
     }
@@ -1272,7 +1272,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         polygon.setLocations(this.getOuterBoundary());
 
-        List<List<LatLon>> bounds = this.getBoundaries();
+        List<List<? extends LatLon>> bounds = this.getBoundaries();
         for (int i = 1; i < bounds.size(); i++)
         {
             polygon.addInnerBoundary(bounds.get(i));
@@ -2422,9 +2422,9 @@ public class ExtrudedPolygon extends AbstractShape
         if (oldPosition == null)
             return;
 
-        List<List<LatLon>> newLocations = new ArrayList<List<LatLon>>(this.boundaries.size());
+        List<List<? extends LatLon>> newLocations = new ArrayList<List<? extends LatLon>>(this.boundaries.size());
 
-        for (List<LatLon> boundary : this.boundaries)
+        for (List<? extends LatLon> boundary : this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;
@@ -2482,13 +2482,13 @@ public class ExtrudedPolygon extends AbstractShape
         }
 
         // Inner boundaries
-        Iterator<List<LatLon>> boundaryIterator = this.boundaries.iterator();
+        Iterator<List<? extends LatLon>> boundaryIterator = this.boundaries.iterator();
         if (boundaryIterator.hasNext())
             boundaryIterator.next(); // Skip outer boundary, we already dealt with it above
 
         while (boundaryIterator.hasNext())
         {
-            List<LatLon> boundary = boundaryIterator.next();
+            List<? extends LatLon> boundary = boundaryIterator.next();
 
             xmlWriter.writeStartElement("innerBoundaryIs");
             if (boundary.iterator().hasNext() && boundary.iterator().next() is Position)

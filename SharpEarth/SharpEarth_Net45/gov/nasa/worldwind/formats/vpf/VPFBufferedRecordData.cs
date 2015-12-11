@@ -177,7 +177,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
 
             public void remove()
             {
-                throw new NotSupportedException();
+                throw new UnsupportedOperationException();
             }
         };
     }

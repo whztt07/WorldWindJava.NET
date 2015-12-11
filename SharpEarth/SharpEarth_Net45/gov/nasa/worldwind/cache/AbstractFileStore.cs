@@ -359,7 +359,7 @@ public abstract class AbstractFileStore extends WWObjectImpl implements FileStor
     //********************  File Store Locations  ******************//
     //**************************************************************//
 
-    public java.util.List<java.io.File> getLocations()
+    public java.util.List<? extends java.io.File> getLocations()
     {
         java.util.ArrayList<java.io.File> locations = new java.util.ArrayList<java.io.File>();
         for (StoreLocation location : this.readLocations)

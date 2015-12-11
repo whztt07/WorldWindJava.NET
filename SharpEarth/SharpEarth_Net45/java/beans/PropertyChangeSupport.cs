@@ -25,5 +25,25 @@ namespace SharpEarth.java.beans
     {
       throw new NotImplementedException();
     }
+
+    internal void addPropertyChangeListener(PropertyChangeListener listener)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void removePropertyChangeListener(PropertyChangeListener listener)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void firePropertyChange(PropertyChangeEvent propertyChangeEvent)
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void firePropertyChange(System.String propertyName, System.Object oldValue, System.Object newValue)
+    {
+      throw new NotImplementedException();
+    }
   }
 }
