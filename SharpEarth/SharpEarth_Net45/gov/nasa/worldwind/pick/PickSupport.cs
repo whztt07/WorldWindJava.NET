@@ -187,7 +187,7 @@ public class PickSupport
 
         // Lookup the pickable object (if any) for each unique color code appearing in the pick rectangle. Each picked
         // object that corresponds to a picked color is added to the draw context.
-        for (int colorCode : colorCodes)
+        foreach (int colorCode  in  colorCodes)
         {
             if (colorCode == 0) // This should never happen, but we check anyway.
                 continue;
@@ -273,7 +273,7 @@ public class PickSupport
             return po;
 
         // Try matching the color code to one of the pickable object ranges.
-        for (Map.Entry<Range, PickedObjectFactory> entry : this.getPickableObjectRanges().entrySet())
+        foreach (Map.Entry<Range, PickedObjectFactory> entry  in  this.getPickableObjectRanges().entrySet())
         {
             Range range = entry.getKey();
             PickedObjectFactory factory = entry.getValue();

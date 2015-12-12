@@ -274,7 +274,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         }
 
         this.geometries = new ArrayList<Geometry>(geometries.size());
-        for (ColladaAbstractGeometry geometry : geometries)
+        foreach (ColladaAbstractGeometry geometry  in  geometries)
         {
             this.geometries.add(new Geometry(geometry));
             this.shapeCount += geometry.getCount();
@@ -533,7 +533,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
                 gl.glVertexPointer(ColladaAbstractGeometry.COORDS_PER_VERTEX, GL.GL_FLOAT, 0, vb.rewind());
             }
 
-            for (Geometry geometry : this.geometries)
+            foreach (Geometry geometry  in  this.geometries)
             {
                 Material nextMaterial = geometry.material != null ? geometry.material : defaultMaterial;
 
@@ -762,7 +762,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         if (this.textureCoordsBuffer == null && this.mustApplyTexture(dc))
             this.createTexCoords();
 
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             if (geometry.material == null)
                 geometry.material = this.getMaterial(geometry);
@@ -793,7 +793,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         // Compute the corners of the bounding box and transform with the active transform matrix.
         List<Vec4> extrema = new ArrayList<Vec4>();
         Vec4[] corners = box.getCorners();
-        for (Vec4 corner : corners)
+        foreach (Vec4 corner  in  corners)
         {
             extrema.add(corner.transformBy4(matrix));
         }
@@ -817,7 +817,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         int size = this.shapeCount * this.vertsPerShape * ColladaAbstractGeometry.COORDS_PER_VERTEX;
         FloatBuffer vertexBuffer = WWBufferUtil.newFloatBuffer(size, true);
 
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             geometry.colladaGeometry.getVertices(vertexBuffer);
         }
@@ -830,7 +830,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         // Compute the corners of the bounding box and transform with the active transform matrix.
         List<Vec4> extrema = new ArrayList<Vec4>();
         Vec4[] corners = box.getCorners();
-        for (Vec4 corner : corners)
+        foreach (Vec4 corner  in  corners)
         {
             extrema.add(corner.transformBy4(tc.peekMatrix()));
         }
@@ -870,7 +870,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         else
             this.coordBuffer = Buffers.newDirectFloatBuffer(size);
 
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             geometry.offset = this.coordBuffer.position() / this.vertsPerShape;
             geometry.colladaGeometry.getVertices(this.coordBuffer);
@@ -883,7 +883,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         this.coordBuffer.position(this.normalBufferPosition);
         this.normalBuffer = this.coordBuffer.slice();
 
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             if (geometry.colladaGeometry.getNormalAccessor() != null)
             {
@@ -904,7 +904,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         this.coordBuffer.position(this.texCoordBufferPosition);
         this.textureCoordsBuffer = this.coordBuffer.slice();
 
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             if (this.mustApplyTexture(geometry))
             {
@@ -1018,7 +1018,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
     @Override
     protected bool mustApplyTexture(DrawContext dc)
     {
-        for (Geometry geometry : this.geometries)
+        foreach (Geometry geometry  in  this.geometries)
         {
             if (this.mustApplyTexture(geometry))
                 return true;
@@ -1139,7 +1139,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         if (materialSource == null)
             return null;
 
-        for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
+        foreach (ColladaInstanceMaterial material  in  techniqueCommon.getMaterials())
         {
             if (materialSource.Equals(material.getSymbol()))
                 return material;
@@ -1174,7 +1174,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
         String inputSemantic = null;
 
         // Search bind_vertex_input to find the semantic that identifies the texture coords.
-        for (ColladaBindVertexInput bind : instanceMaterial.getBindVertexInputs())
+        foreach (ColladaBindVertexInput bind  in  instanceMaterial.getBindVertexInputs())
         {
             if (texcoord.Equals(bind.getSemantic()))
                 inputSemantic = bind.getInputSemantic();
@@ -1201,7 +1201,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
             return null;
 
         ColladaInstanceMaterial myMaterialInstance = null;
-        for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
+        foreach (ColladaInstanceMaterial material  in  techniqueCommon.getMaterials())
         {
             if (materialSource.Equals(material.getSymbol()))
             {
@@ -1307,7 +1307,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
             return null;
 
         ColladaInstanceMaterial myMaterialInstance = null;
-        for (ColladaInstanceMaterial material : techniqueCommon.getMaterials())
+        foreach (ColladaInstanceMaterial material  in  techniqueCommon.getMaterials())
         {
             if (materialSource.Equals(material.getSymbol()))
             {

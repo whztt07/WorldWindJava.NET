@@ -361,7 +361,7 @@ namespace SharpEarth.util{
             return false;
         if (dataset != null ? !dataset.Equals(level.dataset) : level.dataset != null)
             return false;
-        if (formatSuffix != null ? !formatSuffix.Equals(level.formatSuffix) : level.formatSuffix != null)
+        if (foreachmatSuffix != null ? !formatSuffix.Equals(level.formatSuffix)  in  level.formatSuffix != null)
             return false;
         if (levelName != null ? !levelName.Equals(level.levelName) : level.levelName != null)
             return false;
@@ -382,7 +382,7 @@ namespace SharpEarth.util{
         result = 29 * result + (tileDelta != null ? tileDelta.GetHashCode() : 0);
         result = 29 * result + tileWidth;
         result = 29 * result + tileHeight;
-        result = 29 * result + (formatSuffix != null ? formatSuffix.GetHashCode() : 0);
+        result = 29 * result + (foreachmatSuffix != null ? formatSuffix.GetHashCode()  in  0);
         result = 29 * result + (service != null ? service.GetHashCode() : 0);
         result = 29 * result + (dataset != null ? dataset.GetHashCode() : 0);
         result = 29 * result + (cacheName != null ? cacheName.GetHashCode() : 0);

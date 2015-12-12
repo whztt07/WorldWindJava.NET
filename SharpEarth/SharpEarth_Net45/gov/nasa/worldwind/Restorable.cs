@@ -17,7 +17,7 @@ namespace SharpEarth{
  * should clearly document how they will behave when encountering an unknown structure.
  * <p>
  * See the WorldWideWeb Consortium's (W3C) documentation on
- * <a href="http://www.w3.org/TR/xml11/">Extensible Markup Language (XML) 1.1 </a> for information on XML.
+ * <a href="http in //www.w3.org/TR/xml11/">Extensible Markup Language (XML) 1.1 </a> foreach information on XML.
  *
  * @author dcollins
  * @version $Id: Restorable.java 1171 2013-02-11 21:45:02Z dcollins $

@@ -127,7 +127,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         VPFBufferedRecordData joinTable = this.createJoinTable(featureClass);
         Iterable<String> attributeKeys = this.getFeatureAttributeKeys(featureTable);
 
-        for (VPFRecord featureRow : featureTable)
+        foreach (VPFRecord featureRow  in  featureTable)
         {
             VPFFeature feature = this.doCreateSimpleFeature(featureClass, featureRow, joinTable, attributeKeys);
             if (feature != null)
@@ -239,7 +239,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         int numPrimitives = 0;
         VPFBoundingBox bounds = null;
 
-        for (VPFRecord joinRow : joinTable)
+        foreach (VPFRecord joinRow  in  joinTable)
         {
             if (this.tile != null && !matchesTile(joinRow, this.tile))
                 continue;
@@ -267,7 +267,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
     {
         ArrayList<String> keys = new ArrayList<String>();
 
-        for (String name : table.getRecordParameterNames())
+        foreach (String name  in  table.getRecordParameterNames())
         {
             if (name.equalsIgnoreCase("id") ||
                 name.equalsIgnoreCase("tile_id") ||
@@ -290,7 +290,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
 
     protected void setFeatureAttributes(VPFRecord row, Iterable<String> attributeKeys, AVList parameters)
     {
-        for (String key : attributeKeys)
+        foreach (String key  in  attributeKeys)
         {
             VPFUtils.checkAndSetValue(row, key, key, parameters);
         }
@@ -344,7 +344,7 @@ public class VPFBasicFeatureFactory implements VPFFeatureFactory
         if (relations == null)
             return null;
 
-        for (VPFRelation rel : relations)
+        foreach (VPFRelation rel  in  relations)
         {
             if (rel.getTable1().equalsIgnoreCase(table1) && rel.getTable2().equalsIgnoreCase(table2))
                 return rel;

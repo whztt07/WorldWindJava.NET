@@ -175,7 +175,7 @@ public class TextRendererCache implements Disposable
 
     protected void disposeAll()
     {
-        for (java.util.Map.Entry<Object, TextRenderer> e : this.textRendererMap.entrySet())
+        foreach (java.util.Map.Entry<Object, TextRenderer> e  in  this.textRendererMap.entrySet())
         {
             if (e.getValue() != null)
             {

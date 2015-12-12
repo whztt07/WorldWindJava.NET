@@ -279,7 +279,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
             }
             else
             {
-                for (Sector region : regions)
+                foreach (Sector region  in  regions)
                 {
                     // Count how many tiles are missing in each sample region
                     regionCount += this.layer.countImagesInSector(region, maxLevel);
@@ -383,9 +383,9 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         ArrayList<TextureTile> tiles = new ArrayList<TextureTile>();
 
         TextureTile[][] tileArray = this.layer.getTilesInSector(sector, levelNumber);
-        for (TextureTile[] row : tileArray)
+        foreach (TextureTile[] row  in  tileArray)
         {
-            for (TextureTile tile : row)
+            foreach (TextureTile tile  in  row)
             {
                 Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
@@ -437,7 +437,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
                     return file.isDirectory();
                 }
             });
-            for (File dir : rowDirs)
+            foreach (File dir  in  rowDirs)
             {
                 long averageSize = computeAverageTileSize(dir);
                 if (averageSize > 0)
@@ -466,7 +466,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         int count = 0;
 
         File[] files = dir.listFiles();
-        for (File file : files)
+        foreach (File file  in  files)
         {
             try
             {

@@ -48,7 +48,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             java.util.List keyList = viewAction.getKeyActions();
             double headingInput = 0;
             double pitchInput = 0;
-            for (Object k : keyList) {
+            foreach (Object k  in  keyList) {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
                 if (keys.isKeyDown(keyAction.keyCode))
@@ -93,7 +93,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             double sideInput = 0;
 
             java.util.List keyList = viewAction.getKeyActions();
-            for (Object k : keyList) {
+            foreach (Object k  in  keyList) {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
                 if (keys.isKeyDown(keyAction.keyCode))
@@ -137,7 +137,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             double transInput = 0;
             java.util.List keyList = viewAction.getKeyActions();
-            for (Object k : keyList) {
+            foreach (Object k  in  keyList) {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
 
@@ -174,7 +174,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (Object b : buttonList) {
+            foreach (Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((keys.getMouseModifiersEx() & buttonAction.mouseButton) != 0)
@@ -216,7 +216,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (Object b : buttonList) {
+            foreach (Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((mouseEvent.getModifiersEx() & buttonAction.mouseButton) != 0)
@@ -264,7 +264,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (Object b : buttonList) {
+            foreach (Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((keys.getMouseModifiersEx() & buttonAction.mouseButton) != 0)
@@ -307,7 +307,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (Object b : buttonList) {
+            foreach (Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((mouseEvent.getModifiersEx() & buttonAction.mouseButton) != 0)
@@ -352,7 +352,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (java.lang.Object b : buttonList) {
+            foreach (java.lang.Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((mouseEvent.getModifiersEx() & buttonAction.mouseButton) != 0)
@@ -391,7 +391,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (java.lang.Object b : buttonList) {
+            foreach (java.lang.Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((keys.getMouseModifiersEx() & buttonAction.mouseButton) != 0)
@@ -433,7 +433,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         {
             bool handleThisEvent = false;
             java.util.List buttonList = viewAction.getMouseActions();
-            for (Object b : buttonList) {
+            foreach (Object b  in  buttonList) {
                 ViewInputAttributes.ActionAttributes.MouseAction buttonAction =
                     (ViewInputAttributes.ActionAttributes.MouseAction) b;
                 if ((mouseEvent.getButton() ==  buttonAction.mouseButton))
@@ -462,7 +462,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
-            for (Object k : keyList)
+            foreach (Object k  in  keyList)
             {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
@@ -483,7 +483,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
-            for (Object k : keyList)
+            foreach (Object k  in  keyList)
             {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
@@ -503,7 +503,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
             ViewInputAttributes.ActionAttributes viewAction)
         {
             java.util.List keyList = viewAction.getKeyActions();
-            for (Object k : keyList)
+            foreach (Object k  in  keyList)
             {
                 ViewInputAttributes.ActionAttributes.KeyAction keyAction =
                     (ViewInputAttributes.ActionAttributes.KeyAction) k;
@@ -832,7 +832,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         bool eventHandled = false;
         if (actionList != null)
         {
-            for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
+            foreach (ViewInputAttributes.ActionAttributes actionAttr  in  actionList)
             {
                 if (actionAttr.getMouseActionListener() == null ||
                     actionAttr.getActionTrigger() != trigger)
@@ -856,7 +856,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         bool eventHandled = false;
         if (actionList != null)
         {
-            for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
+            foreach (ViewInputAttributes.ActionAttributes actionAttr  in  actionList)
             {
                 if (actionAttr.getMouseActionListener() == null ||
                     actionAttr.getActionTrigger() != trigger)
@@ -880,7 +880,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         bool eventHandled = false;
         if (actionList != null)
         {
-            for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
+            foreach (ViewInputAttributes.ActionAttributes actionAttr  in  actionList)
             {
                 if (actionAttr.getActionListener() == null ||
                     actionAttr.getActionTrigger() != trigger)
@@ -903,7 +903,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         bool eventHandled = false;
         if (actionList != null)
         {
-            for (ViewInputAttributes.ActionAttributes actionAttr : actionList)
+            foreach (ViewInputAttributes.ActionAttributes actionAttr  in  actionList)
             {
                 if (actionAttr.getActionTrigger() != trigger)
                 {

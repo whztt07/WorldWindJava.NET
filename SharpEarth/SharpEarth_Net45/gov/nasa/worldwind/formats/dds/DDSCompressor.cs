@@ -510,7 +510,7 @@ public class DDSCompressor
         if (attributes.isBuildMipmaps())
         {
             mipMapLevels = this.buildMipMaps(image, attributes);
-            for (java.awt.image.BufferedImage mipMapImage : mipMapLevels)
+            foreach (java.awt.image.BufferedImage mipMapImage  in  mipMapLevels)
             {
                 fileSize += compressor.getCompressedSize(mipMapImage, attributes);
             }
@@ -541,7 +541,7 @@ public class DDSCompressor
         }
         else
         {
-            for (java.awt.image.BufferedImage mipMapImage : mipMapLevels)
+            foreach (java.awt.image.BufferedImage mipMapImage  in  mipMapLevels)
             {
                 compressor.compressImage(mipMapImage, attributes, buffer);
             }
@@ -627,7 +627,7 @@ public class DDSCompressor
     }
 
     /**
-     * Documentation on the DDS header format is available at http://msdn.microsoft.com/en-us/library/bb943982(VS.85).aspx
+     * Documentation on the DDS header foreachmat is available at http in //msdn.microsoft.com/en-us/library/bb943982(VS.85).aspx
      *
      * @param header header structure to write.
      * @param buffer buffer that receives the header structure bytes.
@@ -655,7 +655,7 @@ public class DDSCompressor
     }
 
     /**
-     * Documentation on the DDS pixel format is available at http://msdn.microsoft.com/en-us/library/bb943984(VS.85).aspx
+     * Documentation on the DDS pixel foreachmat is available at http in //msdn.microsoft.com/en-us/library/bb943984(VS.85).aspx
      *
      * @param pixelFormat pixel format structure to write.
      * @param buffer      buffer that receives the pixel format structure bytes.

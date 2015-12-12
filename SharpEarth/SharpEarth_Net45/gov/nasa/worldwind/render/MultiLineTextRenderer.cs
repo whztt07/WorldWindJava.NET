@@ -321,7 +321,7 @@ public class MultiLineTextRenderer
         int width = 0;
         int maxLineHeight = 0;
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             Rectangle2D lineBounds = this.textRenderer.getBounds(line);
             width = (int) Math.Max(lineBounds.getWidth(), width);
@@ -430,7 +430,7 @@ public class MultiLineTextRenderer
         }
 
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             int xAligned = x;
             if (this.textAlign.Equals(AVKey.CENTER))
@@ -479,7 +479,7 @@ public class MultiLineTextRenderer
         }
 
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             int xAligned = x;
             if (this.textAlign.Equals(AVKey.CENTER))
@@ -790,7 +790,7 @@ public class MultiLineTextRenderer
         double width = 0;
         double height = 0;
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             Rectangle2D lineBounds = getLineBoundsHTML(line, ds);
             width = Math.Max(lineBounds.getWidth(), width);
@@ -899,7 +899,7 @@ public class MultiLineTextRenderer
 
         StringBuffer wrappedText = new StringBuffer();
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             wrappedText.append(wrappedText.length() > 0 ? "\n" : "");
             wrappedText.append(wrapLineHTML(line, width, ds));
@@ -916,7 +916,7 @@ public class MultiLineTextRenderer
         StringBuffer wrappedText = new StringBuffer();
         double currentHeight = 0;
         String[] lines = text.split("\n");
-        for (String line : lines)
+        foreach (String line  in  lines)
         {
             Rectangle2D lineBounds = getLineBoundsHTML(line, ds);
             if (currentHeight + lineBounds.getHeight() <= height)
@@ -1061,7 +1061,7 @@ public class MultiLineTextRenderer
             Rectangle2D lineBounds;
             double drawX, drawY = y;
             String[] lines = text.split("\n");
-            for (String line : lines)
+            foreach (String line  in  lines)
             {
                 // Set line start x
                 drawX = x;
@@ -1318,7 +1318,7 @@ public class MultiLineTextRenderer
 
         public DrawState(DrawState ds)
         {
-            for (DrawAttributes da : ds.stack)
+            foreach (DrawAttributes da  in  ds.stack)
             {
                 this.push(new DrawAttributes(da.font, da.hyperlink, da.color));
             }

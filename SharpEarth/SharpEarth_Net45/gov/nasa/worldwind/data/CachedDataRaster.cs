@@ -139,7 +139,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
 
         if (null != keys && keys.length > 0)
         {
-            for (String key : keys)
+            foreach (String key  in  keys)
             {
                 Object value = parameters.getValue(key);
                 if (WWUtil.isEmpty(value))
@@ -288,7 +288,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
                 try
                 {
                     rasters = this.getDataRasters();
-                    for (DataRaster raster : rasters)
+                    foreach (DataRaster raster  in  rasters)
                     {
                         raster.drawOnTo(canvas);
                     }
@@ -299,7 +299,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
                     this.releaseMemory();
 
                     rasters = this.getDataRasters();
-                    for (DataRaster raster : rasters)
+                    foreach (DataRaster raster  in  rasters)
                     {
                         raster.drawOnTo(canvas);
                     }
@@ -389,7 +389,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
 
         if (rasters != null)
         {
-            for (DataRaster raster : rasters)
+            foreach (DataRaster raster  in  rasters)
             {
                 if (raster != null && raster is Cacheable)
                     totalBytes += ((Cacheable) raster).getSizeInBytes();
@@ -403,7 +403,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
     {
         if (rasters != null)
         {
-            for (DataRaster raster : rasters)
+            foreach (DataRaster raster  in  rasters)
             {
                 raster.dispose();
             }

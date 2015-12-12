@@ -678,7 +678,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
         // in the texture's lower left corner, and the Y axis points up.
         texture.applyInternalTransform(dc);
 
-        // Transform standard coordiantes to Annotation background image coordinates: (0, 0) maps to the texture's upper
+        // Transforeachm standard coordiantes to Annotation background image coordinates in  (0, 0) maps to the texture's upper
         // left corner, and (textureWidth, textureHeight) maps to the texture's lower right corner.
         gl.glScaled(1d, -1d, 1d);
         gl.glTranslated(0d, -1d, 0d);
@@ -719,7 +719,7 @@ public abstract class AbstractAnnotation extends AVListImpl implements Annotatio
             gl.glTranslated(-imageOffset.x, -imageOffset.y, 0);
         }
 
-        // Transform the Annotation background image origin to the Annotation geometry coordinate origin: (0, 0) maps to
+        // Transforeachm the Annotation background image origin to the Annotation geometry coordinate origin in  (0, 0) maps to
         // the Annotation's lower left corner (igoring any leader geometry), and the Y axis points up.
         gl.glScaled(1, -1, 1);
         gl.glTranslated(0, -height, 0);

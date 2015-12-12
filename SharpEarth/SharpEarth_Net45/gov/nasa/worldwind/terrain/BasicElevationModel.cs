@@ -666,7 +666,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             WritableRaster raster = image.getRaster();
             int[] samples = new int[raster.getWidth() * raster.getHeight()];
             raster.getSamples(0, 0, raster.getWidth(), raster.getHeight(), 0, samples);
-            for (int sample : samples)
+            foreach (int sample  in  samples)
             {
                 bilBuffer.put((short) sample);
             }
@@ -1022,7 +1022,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
             try
             {
-                for (ElevationTile tile : this.tiles)
+                foreach (ElevationTile tile  in  this.tiles)
                 {
                     if (tile.getSector().contains(latitude, longitude))
                         return this.elevationModel.lookupElevation(latitude, longitude, tile);
@@ -1076,7 +1076,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
             this.extremes = WWUtil.defaultMinMix();
 
-            for (ElevationTile tile : this.tiles)
+            foreach (ElevationTile tile  in  this.tiles)
             {
                 BufferWrapper elevations = tile.getElevations();
 
@@ -1105,7 +1105,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
             this.extremes = WWUtil.defaultMinMix();
 
-            for (ElevationTile tile : this.tiles)
+            foreach (ElevationTile tile  in  this.tiles)
             {
                 tile.getExtremes(sector, this.elevationModel, this.extremes);
             }
@@ -1130,7 +1130,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
             this.extremes = WWUtil.defaultMinMix();
 
-            for (ElevationTile tile : this.tiles)
+            foreach (ElevationTile tile  in  this.tiles)
             {
                 // This computes the extremes on a tile granularity rather than an elevation-value cell granularity.
                 // The latter is very expensive.
@@ -1356,7 +1356,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         if (lastLevel.getTexelSize() >= targetSize)
             return lastLevel; // can't do any better than this
 
-        for (Level level : this.levels.getLevels())
+        foreach (Level level  in  this.levels.getLevels())
         {
             if (level.getTexelSize() <= targetSize)
                 return !level.isEmpty() ? level : null;
@@ -1874,7 +1874,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
 
     protected void checkElevationExpiration(Iterable<? extends ElevationTile> tiles)
     {
-        for (ElevationTile tile : tiles)
+        foreach (ElevationTile tile  in  tiles)
         {
             if (tile.isElevationsExpired())
                 this.requestTile(tile.getTileKey());
@@ -2492,7 +2492,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         AVList constructionParams = (AVList) this.getValue(AVKey.CONSTRUCTION_PARAMETERS);
         if (constructionParams != null)
         {
-            for (Map.Entry<String, Object> avp : constructionParams.getEntries())
+            foreach (Map.Entry<String, Object> avp  in  constructionParams.getEntries())
             {
                 this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, context);
             }
@@ -2512,7 +2512,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             rs.addStateValueAsDouble(context, "BasicElevationModel.DetailHint", this.detailHint);
 
         RestorableSupport.StateObject so = rs.addStateObject(context, "avlist");
-        for (Map.Entry<String, Object> avp : this.getEntries())
+        foreach (Map.Entry<String, Object> avp  in  this.getEntries())
         {
             this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, so);
         }
@@ -2584,7 +2584,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
             RestorableSupport.StateObject[] avpairs = rs.getAllStateObjects(so, "");
             if (avpairs != null)
             {
-                for (RestorableSupport.StateObject avp : avpairs)
+                foreach (RestorableSupport.StateObject avp  in  avpairs)
                 {
                     if (avp != null)
                         this.doRestoreStateForObject(rs, avp);

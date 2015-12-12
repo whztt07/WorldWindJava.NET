@@ -36,7 +36,7 @@ public class AtomParserContext extends BasicXMLEventParserContext
         parsers.put(new QName(ans, "link"), new AtomLink(ans));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        for (String s : StringFields)
+        foreach (String s  in  StringFields)
         {
             parsers.put(new QName(ans, s), stringParser);
         }

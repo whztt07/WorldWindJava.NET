@@ -288,7 +288,7 @@ public class OrbitViewCollisionSupport
 
     private Vec4 getEyePoint(Matrix modelviewInv)
     {
-        return modelviewInv != null ? Vec4.UNIT_W.transformBy4(modelviewInv) : null;
+        return modelviewInv != null ? Vec4.UNIT_W.transforeachmBy4(modelviewInv)  in  null;
     }
 
     private Vec4 getPointOnNearPlane(Matrix modelviewInv, Angle fieldOfView, java.awt.Rectangle viewport,

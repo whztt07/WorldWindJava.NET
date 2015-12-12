@@ -62,7 +62,7 @@ namespace SharpEarth.util.combine{
  *         {
  *             GLU.gluTessBeginContour(tess);
  *
- *             for (LatLon location : this.sector) // counter clockwise iteration of the sector's four corners
+ *             foreach (LatLon location  in  this.sector) // counter clockwise iteration of the sector's four corners
  *             {
  *                 double[] vertex = {location.longitude.degrees, location.latitude.degrees, 0};
  *                 GLU.gluTessVertex(tess, vertex, 0, vertex); // longitude,latitude,0 -> x,y,z

@@ -90,7 +90,7 @@ public class OGCRequestDescription extends AbstractXMLEventParser
 
     public OGCOnlineResource getOnlineResouce(String protocol, String requestMethod)
     {
-        for (OGCDCType dct : this.getDCPTypes())
+        foreach (OGCDCType dct  in  this.getDCPTypes())
         {
             OGCOnlineResource olr = dct.getOnlineResouce(protocol, requestMethod);
             if (olr != null)
@@ -161,13 +161,13 @@ public class OGCRequestDescription extends AbstractXMLEventParser
             sb.append(this.getRequestName()).append("\n");
 
         sb.append("\tFormats: ");
-        for (String format : this.getFormats())
+        foreach (String format  in  this.getFormats())
         {
             sb.append("\t").append(format).append(", ");
         }
 
         sb.append("\n\tDCPTypes:\n");
-        for (OGCDCType dcpt : this.getDCPTypes())
+        foreach (OGCDCType dcpt  in  this.getDCPTypes())
         {
             sb.append("\t\t").append(dcpt.ToString()).append("\n");
         }

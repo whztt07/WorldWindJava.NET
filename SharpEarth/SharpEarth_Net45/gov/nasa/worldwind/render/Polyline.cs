@@ -423,7 +423,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         this.extents.clear();
         if (inPositions != null)
         {
-            for (Position position : inPositions)
+            foreach (Position position  in  inPositions)
             {
                 this.positions.add(position);
             }
@@ -454,7 +454,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         this.extents.clear();
         if (inPositions != null)
         {
-            for (LatLon position : inPositions)
+            foreach (LatLon position  in  inPositions)
             {
                 this.positions.add(new Position(position, altitude));
             }
@@ -606,7 +606,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
     protected static double[] computeElevationExtremes(Iterable<? extends Position> positions)
     {
         double[] extremes = new double[] {Double.MaxValue, -Double.MaxValue};
-        for (Position pos : positions)
+        foreach (Position pos  in  positions)
         {
             if (extremes[0] > pos.getElevation())
                 extremes[0] = pos.getElevation(); // min
@@ -650,7 +650,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         {
             ArrayList<Position> temp = new ArrayList<Position>();
             Position firstPosition = null;
-            for (Position pos : this.getPositions())
+            foreach (Position pos  in  this.getPositions())
             {
                 temp.add(pos);
 
@@ -855,7 +855,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             if (this.currentSpans == null)
                 return;
 
-            for (List<Vec4> span : this.currentSpans)
+            foreach (List<Vec4> span  in  this.currentSpans)
             {
                 if (span == null)
                     continue;
@@ -864,7 +864,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
                 // overhead of batched rendering, e.g., gl.glDrawArrays, is too high because it requires copying
                 // the vertices into a DoubleBuffer, and DoubleBuffer creation and access performs relatively poorly.
                 gl.glBegin(primType);
-                for (Vec4 p : span)
+                foreach (Vec4 p  in  span)
                 {
                     gl.glVertex3d(p.x, p.y, p.z);
                 }
@@ -884,13 +884,13 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
                         (byte) this.highlightColor.getBlue(), (byte) this.highlightColor.getAlpha());
 
                     gl.glLineWidth((float) this.getLineWidth() + 2);
-                    for (List<Vec4> span : this.currentSpans)
+                    foreach (List<Vec4> span  in  this.currentSpans)
                     {
                         if (span == null)
                             continue;
 
                         gl.glBegin(primType);
-                        for (Vec4 p : span)
+                        foreach (Vec4 p  in  span)
                         {
                             gl.glVertex3d(p.x, p.y, p.z);
                         }
@@ -1255,7 +1255,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             RestorableSupport.StateObject positionsStateObj = rs.addStateObject("positions");
             if (positionsStateObj != null)
             {
-                for (Position p : this.positions)
+                foreach (Position p  in  this.positions)
                 {
                     // Save each position only if all parts (latitude, longitude, and elevation) can be
                     // saved. We will not save a partial iconPosition (for example, just the elevation).
@@ -1292,7 +1292,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
         rs.addStateValueAsInteger("numSubsegments", this.numSubsegments);
 
         RestorableSupport.StateObject so = rs.addStateObject(null, "avlist");
-        for (Map.Entry<String, Object> avp : this.getEntries())
+        foreach (Map.Entry<String, Object> avp  in  this.getEntries())
         {
             this.getRestorableStateForAVPair(avp.getKey(), avp.getValue() != null ? avp.getValue() : "", rs, so);
         }
@@ -1359,7 +1359,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
                 restorableSupport.getAllStateObjects(positionsStateObj, "position");
             if (positionStateArray != null && positionStateArray.length != 0)
             {
-                for (RestorableSupport.StateObject pStateObj : positionStateArray)
+                foreach (RestorableSupport.StateObject pStateObj  in  positionStateArray)
                 {
                     if (pStateObj != null)
                     {
@@ -1433,7 +1433,7 @@ public class Polyline extends AVListImpl implements Renderable, OrderedRenderabl
             RestorableSupport.StateObject[] avpairs = restorableSupport.getAllStateObjects(so, "");
             if (avpairs != null)
             {
-                for (RestorableSupport.StateObject avp : avpairs)
+                foreach (RestorableSupport.StateObject avp  in  avpairs)
                 {
                     if (avp != null)
                         this.setValue(avp.getName(), avp.getValue());

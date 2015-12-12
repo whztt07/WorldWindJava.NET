@@ -272,7 +272,7 @@ public class KMLParserContext extends BasicXMLEventParserContext
         String ns = KMLConstants.KML_2dot0_NAMESPACE;
 
         // Just add all the default parsers. // TODO: Check for differences between 2.0 and 2.1
-        for (Map.Entry<QName, XMLEventParser> entry : this.parsers.entrySet())
+        foreach (Map.Entry<QName, XMLEventParser> entry  in  this.parsers.entrySet())
         {
             this.parsers.put(new QName(ns, entry.getKey().getLocalPart()), entry.getValue());
         }

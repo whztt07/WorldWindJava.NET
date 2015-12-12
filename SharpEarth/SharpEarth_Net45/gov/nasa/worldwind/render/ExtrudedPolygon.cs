@@ -135,7 +135,7 @@ public class ExtrudedPolygon extends AbstractShape
             }
 
             // Copy the shape's boundaries.
-            for (List<? extends LatLon> boundary : shape.boundaries)
+            foreach (List<? extends LatLon> boundary  in  shape.boundaries)
             {
                 this.boundaries.add(new ExtrudedBoundaryInfo(boundary));
             }
@@ -430,7 +430,7 @@ public class ExtrudedPolygon extends AbstractShape
     {
         // Assumes that the boundary lists have already been established.
 
-        for (List<? extends LatLon> locations : this.boundaries)
+        foreach (List<? extends LatLon> locations  in  this.boundaries)
         {
             if (locations == null || locations.size() < 3)
                 continue;
@@ -458,7 +458,7 @@ public class ExtrudedPolygon extends AbstractShape
     {
         int count = 0;
 
-        for (List<? extends LatLon> locations : this.boundaries)
+        foreach (List<? extends LatLon> locations  in  this.boundaries)
         {
             count += locations.size();
         }
@@ -537,7 +537,7 @@ public class ExtrudedPolygon extends AbstractShape
         this.sideTextures.set(0, textures);
 
         // Update the shape cache
-        for (ShapeDataCache.ShapeDataCacheEntry entry : this.shapeDataCache)
+        foreach (ShapeDataCache.ShapeDataCacheEntry entry  in  this.shapeDataCache)
         {
             ShapeData sd = (ShapeData) entry;
             if (sd.boundaries != null)
@@ -575,7 +575,7 @@ public class ExtrudedPolygon extends AbstractShape
     protected List<? extends LatLon> fillBoundary(Iterable<? extends LatLon> corners)
     {
         ArrayList<LatLon> list = new ArrayList<LatLon>();
-        for (LatLon corner : corners)
+        foreach (LatLon corner  in  corners)
         {
             if (corner != null)
                 list.add(corner);
@@ -677,7 +677,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         ArrayList<WWTexture> textures = new ArrayList<WWTexture>();
 
-        for (Object source : imageSources)
+        foreach (Object source  in  imageSources)
         {
             if (source != null)
                 textures.add(this.makeTexture(source));
@@ -1078,7 +1078,7 @@ public class ExtrudedPolygon extends AbstractShape
             return null;
 
         bool hasTextures = false;
-        for (List<WWTexture> textures : this.sideTextures)
+        foreach (List<WWTexture> textures  in  this.sideTextures)
         {
             if (textures != null && textures.size() > 0)
             {
@@ -1092,7 +1092,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         List<List<Object>> imageSources = new ArrayList<List<Object>>(this.getBoundaries().size());
 
-        for (List<WWTexture> textures : this.sideTextures)
+        foreach (List<WWTexture> textures  in  this.sideTextures)
         {
             if (textures == null)
             {
@@ -1103,7 +1103,7 @@ public class ExtrudedPolygon extends AbstractShape
                 ArrayList<Object> images = new ArrayList<Object>(textures.size());
                 imageSources.add(images);
 
-                for (WWTexture image : textures)
+                foreach (WWTexture image  in  textures)
                 {
                     images.add(image.getImageSource());
                 }
@@ -1123,7 +1123,7 @@ public class ExtrudedPolygon extends AbstractShape
         if (this.sideTextures == null)
             return false;
 
-        for (List<WWTexture> textures : this.sideTextures)
+        foreach (List<WWTexture> textures  in  this.sideTextures)
         {
             if (textures != null && textures.size() > 0)
                 return true;
@@ -1374,7 +1374,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
 
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             if (!dc.isPickingMode() && this.mustApplyLighting(dc, this.getActiveCapAttributes()))
                 gl.glNormalPointer(GL.GL_FLOAT, 0, boundary.capNormalBuffer.rewind());
@@ -1401,7 +1401,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
 
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             if (!dc.isPickingMode() && this.mustApplyLighting(dc, this.getActiveSideAttributes()))
                 gl.glNormalPointer(GL.GL_FLOAT, 0, boundary.sideNormalBuffer.rewind());
@@ -1484,7 +1484,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
 
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             if (!dc.isPickingMode() && this.mustApplyLighting(dc, this.getActiveSideAttributes()))
                 gl.glNormalPointer(GL.GL_FLOAT, 0, boundary.sideNormalBuffer.rewind());
@@ -1556,7 +1556,7 @@ public class ExtrudedPolygon extends AbstractShape
         double minDistance = Double.MaxValue;
         Vec4 eyePoint = dc.getView().getEyePoint();
 
-        for (Vec4 point : shapeData.getOuterBoundaryInfo().capVertices)
+        foreach (Vec4 point  in  shapeData.getOuterBoundaryInfo().capVertices)
         {
             double d = point.add3(shapeData.getReferencePoint()).distanceTo3(eyePoint);
             if (d < minDistance)
@@ -1593,7 +1593,7 @@ public class ExtrudedPolygon extends AbstractShape
     protected void createFullGeometry(DrawContext dc, Terrain terrain, ShapeData shapeData,
         bool skipOuterBoundary)
     {
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             boundary.capEdgeIndices = this.getCapEdgeIndices(boundary.locations.size());
             boundary.sideIndices = this.getSideIndices(boundary.locations.size());
@@ -1633,7 +1633,7 @@ public class ExtrudedPolygon extends AbstractShape
      */
     protected void createVertices(Terrain terrain, ShapeData shapeData, bool skipOuterBoundary)
     {
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             if (boundary != shapeData.getOuterBoundaryInfo() || !skipOuterBoundary)
                 this.computeBoundaryVertices(terrain, boundary, shapeData.getReferencePoint());
@@ -1744,7 +1744,7 @@ public class ExtrudedPolygon extends AbstractShape
             shapeData.sideVertexBuffer = Buffers.newDirectFloatBuffer(vertexCoordCount);
 
         // Create individual buffer slices for each boundary.
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             boundary.sideVertexBuffer = this.fillSideVertexBuffer(boundary.capVertices, boundary.baseVertices,
                 shapeData.sideVertexBuffer.slice());
@@ -1763,7 +1763,7 @@ public class ExtrudedPolygon extends AbstractShape
             shapeData.sideNormalBuffer = Buffers.newDirectFloatBuffer(vertexCoordCount);
 
         // Create individual buffer slices for each boundary.
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             boundary.sideNormalBuffer = this.fillSideNormalBuffer(boundary.capVertices, boundary.baseVertices,
                 shapeData.sideNormalBuffer.slice());
@@ -1780,7 +1780,7 @@ public class ExtrudedPolygon extends AbstractShape
     protected void createSideTextureCoords(ShapeData shapeData)
     {
         // Create individual buffer slices for each boundary.
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             bool applyTextureToThisBoundary = this.hasSideTextures()
                 && boundary.sideTextures != null && boundary.sideTextures.size() == boundary.faceCount;
@@ -1816,7 +1816,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         // Fill the vertex buffer. Simultaneously create individual buffer slices for each boundary. These are used to
         // draw the outline.
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             boundary.capVertexBuffer = WWBufferUtil.copyArrayToBuffer(boundary.capVertices,
                 shapeData.capVertexBuffer.slice());
@@ -1838,7 +1838,7 @@ public class ExtrudedPolygon extends AbstractShape
         else
             shapeData.capNormalBuffer = Buffers.newDirectFloatBuffer(shapeData.capVertexBuffer.capacity());
 
-        for (ExtrudedBoundaryInfo boundary : shapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
         {
             boundary.capNormalBuffer = this.computeCapNormals(boundary, shapeData.capNormalBuffer.slice());
             shapeData.capNormalBuffer.position(
@@ -2169,7 +2169,7 @@ public class ExtrudedPolygon extends AbstractShape
             GLU.gluTessBeginPolygon(glts.getGLUtessellator(), null);
 
             int k = 0;
-            for (ExtrudedBoundaryInfo boundary : shapeData)
+            foreach (ExtrudedBoundaryInfo boundary  in  shapeData)
             {
                 GLU.gluTessBeginContour(glts.getGLUtessellator());
                 FloatBuffer vBuf = boundary.capVertexBuffer;
@@ -2214,10 +2214,10 @@ public class ExtrudedPolygon extends AbstractShape
         else
             shapeData.capFillIndexBuffers.clear();
 
-        for (List<Integer> prim : cb.getPrims())
+        foreach (List<Integer> prim  in  cb.getPrims())
         {
             IntBuffer ib = shapeData.capFillIndices.slice();
-            for (Integer i : prim)
+            foreach (Integer i  in  prim)
             {
                 ib.put(i);
             }
@@ -2289,7 +2289,7 @@ public class ExtrudedPolygon extends AbstractShape
             line.getDirection());
         List<Intersection> intersections = new ArrayList<Intersection>();
 
-        for (ExtrudedBoundaryInfo boundary : highResShapeData)
+        foreach (ExtrudedBoundaryInfo boundary  in  highResShapeData)
         {
             List<Intersection> boundaryIntersections = this.intersectBoundarySides(localLine, boundary);
 
@@ -2303,7 +2303,7 @@ public class ExtrudedPolygon extends AbstractShape
         if (intersections.size() == 0)
             return null;
 
-        for (Intersection intersection : intersections)
+        foreach (Intersection intersection  in  intersections)
         {
             Vec4 pt = intersection.getIntersectionPoint().add3(highResShapeData.getReferencePoint());
             intersection.setIntersectionPoint(pt);
@@ -2424,7 +2424,7 @@ public class ExtrudedPolygon extends AbstractShape
 
         List<List<? extends LatLon>> newLocations = new ArrayList<List<? extends LatLon>>(this.boundaries.size());
 
-        for (List<? extends LatLon> boundary : this.boundaries)
+        foreach (List<? extends LatLon> boundary  in  this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;
@@ -2513,7 +2513,7 @@ public class ExtrudedPolygon extends AbstractShape
     {
         xmlWriter.writeStartElement("LinearRing");
         xmlWriter.writeStartElement("coordinates");
-        for (LatLon location : boundary)
+        foreach (LatLon location  in  boundary)
         {
             if (location is Position)
             {

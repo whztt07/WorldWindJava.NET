@@ -418,7 +418,7 @@ public class SurfaceObjectTileBuilder
         // Clear references to surface renderables to avoid dangling references. The surface renderable list is no
         // longer needed, no are the lists held by each tile.
         this.currentSurfaceObjects.clear();
-        for (SurfaceObjectTile tile : this.currentInfo.tiles)
+        foreach (SurfaceObjectTile tile  in  this.currentInfo.tiles)
         {
             tile.clearObjectList();
         }
@@ -535,7 +535,7 @@ public class SurfaceObjectTileBuilder
         this.rttSupport.beginRendering(dc, 0, 0, this.currentInfo.tileWidth, this.currentInfo.tileHeight);
         try
         {
-            for (SurfaceObjectTile tile : this.currentInfo.tiles)
+            foreach (SurfaceObjectTile tile  in  this.currentInfo.tiles)
             {
                 this.updateTile(dc, tile);
             }
@@ -603,7 +603,7 @@ public class SurfaceObjectTileBuilder
 
             if (tile.hasObjects())
             {
-                for (SurfaceRenderable so : tile.getObjectList())
+                foreach (SurfaceRenderable so  in  tile.getObjectList())
                 {
                     so.render(dc);
                 }
@@ -726,7 +726,7 @@ public class SurfaceObjectTileBuilder
     protected void assembleSurfaceObjects(Iterable<?> iterable)
     {
         // Gather up all the SurfaceRenderables, ignoring null references and non SurfaceRenderables.
-        for (Object o : iterable)
+        foreach (Object o  in  iterable)
         {
             if (o is SurfaceRenderable)
                 this.currentSurfaceObjects.add((SurfaceRenderable) o);
@@ -857,13 +857,13 @@ public class SurfaceObjectTileBuilder
         // and add object to those tiles. This has the effect of quickly sorting the objects into the top level tiles.
         // We collect the top level tiles in a HashSet to ensure there are no duplicates when multiple objects intersect
         // the same top level tiles.
-        for (SurfaceRenderable so : this.currentSurfaceObjects)
+        foreach (SurfaceRenderable so  in  this.currentSurfaceObjects)
         {
             List<Sector> sectors = so.getSectors(dc);
             if (sectors == null)
                 continue;
 
-            for (Sector s : sectors)
+            foreach (Sector s  in  sectors)
             {
                 // Use the LevelSets tiling scheme to index the surface renderable's sector into the top level tiles.
                 // This index operation is faster than computing an intersection test between each tile and the list of
@@ -913,7 +913,7 @@ public class SurfaceObjectTileBuilder
         }
 
         // Add each top level tile or its descendants to the current tile list.
-        for (SurfaceObjectTile tile : topLevelTiles)
+        foreach (SurfaceObjectTile tile  in  topLevelTiles)
         {
             this.addTileOrDescendants(dc, levelSet, null, tile);
         }
@@ -972,7 +972,7 @@ public class SurfaceObjectTileBuilder
         }
 
         Level nextLevel = levelSet.getLevel(tile.getLevelNumber() + 1);
-        for (TextureTile subTile : tile.createSubTiles(nextLevel))
+        foreach (TextureTile subTile  in  tile.createSubTiles(nextLevel))
         {
             this.addTileOrDescendants(dc, levelSet, tile, (SurfaceObjectTile) subTile);
         }
@@ -1013,7 +1013,7 @@ public class SurfaceObjectTileBuilder
         // tile, and compute this tile's bounding sector as the union of those object's sectors.
         else
         {
-            for (SurfaceRenderable so : parent.getObjectList())
+            foreach (SurfaceRenderable so  in  parent.getObjectList())
             {
                 List<Sector> sectors = so.getSectors(dc);
                 if (sectors == null)
@@ -1021,7 +1021,7 @@ public class SurfaceObjectTileBuilder
 
                 // Test intersection against each of the surface renderable's sectors. We break after finding an
                 // intersection to avoid adding the same object to the tile more than once.
-                for (Sector s : sectors)
+                foreach (Sector s  in  sectors)
                 {
                     if (tile.getSector().intersects(s))
                     {
@@ -1504,7 +1504,7 @@ public class SurfaceObjectTileBuilder
                 this.intersectingObjectKeys = new Object[tile.getObjectList().size()];
 
                 int index = 0;
-                for (SurfaceRenderable so : tile.getObjectList())
+                foreach (SurfaceRenderable so  in  tile.getObjectList())
                 {
                     this.intersectingObjectKeys[index++] = so.getStateKey(dc);
                 }
@@ -1554,7 +1554,7 @@ public class SurfaceObjectTileBuilder
 
             long size = 4 * this.intersectingObjectKeys.length; // For the array references.
 
-            for (Object o : this.intersectingObjectKeys)
+            foreach (Object o  in  this.intersectingObjectKeys)
             {
                 if (o is Cacheable)
                     size += ((Cacheable) o).getSizeInBytes();

@@ -83,12 +83,12 @@ public class KMLMultiGeometry extends KMLAbstractGeometry
         List<KMLAbstractGeometry> geometriesCopy = new ArrayList<KMLAbstractGeometry>(this.getGeometries().size());
         Collections.copy(geometriesCopy, this.getGeometries());
 
-        for (KMLAbstractGeometry sourceGeometry : sourceMultiGeometry.getGeometries())
+        foreach (KMLAbstractGeometry sourceGeometry  in  sourceMultiGeometry.getGeometries())
         {
             String id = sourceGeometry.getId();
             if (!WWUtil.isEmpty(id))
             {
-                for (KMLAbstractGeometry existingGeometry : geometriesCopy)
+                foreach (KMLAbstractGeometry existingGeometry  in  geometriesCopy)
                 {
                     String currentId = existingGeometry.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))

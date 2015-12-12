@@ -6,7 +6,7 @@
 namespace SharpEarth.formats.dds{
 
 /**
- * Documentation on the DDS pixel format is available at http://msdn.microsoft.com/en-us/library/bb943982(VS.85).aspx
+ * Documentation on the DDS pixel foreachmat is available at http in //msdn.microsoft.com/en-us/library/bb943982(VS.85).aspx
  *
  * @author dcollins
  * @version $Id: DDSPixelFormat.java 1171 2013-02-11 21:45:02Z dcollins $

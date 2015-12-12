@@ -229,7 +229,7 @@ public class OGCServiceInformation : AbstractXMLEventParser
             this.accessConstraints != null ? this.accessConstraints : "none").append("\n");
         this.keywordsToString(sb);
         sb.append("OnlineResource: ").append(this.onlineResource != null ? this.onlineResource : "none").append("\n");
-        sb.append(this.contactInformation != null ? this.contactInformation : "none").append("\n");
+        sb.append(this.contactInforeachmation != null ? this.contactInformation  in  "none").append("\n");
 
         return sb.ToString();
     }
@@ -241,7 +241,7 @@ public class OGCServiceInformation : AbstractXMLEventParser
             sb.append(" none");
         else
         {
-            for (String keyword : this.getKeywords())
+            foreach (String keyword  in  this.getKeywords())
             {
                 sb.append(keyword != null ? keyword : "null").append(", ");
             }

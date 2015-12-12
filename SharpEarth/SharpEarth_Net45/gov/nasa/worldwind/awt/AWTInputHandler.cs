@@ -716,7 +716,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callSelectListeners(SelectEvent event)
     {
-        for (SelectListener listener : this.eventListeners.getListeners(SelectListener.class))
+        foreach (SelectListener listener  in  this.eventListeners.getListeners(SelectListener.class))
         {
             listener.selected(event);
         }
@@ -764,7 +764,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callKeyPressedListeners(KeyEvent event)
     {
-        for (KeyListener listener : this.eventListeners.getListeners(KeyListener.class))
+        foreach (KeyListener listener  in  this.eventListeners.getListeners(KeyListener.class))
         {
             listener.keyPressed(event);
         }
@@ -772,7 +772,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callKeyReleasedListeners(KeyEvent event)
     {
-        for (KeyListener listener : this.eventListeners.getListeners(KeyListener.class))
+        foreach (KeyListener listener  in  this.eventListeners.getListeners(KeyListener.class))
         {
             listener.keyReleased(event);
         }
@@ -780,7 +780,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callKeyTypedListeners(KeyEvent event)
     {
-        for (KeyListener listener : this.eventListeners.getListeners(KeyListener.class))
+        foreach (KeyListener listener  in  this.eventListeners.getListeners(KeyListener.class))
         {
             listener.keyTyped(event);
         }
@@ -788,7 +788,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMousePressedListeners(MouseEvent event)
     {
-        for (MouseListener listener : this.eventListeners.getListeners(MouseListener.class))
+        foreach (MouseListener listener  in  this.eventListeners.getListeners(MouseListener.class))
         {
             listener.mousePressed(event);
         }
@@ -796,7 +796,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseReleasedListeners(MouseEvent event)
     {
-        for (MouseListener listener : this.eventListeners.getListeners(MouseListener.class))
+        foreach (MouseListener listener  in  this.eventListeners.getListeners(MouseListener.class))
         {
             listener.mouseReleased(event);
         }
@@ -804,7 +804,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseClickedListeners(MouseEvent event)
     {
-        for (MouseListener listener : this.eventListeners.getListeners(MouseListener.class))
+        foreach (MouseListener listener  in  this.eventListeners.getListeners(MouseListener.class))
         {
             listener.mouseClicked(event);
         }
@@ -812,7 +812,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseDraggedListeners(MouseEvent event)
     {
-        for (MouseMotionListener listener : this.eventListeners.getListeners(MouseMotionListener.class))
+        foreach (MouseMotionListener listener  in  this.eventListeners.getListeners(MouseMotionListener.class))
         {
             listener.mouseDragged(event);
         }
@@ -820,7 +820,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseMovedListeners(MouseEvent event)
     {
-        for (MouseMotionListener listener : this.eventListeners.getListeners(MouseMotionListener.class))
+        foreach (MouseMotionListener listener  in  this.eventListeners.getListeners(MouseMotionListener.class))
         {
             listener.mouseMoved(event);
         }
@@ -828,7 +828,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseWheelMovedListeners(MouseWheelEvent event)
     {
-        for (MouseWheelListener listener : this.eventListeners.getListeners(MouseWheelListener.class))
+        foreach (MouseWheelListener listener  in  this.eventListeners.getListeners(MouseWheelListener.class))
         {
             listener.mouseWheelMoved(event);
         }
@@ -836,7 +836,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseEnteredListeners(MouseEvent event)
     {
-        for (MouseListener listener : this.eventListeners.getListeners(MouseListener.class))
+        foreach (MouseListener listener  in  this.eventListeners.getListeners(MouseListener.class))
         {
             listener.mouseEntered(event);
         }
@@ -844,7 +844,7 @@ public class AWTInputHandler extends WWObjectImpl
 
     protected void callMouseExitedListeners(MouseEvent event)
     {
-        for (MouseListener listener : this.eventListeners.getListeners(MouseListener.class))
+        foreach (MouseListener listener  in  this.eventListeners.getListeners(MouseListener.class))
         {
             listener.mouseExited(event);
         }

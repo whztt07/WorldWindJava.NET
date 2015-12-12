@@ -110,7 +110,7 @@ public class GeotiffImageReader extends ImageReader
         TiffIFDEntry sampleFormatEntry = null;
 
         TiffIFDEntry[] ifd = ifds.get(imageIndex);
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry  in  ifd)
         {
             switch (entry.tag)
             {
@@ -210,7 +210,7 @@ public class GeotiffImageReader extends ImageReader
         {
 
             // make sure a DataBufferByte is going to do the trick
-            for (int bits : bitsPerSample)
+            foreach (int bits  in  bitsPerSample)
             {
                 if (bits != 8)
                     throw new IIOException(this.GetType().Name + ".read(): only expecting 8 bits/sample; found " +
@@ -241,7 +241,7 @@ public class GeotiffImageReader extends ImageReader
                     // indexed...
                     if (colorMapEntry == null)
                         throw new IIOException(
-                            this.GetType().Name + ".read(): no ColorMap found for indexed image type");
+                            this.GetType().Name + ".read() in  no ColorMap found foreach indexed image type");
                     byte[][] cmap = readColorMap(colorMapEntry);
                     colorModel = new IndexColorModel(bitsPerSample[0], (int) colorMapEntry.count / 3, cmap[0], cmap[1],
                         cmap[2]);
@@ -298,7 +298,7 @@ public class GeotiffImageReader extends ImageReader
     {
         readIFDs();
         TiffIFDEntry[] ifd = ifds.get(0);
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry  in  ifd)
         {
             switch (entry.tag)
             {
@@ -601,7 +601,7 @@ public class GeotiffImageReader extends ImageReader
      */
     private TiffIFDEntry getByTag(TiffIFDEntry[] ifds, int tag)
     {
-        for (TiffIFDEntry ifd : ifds)
+        foreach (TiffIFDEntry ifd  in  ifds)
         {
             if (ifd.tag == tag)
             {

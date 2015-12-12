@@ -1180,7 +1180,7 @@ public class KMLRoot extends KMLAbstractObject implements KMLRenderable
         if (!this.hasFields())
             return null;
 
-        for (Map.Entry<String, Object> entry : this.getFields().getEntries())
+        foreach (Map.Entry<String, Object> entry  in  this.getFields().getEntries())
         {
             if (entry.getValue() is KMLAbstractFeature)
                 return (KMLAbstractFeature) entry.getValue();

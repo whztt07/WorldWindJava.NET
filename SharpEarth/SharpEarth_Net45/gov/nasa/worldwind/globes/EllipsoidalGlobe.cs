@@ -671,7 +671,7 @@ namespace SharpEarth.globes
 
       // The north-pointing tangent is derived by rotating the vector (0, 1, 0) about the Y-axis by longitude degrees,
       // then rotating it about the X-axis by -latitude degrees. This can be represented by a combining two rotation
-      // matrices Rlat, and Rlon, then transforming the vector (0, 1, 0) by the combined transform:
+      // matrices Rlat, and Rlon, then transforeachming the vector (0, 1, 0) by the combined transform in 
       //
       // NorthTangent = (Rlon * Rlat) * (0, 1, 0)
       //

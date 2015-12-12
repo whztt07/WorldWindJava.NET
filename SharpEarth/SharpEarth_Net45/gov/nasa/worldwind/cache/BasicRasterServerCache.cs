@@ -122,7 +122,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
                 CacheEntry[] timeOrderedEntries = new CacheEntry[this.entries.size()];
                 java.util.Arrays.sort(this.entries.values().toArray(timeOrderedEntries));
 
-                for (CacheEntry entry : timeOrderedEntries)
+                foreach (CacheEntry entry  in  timeOrderedEntries)
                 {
                     if (null != entry && (System.nanoTime() - entry.lastUsed) > this.getLeastRecentUseTimeout())
                     {

@@ -149,7 +149,7 @@ public class KMLGroundOverlay extends KMLAbstractOverlay implements KMLRenderabl
         if (box != null)
         {
             Sector sector = KMLUtil.createSectorFromLatLonBox(box);
-            for (LatLon ll : sector.getCorners())
+            foreach (LatLon ll  in  sector.getCorners())
             {
                 corners.add(new Position(ll, altitude));
             }
@@ -159,7 +159,7 @@ public class KMLGroundOverlay extends KMLAbstractOverlay implements KMLRenderabl
             GXLatLongQuad latLonQuad = this.getLatLonQuad();
             if (latLonQuad != null && latLonQuad.getCoordinates() != null)
             {
-                for (Position position : latLonQuad.getCoordinates().list)
+                foreach (Position position  in  latLonQuad.getCoordinates().list)
                 {
                     corners.add(new Position(position, altitude));
                 }

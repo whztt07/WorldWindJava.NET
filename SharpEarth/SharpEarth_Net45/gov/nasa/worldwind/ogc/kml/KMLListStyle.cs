@@ -98,12 +98,12 @@ public class KMLListStyle extends KMLAbstractSubStyle
         List<KMLItemIcon> itemIconsCopy = new ArrayList<KMLItemIcon>(this.getItemIcons().size());
         Collections.copy(itemIconsCopy, this.getItemIcons());
 
-        for (KMLItemIcon sourceItemIcon : sourceStyle.getItemIcons())
+        foreach (KMLItemIcon sourceItemIcon  in  sourceStyle.getItemIcons())
         {
             String id = sourceItemIcon.getId();
             if (!WWUtil.isEmpty(id))
             {
-                for (KMLItemIcon existingItemIcon : itemIconsCopy)
+                foreach (KMLItemIcon existingItemIcon  in  itemIconsCopy)
                 {
                     String currentId = existingItemIcon.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))

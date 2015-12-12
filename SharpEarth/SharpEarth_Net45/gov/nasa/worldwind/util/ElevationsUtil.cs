@@ -36,7 +36,7 @@ public class ElevationsUtil
    {
        if( null != value )
        {
-           for(double signal : knownMissingSignals )
+           foreach(double signal  in  knownMissingSignals )
            {
                if( value == signal )
                    return true;

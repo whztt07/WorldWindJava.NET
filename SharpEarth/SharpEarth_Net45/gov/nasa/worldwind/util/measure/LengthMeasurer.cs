@@ -74,7 +74,7 @@ public class LengthMeasurer implements MeasurableLength
         }
 
         ArrayList<Position> newPositions = new ArrayList<Position>();
-        for (LatLon pos : positions)
+        foreach (LatLon pos  in  positions)
         {
             newPositions.add(new Position(pos, elevation));
         }

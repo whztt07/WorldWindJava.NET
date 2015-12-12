@@ -52,7 +52,7 @@ public class ImageInterpolator
                 return;
 
             this.children = this.split(this.m0, this.m1, this.n0, this.n1);
-            for (Cell t : this.children)
+            foreach (Cell t  in  this.children)
             {
                 t.build(numLevels - 1, cellSize);
             }
@@ -82,7 +82,7 @@ public class ImageInterpolator
         {
             if (this.children != null)
             {
-                for (Cell t : this.children)
+                foreach (Cell t  in  this.children)
                 {
                     t.computeBounds(dim, xs, ys);
                 }
@@ -133,7 +133,7 @@ public class ImageInterpolator
             if (this.children == null)
                 return;
 
-            for (Cell t : children)
+            foreach (Cell t  in  children)
             {
                 if (t.minx < this.minx)
                     this.minx = t.minx;
@@ -251,7 +251,7 @@ public class ImageInterpolator
         if (kids == null)
         {
             kids = cell.split(cell.m0, cell.m1, cell.n0, cell.n1);
-            for (Cell child : kids)
+            foreach (Cell child  in  kids)
             {
                 child.computeExtremesFromLocations(this.gridSize, this.xs, this.ys);
             }
@@ -259,7 +259,7 @@ public class ImageInterpolator
                 this.kidCache.add(cell, kids, 4 * kids[0].getSizeInBytes());
         }
 
-        for (Cell t : kids)
+        foreach (Cell t  in  kids)
         {
             ContainingCell cellFound = this.findContainingCell(t, x, y);
             if (cellFound != null)

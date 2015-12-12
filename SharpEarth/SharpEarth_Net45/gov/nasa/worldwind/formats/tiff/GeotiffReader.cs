@@ -241,7 +241,7 @@ public class GeotiffReader implements Disposable
             throw new IOException(msg);
         }
 
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry  in  ifd)
         {
             try
             {
@@ -444,7 +444,7 @@ public class GeotiffReader implements Disposable
             BufferedImage colorImage;
 
             // make sure a DataBufferByte is going to do the trick
-            for (int bits : tiff.bitsPerSample)
+            foreach (int bits  in  tiff.bitsPerSample)
             {
                 if (bits != 8)
                 {
@@ -557,7 +557,7 @@ public class GeotiffReader implements Disposable
     /**
      * Returns true if georeferencing information was found in this file.
      * <p/>
-     * Note: see getGeoKeys() for determining if projection information is contained in the file.
+     * Note in  see getGeoKeys() foreach determining if projection information is contained in the file.
      *
      * @throws java.io.IOException if data type is not supported or unknown
      */
@@ -692,7 +692,7 @@ public class GeotiffReader implements Disposable
             }
 
             // geo keys
-            for (TiffIFDEntry entry : ifd)
+            foreach (TiffIFDEntry entry  in  ifd)
             {
                 try
                 {
@@ -1090,7 +1090,7 @@ public class GeotiffReader implements Disposable
 
     private TiffIFDEntry getByTag(TiffIFDEntry[] ifd, int tag)
     {
-        for (TiffIFDEntry anIfd : ifd)
+        foreach (TiffIFDEntry anIfd  in  ifd)
         {
             if (anIfd.tag == tag)
             {

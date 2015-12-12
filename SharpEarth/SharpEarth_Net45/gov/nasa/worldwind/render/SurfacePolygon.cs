@@ -378,7 +378,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
 
             // Merge the boundary locations with their respective texture coordinates, if any.
             List<Vertex> contour = new ArrayList<Vertex>();
-            for (LatLon location : locations)
+            foreach (LatLon location  in  locations)
             {
                 Vertex vertex = new Vertex(location);
                 contour.add(vertex);
@@ -466,7 +466,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         Angle poleLat = AVKey.NORTH.Equals(pole) ? Angle.POS90 : Angle.NEG90;
 
         Vertex vertex = null;
-        for (Vertex nextVertex : contour)
+        foreach (Vertex nextVertex  in  contour)
         {
             if (vertex != null)
             {
@@ -551,7 +551,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         Angle offset = null;
         bool applyOffset = false;
 
-        for (Vertex cur : contour)
+        foreach (Vertex cur  in  contour)
         {
             if (prev != null && LatLon.locationsCrossDateline(prev, cur))
             {
@@ -573,7 +573,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         }
 
         List<Vertex> mirror = new ArrayList<Vertex>();
-        for (Vertex cur : result)
+        foreach (Vertex cur  in  result)
         {
             mirror.add(new Vertex(cur.latitude, cur.longitude.subtract(offset), cur.u, cur.v));
         }
@@ -624,11 +624,11 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
             GLU.gluTessNormal(tess, 0, 0, 1);
             GLU.gluTessBeginPolygon(tess, polygonData);
 
-            for (List<Vertex> contour : contours)
+            foreach (List<Vertex> contour  in  contours)
             {
                 GLU.gluTessBeginContour(tess);
 
-                for (Vertex vertex : contour)
+                foreach (Vertex vertex  in  contour)
                 {
                     coords[0] = vertex.longitude.degrees;
                     coords[1] = vertex.latitude.degrees;
@@ -664,7 +664,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         shapeData.vertices = Buffers.newDirectFloatBuffer(polygonData.size() * (shapeData.hasTexCoords ? 4 : 2));
         double lonOffset = this.getReferencePosition().longitude.degrees;
         double latOffset = this.getReferencePosition().latitude.degrees;
-        for (Vertex vertex : polygonData)
+        foreach (Vertex vertex  in  polygonData)
         {
             shapeData.vertices.put((float) (vertex.longitude.degrees - lonOffset));
             shapeData.vertices.put((float) (vertex.latitude.degrees - latOffset));
@@ -697,7 +697,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
 
         ArrayList<List<LatLon>> geom = new ArrayList<List<LatLon>>();
 
-        for (Iterable<? extends LatLon> boundary : this.boundaries)
+        foreach (Iterable<? extends LatLon> boundary  in  this.boundaries)
         {
             ArrayList<LatLon> drawLocations = new ArrayList<LatLon>();
 
@@ -728,7 +728,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         {
             ArrayList<LatLon> newLocations = new ArrayList<LatLon>();
 
-            for (LatLon ll : this.boundaries.get(i))
+            foreach (LatLon ll  in  this.boundaries.get(i))
             {
                 Angle heading = LatLon.greatCircleAzimuth(oldReferencePosition, ll);
                 Angle pathLength = LatLon.greatCircleDistance(oldReferencePosition, ll);
@@ -792,7 +792,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         if (!this.boundaries.isEmpty())
         {
             RestorableSupport.StateObject so = rs.addStateObject(context, "boundaries");
-            for (Iterable<? extends LatLon> boundary : this.boundaries)
+            foreach (Iterable<? extends LatLon> boundary  in  this.boundaries)
             {
                 rs.addStateValueAsLatLonList(so, "boundary", boundary);
             }
@@ -811,7 +811,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
             RestorableSupport.StateObject[] sos = rs.getAllStateObjects(so, "boundary");
             if (sos != null)
             {
-                for (RestorableSupport.StateObject boundary : sos)
+                foreach (RestorableSupport.StateObject boundary  in  sos)
                 {
                     if (boundary == null)
                         continue;

@@ -136,7 +136,7 @@ public class Logging
         try
         {
             // TODO: This is no longer working with more than one arg in the message string, e.g., {1}
-            return args == null ? message : MessageFormat.format(message, args);
+            return args == null ? message  in  MessageFormat.foreachmat(message, args);
         }
         catch (ArgumentException e)
         {

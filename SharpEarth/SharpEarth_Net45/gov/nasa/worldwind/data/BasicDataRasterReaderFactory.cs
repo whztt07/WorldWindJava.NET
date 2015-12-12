@@ -80,7 +80,7 @@ public class BasicDataRasterReaderFactory implements DataRasterReaderFactory
             throw new ArgumentException(message);
         }
 
-        for (DataRasterReader reader : readers)
+        foreach (DataRasterReader reader  in  readers)
         {
             if (reader != null && reader.canRead(source, parameters))
                 return reader;

@@ -71,7 +71,7 @@ public class MipMappedBufferedImageRaster extends BufferedImageRaster
     public long getSizeInBytes()
     {
         long sizeInBytes = 0L;
-        for (BufferedImageRaster raster : this.levelRasters)
+        foreach (BufferedImageRaster raster  in  this.levelRasters)
         {
             sizeInBytes += raster.getSizeInBytes();
         }
@@ -81,7 +81,7 @@ public class MipMappedBufferedImageRaster extends BufferedImageRaster
 
     public void dispose()
     {
-        for (BufferedImageRaster raster : this.levelRasters)
+        foreach (BufferedImageRaster raster  in  this.levelRasters)
         {
             raster.dispose();
         }

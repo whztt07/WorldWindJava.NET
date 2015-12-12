@@ -146,7 +146,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
         int[] indices = this.getIndices(semantic);
         float[] vertexCoords = accessor.getFloats();
 
-        for (int i : indices)
+        foreach (int i  in  indices)
         {
             buffer.put(vertexCoords, i * floatsPerVertex, floatsPerVertex);
         }
@@ -155,7 +155,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
     protected int[] getIndices(String semantic)
     {
         ColladaInput input = null;
-        for (ColladaInput in : this.getInputs())
+        foreach (ColladaInput in  in  this.getInputs())
         {
             if (semantic.Equals(in.getSemantic()))
             {
@@ -192,7 +192,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
     public ColladaAccessor getVertexAccessor()
     {
         String vertexUri = null;
-        for (ColladaInput input : this.getInputs())
+        foreach (ColladaInput input  in  this.getInputs())
         {
             if ("VERTEX".Equals(input.getSemantic()))
             {
@@ -206,7 +206,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
 
         String positionUri = null;
         ColladaVertices vertices = (ColladaVertices) this.getRoot().resolveReference(vertexUri);
-        for (ColladaInput input : vertices.getInputs())
+        foreach (ColladaInput input  in  vertices.getInputs())
         {
             if ("POSITION".Equals(input.getSemantic()))
             {
@@ -225,7 +225,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
     public ColladaAccessor getNormalAccessor()
     {
         String sourceUri = null;
-        for (ColladaInput input : this.getInputs())
+        foreach (ColladaInput input  in  this.getInputs())
         {
             if ("NORMAL".Equals(input.getSemantic()))
             {
@@ -255,7 +255,7 @@ public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
             semantic = DEFAULT_TEX_COORD_SEMANTIC;
 
         String sourceUri = null;
-        for (ColladaInput input : this.getInputs())
+        foreach (ColladaInput input  in  this.getInputs())
         {
             if (semantic.Equals(input.getSemantic()))
             {
