@@ -3,14 +3,20 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using java.util;
-using java.nio;
-using javax.media.opengl.glu;
-using javax.media.opengl.GL;
-using SharpEarth.terrain.Terrain;
+//using java.nio;
+//using javax.media.opengl.glu;
+//using javax.media.opengl.GL;
+using SharpEarth.terrain;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using com.jogamp.common.nio.Buffers;
+using SharpEarth.java.nio;
+using SharpEarth.java.util;
+using SharpGL;
+
+//using com.jogamp.common.nio.Buffers;
 namespace SharpEarth.util{
 
 
@@ -21,44 +27,44 @@ namespace SharpEarth.util{
  */
 public class GeometryBuilder
 {
-    public static final int OUTSIDE = 0;
-    public static final int INSIDE = 1;
+    public static readonly int OUTSIDE = 0;
+    public static readonly int INSIDE = 1;
 
-    public static final int COUNTER_CLOCKWISE = 0;
-    public static final int CLOCKWISE = 1;
+    public static readonly int COUNTER_CLOCKWISE = 0;
+    public static readonly int CLOCKWISE = 1;
 
-    public static final int TOP = 1;
-    public static final int BOTTOM = 2;
-    public static final int LEFT = 4;
-    public static final int RIGHT = 8;
+    public static readonly int TOP = 1;
+    public static readonly int BOTTOM = 2;
+    public static readonly int LEFT = 4;
+    public static readonly int RIGHT = 8;
 
     /**
      * Bit code indicating that the leader's location is inside the rectangle. Used by <code>{@link
      * #computeLeaderLocationCode(float, float, float, float, float, float)}</code>.
      */
-    protected static final int LEADER_LOCATION_INSIDE = 0;
+    protected static readonly int LEADER_LOCATION_INSIDE = 0;
     /**
      * Bit code indicating that the leader's location is above the rectangle. Used by <code>{@link
      * #computeLeaderLocationCode(float, float, float, float, float, float)}</code>.
      */
-    protected static final int LEADER_LOCATION_TOP = 1;
+    protected static readonly int LEADER_LOCATION_TOP = 1;
     /**
      * Bit code indicating that the leader's location is below the rectangle. Used by <code>{@link
      * #computeLeaderLocationCode(float, float, float, float, float, float)}</code>.
      */
-    protected static final int LEADER_LOCATION_BOTTOM = 2;
+    protected static readonly int LEADER_LOCATION_BOTTOM = 2;
     /**
      * Bit code indicating that the leader's location is to the right of the rectangle. Used by <code>{@link
      * #computeLeaderLocationCode(float, float, float, float, float, float)}</code>.
      */
-    protected static final int LEADER_LOCATION_RIGHT = 4;
+    protected static readonly int LEADER_LOCATION_RIGHT = 4;
     /**
      * Bit code indicating that the leader's location is to the left of the rectangle. Used by <code>{@link
      * #computeLeaderLocationCode(float, float, float, float, float, float)}</code>.
      */
-    protected static final int LEADER_LOCATION_LEFT = 8;
+    protected static readonly int LEADER_LOCATION_LEFT = 8;
 
-    private static final float[] coord = new float[3];
+    private static readonly float[] coord = new float[3];
 
     private int orientation = OUTSIDE;
 
@@ -84,21 +90,21 @@ public class GeometryBuilder
     {
         if (radius < 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", "radius < 0");
+            string message = Logging.getMessage("generic.ArgumentOutOfRange", "radius < 0");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
         if (subdivisions < 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", "subdivisions < 0");
+            string message = Logging.getMessage("generic.ArgumentOutOfRange", "subdivisions < 0");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
         int[] indexArray = new int[ICOSAHEDRON_INDEX_COUNT];
         float[] vertexArray = new float[3 * ICOSAHEDRON_VERTEX_COUNT];
-        System.arraycopy(icosahedronIndexArray, 0, indexArray, 0, ICOSAHEDRON_INDEX_COUNT);
-        System.arraycopy(icosahedronVertexArray, 0, vertexArray, 0, 3 * ICOSAHEDRON_VERTEX_COUNT);
+      Array.Copy( icosahedronIndexArray, 0, indexArray, 0, ICOSAHEDRON_INDEX_COUNT );
+      Array.Copy( icosahedronVertexArray, 0, vertexArray, 0, 3 * ICOSAHEDRON_VERTEX_COUNT);
 
         // The static icosahedron tessellation is assumed to be viewed from the outside. If the orientation is set to
         // inside, then we must reverse the winding order for each triangle's indices.
@@ -147,13 +153,13 @@ public class GeometryBuilder
     {
         if (radius < 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", "radius < 0");
+            string message = Logging.getMessage("generic.ArgumentOutOfRange", "radius < 0");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
         if (subdivisions < 0)
         {
-            String message = Logging.getMessage("generic.ArgumentOutOfRange", "subdivisions < 0");
+            string message = Logging.getMessage("generic.ArgumentOutOfRange", "subdivisions < 0");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
@@ -1724,7 +1730,6 @@ public class GeometryBuilder
         return stacks * 2 * (slices + 1) + 2 * (stacks - 1);
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public int getCylinderOutlineIndexCount(int slices, int stacks)
     {
         return slices * 4;
@@ -2229,7 +2234,6 @@ public class GeometryBuilder
         return stacks * 2 * (slices + 1) + 2 * (stacks - 1);
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public int getPartialCylinderOutlineIndexCount(int slices, int stacks)
     {
         return slices * 4;
@@ -2394,7 +2398,6 @@ public class GeometryBuilder
         }
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public void makePartialCylinderNormals(float radius, float height, int slices, int stacks,
         float start, float sweep, float[] dest)
     {
@@ -2911,7 +2914,6 @@ public class GeometryBuilder
         }
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public void makeDiskVertexNormals(double innerMinorRadius, double outerMinorRadius, int slices, int loops,
         float[] srcVerts, float[] dest)
     {
@@ -3370,7 +3372,6 @@ public class GeometryBuilder
         }
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public void makePartialDiskVertexNormals(float innerRadius, float outerRadius, int slices, int loops,
         float start, float sweep, float[] srcVerts, float[] dest)
     {
@@ -3612,7 +3613,6 @@ public class GeometryBuilder
         return stacks * 2 * (pillars + 1) + 2 * (stacks - 1);
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public int getRadialWallOutlineIndexCount(int pillars, int stacks)
     {
         return pillars * 4;
@@ -3747,7 +3747,6 @@ public class GeometryBuilder
         }
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public void makeRadialWallNormals(float innerRadius, float outerRadius, float height, float angle,
         int pillars, int stacks, float[] dest)
     {
@@ -3925,7 +3924,6 @@ public class GeometryBuilder
         return stacks * 2 * (slices + 1) + 2 * (stacks - 1);
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public int getLongCylinderOutlineIndexCount(int arcSlices, int lengthSlices, int stacks)
     {
         return (arcSlices + lengthSlices) * 2 * 4;
@@ -4715,7 +4713,6 @@ public class GeometryBuilder
         }
     }
 
-    @SuppressWarnings({"UnusedDeclaration"})
     public void makeLongDiskVertexNormals(float innerRadius, float outerRadius, float length,
         int arcSlices, int lengthSlices, int loops,
         float[] srcVerts, float[] dest)
@@ -5300,7 +5297,7 @@ public class GeometryBuilder
         return GL.GL_TRIANGLES;
     }
 
-    public static class IndexedTriangleBuffer
+    public class IndexedTriangleBuffer
     {
         private IntBuffer indices;
         private FloatBuffer vertices;
@@ -6590,15 +6587,15 @@ public class GeometryBuilder
 
     public int getIndexedTriangleArrayDrawMode()
     {
-        return GL.GL_TRIANGLES;
+      return (int)OpenGL.GL_TRIANGLES;
     }
 
-    public static class IndexedTriangleArray
+    public class IndexedTriangleArray
     {
-        private int indexCount;
-        private int vertexCount;
-        private int[] indices;
-        private float[] vertices;
+        public int indexCount;
+        public int vertexCount;
+        public int[] indices;
+        public float[] vertices;
 
         public IndexedTriangleArray(int indexCount, int[] indices, int vertexCount, float[] vertices)
         {
@@ -7868,7 +7865,6 @@ public class GeometryBuilder
      * @throws ArgumentException if any of <code>width</code>, <code>height</code>, or <code>leaderWidth</code>
      *                                  are less than zero.
      */
-    @SuppressWarnings({"SuspiciousNameCombination"})
     public FloatBuffer makeRectangleWithLeader(float x, float y, float width, float height, float leaderX,
         float leaderY, float leaderWidth)
     {

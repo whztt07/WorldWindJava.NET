@@ -4,6 +4,8 @@
  * All Rights Reserved.
  */
 using javax.media.opengl.GL2;
+using SharpEarth.java.util;
+
 namespace SharpEarth.util{
 
 
@@ -34,36 +36,36 @@ public class OGLStackHandler
             || this.texturePushed;
     }
 
-    public void pushAttrib(GL2 gl, int mask)
+    public void pushAttrib(GL2 gl, uint mask)
     {
-        gl.glPushAttrib(mask);
+        gl.PushAttrib(mask);
         this.attribsPushed = true;
     }
 
-    public void pushClientAttrib(GL2 gl, int mask)
+    public void pushClientAttrib(GL2 gl, uint mask)
     {
-        gl.glPushClientAttrib(mask);
+        gl.PushClientAttrib(mask);
         this.clientAttribsPushed = true;
     }
 
     public void pushModelview(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_MODELVIEW);
-        gl.glPushMatrix();
-        this.modelviewPushed = true;
+      gl.MatrixMode(GL2.GL_MODELVIEW);
+      gl.PushMatrix();
+      this.modelviewPushed = true;
     }
 
     public void pushProjection(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_PROJECTION);
-        gl.glPushMatrix();
+        gl.MatrixMode(GL2.GL_PROJECTION);
+        gl.PushMatrix();
         this.projectionPushed = true;
     }
 
     public void pushTexture(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_TEXTURE);
-        gl.glPushMatrix();
+        gl.MatrixMode(GL2.GL_TEXTURE);
+        gl.PushMatrix();
         this.texturePushed = true;
     }
 
@@ -71,60 +73,60 @@ public class OGLStackHandler
     {
         if (this.attribsPushed)
         {
-            gl.glPopAttrib();
-            this.attribsPushed = false;
+          gl.PopAttrib();
+          this.attribsPushed = false;
         }
 
         if (this.clientAttribsPushed)
         {
-            gl.glPopClientAttrib();
+            gl.PopClientAttrib();
             this.clientAttribsPushed = false;
         }
 
         if (this.modelviewPushed)
         {
-            gl.glMatrixMode(GL2.GL_MODELVIEW);
-            gl.glPopMatrix();
+            gl.MatrixMode(GL2.GL_MODELVIEW);
+            gl.PopMatrix();
             this.modelviewPushed = false;
         }
 
         if (this.projectionPushed)
         {
-            gl.glMatrixMode(GL2.GL_PROJECTION);
-            gl.glPopMatrix();
+            gl.MatrixMode(GL2.GL_PROJECTION);
+            gl.PopAttrib();
             this.projectionPushed = false;
         }
 
         if (this.texturePushed)
         {
-            gl.glMatrixMode(GL2.GL_TEXTURE);
-            gl.glPopMatrix();
+            gl.MatrixMode(GL2.GL_TEXTURE);
+            gl.PopMatrix();
             this.texturePushed = false;
         }
     }
 
     public void pushModelviewIdentity(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_MODELVIEW);
+        gl.MatrixMode(GL2.GL_MODELVIEW);
         this.modelviewPushed = true;
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
+        gl.PushMatrix();
+        gl.LoadIdentity();
     }
 
     public void pushProjectionIdentity(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_PROJECTION);
+        gl.MatrixMode(GL2.GL_PROJECTION);
         this.projectionPushed = true;
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
+        gl.PushMatrix();
+        gl.LoadIdentity();
     }
 
     public void pushTextureIdentity(GL2 gl)
     {
-        gl.glMatrixMode(GL2.GL_TEXTURE);
+        gl.MatrixMode(GL2.GL_TEXTURE);
         this.texturePushed = true;
-        gl.glPushMatrix();
-        gl.glLoadIdentity();
+        gl.PushMatrix();
+        gl.LoadIdentity();
     }
 }
 }

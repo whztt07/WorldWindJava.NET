@@ -5,7 +5,6 @@
  */
 
 using System;
-using javax.media.opengl.GL2;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;
@@ -17,6 +16,7 @@ using SharpEarth;
 using SharpEarth.java.awt;
 using SharpEarth.java.lang;
 using SharpEarth.java.util;
+using SharpGL;
 
 namespace SharpEarth.view{
 
@@ -839,17 +839,17 @@ public class BasicView : WWObjectImpl, View
 
         try
         {
-            ogsh.pushAttrib(gl, GL2.GL_TRANSFORM_BIT);
+        ogsh.pushAttrib(gl, GL2.GL_TRANSFORM_BIT);
 
-            gl.glMatrixMode(GL2.GL_MODELVIEW);
+            gl.MatrixMode(GL2.GL_MODELVIEW);
 
             // Push and load a new model-view matrix to the current OpenGL context held by 'dc'.
-            gl.glPushMatrix();
+            gl.PushMatrix();
             if (matrix != null)
             {
                 double[] matrixArray = new double[16];
                 matrix.toArray(matrixArray, 0, false);
-                gl.glLoadMatrixd(matrixArray, 0);
+                gl.LoadMatrix(matrixArray);
             }
         }
         finally
@@ -892,11 +892,11 @@ public class BasicView : WWObjectImpl, View
 
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
 
-        gl.glMatrixMode(GL2.GL_MODELVIEW);
+        gl.MatrixMode(GL2.GL_MODELVIEW);
 
         double[] matrixArray = new double[16];
         matrix.toArray(matrixArray, 0, false);
-        gl.glLoadMatrixd(matrixArray, 0);
+        gl.LoadMatrix(matrixArray);
 
         return matrix;
     }
@@ -933,10 +933,10 @@ public class BasicView : WWObjectImpl, View
         {
             ogsh.pushAttrib(gl, GL2.GL_TRANSFORM_BIT);
 
-            gl.glMatrixMode(GL2.GL_MODELVIEW);
+            gl.MatrixMode(GL2.GL_MODELVIEW);
 
             // Pop the top model-view matrix.
-            gl.glPopMatrix();
+            gl.PopMatrix();
         }
         finally
         {
@@ -985,17 +985,10 @@ public class BasicView : WWObjectImpl, View
         int[] viewportArray = new int[] {viewport.x, viewport.y, viewport.width, viewport.height};
 
         double[] result = new double[3];
-        if (!this.dc.getGLU().gluProject(
-            point.x, point.y, point.z,
-            modelviewArray, 0,
-            projectionArray, 0,
-            viewportArray, 0,
-            result, 0))
-        {
-            return null;
-        }
+      dc.getGL().gl2.UnProject( point.x(), point.y(), point.z(), modelviewArray,
+        projectionArray, viewportArray, ref result[0], ref result[1], ref result[2] );
 
-        return Vec4.fromArray3(result, 0);
+      return Vec4.fromArray3(result, 0);
     }
 
     /**
@@ -1038,15 +1031,9 @@ public class BasicView : WWObjectImpl, View
         int[] viewportArray = new int[] {viewport.x, viewport.y, viewport.width, viewport.height};
 
         double[] result = new double[3];
-        if (!this.dc.getGLU().gluUnProject(
-            windowPoint.x, windowPoint.y, windowPoint.z,
-            modelviewArray, 0,
-            projectionArray, 0,
-            viewportArray, 0,
-            result, 0))
-        {
-            return null;
-        }
+
+        dc.getGL().gl2.UnProject( windowPoint.x(), windowPoint.y(), windowPoint.z(), modelviewArray, 
+          projectionArray, viewportArray, ref result[0], ref result[1], ref result[2] );
 
         return Vec4.fromArray3(result, 0);
     }
@@ -1092,27 +1079,27 @@ public class BasicView : WWObjectImpl, View
             ogsh.pushAttrib(gl, GL2.GL_TRANSFORM_BIT);
 
             // Apply the model-view matrix to the current OpenGL context.
-            gl.glMatrixMode(GL2.GL_MODELVIEW);
+            gl.MatrixMode(GL2.GL_MODELVIEW);
             if (modelview != null)
             {
                 modelview.toArray(matrixArray, 0, false);
-                gl.glLoadMatrixd(matrixArray, 0);
+                gl.LoadMatrix(matrixArray);
             }
             else
             {
-                gl.glLoadIdentity();
+                gl.LoadIdentity();
             }
 
             // Apply the projection matrix to the current OpenGL context.
-            gl.glMatrixMode(GL2.GL_PROJECTION);
+            gl.MatrixMode(GL2.GL_PROJECTION);
             if (projection != null)
             {
                 projection.toArray(matrixArray, 0, false);
-                gl.glLoadMatrixd(matrixArray, 0);
+                gl.LoadMatrix( matrixArray);
             }
             else
             {
-                gl.glLoadIdentity();
+                gl.LoadIdentity();
             }
         }
         finally
