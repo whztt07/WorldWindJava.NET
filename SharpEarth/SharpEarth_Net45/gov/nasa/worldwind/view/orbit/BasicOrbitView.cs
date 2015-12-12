@@ -90,7 +90,7 @@ public class BasicOrbitView : BasicView , OrbitView
 
     public void stopMovementOnCenter()
     {
-        firePropertyChange(CENTER_STOPPED, null, null);
+        firePropertyChange( OrbitViewContants.CENTER_STOPPED, null, null);
     }
 
     public void copyViewState(View view)
@@ -344,7 +344,7 @@ public class BasicOrbitView : BasicView , OrbitView
      *
      * @param b true if the point of rotation needs recalculation, false if it does not.
      */
-    public void setViewOutOfFocus(boolean b)
+    public void setViewOutOfFocus(bool b)
     {
         this.viewOutOfFocus = b;
     }

@@ -4,11 +4,11 @@
  * All Rights Reserved.
  */
 using SharpEarth.view;
-using SharpEarth.util.PropertyAccessor;
+using SharpEarth.util;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
-using SharpEarth.WorldWind;
+using SharpEarth;
 namespace SharpEarth.view.orbit{
 
 
@@ -28,9 +28,9 @@ public class FlyToOrbitViewAnimator : CompoundAnimator
 
     public FlyToOrbitViewAnimator(OrbitView orbitView, Interpolator interpolator, int altitudeMode,
         PositionAnimator centerAnimator, DoubleAnimator zoomAnimator,
-        AngleAnimator headingAnimator, AngleAnimator pitchAnimator, AngleAnimator rollAnimator)
+        AngleAnimator headingAnimator, AngleAnimator pitchAnimator, AngleAnimator rollAnimator) : 
+      base( interpolator, centerAnimator, zoomAnimator, headingAnimator, pitchAnimator, rollAnimator )
     {
-        super(interpolator, centerAnimator, zoomAnimator, headingAnimator, pitchAnimator, rollAnimator);
         this.orbitView = (BasicOrbitView) orbitView;
         this.centerAnimator = centerAnimator;
         this.zoomAnimator = (ViewElevationAnimator) zoomAnimator;
@@ -82,34 +82,34 @@ public class FlyToOrbitViewAnimator : CompoundAnimator
         return (panAnimator);
     }
 
-    protected static class OnSurfacePositionAnimator : PositionAnimator
+    protected class OnSurfacePositionAnimator : PositionAnimator
     {
         Globe globe;
         int altitudeMode;
-        bool useMidZoom = true;
+        internal bool useMidZoom = true;
 
         public OnSurfacePositionAnimator(Globe globe, Interpolator interpolator,
             Position begin,
             Position end,
-            PropertyAccessor.PositionAccessor propertyAccessor, int altitudeMode)
+            PropertyAccessor.PositionAccessor propertyAccessor, int altitudeMode) :
+        base(interpolator, begin, end, propertyAccessor)
         {
-            super(interpolator, begin, end, propertyAccessor);
+            
             this.globe = globe;
             this.altitudeMode = altitudeMode;
         }
 
-        @Override
         protected Position nextPosition(double interpolant)
         {
-            final int MAX_SMOOTHING = 1;
+            const int MAX_SMOOTHING = 1;
 
-            final double CENTER_START = this.useMidZoom ? 0.2 : 0.0;
-            final double CENTER_STOP = this.useMidZoom ? 0.8 : 0.8;
+            double CENTER_START = this.useMidZoom ? 0.2 : 0.0;
+            double CENTER_STOP = this.useMidZoom ? 0.8 : 0.8;
             double latLonInterpolant = AnimationSupport.basicInterpolant(interpolant, CENTER_START, CENTER_STOP,
                 MAX_SMOOTHING);
 
             // Invoke the standard next position functionality.
-            Position pos = super.nextPosition(latLonInterpolant);
+            Position pos = base.nextPosition(latLonInterpolant);
 
             // Check the altitude mode. If the altitude mode depends on the surface elevation we will reevaluate the
             // end position altitude. When the animation starts we may not have accurate elevation data available for
@@ -141,14 +141,13 @@ public class FlyToOrbitViewAnimator : CompoundAnimator
         }
     }
 
-    @Override
     public void stop()
     {
         if (this.altitudeMode == WorldWind.CLAMP_TO_GROUND)
         {
             this.orbitView.setViewOutOfFocus(true);
         }
-        super.stop();
+        base.stop();
     }
 }
 }

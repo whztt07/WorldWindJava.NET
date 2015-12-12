@@ -547,7 +547,7 @@ public class OrbitViewInputHandler : BasicViewInputHandler
         super.handlePropertyChange(e);
 
         //noinspection StringEquality
-        if (e.getPropertyName() == OrbitView.CENTER_STOPPED)
+        if (e.getPropertyName() == OrbitViewContants.CENTER_STOPPED)
         {
             this.handleOrbitViewCenterStopped();
         }
