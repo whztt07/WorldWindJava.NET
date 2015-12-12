@@ -1257,7 +1257,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
 
             double edgeIntervals = WWMath.clamp(edgeIntervalsPerDegree * pathLength.degrees,
                 this.minEdgeIntervals, this.maxEdgeIntervals);
-            int numEdgeIntervals = (int) Math.ceil(edgeIntervals);
+            int numEdgeIntervals = (int) Math.Ceiling(edgeIntervals);
 
             if (numEdgeIntervals > 1)
             {
@@ -1276,7 +1276,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
 
             double edgeIntervals = WWMath.clamp(edgeIntervalsPerDegree * pathLength.degrees,
                 this.minEdgeIntervals, this.maxEdgeIntervals);
-            int numEdgeIntervals = (int) Math.ceil(edgeIntervals);
+            int numEdgeIntervals = (int) Math.Ceiling(edgeIntervals);
 
             if (numEdgeIntervals > 1)
             {

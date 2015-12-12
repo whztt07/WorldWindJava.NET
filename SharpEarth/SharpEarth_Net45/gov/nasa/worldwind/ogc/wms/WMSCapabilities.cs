@@ -3,14 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-
-using java.util;
-using java.text;
-using java.net;
-using javax.xml.stream.events.XMLEvent;
-using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
-using SharpEarth.wms.CapabilitiesRequest;
+using System;
+using SharpEarth.wms;
 using SharpEarth.util.xml;
 using SharpEarth.util;
 using SharpEarth.ogc;
@@ -24,8 +18,8 @@ namespace SharpEarth.ogc.wms{
  */
 public class WMSCapabilities : OGCCapabilities
 {
-    protected static final QName ROOT_ELEMENT_NAME_1_1_1 = new QName("WMT_MS_Capabilities");
-    protected static final QName ROOT_ELEMENT_NAME_1_3_0 = new QName("WMS_Capabilities");
+    protected static readonly QName ROOT_ELEMENT_NAME_1_1_1 = new QName("WMT_MS_Capabilities");
+    protected static readonly QName ROOT_ELEMENT_NAME_1_3_0 = new QName("WMS_Capabilities");
 
     /**
      * Retrieves the WMS capabilities document from a specified WMS server.

@@ -472,7 +472,7 @@ public abstract class URLRetriever : WWObjectImpl , Retriever
 
     protected ByteBuffer readNonSpecificStreamUnknownLength(InputStream inputStream) throws IOException
     {
-        final int pageSize = (int) Math.ceil(Math.Pow(2, 15));
+        final int pageSize = (int) Math.Ceiling(Math.Pow(2, 15));
 
         ReadableByteChannel channel = Channels.newChannel(inputStream);
         ByteBuffer buffer = ByteBuffer.allocate(pageSize);

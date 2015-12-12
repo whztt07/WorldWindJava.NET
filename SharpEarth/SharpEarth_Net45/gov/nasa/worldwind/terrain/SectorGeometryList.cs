@@ -3,14 +3,16 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.List;
-using java.util;
-using java.awt;
-using javax.media.opengl;
+using System;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.pick;
 using SharpEarth.geom;
+using System.Collections.Generic;
+using SharpEarth.java.awt;
+using SharpEarth.java.lang;
+using SharpEarth.java.util;
+
 namespace SharpEarth.terrain{
 
 
@@ -21,12 +23,12 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: SectorGeometryList.java 1537 2013-08-07 19:58:01Z dcollins $
  */
-public class SectorGeometryList : ArrayList<SectorGeometry>
+public class SectorGeometryList : List<SectorGeometry>
 {
     /** The spanning sector of all sector geometries contained in this list. */
     protected Sector sector;
     protected PickSupport pickSupport = new PickSupport();
-    protected HashMap<SectorGeometry, ArrayList<Point>> pickSectors = new HashMap<SectorGeometry, ArrayList<Point>>();
+    protected Dictionary<SectorGeometry, List<Point>> pickSectors = new Dictionary<SectorGeometry, List<Point>>();
 
     /** Constructs an empty sector geometry list. */
     public SectorGeometryList()
@@ -39,8 +41,8 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
      * @param list the secter geometries to place in the list.
      */
     public SectorGeometryList(SectorGeometryList list)
+      :base(list)
     {
-        super(list);
     }
 
     /**
@@ -181,7 +183,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             throw new IllegalStateException(message);
         }
 
-        if (pickPoints == null || pickPoints.size() < 1)
+        if (pickPoints == null || pickPoints.Count < 1)
             return null;
 
         this.pickSupport.clearPickList();
@@ -205,7 +207,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
 
             // Determine the sectors underneath the pick points. Assemble a pick-points per sector map.
             // Several pick points might intersect the same sector.
-            this.pickSectors.clear();
+            this.pickSectors.Clear();
             foreach (Point pickPoint in pickPoints)
             {
                 PickedObject pickedSector = this.pickSupport.getTopObject(dc, pickPoint);
@@ -213,36 +215,36 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
                     continue;
 
                 SectorGeometry sector = (SectorGeometry) pickedSector.getObject();
-                ArrayList<Point> sectorPickPoints;
-                if (!this.pickSectors.containsKey(sector))
+                List<Point> sectorPickPoints;
+                if (!this.pickSectors.ContainsKey(sector))
                 {
-                    sectorPickPoints = new ArrayList<Point>();
-                    this.pickSectors.put(sector, sectorPickPoints);
+                    sectorPickPoints = new List<Point>();
+                    this.pickSectors.Add(sector, sectorPickPoints);
                 }
                 else
                 {
-                    sectorPickPoints = this.pickSectors.get(sector);
+            this.pickSectors.TryGetValue( sector, out sectorPickPoints );
                 }
-                sectorPickPoints.add(pickPoint);
+                sectorPickPoints.Add(pickPoint);
             }
 
-            if (this.pickSectors.size() < 1)
+            if (this.pickSectors.Count < 1)
                 return null;
 
             // Now have each sector determine the pick position for each intersecting pick point.
             this.beginSectorGeometryPicking(dc);
-            ArrayList<PickedObject> pickedObjects = new ArrayList<PickedObject>();
-            foreach (Map.Entry<SectorGeometry, ArrayList<Point>> sector in this.pickSectors.entrySet())
+            List<PickedObject> pickedObjects = new List<PickedObject>();
+            foreach (KeyValuePair<SectorGeometry, List<Point>> sector in this.pickSectors)
             {
-                ArrayList<Point> sectorPickPoints = sector.getValue();
-                PickedObject[] pos = sector.getKey().pick(dc, sectorPickPoints);
+                List<Point> sectorPickPoints = sector.Value;
+                PickedObject[] pos = sector.Key.pick(dc, sectorPickPoints);
                 if (pos == null)
                     continue;
 
                 foreach (PickedObject po in pos)
                 {
                     if (po != null)
-                        pickedObjects.add(po);
+                        pickedObjects.Add(po);
                 }
             }
 
@@ -363,9 +365,9 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             throw new ArgumentException(msg);
         }
 
-        for (int i = 0; i < this.size(); i++)
+        for (int i = 0; i < this.Count; i++)
         {
-            SectorGeometry sg = this.get(i);
+            SectorGeometry sg = this[i];
             if (sg.getSector().contains(latitude, longitude))
             {
                 Vec4 point = sg.getSurfacePoint(latitude, longitude, metersOffset);
@@ -394,44 +396,39 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             throw new ArgumentException(msg);
         }
 
-        ArrayList<SectorGeometry> sglist = new ArrayList<SectorGeometry>(this);
+        List<SectorGeometry> sglist = new List<SectorGeometry>(this);
 
         Intersection[] hits;
-        ArrayList<Intersection> list = new ArrayList<Intersection>();
+        List<Intersection> list = new List<Intersection>();
         foreach (SectorGeometry sg in sglist)
         {
             if (sg.getExtent().intersects(line))
                 if ((hits = sg.intersect(line)) != null)
-                    list.addAll(Arrays.asList(hits));
+                    list.AddRange(hits);
         }
 
-        int numHits = list.size();
+        int numHits = list.Count;
         if (numHits == 0)
             return null;
 
-        hits = new Intersection[numHits];
-        list.toArray(hits);
+        Vec4 origin = line.getOrigin();
 
-        final Vec4 origin = line.getOrigin();
-        Arrays.sort(hits, new Comparator<Intersection>()
-        {
-            public int compare(Intersection i1, Intersection i2)
-            {
-                if (i1 == null && i2 == null)
-                    return 0;
-                if (i2 == null)
-                    return -1;
-                if (i1 == null)
-                    return 1;
+      list.Sort( ( i1, i2 ) => {
+        if ( i1 == null && i2 == null )
+          return 0;
+        if ( i2 == null )
+          return -1;
+        if ( i1 == null )
+          return 1;
 
-                Vec4 v1 = i1.getIntersectionPoint();
-                Vec4 v2 = i2.getIntersectionPoint();
-                double d1 = origin.distanceTo3(v1);
-                double d2 = origin.distanceTo3(v2);
-                return Double.compare(d1, d2);
-            }
-        });
-        return hits;
+        Vec4 v1 = i1.getIntersectionPoint();
+        Vec4 v2 = i2.getIntersectionPoint();
+        double d1 = origin.distanceTo3( v1 );
+        double d2 = origin.distanceTo3( v2 );
+        return d1.CompareTo( d2 );
+      } );
+        
+        return list.ToArray();
     }
 
     /**
@@ -457,25 +454,22 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             throw new ArgumentException(message);
         }
 
-        ArrayList<SectorGeometry> sglist = new ArrayList<SectorGeometry>(this);
+        List<SectorGeometry> sglist = new List<SectorGeometry>(this);
 
         Intersection[] hits;
-        ArrayList<Intersection> list = new ArrayList<Intersection>();
+        List<Intersection> list = new List<Intersection>();
         foreach (SectorGeometry sg in sglist)
         {
             if (sector.intersects(sg.getSector()))
                 if ((hits = sg.intersect(elevation)) != null)
-                    list.addAll(Arrays.asList(hits));
+                    list.AddRange(hits);
         }
 
-        int numHits = list.size();
+        int numHits = list.Count;
         if (numHits == 0)
             return null;
 
-        hits = new Intersection[numHits];
-        list.toArray(hits);
-
-        return hits;
+        return list.ToArray();
     }
 }
 }

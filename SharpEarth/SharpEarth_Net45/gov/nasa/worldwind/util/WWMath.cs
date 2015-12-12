@@ -81,7 +81,7 @@ public class WWMath
      */
     public static int powerOfTwoCeiling(int reference)
     {
-        int power = (int) Math.ceil(Math.Log(reference) / Math.Log(2d));
+        int power = (int) Math.Ceiling(Math.Log(reference) / Math.Log(2d));
         return (int) Math.Pow(2d, power);
     }
 

@@ -6,7 +6,7 @@
 
 using java.util.Map;
 using javax.xml.stream.XMLEventReader;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml.xal.XALParserContext;
 using SharpEarth.util.xml.atom.AtomParserContext;
 using SharpEarth.util.xml;

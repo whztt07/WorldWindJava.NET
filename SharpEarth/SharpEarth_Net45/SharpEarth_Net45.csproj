@@ -777,6 +777,7 @@
     <Compile Include="java\beans\PropertyChangeEvent.cs" />
     <Compile Include="java\beans\PropertyChangeListener.cs" />
     <Compile Include="java\beans\PropertyChangeSupport.cs" />
+    <Compile Include="java\io\File.cs" />
     <Compile Include="java\io\InputStream.cs" />
     <Compile Include="java\io\IOException.cs" />
     <Compile Include="java\lang\Class.cs" />

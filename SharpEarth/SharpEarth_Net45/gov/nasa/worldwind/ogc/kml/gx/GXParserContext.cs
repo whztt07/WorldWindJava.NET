@@ -6,7 +6,7 @@
 
 using java.util.concurrent.ConcurrentHashMap;
 using java.util.Map;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 using SharpEarth.ogc.kml;
 namespace SharpEarth.ogc.kml.gx{

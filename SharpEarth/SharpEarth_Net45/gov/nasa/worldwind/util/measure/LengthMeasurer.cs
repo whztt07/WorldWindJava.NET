@@ -364,7 +364,7 @@ public class LengthMeasurer : MeasurableLength
                 // if necessary subdivide segment at regular intervals smaller then maxLength
                 Angle segmentAzimuth = null;
                 Angle segmentDistance = null;
-                int steps = (int) Math.ceil(arcLength / maxLength);  // number of intervals - at least two
+                int steps = (int) Math.Ceiling(arcLength / maxLength);  // number of intervals - at least two
                 for (int j = 1; j < steps; j++)
                 {
                     float s = (float) j / steps;

@@ -310,7 +310,7 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
             return 1;
 
         // Divide sector in regions that will contain no more tiles then maxCount
-        return (int) Math.ceil(Math.Sqrt((double) tileCount / maxCount));
+        return (int) Math.Ceiling(Math.Sqrt((double) tileCount / maxCount));
     }
 
     protected Sector[] computeRandomRegions(Sector sector, int div, int numRegions)

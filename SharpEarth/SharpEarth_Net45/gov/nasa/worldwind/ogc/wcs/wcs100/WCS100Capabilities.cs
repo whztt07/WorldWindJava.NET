@@ -7,7 +7,7 @@
 using java.net;
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream;
-using javax.xml.namespace.QName;
+
 using SharpEarth.wms.CapabilitiesRequest;
 using SharpEarth.util.xml;
 using SharpEarth.util;

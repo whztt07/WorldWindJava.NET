@@ -7,7 +7,7 @@
 using java.util;
 using javax.xml.stream.events;
 using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 using SharpEarth.util.WWUtil;
 using SharpEarth.ogc.OGCBoundingBox;

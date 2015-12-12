@@ -118,11 +118,11 @@ public class ImageUtil
                 if (vec.x >= 0 && vec.y >= 0 && vec.x <= (sourceWidth - 1) && vec.y <= (sourceHeight - 1))
                 {
                     int x0 = (int) Math.Floor(vec.x);
-                    int x1 = (int) Math.ceil(vec.x);
+                    int x1 = (int) Math.Ceiling(vec.x);
                     double xf = vec.x - x0;
 
                     int y0 = (int) Math.Floor(vec.y);
-                    int y1 = (int) Math.ceil(vec.y);
+                    int y1 = (int) Math.Ceiling(vec.y);
                     double yf = vec.y - y0;
 
                     int color = interpolateColor(xf, yf,
@@ -561,8 +561,8 @@ public class ImageUtil
             return;
 
         // Create an image with the desired aspect ratio within an enclosing canvas of possibly different aspect ratio.
-        int subWidth = aspectRatio >= 1 ? canvas.getWidth() : (int) Math.ceil((canvas.getWidth() * aspectRatio));
-        int subHeight = aspectRatio >= 1 ? (int) Math.ceil((canvas.getHeight() / aspectRatio)) : canvas.getHeight();
+        int subWidth = aspectRatio >= 1 ? canvas.getWidth() : (int) Math.Ceiling((canvas.getWidth() * aspectRatio));
+        int subHeight = aspectRatio >= 1 ? (int) Math.Ceiling((canvas.getHeight() / aspectRatio)) : canvas.getHeight();
 
         // yShift shifts image down to change origin from upper-left to lower-left
         double yShift = aspectRatio >= 1d ? (1d - 1d / aspectRatio) * canvas.getHeight() : 0d;

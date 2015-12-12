@@ -6,6 +6,8 @@
 
 using SharpEarth.globes;
 using SharpEarth.geom;
+using System;
+
 namespace SharpEarth.terrain{
 
 

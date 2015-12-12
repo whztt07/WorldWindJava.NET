@@ -76,7 +76,7 @@ public class BoundedHashMap<K, V> : java.util.LinkedHashMap<K, V>
 
     protected static int getInitialCapacity(int capacity, float loadFactor)
     {
-        return WWMath.powerOfTwoCeiling((int) Math.ceil(capacity / loadFactor));
+        return WWMath.powerOfTwoCeiling((int) Math.Ceiling(capacity / loadFactor));
     }
 
     protected bool removeEldestEntry(java.util.Map.Entry<K, V> eldest)

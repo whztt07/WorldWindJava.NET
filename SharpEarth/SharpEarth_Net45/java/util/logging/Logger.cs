@@ -1,4 +1,5 @@
 ﻿using System;
+using SharpEarth.exception;
 
 namespace java.util.logging
 {
@@ -15,6 +16,16 @@ namespace java.util.logging
     }
 
     internal void log(object sEVERE, string v1, string v2)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void warning( string v )
+    {
+      throw new NotImplementedException();
+    }
+
+    internal void severe( string message, Exception e )
     {
       throw new NotImplementedException();
     }

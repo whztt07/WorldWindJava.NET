@@ -5,7 +5,7 @@
  */
 
 using javax.xml.stream.XMLEventReader;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 namespace SharpEarth.ogc.collada{
 

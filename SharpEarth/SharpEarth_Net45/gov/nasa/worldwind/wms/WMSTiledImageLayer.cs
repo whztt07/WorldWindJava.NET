@@ -17,6 +17,7 @@ using SharpEarth.exception;
 using SharpEarth.avlist;
 using SharpEarth.java.net;
 using SharpEarth.java.org.w3c.dom;
+using System.Text;
 
 namespace SharpEarth.wms{
 
@@ -156,16 +157,16 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
     }
 
     // TODO: consolidate common code in WMSTiledImageLayer.URLBuilder and WMSBasicElevationModel.URLBuilder
-    public static class URLBuilder : TileUrlBuilder
+    public class URLBuilder : TileUrlBuilder
     {
-        private static final String MAX_VERSION = "1.3.0";
+        private static readonly String MAX_VERSION = "1.3.0";
 
-        private final String layerNames;
-        private final String styleNames;
-        private final String imageFormat;
-        private final String wmsVersion;
-        private final String crs;
-        private final String backgroundColor;
+        private readonly String layerNames;
+        private readonly String styleNames;
+        private readonly String imageFormat;
+        private readonly String wmsVersion;
+        private readonly String crs;
+        private readonly String backgroundColor;
         public String URLTemplate;
 
         public URLBuilder(AVList parameters)
@@ -197,63 +198,63 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
 
         public URL getURL(Tile tile, String altImageFormat)
         {
-            StringBuffer sb;
+            StringBuilder sb;
             if (this.URLTemplate == null)
             {
-                sb = new StringBuffer(WWXML.fixGetMapString(tile.getLevel().getService()));
+                sb = new StringBuilder(WWXML.fixGetMapString(tile.getLevel().getService()));
 
-                if (!sb.ToString().toLowerCase().contains("service=wms"))
-                    sb.append("service=WMS");
-                sb.append("&request=GetMap");
-                sb.append("&version=").append(this.wmsVersion);
-                sb.append(this.crs);
-                sb.append("&layers=").append(this.layerNames);
-                sb.append("&styles=").append(this.styleNames != null ? this.styleNames : "");
-                sb.append("&transparent=TRUE");
+                if (!sb.ToString().ToLower().Contains("service=wms"))
+                    sb.Append("service=WMS");
+                sb.Append("&request=GetMap");
+                sb.Append("&version=").Append(this.wmsVersion);
+                sb.Append(this.crs);
+                sb.Append("&layers=").Append(this.layerNames);
+                sb.Append("&styles=").Append(this.styleNames != null ? this.styleNames : "");
+                sb.Append("&transparent=TRUE");
                 if (this.backgroundColor != null)
-                    sb.append("&bgcolor=").append(this.backgroundColor);
+                    sb.Append("&bgcolor=").Append(this.backgroundColor);
 
                 this.URLTemplate = sb.ToString();
             }
             else
             {
-                sb = new StringBuffer(this.URLTemplate);
+                sb = new StringBuilder(this.URLTemplate);
             }
 
             String format = (altImageFormat != null) ? altImageFormat : this.imageFormat;
             if (null != format)
-                sb.append("&format=").append(format);
+                sb.Append("&format=").Append(format);
 
-            sb.append("&width=").append(tile.getWidth());
-            sb.append("&height=").append(tile.getHeight());
+            sb.Append("&width=").Append(tile.getWidth());
+            sb.Append("&height=").Append(tile.getHeight());
 
             Sector s = tile.getSector();
-            sb.append("&bbox=");
+            sb.Append("&bbox=");
             // The order of the coordinate specification matters, and it changed with WMS 1.3.0.
-            if (WWUtil.compareVersion(this.wmsVersion, "1.1.1") <= 0 || this.crs.contains("CRS:84"))
+            if (WWUtil.compareVersion(this.wmsVersion, "1.1.1") <= 0 || this.crs.Contains("CRS:84"))
             {
                 // 1.1.1 and earlier and CRS:84 use lon/lat order
-                sb.append(s.getMinLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMinLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLatitude().getDegrees());
+                sb.Append(s.getMinLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMinLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLatitude().getDegrees());
             }
             else
             {
                 // 1.3.0 uses lat/lon ordering
-                sb.append(s.getMinLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMinLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLongitude().getDegrees());
+                sb.Append(s.getMinLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMinLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLongitude().getDegrees());
             }
 
-            return new java.net.URL(sb.ToString().replace(" ", "%20"));
+            return new URL( sb.ToString().Replace(" ", "%20"));
         }
     }
 
@@ -452,7 +453,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
         s = rs.getStateValueAsString(context, "wms.Version");
         if (s != null)
             parameters.setValue(AVKey.WMS_VERSION, s);
-        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(params));
+        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(parameters));
     }
 
     protected static void legacyWmsRestoreStateToParams(RestorableSupport rs, RestorableSupport.StateObject context,

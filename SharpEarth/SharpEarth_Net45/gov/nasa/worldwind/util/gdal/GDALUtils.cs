@@ -655,7 +655,7 @@ public class GDALUtils
         }
         else if (maxValue > 0d)
         {
-            actualBitsPerColor = (int) Math.ceil(Math.Log(maxValue) / Math.Log(2d));
+            actualBitsPerColor = (int) Math.Ceiling(Math.Log(maxValue) / Math.Log(2d));
         }
         else
         {

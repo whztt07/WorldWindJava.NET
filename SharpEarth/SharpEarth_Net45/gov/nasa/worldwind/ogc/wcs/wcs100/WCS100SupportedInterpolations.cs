@@ -5,7 +5,7 @@
  */
 
 using java.util.List;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml.StringListXMLEventParser;
 namespace SharpEarth.ogc.wcs.wcs100{
 

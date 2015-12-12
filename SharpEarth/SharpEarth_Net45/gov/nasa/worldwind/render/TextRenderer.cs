@@ -592,8 +592,8 @@ public class TextRenderer {
         // nor the pixel bounds works perfectly well
         int minX = (int) Math.Floor(src.getMinX()) - 1;
         int minY = (int) Math.Floor(src.getMinY()) - 1;
-        int maxX = (int) Math.ceil(src.getMaxX()) + 1;
-        int maxY = (int) Math.ceil(src.getMaxY()) + 1;
+        int maxX = (int) Math.Ceiling(src.getMaxX()) + 1;
+        int maxY = (int) Math.Ceiling(src.getMaxY()) + 1;
         return new Rectangle2D.Double(minX, minY, maxX - minX, maxY - minY);
     }
 
@@ -610,8 +610,8 @@ public class TextRenderer {
 
         return new Rectangle2D.Double((int) Math.Floor(src.getMinX() - boundary),
                                       (int) Math.Floor(src.getMinY() - boundary),
-                                      (int) Math.ceil(src.getWidth() + 2 * boundary),
-                                      (int) Math.ceil(src.getHeight()) + 2 * boundary);
+                                      (int) Math.Ceiling(src.getWidth() + 2 * boundary),
+                                      (int) Math.Ceiling(src.getHeight()) + 2 * boundary);
     }
 
     private TextureRenderer getBackingStore() {

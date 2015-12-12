@@ -88,7 +88,7 @@ public class NITFSUtil
     public static String getBitString(java.nio.ByteBuffer buffer, int lenBits)
     {
         String s = "";
-        int len = (int) Math.ceil(lenBits / (double) Byte.SIZE);
+        int len = (int) Math.Ceiling(lenBits / (double) Byte.SIZE);
         if (null != buffer && buffer.remaining() >= len)
         {
             byte[] dest = new byte[len];

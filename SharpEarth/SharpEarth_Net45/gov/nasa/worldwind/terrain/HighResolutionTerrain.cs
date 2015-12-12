@@ -598,8 +598,8 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
     {
         double resTarget = Math.Max(this.globe.getElevationModel().getBestResolution(null), this.targetResolution);
 
-        this.numCols = (int) Math.ceil(this.sector.getDeltaLonRadians() / (this.density * resTarget));
-        this.numRows = (int) Math.ceil(this.sector.getDeltaLatRadians() / (this.density * resTarget));
+        this.numCols = (int) Math.Ceiling(this.sector.getDeltaLonRadians() / (this.density * resTarget));
+        this.numRows = (int) Math.Ceiling(this.sector.getDeltaLatRadians() / (this.density * resTarget));
 
         this.lonTileSize = this.sector.getDeltaLonDegrees() / (this.numCols - 1);
         this.latTileSize = this.sector.getDeltaLatDegrees() / (this.numRows - 1);

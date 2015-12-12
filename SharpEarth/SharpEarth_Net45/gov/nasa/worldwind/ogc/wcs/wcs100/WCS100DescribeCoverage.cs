@@ -8,7 +8,7 @@ using java.util;
 using java.net;
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream;
-using javax.xml.namespace.QName;
+
 using SharpEarth.wms.Request;
 using SharpEarth.util.xml;
 using SharpEarth.util.WWXML;
