@@ -6,7 +6,7 @@
 
 using java.util;
 using SharpEarth.util.xml;
-using SharpEarth.javax.xml.namespaces;
+using javax.xml.namespaces;
 using System;
 using System.Collections.Generic;
 

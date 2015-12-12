@@ -13,7 +13,7 @@ using SharpEarth.geom;
 using SharpEarth.avlist;
 using SharpEarth.globes;
 using SharpEarth;
-using SharpEarth.java.lang;
+using java.lang;
 
 namespace SharpEarth.globes
 {

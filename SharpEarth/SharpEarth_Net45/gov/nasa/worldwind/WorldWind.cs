@@ -7,25 +7,13 @@
 using System;
 using System.Runtime.CompilerServices;
 using java.beans;
-using java.util.logging.Level;
-using java.beans.PropertyChangeListener;
-using javax.media.opengl.GL;
-using javax.imageio.spi.IIORegistry;
 using SharpEarth.util;
-using SharpEarth.retrieve.RetrievalService;
-using SharpEarth.formats.tiff.GeotiffImageReaderSpi;
-using SharpEarth.exception.WWRuntimeException;
-using SharpEarth.cache.SessionCache;
-using SharpEarth.cache.MemoryCacheSet;
-using SharpEarth.cache.MemoryCache;
-using SharpEarth.cache.FileStore;
 using SharpEarth.avlist;
 using SharpEarth.cache;
 using SharpEarth.exception;
 using SharpEarth.formats.tiff;
-using SharpEarth.java.lang;
-using SharpEarth.java.util;
 using SharpEarth.retrieve;
+using java.lang;
 
 namespace SharpEarth{
 
@@ -204,7 +192,7 @@ public sealed class WorldWind
      *
      * @see NetworkStatus
      */
-    public static void setOfflineMode(boolean offlineMode)
+    public static void setOfflineMode(bool offlineMode)
     {
         getNetworkStatus().setOfflineMode(offlineMode);
     }
@@ -219,7 +207,7 @@ public sealed class WorldWind
      */
     public static object createComponent(string className)
     {
-        if (className == null || className.length() == 0)
+        if (className == null || className.Length == 0)
         {
             Logging.logger().severe("nullValue.ClassNameIsNull");
             throw new ArgumentException(Logging.getMessage("nullValue.ClassNameIsNull"));
@@ -227,18 +215,13 @@ public sealed class WorldWind
 
         try
         {
-            Class c = Class.forName(className.trim());
+            Class c = Class.forName(className.Trim());
             return c.newInstance();
         }
         catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE, "WorldWind.ExceptionCreatingComponent", className);
             throw new WWRuntimeException(Logging.getMessage("WorldWind.ExceptionCreatingComponent", className), e);
-        }
-        catch (Throwable t)
-        {
-            Logging.logger().log(Level.SEVERE, "WorldWind.ErrorCreatingComponent", className);
-            throw new WWRuntimeException(Logging.getMessage("WorldWind.ErrorCreatingComponent", className), t);
         }
     }
 
@@ -253,7 +236,7 @@ public sealed class WorldWind
      */
     public static object createConfigurationComponent(string classNameKey)
     {
-        if (classNameKey == null || classNameKey.length() == 0)
+        if (classNameKey == null || classNameKey.Length == 0)
         {
             Logging.logger().severe("nullValue.ClassNameKeyNullZero");
             throw new ArgumentException(Logging.getMessage("nullValue.ClassNameKeyNullZero"));
@@ -269,9 +252,9 @@ public sealed class WorldWind
 
         try
         {
-            return WorldWind.createComponent(name.trim());
+            return WorldWind.createComponent(name.Trim());
         }
-        catch (Throwable e)
+        catch (Exception e)
         {
             Logging.logger().log(Level.SEVERE, "WorldWind.UnableToCreateClassForConfigurationKey", name);
             throw new IllegalStateException(

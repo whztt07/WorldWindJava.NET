@@ -13,7 +13,7 @@ using SharpEarth.ogc.OGCCapabilities;
 using SharpEarth.exception;
 using SharpEarth.avlist;
 using System;
-using SharpEarth.java.org.w3c.dom;
+using java.org.w3c.dom;
 using.QName.SharpEarth.ogc;
 
 namespace SharpEarth{

@@ -12,8 +12,8 @@ using SharpEarth.exception;
 using SharpEarth.avlist;
 using System.Xml.Linq;
 using System.Text;
-using SharpEarth.java.io;
-using SharpEarth.java.net;
+using java.io;
+using java.net;
 using System.Collections.Generic;
 
 namespace SharpEarth.terrain{

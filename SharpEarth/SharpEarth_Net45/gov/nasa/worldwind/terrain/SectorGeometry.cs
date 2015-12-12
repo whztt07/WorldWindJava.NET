@@ -7,7 +7,7 @@ using SharpEarth.render;
 using SharpEarth.pick;
 using SharpEarth.geom;
 using System.Collections.Generic;
-using SharpEarth.java.awt;
+using java.awt;
 
 namespace SharpEarth.terrain{
 

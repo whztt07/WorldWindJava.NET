@@ -7,7 +7,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SharpEarth.java.net;
+using java.net;
 using SharpEarth.util;
 
 namespace SharpEarth.wms

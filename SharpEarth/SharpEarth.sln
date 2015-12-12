@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEarth_Net45", "SharpEarth_Net45\SharpEarth_Net45.csproj", "{C7D4D4C4-51B3-4E1B-8C93-58BF55296342}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpEarth.Java", "SharpEarth.Java\SharpEarth.Java.csproj", "{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C7D4D4C4-51B3-4E1B-8C93-58BF55296342}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7D4D4C4-51B3-4E1B-8C93-58BF55296342}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C7D4D4C4-51B3-4E1B-8C93-58BF55296342}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,26 +7,26 @@
 using SharpEarth.render;
 using SharpEarth.geom;
 using SharpEarth.avlist;
-using SharpEarth.javax.xml.parsers;
+using javax.xml.parsers;
 using SharpEarth.exception;
-using SharpEarth.javax.xml.transform;
-using SharpEarth.java.org.w3c.dom;
+using javax.xml.transform;
+using java.org.w3c.dom;
 using System;
-using SharpEarth.java.io;
-using SharpEarth.java.net;
+using java.io;
+using java.net;
 using System.IO;
 using System.Net;
 using System.Text;
 using System.Xml.XPath;
 using org.xml.sax;
 using SharpEarth.data;
-using SharpEarth.java.lang;
-using SharpEarth.javax.xml.xpath;
+using java.lang;
+using javax.xml.xpath;
 using SharpEarth.util;
-using SharpEarth.javax.xml.stream.events;
-using SharpEarth.javax.xml.stream;
-using SharpEarth.javax.xml.transform.dom;
-using SharpEarth.javax.xml.transform.stream;
+using javax.xml.stream.events;
+using javax.xml.stream;
+using javax.xml.transform.dom;
+using javax.xml.transform.stream;
 
 namespace SharpEarth.util {
 

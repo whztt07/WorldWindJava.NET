@@ -6,8 +6,10 @@
 
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
-
+using javax.xml.namespaces;
 using SharpEarth.util.xml;
+using System;
+
 namespace SharpEarth.ogc{
 
 
@@ -35,9 +37,8 @@ public class OGCAddress : AbstractXMLEventParser
     protected String country;
 
     public OGCAddress(String namespaceURI)
+            : base(namespaceURI)
     {
-        super(namespaceURI);
-
         this.initialize();
     }
 
@@ -51,7 +52,6 @@ public class OGCAddress : AbstractXMLEventParser
         COUNTRY = new QName(this.getNamespaceURI(), "Country");
     }
 
-    @Override
     protected void doParseEventContent(XMLEventParserContext ctx, XMLEvent event, Object... args)
         throws XMLStreamException
     {

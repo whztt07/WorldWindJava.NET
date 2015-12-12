@@ -18,10 +18,10 @@ using SharpEarth.Configuration;
 using com.jogamp.common.nio.Buffers;
 using System.Text;
 using System.IO;
-using SharpEarth.java.net;
+using java.net;
 using System;
-using SharpEarth.java.io;
-using SharpEarth.java.lang;
+using java.io;
+using java.lang;
 
 namespace SharpEarth.util{
 

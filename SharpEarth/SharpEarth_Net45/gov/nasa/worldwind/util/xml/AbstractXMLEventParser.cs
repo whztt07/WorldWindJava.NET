@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.javax.xml.stream.events;
+using javax.xml.stream.events;
 using System.Text;
 
 namespace SharpEarth.util.xml{

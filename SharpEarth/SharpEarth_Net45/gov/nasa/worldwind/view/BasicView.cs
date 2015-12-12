@@ -14,9 +14,9 @@ using SharpEarth.awt;
 using SharpEarth.avlist;
 using SharpEarth.animation;
 using SharpEarth;
-using SharpEarth.java.awt;
-using SharpEarth.java.lang;
-using SharpEarth.java.util;
+using java.awt;
+using java.lang;
+using java.util;
 
 namespace SharpEarth.view{
 
