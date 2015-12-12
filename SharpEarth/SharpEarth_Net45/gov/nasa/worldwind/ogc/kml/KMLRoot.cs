@@ -1180,7 +1180,7 @@ public class KMLRoot : KMLAbstractObject , KMLRenderable
         if (!this.hasFields())
             return null;
 
-        foreach (Map.Entry<String, Object> entry  in  this.getFields().getEntries())
+        for (Map.Entry<String, Object> entry : this.getFields().getEntries())
         {
             if (entry.getValue() is KMLAbstractFeature)
                 return (KMLAbstractFeature) entry.getValue();

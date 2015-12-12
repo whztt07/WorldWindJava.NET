@@ -55,7 +55,7 @@ public class KMLDelete : AbstractXMLEventParser , KMLUpdateOperation
 
     public void applyOperation(KMLRoot targetRoot)
     {
-        foreach (KMLAbstractFeature feature  in  this.features)
+        for (KMLAbstractFeature feature : this.features)
         {
             String targetId = feature.getTargetId();
             if (WWUtil.isEmpty(targetId))

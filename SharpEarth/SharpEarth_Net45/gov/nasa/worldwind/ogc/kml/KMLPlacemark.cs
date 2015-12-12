@@ -101,7 +101,7 @@ public class KMLPlacemark : KMLAbstractFeature
         List<KMLRenderable> rs = this.getRenderables();
         if (rs != null)
         {
-            foreach (KMLRenderable r  in  rs)
+            for (KMLRenderable r : rs)
             {
                 r.preRender(tc, dc);
             }
@@ -123,7 +123,7 @@ public class KMLPlacemark : KMLAbstractFeature
         List<KMLRenderable> rs = this.getRenderables();
         if (rs != null)
         {
-            foreach (KMLRenderable r  in  rs)
+            for (KMLRenderable r : rs)
             {
                 r.render(tc, dc);
             }
@@ -154,7 +154,7 @@ public class KMLPlacemark : KMLAbstractFeature
             List<KMLAbstractGeometry> geoms = ((KMLMultiGeometry) geom).geometries;
             if (geoms != null)
             {
-                foreach (KMLAbstractGeometry g  in  geoms)
+                for (KMLAbstractGeometry g : geoms)
                 {
                     this.initializeGeometry(tc, g); // recurse
                 }
@@ -258,7 +258,7 @@ public class KMLPlacemark : KMLAbstractFeature
 
             if (this.renderables != null)
             {
-                foreach (KMLRenderable renderable  in  this.renderables)
+                for (KMLRenderable renderable : this.renderables)
                 {
                     renderable.onMessage(msg);
                 }
@@ -275,7 +275,7 @@ public class KMLPlacemark : KMLAbstractFeature
         }
         else if (KMLAbstractObject.MSG_STYLE_CHANGED.Equals(msg.getName()))
         {
-            foreach (KMLRenderable renderable  in  this.renderables)
+            for (KMLRenderable renderable : this.renderables)
             {
                 renderable.onMessage(msg);
             }

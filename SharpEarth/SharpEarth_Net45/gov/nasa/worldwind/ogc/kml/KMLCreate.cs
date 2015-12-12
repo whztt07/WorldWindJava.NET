@@ -55,7 +55,7 @@ public class KMLCreate : AbstractXMLEventParser , KMLUpdateOperation
 
     public void applyOperation(KMLRoot targetRoot)
     {
-        foreach (KMLAbstractContainer container  in  this.containers)
+        for (KMLAbstractContainer container : this.containers)
         {
             String targetId = container.getTargetId();
             if (WWUtil.isEmpty(targetId))
@@ -67,7 +67,7 @@ public class KMLCreate : AbstractXMLEventParser , KMLUpdateOperation
 
             KMLAbstractContainer receivingContainer = (KMLAbstractContainer) o;
 
-            foreach (KMLAbstractFeature feature  in  container.getFeatures())
+            for (KMLAbstractFeature feature : container.getFeatures())
             {
                 receivingContainer.addFeature(feature);
             }

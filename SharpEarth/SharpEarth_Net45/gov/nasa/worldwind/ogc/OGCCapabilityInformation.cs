@@ -178,17 +178,17 @@ abstract public class OGCCapabilityInformation : AbstractXMLEventParser
     {
         StringBuilder sb = new StringBuilder();
 
-        foreach (String ef  in  this.getExceptionFormats())
+        for (String ef : this.getExceptionFormats())
         {
-            sb.append("Exception foreachmat in  ").append(ef).append("\n");
+            sb.append("Exception format: ").append(ef).append("\n");
         }
 
-        foreach (OGCRequestDescription rd  in  this.getRequestDescriptions())
+        for (OGCRequestDescription rd : this.getRequestDescriptions())
         {
             sb.append(rd);
         }
 
-        foreach (Map.Entry<String, String> uds  in  this.getUserDefinedSymbolization().entrySet())
+        for (Map.Entry<String, String> uds : this.getUserDefinedSymbolization().entrySet())
         {
             sb.append(uds.getKey()).append("=").append(uds.getValue()).append("\n");
         }

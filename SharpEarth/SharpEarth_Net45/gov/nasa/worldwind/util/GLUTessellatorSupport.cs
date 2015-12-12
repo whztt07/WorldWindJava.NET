@@ -318,13 +318,13 @@ public class GLUTessellatorSupport
         public void end()
         {
             this.triangleBuffer = IntBuffer.allocate(this.triangles.size());
-            foreach (Integer index  in  this.triangles)
+            for (Integer index : this.triangles)
             {
                 this.triangleBuffer.put(index);
             }
 
             this.lineBuffer = IntBuffer.allocate(this.lines.size());
-            foreach (Integer index  in  this.lines)
+            for (Integer index : this.lines)
             {
                 this.lineBuffer.put(index);
             }

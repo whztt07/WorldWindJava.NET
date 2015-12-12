@@ -33,7 +33,7 @@ public class WCS100Capability : AbstractXMLEventParser
     {
         WCS100Request request = this.getRequest();
         WCS100RequestDescription description = request.getRequest(opName);
-        foreach (WCS100DCPType dcpType  in  description.getDCPTypes())
+        for (WCS100DCPType dcpType : description.getDCPTypes())
         {
             WCS100HTTP http = dcpType.getHTTP();
             String address = http.getGetAddress();

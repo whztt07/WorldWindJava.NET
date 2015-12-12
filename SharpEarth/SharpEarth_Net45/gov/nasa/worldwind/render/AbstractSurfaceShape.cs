@@ -769,7 +769,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
         if (geom == null)
             return;
 
-        foreach (List<LatLon> locations  in  geom)
+        for (List<LatLon> locations : geom)
         {
             List<LatLon> drawLocations = new ArrayList<LatLon>(locations);
 
@@ -892,7 +892,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
 
         this.applyOutlineState(dc, this.getActiveAttributes());
 
-        foreach (List<LatLon> drawLocations  in  this.activeOutlineGeometry)
+        for (List<LatLon> drawLocations : this.activeOutlineGeometry)
         {
             this.drawLineStrip(dc, drawLocations);
         }
@@ -908,7 +908,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
             vertexBuffer = Buffers.newDirectFloatBuffer(2 * locations.size());
         vertexBuffer.clear();
 
-        foreach (LatLon ll  in  locations)
+        for (LatLon ll : locations)
         {
             vertexBuffer.put((float) (ll.getLongitude().degrees - refPos.getLongitude().degrees));
             vertexBuffer.put((float) (ll.getLatitude().degrees - refPos.getLatitude().degrees));
@@ -1023,7 +1023,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
         if (contours == null)
             return; // shape has no caller specified data
 
-        foreach (List<LatLon> contour  in  contours)
+        for (List<LatLon> contour : contours)
         {
             String pole = this.containsPole(contour);
             if (pole != null) // Wrap the contour around the pole and along the anti-meridian. See WWJ-284.
@@ -1052,7 +1052,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
         {
             GLU.gluTessBeginContour(tess);
 
-            foreach (LatLon location  in  contour)
+            for (LatLon location : contour)
             {
                 double[] vertex = {location.longitude.degrees, location.latitude.degrees, 0};
                 GLU.gluTessVertex(tess, vertex, 0, vertex);
@@ -1219,7 +1219,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
         LatLon firstLocation = null;
         LatLon lastLocation = null;
 
-        foreach (LatLon ll  in  iterable)
+        for (LatLon ll : iterable)
         {
             if (firstLocation == null)
             {
@@ -1361,10 +1361,10 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
         int numBytes = 0;
         GLU.gluTessBeginPolygon(tess, null);
 
-        foreach (List<LatLon> drawLocations  in  this.getActiveGeometry())
+        for (List<LatLon> drawLocations : this.getActiveGeometry())
         {
             GLU.gluTessBeginContour(tess);
-            foreach (LatLon ll  in  drawLocations)
+            for (LatLon ll : drawLocations)
             {
                 double[] vertex = new double[3];
                 vertex[0] = ll.getLongitude().degrees - referencePos.getLongitude().degrees;
@@ -1414,7 +1414,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
             Iterable<? extends LatLon> locations = this.getLocations(globe);
             if (locations != null)
             {
-                foreach (LatLon ll  in  locations)
+                for (LatLon ll : locations)
                 {
                     arrayList.add(ll);
                 }
@@ -1457,7 +1457,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
             this.getHighlightAttributes().getRestorableState(rs, rs.addStateObject(context, "highlightAttrs"));
 
         RestorableSupport.StateObject so = rs.addStateObject(null, "avlist");
-        foreach (Map.Entry<String, Object> avp  in  this.getEntries())
+        for (Map.Entry<String, Object> avp : this.getEntries())
         {
             this.getRestorableStateForAVPair(avp.getKey(), avp.getValue() != null ? avp.getValue() : "", rs, so);
         }
@@ -1527,7 +1527,7 @@ public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShap
             RestorableSupport.StateObject[] avpairs = rs.getAllStateObjects(so, "");
             if (avpairs != null)
             {
-                foreach (RestorableSupport.StateObject avp  in  avpairs)
+                for (RestorableSupport.StateObject avp : avpairs)
                 {
                     if (avp != null)
                         this.setValue(avp.getName(), avp.getValue());

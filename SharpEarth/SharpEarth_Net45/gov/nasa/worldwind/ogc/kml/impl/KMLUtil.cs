@@ -212,7 +212,7 @@ public class KMLUtil
         else if (geometry is KMLMultiGeometry)
         {
             java.util.List<KMLAbstractGeometry> geoms = ((KMLMultiGeometry) geometry).getGeometries();
-            foreach (KMLAbstractGeometry g  in  geoms)
+            for (KMLAbstractGeometry g : geoms)
             {
                 // Recurse, adding positions for the sub-geometry
                 getPositions(globe, g, positions);
@@ -233,7 +233,7 @@ public class KMLUtil
         String altitudeMode)
     {
         java.util.List<Position> outPositions = new ArrayList<Position>(positions.size());
-        foreach (Position p  in  positions)
+        for (Position p : positions)
         {
             outPositions.add(computeAltitude(globe, p, altitudeMode));
         }
@@ -309,7 +309,7 @@ public class KMLUtil
         Vec4 centerPoint = sector.computeCenterPoint(globe, 1);
 
         // Rotate each point around the surface normal, and convert back to geographic
-        foreach (Vec4 point  in  verts)
+        for (Vec4 point : verts)
         {
             point = point.subtract3(centerPoint).transformBy3(rotationMatrix).add3(centerPoint);
             LatLon ll = globe.computePositionFromPoint(point);

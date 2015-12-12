@@ -230,7 +230,7 @@ public class VPFDatabase : AVListImpl
             throw new ArgumentException(message);
         }
 
-        foreach (VPFLibrary lib  in  collection)
+        for (VPFLibrary lib : collection)
         {
             this.addLibrary(lib);
         }
@@ -319,7 +319,7 @@ public class VPFDatabase : AVListImpl
     {
         ArrayList<VPFLibrary> list = new ArrayList<VPFLibrary>();
 
-        foreach (VPFRecord row  in  table)
+        for (VPFRecord row : table)
         {
             String name = (String) row.getValue("library_name");
             if (name != null)

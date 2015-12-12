@@ -1729,7 +1729,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                foreach (int c  in  originalColors)
+                for (int c : originalColors)
                 {
                     if (sourceColors[index] == c)
                     {
@@ -1799,7 +1799,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                foreach (int c  in  originalColors)
+                for (int c : originalColors)
                 {
                     if (sourceColors[index] == originalColors[c])
                         destColors[index] = newColors[c];
@@ -2016,7 +2016,7 @@ public class ImageUtil
             for (int x = 0; x < width; x++)
             {
                 double v = raster.getDoubleAtPosition(y, x);
-                // set pixel and alpha as zero (transparent) foreach pixel which is in 
+                // set pixel and alpha as zero (transparent) for pixel which is:
                 // - equals to missingDataSignal
                 // - is zero
                 // - greater than max elevation or smaller than min elevation

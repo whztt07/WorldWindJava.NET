@@ -52,7 +52,7 @@ public class XMLEventParserContextFactory
          */
         public ParserTableEntry(String[] mimeTypes, XMLEventParserContext prototypeContext)
         {
-            foreach (String mimeType  in  mimeTypes)
+            for (String mimeType : mimeTypes)
             {
                 this.mimeTypes.add(mimeType);
             }
@@ -180,9 +180,9 @@ public class XMLEventParserContextFactory
             throw new ArgumentException(message);
         }
 
-        foreach (ParserTableEntry entry  in  parsers)
+        for (ParserTableEntry entry : parsers)
         {
-            foreach (String entryMimeType  in  entry.mimeTypes)
+            for (String entryMimeType : entry.mimeTypes)
             {
                 if (entryMimeType.Equals(mimeType))
                 {

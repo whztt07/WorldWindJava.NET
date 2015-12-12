@@ -41,7 +41,7 @@ public class XALParserContext : BasicXMLEventParserContext
         parsers.put(new QName(xns, "Thoroughfare"), new XALThoroughfare(xns));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        foreach (String s  in  StringFields)
+        for (String s : StringFields)
         {
             parsers.put(new QName(xns, s), stringParser);
         }

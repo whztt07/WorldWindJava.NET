@@ -23,7 +23,7 @@ public class BasicClutterFilter : ClutterFilter
 
     public void apply(DrawContext dc, List<Declutterable> shapes)
     {
-        foreach (Declutterable shape  in  shapes)
+        for (Declutterable shape : shapes)
         {
             Rectangle2D bounds = shape.getBounds(dc);
             if (bounds == null)
@@ -60,7 +60,7 @@ public class BasicClutterFilter : ClutterFilter
             return null;
 
         // Performs a simple linear search. This is a performance bottleneck for very large lists.
-        foreach (Rectangle2D rect  in  this.rectList)
+        for (Rectangle2D rect : this.rectList)
         {
             if (rectangle.intersects(rect))
                 return rect;

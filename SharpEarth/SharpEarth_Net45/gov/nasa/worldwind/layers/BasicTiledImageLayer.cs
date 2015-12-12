@@ -946,7 +946,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
         AVList constructionParams = (AVList) this.getValue(AVKey.CONSTRUCTION_PARAMETERS);
         if (constructionParams != null)
         {
-            foreach (Map.Entry<String, Object> avp  in  constructionParams.getEntries())
+            for (Map.Entry<String, Object> avp : constructionParams.getEntries())
             {
                 this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, context);
             }
@@ -962,7 +962,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
         rs.addStateValueAsBoolean(context, "TiledImageLayer.UseTransparentTextures", this.isUseTransparentTextures());
 
         RestorableSupport.StateObject so = rs.addStateObject(context, "avlist");
-        foreach (Map.Entry<String, Object> avp  in  this.getEntries())
+        for (Map.Entry<String, Object> avp : this.getEntries())
         {
             this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, so);
         }
@@ -1035,7 +1035,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
             RestorableSupport.StateObject[] avpairs = rs.getAllStateObjects(so, "");
             if (avpairs != null)
             {
-                foreach (RestorableSupport.StateObject avp  in  avpairs)
+                for (RestorableSupport.StateObject avp : avpairs)
                 {
                     if (avp != null)
                         this.doRestoreStateForObject(rs, avp);

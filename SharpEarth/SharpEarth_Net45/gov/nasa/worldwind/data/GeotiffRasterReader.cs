@@ -86,7 +86,7 @@ public class GeotiffRasterReader : AbstractDataRasterReader
             if (null != rasters)
             {
                 String[] keysToCopy = new String[] {AVKey.SECTOR};
-                foreach (DataRaster raster  in  rasters)
+                for (DataRaster raster : rasters)
                 {
                     WWUtil.copyValues(metadata, raster, keysToCopy, false);
                 }

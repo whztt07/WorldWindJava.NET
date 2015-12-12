@@ -89,7 +89,7 @@ public class ColladaAccessor : ColladaAbstractObject
     public int size()
     {
         int count = 0;
-        foreach (ColladaParam param  in  this.params)
+        for (ColladaParam param : this.params)
         {
             if (!WWUtil.isEmpty(param.getName()))
                 count += 1;
@@ -134,7 +134,7 @@ public class ColladaAccessor : ColladaAbstractObject
 
         for (int i = 0; i < this.getCount() && index < floats.length; i++)
         {
-            foreach (ColladaParam param  in  this.params)
+            for (ColladaParam param : this.params)
             {
                 if (index >= floats.length)
                     break;

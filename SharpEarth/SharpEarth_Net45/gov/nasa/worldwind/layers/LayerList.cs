@@ -63,7 +63,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
     {
         ArrayList<Layer> deltaList = new ArrayList<Layer>();
 
-        foreach (Layer layer  in  newList)
+        for (Layer layer : newList)
         {
             if (!oldList.contains(layer))
                 deltaList.add(layer);
@@ -97,12 +97,12 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
         for (int i = 1; i < lists.length; i++)
         {
             LayerList ll = lists[i];
-            foreach (Layer layer  in  ll)
+            for (Layer layer : ll)
             {
                 list.add(layer);
             }
 
-            foreach (Layer layer  in  ll)
+            for (Layer layer : ll)
             {
                 ll.remove(layer);
             }
@@ -232,7 +232,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool remove(Object o)
     {
-        foreach (Layer layer  in  this)
+        for (Layer layer : this)
         {
             if (layer.Equals(o))
                 layer.removePropertyChangeListener(this);
@@ -248,7 +248,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool addIfAbsent(Layer layer)
     {
-        foreach (Layer l  in  this)
+        for (Layer l : this)
         {
             if (l.Equals(layer))
                 return false;
@@ -266,7 +266,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool removeAll(Collection<?> objects)
     {
-        foreach (Layer layer  in  this)
+        for (Layer layer : this)
         {
             layer.removePropertyChangeListener(this);
         }
@@ -276,7 +276,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
         if (removed)
             this.firePropertyChange(AVKey.LAYERS, copy, this);
 
-        foreach (Layer layer  in  this)
+        for (Layer layer : this)
         {
             layer.addPropertyChangeListener(this);
         }
@@ -286,7 +286,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool removeAll()
     {
-        foreach (Layer layer  in  this)
+        for (Layer layer : this)
         {
             layer.removePropertyChangeListener(this);
         }
@@ -301,7 +301,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public int addAllAbsent(Collection<? extends Layer> layers)
     {
-        foreach (Layer layer  in  layers)
+        for (Layer layer : layers)
         {
             if (!this.contains(layer))
                 layer.addPropertyChangeListener(this);
@@ -317,7 +317,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool addAll(Collection<? extends Layer> layers)
     {
-        foreach (Layer layer  in  layers)
+        for (Layer layer : layers)
         {
             layer.addPropertyChangeListener(this);
         }
@@ -332,7 +332,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
     public bool addAll(int i, Collection<? extends Layer> layers)
     {
-        foreach (Layer layer  in  layers)
+        for (Layer layer : layers)
         {
             layer.addPropertyChangeListener(this);
         }
@@ -348,7 +348,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
     @SuppressWarnings( {"SuspiciousMethodCalls"})
     public bool retainAll(Collection<?> objects)
     {
-        foreach (Layer layer  in  this)
+        for (Layer layer : this)
         {
             if (!objects.contains(layer))
                 layer.removePropertyChangeListener(this);
@@ -367,7 +367,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
         ArrayList<Layer> toDelete = new ArrayList<Layer>();
         ArrayList<Layer> toKeep = new ArrayList<Layer>();
 
-        foreach (Layer layer  in  layers)
+        for (Layer layer : layers)
         {
             if (!this.contains(layer))
                 toDelete.add(layer);
@@ -375,14 +375,14 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
                 toKeep.add(layer);
         }
 
-        foreach (Layer layer  in  toDelete)
+        for (Layer layer : toDelete)
         {
             this.remove(layer);
         }
 
         super.clear();
 
-        foreach (Layer layer  in  layers)
+        for (Layer layer : layers)
         {
             if (!toKeep.contains(layer))
                 layer.addPropertyChangeListener(this);
@@ -400,7 +400,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
             throw new ArgumentException(message);
         }
 
-        foreach (Layer l  in  this)
+        for (Layer l : this)
         {
             if (l.getName().Equals(name))
                 return l;
@@ -420,7 +420,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
 
         ArrayList<Layer> layers = new ArrayList<Layer>();
 
-        foreach (Layer l  in  this)
+        for (Layer l : this)
         {
             if (l.GetType().Equals(classToFind))
                 layers.add(l);
@@ -544,7 +544,7 @@ public class LayerList : CopyOnWriteArrayList<Layer>, WWObject
     public override string ToString()
     {
         String r = "";
-        foreach (Layer l  in  this)
+        for (Layer l : this)
         {
             r += l.ToString() + ", ";
         }

@@ -94,7 +94,7 @@ public class DecisionTree<T, C> // T = type being managed. C = traversal context
         if (this.controller.isTerminal(o, context))
             return;
 
-        foreach (T child  in  this.controller.split(o, context))
+        for (T child : this.controller.split(o, context))
         {
             this.traverse(child, context);
         }

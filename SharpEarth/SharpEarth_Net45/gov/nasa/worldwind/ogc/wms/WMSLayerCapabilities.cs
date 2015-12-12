@@ -167,7 +167,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         this.enclosingCapabilityInformation = caps;
 
         // Resolve inherited attributes for children.
-        foreach (WMSLayerCapabilities lc  in  this.getLayers())
+        for (WMSLayerCapabilities lc : this.getLayers())
         {
             lc.setEnclosingCapabilityInformation(caps);
         }
@@ -229,7 +229,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         }
 
         // Resolve inherited attributes for children.
-        foreach (WMSLayerCapabilities caps  in  this.getLayers())
+        for (WMSLayerCapabilities caps : this.getLayers())
         {
             caps.resolveAttributes(this);
         }
@@ -636,7 +636,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (this.getName() != null)
             namedLayers.add(this);
 
-        foreach (WMSLayerCapabilities layer  in  this.getLayers())
+        for (WMSLayerCapabilities layer : this.getLayers())
         {
             namedLayers.addAll(layer.getNamedLayers());
         }
@@ -652,7 +652,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (this.getName() != null && this.getName().Equals(name))
             return this;
 
-        foreach (WMSLayerCapabilities lc  in  this.getLayers())
+        for (WMSLayerCapabilities lc : this.getLayers())
         {
             if (lc.getName() != null && lc.getName().Equals(name))
                 return lc;
@@ -666,7 +666,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (WWUtil.isEmpty(name))
             return null;
 
-        foreach (WMSLayerStyle style  in  this.getStyles())
+        for (WMSLayerStyle style : this.getStyles())
         {
             if (style.getName().Equals(name))
                 return style;
@@ -746,7 +746,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (dims.size() == 0)
             return;
 
-        foreach (WMSLayerDimension dim  in  dims)
+        for (WMSLayerDimension dim : dims)
         {
             this.addDimension(dim);
         }
@@ -778,7 +778,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (inExtents.size() == 0)
             return;
 
-        foreach (WMSLayerExtent extent  in  inExtents)
+        for (WMSLayerExtent extent : inExtents)
         {
             this.addExtent(extent);
         }
@@ -867,7 +867,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addAttributions(Set<WMSLayerAttribution> attribs)
     {
-        foreach (WMSLayerAttribution attrib  in  attribs)
+        for (WMSLayerAttribution attrib : attribs)
         {
             this.addAttribution(attrib);
         }
@@ -896,7 +896,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addAuthorityURLs(Set<WMSAuthorityURL> urls)
     {
-        foreach (WMSAuthorityURL url  in  urls)
+        for (WMSAuthorityURL url : urls)
         {
             this.addAuthorityURL(url);
         }
@@ -920,7 +920,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addIdentifiers(Set<WMSLayerIdentifier> ids)
     {
-        foreach (WMSLayerIdentifier id  in  ids)
+        for (WMSLayerIdentifier id : ids)
         {
             this.addIdentifer(id);
         }
@@ -944,7 +944,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addMetadataURLs(Set<WMSLayerInfoURL> urls)
     {
-        foreach (WMSLayerInfoURL url  in  urls)
+        for (WMSLayerInfoURL url : urls)
         {
             this.addMetadataURL(url);
         }
@@ -968,7 +968,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addFeatureListURLs(Set<WMSLayerInfoURL> urls)
     {
-        foreach (WMSLayerInfoURL url  in  urls)
+        for (WMSLayerInfoURL url : urls)
         {
             this.addFeatureListURL(url);
         }
@@ -992,7 +992,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addDataURLs(Set<WMSLayerInfoURL> urls)
     {
-        foreach (WMSLayerInfoURL url  in  urls)
+        for (WMSLayerInfoURL url : urls)
         {
             this.addDataURL(url);
         }
@@ -1016,7 +1016,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addLayers(Set<WMSLayerCapabilities> inLayers)
     {
-        foreach (WMSLayerCapabilities layer  in  inLayers)
+        for (WMSLayerCapabilities layer : inLayers)
         {
             this.addLayer(layer);
         }
@@ -1045,7 +1045,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addStyles(Set<WMSLayerStyle> inStyles)
     {
-        foreach (WMSLayerStyle style  in  inStyles)
+        for (WMSLayerStyle style : inStyles)
         {
             this.addStyle(style);
         }
@@ -1074,7 +1074,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addBoundingBoxes(Set<OGCBoundingBox> boxes)
     {
-        foreach (OGCBoundingBox bbox  in  boxes)
+        for (OGCBoundingBox bbox : boxes)
         {
             this.addBoundingBox(bbox);
         }
@@ -1176,7 +1176,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addSRS(Set<String> srss)
     {
-        foreach (String c  in  srss)
+        for (String c : srss)
         {
             this.addSRS(c);
         }
@@ -1205,7 +1205,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
 
     protected void addCRS(Set<String> crss)
     {
-        foreach (String c  in  crss)
+        for (String c : crss)
         {
             this.addCRS(c);
         }
@@ -1220,7 +1220,7 @@ public class WMSLayerCapabilities : AbstractXMLEventParser
         if (coordSystems == null)
             return false;
 
-        foreach (String s  in  coordSystems)
+        for (String s : coordSystems)
         {
             if (coordSys.Equals(s))
                 return true;

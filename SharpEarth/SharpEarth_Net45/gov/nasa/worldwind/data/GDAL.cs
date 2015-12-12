@@ -152,7 +152,7 @@ public class GDAL
 
                 CoordinateTransformation ct = new CoordinateTransformation(srs, GDALUtils.createGeographicSRS());
 
-                foreach (java.awt.geom.Point2D corner  in  corners)
+                for (java.awt.geom.Point2D corner : corners)
                 {
                     double[] point = ct.TransformPoint(corner.getX(), corner.getY());
 
@@ -250,7 +250,7 @@ public class GDAL
             CoordinateTransformation ct = new CoordinateTransformation(geodetic, this.srs);
 
             double minX = Double.MaxValue, maxX = -Double.MaxValue, minY = Double.MaxValue, maxY = -Double.MaxValue;
-            foreach (LatLon ll  in  sector.getCorners())
+            for (LatLon ll : sector.getCorners())
             {
                 double[] point = ct.TransformPoint(ll.getLongitude().degrees, ll.getLatitude().degrees);
                 if (null != point)
@@ -298,7 +298,7 @@ public class GDAL
         public override string ToString()
         {
             StringBuffer sb = new StringBuffer("Area { ");
-            foreach (java.awt.geom.Point2D corner  in  this.corners)
+            for (java.awt.geom.Point2D corner : this.corners)
             {
                 sb.append('(').append(corner.getX()).append(',').append(corner.getY()).append(") ");
             }
@@ -507,7 +507,7 @@ public class GDAL
         }
 
         double min = Double.MaxValue;
-        foreach (java.awt.geom.Point2D point  in  points)
+        for (java.awt.geom.Point2D point : points)
         {
             min = (point.getX() < min) ? point.getX() : min;
         }
@@ -525,7 +525,7 @@ public class GDAL
         }
 
         double max = -Double.MaxValue;
-        foreach (java.awt.geom.Point2D point  in  points)
+        for (java.awt.geom.Point2D point : points)
         {
             max = (point.getX() > max) ? point.getX() : max;
         }
@@ -543,7 +543,7 @@ public class GDAL
         }
 
         double min = Double.MaxValue;
-        foreach (java.awt.geom.Point2D point  in  points)
+        for (java.awt.geom.Point2D point : points)
         {
             min = (point.getY() < min) ? point.getY() : min;
         }
@@ -561,7 +561,7 @@ public class GDAL
         }
 
         double max = -Double.MaxValue;
-        foreach (java.awt.geom.Point2D point  in  points)
+        for (java.awt.geom.Point2D point : points)
         {
             max = (point.getY() > max) ? point.getY() : max;
         }

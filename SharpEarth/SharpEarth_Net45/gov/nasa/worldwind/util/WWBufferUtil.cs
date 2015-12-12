@@ -660,7 +660,7 @@ public class WWBufferUtil
             throw new ArgumentException(message);
         }
 
-        foreach (Vec4 v  in  array)
+        for (Vec4 v : array)
         {
             buffer.put((float) v.x).put((float) v.y).put((float) v.z);
         }

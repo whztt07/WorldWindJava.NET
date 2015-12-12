@@ -146,7 +146,7 @@ public class BasicLayerFactory : BasicFactory
     {
         ArrayList<LayerList> layerLists = new ArrayList<LayerList>();
 
-        foreach (Element element  in  elements)
+        for (Element element : elements)
         {
             try
             {
@@ -223,7 +223,7 @@ public class BasicLayerFactory : BasicFactory
     {
         LayerList layerList = new LayerList();
 
-        foreach (Element element  in  layerElements)
+        for (Element element : layerElements)
         {
             try
             {

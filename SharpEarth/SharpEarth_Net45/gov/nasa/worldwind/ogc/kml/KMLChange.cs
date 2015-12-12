@@ -55,7 +55,7 @@ public class KMLChange : AbstractXMLEventParser , KMLUpdateOperation
 
     public void applyOperation(KMLRoot targetRoot)
     {
-        foreach (KMLAbstractObject sourceValues  in  this.objects)
+        for (KMLAbstractObject sourceValues : this.objects)
         {
             String targetId = sourceValues.getTargetId();
             if (WWUtil.isEmpty(targetId))

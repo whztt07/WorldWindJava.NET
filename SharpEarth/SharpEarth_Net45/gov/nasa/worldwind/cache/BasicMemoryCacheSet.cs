@@ -65,7 +65,7 @@ public class BasicMemoryCacheSet : MemoryCacheSet
 
     public synchronized void clear()
     {
-        foreach (MemoryCache cache  in  this.caches.values())
+        for (MemoryCache cache : this.caches.values())
         {
             cache.clear();
         }
@@ -75,9 +75,9 @@ public class BasicMemoryCacheSet : MemoryCacheSet
     {
         ArrayList<PerformanceStatistic> stats = new ArrayList<PerformanceStatistic>();
 
-        foreach (MemoryCache cache  in  this.caches.values())
+        for (MemoryCache cache : this.caches.values())
         {
-            stats.add(new PerforeachmanceStatistic(PerformanceStatistic.MEMORY_CACHE, "Cache Size (Kb) in  " + cache.getName(),
+            stats.add(new PerformanceStatistic(PerformanceStatistic.MEMORY_CACHE, "Cache Size (Kb): " + cache.getName(),
                 cache.getUsedCapacity() / 1000));
         }
 

@@ -971,7 +971,7 @@ public class WWUtil
             return;
         }
 
-        foreach (String key  in  keys)
+        for (String key : keys)
         {
             if (WWUtil.isEmpty(key) || !srcList.hasKey(key))
             {

@@ -54,19 +54,19 @@ public class GXParserContext : BasicXMLEventParserContext
         parsers.put(new QName(ns, "Wait"), new GXWait(ns));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        foreach (String s  in  StringFields)
+        for (String s : StringFields)
         {
             parsers.put(new QName(ns, s), stringParser);
         }
 
         DoubleXMLEventParser doubleParser = new DoubleXMLEventParser();
-        foreach (String s  in  DoubleFields)
+        for (String s : DoubleFields)
         {
             parsers.put(new QName(ns, s), doubleParser);
         }
 
         BooleanXMLEventParser booleanParser = new BooleanXMLEventParser();
-        foreach (String s  in  BooleanFields)
+        for (String s : BooleanFields)
         {
             parsers.put(new QName(ns, s), booleanParser);
         }

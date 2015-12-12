@@ -270,7 +270,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
             }
             else
             {
-                foreach (Sector region  in  regions)
+                for (Sector region : regions)
                 {
                     // Count how many tiles are missing in each sample region
                     regionCount += this.countTilesInSector(region, maxLevel);
@@ -318,7 +318,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
                     return file.isDirectory();
                 }
             });
-            foreach (File dir  in  rowDirs)
+            for (File dir : rowDirs)
             {
                 long averageSize = computeAverageTileSize(dir);
                 if (averageSize > 0)
@@ -347,7 +347,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
         int count = 0;
 
         File[] files = dir.listFiles();
-        foreach (File file  in  files)
+        for (File file : files)
         {
             try
             {
@@ -492,9 +492,9 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
         ArrayList<Tile> tiles = new ArrayList<Tile>();
 
         Tile[][] tileArray = getTilesInSector(sector, levelNumber);
-        foreach (Tile[] row  in  tileArray)
+        for (Tile[] row : tileArray)
         {
-            foreach (Tile tile  in  row)
+            for (Tile tile : row)
             {
                 Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 

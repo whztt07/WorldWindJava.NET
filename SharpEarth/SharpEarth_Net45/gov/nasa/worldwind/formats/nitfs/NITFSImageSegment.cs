@@ -549,7 +549,7 @@ public class NITFSImageSegment : NITFSSegment
 
         this.imageID = NITFSUtil.getString(buffer, 10);
         bool isSupportedFormat = false;
-        foreach(String s  in  SupportedFormats)
+        for(String s : SupportedFormats)
         {
             if(0 == s.compareTo(this.imageID))
             {

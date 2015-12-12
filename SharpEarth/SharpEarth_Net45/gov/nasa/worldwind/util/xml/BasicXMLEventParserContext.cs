@@ -146,7 +146,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
     public void addStringParsers(String namespace, String[] stringFields)
     {
         StringXMLEventParser stringParser = this.getStringParser();
-        foreach (String s  in  stringFields)
+        for (String s : stringFields)
         {
             this.parsers.put(new QName(namespace, s), stringParser);
         }
@@ -156,7 +156,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
     public void addDoubleParsers(String namespace, String[] doubleFields)
     {
         DoubleXMLEventParser doubleParser = this.getDoubleParser();
-        foreach (String s  in  doubleFields)
+        for (String s : doubleFields)
         {
             this.parsers.put(new QName(namespace, s), doubleParser);
         }
@@ -166,7 +166,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
     public void addIntegerParsers(String namespace, String[] integerFields)
     {
         IntegerXMLEventParser integerParser = this.getIntegerParser();
-        foreach (String s  in  integerFields)
+        for (String s : integerFields)
         {
             this.parsers.put(new QName(namespace, s), integerParser);
         }
@@ -176,7 +176,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
     public void addBooleanParsers(String namespace, String[] booleanFields)
     {
         BooleanXMLEventParser booleanParser = this.getBooleanParser();
-        foreach (String s  in  booleanFields)
+        for (String s : booleanFields)
         {
             this.parsers.put(new QName(namespace, s), booleanParser);
         }
@@ -186,7 +186,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
     public void addBooleanIntegerParsers(String namespace, String[] booleanIntegerFields)
     {
         BooleanIntegerXMLEventParser booleanIntegerParser = this.getBooleanIntegerParser();
-        foreach (String s  in  booleanIntegerFields)
+        for (String s : booleanIntegerFields)
         {
             this.parsers.put(new QName(namespace, s), booleanIntegerParser);
         }
@@ -529,7 +529,7 @@ public class BasicXMLEventParserContext : AVListImpl, XMLEventParserContext
 
         Map<String, Object> newFields = null;
 
-        foreach (Map.Entry<String, Object> p  in  parser.getFields().getEntries())
+        for (Map.Entry<String, Object> p : parser.getFields().getEntries())
         {
             String key = p.getKey();
             if (key == null || key.Equals("id"))

@@ -32,7 +32,7 @@ public class WCS100HTTP : AbstractXMLEventParser
             return null;
 
         List<String> addresses = new ArrayList<String>(this.gets.size());
-        foreach (AttributesOnlyXMLEventParser parser  in  this.gets)
+        for (AttributesOnlyXMLEventParser parser : this.gets)
         {
             if (parser != null)
             {
@@ -52,7 +52,7 @@ public class WCS100HTTP : AbstractXMLEventParser
             return null;
 
         List<String> addresses = new ArrayList<String>(this.posts.size());
-        foreach (AttributesOnlyXMLEventParser parser  in  this.posts)
+        for (AttributesOnlyXMLEventParser parser : this.posts)
         {
             if (parser != null)
             {

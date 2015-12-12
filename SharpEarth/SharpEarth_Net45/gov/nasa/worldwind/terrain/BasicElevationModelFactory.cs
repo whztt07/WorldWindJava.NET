@@ -164,7 +164,7 @@ public class BasicElevationModelFactory : BasicFactory
         if (elements == null || elements.length == 0)
             return compoundModel;
 
-        foreach (Element element  in  elements)
+        for (Element element : elements)
         {
             try
             {

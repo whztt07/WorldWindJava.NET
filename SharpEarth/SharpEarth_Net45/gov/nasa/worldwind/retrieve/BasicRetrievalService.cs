@@ -461,7 +461,7 @@ public sealed class BasicRetrievalService : WWObjectImpl
         int totalContentLength = 0;
         int totalBytesRead = 0;
 
-        foreach (RetrievalTask task  in  this.activeTasks)
+        for (RetrievalTask task : this.activeTasks)
         {
             if (task.isDone())
                 continue;
@@ -484,7 +484,7 @@ public sealed class BasicRetrievalService : WWObjectImpl
             }
         }
 
-        foreach (Runnable runnable  in  this.executor.getQueue())
+        for (Runnable runnable : this.executor.getQueue())
         {
             RetrievalTask task =
                 (RetrievalTask) runnable;

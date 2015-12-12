@@ -748,7 +748,7 @@ public class DataConfigurationUtils
         String coordinateSystem = parameters.getStringValue(AVKey.COORDINATE_SYSTEM);
         if (WWUtil.isEmpty(coordinateSystem))
         {
-            foreach (String name  in  names)
+            for (String name : names)
             {
                 WMSLayerCapabilities layerCaps = caps.getLayerByName(name);
                 if (layerCaps == null)
@@ -862,7 +862,7 @@ public class DataConfigurationUtils
         Sector sector = (Sector) parameters.getValue(AVKey.SECTOR);
         if (sector == null)
         {
-            foreach (String name  in  names)
+            for (String name : names)
             {
                 Sector layerSector = caps.getLayerByName(name).getGeographicBoundingBox();
                 if (layerSector == null)
@@ -951,7 +951,7 @@ public class DataConfigurationUtils
             }
         }
 
-        foreach (String format  in  offering.getSupportedFormats().getStrings())
+        for (String format : offering.getSupportedFormats().getStrings())
         {
             if (format.toLowerCase().contains("image/tiff"))
             {
@@ -1106,9 +1106,9 @@ public class DataConfigurationUtils
             return formats[0].ToString();
         }
 
-        foreach (String s  in  formatOrderPreference)
+        for (String s : formatOrderPreference)
         {
-            foreach (Object f  in  formats)
+            for (Object f : formats)
             {
                 if (f.ToString().equalsIgnoreCase(s))
                 {

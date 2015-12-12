@@ -126,7 +126,7 @@ public enum RPFDataSeries
         {
             RPFDataSeries[] universe = RPFDataSeries.class.getEnumConstants();
             enumConstantDirectory = new HashMap<String, RPFDataSeries>(2 * universe.length);
-            foreach (RPFDataSeries dataSeries  in  universe)
+            for (RPFDataSeries dataSeries : universe)
             {
                 enumConstantDirectory.put(dataSeries.seriesCode, dataSeries);
             }
@@ -182,7 +182,7 @@ public enum RPFDataSeries
             throw new ArgumentException(message);
         }
 
-        foreach (String s  in  RPF_DATA_TYPES)
+        for (String s : RPF_DATA_TYPES)
         {
             if (s.equalsIgnoreCase(rpfDataType))
                 return true;

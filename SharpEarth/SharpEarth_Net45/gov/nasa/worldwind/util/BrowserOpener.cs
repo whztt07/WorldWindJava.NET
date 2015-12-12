@@ -58,7 +58,7 @@ public class BrowserOpener
         String browser = null;
 
         String[] browsers = {"firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape"};
-        foreach (String curBrowser  in  browsers)
+        for (String curBrowser : browsers)
             if (Runtime.getRuntime().exec(new String[] {"which", curBrowser}).waitFor() == 0)
                 browser = curBrowser;
 

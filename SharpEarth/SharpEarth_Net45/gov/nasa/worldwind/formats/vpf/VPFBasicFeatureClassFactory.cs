@@ -234,7 +234,7 @@ public class VPFBasicFeatureClassFactory : VPFFeatureClassFactory
         VPFRelation[] rels = coverage.getFeatureClassRelations(schema.getClassName());
         if (rels != null)
         {
-            foreach (VPFRelation rel  in  rels)
+            for (VPFRelation rel : rels)
             {
                 if (rel.getTable2().equalsIgnoreCase(VPFConstants.NODE_PRIMITIVE_TABLE))
                     primitiveTableName = VPFConstants.NODE_PRIMITIVE_TABLE;

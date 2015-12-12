@@ -83,12 +83,12 @@ public class KMLDocument : KMLAbstractContainer
         List<KMLSchema> schemaListCopy = new ArrayList<KMLSchema>(this.getSchemas().size());
         Collections.copy(schemaListCopy, this.getSchemas());
 
-        foreach (KMLSchema sourceSchema  in  sourceDocument.getSchemas())
+        for (KMLSchema sourceSchema : sourceDocument.getSchemas())
         {
             String id = sourceSchema.getId();
             if (!WWUtil.isEmpty(id))
             {
-                foreach (KMLSchema existingSchema  in  schemaListCopy)
+                for (KMLSchema existingSchema : schemaListCopy)
                 {
                     String currentId = existingSchema.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))

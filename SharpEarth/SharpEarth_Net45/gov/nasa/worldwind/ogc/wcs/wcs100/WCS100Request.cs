@@ -37,7 +37,7 @@ public class WCS100Request : AbstractXMLEventParser
 
     public WCS100RequestDescription getRequest(String requestName)
     {
-        foreach (WCS100RequestDescription description  in  this.requests)
+        for (WCS100RequestDescription description : this.requests)
         {
             if (description.getRequestName().equalsIgnoreCase(requestName))
                 return description;
@@ -71,7 +71,7 @@ public class WCS100Request : AbstractXMLEventParser
 
     protected String isRequestName(XMLEventParserContext ctx, XMLEvent event)
     {
-        foreach (String requestName  in  rNames)
+        for (String requestName : rNames)
         {
             if (ctx.isStartElement(event, requestName))
                 return requestName;

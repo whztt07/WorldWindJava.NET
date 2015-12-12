@@ -723,7 +723,7 @@ public class VecBuffer
 
         int pos = position;
 
-        foreach (double[] coords  in  iterable)
+        for (double[] coords : iterable)
         {
             this.put(pos, coords);
 
@@ -787,7 +787,7 @@ public class VecBuffer
 
         int pos = position;
 
-        foreach (Vec4 vec  in  iterable)
+        for (Vec4 vec : iterable)
         {
             this.putVector(pos, vec);
 
@@ -850,7 +850,7 @@ public class VecBuffer
 
         int pos = position;
 
-        foreach (LatLon ll  in  iterable)
+        for (LatLon ll : iterable)
         {
             this.putLocation(pos, ll);
 
@@ -913,7 +913,7 @@ public class VecBuffer
 
         int pos = position;
 
-        foreach (Position p  in  iterable)
+        for (Position p : iterable)
         {
             this.putPosition(pos, p);
 

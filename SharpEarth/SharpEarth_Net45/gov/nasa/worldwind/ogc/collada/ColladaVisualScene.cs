@@ -69,7 +69,7 @@ public class ColladaVisualScene : ColladaAbstractObject , ColladaRenderable
         }
 
         ArrayList<Box> extents = new ArrayList<Box>();
-        foreach (ColladaNode node  in  this.getNodes())
+        for (ColladaNode node : this.getNodes())
         {
             Box extent = node.getLocalExtent(tc);
             if (extent != null)
@@ -82,7 +82,7 @@ public class ColladaVisualScene : ColladaAbstractObject , ColladaRenderable
     /** {@inheritDoc} Renders all nodes in this scene. */
     public void preRender(ColladaTraversalContext tc, DrawContext dc)
     {
-        foreach (ColladaNode node  in  this.getNodes())
+        for (ColladaNode node : this.getNodes())
         {
             node.preRender(tc, dc);
         }
@@ -91,7 +91,7 @@ public class ColladaVisualScene : ColladaAbstractObject , ColladaRenderable
     /** {@inheritDoc} Renders all nodes in this scene. */
     public void render(ColladaTraversalContext tc, DrawContext dc)
     {
-        foreach (ColladaNode node  in  this.getNodes())
+        for (ColladaNode node : this.getNodes())
         {
             node.render(tc, dc);
         }

@@ -44,7 +44,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
         LAYER = new QName(this.getNamespaceURI(), "Layer");
 
         this.requestNames = new ArrayList<QName>(rNames.length);
-        foreach (String name  in  rNames)
+        for (String name : rNames)
         {
             this.requestNames.add(new QName(this.getNamespaceURI(), name));
         }
@@ -88,7 +88,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
 
     protected bool isRequestName(XMLEventParserContext ctx, QName name)
     {
-        foreach (QName requestName  in  this.requestNames)
+        for (QName requestName : this.requestNames)
         {
             if (ctx.isSameName(requestName, name))
                 return true;
@@ -110,7 +110,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
     public Set<String> getImageFormats()
     {
         Set<OGCRequestDescription> requestDescriptions = this.getRequestDescriptions();
-        foreach (OGCRequestDescription rd  in  requestDescriptions)
+        for (OGCRequestDescription rd : requestDescriptions)
         {
             if (rd.getRequestName().Equals("GetMap"))
                 return rd.getFormats();

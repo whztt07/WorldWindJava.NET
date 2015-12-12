@@ -203,7 +203,7 @@ public class BarycentricQuadrilateral : BarycentricTriangle
 //            new Vec4(10, 5, 0), new Vec4(7, 7, 0));
 //
 //        ArrayList<Vec4> points = makePoints(0, 0, 14, 10);
-//        foreach (Vec4 point  in  points)
+//        for (Vec4 point : points)
 //        {
 //            double[] w = bc.getBarycentricCoords(point);
 //            Vec4 p = bc.getPoint(w);

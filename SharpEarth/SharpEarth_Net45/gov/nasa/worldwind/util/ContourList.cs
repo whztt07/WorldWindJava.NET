@@ -118,7 +118,7 @@ public class ContourList : WWObjectImpl , Combinable
     {
         this.sector = null;
 
-        foreach (Iterable<? extends LatLon> contour  in  this.contours)
+        for (Iterable<? extends LatLon> contour : this.contours)
         {
             Sector contourSector = Sector.boundingSector(contour);
             this.sector = (this.sector != null ? this.sector.union(contourSector) : contourSector);
@@ -165,13 +165,13 @@ public class ContourList : WWObjectImpl , Combinable
     {
         GLUtessellator tess = cc.getTessellator();
 
-        foreach (Iterable<? extends LatLon> contour  in  this.contours)
+        for (Iterable<? extends LatLon> contour : this.contours)
         {
             try
             {
                 GLU.gluTessBeginContour(tess);
 
-                foreach (LatLon location  in  contour)
+                for (LatLon location : contour)
                 {
                     double[] vertex = {location.longitude.degrees, location.latitude.degrees, 0};
                     GLU.gluTessVertex(tess, vertex, 0, vertex);

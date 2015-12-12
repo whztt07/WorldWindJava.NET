@@ -518,7 +518,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
             if (tiles == null)
                 return;
 
-            foreach (RectTile tile  in  tiles)
+            for (RectTile tile : tiles)
             {
                 if (tile.ri == null)
                 {
@@ -562,7 +562,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
             if (tiles == null)
                 return;
 
-            foreach (RectTile tile  in  tiles)
+            for (RectTile tile : tiles)
             {
                 this.makeVerts(tile);
             }
@@ -585,7 +585,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
 
         List<Sector> sectors = new ArrayList<Sector>(tiles.size());
 
-        foreach (RectTile tile  in  tiles)
+        for (RectTile tile : tiles)
         {
             sectors.add(tile.sector);
         }
@@ -747,7 +747,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
 
         Intersection[] hits;
         ArrayList<Intersection> list = new ArrayList<Intersection>();
-        foreach (RectTile tile  in  tiles)
+        for (RectTile tile : tiles)
         {
             if ((hits = this.intersect(tile, line)) != null)
                 list.addAll(Arrays.asList(hits));
@@ -1503,7 +1503,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
 
         // Intersect triangles of remaining tiles with input triangle.
         List<Vec4[]> intersections = new ArrayList<Vec4[]>();
-        foreach (RectTile tile  in  tiles)
+        for (RectTile tile : tiles)
         {
             List<Vec4[]> iSects = intersect(tile, triangleCoordinates);
             if (iSects != null)
@@ -1519,7 +1519,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
     {
         List<RectTile> filteredTiles = new ArrayList<RectTile>();
 
-        foreach (RectTile tile  in  tiles)
+        for (RectTile tile : tiles)
         {
             if (tile.ri == null)
                 this.makeVerts(tile);
@@ -1536,7 +1536,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
 
     protected void convertPointsToPositions(List<Vec4[]> points, List<Position[]> positions)
     {
-        foreach (Vec4[] pts  in  points)
+        for (Vec4[] pts : points)
         {
             Position[] pos = new Position[pts.length];
 
@@ -1571,7 +1571,7 @@ public class HighResolutionTerrain : WWObjectImpl , Terrain
 
         Position[] extremes = new Position[2];
 
-        foreach (RectTile tile  in  tiles)
+        for (RectTile tile : tiles)
         {
             if (tile.ri == null)
                 this.makeVerts(tile);

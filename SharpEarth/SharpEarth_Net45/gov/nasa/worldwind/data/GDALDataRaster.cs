@@ -1209,7 +1209,7 @@ public class GDALDataRaster : AbstractDataRaster , Cacheable
         Vector<String> keys = new Vector<String>();
 
         Set<Map.Entry<String, Object>> entries = list.getEntries();
-        foreach (Map.Entry<String, Object> entry  in  entries)
+        for (Map.Entry<String, Object> entry : entries)
         {
             keys.add(entry.getKey());
         }
@@ -1217,7 +1217,7 @@ public class GDALDataRaster : AbstractDataRaster , Cacheable
         // sort keys
         Collections.sort(keys);
 
-        foreach (String key  in  keys)
+        for (String key : keys)
         {
             sb.append("\n").append(key).append("=").append(list.getValue(key));
         }

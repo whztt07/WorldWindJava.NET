@@ -220,7 +220,7 @@ public class WMSTiledImageLayer : BasicTiledImageLayer
                 sb = new StringBuffer(this.URLTemplate);
             }
 
-            String foreachmat = (altImageFormat != null) ? altImageFormat  in  this.imageFormat;
+            String format = (altImageFormat != null) ? altImageFormat : this.imageFormat;
             if (null != format)
                 sb.append("&format=").append(format);
 

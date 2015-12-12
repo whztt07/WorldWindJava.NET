@@ -203,7 +203,7 @@ public class WorldWindowGLAutoDrawable : WorldWindowImpl , WorldWindowGLDrawable
             this.callRenderingExceptionListeners(new WWAbsentRequirementException(msg));
         }
 
-        foreach (String funcName  in  this.getRequiredOglFunctions())
+        for (String funcName : this.getRequiredOglFunctions())
         {
             if (!glAutoDrawable.getGL().isFunctionAvailable(funcName))
             {
@@ -212,7 +212,7 @@ public class WorldWindowGLAutoDrawable : WorldWindowImpl , WorldWindowGLDrawable
             }
         }
 
-        foreach (String extName  in  this.getRequiredOglExtensions())
+        for (String extName : this.getRequiredOglExtensions())
         {
             if (!glAutoDrawable.getGL().isExtensionAvailable(extName))
             {
@@ -370,7 +370,7 @@ public class WorldWindowGLAutoDrawable : WorldWindowImpl , WorldWindowGLDrawable
             Iterable<Throwable> renderingExceptions = sc.getRenderingExceptions();
             if (renderingExceptions != null)
             {
-                foreach (Throwable t  in  renderingExceptions)
+                for (Throwable t : renderingExceptions)
                 {
                     if (t != null)
                         this.callRenderingExceptionListeners(t);

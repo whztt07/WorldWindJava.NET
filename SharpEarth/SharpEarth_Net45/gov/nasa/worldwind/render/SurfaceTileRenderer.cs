@@ -203,7 +203,7 @@ public abstract class SurfaceTileRenderer : Disposable
             // For each current geometry tile, find the intersecting image tiles and render the geometry
             // tile once for each intersecting image tile.
             Transform transform = new Transform();
-            foreach (SectorGeometry sg  in  dc.getSurfaceGeometry())
+            for (SectorGeometry sg : dc.getSurfaceGeometry())
             {
                 Iterable<SurfaceTile> tilesToRender = this.getIntersectingTiles(dc, sg, tiles);
                 if (tilesToRender == null)
@@ -219,7 +219,7 @@ public abstract class SurfaceTileRenderer : Disposable
                 // frame buffer where the image tile does not overlap the geometry tile. Render both the image and
                 // alpha textures via multi-texture rendering.
                 // TODO: Figure out how to apply multi-texture to more than one tile at a time. Use fragment shader?
-                foreach (SurfaceTile tile  in  tilesToRender)
+                for (SurfaceTile tile : tilesToRender)
                 {
                     gl.glActiveTexture(GL.GL_TEXTURE0);
 

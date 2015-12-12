@@ -96,7 +96,7 @@ public class RPFFrameFileIndexSection
 
         if (0 < this.frameFileIndexTable.size() && 0 < pathnames.size())
         { // update pathname field in every RPFFrameFileIndexRecord
-            foreach (RPFFrameFileIndexRecord rec  in  this.frameFileIndexTable)
+            for (RPFFrameFileIndexRecord rec : this.frameFileIndexTable)
             {
                 int offset = (int) rec.getPathnameRecordOffset();
                 if (pathnames.containsKey(offset))

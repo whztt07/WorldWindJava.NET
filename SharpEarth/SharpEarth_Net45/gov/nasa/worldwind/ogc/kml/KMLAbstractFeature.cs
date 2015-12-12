@@ -425,12 +425,12 @@ public abstract class KMLAbstractFeature : KMLAbstractObject , KMLRenderable
             new ArrayList<KMLAbstractStyleSelector>(this.getStyleSelectors().size());
         styleSelectorsCopy.addAll(this.getStyleSelectors());
 
-        foreach (KMLAbstractStyleSelector sourceSelector  in  sourceFeature.getStyleSelectors())
+        for (KMLAbstractStyleSelector sourceSelector : sourceFeature.getStyleSelectors())
         {
             String id = sourceSelector.getId();
             if (!WWUtil.isEmpty(id))
             {
-                foreach (KMLAbstractStyleSelector existingSelector  in  styleSelectorsCopy)
+                for (KMLAbstractStyleSelector existingSelector : styleSelectorsCopy)
                 {
                     String currentId = existingSelector.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))

@@ -586,7 +586,7 @@ public class OrbitViewInputHandler : BasicViewInputHandler
 
     protected void stopUserInputAnimators(Object... names)
     {
-        foreach (Object o  in  names)
+        for (Object o : names)
         {
             if (this.uiAnimControl.get(o) != null)
             {

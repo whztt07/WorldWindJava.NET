@@ -49,7 +49,7 @@ public class GeographicSurfaceTileRenderer : SurfaceTileRenderer
     {
         ArrayList<SurfaceTile> intersectingTiles = null;
 
-        foreach (SurfaceTile tile  in  tiles)
+        for (SurfaceTile tile : tiles)
         {
             if (!tile.getSector().intersectsInterior(sg.getSector()))
                 continue;

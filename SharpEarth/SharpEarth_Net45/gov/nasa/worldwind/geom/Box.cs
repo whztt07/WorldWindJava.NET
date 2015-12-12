@@ -947,7 +947,7 @@ public class Box : Extent, Renderable
 //        Vec4 u = line.getDirection();
 //        Vec4 p = line.getOrigin();
 //
-//        foreach (Plane plane  in  this.planes)
+//        for (Plane plane : this.planes)
 //        {
 //            Vec4 n = plane.getNormal();
 //            double d = -plane.getDistance();

@@ -1200,7 +1200,7 @@ public class WWMath
         Vec4 u = line.getDirection();
         Vec4 p = line.getOrigin();
 
-        foreach (Plane plane  in  planes)
+        for (Plane plane : planes)
         {
             Vec4 n = plane.getNormal();
             double d = -plane.getDistance();

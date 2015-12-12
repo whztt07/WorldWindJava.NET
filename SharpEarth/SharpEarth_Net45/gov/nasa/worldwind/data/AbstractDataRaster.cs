@@ -69,7 +69,7 @@ public abstract class AbstractDataRaster : AVListImpl , DataRaster
 
         if (null != list)
         {
-            foreach (Map.Entry<String, Object> entry  in  list.getEntries())
+            for (Map.Entry<String, Object> entry : list.getEntries())
             {
                 this.setValue(entry.getKey(), entry.getValue());
             }

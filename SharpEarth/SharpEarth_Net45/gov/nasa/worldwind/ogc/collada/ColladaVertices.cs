@@ -46,7 +46,7 @@ public class ColladaVertices : ColladaAbstractObject
      */
     public ColladaInput getPositionInput()
     {
-        foreach (ColladaInput input  in  this.getInputs())
+        for (ColladaInput input : this.getInputs())
         {
             if ("POSITION".Equals(input.getSemantic()))
                 return input;
