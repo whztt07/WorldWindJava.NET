@@ -194,3 +194,5 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+SharpEarth/SharpEarth_Net45/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+SharpEarth/SharpEarth_Net45/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

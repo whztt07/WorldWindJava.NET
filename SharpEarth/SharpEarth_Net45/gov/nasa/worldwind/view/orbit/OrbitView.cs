@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.geom.Position;
+using SharpEarth.geom;
 using SharpEarth;
 namespace SharpEarth.view.orbit{
 
@@ -31,7 +31,7 @@ public interface OrbitView : View
      * @param detectCollisions If <code>true</code>, this <code>View</code> will resolve collisions; otherwise this
      *                          <code>View</code> will ignore collisions.
      */
-    void setDetectCollisions(boolean detectCollisions);
+    void setDetectCollisions(bool detectCollisions);
 
     /**
      * Returns whether or not a collision has occurred since the last call to <code>hadCollisions</code>.
@@ -106,7 +106,10 @@ public interface OrbitView : View
      * Stop any changes to the center position.
      */
     void stopMovementOnCenter();
-
-    public static final String CENTER_STOPPED = "gov.nasa.worldwind.view.orbit.OrbitView.CenterStopped";
 }
+
+  public static class OrbitViewContants
+  {
+    public static readonly string CENTER_STOPPED = "gov.nasa.worldwind.view.orbit.OrbitView.CenterStopped";
+  }
 }

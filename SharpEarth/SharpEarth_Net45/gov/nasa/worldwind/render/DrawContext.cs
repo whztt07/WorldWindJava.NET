@@ -21,11 +21,13 @@ using SharpEarth.pick;
 using SharpEarth.layers;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.cache.GpuResourceCache;
+using SharpEarth.cache;
 using SharpEarth;
 using com.jogamp.opengl.util.texture.TextureCoords;
 using SharpEarth.cache;
 using SharpEarth.globes;
+using SharpEarth.java.nio;
+using SharpEarth.java.util;
 
 namespace SharpEarth.render{
 

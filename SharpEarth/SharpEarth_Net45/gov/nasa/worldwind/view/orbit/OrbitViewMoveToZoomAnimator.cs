@@ -3,8 +3,13 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using SharpEarth.animation;
 using SharpEarth.util.PropertyAccessor;
 using SharpEarth.animation.MoveToDoubleAnimator;
+using SharpEarth.util;
+
 namespace SharpEarth.view.orbit{
 
 

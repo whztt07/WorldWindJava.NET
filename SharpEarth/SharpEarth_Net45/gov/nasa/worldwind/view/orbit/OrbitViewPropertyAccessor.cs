@@ -3,9 +3,14 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using SharpEarth.geom;
 using SharpEarth.view.ViewPropertyAccessor;
 using SharpEarth.util.PropertyAccessor;
 using SharpEarth.geom.Position;
+using SharpEarth.util;
+
 namespace SharpEarth.view.orbit{
 
 
@@ -42,7 +47,7 @@ public class OrbitViewPropertyAccessor : ViewPropertyAccessor
     // ============== Implementation ======================= //
     // ============== Implementation ======================= //
 
-    private static class CenterPositionAccessor : PropertyAccessor.PositionAccessor
+    private class CenterPositionAccessor : PropertyAccessor.PositionAccessor
     {
         private OrbitView orbitView;
         public CenterPositionAccessor(OrbitView view)
