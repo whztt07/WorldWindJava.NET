@@ -264,10 +264,10 @@ abstract public class OGCCapabilities : AbstractXMLEventParser
         sb.append("UpdateSequence: ").
             append(this.getUpdateSequence() != null ? this.getUpdateSequence() : "none");
         sb.append("\n");
-        sb.append(this.getServiceInforeachmation() != null ? this.getServiceInformation()  in  "Service Information in  none");
+        sb.append(this.getServiceInformation() != null ? this.getServiceInformation() : "Service Information: none");
         sb.append("\n");
         sb.append(this.getCapabilityInformation() != null
-            ? this.getCapabilityInforeachmation()  in  "Capability Information in  none");
+            ? this.getCapabilityInformation() : "Capability Information: none");
         sb.append("\n");
 
         return sb.ToString();

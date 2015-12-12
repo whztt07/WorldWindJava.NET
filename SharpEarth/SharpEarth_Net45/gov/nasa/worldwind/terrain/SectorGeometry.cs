@@ -3,11 +3,12 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.nio.DoubleBuffer;
-using java.awt;
 using SharpEarth.render;
-using SharpEarth.pick.PickedObject;
+using SharpEarth.pick;
 using SharpEarth.geom;
+using System.Collections.Generic;
+using SharpEarth.java.awt;
+
 namespace SharpEarth.terrain{
 
 
@@ -141,7 +142,7 @@ public interface SectorGeometry : Renderable
      *
      * @throws ArgumentException if either the draw context or list of pick points is null.
      */
-    PickedObject[] pick(DrawContext dc, java.util.List<? extends Point> pickPoints);
+    PickedObject[] pick(DrawContext dc, List<Point> pickPoints);
 
     /**
      * Computes the Cartesian coordinates of a line's intersections with the geometry.
@@ -179,7 +180,7 @@ public interface SectorGeometry : Renderable
      *
      * @throws ArgumentException if the computer is null.
      */
-    DoubleBuffer makeTextureCoordinates(GeographicTextureCoordinateComputer computer);
+    double[] makeTextureCoordinates(GeographicTextureCoordinateComputer computer);
 
     /**
      * Displays the geometry. The number of texture units to use may be specified, but at most only the number of

@@ -67,7 +67,7 @@ public class KMLStyleMap : KMLAbstractStyleSelector
         if (styleState == null)
             styleState = KMLConstants.NORMAL;
 
-        foreach (KMLPair pair  in  this.pairs)
+        foreach (KMLPair pair in this.pairs)
         {
             if (pair.getKey().Equals(styleState))
                 return pair.getStyleSelector();
@@ -89,7 +89,7 @@ public class KMLStyleMap : KMLAbstractStyleSelector
         if (styleState == null)
             styleState = KMLConstants.NORMAL;
 
-        foreach (KMLPair pair  in  this.pairs)
+        foreach (KMLPair pair in this.pairs)
         {
             if (pair.getKey().Equals(styleState))
                 return pair.getStyleUrl();
@@ -160,12 +160,12 @@ public class KMLStyleMap : KMLAbstractStyleSelector
         List<KMLPair> pairsCopy = new ArrayList<KMLPair>(this.getPairs().size());
         Collections.copy(pairsCopy, this.getPairs());
 
-        foreach (KMLPair sourcePair  in  sourceMap.getPairs())
+        foreach (KMLPair sourcePair in sourceMap.getPairs())
         {
             String id = sourcePair.getId();
             if (!WWUtil.isEmpty(id))
             {
-                foreach (KMLPair existingPair  in  pairsCopy)
+                foreach (KMLPair existingPair in pairsCopy)
                 {
                     String currentId = existingPair.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))

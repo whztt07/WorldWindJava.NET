@@ -773,6 +773,7 @@
     <Compile Include="javax\xml\transform\TransformerFactory.cs" />
     <Compile Include="javax\xml\xpath\XPath.cs" />
     <Compile Include="javax\xml\xpath\XPathFactory.cs" />
+    <Compile Include="java\awt\Color.cs" />
     <Compile Include="java\awt\events\KeyEvent.cs" />
     <Compile Include="java\awt\events\KeyListener.cs" />
     <Compile Include="java\awt\events\MouseEvent.cs" />
@@ -785,13 +786,12 @@
     <Compile Include="java\beans\PropertyChangeEvent.cs" />
     <Compile Include="java\beans\PropertyChangeListener.cs" />
     <Compile Include="java\beans\PropertyChangeSupport.cs" />
+    <Compile Include="java\io\File.cs" />
     <Compile Include="java\io\InputStream.cs" />
-    <Compile Include="java\io\IOException.cs" />
     <Compile Include="java\lang\Class.cs" />
     <Compile Include="java\lang\IllegalStateException.cs" />
     <Compile Include="java\lang\NoSuchMethodException.cs" />
     <Compile Include="java\lang\reflect\Constructor.cs" />
-    <Compile Include="java\lang\UnsupportedOperationException.cs" />
     <Compile Include="java\net\URI.cs" />
     <Compile Include="java\net\URISyntaxException.cs" />
     <Compile Include="java\net\URL.cs" />

@@ -1289,7 +1289,7 @@ public class WWIO
         if (file == null || mimeTypes == null)
             return false;
 
-        foreach (String mimeType  in  mimeTypes)
+        foreach (String mimeType in mimeTypes)
         {
             if (mimeType == null)
                 continue;
@@ -1755,7 +1755,7 @@ public class WWIO
 
         List<File> childFiles = new ArrayList<File>();
         List<File> childDirs = new ArrayList<File>();
-        foreach (File child  in  fileList)
+        foreach (File child in fileList)
         {
             if (child == null)
                 continue;
@@ -1766,7 +1766,7 @@ public class WWIO
                 childFiles.add(child);
         }
 
-        foreach (File childFile  in  childFiles)
+        foreach (File childFile in childFiles)
         {
             File destFile = new File(destination, childFile.getName());
             copyFile(childFile, destFile);
@@ -1774,7 +1774,7 @@ public class WWIO
 
         if (copySubDirectories)
         {
-            foreach (File childDir  in  childDirs)
+            foreach (File childDir in childDirs)
             {
                 File destDir = new File(destination, childDir.getName());
                 copyDirectory(childDir, destDir, copySubDirectories);
@@ -1797,7 +1797,7 @@ public class WWIO
         {
             List<File> childFiles = new ArrayList<File>();
             List<File> childDirs = new ArrayList<File>();
-            foreach (File child  in  fileList)
+            foreach (File child in fileList)
             {
                 if (child == null)
                     continue;
@@ -1808,12 +1808,12 @@ public class WWIO
                     childFiles.add(child);
             }
 
-            foreach (File childFile  in  childFiles)
+            foreach (File childFile in childFiles)
             {
                 childFile.delete();
             }
 
-            foreach (File childDir  in  childDirs)
+            foreach (File childDir in childDirs)
             {
                 deleteDirectory(childDir);
             }
@@ -1991,7 +1991,7 @@ public class WWIO
             throw new ArgumentException(msg);
         }
 
-        return Charset.foreachName(encoding != null ? encoding  in  DEFAULT_CHARACTER_ENCODING).decode(buffer).ToString();
+        return Charset.forName(encoding != null ? encoding : DEFAULT_CHARACTER_ENCODING).decode(buffer).ToString();
     }
 
     /**
@@ -2025,7 +2025,7 @@ public class WWIO
             throw new ArgumentException(msg);
         }
 
-        CharBuffer charBuffer = Charset.foreachName(encoding != null ? encoding  in  DEFAULT_CHARACTER_ENCODING).decode(
+        CharBuffer charBuffer = Charset.forName(encoding != null ? encoding : DEFAULT_CHARACTER_ENCODING).decode(
             buffer);
         if (charBuffer.remaining() > length)
         {
@@ -2324,7 +2324,7 @@ public class WWIO
         ArrayList<String> matches = new ArrayList<String>();
 
         // Collect the non-null pathnames which match the specified filter.
-        foreach (String filename  in  names)
+        foreach (String filename in names)
         {
             // Ignore null or empty filenames.
             if (filename == null || filename.length() == 0)
@@ -2420,7 +2420,7 @@ public class WWIO
 
         // Collect the non-null pathnames which match the specified filter, and collect the non-null directory names
         // in a temporary list.
-        foreach (String filename  in  names)
+        foreach (String filename in names)
         {
             // Ignore null or empty filenames.
             if (filename == null || filename.length() == 0)
@@ -2440,7 +2440,7 @@ public class WWIO
             return;
 
         // Recursively process the contents of each path . 
-        foreach (String filename  in  names)
+        foreach (String filename in names)
         {
             listDescendantFilenames(parent, appendPathPart(pathname, filename), filter, recurseAfterMatch, matches);
         }

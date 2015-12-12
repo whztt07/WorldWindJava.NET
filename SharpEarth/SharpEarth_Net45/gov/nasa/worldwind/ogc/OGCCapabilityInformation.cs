@@ -7,7 +7,7 @@
 using java.util;
 using javax.xml.stream.events;
 using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 namespace SharpEarth.ogc{
 
@@ -178,17 +178,17 @@ abstract public class OGCCapabilityInformation : AbstractXMLEventParser
     {
         StringBuilder sb = new StringBuilder();
 
-        foreach (String ef  in  this.getExceptionFormats())
+        foreach (String ef in this.getExceptionFormats())
         {
-            sb.append("Exception foreachmat in  ").append(ef).append("\n");
+            sb.append("Exception format: ").append(ef).append("\n");
         }
 
-        foreach (OGCRequestDescription rd  in  this.getRequestDescriptions())
+        foreach (OGCRequestDescription rd in this.getRequestDescriptions())
         {
             sb.append(rd);
         }
 
-        foreach (Map.Entry<String, String> uds  in  this.getUserDefinedSymbolization().entrySet())
+        foreach (Map.Entry<String, String> uds in this.getUserDefinedSymbolization().entrySet())
         {
             sb.append(uds.getKey()).append("=").append(uds.getValue()).append("\n");
         }

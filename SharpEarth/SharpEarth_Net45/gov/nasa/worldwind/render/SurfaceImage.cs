@@ -179,7 +179,7 @@ public class SurfaceImage : WWObjectImpl
     protected void initializeGeometry(Iterable<? extends LatLon> corners)
     {
         this.corners = new ArrayList<LatLon>(4);
-        foreach (LatLon ll  in  corners)
+        foreach (LatLon ll in corners)
         {
             this.corners.add(ll);
         }
@@ -665,7 +665,7 @@ public class SurfaceImage : WWObjectImpl
         xmlWriter.writeStartElement(GXConstants.GX_NAMESPACE, "LatLonQuad");
         xmlWriter.writeStartElement("coordinates");
 
-        foreach (LatLon ll  in  this.corners)
+        foreach (LatLon ll in this.corners)
         {
             xmlWriter.writeCharacters(Double.ToString(ll.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");

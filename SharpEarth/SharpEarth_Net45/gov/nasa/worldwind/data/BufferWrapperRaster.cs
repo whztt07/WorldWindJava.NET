@@ -252,7 +252,7 @@ public class BufferWrapperRaster : AbstractDataRaster , Cacheable, Disposable
         // Compute the range of x-values in this raster that are needed during rendering.
         lut.computeRangeX(xParams);
         int xParamMin = (int) Math.Floor(xParams[0]);
-        int xParamMax = (int) Math.ceil(xParams[1]);
+        int xParamMax = (int) Math.Ceiling(xParams[1]);
         int xParamWidth = xParamMax - xParamMin + 1;
 
         // Allocate a buffer for two rows of samples from this raster, and allocate a buffer for one row of samples
@@ -472,7 +472,7 @@ public class BufferWrapperRaster : AbstractDataRaster , Cacheable, Disposable
                 x = (x < xMin) ? xMin : ((x > xMax) ? xMax : x);
                 index = 3 * i;
                 lut.xParams[index] = Math.Floor(x);
-                lut.xParams[index + 1] = Math.ceil(x);
+                lut.xParams[index + 1] = Math.Ceiling(x);
                 lut.xParams[index + 2] = x - lut.xParams[index];
 
                 haveXParam = true;
@@ -489,7 +489,7 @@ public class BufferWrapperRaster : AbstractDataRaster , Cacheable, Disposable
                 y = (y < yMin) ? yMin : ((y > yMax) ? yMax : y);
                 index = 3 * j;
                 lut.yParams[index] = Math.Floor(y);
-                lut.yParams[index + 1] = Math.ceil(y);
+                lut.yParams[index + 1] = Math.Ceiling(y);
                 lut.yParams[index + 2] = y - lut.yParams[index];
 
                 haveYParam = true;

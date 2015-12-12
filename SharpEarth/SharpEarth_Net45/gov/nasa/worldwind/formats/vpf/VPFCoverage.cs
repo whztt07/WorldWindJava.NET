@@ -218,7 +218,7 @@ public class VPFCoverage : AVListImpl
 
         ArrayList<VPFRelation> rels = new ArrayList<VPFRelation>();
 
-        foreach (VPFRecord row  in  this.featureClassSchemaTable)
+        foreach (VPFRecord row in this.featureClassSchemaTable)
         {
             Object o = row.getValue("feature_class");
             if (o == null || !(o is String))

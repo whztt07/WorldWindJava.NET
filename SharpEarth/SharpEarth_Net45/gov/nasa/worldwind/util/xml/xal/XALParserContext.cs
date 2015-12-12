@@ -6,7 +6,7 @@
 
 using java.util.concurrent.ConcurrentHashMap;
 using java.util.Map;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 namespace SharpEarth.util.xml.xal{
 
@@ -41,7 +41,7 @@ public class XALParserContext : BasicXMLEventParserContext
         parsers.put(new QName(xns, "Thoroughfare"), new XALThoroughfare(xns));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        foreach (String s  in  StringFields)
+        foreach (String s in StringFields)
         {
             parsers.put(new QName(xns, s), stringParser);
         }

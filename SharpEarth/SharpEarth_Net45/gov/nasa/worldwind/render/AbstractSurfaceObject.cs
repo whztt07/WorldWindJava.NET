@@ -353,7 +353,7 @@ public abstract class AbstractSurfaceObject : WWObjectImpl , SurfaceObject
         {
             ArrayList<Vec4> boxCorners = new ArrayList<Vec4>();
 
-            foreach (Sector s  in  sectors)
+            foreach (Sector s in sectors)
             {
                 Box box = Sector.computeBoundingBox(globe, verticalExaggeration, s);
                 boxCorners.addAll(Arrays.asList(box.getCorners()));
@@ -418,7 +418,7 @@ public abstract class AbstractSurfaceObject : WWObjectImpl , SurfaceObject
         if (sectors == null)
             return false;
 
-        foreach (Sector s  in  sectors)
+        foreach (Sector s in sectors)
         {
             if (s.intersects(dc.getVisibleSector()))
                 return true;
@@ -745,7 +745,7 @@ public abstract class AbstractSurfaceObject : WWObjectImpl , SurfaceObject
             Matrix matrix = sdc.getModelviewMatrix();
             gl.glMultMatrixd(matrix.toArray(new double[16], 0, false), 0);
 
-            foreach (Sector s  in  sectors)
+            foreach (Sector s in sectors)
             {
                 LatLon[] corners = s.getCorners();
                 gl.glBegin(GL2.GL_LINE_LOOP);

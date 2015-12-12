@@ -140,7 +140,7 @@ public class FileTree : Iterable<File>
             File[] list = file.listFiles();
             if (list != null)
             {
-                foreach (File child  in  list)
+                foreach (File child in list)
                 {
                     if (child != null)
                     {

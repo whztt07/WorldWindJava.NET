@@ -10,47 +10,45 @@ using SharpEarth.render;
 using SharpEarth.geom;
 using SharpEarth;
 
-namespace SharpEarth.globes {
-
-
-
-/**
- * Represents a planet's shape and terrain. A globe may be associated with an {@link ElevationModel} that provides
- * elevations for geographic positions on the surface of the globe. Globe provides methods for converting geographic
- * positions (latitude, longitude, and elevation) to cartesian coordinates, and for converting cartesian to geographic.
- * The origin and orientation of the cartesian coordinate system are determined by implementations of this interface.
- * <p/>
- * <h1>Computations in Cartesian Coordinates</h1>
- * <p/>
- * Globe provides methods for performing computations in the coordinate system represented by a globe's surface in
- * cartesian coordinates. These methods perform work with respect to the globe's actual shape in 3D cartesian
- * coordinates. For an ellipsoidal globe, these methods are equivalent to the ellipsoidal coordinate computations below.
- * For an instance of {@link Globe2D}, these methods work in the cartesian coordinates specified by the globe's 2D
- * projection.
- * <p/>
- * <ul> <li>{@link #computePointFromPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
- * <li>{@link #computePositionFromPoint(gov.nasa.worldwind.geom.Vec4)}</li> <li>{@link
- * #computeSurfaceNormalAtLocation(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle)}</li> <li>{@link
- * #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
- * </ul>
- * <p/>
- * <h1>Computations in Ellipsoidal Coordinates</h1>
- * <p/>
- * Globe provides methods for performing computation on the ellipsoid represented by a globe's equatorial radius and its
- * polar radius. These methods perform work with respect to the ellipsoid in 3D cartesian coordinates. Calling any of
- * these methods on an instance of Globe2D will return the same result as a 3D globe with equivalent radii.
- * <p/>
- * <ul> <li>{@link #computeEllipsoidalPointFromPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle,
- * double)}</li> <li>{@link #computePositionFromEllipsoidalPoint(gov.nasa.worldwind.geom.Vec4)}</li> <li>{@link
- * #computeEllipsoidalNormalAtLocation(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle)}</li> <li>{@link
- * #computeEllipsoidalOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
- * </ul>
- *
- * @author Tom Gaskins
- * @version $Id: Globe.java 2295 2014-09-04 17:33:25Z tgaskins $
- */
-public interface Globe : WWObject, Extent
+namespace SharpEarth.globes
 {
+  /**
+   * Represents a planet's shape and terrain. A globe may be associated with an {@link ElevationModel} that provides
+   * elevations for geographic positions on the surface of the globe. Globe provides methods for converting geographic
+   * positions (latitude, longitude, and elevation) to cartesian coordinates, and for converting cartesian to geographic.
+   * The origin and orientation of the cartesian coordinate system are determined by implementations of this interface.
+   * <p/>
+   * <h1>Computations in Cartesian Coordinates</h1>
+   * <p/>
+   * Globe provides methods for performing computations in the coordinate system represented by a globe's surface in
+   * cartesian coordinates. These methods perform work with respect to the globe's actual shape in 3D cartesian
+   * coordinates. For an ellipsoidal globe, these methods are equivalent to the ellipsoidal coordinate computations below.
+   * For an instance of {@link Globe2D}, these methods work in the cartesian coordinates specified by the globe's 2D
+   * projection.
+   * <p/>
+   * <ul> <li>{@link #computePointFromPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
+   * <li>{@link #computePositionFromPoint(gov.nasa.worldwind.geom.Vec4)}</li> <li>{@link
+   * #computeSurfaceNormalAtLocation(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle)}</li> <li>{@link
+   * #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
+   * </ul>
+   * <p/>
+   * <h1>Computations in Ellipsoidal Coordinates</h1>
+   * <p/>
+   * Globe provides methods for performing computation on the ellipsoid represented by a globe's equatorial radius and its
+   * polar radius. These methods perform work with respect to the ellipsoid in 3D cartesian coordinates. Calling any of
+   * these methods on an instance of Globe2D will return the same result as a 3D globe with equivalent radii.
+   * <p/>
+   * <ul> <li>{@link #computeEllipsoidalPointFromPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle,
+   * double)}</li> <li>{@link #computePositionFromEllipsoidalPoint(gov.nasa.worldwind.geom.Vec4)}</li> <li>{@link
+   * #computeEllipsoidalNormalAtLocation(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle)}</li> <li>{@link
+   * #computeEllipsoidalOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double)}</li>
+   * </ul>
+   *
+   * @author Tom Gaskins
+   * @version $Id: Globe.java 2295 2014-09-04 17:33:25Z tgaskins $
+   */
+  public interface Globe : WWObject, Extent
+  {
     /**
      * Indicates the spatial volume contained by this globe.
      *
@@ -87,7 +85,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The radius in meters of the globe's ellipsoid at the specified location.
      */
-    double getRadiusAt(Angle latitude, Angle longitude);
+    double getRadiusAt( Angle latitude, Angle longitude );
 
     /**
      * Indicates the elevation at a specified location. If the elevation at the specified location is the elevation
@@ -105,7 +103,7 @@ public interface Globe : WWObject, Extent
      *
      * @see #getElevationModel()
      */
-    double getElevation(Angle latitude, Angle longitude);
+    double getElevation( Angle latitude, Angle longitude );
 
     /**
      * Indicates the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
@@ -130,7 +128,7 @@ public interface Globe : WWObject, Extent
      * @throws ArgumentException if either the sector, latlons list or elevations array is null.
      * @see #getElevationModel()
      */
-  double getElevationsAndResolution<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon;
+    double getElevationsAndResolution<T>( Sector sector, List<T> latlons, double targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the elevations of a collection of locations. Replaces any elevation values corresponding to the missing
@@ -157,7 +155,7 @@ public interface Globe : WWObject, Extent
      *                                  is null.
      * @see #getElevationModel()
      */
-  double[] getElevationsAndResolutions<T>( Sector sector, List<T> latLons, double[] targetResolution, double[] elevations ) where T : LatLon;
+    double[] getElevationsAndResolutions<T>( Sector sector, List<T> latLons, double[] targetResolution, double[] elevations ) where T : LatLon;
 
     /**
      * Indicates the maximum elevation on this globe, in meters.
@@ -182,7 +180,7 @@ public interface Globe : WWObject, Extent
      *         intersections the intersection nearest to the line's origin is returned. The intersection may be a
      *         tangent. Returns null if the line does not intersect this globe.
      */
-    Position getIntersectionPosition(Line line);
+    Position getIntersectionPosition( Line line );
 
     /**
      * Indicates the square of this globe's eccentricity. <a href="http://mathworld.wolfram.com/Eccentricity.html"
@@ -201,7 +199,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The cartesian point that corresponds to the specified geographic position.
      */
-    Vec4 computePointFromPosition(Angle latitude, Angle longitude, double metersElevation);
+    Vec4 computePointFromPosition( Angle latitude, Angle longitude, double metersElevation );
 
     /**
      * Computes a cartesian point from a geographic location and elevation.
@@ -211,7 +209,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The cartesian point that corresponds to the specified geographic position.
      */
-    Vec4 computePointFromPosition(LatLon latLon, double metersElevation);
+    Vec4 computePointFromPosition( LatLon latLon, double metersElevation );
 
     /**
      * Computes a cartesian point from a geographic position.
@@ -221,7 +219,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The cartesian point that corresponds to the specified geographic position.
      */
-    Vec4 computePointFromPosition(Position position);
+    Vec4 computePointFromPosition( Position position );
 
     /**
      * Computes a cartesian point from a geographic location on the surface of this globe.
@@ -230,7 +228,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The cartesian point that corresponds to the specified geographic location.
      */
-    Vec4 computePointFromLocation(LatLon location);
+    Vec4 computePointFromLocation( LatLon location );
 
     /**
      * Computes the geographic position of a point in cartesian coordinates.
@@ -239,7 +237,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The geographic position of the specified point.
      */
-    Position computePositionFromPoint(Vec4 point);
+    Position computePositionFromPoint( Vec4 point );
 
     /**
      * Computes a grid of cartesian points corresponding to a grid of geographic positions.
@@ -265,7 +263,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws ArgumentException If any argument is null, or if numLat or numLon are less than or equal to zero.
      */
-    void computePointsFromPositions(Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] outVector);
+    void computePointsFromPositions( Sector sector, int numLat, int numLon, double[] metersElevation, Vec4[] outVector );
 
     /**
      * Computes a vector perpendicular to the surface of this globe in cartesian coordinates.
@@ -275,7 +273,7 @@ public interface Globe : WWObject, Extent
      *
      * @return A vector perpendicular to the surface of this globe, at the specified location.
      */
-    Vec4 computeSurfaceNormalAtLocation(Angle latitude, Angle longitude);
+    Vec4 computeSurfaceNormalAtLocation( Angle latitude, Angle longitude );
 
     /**
      * Computes a vector perpendicular to the surface of this globe, at a cartesian point.
@@ -284,7 +282,7 @@ public interface Globe : WWObject, Extent
      *
      * @return A vector perpendicular to the surface of this globe, at the specified point.
      */
-    Vec4 computeSurfaceNormalAtPoint(Vec4 point);
+    Vec4 computeSurfaceNormalAtPoint( Vec4 point );
 
     /**
      * Computes a vector tangent to this globe and pointing toward the north pole.
@@ -295,13 +293,13 @@ public interface Globe : WWObject, Extent
      * @return A vector tangent to this globe at (latitude, longitude), and pointing toward the north pole of this
      *         globe.
      */
-    Vec4 computeNorthPointingTangentAtLocation(Angle latitude, Angle longitude);
+    Vec4 computeNorthPointingTangentAtLocation( Angle latitude, Angle longitude );
 
     /** @see #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Angle, SharpEarth.geom.Angle, double). */
-    Matrix computeModelCoordinateOriginTransform(Angle latitude, Angle longitude, double metersElevation);
+    Matrix computeModelCoordinateOriginTransform( Angle latitude, Angle longitude, double metersElevation );
 
     /** @see #computeSurfaceOrientationAtPosition(gov.nasa.worldwind.geom.Position) */
-    Matrix computeModelCoordinateOriginTransform(Position position);
+    Matrix computeModelCoordinateOriginTransform( Position position );
 
     /**
      * Returns the cartesian transform matrix that maps model coordinates to a local coordinate system at (latitude,
@@ -317,7 +315,7 @@ public interface Globe : WWObject, Extent
      * @return the cartesian transform matrix that maps model coordinates to the local coordinate system at the
      *         specified position.
      */
-    Matrix computeSurfaceOrientationAtPosition(Angle latitude, Angle longitude, double metersElevation);
+    Matrix computeSurfaceOrientationAtPosition( Angle latitude, Angle longitude, double metersElevation );
 
     /**
      * Returns the cartesian transform matrix that maps model coordinates to a local coordinate system at (latitude,
@@ -331,7 +329,7 @@ public interface Globe : WWObject, Extent
      * @return The cartesian transform matrix that maps model coordinates to the local coordinate system at the
      *         specified position.
      */
-    Matrix computeSurfaceOrientationAtPosition(Position position);
+    Matrix computeSurfaceOrientationAtPosition( Position position );
 
     /**
      * Computes a ellipsoidal point from a latitude, longitude, and elevation.
@@ -349,7 +347,7 @@ public interface Globe : WWObject, Extent
      * @throws java.lang.ArgumentException
      *          if the specified latitude or longitude is null.
      */
-    Vec4 computeEllipsoidalPointFromPosition(Angle latitude, Angle longitude, double metersElevation);
+    Vec4 computeEllipsoidalPointFromPosition( Angle latitude, Angle longitude, double metersElevation );
 
     /**
      * Computes a ellipsoidal point from a latitude and longitude.
@@ -364,7 +362,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws java.lang.ArgumentException if the specified location is null.
      */
-    Vec4 computeEllipsoidalPointFromLocation(LatLon location);
+    Vec4 computeEllipsoidalPointFromLocation( LatLon location );
 
     /**
      * Computes a ellipsoidal point from a latitude, longitude, and elevation.
@@ -380,7 +378,7 @@ public interface Globe : WWObject, Extent
      * @throws java.lang.ArgumentException
      *          if the specified position is null.
      */
-    Vec4 computeEllipsoidalPointFromPosition(Position position);
+    Vec4 computeEllipsoidalPointFromPosition( Position position );
 
     /**
      * Computes the geographic position of a point in ellipsoidal coordinates.
@@ -394,7 +392,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The geographic position of the specified ellipsoidal point.
      */
-    Position computePositionFromEllipsoidalPoint(Vec4 ellipsoidalPoint);
+    Position computePositionFromEllipsoidalPoint( Vec4 ellipsoidalPoint );
 
     /**
      * Computes a vector perpendicular to the surface of the ellipsoid specified by this globe, in cartesian
@@ -412,7 +410,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws ArgumentException if either angle is null.
      */
-    Vec4 computeEllipsoidalNormalAtLocation(Angle latitude, Angle longitude);
+    Vec4 computeEllipsoidalNormalAtLocation( Angle latitude, Angle longitude );
 
     /**
      * Returns the cartesian transform matrix that maps local model coordinates to an ellipsoidal coordinate system at
@@ -433,7 +431,7 @@ public interface Globe : WWObject, Extent
      *         specified position.
      */
 
-    Matrix computeEllipsoidalOrientationAtPosition(Angle latitude, Angle longitude, double metersElevation);
+    Matrix computeEllipsoidalOrientationAtPosition( Angle latitude, Angle longitude, double metersElevation );
 
     /**
      * Indicates the radius in meters of the globe's ellipsoid at a location.
@@ -442,7 +440,7 @@ public interface Globe : WWObject, Extent
      *
      * @return The radius in meters of the globe's ellipsoid at the specified location.
      */
-    double getRadiusAt(LatLon location);
+    double getRadiusAt( LatLon location );
 
     /**
      * Returns the minimum and maximum elevations at a specified location on this Globe. This returns a two-element
@@ -455,7 +453,7 @@ public interface Globe : WWObject, Extent
      *         location, respectively. These values are the global minimum and maximum if the local minimum and maximum
      *         values are currently unknown, or zero if this Globe has no elevation model.
      */
-    double[] getMinAndMaxElevations(Angle latitude, Angle longitude);
+    double[] getMinAndMaxElevations( Angle latitude, Angle longitude );
 
     /**
      * Returns the minimum and maximum elevations within a specified sector on this Globe. This returns a two-element
@@ -467,7 +465,7 @@ public interface Globe : WWObject, Extent
      *         respectively. These elements are the global minimum and maximum if the local minimum and maximum values
      *         are currently unknown, or zero if this Globe has no elevation model.
      */
-    double[] getMinAndMaxElevations(Sector sector);
+    double[] getMinAndMaxElevations( Sector sector );
 
     /**
      * Intersects a specified line with this globe. Only the ellipsoid itself is considered; terrain elevations are not
@@ -479,7 +477,7 @@ public interface Globe : WWObject, Extent
      *
      * @return the intersection points, or null if no intersection occurs or the <code>line</code> is null.
      */
-    Intersection[] intersect(Line line, double altitude);
+    Intersection[] intersect( Line line, double altitude );
 
     /**
      * Intersects a specified triangle with the globe. Only the ellipsoid itself is considered; terrain elevations are
@@ -491,7 +489,7 @@ public interface Globe : WWObject, Extent
      *
      * @return the intersection points, or null if no intersection occurs or <code>triangle</code> is null.
      */
-    Intersection[] intersect(Triangle triangle, double altitude);
+    Intersection[] intersect( Triangle triangle, double altitude );
 
     /**
      * Returns this globe's current tessellator.
@@ -505,7 +503,7 @@ public interface Globe : WWObject, Extent
      *
      * @param tessellator the new tessellator. Specify null to use the default tessellator.
      */
-    void setTessellator(Tessellator tessellator);
+    void setTessellator( Tessellator tessellator );
 
     /**
      * Tessellate this globe for the currently visible region.
@@ -516,7 +514,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws IllegalStateException if the globe has no tessellator and a default tessellator cannot be created.
      */
-    SectorGeometryList tessellate(DrawContext dc);
+    SectorGeometryList tessellate( DrawContext dc );
 
     /**
      * Returns a state key identifying this globe's current configuration. Can be used to subsequently determine whether
@@ -528,7 +526,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws ArgumentException if the draw context is null.
      */
-    object getStateKey(DrawContext dc);
+    object getStateKey( DrawContext dc );
 
     /**
      * Returns a typed state key identifying this globe's current configuration. Can be used to subsequently determine
@@ -540,7 +538,7 @@ public interface Globe : WWObject, Extent
      *
      * @throws ArgumentException if the draw context is null.
      */
-    GlobeStateKey getGlobeStateKey(DrawContext dc);
+    GlobeStateKey getGlobeStateKey( DrawContext dc );
 
     /**
      * Returns a typed state key identifying this globe's current configuration. Can be used to subsequently determine
@@ -564,7 +562,7 @@ public interface Globe : WWObject, Extent
      *
      * @param elevationModel this globe's elevation model. May be null to indicate no elevation model.
      */
-    void setElevationModel(ElevationModel elevationModel);
+    void setElevationModel( ElevationModel elevationModel );
 
     /**
      * Determines whether a point is above a given elevation.
@@ -574,6 +572,6 @@ public interface Globe : WWObject, Extent
      *
      * @return true if the given point is above the given elevation, otherwise false.
      */
-    bool isPointAboveElevation(Vec4 point, double elevation);
-}
+    bool isPointAboveElevation( Vec4 point, double elevation );
+  }
 }

@@ -362,7 +362,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
     public java.util.List<? extends java.io.File> getLocations()
     {
         java.util.ArrayList<java.io.File> locations = new java.util.ArrayList<java.io.File>();
-        foreach (StoreLocation location  in  this.readLocations)
+        foreach (StoreLocation location in this.readLocations)
         {
             locations.add(location.getFile());
         }
@@ -447,7 +447,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
     {
         java.io.File file = new java.io.File(path);
 
-        foreach (StoreLocation location  in  this.readLocations)
+        foreach (StoreLocation location in this.readLocations)
         {
             if (file.Equals(location.getFile()))
                 return location;
@@ -465,7 +465,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
         if (fileName == null)
             return false;
 
-        foreach (StoreLocation location  in  this.readLocations)
+        foreach (StoreLocation location in this.readLocations)
         {
             java.io.File dir = location.getFile();
             java.io.File file;
@@ -517,7 +517,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
             }
         }
 
-        foreach (StoreLocation location  in  this.readLocations)
+        foreach (StoreLocation location in this.readLocations)
         {
             java.io.File dir = location.getFile();
             if (!dir.exists())
@@ -738,7 +738,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
     {
         java.util.ArrayList<String> nameList = null;
 
-        foreach (StoreLocation location  in  this.readLocations)
+        foreach (StoreLocation location in this.readLocations)
         {
             // If the path name is null, then just search from the root of each location. Otherwise search from the
             // named cache path.
@@ -776,7 +776,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
         // directories to search later. Otherwise, try to list the file as a match. If the file is a match and
         // exitBranchOnFirstMatch is true, then exit this branch without considering any other files. This has the
         // effect of choosing files closest to the search root.
-        foreach (java.io.File childFile  in  dir.listFiles())
+        foreach (java.io.File childFile in dir.listFiles())
         {
             if (childFile == null)
                 continue;
@@ -797,7 +797,7 @@ public abstract class AbstractFileStore : WWObjectImpl , FileStore
 
         // Recursively search each sub-directory. If exitBranchOnFirstMatch is true, then we did not find a match under
         // this directory.
-        foreach (java.io.File childDir  in  subDirs)
+        foreach (java.io.File childDir in subDirs)
         {
             this.doListFileNames(location, childDir, filter, recurse, exitBranchOnFirstMatch, names);
         }

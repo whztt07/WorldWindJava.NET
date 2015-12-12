@@ -75,7 +75,7 @@ public class ColladaFloatArray : ColladaAbstractObject
         float[] ary = new float[arrayOfNumbers.length];
 
         int i = 0;
-        foreach (String s  in  arrayOfNumbers)
+        foreach (String s in arrayOfNumbers)
         {
             if (!WWUtil.isEmpty(s))
                 ary[i++] = Float.parseFloat(s);

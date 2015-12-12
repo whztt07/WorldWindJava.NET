@@ -43,7 +43,7 @@ abstract class GDALAbstractFileFilter : java.io.FileFilter
             String[] folders = path.split(Pattern.quote(File.separator));
             if (!WWUtil.isEmpty(folders))
             {
-                foreach (String folder  in  folders)
+                foreach (String folder in folders)
                 {
                     if (!WWUtil.isEmpty(folder) && folder.startsWith("."))
                     {

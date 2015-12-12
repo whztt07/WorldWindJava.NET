@@ -109,7 +109,7 @@ public class BasicModel : WWObjectImpl , Model
             return null;
 
         String[] names = layerNames.split(",");
-        foreach (String name  in  names)
+        foreach (String name in names)
         {
             try
             {
@@ -221,7 +221,7 @@ public class BasicModel : WWObjectImpl , Model
         LayerList layers = BasicModel.this.getLayers();
         if (layers != null)
         {
-            foreach (Object layer1  in  layers)
+            foreach (Object layer1 in layers)
             {
                 Layer layer = (Layer) layer1;
                 Extent e = (Extent) layer.getValue(AVKey.EXTENT);
@@ -254,7 +254,7 @@ public class BasicModel : WWObjectImpl , Model
     {
         if (this.getLayers() != null)
         {
-            foreach (Layer layer  in  this.getLayers())
+            foreach (Layer layer in this.getLayers())
             {
                 try
                 {

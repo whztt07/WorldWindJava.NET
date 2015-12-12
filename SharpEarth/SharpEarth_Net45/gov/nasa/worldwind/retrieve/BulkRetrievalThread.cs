@@ -161,7 +161,7 @@ public abstract class BulkRetrievalThread : Thread
 
     protected void callRetrievalListeners(BulkRetrievalEvent event)
     {
-        foreach (BulkRetrievalListener listener  in  this.retrievalListeners.getListeners(BulkRetrievalListener.class))
+        foreach (BulkRetrievalListener listener in this.retrievalListeners.getListeners(BulkRetrievalListener.class))
         {
             listener.eventOccurred(event);
         }

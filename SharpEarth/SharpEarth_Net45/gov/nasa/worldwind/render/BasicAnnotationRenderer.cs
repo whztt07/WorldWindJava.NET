@@ -509,7 +509,7 @@ public class BasicAnnotationRenderer : AnnotationRenderer
 //    // Test if a rectangle intersects one of the previously used rectangles
 //    private bool rectangleIntersectsUsed(Rectangle r)
 //    {
-//        foreach(Rectangle ur  in  this.usedRectangles)
+//        for(Rectangle ur : this.usedRectangles)
 //            if(r.intersects(ur))
 //                return true;
 //        return false;

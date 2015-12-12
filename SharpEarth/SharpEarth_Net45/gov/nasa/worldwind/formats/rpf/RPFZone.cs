@@ -114,7 +114,7 @@ public enum RPFZone
         {
             RPFZone[] universe = RPFZone.class.getEnumConstants();
             enumConstantAlphabet = new RPFZone[universe.length];
-            foreach (RPFZone zone  in  universe)
+            foreach (RPFZone zone in universe)
             {
                 enumConstantAlphabet[indexFor(zone.zoneCode)] = zone;
             }

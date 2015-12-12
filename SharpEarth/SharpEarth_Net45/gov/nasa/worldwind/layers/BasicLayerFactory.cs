@@ -11,6 +11,10 @@ using SharpEarth.exception;
 using SharpEarth.avlist;
 using SharpEarth;
 using System;
+using System.Collections.Generic;
+using SharpEarth.java.lang;
+using SharpEarth.java.org.w3c.dom;
+using SharpEarth.wms;
 
 namespace SharpEarth.layers{
 
@@ -82,14 +86,14 @@ public class BasicLayerFactory : BasicFactory
             // Use the first named layer since no other guidance given
             List<WMSLayerCapabilities> namedLayers = ((WMSCapabilities) caps).getNamedLayers();
 
-            if (namedLayers == null || namedLayers.size() == 0 || namedLayers.get(0) == null)
+            if (namedLayers == null || namedLayers.Count == 0 || namedLayers[0] == null)
             {
                 String message = Logging.getMessage("WMS.NoLayersFound");
                 Logging.logger().severe(message);
                 throw new IllegalStateException(message);
             }
 
-            parameters.setValue(AVKey.LAYER_NAMES, namedLayers.get(0).getName());
+            parameters.setValue(AVKey.LAYER_NAMES, namedLayers[0].getName());
         }
 
         return new WMSTiledImageLayer((WMSCapabilities) caps, parameters);
@@ -109,18 +113,17 @@ public class BasicLayerFactory : BasicFactory
      *                   or layer lists are not re-thrown but are logged. The layer or layer list associated with the
      *                   exception is not contained in the returned object.
      */
-    @Override
-    protected Object doCreateFromElement(Element domElement, AVList parameters) throws Exception
+    protected override Object doCreateFromElement(Element domElement, AVList parameters) 
     {
         Element[] elements = WWXML.getElements(domElement, "//LayerList", null);
-        if (elements != null && elements.length > 0)
+        if (elements != null && elements.Length > 0)
             return createLayerLists(elements, parameters);
 
         elements = WWXML.getElements(domElement, "./Layer", null);
-        if (elements != null && elements.length > 1)
+        if (elements != null && elements.Length > 1)
             return createLayerList(elements, parameters);
 
-        if (elements != null && elements.length == 1)
+        if (elements != null && elements.Length == 1)
             return this.createFromLayerDocument(elements[0], parameters);
 
         String localName = WWXML.getUnqualifiedName(domElement);
@@ -144,14 +147,14 @@ public class BasicLayerFactory : BasicFactory
      */
     protected LayerList[] createLayerLists(Element[] elements, AVList parameters)
     {
-        ArrayList<LayerList> layerLists = new ArrayList<LayerList>();
+        List<LayerList> layerLists = new List<LayerList>();
 
-        foreach (Element element  in  elements)
+        foreach (Element element in elements)
         {
             try
             {
                 String href = WWXML.getText(element, "@href");
-                if (href != null && href.length() > 0)
+                if (href != null && href.Length > 0)
                 {
                     Object o = this.createFromConfigSource(href, parameters);
                     if (o == null)
@@ -223,7 +226,7 @@ public class BasicLayerFactory : BasicFactory
     {
         LayerList layerList = new LayerList();
 
-        foreach (Element element  in  layerElements)
+        foreach (Element element in layerElements)
         {
             try
             {

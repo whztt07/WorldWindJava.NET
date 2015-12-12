@@ -208,7 +208,7 @@ public interface WorldWindow : AVList
      *
      * @return The keys and values of the active per-frame statistics.
      */
-    Collection<PerforeachmanceStatistic> getPerFrameStatistics(); // TODO in  move the constants from AVKey to this interface.
+    Collection<PerformanceStatistic> getPerFrameStatistics(); // TODO: move the constants from AVKey to this interface.
 
     /**
      * Causes resources used by the World Window to be freed. The World Window cannot be used once this method is

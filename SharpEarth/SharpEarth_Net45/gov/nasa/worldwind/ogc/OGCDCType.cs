@@ -7,7 +7,7 @@
 using java.util;
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 namespace SharpEarth.ogc{
 
@@ -122,7 +122,7 @@ public class OGCDCType : AbstractXMLEventParser
 
     public OGCOnlineResource getOnlineResouce(String protocol, String requestMethod)
     {
-        foreach (DCPInfo dcpi  in  this.getDCPInfos())
+        foreach (DCPInfo dcpi in this.getDCPInfos())
         {
             if (!dcpi.protocol.equalsIgnoreCase(protocol))
                 continue;
@@ -139,7 +139,7 @@ public class OGCDCType : AbstractXMLEventParser
     {
         StringBuilder sb = new StringBuilder();
 
-        foreach (DCPInfo dcpi  in  this.getDCPInfos())
+        foreach (DCPInfo dcpi in this.getDCPInfos())
         {
             sb.append(dcpi.protocol).append(", ");
             sb.append(dcpi.method).append(", ");

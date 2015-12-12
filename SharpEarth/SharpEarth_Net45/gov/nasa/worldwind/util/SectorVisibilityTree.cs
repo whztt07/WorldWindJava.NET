@@ -227,7 +227,7 @@ public class SectorVisibilityTree
         this.swapCylinderLists(dc);
         this.sectors = new ArrayList<Sector>();
         this.sectorSize = sectorSize;
-        foreach (Sector s  in  searchSectors)
+        foreach (Sector s in searchSectors)
         {
             this.tree.traverse(s, new Context(dc, sectorSize, this.sectors));
         }

@@ -6,7 +6,7 @@
 
 using java.util.Map;
 using javax.xml.stream.XMLEventReader;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml.xal.XALParserContext;
 using SharpEarth.util.xml.atom.AtomParserContext;
 using SharpEarth.util.xml;
@@ -272,7 +272,7 @@ public class KMLParserContext : BasicXMLEventParserContext
         String ns = KMLConstants.KML_2dot0_NAMESPACE;
 
         // Just add all the default parsers. // TODO: Check for differences between 2.0 and 2.1
-        foreach (Map.Entry<QName, XMLEventParser> entry  in  this.parsers.entrySet())
+        foreach (Map.Entry<QName, XMLEventParser> entry in this.parsers.entrySet())
         {
             this.parsers.put(new QName(ns, entry.getKey().getLocalPart()), entry.getValue());
         }

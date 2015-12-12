@@ -108,7 +108,7 @@ class RPFPolarFrameStructure extends RPFFrameStructure
     {
         double S = 100d / groundSampleDistance;
         double tmp = northSouthPixelSpacingConstant * S;
-        tmp = 512d * (int) Math.ceil(tmp / 512d);
+        tmp = 512d * (int) Math.Ceiling(tmp / 512d);
         tmp /= 4d;
         return 256 * (int) Math.Round(tmp / 256d);
     }
@@ -118,7 +118,7 @@ class RPFPolarFrameStructure extends RPFFrameStructure
     {
         double S = 1000000d / scale;
         double tmp = northSouthPixelSpacingConstant * S;
-        tmp = 512d * (int) Math.ceil(tmp / 512d);
+        tmp = 512d * (int) Math.Ceiling(tmp / 512d);
         tmp *= (20d / 360d);
         tmp /= (150d / 100d);
         tmp = 512d * (int) Math.Round(tmp / 512d);
@@ -139,7 +139,7 @@ class RPFPolarFrameStructure extends RPFFrameStructure
         double tmp = polarPixelConstant * 20d / 360d;
         tmp /= 256d;
         tmp /= 6d;
-        tmp = Math.ceil(tmp);
+        tmp = Math.Ceiling(tmp);
         if (((int) tmp) % 2 == 0)
             tmp = tmp + 1;
         return (int) tmp;
@@ -152,7 +152,7 @@ class RPFPolarFrameStructure extends RPFFrameStructure
         tmp /= 256d;
         tmp += 4d;
         tmp /= 6d;
-        tmp = Math.ceil(tmp);
+        tmp = Math.Ceiling(tmp);
         if (((int) tmp) % 2 == 0)
             tmp = tmp + 1;
         return (int) tmp;

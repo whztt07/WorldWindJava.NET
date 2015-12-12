@@ -203,8 +203,8 @@ public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
 //            AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
 //            Rectangle2D rect = op.getBounds2D(this.getBufferedImage());
 //
-//            int clipWidth = (int) Math.ceil((rect.getMaxX() >= canvasWidth) ? canvasWidth : rect.getMaxX());
-//            int clipHeight = (int) Math.ceil((rect.getMaxY() >= canvasHeight) ? canvasHeight : rect.getMaxY());
+//            int clipWidth = (int) Math.Ceiling((rect.getMaxX() >= canvasWidth) ? canvasWidth : rect.getMaxX());
+//            int clipHeight = (int) Math.Ceiling((rect.getMaxY() >= canvasHeight) ? canvasHeight : rect.getMaxY());
 //
 //            if (clipWidth <= 0 || clipHeight <= 0)
 //            {
@@ -300,8 +300,8 @@ public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
             AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
             Rectangle2D rect = op.getBounds2D(this.getBufferedImage());
 
-            int clipWidth = (int) Math.ceil((rect.getMaxX() >= canvasWidth) ? canvasWidth : rect.getMaxX());
-            int clipHeight = (int) Math.ceil((rect.getMaxY() >= canvasHeight) ? canvasHeight : rect.getMaxY());
+            int clipWidth = (int) Math.Ceiling((rect.getMaxX() >= canvasWidth) ? canvasWidth : rect.getMaxX());
+            int clipHeight = (int) Math.Ceiling((rect.getMaxY() >= canvasHeight) ? canvasHeight : rect.getMaxY());
 
             if (clipWidth <= 0 || clipHeight <= 0)
             {

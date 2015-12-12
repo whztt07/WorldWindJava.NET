@@ -1,28 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SharpEarth.java.io;
 
-namespace SharpEarth.java.net
+namespace SharpEarth.java.awt
 {
-  public class URL : java.io.File
+  public class Color
   {
-    private string v;
-
-    public URL( string v )
-    {
-      this.v = v;
-    }
-
-    internal string getPath()
+    public byte getRed()
     {
       throw new NotImplementedException();
     }
 
-    public InputStream openStream()
+    public byte getGreen()
+    {
+      throw new NotImplementedException();
+    }
+
+    public byte getBlue()
+    {
+      throw new NotImplementedException();
+    }
+
+    public int getRGB()
     {
       throw new NotImplementedException();
     }

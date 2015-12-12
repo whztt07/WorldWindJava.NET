@@ -15,11 +15,18 @@ using System;
 using SharpEarth.java.io;
 using SharpEarth.java.net;
 using System.IO;
+using System.Net;
+using System.Text;
+using System.Xml.XPath;
+using org.xml.sax;
+using SharpEarth.data;
 using SharpEarth.java.lang;
 using SharpEarth.javax.xml.xpath;
 using SharpEarth.util;
 using SharpEarth.javax.xml.stream.events;
 using SharpEarth.javax.xml.stream;
+using SharpEarth.javax.xml.transform.dom;
+using SharpEarth.javax.xml.transform.stream;
 
 namespace SharpEarth.util {
 
@@ -154,10 +161,10 @@ public class WWXML
 
         return node is Element ? (Element)node : null;
       }
-      catch (XPathExpressionException e)
+      catch (XPathException e)
       {
         String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
-        Logging.logger().log(java.util.logging.Level.WARNING, message, e);
+        Logging.logger().warning(message, e);
         return null;
       }
     }
@@ -196,7 +203,7 @@ public class WWXML
         throw new ArgumentException(message);
       }
 
-      Double d = AVListImpl.getDoubleValue(parameters, paramKey);
+      double? d = AVListImpl.getDoubleValue(parameters, paramKey);
       if (d != null)
       {
         appendDouble(context, path, d);
@@ -249,10 +256,10 @@ public class WWXML
         }
         return elements;
       }
-      catch (XPathExpressionException e)
+      catch (XPathException e)
       {
         String message = Logging.getMessage("XML.InvalidXPathExpression", "internal expression");
-        Logging.logger().log(java.util.logging.Level.WARNING, message, e);
+        Logging.logger().warning(message, e);
         return null;
       }
     }
@@ -306,7 +313,7 @@ public class WWXML
         {
             return openDocumentStream((InputStream) docSource);
         }
-        else if (docSource is File)
+        else if (docSource is WebRequestMethods.File)
         {
             return openDocumentFile(((URL)docSource).getPath(), null);
         }
@@ -452,9 +459,10 @@ public class WWXML
 
         try
         {
-            java.io.FileOutputStream outputStream = new java.io.FileOutputStream(filePath);
-
+          using (FileStream outputStream = new FileStream(filePath, FileMode.Create))
+          {
             saveDocumentToStream(doc, outputStream);
+          }
         }
         catch (IOException e)
         {
@@ -474,7 +482,7 @@ public class WWXML
      * @throws WWRuntimeException       if an exception or error occurs while writing the document. The causing
      *                                  exception is included in this exception's {@link Throwable#initCause(Throwable)}
      */
-    public static void saveDocumentToStream(Document doc, OutputStream outputStream)
+    public static void saveDocumentToStream(Document doc, FileStream outputStream)
     {
         if (doc == null)
         {
@@ -490,7 +498,7 @@ public class WWXML
             throw new ArgumentException(message);
         }
 
-        Source source = new DOMSource(doc);
+        RasterServerConfiguration.Source source = new DOMSource(doc);
         Result result = new StreamResult(outputStream);
 
         try
@@ -669,11 +677,11 @@ public class WWXML
         {
             return openEventReaderStream((InputStream) docSource, isNamespaceAware);
         }
-        else if (docSource is File)
+        else if (docSource is WebRequestMethods.File)
         {
-            return openEventReaderFile(((File) docSource).getPath(), null, isNamespaceAware);
+            return openEventReaderFile(((WebRequestMethods.File) docSource).getPath(), null, isNamespaceAware);
         }
-        else if (docSource is java.nio.ByteBuffer)
+        else if (docSource is ByteBuffer)
         {
             InputStream is = WWIO.getInputStreamFromByteBuffer((java.nio.ByteBuffer) docSource);
             return openEventReaderStream(is, isNamespaceAware);
@@ -1092,7 +1100,7 @@ public class WWXML
             return null;
 
         ArrayList<String> sarl = new ArrayList<String>();
-        foreach (String s  in  strings)
+        foreach (String s in strings)
         {
             if (!sarl.contains(s))
                 sarl.add(s);
@@ -1148,7 +1156,7 @@ public class WWXML
             return null;
 
         HashMap<String, Element> styles = new HashMap<String, Element>();
-        foreach (Element e  in  elements)
+        foreach (Element e in elements)
         {
             String name = getText(e, uniqueTag, xpath);
             if (name != null)
@@ -1813,7 +1821,7 @@ public class WWXML
         Document doc = context.getOwnerDocument();
         Element cur = context;
 
-        foreach (String s  in  names)
+        foreach (String s in names)
         {
             if (s != null && s.length() > 0)
             {
@@ -3536,7 +3544,7 @@ public class WWXML
         {
             LevelSet.SectorResolution[] srs = (LevelSet.SectorResolution[]) o;
 
-            foreach (LevelSet.SectorResolution sr  in  srs)
+            foreach (LevelSet.SectorResolution sr in srs)
             {
                 if (sr != null)
                 {
@@ -3820,7 +3828,7 @@ public class WWXML
             if (params == null)
                 parameters = new AVListImpl();
 
-            foreach (Element el  in  elements)
+            foreach (Element el in elements)
             {
                 String prop = xpath.evaluate("@name", el);
                 String value = xpath.evaluate("@value", el);
@@ -3870,7 +3878,7 @@ public class WWXML
         if (elements == null || elements.length == 0)
             return;
 
-        foreach (Element element  in  elements)
+        foreach (Element element in elements)
         {
             String propertyName = element.getAttribute("name");
             if (WWUtil.isEmpty(propertyName))

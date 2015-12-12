@@ -119,7 +119,7 @@ public class GDALUtils
 
             bool isKnownBuild = false;
             Method[] methods = gdalClass.getDeclaredMethods();
-            foreach (Method m  in  methods)
+            foreach (Method m in methods)
             {
                 if ("setLibraryLoader".Equals(m.getName()))
                 {
@@ -318,7 +318,7 @@ public class GDALUtils
 
         if (null != folders && folders.length > 0)
         {
-            foreach (String folder  in  folders)
+            foreach (String folder in folders)
             {
                 path.append(folder).append(del);
             }
@@ -655,7 +655,7 @@ public class GDALUtils
         }
         else if (maxValue > 0d)
         {
-            actualBitsPerColor = (int) Math.ceil(Math.Log(maxValue) / Math.Log(2d));
+            actualBitsPerColor = (int) Math.Ceiling(Math.Log(maxValue) / Math.Log(2d));
         }
         else
         {
@@ -1169,7 +1169,7 @@ public class GDALUtils
 //        * geotransform[1] : width of pixel
 //        * geotransform[4] : rotational coefficient, zero for north up images.
 //        * geotransform[2] : rotational coefficient, zero for north up images.
-//        * geotransforeachm[5]  in  height of pixel (but negative)
+//        * geotransform[5] : height of pixel (but negative)
 //        * geotransform[0] + 0.5 * geotransform[1] + 0.5 * geotransform[2] : x offset to center of top left pixel.
 //        * geotransform[3] + 0.5 * geotransform[4] + 0.5 * geotransform[5] : y offset to center of top left pixel.
 

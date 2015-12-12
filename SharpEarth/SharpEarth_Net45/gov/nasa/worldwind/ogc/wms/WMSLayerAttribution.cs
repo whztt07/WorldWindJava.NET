@@ -6,7 +6,7 @@
 
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 using SharpEarth.ogc.OGCOnlineResource;
 namespace SharpEarth.ogc.wms{

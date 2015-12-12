@@ -69,7 +69,7 @@ public abstract class AbstractDataRaster : AVListImpl , DataRaster
 
         if (null != list)
         {
-            foreach (Map.Entry<String, Object> entry  in  list.getEntries())
+            foreach (Map.Entry<String, Object> entry in list.getEntries())
             {
                 this.setValue(entry.getKey(), entry.getValue());
             }
@@ -145,8 +145,8 @@ public abstract class AbstractDataRaster : AVListImpl , DataRaster
 
         int x = (int) Math.Floor(ul.getX());
         int y = (int) Math.Floor(ul.getY());
-        int width = (int) Math.ceil(lr.getX() - ul.getX());
-        int height = (int) Math.ceil(lr.getY() - ul.getY());
+        int width = (int) Math.Ceiling(lr.getX() - ul.getX());
+        int height = (int) Math.Ceiling(lr.getY() - ul.getY());
 
         return new java.awt.Rectangle(x, y, width, height);
     }

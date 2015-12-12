@@ -81,7 +81,7 @@ public class WWMath
      */
     public static int powerOfTwoCeiling(int reference)
     {
-        int power = (int) Math.ceil(Math.Log(reference) / Math.Log(2d));
+        int power = (int) Math.Ceiling(Math.Log(reference) / Math.Log(2d));
         return (int) Math.Pow(2d, power);
     }
 
@@ -1200,7 +1200,7 @@ public class WWMath
         Vec4 u = line.getDirection();
         Vec4 p = line.getOrigin();
 
-        foreach (Plane plane  in  planes)
+        foreach (Plane plane in planes)
         {
             Vec4 n = plane.getNormal();
             double d = -plane.getDistance();

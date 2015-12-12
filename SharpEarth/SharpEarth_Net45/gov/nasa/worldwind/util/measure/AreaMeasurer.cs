@@ -390,7 +390,7 @@ public class AreaMeasurer : LengthMeasurer , MeasurableArea
 //                area += computeIndexedTriangleSurfaceArea(globe, ita, idx);
 //            }
 //            long t1 = System.nanoTime();
-//            System.out.println("Surface area geometry in  " + area + " - " + (t1 - t0) / 1e3 + " micro sec foreach " + this.triangleCount + " triangles");
+//            System.out.println("Surface area geometry: " + area + " - " + (t1 - t0) / 1e3 + " micro sec for " + this.triangleCount + " triangles");
 //            return area;
 //        }
 //        return -1;

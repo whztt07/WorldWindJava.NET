@@ -270,7 +270,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
             }
             else
             {
-                foreach (Sector region  in  regions)
+                foreach (Sector region in regions)
                 {
                     // Count how many tiles are missing in each sample region
                     regionCount += this.countTilesInSector(region, maxLevel);
@@ -318,7 +318,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
                     return file.isDirectory();
                 }
             });
-            foreach (File dir  in  rowDirs)
+            foreach (File dir in rowDirs)
             {
                 long averageSize = computeAverageTileSize(dir);
                 if (averageSize > 0)
@@ -347,7 +347,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
         int count = 0;
 
         File[] files = dir.listFiles();
-        foreach (File file  in  files)
+        foreach (File file in files)
         {
             try
             {
@@ -492,9 +492,9 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
         ArrayList<Tile> tiles = new ArrayList<Tile>();
 
         Tile[][] tileArray = getTilesInSector(sector, levelNumber);
-        foreach (Tile[] row  in  tileArray)
+        foreach (Tile[] row in tileArray)
         {
-            foreach (Tile tile  in  row)
+            foreach (Tile tile in row)
             {
                 Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
@@ -518,7 +518,7 @@ public class BasicElevationModelBulkDownloader : BulkRetrievalThread
             return 1;
 
         // Divide sector in regions that will contain no more tiles then maxCount
-        return (int) Math.ceil(Math.Sqrt((float) tileCount / maxCount));
+        return (int) Math.Ceiling(Math.Sqrt((float) tileCount / maxCount));
     }
 
     protected Sector[] computeRandomRegions(Sector sector, int div, int numRegions)

@@ -7,7 +7,6 @@
 using java.util;
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream;
-using javax.xml.namespace.QName;
 using SharpEarth.util.xml;
 using SharpEarth.util;
 using SharpEarth.geom.Sector;

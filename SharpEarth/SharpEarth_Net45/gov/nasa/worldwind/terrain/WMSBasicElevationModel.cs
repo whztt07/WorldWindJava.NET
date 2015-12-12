@@ -3,17 +3,19 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-
-using java.util.List;
-using java.net;
-using java.io;
-using org.w3c.dom;
+using System;
 using SharpEarth.util;
 using SharpEarth.retrieve;
-using SharpEarth.ogc.wms.WMSCapabilities;
+using SharpEarth.ogc.wms;
 using SharpEarth.geom;
-using SharpEarth.exception.WWRuntimeException;
+using SharpEarth.exception;
 using SharpEarth.avlist;
+using System.Xml.Linq;
+using System.Text;
+using SharpEarth.java.io;
+using SharpEarth.java.net;
+using System.Collections.Generic;
+
 namespace SharpEarth.terrain{
 
 
@@ -24,30 +26,30 @@ namespace SharpEarth.terrain{
  */
 public class WMSBasicElevationModel : BasicElevationModel
 {
-    private static final String[] formatOrderPreference = new String[]
+    private static readonly String[] formatOrderPreference = new String[]
         {
             "application/bil32", "application/bil16", "application/bil", "image/bil", "image/png", "image/tiff"
         };
 
     public WMSBasicElevationModel(AVList parameters)
+        :base(parameters)
     {
-        super(params);
+
     }
 
-    public WMSBasicElevationModel(Element domElement, AVList parameters)
+    public WMSBasicElevationModel(XElement domElement, AVList parameters)
+        :this(wmsGetParamsFromDocument(domElement, parameters))
     {
-        this(wmsGetParamsFromDocument(domElement, parameters));
     }
 
     public WMSBasicElevationModel(WMSCapabilities caps, AVList parameters)
+        :this(wmsGetParamsFromCapsDoc(caps, parameters))
     {
-        this(wmsGetParamsFromCapsDoc(caps, parameters));
     }
 
     public WMSBasicElevationModel(String restorableStateInXml)
+        :base(wmsRestorableStateToParams(restorableStateInXml))
     {
-        super(wmsRestorableStateToParams(restorableStateInXml));
-
         RestorableSupport rs;
         try
         {
@@ -64,7 +66,7 @@ public class WMSBasicElevationModel : BasicElevationModel
         this.doRestoreState(rs, null);
     }
 
-    protected static AVList wmsGetParamsFromDocument(Element domElement, AVList parameters)
+    protected static AVList wmsGetParamsFromDocument(XElement domElement, AVList parameters)
     {
         if (domElement == null)
         {
@@ -73,14 +75,14 @@ public class WMSBasicElevationModel : BasicElevationModel
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if (parameters == null)
             parameters = new AVListImpl();
 
         DataConfigurationUtils.getWMSLayerConfigParams(domElement, parameters);
         BasicElevationModel.getBasicElevationModelConfigParams(domElement, parameters);
-        wmsSetFallbacks(params);
+        wmsSetFallbacks(parameters);
 
-        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(params.getStringValue(AVKey.WMS_VERSION), parameters));
+        parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(parameters.getStringValue(AVKey.WMS_VERSION), parameters));
 
         return parameters;
     }
@@ -94,7 +96,7 @@ public class WMSBasicElevationModel : BasicElevationModel
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if (parameters == null)
         {
             String message = Logging.getMessage("nullValue.ElevationModelConfigParams");
             Logging.logger().severe(message);
@@ -110,17 +112,17 @@ public class WMSBasicElevationModel : BasicElevationModel
         catch (ArgumentException e)
         {
             String message = Logging.getMessage("WMS.MissingLayerParameters");
-            Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
+            Logging.logger().severe(message, e);
             throw new ArgumentException(message, e);
         }
         catch (WWRuntimeException e)
         {
             String message = Logging.getMessage("WMS.MissingCapabilityValues");
-            Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
+            Logging.logger().severe(message, e);
             throw new ArgumentException(message, e);
         }
 
-        wmsSetFallbacks(params);
+        wmsSetFallbacks(parameters);
 
         parameters.setValue(AVKey.TILE_URL_BUILDER, new URLBuilder(wmsVersion, parameters));
 
@@ -129,41 +131,41 @@ public class WMSBasicElevationModel : BasicElevationModel
 
     protected static void wmsSetFallbacks(AVList parameters)
     {
-        if (params.getValue(AVKey.LEVEL_ZERO_TILE_DELTA) == null)
+        if (parameters.getValue(AVKey.LEVEL_ZERO_TILE_DELTA) == null)
         {
             Angle delta = Angle.fromDegrees(20);
             parameters.setValue(AVKey.LEVEL_ZERO_TILE_DELTA, new LatLon(delta, delta));
         }
 
-        if (params.getValue(AVKey.TILE_WIDTH) == null)
+        if (parameters.getValue(AVKey.TILE_WIDTH) == null)
             parameters.setValue(AVKey.TILE_WIDTH, 150);
 
-        if (params.getValue(AVKey.TILE_HEIGHT) == null)
+        if (parameters.getValue(AVKey.TILE_HEIGHT) == null)
             parameters.setValue(AVKey.TILE_HEIGHT, 150);
 
-        if (params.getValue(AVKey.FORMAT_SUFFIX) == null)
+        if (parameters.getValue(AVKey.FORMAT_SUFFIX) == null)
             parameters.setValue(AVKey.FORMAT_SUFFIX, ".bil");
 
-        if (params.getValue(AVKey.MISSING_DATA_SIGNAL) == null)
+        if (parameters.getValue(AVKey.MISSING_DATA_SIGNAL) == null)
             parameters.setValue(AVKey.MISSING_DATA_SIGNAL, -9999d);
 
-        if (params.getValue(AVKey.NUM_LEVELS) == null)
+        if (parameters.getValue(AVKey.NUM_LEVELS) == null)
             parameters.setValue(AVKey.NUM_LEVELS, 18); // approximately 20 cm per pixel
 
-        if (params.getValue(AVKey.NUM_EMPTY_LEVELS) == null)
+        if (parameters.getValue(AVKey.NUM_EMPTY_LEVELS) == null)
             parameters.setValue(AVKey.NUM_EMPTY_LEVELS, 0);
     }
 
     // TODO: consolidate common code in WMSTiledImageLayer.URLBuilder and WMSBasicElevationModel.URLBuilder
-    protected static class URLBuilder : TileUrlBuilder
+    protected class URLBuilder : TileUrlBuilder
     {
-        protected static final String MAX_VERSION = "1.3.0";
+        protected static readonly String MAX_VERSION = "1.3.0";
 
-        private final String layerNames;
-        private final String styleNames;
-        private final String imageFormat;
-        private final String wmsVersion;
-        private final String crs;
+        private readonly String layerNames;
+        private readonly String styleNames;
+        private readonly String imageFormat;
+        private readonly String wmsVersion;
+        private readonly String crs;
         protected String URLTemplate = null;
 
         protected URLBuilder(String version, AVList parameters)
@@ -193,70 +195,70 @@ public class WMSBasicElevationModel : BasicElevationModel
             this.crs = coordSystemKey + (coordinateSystem != null ? coordinateSystem : defaultCS);
         }
 
-        public URL getURL(gov.nasa.worldwind.util.Tile tile, String altImageFormat) throws MalformedURLException
+        public URL getURL(Tile tile, String altImageFormat)
         {
-            StringBuffer sb;
+            StringBuilder sb;
             if (this.URLTemplate == null)
             {
-                sb = new StringBuffer(tile.getLevel().getService());
+                sb = new StringBuilder( tile.getLevel().getService());
 
-                if (!sb.ToString().toLowerCase().contains("service=wms"))
-                    sb.append("service=WMS");
-                sb.append("&request=GetMap");
-                sb.append("&version=");
-                sb.append(this.wmsVersion);
-                sb.append(this.crs);
-                sb.append("&layers=");
-                sb.append(this.layerNames);
-                sb.append("&styles=");
-                sb.append(this.styleNames != null ? this.styleNames : "");
-                sb.append("&format=");
+                if (!sb.ToString().ToLower().Contains("service=wms"))
+                    sb.Append("service=WMS");
+                sb.Append("&request=GetMap");
+                sb.Append("&version=");
+                sb.Append(this.wmsVersion);
+                sb.Append(this.crs);
+                sb.Append("&layers=");
+                sb.Append(this.layerNames);
+                sb.Append("&styles=");
+                sb.Append(this.styleNames != null ? this.styleNames : "");
+                sb.Append("&format=");
                 if (altImageFormat == null)
-                    sb.append(this.imageFormat);
+                    sb.Append(this.imageFormat);
                 else
-                    sb.append(altImageFormat);
+                    sb.Append(altImageFormat);
 
                 this.URLTemplate = sb.ToString();
             }
             else
             {
-                sb = new StringBuffer(this.URLTemplate);
+                sb = new StringBuilder( this.URLTemplate);
             }
 
-            sb.append("&width=");
-            sb.append(tile.getWidth());
-            sb.append("&height=");
-            sb.append(tile.getHeight());
+            sb.Append("&width=");
+            sb.Append(tile.getWidth());
+            sb.Append("&height=");
+            sb.Append(tile.getHeight());
 
             Sector s = tile.getSector();
-            sb.append("&bbox=");
+            sb.Append("&bbox=");
             // The order of the coordinate specification matters, and it changed with WMS 1.3.0.
-            if (WWUtil.compareVersion(this.wmsVersion, "1.1.1") <= 0 || this.crs.contains("CRS:84"))
+            if (WWUtil.compareVersion(this.wmsVersion, "1.1.1") <= 0 || this.crs.Contains("CRS:84"))
             {
                 // 1.1.1 and earlier and CRS:84 use lon/lat order
-                sb.append(s.getMinLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMinLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLatitude().getDegrees());
+                sb.Append(s.getMinLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMinLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLatitude().getDegrees());
             }
             else
             {
                 // 1.3.0 uses lat/lon ordering
-                sb.append(s.getMinLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMinLongitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLatitude().getDegrees());
-                sb.append(",");
-                sb.append(s.getMaxLongitude().getDegrees());
+                sb.Append(s.getMinLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMinLongitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLatitude().getDegrees());
+                sb.Append(",");
+                sb.Append(s.getMaxLongitude().getDegrees());
             }
 
-            sb.append("&"); // terminate the query string
+            sb.Append("&"); // terminate the query string
 
-            return new java.net.URL(sb.ToString().replace(" ", "%20"));
+            return new java.net.URL(sb.ToString().Replace(" ", "%20"));
         }
     }
 
@@ -297,7 +299,7 @@ public class WMSBasicElevationModel : BasicElevationModel
             throw new ArgumentException(message);
         }
 
-        if (params == null)
+        if (parameters == null)
         {
             String message = Logging.getMessage("nullValue.ElevationModelConfigParams");
             Logging.logger().severe(message);
@@ -309,15 +311,15 @@ public class WMSBasicElevationModel : BasicElevationModel
 
         // Attempt to extract the WMS layer names from the specified parameters.
         String layerNames = parameters.getStringValue(AVKey.LAYER_NAMES);
-        if (layerNames == null || layerNames.length() == 0)
+        if (layerNames == null || layerNames.Length == 0)
         {
             String message = Logging.getMessage("nullValue.WMSLayerNames");
             Logging.logger().severe(message);
             throw new ArgumentException(message);
         }
 
-        String[] names = layerNames.split(",");
-        if (names == null || names.length == 0)
+        String[] names = layerNames.Split(',');
+        if (names == null || names.Length == 0)
         {
             String message = Logging.getMessage("nullValue.WMSLayerNames");
             Logging.logger().severe(message);
@@ -336,19 +338,19 @@ public class WMSBasicElevationModel : BasicElevationModel
             parameters.setValue(AVKey.ELEVATION_MAX, extremes[1]);
 
         // Compute the internal pixel type from the image format.
-        if (params.getValue(AVKey.DATA_TYPE) == null && parameters.getValue(AVKey.IMAGE_FORMAT) != null)
+        if (parameters.getValue(AVKey.DATA_TYPE) == null && parameters.getValue(AVKey.IMAGE_FORMAT) != null)
         {
-            String s = WWIO.makeDataTypeForMimeType(params.getValue(AVKey.IMAGE_FORMAT).ToString());
+            String s = WWIO.makeDataTypeForMimeType(parameters.getValue(AVKey.IMAGE_FORMAT).ToString());
             if (s != null)
                 parameters.setValue(AVKey.DATA_TYPE, s);
         }
 
         // Use the default data type.
-        if (params.getValue(AVKey.DATA_TYPE) == null)
+        if (parameters.getValue(AVKey.DATA_TYPE) == null)
             parameters.setValue(AVKey.DATA_TYPE, AVKey.INT16);
 
         // Use the default byte order.
-        if (params.getValue(AVKey.BYTE_ORDER) == null)
+        if (parameters.getValue(AVKey.BYTE_ORDER) == null)
             parameters.setValue(AVKey.BYTE_ORDER, AVKey.LITTLE_ENDIAN);
 
         return parameters;
@@ -361,13 +363,13 @@ public class WMSBasicElevationModel : BasicElevationModel
      *
      * @return a WMS basic elevation model configuration document.
      */
-    protected Document createConfigurationDocument(AVList parameters)
+    protected XDocument createConfigurationDocument(AVList parameters)
     {
-        Document doc = super.createConfigurationDocument(params);
+        XDocument doc = base.createConfigurationDocument(parameters);
         if (doc == null || doc.getDocumentElement() == null)
             return doc;
 
-        DataConfigurationUtils.createWMSLayerConfigElements(params, doc.getDocumentElement());
+        DataConfigurationUtils.createWMSLayerConfigElements(parameters, doc.getDocumentElement());
 
         return doc;
     }
@@ -376,37 +378,32 @@ public class WMSBasicElevationModel : BasicElevationModel
     //********************  Composition  ***************************//
     //**************************************************************//
 
-    protected static class ElevationCompositionTile : ElevationTile
+    protected class ElevationCompositionTile : ElevationTile
     {
         private int width;
         private int height;
         private File file;
 
         public ElevationCompositionTile(Sector sector, Level level, int width, int height)
-            throws IOException
+            : base(sector, level, -1, -1) // row and column aren't used and need to signal that
         {
-            super(sector, level, -1, -1); // row and column aren't used and need to signal that
-
             this.width = width;
             this.height = height;
 
             this.file = File.createTempFile(WWIO.DELETE_ON_EXIT_PREFIX, level.getFormatSuffix());
         }
 
-        @Override
-        public int getWidth()
+        public override int getWidth()
         {
             return this.width;
         }
 
-        @Override
-        public int getHeight()
+        public override int getHeight()
         {
             return this.height;
         }
 
-        @Override
-        public String getPath()
+        public override String getPath()
         {
             return this.file.getPath();
         }
@@ -417,8 +414,8 @@ public class WMSBasicElevationModel : BasicElevationModel
         }
     }
 
-    public void composeElevations(Sector sector, List<? extends LatLon> latlons, int tileWidth, double[] buffer)
-        throws Exception
+    public void composeElevations(Sector sector, List<T> latlons, int tileWidth, double[] buffer)
+      where T : LatLon
     {
         if (sector == null)
         {
@@ -469,7 +466,7 @@ public class WMSBasicElevationModel : BasicElevationModel
         }
     }
 
-    protected void downloadElevations(ElevationCompositionTile tile) throws Exception
+    protected void downloadElevations(ElevationCompositionTile tile)
     {
         URL url = tile.getResourceURL();
 
@@ -479,7 +476,7 @@ public class WMSBasicElevationModel : BasicElevationModel
         retriever.call();
     }
 
-    protected static class CompositionRetrievalPostProcessor : AbstractRetrievalPostProcessor
+    protected class CompositionRetrievalPostProcessor : AbstractRetrievalPostProcessor
     {
         // Note: Requested data is never marked as absent because the caller may want to continually re-try retrieval
         protected File outFile;
@@ -494,14 +491,12 @@ public class WMSBasicElevationModel : BasicElevationModel
             return this.outFile;
         }
 
-        @Override
-        protected bool overwriteExistingFile()
+        protected override bool overwriteExistingFile()
         {
             return true;
         }
 
-        @Override
-        protected bool isDeleteOnExit(File outFile)
+        protected override bool isDeleteOnExit(File outFile)
         {
             return outFile.getPath().contains(WWIO.DELETE_ON_EXIT_PREFIX);
         }
@@ -521,7 +516,7 @@ public class WMSBasicElevationModel : BasicElevationModel
         }
         else
         {
-            super.getRestorableStateForAVPair(key, value, rs, context);
+            base.getRestorableStateForAVPair(key, value, rs, context);
         }
     }
 
@@ -570,7 +565,7 @@ public class WMSBasicElevationModel : BasicElevationModel
         if (s != null)
             parameters.setValue(AVKey.DISPLAY_NAME, s);
 
-        RestorableSupport.adjustTitleAndDisplayName(params);
+        RestorableSupport.adjustTitleAndDisplayName(parameters);
 
         s = rs.getStateValueAsString(context, AVKey.LAYER_NAMES);
         if (s != null)

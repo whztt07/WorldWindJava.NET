@@ -71,7 +71,7 @@ public class ColladaTextureOrColor : ColladaAbstractObject
         float[] floats = new float[arrayOfNumbers.length];
 
         int i = 0;
-        foreach (String s  in  arrayOfNumbers)
+        foreach (String s in arrayOfNumbers)
         {
             floats[i++] = Float.parseFloat(s);
         }

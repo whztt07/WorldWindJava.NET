@@ -6,7 +6,7 @@
 
 using java.util.concurrent.ConcurrentHashMap;
 using java.util.Map;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 namespace SharpEarth.util.xml.atom{
 
@@ -36,7 +36,7 @@ public class AtomParserContext : BasicXMLEventParserContext
         parsers.put(new QName(ans, "link"), new AtomLink(ans));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        foreach (String s  in  StringFields)
+        foreach (String s in StringFields)
         {
             parsers.put(new QName(ans, s), stringParser);
         }

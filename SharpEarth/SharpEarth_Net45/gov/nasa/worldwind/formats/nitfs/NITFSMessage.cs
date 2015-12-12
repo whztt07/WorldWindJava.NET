@@ -24,7 +24,7 @@ public class NITFSMessage
 
     public NITFSSegment getSegment( NITFSSegmentType segmentType )
     {
-        foreach(NITFSSegment seg  in  segments)
+        for(NITFSSegment seg : segments)
         {
             if(null != seg && seg.segmentType.Equals(segmentType))
                 return seg;
@@ -71,7 +71,7 @@ public class NITFSMessage
         nextSegmentOffset = parseSegment(NITFSSegmentType.EXTENDED_HEADER_SEGMENT, nextSegmentOffset);
 
         // let's read each header
-        foreach(NITFSSegment segment  in  segments)
+        for(NITFSSegment segment : segments)
         {
 
 //

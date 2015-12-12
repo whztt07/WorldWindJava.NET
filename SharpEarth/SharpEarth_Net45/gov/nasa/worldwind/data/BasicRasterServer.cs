@@ -169,7 +169,7 @@ public class BasicRasterServer : WWObjectImpl , RasterServer
      */
     protected void extractProperties(RasterServerConfiguration config)
     {
-        foreach (Map.Entry<String, String> prop  in  config.getProperties().entrySet())
+        foreach (Map.Entry<String, String> prop in config.getProperties().entrySet())
         {
             this.setValue(prop.getKey(), prop.getValue());
         }
@@ -201,7 +201,7 @@ public class BasicRasterServer : WWObjectImpl , RasterServer
             }
 
             numSources = sources.size();
-            foreach (RasterServerConfiguration.Source source  in  sources) {
+            foreach (RasterServerConfiguration.Source source in sources) {
                 Thread.yield();
                 try
                 {
@@ -458,7 +458,7 @@ public class BasicRasterServer : WWObjectImpl , RasterServer
             }
 
             int numIntersectedRasters = 0;
-            foreach (DataRaster raster  in  this.dataRasterList)
+            foreach (DataRaster raster in this.dataRasterList)
             {
                 Sector rasterSector = raster.getSector();
                 Sector overlap = reqSector.intersection(rasterSector);

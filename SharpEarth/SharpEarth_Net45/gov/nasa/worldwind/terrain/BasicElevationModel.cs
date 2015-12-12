@@ -666,7 +666,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
             WritableRaster raster = image.getRaster();
             int[] samples = new int[raster.getWidth() * raster.getHeight()];
             raster.getSamples(0, 0, raster.getWidth(), raster.getHeight(), 0, samples);
-            foreach (int sample  in  samples)
+            foreach (int sample in samples)
             {
                 bilBuffer.put((short) sample);
             }
@@ -1022,7 +1022,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 
             try
             {
-                foreach (ElevationTile tile  in  this.tiles)
+                foreach (ElevationTile tile in this.tiles)
                 {
                     if (tile.getSector().contains(latitude, longitude))
                         return this.elevationModel.lookupElevation(latitude, longitude, tile);
@@ -1076,7 +1076,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 
             this.extremes = WWUtil.defaultMinMix();
 
-            foreach (ElevationTile tile  in  this.tiles)
+            foreach (ElevationTile tile in this.tiles)
             {
                 BufferWrapper elevations = tile.getElevations();
 
@@ -1105,7 +1105,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 
             this.extremes = WWUtil.defaultMinMix();
 
-            foreach (ElevationTile tile  in  this.tiles)
+            foreach (ElevationTile tile in this.tiles)
             {
                 tile.getExtremes(sector, this.elevationModel, this.extremes);
             }
@@ -1130,7 +1130,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 
             this.extremes = WWUtil.defaultMinMix();
 
-            foreach (ElevationTile tile  in  this.tiles)
+            foreach (ElevationTile tile in this.tiles)
             {
                 // This computes the extremes on a tile granularity rather than an elevation-value cell granularity.
                 // The latter is very expensive.
@@ -1356,7 +1356,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
         if (lastLevel.getTexelSize() >= targetSize)
             return lastLevel; // can't do any better than this
 
-        foreach (Level level  in  this.levels.getLevels())
+        foreach (Level level in this.levels.getLevels())
         {
             if (level.getTexelSize() <= targetSize)
                 return !level.isEmpty() ? level : null;
@@ -1874,7 +1874,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 
     protected void checkElevationExpiration(Iterable<? extends ElevationTile> tiles)
     {
-        foreach (ElevationTile tile  in  tiles)
+        foreach (ElevationTile tile in tiles)
         {
             if (tile.isElevationsExpired())
                 this.requestTile(tile.getTileKey());
@@ -2492,7 +2492,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
         AVList constructionParams = (AVList) this.getValue(AVKey.CONSTRUCTION_PARAMETERS);
         if (constructionParams != null)
         {
-            foreach (Map.Entry<String, Object> avp  in  constructionParams.getEntries())
+            foreach (Map.Entry<String, Object> avp in constructionParams.getEntries())
             {
                 this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, context);
             }
@@ -2512,7 +2512,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
             rs.addStateValueAsDouble(context, "BasicElevationModel.DetailHint", this.detailHint);
 
         RestorableSupport.StateObject so = rs.addStateObject(context, "avlist");
-        foreach (Map.Entry<String, Object> avp  in  this.getEntries())
+        foreach (Map.Entry<String, Object> avp in this.getEntries())
         {
             this.getRestorableStateForAVPair(avp.getKey(), avp.getValue(), rs, so);
         }
@@ -2584,7 +2584,7 @@ public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
             RestorableSupport.StateObject[] avpairs = rs.getAllStateObjects(so, "");
             if (avpairs != null)
             {
-                foreach (RestorableSupport.StateObject avp  in  avpairs)
+                foreach (RestorableSupport.StateObject avp in avpairs)
                 {
                     if (avp != null)
                         this.doRestoreStateForObject(rs, avp);

@@ -6,7 +6,7 @@
 
 using java.util.concurrent.ConcurrentHashMap;
 using java.util.Map;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 using SharpEarth.ogc.kml;
 namespace SharpEarth.ogc.kml.gx{
@@ -54,19 +54,19 @@ public class GXParserContext : BasicXMLEventParserContext
         parsers.put(new QName(ns, "Wait"), new GXWait(ns));
 
         StringXMLEventParser stringParser = new StringXMLEventParser();
-        foreach (String s  in  StringFields)
+        foreach (String s in StringFields)
         {
             parsers.put(new QName(ns, s), stringParser);
         }
 
         DoubleXMLEventParser doubleParser = new DoubleXMLEventParser();
-        foreach (String s  in  DoubleFields)
+        foreach (String s in DoubleFields)
         {
             parsers.put(new QName(ns, s), doubleParser);
         }
 
         BooleanXMLEventParser booleanParser = new BooleanXMLEventParser();
-        foreach (String s  in  BooleanFields)
+        foreach (String s in BooleanFields)
         {
             parsers.put(new QName(ns, s), booleanParser);
         }

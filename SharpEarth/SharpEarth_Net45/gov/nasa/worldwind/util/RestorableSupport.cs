@@ -1252,7 +1252,7 @@ public class RestorableSupport
 
         ArrayList<LatLon> outList = new ArrayList<LatLon>(llsos.length);
 
-        foreach (RestorableSupport.StateObject llso  in  llsos)
+        foreach (RestorableSupport.StateObject llso in llsos)
         {
             if (llso != null)
             {
@@ -1312,7 +1312,7 @@ public class RestorableSupport
         HashMap<Integer, OffsetsList> outList = new HashMap<Integer, OffsetsList>();
 
         int index = 0;
-        foreach (RestorableSupport.StateObject faceOffsets  in  offsetsLists)
+        foreach (RestorableSupport.StateObject faceOffsets in offsetsLists)
         {
             if (faceOffsets != null)
             {
@@ -1492,7 +1492,7 @@ public class RestorableSupport
         HashMap<Integer, Object> outList = new HashMap<Integer, Object>();
 
         int index = 0;
-        foreach (RestorableSupport.StateObject imageSource  in  imageSourceList)
+        foreach (RestorableSupport.StateObject imageSource in imageSourceList)
         {
             if (imageSource != null)
             {
@@ -1911,7 +1911,7 @@ public class RestorableSupport
         RestorableSupport.StateObject stateObject = addStateObject(context, name);
         if (stateObject != null)
         {
-            foreach (LatLon ll  in  locations)
+            foreach (LatLon ll in locations)
             {
                 addStateValueAsLatLon(stateObject, "location", ll);
             }
@@ -1940,7 +1940,7 @@ public class RestorableSupport
         }
 
         RestorableSupport.StateObject stateObject = addStateObject(context, name);
-        foreach (Object key  in  ((Map) offsets).keySet())
+        foreach (Object key in ((Map) offsets).keySet())
         {
             addStateValueAsOffsets(stateObject, "face", offsets.get(key));
         }

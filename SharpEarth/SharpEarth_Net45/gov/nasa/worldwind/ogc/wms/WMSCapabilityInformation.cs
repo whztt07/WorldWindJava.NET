@@ -7,7 +7,7 @@
 using java.util;
 using javax.xml.stream.events.XMLEvent;
 using javax.xml.stream.XMLStreamException;
-using javax.xml.namespace.QName;
+
 using SharpEarth.util.xml;
 using SharpEarth.ogc;
 namespace SharpEarth.ogc.wms{
@@ -44,7 +44,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
         LAYER = new QName(this.getNamespaceURI(), "Layer");
 
         this.requestNames = new ArrayList<QName>(rNames.length);
-        foreach (String name  in  rNames)
+        foreach (String name in rNames)
         {
             this.requestNames.add(new QName(this.getNamespaceURI(), name));
         }
@@ -88,7 +88,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
 
     protected bool isRequestName(XMLEventParserContext ctx, QName name)
     {
-        foreach (QName requestName  in  this.requestNames)
+        foreach (QName requestName in this.requestNames)
         {
             if (ctx.isSameName(requestName, name))
                 return true;
@@ -110,7 +110,7 @@ public class WMSCapabilityInformation : OGCCapabilityInformation
     public Set<String> getImageFormats()
     {
         Set<OGCRequestDescription> requestDescriptions = this.getRequestDescriptions();
-        foreach (OGCRequestDescription rd  in  requestDescriptions)
+        foreach (OGCRequestDescription rd in requestDescriptions)
         {
             if (rd.getRequestName().Equals("GetMap"))
                 return rd.getFormats();

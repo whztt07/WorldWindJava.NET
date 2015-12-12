@@ -112,7 +112,7 @@ public class WorldFile
         if (values == null)
             values = new AVListImpl();
 
-        foreach (File file  in  worldFiles)
+        foreach (File file in worldFiles)
         {
             if (!file.exists())
             {
@@ -123,7 +123,7 @@ public class WorldFile
         }
 
         //File transformFile = null;
-        foreach (File file  in  worldFiles)
+        foreach (File file in worldFiles)
         {
             if (file.getName().toLowerCase().endsWith("w"))
             {
@@ -196,7 +196,7 @@ public class WorldFile
 
         if (null == sector)
         {
-            sector = WorldFile.extractSectorFromHeader(values); // TODO in  not checking foreach non-geographic proj
+            sector = WorldFile.extractSectorFromHeader(values); // TODO: not checking for non-geographic proj
             if (sector != null)
                 values.setValue(AVKey.SECTOR, sector);
         }

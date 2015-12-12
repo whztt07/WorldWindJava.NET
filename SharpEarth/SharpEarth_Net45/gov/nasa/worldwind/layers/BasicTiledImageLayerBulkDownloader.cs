@@ -279,7 +279,7 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
             }
             else
             {
-                foreach (Sector region  in  regions)
+                foreach (Sector region in regions)
                 {
                     // Count how many tiles are missing in each sample region
                     regionCount += this.layer.countImagesInSector(region, maxLevel);
@@ -310,7 +310,7 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
             return 1;
 
         // Divide sector in regions that will contain no more tiles then maxCount
-        return (int) Math.ceil(Math.Sqrt((double) tileCount / maxCount));
+        return (int) Math.Ceiling(Math.Sqrt((double) tileCount / maxCount));
     }
 
     protected Sector[] computeRandomRegions(Sector sector, int div, int numRegions)
@@ -383,9 +383,9 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
         ArrayList<TextureTile> tiles = new ArrayList<TextureTile>();
 
         TextureTile[][] tileArray = this.layer.getTilesInSector(sector, levelNumber);
-        foreach (TextureTile[] row  in  tileArray)
+        foreach (TextureTile[] row in tileArray)
         {
-            foreach (TextureTile tile  in  row)
+            foreach (TextureTile tile in row)
             {
                 Thread.sleep(1); // generates ThreadInterruptedException if thread has been interrupted
 
@@ -437,7 +437,7 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
                     return file.isDirectory();
                 }
             });
-            foreach (File dir  in  rowDirs)
+            foreach (File dir in rowDirs)
             {
                 long averageSize = computeAverageTileSize(dir);
                 if (averageSize > 0)
@@ -466,7 +466,7 @@ public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
         int count = 0;
 
         File[] files = dir.listFiles();
-        foreach (File file  in  files)
+        foreach (File file in files)
         {
             try
             {

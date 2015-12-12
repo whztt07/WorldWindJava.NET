@@ -4,16 +4,16 @@
  * All Rights Reserved.
  */
 
-namespace SharpEarth.globes{
-
-/**
- * An interface for controlling aspects of a 2D {@link Globe}.
- *
- * @author tag
- * @version $Id: Globe2D.java 2158 2014-07-19 00:00:57Z pabercrombie $
- */
-public interface Globe2D
+namespace SharpEarth.globes
 {
+  /**
+   * An interface for controlling aspects of a 2D {@link Globe}.
+   *
+   * @author tag
+   * @version $Id: Globe2D.java 2158 2014-07-19 00:00:57Z pabercrombie $
+   */
+  public interface Globe2D
+  {
     /**
      * Specifies whether to treat the associated projection as contiguous with itself. If true, the scene controller
      * will make the implementing globe appear to scroll continuously horizontally. Calling this method overrides the
@@ -24,7 +24,7 @@ public interface Globe2D
      *
      * @see SharpEarth.globes.GeographicProjection#isContinuous()
      */
-    void setContinuous(bool continuous);
+    void setContinuous( bool continuous );
 
     /**
      * Indicates whether it makes sense to treat the associated projection as contiguous with itself. If true, the scene
@@ -43,7 +43,7 @@ public interface Globe2D
      *
      * @param offset The offset to apply, in units of globe widths.
      */
-    void setOffset(int offset);
+    void setOffset( int offset );
 
     /**
      * Specifies the geographic projection for this globe. The geographic projection converts geographic positions to
@@ -54,7 +54,7 @@ public interface Globe2D
      * @throws ArgumentException if the projection is null.
      * @see GeographicProjection
      */
-    void setProjection(GeographicProjection projection);
+    void setProjection( GeographicProjection projection );
 
     /**
      * Returns the geographic projection for this globe.
@@ -62,5 +62,5 @@ public interface Globe2D
      * @return The geographic projection for this globe.
      */
     GeographicProjection getProjection();
-}
+  }
 }

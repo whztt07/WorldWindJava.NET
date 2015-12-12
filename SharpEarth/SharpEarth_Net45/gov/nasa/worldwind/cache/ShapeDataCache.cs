@@ -302,7 +302,7 @@ public class ShapeDataCache : Iterable<ShapeDataCache.ShapeDataCacheEntry>
      */
     public void setAllExpired(boolean isExpired)
     {
-        foreach (ShapeDataCacheEntry entry  in  this.entries.values())
+        foreach (ShapeDataCacheEntry entry in this.entries.values())
         {
             entry.setExpired(isExpired);
         }
@@ -311,7 +311,7 @@ public class ShapeDataCache : Iterable<ShapeDataCache.ShapeDataCacheEntry>
     /** Set to null the extent field of all entries in this cache. */
     public void clearExtents()
     {
-        foreach (ShapeDataCacheEntry entry  in  this.entries.values())
+        foreach (ShapeDataCacheEntry entry in this.entries.values())
         {
             entry.setExtent(null);
         }
@@ -332,13 +332,13 @@ public class ShapeDataCache : Iterable<ShapeDataCache.ShapeDataCacheEntry>
 //    {
 //        List<Globe> deadEntries = new ArrayList<Globe>();
 //
-//        foreach (Map.Entry<Globe, ShapeDataCacheEntry> mapEntry  in  this.entries.entrySet())
+//        foreach (Map.Entry<Globe, ShapeDataCacheEntry> mapEntry in this.entries.entrySet())
 //        {
 //            if (mapEntry.getValue().lastUsed + this.maxTimeSinceLastUsed < now)
 //                deadEntries.add(mapEntry.getKey());
 //        }
 //
-//        foreach (Globe key  in  deadEntries)
+//        foreach (Globe key in deadEntries)
 //        {
 //            this.entries.remove(key);
 //        }

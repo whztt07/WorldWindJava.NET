@@ -46,7 +46,7 @@ class BaselineTiff
 
         BaselineTiff tiff = new BaselineTiff();
 
-        foreach (TiffIFDEntry entry  in  ifd)
+        foreach (TiffIFDEntry entry in ifd)
         {
             try
             {

@@ -127,7 +127,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     {
         double S = 1000000d / scale;
         double tmp = northSouthPixelConstant * S;
-        tmp = 512d * (int) Math.ceil(tmp / 512d);
+        tmp = 512d * (int) Math.Ceiling(tmp / 512d);
         tmp /= 4d;
         tmp /= (150d / 100d);
         return 256 * (int) Math.Round(tmp / 256d);
@@ -138,7 +138,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     {
         double S = 1000000d / scale;
         double tmp = eastWestPixelSpacingConstant * S;
-        tmp = 512d * (int) Math.ceil(tmp / 512d);
+        tmp = 512d * (int) Math.Ceiling(tmp / 512d);
         tmp /= (150d / 100d);
         return 256 * (int) Math.Round(tmp / 256d);
     }
@@ -149,7 +149,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     {
         double S = 100d / groundSampleDistance;
         double tmp = northSouthPixelSpacingConstant * S;
-        tmp = 512d * (int) Math.ceil(tmp / 512d);
+        tmp = 512d * (int) Math.Ceiling(tmp / 512d);
         tmp /= 4d;
         return 256 * (int) Math.Round(tmp / 256d);
     }
@@ -160,7 +160,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     {
         double S = 100d / groundSampleDistance;
         double tmp = eastWestPixelSpacingConstant * S;
-        return 512 * (int) Math.ceil(tmp / 512d);
+        return 512 * (int) Math.Ceiling(tmp / 512d);
     }
 
     /* [Section 60.1.5.b, MIL-C-89038] */
@@ -170,7 +170,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     {
         double nsPixelsPerDegree = northSouthPixelConstant / 90d;
         return Math.Sign(polewardNominalBoundary)
-            * clamp(Math.ceil(nsPixelsPerDegree * Math.Abs(polewardNominalBoundary) / pixelRowsPerFrame)
+            * clamp(Math.Ceiling(nsPixelsPerDegree * Math.Abs(polewardNominalBoundary) / pixelRowsPerFrame)
             * pixelRowsPerFrame / nsPixelsPerDegree, 0, 90);
     }
 
@@ -199,7 +199,7 @@ class RPFNonpolarFrameStructure extends RPFFrameStructure
     /* [Section A.5.1.4, MIL-PRF-89041A] */
     private static int longitudinalFrames(double eastWestPixelConstant, double pixelRowsPerFrame)
     {
-        return (int) Math.ceil(eastWestPixelConstant / pixelRowsPerFrame);
+        return (int) Math.Ceiling(eastWestPixelConstant / pixelRowsPerFrame);
     }
 
     private static double clamp(double x, double min, double max)

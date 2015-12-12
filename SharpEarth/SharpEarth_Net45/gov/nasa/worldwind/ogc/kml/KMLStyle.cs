@@ -105,7 +105,7 @@ public class KMLStyle : KMLAbstractStyleSelector
             return subStyle;
 
         Class subStyleClass = subStyle.GetType();
-        foreach (Map.Entry<String, Object> field  in  this.getFields().getEntries())
+        foreach (Map.Entry<String, Object> field in this.getFields().getEntries())
         {
             if (field.getValue() != null && field.getValue().GetType().Equals(subStyleClass))
             {

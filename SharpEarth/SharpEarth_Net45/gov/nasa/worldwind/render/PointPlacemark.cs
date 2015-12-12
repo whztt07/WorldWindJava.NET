@@ -1119,8 +1119,8 @@ public class PointPlacemark : WWObjectImpl
             height *= labelScale;
         }
 
-        return new Rectangle((int) labelPoint.x, (int) labelPoint.getY(), (int) Math.ceil(width),
-            (int) Math.ceil(height));
+        return new Rectangle((int) labelPoint.x, (int) labelPoint.getY(), (int) Math.Ceiling(width),
+            (int) Math.Ceiling(height));
     }
 
     /**
@@ -1623,7 +1623,7 @@ public class PointPlacemark : WWObjectImpl
         double x = opm.screenPoint.x + (this.isDrawPoint(dc) ? -0.5 * s : this.dx);
         double y = opm.screenPoint.y + (this.isDrawPoint(dc) ? -0.5 * s : this.dy);
 
-        opm.imageBounds = new Rectangle((int) x, (int) y, (int) Math.ceil(width), (int) Math.ceil(height));
+        opm.imageBounds = new Rectangle((int) x, (int) y, (int) Math.Ceiling(width), (int) Math.Ceiling(height));
     }
 
     /**

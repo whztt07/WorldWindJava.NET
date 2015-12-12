@@ -118,11 +118,11 @@ public class ImageUtil
                 if (vec.x >= 0 && vec.y >= 0 && vec.x <= (sourceWidth - 1) && vec.y <= (sourceHeight - 1))
                 {
                     int x0 = (int) Math.Floor(vec.x);
-                    int x1 = (int) Math.ceil(vec.x);
+                    int x1 = (int) Math.Ceiling(vec.x);
                     double xf = vec.x - x0;
 
                     int y0 = (int) Math.Floor(vec.y);
-                    int y1 = (int) Math.ceil(vec.y);
+                    int y1 = (int) Math.Ceiling(vec.y);
                     double yf = vec.y - y0;
 
                     int color = interpolateColor(xf, yf,
@@ -561,8 +561,8 @@ public class ImageUtil
             return;
 
         // Create an image with the desired aspect ratio within an enclosing canvas of possibly different aspect ratio.
-        int subWidth = aspectRatio >= 1 ? canvas.getWidth() : (int) Math.ceil((canvas.getWidth() * aspectRatio));
-        int subHeight = aspectRatio >= 1 ? (int) Math.ceil((canvas.getHeight() / aspectRatio)) : canvas.getHeight();
+        int subWidth = aspectRatio >= 1 ? canvas.getWidth() : (int) Math.Ceiling((canvas.getWidth() * aspectRatio));
+        int subHeight = aspectRatio >= 1 ? (int) Math.Ceiling((canvas.getHeight() / aspectRatio)) : canvas.getHeight();
 
         // yShift shifts image down to change origin from upper-left to lower-left
         double yShift = aspectRatio >= 1d ? (1d - 1d / aspectRatio) * canvas.getHeight() : 0d;
@@ -1729,7 +1729,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                foreach (int c  in  originalColors)
+                foreach (int c in originalColors)
                 {
                     if (sourceColors[index] == c)
                     {
@@ -1799,7 +1799,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                foreach (int c  in  originalColors)
+                foreach (int c in originalColors)
                 {
                     if (sourceColors[index] == originalColors[c])
                         destColors[index] = newColors[c];
@@ -2016,7 +2016,7 @@ public class ImageUtil
             for (int x = 0; x < width; x++)
             {
                 double v = raster.getDoubleAtPosition(y, x);
-                // set pixel and alpha as zero (transparent) foreach pixel which is in 
+                // set pixel and alpha as zero (transparent) for pixel which is:
                 // - equals to missingDataSignal
                 // - is zero
                 // - greater than max elevation or smaller than min elevation

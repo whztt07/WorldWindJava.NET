@@ -66,7 +66,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
 
         ArrayList<Box> extents = new ArrayList<Box>();
 
-        foreach (ColladaMeshShape shape  in  this.shapes)
+        foreach (ColladaMeshShape shape in this.shapes)
         {
             Box extent = shape.getLocalExtent(tc);
             if (extent != null)
@@ -75,7 +75,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
 
         if (this.children != null)
         {
-            foreach (ColladaRenderable node  in  children)
+            foreach (ColladaRenderable node in children)
             {
                 Box extent = node.getLocalExtent(tc);
                 if (extent != null)
@@ -108,7 +108,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
                 tc.multiplyMatrix(matrix);
             }
 
-            foreach (ColladaRenderable node  in  children)
+            foreach (ColladaRenderable node in children)
             {
                 node.preRender(tc, dc);
             }
@@ -145,7 +145,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
             Position position = root.getPosition();
 
             Matrix traversalMatrix = tc.peekMatrix();
-            foreach (ColladaMeshShape shape  in  this.shapes)
+            foreach (ColladaMeshShape shape in this.shapes)
             {
                 shape.setModelPosition(position);
                 shape.setAltitudeMode(altitudeMode);
@@ -154,7 +154,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
                 shape.render(dc, traversalMatrix);
             }
 
-            foreach (ColladaRenderable node  in  this.getChildren())
+            foreach (ColladaRenderable node in this.getChildren())
             {
                 node.render(tc, dc);
             }
@@ -177,7 +177,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
             return Collections.emptyList();
 
         List<ColladaMeshShape> shapes = new ArrayList<ColladaMeshShape>();
-        foreach (ColladaInstanceGeometry geometry  in  this.geometries)
+        foreach (ColladaInstanceGeometry geometry in this.geometries)
         {
             this.createShapesForGeometry(geometry, shapes);
         }
@@ -297,7 +297,7 @@ public class ColladaNode : ColladaAbstractObject , ColladaRenderable
         double[] doubles = new double[arrayOfNumbers.length];
 
         int i = 0;
-        foreach (String s  in  arrayOfNumbers)
+        foreach (String s in arrayOfNumbers)
         {
             doubles[i++] = Double.parseDouble(s);
         }

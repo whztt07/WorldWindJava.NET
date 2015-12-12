@@ -201,7 +201,7 @@ public class KMLExportUtil
 
         xmlWriter.writeStartElement("LinearRing");
         xmlWriter.writeStartElement("coordinates");
-        foreach (LatLon location  in  boundary)
+        foreach (LatLon location in boundary)
         {
             xmlWriter.writeCharacters(Double.ToString(location.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");

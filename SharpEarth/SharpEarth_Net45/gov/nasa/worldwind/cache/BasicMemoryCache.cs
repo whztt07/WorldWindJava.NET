@@ -337,7 +337,7 @@ public class BasicMemoryCache : MemoryCache
     {
         synchronized (this.lock)
         {
-            foreach (CacheEntry entry  in  this.entries.values())
+            foreach (CacheEntry entry in this.entries.values())
             {
                 this.removeEntry(entry);
             }
@@ -358,7 +358,7 @@ public class BasicMemoryCache : MemoryCache
         {
             this.currentUsedCapacity.addAndGet(-entry.clientObjectSize);
 
-            foreach (MemoryCache.CacheListener listener  in  this.listeners)
+            foreach (MemoryCache.CacheListener listener in this.listeners)
             {
                 try
                 {

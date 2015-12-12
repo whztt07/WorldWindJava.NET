@@ -117,7 +117,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
             this.frameStructure.getPolarFrames());
 
         double lat, lon;
-        PixelTransforeachmer pt = (this.zoneCode == '9') ? northernPixels  in  southernPixels;
+        PixelTransformer pt = (this.zoneCode == '9') ? northernPixels : southernPixels;
         lat = pt.pixel2Latitude(originX, originY, this.frameStructure.getPolarPixelConstant());
         lon = pt.pixel2Longitude(originX, originY);
 
@@ -149,7 +149,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
         int midY = (minY + maxY) / 2;
 
         // Find the bounds. This is kind of tedious...
-        PixelTransforeachmer pt = (this.zoneCode == '9') ? northernPixels  in  southernPixels;
+        PixelTransformer pt = (this.zoneCode == '9') ? northernPixels : southernPixels;
         MinMaxLatLon bounds = new MinMaxLatLon();
 
         // LL
@@ -209,7 +209,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
             throw new ArgumentException(message);
         }
 
-        PixelTransforeachmer pt = (this.zoneCode == '9') ? northernPixels  in  southernPixels;
+        PixelTransformer pt = (this.zoneCode == '9') ? northernPixels : southernPixels;
 
         RPFImage[] images;
         if (isDatelineSpanningFrame(frameNumber, pt))

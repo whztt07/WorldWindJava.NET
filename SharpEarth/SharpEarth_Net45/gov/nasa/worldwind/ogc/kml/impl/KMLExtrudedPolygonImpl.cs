@@ -79,7 +79,7 @@ public class KMLExtrudedPolygonImpl : ExtrudedPolygon , KMLRenderable
         Iterable<? extends KMLLinearRing> innerBoundaries = polygon.getInnerBoundaries();
         if (innerBoundaries != null)
         {
-            foreach (KMLLinearRing ring  in  innerBoundaries)
+            foreach (KMLLinearRing ring in innerBoundaries)
             {
                 Position.PositionList coords = ring.getCoordinates();
                 if (coords != null && coords.list != null)
