@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace java.util
 {
-  internal class GL2
+  public class GL2
   {
   }
 }
