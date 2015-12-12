@@ -85,7 +85,7 @@ public class LevelSet : WWObjectImpl
         else if (o != null)
         {
             sectorLimits = (SectorResolution[]) o;
-            for (SectorResolution sr : sectorLimits)
+            foreach (SectorResolution sr in sectorLimits)
             {
                 if (sr.levelNumber > numLevels - 1)
                 {
@@ -179,7 +179,7 @@ public class LevelSet : WWObjectImpl
 
         if (inactiveLevels != null)
         {
-            for (String s : inactiveLevels)
+            foreach (String s in inactiveLevels)
             {
                 int i = Integer.parseInt(s);
                 this.getLevel(i).setActive(false);
@@ -202,7 +202,7 @@ public class LevelSet : WWObjectImpl
         this.numLevelZeroColumns = source.numLevelZeroColumns;
         this.sectorLevelLimits = source.sectorLevelLimits;
 
-        for (Level level : source.levels)
+        foreach (Level level in source.levels)
         {
             this.levels.add(level); // Levels are final, so it's safe to copy references.
         }
@@ -212,7 +212,7 @@ public class LevelSet : WWObjectImpl
     public Object setValue(String key, Object value)
     {
         // Propogate the setting to all levels
-        for (Level level : this.levels)
+        foreach (Level level in this.levels)
         {
             level.setValue(key, value);
         }
@@ -229,7 +229,7 @@ public class LevelSet : WWObjectImpl
             return value;
 
         // See if any level has it
-        for (Level level : this.getLevels())
+        foreach (Level level in this.getLevels())
         {
             if (level != null && (value = level.getValue(key)) != null)
                 return value;
@@ -311,7 +311,7 @@ public class LevelSet : WWObjectImpl
         Level level = this.getLevel(this.getNumLevels() - 1);
 
         if (this.sectorLevelLimits != null)
-            for (SectorResolution sr : this.sectorLevelLimits)
+            foreach (SectorResolution sr in this.sectorLevelLimits)
             {
                 if (sr.sector.intersects(sector) && sr.levelNumber <= level.getLevelNumber())
                 {
@@ -328,7 +328,7 @@ public class LevelSet : WWObjectImpl
         Level level = this.getLevel(this.getNumLevels() - 1);
 
         if (this.sectorLevelLimits != null)
-            for (SectorResolution sr : this.sectorLevelLimits)
+            foreach (SectorResolution sr in this.sectorLevelLimits)
             {
                 if (sr.sector.contains(latitude, longitude) && sr.levelNumber <= level.getLevelNumber())
                 {
@@ -501,7 +501,7 @@ public class LevelSet : WWObjectImpl
 
     public void setExpiryTime(long expiryTime)
     {
-        for (Level level : this.levels)
+        foreach (Level level in this.levels)
         {
             level.setExpiryTime(expiryTime);
         }

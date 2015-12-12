@@ -139,7 +139,7 @@ public class VPFLibrary : AVListImpl
         }
 
         // Coverage tiled attributes.
-        for (VPFCoverage coverage : library.getCoverages())
+        foreach (VPFCoverage coverage in library.getCoverages())
         {
             bool tiled = isCoverageTiled(library, coverage);
             coverage.setTiled(tiled);
@@ -260,7 +260,7 @@ public class VPFLibrary : AVListImpl
             throw new ArgumentException(message);
         }
 
-        for (VPFCoverage cov : collection)
+        foreach (VPFCoverage cov in collection)
         {
             this.addCoverage(cov);
         }
@@ -316,7 +316,7 @@ public class VPFLibrary : AVListImpl
         System.arraycopy(array, 0, this.tiles, 0, array.length);
 
         this.tileMap.clear();
-        for (VPFTile tile : array)
+        foreach (VPFTile tile in array)
         {
             this.tileMap.put(tile.getId(), tile);
         }
@@ -482,7 +482,7 @@ public class VPFLibrary : AVListImpl
     {
         ArrayList<VPFCoverage> list = new ArrayList<VPFCoverage>();
 
-        for (VPFRecord row : table)
+        foreach (VPFRecord row in table)
         {
             String name = (String) row.getValue("coverage_name");
             if (name != null)
@@ -508,7 +508,7 @@ public class VPFLibrary : AVListImpl
         if (tiles == null)
             return false;
 
-        for (VPFTile tile : tiles)
+        foreach (VPFTile tile in tiles)
         {
             File tmp = new File(cov.getFilePath(), tile.getName());
             if (tmp.exists())
@@ -529,7 +529,7 @@ public class VPFLibrary : AVListImpl
             return null;
 
         VPFFeatureClassSchema tileRefSchema = null;
-        for (VPFFeatureClassSchema s : schemas)
+        foreach (VPFFeatureClassSchema s in schemas)
         {
             if (s.getClassName().equalsIgnoreCase(VPFConstants.TILE_REFERENCE_COVERAGE))
             {
@@ -561,7 +561,7 @@ public class VPFLibrary : AVListImpl
         VPFTile[] tiles = new VPFTile[features.size()];
 
         int index = 0;
-        for (VPFFeature feature : features)
+        foreach (VPFFeature feature in features)
         {
             String tileName = feature.getStringValue("tile_name");
             if (tileName != null)

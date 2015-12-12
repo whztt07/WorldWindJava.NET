@@ -234,7 +234,7 @@ public abstract class WorldWindowImpl : WWObjectImpl, WorldWindow
 
     protected void callRenderingListeners(RenderingEvent event)
     {
-        for (RenderingListener listener : this.eventListeners.getListeners(RenderingListener.class))
+        foreach (RenderingListener listener in this.eventListeners.getListeners(RenderingListener.class))
         {
             listener.stageChanged(event);
         }
@@ -256,7 +256,7 @@ public abstract class WorldWindowImpl : WWObjectImpl, WorldWindow
         {
             public void run()
             {
-                for (PositionListener listener : eventListeners.getListeners(PositionListener.class))
+                foreach (PositionListener listener in eventListeners.getListeners(PositionListener.class))
                 {
                     listener.moved(event);
                 }
@@ -280,7 +280,7 @@ public abstract class WorldWindowImpl : WWObjectImpl, WorldWindow
         {
             public void run()
             {
-                for (SelectListener listener : eventListeners.getListeners(SelectListener.class))
+                foreach (SelectListener listener in eventListeners.getListeners(SelectListener.class))
                 {
                     listener.selected(event);
                 }

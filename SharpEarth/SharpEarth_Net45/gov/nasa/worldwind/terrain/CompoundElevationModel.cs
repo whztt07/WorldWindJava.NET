@@ -22,7 +22,7 @@ public class CompoundElevationModel : AbstractElevationModel
 
     public void dispose()
     {
-        for (ElevationModel child : this.elevationModels)
+        foreach (ElevationModel child in this.elevationModels)
         {
             if (child != null)
                 child.dispose();
@@ -52,7 +52,7 @@ public class CompoundElevationModel : AbstractElevationModel
             return true;
 
         // Check if the elevation model is a child of any CompoundElevationModels in our list.
-        for (ElevationModel child : this.elevationModels)
+        foreach (ElevationModel child in this.elevationModels)
         {
             if (child is CompoundElevationModel)
             {
@@ -70,7 +70,7 @@ public class CompoundElevationModel : AbstractElevationModel
             return;
 
         List<ElevationModel> temp = new ArrayList<ElevationModel>(this.elevationModels.size());
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             temp.add(em);
         }
@@ -150,7 +150,7 @@ public class CompoundElevationModel : AbstractElevationModel
             throw new ArgumentException(msg);
         }
 
-        for (ElevationModel child : this.elevationModels)
+        foreach (ElevationModel child in this.elevationModels)
         {
             if (child is CompoundElevationModel)
                 ((CompoundElevationModel) child).removeElevationModel(em);
@@ -207,7 +207,7 @@ public class CompoundElevationModel : AbstractElevationModel
     {
         super.setExpiryTime(expiryTime);
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             em.setExpiryTime(expiryTime);
         }
@@ -217,7 +217,7 @@ public class CompoundElevationModel : AbstractElevationModel
     {
         double max = -Double.MaxValue;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -234,7 +234,7 @@ public class CompoundElevationModel : AbstractElevationModel
     {
         double min = Double.MaxValue;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -258,7 +258,7 @@ public class CompoundElevationModel : AbstractElevationModel
 
         double[] retVal = null;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -291,7 +291,7 @@ public class CompoundElevationModel : AbstractElevationModel
 
         double[] retVal = null;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -321,7 +321,7 @@ public class CompoundElevationModel : AbstractElevationModel
     {
         double res = 0;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -388,7 +388,7 @@ public class CompoundElevationModel : AbstractElevationModel
 
         bool intersects = false;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -413,7 +413,7 @@ public class CompoundElevationModel : AbstractElevationModel
             throw new ArgumentException(message);
         }
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -638,7 +638,7 @@ public class CompoundElevationModel : AbstractElevationModel
 
         // Fill the buffer with ElevationModel contents from back to front, potentially overwriting values at each step.
         // ElevationModels are expected to leave the buffer untouched when data is missing at a location.
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -655,7 +655,7 @@ public class CompoundElevationModel : AbstractElevationModel
     {
         super.setNetworkRetrievalEnabled(networkRetrievalEnabled);
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             em.setNetworkRetrievalEnabled(networkRetrievalEnabled);
         }
@@ -667,7 +667,7 @@ public class CompoundElevationModel : AbstractElevationModel
         int models = 0;
         double availability = 0;
 
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (!em.isEnabled())
                 continue;
@@ -685,7 +685,7 @@ public class CompoundElevationModel : AbstractElevationModel
     @Override
     public void setExtremesCachingEnabled(boolean enabled)
     {
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             em.setExtremesCachingEnabled(enabled);
         }
@@ -694,7 +694,7 @@ public class CompoundElevationModel : AbstractElevationModel
     @Override
     public bool isExtremesCachingEnabled()
     {
-        for (ElevationModel em : this.elevationModels)
+        foreach (ElevationModel em in this.elevationModels)
         {
             if (em.isExtremesCachingEnabled())
                 return true;

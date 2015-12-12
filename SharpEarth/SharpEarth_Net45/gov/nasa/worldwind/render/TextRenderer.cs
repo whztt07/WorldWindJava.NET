@@ -770,7 +770,7 @@ public class TextRenderer {
                 }
             });
 
-        for (Rect r : deadRects) {
+        foreach (Rect r in deadRects) {
             packer.remove(r);
             stringLocations.remove(((TextData) r.getUserData()).string());
 
@@ -809,7 +809,7 @@ public class TextRenderer {
 
     private void internal_draw3D(CharSequence str, float x, float y, float z,
                                  float scaleFactor) {
-        for (Glyph glyph : mGlyphProducer.getGlyphs(str)) {
+        foreach (Glyph glyph in mGlyphProducer.getGlyphs(str)) {
             float advance = glyph.draw3D(x, y, z, scaleFactor);
             x += advance * scaleFactor;
         }

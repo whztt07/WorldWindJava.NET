@@ -90,7 +90,7 @@ public abstract class KMLAbstractObject : AbstractXMLEventParser , MessageListen
             throw new ArgumentException(message);
         }
 
-        for (Map.Entry<String, Object> entry : sourceValues.getFields().getEntries())
+        foreach (Map.Entry<String, Object> entry in sourceValues.getFields().getEntries())
         {
             this.setField(entry.getKey(), entry.getValue());
         }

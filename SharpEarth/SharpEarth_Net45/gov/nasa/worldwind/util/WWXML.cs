@@ -1092,7 +1092,7 @@ public class WWXML
             return null;
 
         ArrayList<String> sarl = new ArrayList<String>();
-        for (String s : strings)
+        foreach (String s in strings)
         {
             if (!sarl.contains(s))
                 sarl.add(s);
@@ -1148,7 +1148,7 @@ public class WWXML
             return null;
 
         HashMap<String, Element> styles = new HashMap<String, Element>();
-        for (Element e : elements)
+        foreach (Element e in elements)
         {
             String name = getText(e, uniqueTag, xpath);
             if (name != null)
@@ -1813,7 +1813,7 @@ public class WWXML
         Document doc = context.getOwnerDocument();
         Element cur = context;
 
-        for (String s : names)
+        foreach (String s in names)
         {
             if (s != null && s.length() > 0)
             {
@@ -3536,7 +3536,7 @@ public class WWXML
         {
             LevelSet.SectorResolution[] srs = (LevelSet.SectorResolution[]) o;
 
-            for (LevelSet.SectorResolution sr : srs)
+            foreach (LevelSet.SectorResolution sr in srs)
             {
                 if (sr != null)
                 {
@@ -3820,7 +3820,7 @@ public class WWXML
             if (params == null)
                 parameters = new AVListImpl();
 
-            for (Element el : elements)
+            foreach (Element el in elements)
             {
                 String prop = xpath.evaluate("@name", el);
                 String value = xpath.evaluate("@value", el);
@@ -3870,7 +3870,7 @@ public class WWXML
         if (elements == null || elements.length == 0)
             return;
 
-        for (Element element : elements)
+        foreach (Element element in elements)
         {
             String propertyName = element.getAttribute("name");
             if (WWUtil.isEmpty(propertyName))

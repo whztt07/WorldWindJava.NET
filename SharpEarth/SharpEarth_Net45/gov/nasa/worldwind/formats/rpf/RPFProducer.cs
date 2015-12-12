@@ -53,7 +53,7 @@ public enum RPFProducer
         {
             RPFProducer[] universe = RPFProducer.class.getEnumConstants();
             enumConstantAlphabet = new RPFProducer[36];
-            for (RPFProducer producer : universe)
+            foreach (RPFProducer producer in universe)
             {
                 enumConstantAlphabet[indexFor(producer.id)] = producer;
             }

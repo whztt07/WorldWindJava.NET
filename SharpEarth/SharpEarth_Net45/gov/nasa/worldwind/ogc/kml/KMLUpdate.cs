@@ -100,7 +100,7 @@ public class KMLUpdate : KMLAbstractObject
 
         KMLRoot targetRoot = (KMLRoot) o;
 
-        for (KMLUpdateOperation operation : this.operations)
+        foreach (KMLUpdateOperation operation in this.operations)
         {
             operation.applyOperation(targetRoot);
         }

@@ -119,7 +119,7 @@ public class GDALUtils
 
             bool isKnownBuild = false;
             Method[] methods = gdalClass.getDeclaredMethods();
-            for (Method m : methods)
+            foreach (Method m in methods)
             {
                 if ("setLibraryLoader".Equals(m.getName()))
                 {
@@ -318,7 +318,7 @@ public class GDALUtils
 
         if (null != folders && folders.length > 0)
         {
-            for (String folder : folders)
+            foreach (String folder in folders)
             {
                 path.append(folder).append(del);
             }

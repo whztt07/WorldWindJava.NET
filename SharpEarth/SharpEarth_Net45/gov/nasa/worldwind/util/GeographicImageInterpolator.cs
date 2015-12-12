@@ -173,7 +173,7 @@ public class GeographicImageInterpolator : ImageInterpolator
             // Assume that dateline crossing cells span the shorter of two possible paths around the globe. Therefore
             // each location contributes to the extreme in its hemisphere. minx is the furthest value from the dateline
             // in the eastern hemisphere. maxx is the furthest value from the dateline in the western hemisphere.
-            for (Cell t : this.children)
+            foreach (Cell t in this.children)
             {
                 // The child cell crosses the dateline. This cell's minx and maxx have the same meaning as the child
                 // cell, so a simple comparison determines this cell's extreme x values.
@@ -256,7 +256,7 @@ public class GeographicImageInterpolator : ImageInterpolator
             if (this.children == null || this.children.length == 0)
                 return false;
 
-            for (Cell t : this.children)
+            foreach (Cell t in this.children)
             {
                 if (((GeographicCell) t).isCrossesDateline())
                     return true;

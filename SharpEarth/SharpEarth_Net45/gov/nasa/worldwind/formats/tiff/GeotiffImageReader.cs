@@ -110,7 +110,7 @@ public class GeotiffImageReader : ImageReader
         TiffIFDEntry sampleFormatEntry = null;
 
         TiffIFDEntry[] ifd = ifds.get(imageIndex);
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry in ifd)
         {
             switch (entry.tag)
             {
@@ -210,7 +210,7 @@ public class GeotiffImageReader : ImageReader
         {
 
             // make sure a DataBufferByte is going to do the trick
-            for (int bits : bitsPerSample)
+            foreach (int bits in bitsPerSample)
             {
                 if (bits != 8)
                     throw new IIOException(this.GetType().Name + ".read(): only expecting 8 bits/sample; found " +
@@ -298,7 +298,7 @@ public class GeotiffImageReader : ImageReader
     {
         readIFDs();
         TiffIFDEntry[] ifd = ifds.get(0);
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry in ifd)
         {
             switch (entry.tag)
             {
@@ -601,7 +601,7 @@ public class GeotiffImageReader : ImageReader
      */
     private TiffIFDEntry getByTag(TiffIFDEntry[] ifds, int tag)
     {
-        for (TiffIFDEntry ifd : ifds)
+        foreach (TiffIFDEntry ifd in ifds)
         {
             if (ifd.tag == tag)
             {

@@ -42,7 +42,7 @@ public class GMLRectifiedGrid : GMLGrid
     {
         List<Vec4> vectors = new ArrayList<Vec4>(this.offsetVectors.size());
 
-        for (String s : this.offsetVectors)
+        foreach (String s in this.offsetVectors)
         {
             double[] arr = new double[] {0, 0, 0, 0};
             String[] split = s.split(" ");

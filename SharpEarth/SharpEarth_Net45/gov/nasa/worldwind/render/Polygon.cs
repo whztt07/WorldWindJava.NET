@@ -99,7 +99,7 @@ public class Polygon : AbstractShape
             }
 
             // Copy the shape's boundaries.
-            for (List<? extends Position> boundary : shape.boundaries)
+            foreach (List<? extends Position> boundary in shape.boundaries)
             {
                 this.boundaries.add(new BoundaryInfo(boundary));
             }
@@ -271,7 +271,7 @@ public class Polygon : AbstractShape
     {
         // Assumes that the boundary lists have already been established.
 
-        for (List<? extends Position> boundary : this.boundaries)
+        foreach (List<? extends Position> boundary in this.boundaries)
         {
             if (boundary == null || boundary.size() < 3)
                 continue;
@@ -299,7 +299,7 @@ public class Polygon : AbstractShape
     {
         int count = 0;
 
-        for (List<? extends Position> boundary : this.boundaries)
+        foreach (List<? extends Position> boundary in this.boundaries)
         {
             count += boundary.size();
         }
@@ -368,7 +368,7 @@ public class Polygon : AbstractShape
     {
         ArrayList<Position> list = new ArrayList<Position>();
 
-        for (Position corner : corners)
+        foreach (Position corner in corners)
         {
             if (corner != null)
                 list.add(corner);
@@ -743,7 +743,7 @@ public class Polygon : AbstractShape
             gl.glNormalPointer(GL.GL_FLOAT, 0, shapeData.normalBuffer.rewind());
 
         int k = 0;
-        for (BoundaryInfo boundary : shapeData)
+        foreach (BoundaryInfo boundary in shapeData)
         {
             gl.glDrawArrays(GL.GL_LINE_STRIP, k, boundary.vertices.length);
             k += boundary.vertices.length;
@@ -765,7 +765,7 @@ public class Polygon : AbstractShape
             gl.glNormalPointer(GL.GL_FLOAT, 0, 4 * shapeData.normalBufferPosition);
 
         int k = 0;
-        for (BoundaryInfo boundary : shapeData)
+        foreach (BoundaryInfo boundary in shapeData)
         {
             // TODO: check use glMultiDrawArrays
             gl.glDrawArrays(GL.GL_LINE_STRIP, k, boundary.vertices.length);
@@ -914,7 +914,7 @@ public class Polygon : AbstractShape
         double minDistance = Double.MaxValue;
         Vec4 eyePoint = dc.getView().getEyePoint();
 
-        for (Vec4 point : shapeData.getOuterBoundaryInfo().vertices)
+        foreach (Vec4 point in shapeData.getOuterBoundaryInfo().vertices)
         {
             double d = point.add3(shapeData.getReferencePoint()).distanceTo3(eyePoint);
             if (d < minDistance)
@@ -967,7 +967,7 @@ public class Polygon : AbstractShape
      */
     protected void createVertices(Terrain terrain, ShapeData shapeData, bool skipOuterBoundary)
     {
-        for (BoundaryInfo boundary : shapeData)
+        foreach (BoundaryInfo boundary in shapeData)
         {
             if (boundary != shapeData.getOuterBoundaryInfo() || !skipOuterBoundary)
                 this.computeBoundaryVertices(terrain, boundary, shapeData.getReferencePoint(),
@@ -1023,7 +1023,7 @@ public class Polygon : AbstractShape
         shapeData.normalBufferPosition = this.numPositions * 3;
 
         // Fill the vertex buffer. Simultaneously create individual buffer slices for each boundary.
-        for (BoundaryInfo boundary : shapeData)
+        foreach (BoundaryInfo boundary in shapeData)
         {
             boundary.vertexBuffer = WWBufferUtil.copyArrayToBuffer(boundary.vertices, shapeData.coordBuffer.slice());
             shapeData.coordBuffer.position(shapeData.coordBuffer.position() + boundary.vertexBuffer.limit());
@@ -1048,7 +1048,7 @@ public class Polygon : AbstractShape
         shapeData.coordBuffer.position(shapeData.normalBufferPosition);
         shapeData.normalBuffer = shapeData.coordBuffer.slice();
 
-        for (BoundaryInfo boundary : shapeData)
+        foreach (BoundaryInfo boundary in shapeData)
         {
             this.computeBoundaryNormals(boundary, shapeData.normalBuffer);
         }
@@ -1235,7 +1235,7 @@ public class Polygon : AbstractShape
             GLU.gluTessBeginPolygon(glts.getGLUtessellator(), null);
 
             int k = 0;
-            for (BoundaryInfo boundary : shapeData)
+            foreach (BoundaryInfo boundary in shapeData)
             {
                 GLU.gluTessBeginContour(glts.getGLUtessellator());
                 FloatBuffer vBuf = boundary.vertexBuffer;
@@ -1364,7 +1364,7 @@ public class Polygon : AbstractShape
         if (intersections.size() == 0)
             return null;
 
-        for (Intersection intersection : intersections)
+        foreach (Intersection intersection in intersections)
         {
             Vec4 pt = intersection.getIntersectionPoint().add3(highResShapeData.getReferencePoint());
             intersection.setIntersectionPoint(pt);
@@ -1443,7 +1443,7 @@ public class Polygon : AbstractShape
 
         List<List<? extends Position>> newBoundaries = new ArrayList<List<? extends Position>>(this.boundaries.size());
 
-        for (List<? extends Position> boundary : this.boundaries)
+        foreach (List<? extends Position> boundary in this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;
@@ -1494,7 +1494,7 @@ public class Polygon : AbstractShape
 
         List<List<? extends Position>> newBoundaries = new ArrayList<List<? extends Position>>(this.boundaries.size());
 
-        for (List<? extends Position> boundary : this.boundaries)
+        foreach (List<? extends Position> boundary in this.boundaries)
         {
             if (boundary == null || boundary.size() == 0)
                 continue;
@@ -1572,7 +1572,7 @@ public class Polygon : AbstractShape
     {
         xmlWriter.writeStartElement("LinearRing");
         xmlWriter.writeStartElement("coordinates");
-        for (LatLon location : boundary)
+        foreach (LatLon location in boundary)
         {
             if (location is Position)
             {

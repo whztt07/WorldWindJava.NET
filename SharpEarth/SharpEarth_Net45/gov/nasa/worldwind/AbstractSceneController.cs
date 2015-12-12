@@ -253,7 +253,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
         if (keys == null)
             return;
 
-        for (String key : keys)
+        foreach (String key in keys)
         {
             if (key != null)
                 this.perFrameStatisticsKeys.add(key);
@@ -372,7 +372,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
 //        if (vp == null)
 //            return;
 //
-//        for (GroupingFilter filter : this.groupingFilters.values())
+//        foreach (GroupingFilter filter in this.groupingFilters.values())
 //        {
 //            filter.clear();
 //            filter.setDimensions((int) vp.getWidth(), (int) vp.getHeight());
@@ -578,7 +578,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
             // Pre-render the layers.
             if (dc.getLayers() != null)
             {
-                for (Layer layer : dc.getLayers())
+                foreach (Layer layer in dc.getLayers())
                 {
                     try
                     {
@@ -631,7 +631,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
             if (pickedObjects == null || pickedObjects.size() == 0)
                 return;
 
-            for (PickedObject po : pickedObjects)
+            foreach (PickedObject po in pickedObjects)
             {
                 if (po == null)
                     continue;
@@ -647,7 +647,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
     {
         if (dc.getLayers() != null)
         {
-            for (Layer layer : dc.getLayers())
+            foreach (Layer layer in dc.getLayers())
             {
                 try
                 {
@@ -696,7 +696,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
             int colorCode = dc.getPickColorAtPoint(pickPoint);
             if (colorCode != 0)
             {
-                for (PickedObject po : pol)
+                foreach (PickedObject po in pol)
                 {
                     if (po != null && po.getColorCode() == colorCode)
                     {
@@ -720,7 +720,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
         {
             int[] minAndMaxColorCodes = null;
 
-            for (PickedObject po : pol)
+            foreach (PickedObject po in pol)
             {
                 int colorCode = po.getColorCode();
 
@@ -751,7 +751,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
             if (colorCodes != null && colorCodes.length > 0)
             {
                 // Find the top picked object for each unique color code, if any, and mark it as on top.
-                for (int colorCode : colorCodes)
+                foreach (int colorCode in colorCodes)
                 {
                     if (colorCode != 0) // This should never happen, but we check anyway.
                     {
@@ -853,13 +853,13 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
         if (listA == null || listB == null || !listA.hasNonTerrainObjects() || !listB.hasNonTerrainObjects())
             return listA;
 
-        for (PickedObject pb : listB)
+        foreach (PickedObject pb in listB)
         {
             if (pb.isTerrain())
                 continue;
 
             bool common = false; // cannot modify listA within its iterator, so use a flag to indicate commonality
-            for (PickedObject pa : listA)
+            foreach (PickedObject pa in listA)
             {
                 if (pa.isTerrain())
                     continue;
@@ -885,7 +885,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
             // Draw the layers.
             if (dc.getLayers() != null)
             {
-                for (Layer layer : dc.getLayers())
+                foreach (Layer layer in dc.getLayers())
                 {
                     try
                     {
@@ -944,7 +944,7 @@ public abstract class AbstractSceneController : WWObjectImpl , SceneController
                 GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
                 gl.glGetFloatv(GL2.GL_CURRENT_COLOR, previousColor, 0);
 
-                for (SectorGeometry sg : dc.getSurfaceGeometry())
+                foreach (SectorGeometry sg in dc.getSurfaceGeometry())
                 {
                     if (model.isShowWireframeInterior() || model.isShowWireframeExterior())
                         sg.renderWireframe(dc, model.isShowWireframeInterior(), model.isShowWireframeExterior());

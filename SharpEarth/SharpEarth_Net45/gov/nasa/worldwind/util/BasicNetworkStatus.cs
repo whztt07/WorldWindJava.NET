@@ -305,7 +305,7 @@ public class BasicNetworkStatus : AVListImpl , NetworkStatus
             return this.lastNetworkUnavailableResult.get();
         }
 
-        for (String testHost : networkTestSites)
+        foreach (String testHost in networkTestSites)
         {
             if (isHostReachable(testHost))
             {

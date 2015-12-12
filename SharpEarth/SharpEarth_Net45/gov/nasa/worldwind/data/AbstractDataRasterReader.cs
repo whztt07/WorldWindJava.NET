@@ -93,7 +93,7 @@ public abstract class AbstractDataRasterReader : AVListImpl , DataRasterReader
         // If the source has a suffix, then we return success if this reader supports the suffix.
         String pathSuffix = WWIO.getSuffix(path);
         bool matchesAny = false;
-        for (String suffix : suffixes)
+        foreach (String suffix in suffixes)
         {
             if (suffix.equalsIgnoreCase(pathSuffix))
             {
@@ -201,7 +201,7 @@ public abstract class AbstractDataRasterReader : AVListImpl , DataRasterReader
     private static String descriptionFromSuffixes(String[] suffixes)
     {
         StringBuilder sb = new StringBuilder();
-        for (String suffix : suffixes)
+        foreach (String suffix in suffixes)
         {
             if (sb.length() > 0)
                 sb.append(", ");

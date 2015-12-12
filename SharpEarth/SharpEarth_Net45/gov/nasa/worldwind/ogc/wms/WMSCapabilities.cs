@@ -126,7 +126,7 @@ public class WMSCapabilities : OGCCapabilities
 
         List<WMSLayerCapabilities> namedLayers = new ArrayList<WMSLayerCapabilities>();
 
-        for (WMSLayerCapabilities layer : this.getCapabilityInformation().getLayerCapabilities())
+        foreach (WMSLayerCapabilities layer in this.getCapabilityInformation().getLayerCapabilities())
         {
             namedLayers.addAll(layer.getNamedLayers());
         }
@@ -140,7 +140,7 @@ public class WMSCapabilities : OGCCapabilities
             return null;
 
         List<WMSLayerCapabilities> namedLayers = this.getNamedLayers();
-        for (WMSLayerCapabilities layer : namedLayers)
+        foreach (WMSLayerCapabilities layer in namedLayers)
         {
             if (layer.getName().Equals(name))
                 return layer;
@@ -157,7 +157,7 @@ public class WMSCapabilities : OGCCapabilities
     public Set<String> getImageFormats()
     {
         Set<OGCRequestDescription> requestDescriptions = this.getCapabilityInformation().getRequestDescriptions();
-        for (OGCRequestDescription rd : requestDescriptions)
+        foreach (OGCRequestDescription rd in requestDescriptions)
         {
             if (rd.getRequestName().Equals("GetMap"))
                 return rd.getFormats();
@@ -177,7 +177,7 @@ public class WMSCapabilities : OGCCapabilities
 
         String lastUpdate = null;
 
-        for (String name : layerNames)
+        foreach (String name in layerNames)
         {
             WMSLayerCapabilities layer = this.getLayerByName(name);
             if (layer == null)
@@ -221,7 +221,7 @@ public class WMSCapabilities : OGCCapabilities
 
         // See if there's a last-update keyword. This is the new mechanism for WW servers passing a last-update.
         Set<String> keywords = layerCaps.getKeywords();
-        for (String keyword : keywords)
+        foreach (String keyword in keywords)
         {
             if (keyword.startsWith("LastUpdate="))
             {
@@ -276,7 +276,7 @@ public class WMSCapabilities : OGCCapabilities
         Double extremeMin = null;
         Double extremeMax = null;
 
-        for (String name : layerNames)
+        foreach (String name in layerNames)
         {
             WMSLayerCapabilities layer = this.getLayerByName(name);
             if (layer == null)
@@ -308,7 +308,7 @@ public class WMSCapabilities : OGCCapabilities
 
     public OGCRequestDescription getRequestDescription(String requestName)
     {
-        for (OGCRequestDescription rd : this.getCapabilityInformation().getRequestDescriptions())
+        foreach (OGCRequestDescription rd in this.getCapabilityInformation().getRequestDescriptions())
         {
             if (rd.getRequestName().equalsIgnoreCase(requestName))
                 return rd;
@@ -357,7 +357,7 @@ public class WMSCapabilities : OGCCapabilities
             throw new ArgumentException(message);
         }
 
-        for (String name : layerNames)
+        foreach (String name in layerNames)
         {
             WMSLayerCapabilities layerCaps = this.getLayerByName(name);
             if (layerCaps == null || !layerCaps.hasCoordinateSystem(coordSys))
@@ -374,7 +374,7 @@ public class WMSCapabilities : OGCCapabilities
 
         sb.append("LAYERS\n");
 
-        for (WMSLayerCapabilities layerCaps : this.getNamedLayers())
+        foreach (WMSLayerCapabilities layerCaps in this.getNamedLayers())
         {
             sb.append(layerCaps.ToString()).append("\n");
         }

@@ -75,7 +75,7 @@ public abstract class KMLAbstractStyleSelector : KMLAbstractObject
 
         if (styleSelectors != null)
         {
-            for (KMLAbstractStyleSelector selector : styleSelectors)
+            foreach (KMLAbstractStyleSelector selector in styleSelectors)
             {
                 mergeSubStyles(null, selector, styleState, subStyle);
             }

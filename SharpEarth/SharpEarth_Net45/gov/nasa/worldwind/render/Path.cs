@@ -526,7 +526,7 @@ public class Path : AbstractShape
             if (pickedObject != null)
                 return pickedObject;
 
-            for (PickablePositions positions : this.getPickablePositions())
+            foreach (PickablePositions positions in this.getPickablePositions())
             {
                 if (colorCode >= positions.minColorCode && colorCode <= positions.maxColorCode)
                 {
@@ -579,7 +579,7 @@ public class Path : AbstractShape
 
             // Lookup the pickable object (if any) for each unique color code appearing in the pick rectangle. Each
             // picked object that corresponds to a picked color is added to the draw context. Since the
-            for (int colorCode : colorCodes)
+            foreach (int colorCode in colorCodes)
             {
                 if (colorCode == 0) // This should never happen, but we check anyway.
                     continue;
@@ -596,7 +596,7 @@ public class Path : AbstractShape
                 }
                 else
                 {
-                    for (PickablePositions positions : this.getPickablePositions())
+                    foreach (PickablePositions positions in this.getPickablePositions())
                     {
                         if (colorCode >= positions.minColorCode && colorCode <= positions.maxColorCode)
                         {
@@ -628,7 +628,7 @@ public class Path : AbstractShape
 
             // We've consolidated the information about what parts of each path are picked into a map of picked objects.
             // The values in this map contain all the information we need, so we just add them to the draw context.
-            for (PickedObject po : this.pathPickedObjects.values())
+            foreach (PickedObject po in this.pathPickedObjects.values())
             {
                 if (layer != null)
                     po.setParentLayer(layer);
@@ -679,7 +679,7 @@ public class Path : AbstractShape
         super(source);
 
         List<Position> copiedPositions = new ArrayList<Position>();
-        for (Position position : source.positions)
+        foreach (Position position in source.positions)
         {
             copiedPositions.add(position);
         }
@@ -772,7 +772,7 @@ public class Path : AbstractShape
     @Override
     protected void reset()
     {
-        for (ShapeDataCache.ShapeDataCacheEntry entry : this.shapeDataCache)
+        foreach (ShapeDataCache.ShapeDataCacheEntry entry in this.shapeDataCache)
         {
             ((PathData) entry).tessellatedPositions = null;
             ((PathData) entry).tessellatedColors = null;
@@ -1167,7 +1167,7 @@ public class Path : AbstractShape
         if (this.positions != null)
         {
             //noinspection UnusedDeclaration
-            for (Position pos : this.positions)
+            foreach (Position pos in this.positions)
             {
                 ++this.numPositions;
             }
@@ -1668,7 +1668,7 @@ public class Path : AbstractShape
 
         path.clear();
 
-        for (Position pos : positions)
+        foreach (Position pos in positions)
         {
             double height = altitude != null ? altitude : pos.getAltitude();
             Vec4 referencePoint = pathData.getReferencePoint();
@@ -1725,7 +1725,7 @@ public class Path : AbstractShape
         if (dc.getVerticalExaggeration() != 1)
         {
             double ve = dc.getVerticalExaggeration();
-            for (Position pos : positions)
+            foreach (Position pos in positions)
             {
                 Vec4 pt = globe.computePointFromPosition(pos.getLatitude(), pos.getLongitude(),
                     ve * (pos.getAltitude()));
@@ -1745,7 +1745,7 @@ public class Path : AbstractShape
         }
         else
         {
-            for (Position pos : positions)
+            foreach (Position pos in positions)
             {
                 Vec4 pt = globe.computePointFromPosition(pos);
                 path.put((float) (pt.x - referencePoint.x));
@@ -2061,7 +2061,7 @@ public class Path : AbstractShape
         int currentIndex = 0;
         if (pathData.splitPositions != null)
         {
-            for (Integer splitIndex : pathData.splitPositions)
+            foreach (Integer splitIndex in pathData.splitPositions)
             {
                 for (int i = currentIndex; i < splitIndex - 1; i++)
                 {
@@ -2571,7 +2571,7 @@ public class Path : AbstractShape
         xmlWriter.writeEndElement();
 
         xmlWriter.writeStartElement("coordinates");
-        for (Position position : this.positions)
+        foreach (Position position in this.positions)
         {
             xmlWriter.writeCharacters(String.Format(Locale.US, "%f,%f,%f ",
                 position.getLongitude().getDegrees(),

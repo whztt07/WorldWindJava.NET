@@ -323,7 +323,7 @@ public abstract class TiledImageLayer : AbstractLayer
 
     protected void loadAllTopLevelTextures(DrawContext dc)
     {
-        for (TextureTile tile : this.getTopLevels())
+        foreach (TextureTile tile in this.getTopLevels())
         {
             if (!tile.isTextureInMemory(dc.getTextureCache()))
                 this.forceTextureLoad(tile);
@@ -340,7 +340,7 @@ public abstract class TiledImageLayer : AbstractLayer
     {
         this.currentTiles.clear();
 
-        for (TextureTile tile : this.getTopLevels())
+        foreach (TextureTile tile in this.getTopLevels())
         {
             if (this.isTileVisible(dc, tile))
             {
@@ -405,7 +405,7 @@ public abstract class TiledImageLayer : AbstractLayer
             }
 
             TextureTile[] subTiles = tile.createSubTiles(this.levels.getLevel(tile.getLevelNumber() + 1));
-            for (TextureTile child : subTiles)
+            foreach (TextureTile child in subTiles)
             {
                 if (this.getLevels().getSector().intersects(child.getSector()) && this.isTileVisible(dc, child))
                     this.addTileOrDescendants(dc, child);
@@ -660,7 +660,7 @@ public abstract class TiledImageLayer : AbstractLayer
 
     protected void checkTextureExpiration(DrawContext dc, List<TextureTile> tiles)
     {
-        for (TextureTile tile : tiles)
+        foreach (TextureTile tile in tiles)
         {
             if (tile.isTextureExpired())
                 this.requestTexture(dc, tile);
@@ -762,7 +762,7 @@ public abstract class TiledImageLayer : AbstractLayer
 
         textRenderer.beginRendering(viewport.width, viewport.height);
         textRenderer.setColor(java.awt.Color.YELLOW);
-        for (TextureTile tile : tiles)
+        foreach (TextureTile tile in tiles)
         {
             String tileLabel = tile.getLabel();
 
@@ -787,7 +787,7 @@ public abstract class TiledImageLayer : AbstractLayer
         gl.glGetFloatv(GL2.GL_CURRENT_COLOR, previousColor, 0);
         gl.glColor3d(0, 1, 0);
 
-        for (TextureTile tile : tiles)
+        foreach (TextureTile tile in tiles)
         {
             if (tile.getExtent(dc) is Renderable)
                 ((Renderable) tile.getExtent(dc)).render(dc);
@@ -1305,7 +1305,7 @@ public abstract class TiledImageLayer : AbstractLayer
 
         int numTiles = 0;
         TextureTile[][] tiles = this.getTilesInSector(intersection, levelNumber);
-        for (TextureTile[] row : tiles)
+        foreach (TextureTile[] row in tiles)
         {
             numTiles += row.length;
         }
@@ -1320,9 +1320,9 @@ public abstract class TiledImageLayer : AbstractLayer
             image = new BufferedImage(canvasWidth, canvasHeight, BufferedImage.TYPE_INT_RGB);
 
         double tileCount = 0;
-        for (TextureTile[] row : tiles)
+        foreach (TextureTile[] row in tiles)
         {
-            for (TextureTile tile : row)
+            foreach (TextureTile tile in row)
             {
                 if (tile == null)
                     continue;

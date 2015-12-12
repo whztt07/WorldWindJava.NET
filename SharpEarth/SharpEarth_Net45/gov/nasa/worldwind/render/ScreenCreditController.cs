@@ -85,7 +85,7 @@ public class ScreenCreditController : Renderable, SelectListener, Disposable
         int y = dc.getView().getViewport().height - (bottomMargin + creditHeight / 2);
         int x = leftMargin + creditWidth / 2;
 
-        for (Map.Entry<ScreenCredit, Long> entry : credits)
+        foreach (Map.Entry<ScreenCredit, Long> entry in credits)
         {
             ScreenCredit credit = entry.getKey();
             Rectangle viewport = new Rectangle(x, y, creditWidth, creditHeight);
@@ -117,7 +117,7 @@ public class ScreenCreditController : Renderable, SelectListener, Disposable
         int y = dc.getView().getViewport().height - (bottomMargin + creditHeight / 2);
         int x = leftMargin + creditWidth / 2;
 
-        for (Map.Entry<ScreenCredit, Long> entry : credits)
+        foreach (Map.Entry<ScreenCredit, Long> entry in credits)
         {
             ScreenCredit credit = entry.getKey();
             Rectangle viewport = new Rectangle(x, y, creditWidth, creditHeight);

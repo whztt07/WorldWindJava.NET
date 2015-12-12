@@ -510,7 +510,7 @@ public class DDSCompressor
         if (attributes.isBuildMipmaps())
         {
             mipMapLevels = this.buildMipMaps(image, attributes);
-            for (java.awt.image.BufferedImage mipMapImage : mipMapLevels)
+            foreach (java.awt.image.BufferedImage mipMapImage in mipMapLevels)
             {
                 fileSize += compressor.getCompressedSize(mipMapImage, attributes);
             }
@@ -541,7 +541,7 @@ public class DDSCompressor
         }
         else
         {
-            for (java.awt.image.BufferedImage mipMapImage : mipMapLevels)
+            foreach (java.awt.image.BufferedImage mipMapImage in mipMapLevels)
             {
                 compressor.compressImage(mipMapImage, attributes, buffer);
             }

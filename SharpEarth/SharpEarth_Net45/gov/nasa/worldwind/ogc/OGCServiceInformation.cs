@@ -241,7 +241,7 @@ public class OGCServiceInformation : AbstractXMLEventParser
             sb.append(" none");
         else
         {
-            for (String keyword : this.getKeywords())
+            foreach (String keyword in this.getKeywords())
             {
                 sb.append(keyword != null ? keyword : "null").append(", ");
             }

@@ -112,7 +112,7 @@ public class WorldFile
         if (values == null)
             values = new AVListImpl();
 
-        for (File file : worldFiles)
+        foreach (File file in worldFiles)
         {
             if (!file.exists())
             {
@@ -123,7 +123,7 @@ public class WorldFile
         }
 
         //File transformFile = null;
-        for (File file : worldFiles)
+        foreach (File file in worldFiles)
         {
             if (file.getName().toLowerCase().endsWith("w"))
             {

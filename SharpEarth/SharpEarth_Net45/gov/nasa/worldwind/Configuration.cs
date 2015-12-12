@@ -701,7 +701,7 @@ public class Configuration // Singleton
     {
         XPath xpath = WWXML.makeXPath();
 
-        for (Document doc : getInstance().configDocs)
+        foreach (Document doc in getInstance().configDocs)
         {
             try
             {

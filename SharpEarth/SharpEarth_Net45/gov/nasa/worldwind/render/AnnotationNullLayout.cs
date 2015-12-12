@@ -67,7 +67,7 @@ public class AnnotationNullLayout : AbstractAnnotationLayout
         // Start with an empty bounding rectangle in the lower left hand corner.
         java.awt.Rectangle annotationBounds = new java.awt.Rectangle();
 
-        for (Annotation annotation : annotations)
+        foreach (Annotation annotation in annotations)
         {
             java.awt.Rectangle b = this.getAnnotationBounds(dc, annotation);
             if (b != null)
@@ -106,7 +106,7 @@ public class AnnotationNullLayout : AbstractAnnotationLayout
         GL2 gl = dc.getGL().getGL2(); // GL initialization checks for GL2 compatibility.
         OGLStackHandler stackHandler = new OGLStackHandler();
 
-        for (Annotation annotation : annotations)
+        foreach (Annotation annotation in annotations)
         {
             java.awt.Rectangle annotationBounds = this.getAnnotationBounds(dc, annotation);
             annotationBounds = this.adjustAnnotationBounds(dc, bounds, annotation, annotationBounds);

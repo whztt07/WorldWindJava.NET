@@ -429,7 +429,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
             return;
         }
 
-        for (PickedObject po : pickedObjects)
+        foreach (PickedObject po in pickedObjects)
         {
             this.pickedObjects.add(po);
         }
@@ -736,7 +736,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
 //    {
 //        // Collect all the active declutterables.
 //        ArrayList<OrderedRenderableEntry> declutterableArray = new ArrayList<OrderedRenderableEntry>();
-//        for (OrderedRenderableEntry ore : this.orderedRenderables)
+//        foreach (OrderedRenderableEntry ore in this.orderedRenderables)
 //        {
 //            if (ore.or is Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
 //                declutterableArray.add(ore);
@@ -760,7 +760,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
 //        // Remove eliminated ordered renderables from the priority queue.
 //        ClutterFilter clutterFilter = new ClutterFilter();
 //
-//        for (OrderedRenderableEntry ore : declutterableArray)
+//        foreach (OrderedRenderableEntry ore in declutterableArray)
 //        {
 //            Rectangle2D bounds = ((Declutterable) ore.or).getBounds(this);
 //
@@ -795,7 +795,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
 
         // Collect all the active declutterables.
         ArrayList<OrderedRenderableEntry> declutterableArray = new ArrayList<OrderedRenderableEntry>();
-        for (OrderedRenderableEntry ore : this.orderedRenderables)
+        foreach (OrderedRenderableEntry ore in this.orderedRenderables)
         {
             if (ore.or is Declutterable && ((Declutterable) ore.or).isEnableDecluttering())
                 declutterableArray.add(ore);
@@ -820,7 +820,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
         // list. The clutter filter will add those it wants displayed back to the list, or it will add some other
         // representation.
         List<Declutterable> declutterables = new ArrayList<Declutterable>(declutterableArray.size());
-        for (OrderedRenderableEntry ore : declutterableArray)
+        foreach (OrderedRenderableEntry ore in declutterableArray)
         {
             declutterables.add((Declutterable) ore.or);
 
@@ -875,7 +875,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
 //
 //    public void applyGroupingFilters()
 //    {
-//        for (GroupingFilter filter : this.groupingFilters.values())
+//        foreach (GroupingFilter filter in this.groupingFilters.values())
 //        {
 //            filter.apply(this);
 //        }
@@ -1031,7 +1031,7 @@ public class DrawContextImpl : WWObjectImpl , DrawContext
         if (this.perFrameStatistics == null || this.perFrameStatisticsKeys == null)
             return;
 
-        for (PerformanceStatistic stat : stats)
+        foreach (PerformanceStatistic stat in stats)
         {
             this.perFrameStatistics.add(stat);
         }

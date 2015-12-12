@@ -132,7 +132,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
         {
             // render each sector in unique color
             this.beginRendering(dc);
-            for (SectorGeometry sector : this)
+            foreach (SectorGeometry sector in this)
             {
                 Color color = dc.getUniquePickColor();
                 gl.glColor3ub((byte) color.getRed(), (byte) color.getGreen(), (byte) color.getBlue());
@@ -194,7 +194,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
         {
             // render each sector in a unique color
             this.beginRendering(dc);
-            for (SectorGeometry sector : this)
+            foreach (SectorGeometry sector in this)
             {
                 Color color = dc.getUniquePickColor();
                 gl.glColor3ub((byte) color.getRed(), (byte) color.getGreen(), (byte) color.getBlue());
@@ -206,7 +206,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             // Determine the sectors underneath the pick points. Assemble a pick-points per sector map.
             // Several pick points might intersect the same sector.
             this.pickSectors.clear();
-            for (Point pickPoint : pickPoints)
+            foreach (Point pickPoint in pickPoints)
             {
                 PickedObject pickedSector = this.pickSupport.getTopObject(dc, pickPoint);
                 if (pickedSector == null || pickedSector.getObject() == null)
@@ -232,14 +232,14 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
             // Now have each sector determine the pick position for each intersecting pick point.
             this.beginSectorGeometryPicking(dc);
             ArrayList<PickedObject> pickedObjects = new ArrayList<PickedObject>();
-            for (Map.Entry<SectorGeometry, ArrayList<Point>> sector : this.pickSectors.entrySet())
+            foreach (Map.Entry<SectorGeometry, ArrayList<Point>> sector in this.pickSectors.entrySet())
             {
                 ArrayList<Point> sectorPickPoints = sector.getValue();
                 PickedObject[] pos = sector.getKey().pick(dc, sectorPickPoints);
                 if (pos == null)
                     continue;
 
-                for (PickedObject po : pos)
+                foreach (PickedObject po in pos)
                 {
                     if (po != null)
                         pickedObjects.add(po);
@@ -398,7 +398,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
 
         Intersection[] hits;
         ArrayList<Intersection> list = new ArrayList<Intersection>();
-        for (SectorGeometry sg : sglist)
+        foreach (SectorGeometry sg in sglist)
         {
             if (sg.getExtent().intersects(line))
                 if ((hits = sg.intersect(line)) != null)
@@ -461,7 +461,7 @@ public class SectorGeometryList : ArrayList<SectorGeometry>
 
         Intersection[] hits;
         ArrayList<Intersection> list = new ArrayList<Intersection>();
-        for (SectorGeometry sg : sglist)
+        foreach (SectorGeometry sg in sglist)
         {
             if (sector.intersects(sg.getSector()))
                 if ((hits = sg.intersect(elevation)) != null)

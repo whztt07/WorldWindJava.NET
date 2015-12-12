@@ -96,7 +96,7 @@ public class StatisticsPanel : JPanel
         PerformanceStatistic[] pfs = new PerformanceStatistic[wwd.getPerFrameStatistics().size()];
         pfs = wwd.getSceneController().getPerFrameStatistics().toArray(pfs);
         Arrays.sort(pfs);
-        for (PerformanceStatistic stat : pfs)
+        foreach (PerformanceStatistic stat in pfs)
         {
             JLabel jcb = new JLabel(stat.ToString());
             this.statsPanel.add(jcb);

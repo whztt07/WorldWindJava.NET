@@ -241,7 +241,7 @@ public class GeotiffReader : Disposable
             throw new IOException(msg);
         }
 
-        for (TiffIFDEntry entry : ifd)
+        foreach (TiffIFDEntry entry in ifd)
         {
             try
             {
@@ -444,7 +444,7 @@ public class GeotiffReader : Disposable
             BufferedImage colorImage;
 
             // make sure a DataBufferByte is going to do the trick
-            for (int bits : tiff.bitsPerSample)
+            foreach (int bits in tiff.bitsPerSample)
             {
                 if (bits != 8)
                 {
@@ -692,7 +692,7 @@ public class GeotiffReader : Disposable
             }
 
             // geo keys
-            for (TiffIFDEntry entry : ifd)
+            foreach (TiffIFDEntry entry in ifd)
             {
                 try
                 {
@@ -1090,7 +1090,7 @@ public class GeotiffReader : Disposable
 
     private TiffIFDEntry getByTag(TiffIFDEntry[] ifd, int tag)
     {
-        for (TiffIFDEntry anIfd : ifd)
+        foreach (TiffIFDEntry anIfd in ifd)
         {
             if (anIfd.tag == tag)
             {

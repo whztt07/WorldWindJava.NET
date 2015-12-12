@@ -73,7 +73,7 @@ public class KeyEventState : KeyListener, MouseListener
             return(0);
         }
         int numKeys = 0;
-        for (Object o : this.keyStateMap.keySet())
+        foreach (Object o in this.keyStateMap.keySet())
         {
             //Integer key = (KeyEvent) o;
             InputState is = this.keyStateMap.get(o);
@@ -93,7 +93,7 @@ public class KeyEventState : KeyListener, MouseListener
             return(0);
         }
         int numKeys = 0;
-        for (Object o : this.keyStateMap.keySet())
+        foreach (Object o in this.keyStateMap.keySet())
         {
             //Integer key = (KeyEvent) o;
             InputState is = this.keyStateMap.get(o);

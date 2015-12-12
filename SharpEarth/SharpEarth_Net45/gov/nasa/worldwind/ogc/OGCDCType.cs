@@ -122,7 +122,7 @@ public class OGCDCType : AbstractXMLEventParser
 
     public OGCOnlineResource getOnlineResouce(String protocol, String requestMethod)
     {
-        for (DCPInfo dcpi : this.getDCPInfos())
+        foreach (DCPInfo dcpi in this.getDCPInfos())
         {
             if (!dcpi.protocol.equalsIgnoreCase(protocol))
                 continue;
@@ -139,7 +139,7 @@ public class OGCDCType : AbstractXMLEventParser
     {
         StringBuilder sb = new StringBuilder();
 
-        for (DCPInfo dcpi : this.getDCPInfos())
+        foreach (DCPInfo dcpi in this.getDCPInfos())
         {
             sb.append(dcpi.protocol).append(", ");
             sb.append(dcpi.method).append(", ");

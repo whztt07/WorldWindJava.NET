@@ -446,14 +446,14 @@ public class RectangularTessellator : WWObjectImpl , Tessellator
         this.currentCoverage = null;
 
         this.currentFrustum = dc.getView().getFrustumInModelCoordinates();
-        for (RectTile tile : topLevels.topLevels)
+        foreach (RectTile tile in topLevels.topLevels)
         {
             this.selectVisibleTiles(dc, tile);
         }
 
         this.currentTiles.setSector(this.currentCoverage);
 
-        for (SectorGeometry tile : this.currentTiles)
+        foreach (SectorGeometry tile in this.currentTiles)
         {
             this.makeVerts(dc, (RectTile) tile);
         }
@@ -562,7 +562,7 @@ public class RectangularTessellator : WWObjectImpl , Tessellator
         {
             ++this.currentLevel;
             RectTile[] subtiles = this.split(dc, tile);
-            for (RectTile child : subtiles)
+            foreach (RectTile child in subtiles)
             {
                 this.selectVisibleTiles(dc, child);
             }
@@ -2140,7 +2140,7 @@ public class RectangularTessellator : WWObjectImpl , Tessellator
 //        Vec4[] polyVerts = new Vec4[3];
 //        System.arraycopy(triVerts, 0, polyVerts, 0, 3);
 //
-//        for (Plane p : planes)
+//        foreach (Plane p in planes)
 //        {
 //            polyVerts = doSHPass(p, polyVerts);
 //            if (polyVerts == null)
@@ -2289,7 +2289,7 @@ public class RectangularTessellator : WWObjectImpl , Tessellator
 //            return l;
 //
 //        int i = 0, nInNegHalfspace = 0, locIn = -1, locOut = -1;
-//        for (Vec4 vtx : polyVerts)
+//        foreach (Vec4 vtx in polyVerts)
 //        {
 //            Vec4 vMinusC = vtx.subtract3(Cxyz);
 //            double xd = vMinusC.dot3(uHat);

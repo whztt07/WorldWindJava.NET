@@ -89,7 +89,7 @@ public class VPFBasicPrimitiveDataFactory : VPFPrimitiveDataFactory
         VPFPrimitiveData.BasicPrimitiveInfo[] nodeInfo = new VPFPrimitiveData.BasicPrimitiveInfo[numNodes];
         VecBufferSequence coords = (VecBufferSequence) table.getRecordData("coordinate").getBackingData();
 
-        for (VPFRecord row : table)
+        foreach (VPFRecord row in table)
         {
             int id = row.getId();
 
@@ -118,7 +118,7 @@ public class VPFBasicPrimitiveDataFactory : VPFPrimitiveDataFactory
         VecBufferSequence coords = (VecBufferSequence) edgeTable.getRecordData(
             "coordinates").getBackingData();
 
-        for (VPFRecord row : edgeTable)
+        foreach (VPFRecord row in edgeTable)
         {
             int id = row.getId();
             VPFRecord mbrRow = mbrTable.getRecord(id);
@@ -156,7 +156,7 @@ public class VPFBasicPrimitiveDataFactory : VPFPrimitiveDataFactory
         int numFaces = faceTable.getNumRecords();
         VPFPrimitiveData.FaceInfo[] faceInfo = new VPFPrimitiveData.FaceInfo[numFaces];
 
-        for (VPFRecord faceRow : faceTable)
+        foreach (VPFRecord faceRow in faceTable)
         {
             int faceId = faceRow.getId();
             VPFRecord mbrRow = mbrTable.getRecord(faceId);
@@ -213,7 +213,7 @@ public class VPFBasicPrimitiveDataFactory : VPFPrimitiveDataFactory
         VecBufferSequence coords = (VecBufferSequence) textTable.getRecordData("shape_line").getBackingData();
         CompoundStringBuilder strings = (CompoundStringBuilder) textTable.getRecordData("string").getBackingData();
 
-        for (VPFRecord row : textTable)
+        foreach (VPFRecord row in textTable)
         {
             int id = row.getId();
 

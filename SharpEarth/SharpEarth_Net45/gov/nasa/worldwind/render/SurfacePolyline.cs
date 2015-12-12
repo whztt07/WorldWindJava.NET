@@ -175,7 +175,7 @@ public class SurfacePolyline : AbstractSurfaceShape , Exportable
 
         ArrayList<LatLon> newLocations = new ArrayList<LatLon>();
 
-        for (LatLon ll : this.locations)
+        foreach (LatLon ll in this.locations)
         {
             Angle heading = LatLon.greatCircleAzimuth(oldReferencePosition, ll);
             Angle pathLength = LatLon.greatCircleDistance(oldReferencePosition, ll);
@@ -344,7 +344,7 @@ public class SurfacePolyline : AbstractSurfaceShape , Exportable
         xmlWriter.writeEndElement();
 
         xmlWriter.writeStartElement("coordinates");
-        for (LatLon position : this.getLocations())
+        foreach (LatLon position in this.getLocations())
         {
             xmlWriter.writeCharacters(Double.ToString(position.getLongitude().getDegrees()));
             xmlWriter.writeCharacters(",");

@@ -78,7 +78,7 @@ public class ColladaP : ColladaAbstractObject
         int[] ints = new int[arrayOfNumbers.length];
 
         int i = 0;
-        for (String s : arrayOfNumbers)
+        foreach (String s in arrayOfNumbers)
         {
             if (!WWUtil.isEmpty(s))
                 ints[i++] = Integer.parseInt(s);

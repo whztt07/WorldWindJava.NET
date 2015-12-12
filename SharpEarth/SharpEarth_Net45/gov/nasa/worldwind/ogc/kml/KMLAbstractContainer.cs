@@ -179,7 +179,7 @@ public class KMLAbstractContainer : KMLAbstractFeature
         // root are rendered before features deeper in the tree. In the case of an image pyramid of GroundOverlays,
         // this causes the deeper nested overlays (which are typically more detailed) to render on top of the more
         // general overlay that is higher in the tree.
-        for (KMLAbstractFeature feature : this.getFeatures())
+        foreach (KMLAbstractFeature feature in this.getFeatures())
         {
             if (feature is KMLAbstractContainer)
                 containers.add(feature);
@@ -188,7 +188,7 @@ public class KMLAbstractContainer : KMLAbstractFeature
         }
 
         // Now preRender the containers
-        for (KMLAbstractFeature feature : containers)
+        foreach (KMLAbstractFeature feature in containers)
         {
             feature.preRender(tc, dc);
         }
@@ -209,7 +209,7 @@ public class KMLAbstractContainer : KMLAbstractFeature
         // root are rendered before features deeper in the tree. In the case of an image pyramid of GroundOverlays,
         // this causes the deeper nested overlays (which are typically more detailed) to render on top of the more
         // general overlay that is higher in the tree.
-        for (KMLAbstractFeature feature : this.getFeatures())
+        foreach (KMLAbstractFeature feature in this.getFeatures())
         {
             if (feature is KMLAbstractContainer)
                 containers.add(feature);
@@ -218,7 +218,7 @@ public class KMLAbstractContainer : KMLAbstractFeature
         }
 
         // Now render the containers
-        for (KMLAbstractFeature feature : containers)
+        foreach (KMLAbstractFeature feature in containers)
         {
             feature.render(tc, dc);
         }
@@ -254,12 +254,12 @@ public class KMLAbstractContainer : KMLAbstractFeature
         List<KMLAbstractFeature> featuresListCopy = new ArrayList<KMLAbstractFeature>(this.getFeatures().size());
         Collections.copy(featuresListCopy, this.getFeatures());
 
-        for (KMLAbstractFeature sourceFeature : sourceContainer.getFeatures())
+        foreach (KMLAbstractFeature sourceFeature in sourceContainer.getFeatures())
         {
             String id = sourceFeature.getId();
             if (!WWUtil.isEmpty(id))
             {
-                for (KMLAbstractFeature existingFeature : featuresListCopy)
+                foreach (KMLAbstractFeature existingFeature in featuresListCopy)
                 {
                     String currentId = existingFeature.getId();
                     if (!WWUtil.isEmpty(currentId) && currentId.Equals(id))
@@ -274,7 +274,7 @@ public class KMLAbstractContainer : KMLAbstractFeature
     @Override
     public void onMessage(Message msg)
     {
-        for (KMLAbstractFeature feature : this.getFeatures())
+        foreach (KMLAbstractFeature feature in this.getFeatures())
         {
             feature.onMessage(msg);
         }

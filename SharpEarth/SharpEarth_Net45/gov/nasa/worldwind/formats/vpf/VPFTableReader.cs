@@ -441,7 +441,7 @@ public class VPFTableReader
         // Compute a fixed length record size by summing the sizes of individual columns. Assume that the bytes of row
         // values are tightly packed.
         int recordLength = 0;
-        for (Column col : header.columns)
+        foreach (Column col in header.columns)
         {
             // If any column contains a variable length field, then we cannot compute a record size for this table.
             if (col.isVariableLengthField())

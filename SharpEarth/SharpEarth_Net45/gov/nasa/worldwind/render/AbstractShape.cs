@@ -615,7 +615,7 @@ public abstract class AbstractShape : WWObjectImpl
         this.maxExpiryTime = Math.Max(geometryRegenerationInterval, 0);
         this.minExpiryTime = (long) (0.6 * (double) this.maxExpiryTime);
 
-        for (ShapeDataCache.ShapeDataCacheEntry shapeData : this.shapeDataCache)
+        foreach (ShapeDataCache.ShapeDataCacheEntry shapeData in this.shapeDataCache)
         {
             if (shapeData != null)
                 shapeData.getTimer().setExpiryTime(this.minExpiryTime, this.maxExpiryTime);
@@ -1513,7 +1513,7 @@ public abstract class AbstractShape : WWObjectImpl
         if (this.getAltitudeMode() != WorldWind.CLAMP_TO_GROUND)
         {
             extremes = new double[] {Double.MaxValue, -Double.MaxValue};
-            for (LatLon pos : positions)
+            foreach (LatLon pos in positions)
             {
                 double elevation = pos is Position ? ((Position) pos).getElevation() : 0;
                 if (this.getAltitudeMode() == WorldWind.RELATIVE_TO_GROUND)

@@ -1729,7 +1729,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                for (int c : originalColors)
+                foreach (int c in originalColors)
                 {
                     if (sourceColors[index] == c)
                     {
@@ -1799,7 +1799,7 @@ public class ImageUtil
             for (int i = 0; i < width; i++)
             {
                 int index = j * width + i;
-                for (int c : originalColors)
+                foreach (int c in originalColors)
                 {
                     if (sourceColors[index] == originalColors[c])
                         destColors[index] = newColors[c];

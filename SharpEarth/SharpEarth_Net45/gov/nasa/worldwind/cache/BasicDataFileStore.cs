@@ -144,7 +144,7 @@ public class BasicDataFileStore : AbstractFileStore
             this.cacheContentTypes.clear();
 
             String[] contentTypes = s.split(",");
-            for (String type : contentTypes)
+            foreach (String type in contentTypes)
             {
                 type = type.trim();
                 if (!WWUtil.isEmpty(type))
@@ -385,7 +385,7 @@ public class BasicDataFileStore : AbstractFileStore
             String suffix = WWIO.getSuffix(cachePath);
             if (cacheFileUrl == null && (suffix == null || suffix.length() > 4))
             {
-                for (String contentType : this.getCacheContentTypes())
+                foreach (String contentType in this.getCacheContentTypes())
                 {
                     String pathWithSuffix = cachePath + WWIO.makeSuffixForMimeType(contentType);
                     cacheFileUrl = WorldWind.getDataFileStore().findFile(pathWithSuffix, true);

@@ -43,7 +43,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (!frustum.contains(point))
             {
@@ -72,7 +72,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.contains(point))
             {
@@ -101,7 +101,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (!frustum.contains(point))
             {
@@ -124,7 +124,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
      */
     public final bool containsInAny(double x, double y)
     {
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.contains(x, y))
             {
@@ -153,7 +153,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.contains(point))
             {
@@ -183,7 +183,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (!frustum.intersects(extent))
             {
@@ -212,7 +212,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.intersects(extent))
             {
@@ -235,7 +235,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
      */
     public final bool intersectsAny(Vec4 pa, Vec4 pb)
     {
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.intersectsSegment(pa, pb))
                 return true;
@@ -264,7 +264,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (!frustum.intersects(rect))
             {
@@ -295,7 +295,7 @@ public class PickPointFrustumList : ArrayList<PickPointFrustum>
             throw new ArgumentException(msg);
         }
 
-        for (PickPointFrustum frustum : this)
+        foreach (PickPointFrustum frustum in this)
         {
             if (frustum.intersects(rect))
             {

@@ -103,7 +103,7 @@ public class KMLModelPlacemarkImpl : WWObjectImpl , KMLRenderable, ColladaResour
         if (resourceMap == null)
             return Collections.emptyMap();
 
-        for (KMLAlias alias : resourceMap.getAliases())
+        foreach (KMLAlias alias in resourceMap.getAliases())
         {
             if (alias != null && !WWUtil.isEmpty(alias.getSourceRef()) && !WWUtil.isEmpty(alias.getTargetHref()))
             {
