@@ -180,7 +180,7 @@ public interface SectorGeometry : Renderable
      *
      * @throws ArgumentException if the computer is null.
      */
-    DoubleBuffer makeTextureCoordinates(GeographicTextureCoordinateComputer computer);
+    double[] makeTextureCoordinates(GeographicTextureCoordinateComputer computer);
 
     /**
      * Displays the geometry. The number of texture units to use may be specified, but at most only the number of

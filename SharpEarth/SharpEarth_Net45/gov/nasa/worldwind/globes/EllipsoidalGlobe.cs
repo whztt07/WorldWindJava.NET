@@ -17,20 +17,17 @@ using SharpEarth.java.lang;
 
 namespace SharpEarth.globes
 {
-
-
-
-/**
- * Defines a globe modeled as an <a href="http://mathworld.wolfram.com/Ellipsoid.html" target="_blank">ellipsoid</a>.
- * This globe uses a Cartesian coordinate system in which the Y axis points to the north pole. The Z axis points to the
- * intersection of the prime meridian and the equator, in the equatorial plane. The X axis completes a right-handed
- * coordinate system, and is 90 degrees east of the Z axis and also in the equatorial plane. Sea level is at z = zero.
- * By default the origin of the coordinate system lies at the center of the globe, but can be set to a different point
- * when the globe is constructed.
- *
- * @author Tom Gaskins
- * @version $Id: EllipsoidalGlobe.java 2295 2014-09-04 17:33:25Z tgaskins $
- */
+  /**
+   * Defines a globe modeled as an <a href="http://mathworld.wolfram.com/Ellipsoid.html" target="_blank">ellipsoid</a>.
+   * This globe uses a Cartesian coordinate system in which the Y axis points to the north pole. The Z axis points to the
+   * intersection of the prime meridian and the equator, in the equatorial plane. The X axis completes a right-handed
+   * coordinate system, and is 90 degrees east of the Z axis and also in the equatorial plane. Sea level is at z = zero.
+   * By default the origin of the coordinate system lies at the center of the globe, but can be set to a different point
+   * when the globe is constructed.
+   *
+   * @author Tom Gaskins
+   * @version $Id: EllipsoidalGlobe.java 2295 2014-09-04 17:33:25Z tgaskins $
+   */
 
   public class EllipsoidalGlobe : WWObjectImpl, Globe
   {
@@ -100,7 +97,7 @@ namespace SharpEarth.globes
         this.elevationModel = this.globe.getElevationModel();
       }
 
-      public StateKey( EllipsoidalGlobe ellipsoidalGlobe  )
+      public StateKey( EllipsoidalGlobe ellipsoidalGlobe )
       {
         this.globe = ellipsoidalGlobe;
         this._tessellator = ellipsoidalGlobe._tessellator;
@@ -140,10 +137,10 @@ namespace SharpEarth.globes
         int result;
         long temp;
         result = globe != null ? globe.GetHashCode() : 0;
-        result = 31 * result + ( _tessellator != null ? _tessellator.GetHashCode() : 0 );
+        result = 31 * result + (_tessellator != null ? _tessellator.GetHashCode() : 0);
         temp = verticalExaggeration != +0.0d ? BitConverter.DoubleToInt64Bits( verticalExaggeration ) : 0L;
-        result = 31 * result + (int)( temp ^ ( (int)( (uint)temp >> 32 ) ) );
-        result = 31 * result + ( elevationModel != null ? elevationModel.GetHashCode() : 0 );
+        result = 31 * result + (int)(temp ^ ((int)((uint)temp >> 32)));
+        result = 31 * result + (elevationModel != null ? elevationModel.GetHashCode() : 0);
         return result;
       }
     }
@@ -220,7 +217,7 @@ namespace SharpEarth.globes
       double sinLat = Math.Sin( latitude.radians );
       double rpm = this.equatorialRadius / Math.Sqrt( 1.0 - this.es * sinLat * sinLat );
 
-      return rpm * Math.Sqrt( 1.0 + ( this.es * this.es - 2.0 * this.es ) * sinLat * sinLat );
+      return rpm * Math.Sqrt( 1.0 + (this.es * this.es - 2.0 * this.es) * sinLat * sinLat );
     }
 
     public double getRadiusAt( LatLon location )
@@ -345,7 +342,7 @@ namespace SharpEarth.globes
       double sz = line.getOrigin().getZ();
 
       double a = vx * vx + m2 * vy * vy + n2 * vz * vz;
-      double b = 2d * ( sx * vx + m2 * sy * vy + n2 * sz * vz );
+      double b = 2d * (sx * vx + m2 * sy * vy + n2 * sz * vz);
       double c = sx * sx + m2 * sy * sy + n2 * sz * sz - r2;
 
       double discriminant = Discriminant( a, b, c );
@@ -355,13 +352,13 @@ namespace SharpEarth.globes
       double discriminantRoot = Math.Sqrt( discriminant );
       if ( discriminant == 0 )
       {
-        Vec4 p = line.getPointAt( ( -b - discriminantRoot ) / ( 2 * a ) );
+        Vec4 p = line.getPointAt( (-b - discriminantRoot) / (2 * a) );
         return new Intersection[] { new Intersection( p, true ) };
       }
       else // (discriminant > 0)
       {
-        Vec4 near = line.getPointAt( ( -b - discriminantRoot ) / ( 2 * a ) );
-        Vec4 far = line.getPointAt( ( -b + discriminantRoot ) / ( 2 * a ) );
+        Vec4 near = line.getPointAt( (-b - discriminantRoot) / (2 * a) );
+        Vec4 far = line.getPointAt( (-b + discriminantRoot) / (2 * a) );
         if ( c >= 0 ) // Line originates outside the Globe.
           return new Intersection[] { new Intersection( near, false ), new Intersection( far, false ) };
         else // Line originates inside the Globe.
@@ -383,7 +380,7 @@ namespace SharpEarth.globes
       bool bB = isPointAboveElevation( t.getB(), elevation );
       bool bC = isPointAboveElevation( t.getC(), elevation );
 
-      if ( !( bA ^ bB ) && !( bB ^ bC ) )
+      if ( !(bA ^ bB) && !(bB ^ bC) )
         return null; // all triangle points are either above or below the given elevation
 
       Intersection[] inter = new Intersection[2];
@@ -465,7 +462,7 @@ namespace SharpEarth.globes
       for ( int i = 0; i < elevations.Length; i++ )
       {
         LatLon latLon = latlons[i];
-        elevations[i] += + egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
+        elevations[i] += +egm96.getOffset( latLon.getLatitude(), latLon.getLongitude() );
       }
 
       return resolution;
@@ -478,7 +475,7 @@ namespace SharpEarth.globes
 
       double[] resolution = _elevationModel.getElevations( sector, latLons, targetResolution, elevations );
 
-      if(egm96 == null)
+      if ( egm96 == null )
         return resolution;
 
       for ( int i = 0; i < elevations.Length; i++ )
@@ -593,7 +590,7 @@ namespace SharpEarth.globes
         throw new ArgumentException( message );
       }
 
-      if ( outVector == null)
+      if ( outVector == null )
       {
         string message = Logging.getMessage( "nullValue.OutputIsNull" );
         Logging.logger().severe( message );
@@ -644,9 +641,9 @@ namespace SharpEarth.globes
       double eqSquared = equatorialRadius * equatorialRadius;
       double polSquared = polarRadius * polarRadius;
 
-      double x = ( point.x() - center.x() ) / eqSquared;
-      double y = ( point.y() - center.y() ) / polSquared;
-      double z = ( point.z() - center.z() ) / eqSquared;
+      double x = (point.x() - center.x()) / eqSquared;
+      double y = (point.y() - center.y()) / polSquared;
+      double z = (point.z() - center.z()) / eqSquared;
 
       return new Vec4( x, y, z ).normalize3();
     }
@@ -788,7 +785,7 @@ namespace SharpEarth.globes
       double pol2 = this.polarRadius * this.polarRadius;
 
       double x = cosLat * sinLon / eq2;
-      double y = ( 1.0 - this.es ) * sinLat / pol2;
+      double y = (1.0 - this.es) * sinLat / pol2;
       double z = cosLat * cosLon / eq2;
 
       return new Vec4( x, y, z ).normalize3();
@@ -881,11 +878,11 @@ namespace SharpEarth.globes
       double sinLon = Math.Sin( longitude.radians );
 
       // getRadius (in meters) of vertical in prime meridian
-      double rpm =  equatorialRadius / Math.Sqrt( 1.0 - this.es * sinLat * sinLat );
+      double rpm = equatorialRadius / Math.Sqrt( 1.0 - this.es * sinLat * sinLat );
 
-      double x = ( rpm + metersElevation ) * cosLat * sinLon;
-      double y = ( rpm * ( 1.0 - this.es ) + metersElevation ) * sinLat;
-      double z = ( rpm + metersElevation ) * cosLat * cosLon;
+      double x = (rpm + metersElevation) * cosLat * sinLon;
+      double y = (rpm * (1.0 - this.es) + metersElevation) * sinLat;
+      double z = (rpm + metersElevation) * cosLat * cosLon;
 
       return new Vec4( x, y, z );
     }
@@ -924,8 +921,8 @@ namespace SharpEarth.globes
       double maxLat = sector.getMaxLatitude().radians;
       double minLon = sector.getMinLongitude().radians;
       double maxLon = sector.getMaxLongitude().radians;
-      double deltaLat = ( maxLat - minLat ) / ( numLat > 1 ? numLat - 1 : 1 );
-      double deltaLon = ( maxLon - minLon ) / ( numLon > 1 ? numLon - 1 : 1 );
+      double deltaLat = (maxLat - minLat) / (numLat > 1 ? numLat - 1 : 1);
+      double deltaLon = (maxLon - minLon) / (numLon > 1 ? numLon - 1 : 1);
       int pos = 0;
 
       // Compute the cosine and sine of each longitude value. This eliminates the need to re-compute the same values
@@ -958,13 +955,13 @@ namespace SharpEarth.globes
         for ( int i = 0; i < numLon; i++ )
         {
           double elev = metersElevation[pos];
-          double x = ( rpm + elev ) * cosLat * sinLon[i];
-          double y = ( rpm * ( 1.0 - this.es ) + elev ) * sinLat;
-          double z = ( rpm + elev ) * cosLat * cosLon[i];
+          double x = (rpm + elev) * cosLat * sinLon[i];
+          double y = (rpm * (1.0 - this.es) + elev) * sinLat;
+          double z = (rpm + elev) * cosLat * cosLon[i];
           outVector[pos++] = new Vec4( x, y, z );
         }
       }
-    }    
+    }
 
     /**
      * Compute the geographic position to corresponds to a Cartesian point.
@@ -1012,14 +1009,14 @@ namespace SharpEarth.globes
       double sqrtXXpYY = Math.Sqrt( XXpYY );
 
       double a = this.equatorialRadius;
-      double ra2 = 1 / ( a * a );
+      double ra2 = 1 / (a * a);
       double e2 = this.es;
       double e4 = e2 * e2;
 
       // Step 1
       double p = XXpYY * ra2;
-      double q = Z * Z * ( 1 - e2 ) * ra2;
-      double r = ( p + q - e4 ) / 6;
+      double q = Z * Z * (1 - e2) * ra2;
+      double r = (p + q - e4) / 6;
 
       double h;
       double phi;
@@ -1038,13 +1035,13 @@ namespace SharpEarth.globes
           // 10*e2 is my arbitrary decision of what Vermeille means by "near... the cusps of the evolute".
           if ( evoluteBorderTest > 10 * e2 )
           {
-            double rad3 = Math.Pow( ( rad1 + rad2 ) * ( rad1 + rad2 ), (1.0 / 3.0) );
+            double rad3 = Math.Pow( (rad1 + rad2) * (rad1 + rad2), (1.0 / 3.0) );
             u = r + 0.5 * rad3 + 2 * r * r / rad3;
           }
           else
           {
-            u = r + 0.5 * Math.Pow( ( rad1 + rad2 ) * ( rad1 + rad2 ), (1.0 / 3.0) ) + 0.5 * Math.Pow(
-              ( rad1 - rad2 ) * ( rad1 - rad2 ), (1.0 / 3.0) );
+            u = r + 0.5 * Math.Pow( (rad1 + rad2) * (rad1 + rad2), (1.0 / 3.0) ) + 0.5 * Math.Pow(
+              (rad1 - rad2) * (rad1 - rad2), (1.0 / 3.0) );
           }
         }
         else
@@ -1059,12 +1056,12 @@ namespace SharpEarth.globes
         }
 
         double v = Math.Sqrt( u * u + e4 * q );
-        double w = e2 * ( u + v - q ) / ( 2 * v );
-        double k = ( u + v ) / ( Math.Sqrt( w * w + u + v ) + w );
-        double D = k * sqrtXXpYY / ( k + e2 );
+        double w = e2 * (u + v - q) / (2 * v);
+        double k = (u + v) / (Math.Sqrt( w * w + u + v ) + w);
+        double D = k * sqrtXXpYY / (k + e2);
         double sqrtDDpZZ = Math.Sqrt( D * D + Z * Z );
 
-        h = ( k + e2 - 1 ) * sqrtDDpZZ / k;
+        h = (k + e2 - 1) * sqrtDDpZZ / k;
         phi = 2 * Math.Atan2( Z, sqrtDDpZZ + D );
       }
       else
@@ -1075,18 +1072,18 @@ namespace SharpEarth.globes
         double e = Math.Sqrt( e2 );
 
         h = -a * rad1 * rad2 / e;
-        phi = rad2 / ( e * rad2 + rad1 * Math.Sqrt( p ) );
+        phi = rad2 / (e * rad2 + rad1 * Math.Sqrt( p ));
       }
 
       // Compute lambda
       double lambda;
       double s2 = Math.Sqrt( 2 );
-      if ( ( s2 - 1 ) * Y < sqrtXXpYY + X )
+      if ( (s2 - 1) * Y < sqrtXXpYY + X )
       {
         // case 1 - -135deg < lambda < 135deg
         lambda = 2 * Math.Atan2( Y, sqrtXXpYY + X );
       }
-      else if ( sqrtXXpYY + Y < ( s2 + 1 ) * X )
+      else if ( sqrtXXpYY + Y < (s2 + 1) * X )
       {
         // case 2 - -225deg < lambda < 45deg
         lambda = -Math.PI * 0.5 + 2 * Math.Atan2( X, sqrtXXpYY - Y );
@@ -1132,9 +1129,9 @@ namespace SharpEarth.globes
       if ( point == null )
         return false;
 
-      return ( point.x() * point.x() ) / ( ( this.equatorialRadius + elevation ) * ( this.equatorialRadius + elevation ) )
-             + ( point.y() * point.y() ) / ( ( this.polarRadius + elevation ) * ( this.polarRadius + elevation ) )
-             + ( point.z() * point.z() ) / ( ( this.equatorialRadius + elevation ) * ( this.equatorialRadius + elevation ) )
+      return (point.x() * point.x()) / ((this.equatorialRadius + elevation) * (this.equatorialRadius + elevation))
+             + (point.y() * point.y()) / ((this.polarRadius + elevation) * (this.polarRadius + elevation))
+             + (point.z() * point.z()) / ((this.equatorialRadius + elevation) * (this.equatorialRadius + elevation))
              - 1 > 0;
     }
 

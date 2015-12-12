@@ -9,21 +9,21 @@ using SharpEarth.geom;
 
 namespace SharpEarth.globes
 {
-/**
- * <p/>
- * Provides the elevations to a {@link Globe} or other object holding elevations.
- * <p/>
- * An <code>ElevationModel</code> often approximates elevations at multiple levels of spatial resolution. For any given
- * viewing position, the model determines an appropriate target resolution. That target resolution may not be
- * immediately achievable, however, because the corresponding elevation data might not be locally available and must be
- * retrieved from a remote location. When this is the case, the <code>Elevations</code> object returned for a sector
- * holds the resolution achievable with the data currently available. That resolution may not be the same as the target
- * resolution. The achieved resolution is made available in the interface.
- * <p/>
- *
- * @author Tom Gaskins
- * @version $Id: ElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
- */
+  /**
+   * <p/>
+   * Provides the elevations to a {@link Globe} or other object holding elevations.
+   * <p/>
+   * An <code>ElevationModel</code> often approximates elevations at multiple levels of spatial resolution. For any given
+   * viewing position, the model determines an appropriate target resolution. That target resolution may not be
+   * immediately achievable, however, because the corresponding elevation data might not be locally available and must be
+   * retrieved from a remote location. When this is the case, the <code>Elevations</code> object returned for a sector
+   * holds the resolution achievable with the data currently available. That resolution may not be the same as the target
+   * resolution. The achieved resolution is made available in the interface.
+   * <p/>
+   *
+   * @author Tom Gaskins
+   * @version $Id: ElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
+   */
   public interface ElevationModel : WWObject, Restorable, Disposable
   {
     /**

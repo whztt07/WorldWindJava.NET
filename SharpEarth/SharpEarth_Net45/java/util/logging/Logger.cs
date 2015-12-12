@@ -25,7 +25,17 @@ namespace java.util.logging
       throw new NotImplementedException();
     }
 
+    public void warning( string v, Exception e )
+    {
+      throw new NotImplementedException();
+    }
+
     internal void severe( string message, Exception e )
+    {
+      throw new NotImplementedException();
+    }
+
+    public void finest(string message)
     {
       throw new NotImplementedException();
     }
