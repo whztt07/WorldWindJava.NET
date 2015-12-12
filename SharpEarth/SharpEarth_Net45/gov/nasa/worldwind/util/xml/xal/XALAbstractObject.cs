@@ -12,7 +12,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALAbstractObject.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALAbstractObject extends AbstractXMLEventParser
+public class XALAbstractObject : AbstractXMLEventParser
 {
     public XALAbstractObject(String namespaceURI)
     {

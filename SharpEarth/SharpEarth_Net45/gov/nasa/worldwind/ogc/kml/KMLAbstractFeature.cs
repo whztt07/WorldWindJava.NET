@@ -30,7 +30,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAbstractFeature.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class KMLAbstractFeature extends KMLAbstractObject implements KMLRenderable
+public abstract class KMLAbstractFeature : KMLAbstractObject , KMLRenderable
 {
     /** The style selectors specified in the KML Feature element. Is empty if no selectors were specified. */
     protected List<KMLAbstractStyleSelector> styleSelectors = new ArrayList<KMLAbstractStyleSelector>();

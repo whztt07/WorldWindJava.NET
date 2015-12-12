@@ -15,9 +15,9 @@ namespace SharpEarth.cache{
  * @author tag
  * @version $Id: AbstractFileStore.java 2190 2014-08-01 21:54:20Z pabercrombie $
  */
-public abstract class AbstractFileStore extends WWObjectImpl implements FileStore
+public abstract class AbstractFileStore : WWObjectImpl , FileStore
 {
-    protected static class StoreLocation extends AVListImpl
+    protected static class StoreLocation : AVListImpl
     {
         protected bool markWhenUsed = false;
 

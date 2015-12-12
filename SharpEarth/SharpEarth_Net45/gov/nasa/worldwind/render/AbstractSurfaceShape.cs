@@ -40,7 +40,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: AbstractSurfaceShape.java 3240 2015-06-22 23:38:49Z tgaskins $
  */
-public abstract class AbstractSurfaceShape extends AbstractSurfaceObject implements SurfaceShape, Movable, Movable2,
+public abstract class AbstractSurfaceShape : AbstractSurfaceObject , SurfaceShape, Movable, Movable2,
     Combinable
 {
     /** The default interior color. */
@@ -1639,7 +1639,7 @@ public abstract class AbstractSurfaceShape extends AbstractSurfaceObject impleme
      * but also distinguishes the shape's active ShapeAttributes from any previous attributes, and distinguishes between
      * different globes via the globe state key.
      */
-    protected static class SurfaceShapeStateKey extends SurfaceObjectStateKey
+    protected static class SurfaceShapeStateKey : SurfaceObjectStateKey
     {
         /** The SurfaceShape's attributes. May be null if the shape has no attributes. */
         protected final ShapeAttributes attributes;

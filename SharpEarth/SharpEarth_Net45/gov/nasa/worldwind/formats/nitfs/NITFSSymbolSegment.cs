@@ -9,7 +9,7 @@ namespace SharpEarth.formats.nitfs{
  * @author Lado Garakanidze
  * @version $Id: NITFSSymbolSegment.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class NITFSSymbolSegment extends NITFSSegment
+public class NITFSSymbolSegment : NITFSSegment
 {
     public NITFSSymbolSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength, int dataStartOffset, int dataLength)
     {

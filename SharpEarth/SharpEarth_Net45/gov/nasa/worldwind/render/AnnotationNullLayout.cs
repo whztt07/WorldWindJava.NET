@@ -15,7 +15,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: AnnotationNullLayout.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AnnotationNullLayout extends AbstractAnnotationLayout
+public class AnnotationNullLayout : AbstractAnnotationLayout
 {
     protected java.util.Map<Annotation, Object> constraintMap;
 

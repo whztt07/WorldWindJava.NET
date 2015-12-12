@@ -20,7 +20,7 @@ namespace SharpEarth.util.dashboard{
  * @author tag
  * @version $Id: DashboardDialog.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DashboardDialog extends JDialog
+public class DashboardDialog : JDialog
 {
     private WorldWindow wwd;
     private bool runContinuously = false;
@@ -75,7 +75,7 @@ public class DashboardDialog extends JDialog
     {
     }
 
-    private class OkayAction extends AbstractAction
+    private class OkayAction : AbstractAction
     {
         public OkayAction()
         {

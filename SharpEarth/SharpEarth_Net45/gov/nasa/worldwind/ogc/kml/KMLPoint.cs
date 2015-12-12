@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLPoint.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLPoint extends KMLAbstractGeometry
+public class KMLPoint : KMLAbstractGeometry
 {
     protected Position coordinates;
 

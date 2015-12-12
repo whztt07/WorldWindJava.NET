@@ -66,7 +66,7 @@ public abstract class BufferFactory
     public abstract BufferWrapper newBuffer(int size);
 
     /** Implementation of BufferFactory which constructs instances of {@link SharpEarth.util.BufferWrapper.ByteBufferWrapper} */
-    public static class ByteBufferFactory extends BufferFactory
+    public static class ByteBufferFactory : BufferFactory
     {
         /**
          * Constructs a new ByteBufferFactory with the specified buffer allocation policy.
@@ -110,7 +110,7 @@ public abstract class BufferFactory
     }
 
     /** Implementation of BufferFactory which constructs instances of {@link SharpEarth.util.BufferWrapper.ShortBufferWrapper} */
-    public static class ShortBufferFactory extends BufferFactory
+    public static class ShortBufferFactory : BufferFactory
     {
         /**
          * Constructs a new ShortBufferFactory with the specified buffer allocation policy.
@@ -154,7 +154,7 @@ public abstract class BufferFactory
     }
 
     /** Implementation of BufferFactory which constructs instances of {@link SharpEarth.util.BufferWrapper.IntBufferWrapper} */
-    public static class IntBufferFactory extends BufferFactory
+    public static class IntBufferFactory : BufferFactory
     {
         /**
          * Constructs a new IntBufferFactory with the specified buffer allocation policy.
@@ -198,7 +198,7 @@ public abstract class BufferFactory
     }
 
     /** Implementation of BufferFactory which constructs instances of {@link SharpEarth.util.BufferWrapper.FloatBufferWrapper} */
-    public static class FloatBufferFactory extends BufferFactory
+    public static class FloatBufferFactory : BufferFactory
     {
         /**
          * Constructs a new FloatBufferFactory with the specified buffer allocation policy.
@@ -242,7 +242,7 @@ public abstract class BufferFactory
     }
 
     /** Implementation of BufferFactory which constructs instances of {@link SharpEarth.util.BufferWrapper.DoubleBufferWrapper} */
-    public static class DoubleBufferFactory extends BufferFactory
+    public static class DoubleBufferFactory : BufferFactory
     {
         /**
          * Constructs a new DoubleBufferFactory with the specified buffer allocation policy.

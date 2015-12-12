@@ -17,7 +17,7 @@ namespace SharpEarth.formats.dds{
  * @author dcollins
  * @version $Id: BasicColorBlockExtractor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicColorBlockExtractor implements ColorBlockExtractor
+public class BasicColorBlockExtractor : ColorBlockExtractor
 {
     protected int width;
     protected int height;

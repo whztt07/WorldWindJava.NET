@@ -17,7 +17,7 @@ namespace SharpEarth.util{
 /**
  * @version $Id: StatisticsPanel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class StatisticsPanel extends JPanel
+public class StatisticsPanel : JPanel
 {
     private JPanel statsPanel;
     private JPanel outerPanel;

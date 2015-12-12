@@ -13,7 +13,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLStyleUrl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLStyleUrl extends KMLAbstractObject
+public class KMLStyleUrl : KMLAbstractObject
 {
     /**
      * Construct an instance.

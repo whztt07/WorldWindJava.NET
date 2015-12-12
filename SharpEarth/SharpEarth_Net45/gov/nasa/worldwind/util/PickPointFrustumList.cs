@@ -14,7 +14,7 @@ namespace SharpEarth.util{
  * @author Jeff Addison
  * @version $Id: PickPointFrustumList.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class PickPointFrustumList extends ArrayList<PickPointFrustum>
+public class PickPointFrustumList : ArrayList<PickPointFrustum>
 {
     public PickPointFrustumList()
     {

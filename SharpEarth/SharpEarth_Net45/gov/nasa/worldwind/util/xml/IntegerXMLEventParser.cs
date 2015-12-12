@@ -15,7 +15,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: IntegerXMLEventParser.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class IntegerXMLEventParser extends AbstractXMLEventParser
+public class IntegerXMLEventParser : AbstractXMLEventParser
 {
     public IntegerXMLEventParser()
     {

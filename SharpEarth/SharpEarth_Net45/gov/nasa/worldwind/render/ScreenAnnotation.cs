@@ -21,7 +21,7 @@ namespace SharpEarth.render{
  * @see AbstractAnnotation
  * @see AnnotationAttributes
  */
-public class ScreenAnnotation extends AbstractAnnotation
+public class ScreenAnnotation : AbstractAnnotation
 {
     protected Point screenPoint;
     protected Position position;

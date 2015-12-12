@@ -16,7 +16,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: BasicOrbitViewLimits.java 2253 2014-08-22 16:33:46Z dcollins $
  */
-public class BasicOrbitViewLimits extends BasicViewPropertyLimits implements OrbitViewLimits
+public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
 {
     protected Sector centerLocationLimits;
     protected double minCenterElevation;

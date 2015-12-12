@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100AxisDescriptionHolder.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100AxisDescriptionHolder extends AbstractXMLEventParser
+public class WCS100AxisDescriptionHolder : AbstractXMLEventParser
 {
     public WCS100AxisDescriptionHolder(String namespaceURI)
     {

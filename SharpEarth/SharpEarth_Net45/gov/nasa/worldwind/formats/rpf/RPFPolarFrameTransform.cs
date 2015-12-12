@@ -463,7 +463,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
         public int latLon2Y(double lat, double lon, double polarPixelConstant);
     }
 
-    private static class NorthPixelTransformer implements PixelTransformer
+    private static class NorthPixelTransformer : PixelTransformer
     {
         /* [Section 30.4.1, MIL-C-89038] */
         public double pixel2Latitude(int x, int y, double polarPixelConstant)
@@ -495,7 +495,7 @@ class RPFPolarFrameTransform extends RPFFrameTransform
         }
     }
 
-    private static class SouthPixelTransformer implements PixelTransformer
+    private static class SouthPixelTransformer : PixelTransformer
     {
         /* [Section 30.4.2, MIL-C-89038] */
         public double pixel2Latitude(int x, int y, double polarPixelConstant)

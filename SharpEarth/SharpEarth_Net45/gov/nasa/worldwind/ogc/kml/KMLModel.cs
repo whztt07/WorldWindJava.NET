@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLModel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLModel extends KMLAbstractGeometry
+public class KMLModel : KMLAbstractGeometry
 {
     /** Flag to indicate that the link has been fetched from the hash map. */
     protected bool linkFetched = false;

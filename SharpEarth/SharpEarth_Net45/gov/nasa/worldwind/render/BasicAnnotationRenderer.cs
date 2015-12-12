@@ -27,7 +27,7 @@ namespace SharpEarth.render{
  * @see AnnotationAttributes
  * @see AnnotationLayer
  */
-public class BasicAnnotationRenderer implements AnnotationRenderer
+public class BasicAnnotationRenderer : AnnotationRenderer
 {
     protected PickSupport pickSupport = new PickSupport();
     protected long currentFrameTime;
@@ -295,7 +295,7 @@ public class BasicAnnotationRenderer implements AnnotationRenderer
         return drawPoint;
     }
 
-    protected class OrderedAnnotation implements OrderedRenderable
+    protected class OrderedAnnotation : OrderedRenderable
     {
         protected Annotation annotation;
         protected double eyeDistance;

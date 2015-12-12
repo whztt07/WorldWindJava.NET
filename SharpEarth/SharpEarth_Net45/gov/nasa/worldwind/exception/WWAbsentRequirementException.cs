@@ -10,7 +10,7 @@ namespace SharpEarth.exception{
  * @author tag
  * @version $Id: WWAbsentRequirementException.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WWAbsentRequirementException extends WWRuntimeException
+public class WWAbsentRequirementException : WWRuntimeException
 {
     public WWAbsentRequirementException()
     {

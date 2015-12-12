@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaProfileCommon.java 675 2012-07-02 18:47:47Z pabercrombie $
  */
-public class ColladaProfileCommon extends ColladaAbstractParamContainer
+public class ColladaProfileCommon : ColladaAbstractParamContainer
 {
     /**
      * Construct an instance.

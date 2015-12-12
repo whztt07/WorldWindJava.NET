@@ -31,7 +31,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLink.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLink extends KMLAbstractObject
+public class KMLLink : KMLAbstractObject
 {
     protected static final String DEFAULT_VIEW_FORMAT = "BBOX=[bboxWest],[bboxSouth],[bboxEast],[bboxNorth]";
 
@@ -560,7 +560,7 @@ public class KMLLink extends KMLAbstractObject
     }
 
     /** A Runnable task that marks a KMLLink as updated when the task executes. */
-    class RefreshTask implements Runnable
+    class RefreshTask : Runnable
     {
         /** Mark the link as updated. */
         public void run()

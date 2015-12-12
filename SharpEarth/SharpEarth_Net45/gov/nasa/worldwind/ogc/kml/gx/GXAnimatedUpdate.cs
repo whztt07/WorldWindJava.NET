@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml.gx{
  * @author tag
  * @version $Id: GXAnimatedUpdate.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GXAnimatedUpdate extends GXAbstractTourPrimitive
+public class GXAnimatedUpdate : GXAbstractTourPrimitive
 {
     public GXAnimatedUpdate(String namespaceURI)
     {

@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.collada.io{
  * @author pabercrombie
  * @version $Id: ColladaInputStream.java 660 2012-06-26 16:13:11Z pabercrombie $
  */
-public class ColladaInputStream implements ColladaDoc
+public class ColladaInputStream : ColladaDoc
 {
     /** The {@link java.io.InputStream} specified to the constructor. */
     protected InputStream inputStream;

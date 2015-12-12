@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSServiceInformation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSServiceInformation extends OGCServiceInformation
+public class WMSServiceInformation : OGCServiceInformation
 {
     protected QName MAX_WIDTH;
     protected QName MAX_HEIGHT;

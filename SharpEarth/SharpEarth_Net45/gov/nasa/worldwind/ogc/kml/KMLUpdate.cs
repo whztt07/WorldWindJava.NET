@@ -20,7 +20,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLUpdate.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLUpdate extends KMLAbstractObject
+public class KMLUpdate : KMLAbstractObject
 {
     protected List<KMLUpdateOperation> operations; // operations are performed in the order specified in the KML file
     protected bool updatesApplied;

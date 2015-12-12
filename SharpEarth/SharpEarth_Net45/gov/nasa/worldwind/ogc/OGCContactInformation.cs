@@ -18,7 +18,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCContactInformation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCContactInformation extends AbstractXMLEventParser
+public class OGCContactInformation : AbstractXMLEventParser
 {
     protected QName CONTACT_POSITION;
     protected QName CONTACT_VOICE_TELEPHONE;

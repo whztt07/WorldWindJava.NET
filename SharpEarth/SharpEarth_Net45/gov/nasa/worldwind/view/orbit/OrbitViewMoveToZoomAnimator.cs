@@ -12,7 +12,7 @@ namespace SharpEarth.view.orbit{
  * @author jym
  * @version $Id: OrbitViewMoveToZoomAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OrbitViewMoveToZoomAnimator  extends MoveToDoubleAnimator
+public class OrbitViewMoveToZoomAnimator  : MoveToDoubleAnimator
 {
     BasicOrbitView orbitView;
     bool endCenterOnSurface;

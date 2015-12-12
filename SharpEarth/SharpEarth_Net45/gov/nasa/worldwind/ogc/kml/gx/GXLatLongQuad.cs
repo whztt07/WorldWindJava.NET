@@ -13,7 +13,7 @@ namespace SharpEarth.ogc.kml.gx{
  * @author tag
  * @version $Id: GXLatLongQuad.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GXLatLongQuad extends KMLAbstractObject
+public class GXLatLongQuad : KMLAbstractObject
 {
     public GXLatLongQuad(String namespaceURI)
     {

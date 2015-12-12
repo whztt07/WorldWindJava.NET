@@ -10,7 +10,7 @@ namespace SharpEarth.formats.nitfs{
  * @author Lado Garakanidze
  * @version $Id: NITFSUserDefinedHeaderSegment.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class NITFSUserDefinedHeaderSegment extends NITFSSegment
+public abstract class NITFSUserDefinedHeaderSegment : NITFSSegment
 {
     protected  int overflow;
     protected  String dataTag;

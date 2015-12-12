@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaInput.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaInput extends ColladaAbstractObject
+public class ColladaInput : ColladaAbstractObject
 {
     public ColladaInput(String ns)
     {

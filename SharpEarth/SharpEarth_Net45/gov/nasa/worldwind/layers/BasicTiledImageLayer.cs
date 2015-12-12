@@ -228,7 +228,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
         return new RequestTask(tile, this);
     }
 
-    protected static class RequestTask implements Runnable, Comparable<RequestTask>
+    protected static class RequestTask : Runnable, Comparable<RequestTask>
     {
         protected final BasicTiledImageLayer layer;
         protected final TextureTile tile;
@@ -600,7 +600,7 @@ public class BasicTiledImageLayer : TiledImageLayer, BulkRetrievable
         return new DownloadPostProcessor(tile, this);
     }
 
-    protected static class DownloadPostProcessor extends AbstractRetrievalPostProcessor
+    protected static class DownloadPostProcessor : AbstractRetrievalPostProcessor
     {
         protected final TextureTile tile;
         protected final BasicTiledImageLayer layer;

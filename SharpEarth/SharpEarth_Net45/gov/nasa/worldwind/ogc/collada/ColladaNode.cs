@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaNode.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public class ColladaNode extends ColladaAbstractObject implements ColladaRenderable
+public class ColladaNode : ColladaAbstractObject , ColladaRenderable
 {
     /**
      * Children of this node. Children may be ColladaNode (direct child of this node) or ColladaInstanceNode (reference

@@ -21,7 +21,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLParserContext.java 1528 2013-07-31 01:00:32Z pabercrombie $
  */
-public class KMLParserContext extends BasicXMLEventParserContext
+public class KMLParserContext : BasicXMLEventParserContext
 {
     protected KMLCoordinatesParser coordinatesParser;
 

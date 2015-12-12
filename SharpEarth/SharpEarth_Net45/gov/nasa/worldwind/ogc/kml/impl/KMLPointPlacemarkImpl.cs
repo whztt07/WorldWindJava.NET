@@ -23,7 +23,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author tag
  * @version $Id: KMLPointPlacemarkImpl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLPointPlacemarkImpl extends PointPlacemark implements KMLRenderable
+public class KMLPointPlacemarkImpl : PointPlacemark , KMLRenderable
 {
     protected final KMLPlacemark parent;
     protected bool highlightAttributesResolved = false;

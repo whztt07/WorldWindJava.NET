@@ -21,7 +21,7 @@ namespace SharpEarth.awt{
  * @author tag
  * @version $Id: AWTInputHandler.java 2258 2014-08-22 22:08:33Z dcollins $
  */
-public class AWTInputHandler extends WWObjectImpl
+public class AWTInputHandler : WWObjectImpl
     implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, FocusListener, InputHandler,
     Disposable
 {

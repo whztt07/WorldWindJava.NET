@@ -31,7 +31,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: NetworkStatus.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface NetworkStatus extends AVList
+public interface NetworkStatus : AVList
 {
     public static final String HOST_UNAVAILABLE = "gov.nasa.worldwind.util.NetworkStatus.HostUnavailable";
     public static final String HOST_AVAILABLE = "gov.nasa.worldwind.util.NetworkStatus.HostAvailable";

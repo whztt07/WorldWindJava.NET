@@ -25,7 +25,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: AbstractRetrievalPostProcessor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class AbstractRetrievalPostProcessor implements RetrievalPostProcessor
+public abstract class AbstractRetrievalPostProcessor : RetrievalPostProcessor
 {
     /** Holds miscellaneous parameters examined by this and subclasses. */
     protected AVList avList;

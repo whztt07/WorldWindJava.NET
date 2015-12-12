@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLTimeSpan.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLTimeSpan extends KMLAbstractTimePrimitive
+public class KMLTimeSpan : KMLAbstractTimePrimitive
 {
     /**
      * Construct an instance.

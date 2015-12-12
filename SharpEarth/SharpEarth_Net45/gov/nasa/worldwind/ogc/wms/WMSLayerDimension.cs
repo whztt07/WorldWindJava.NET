@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSLayerDimension.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSLayerDimension extends AbstractXMLEventParser
+public class WMSLayerDimension : AbstractXMLEventParser
 {
     protected StringBuilder dimension;
     protected String name;

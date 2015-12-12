@@ -22,7 +22,7 @@ namespace SharpEarth.cache{
  * @author dcollins
  * @version $Id: BasicSessionCache.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicSessionCache implements SessionCache
+public class BasicSessionCache : SessionCache
 {
     protected static final int DEFAULT_CAPACITY = 8;
 

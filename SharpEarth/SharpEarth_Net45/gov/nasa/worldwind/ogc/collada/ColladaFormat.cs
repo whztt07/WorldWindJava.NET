@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaFormat.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaFormat extends ColladaAbstractObject
+public class ColladaFormat : ColladaAbstractObject
 {
     /**
      * Construct an instance.

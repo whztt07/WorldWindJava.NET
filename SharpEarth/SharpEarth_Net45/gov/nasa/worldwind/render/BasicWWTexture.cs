@@ -30,7 +30,7 @@ namespace SharpEarth.render{
  * @version $Id: BasicWWTexture.java 1171 2013-02-11 21:45:02Z dcollins $
  * @see LazilyLoadedTexture
  */
-public class BasicWWTexture implements WWTexture
+public class BasicWWTexture : WWTexture
 {
     private Object imageSource;
     private bool useMipMaps;

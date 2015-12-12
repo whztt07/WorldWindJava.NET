@@ -12,7 +12,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: DataRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface DataRasterReader extends AVList
+public interface DataRasterReader : AVList
 {
     String getDescription(); // TODO: remove
 

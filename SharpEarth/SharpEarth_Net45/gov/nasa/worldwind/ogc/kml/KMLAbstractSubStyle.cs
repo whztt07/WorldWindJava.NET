@@ -15,7 +15,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAbstractSubStyle.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class KMLAbstractSubStyle extends KMLAbstractObject
+public abstract class KMLAbstractSubStyle : KMLAbstractObject
 {
     /**
      * Construct an instance.

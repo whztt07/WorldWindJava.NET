@@ -22,7 +22,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSCapabilities.java 2072 2014-06-21 21:20:25Z tgaskins $
  */
-public class WMSCapabilities extends OGCCapabilities
+public class WMSCapabilities : OGCCapabilities
 {
     protected static final QName ROOT_ELEMENT_NAME_1_1_1 = new QName("WMT_MS_Capabilities");
     protected static final QName ROOT_ELEMENT_NAME_1_3_0 = new QName("WMS_Capabilities");

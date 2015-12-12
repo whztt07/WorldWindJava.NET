@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaMesh.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaMesh extends ColladaAbstractObject
+public class ColladaMesh : ColladaAbstractObject
 {
     protected List<ColladaSource> sources = new ArrayList<ColladaSource>();
     protected List<ColladaVertices> vertices = new ArrayList<ColladaVertices>();

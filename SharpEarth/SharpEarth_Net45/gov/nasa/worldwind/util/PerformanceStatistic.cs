@@ -7,7 +7,7 @@ using java.util;
 namespace SharpEarth.util{
 
 
-public class PerformanceStatistic implements Comparable<PerformanceStatistic>
+public class PerformanceStatistic : Comparable<PerformanceStatistic>
 {
     public static final String ALL = "gov.nasa.worldwind.perfstat.All";
     /** @deprecated Airspace geometry count is no longer logged during airspace rendering. */

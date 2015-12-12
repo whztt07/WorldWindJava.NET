@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSLogoURL.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSLogoURL extends WMSLayerInfoURL
+public class WMSLogoURL : WMSLayerInfoURL
 {
     protected Integer width;
     protected Integer height;

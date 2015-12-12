@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100AxisDescription.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100AxisDescription extends AbstractXMLEventParser
+public class WCS100AxisDescription : AbstractXMLEventParser
 {
     protected List<String> axisNames = new ArrayList<String>(2);
     protected List<String> offsetVectors = new ArrayList<String>(2);

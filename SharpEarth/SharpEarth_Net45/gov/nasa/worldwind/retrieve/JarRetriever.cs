@@ -20,7 +20,7 @@ namespace SharpEarth.retrieve{
  * @author tag
  * @version $Id: JarRetriever.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class JarRetriever extends URLRetriever
+public class JarRetriever : URLRetriever
 {
     private int responseCode;
     private String responseMessage;

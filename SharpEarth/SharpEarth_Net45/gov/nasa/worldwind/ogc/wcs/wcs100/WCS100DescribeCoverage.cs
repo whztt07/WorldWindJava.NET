@@ -22,7 +22,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100DescribeCoverage.java 2072 2014-06-21 21:20:25Z tgaskins $
  */
-public class WCS100DescribeCoverage extends AbstractXMLEventParser
+public class WCS100DescribeCoverage : AbstractXMLEventParser
 {
     protected XMLEventReader eventReader;
     protected XMLEventParserContext parserContext;

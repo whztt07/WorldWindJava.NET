@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLatLonBox.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLatLonBox extends KMLAbstractLatLonBoxType
+public class KMLLatLonBox : KMLAbstractLatLonBoxType
 {
     /**
      * Construct an instance.

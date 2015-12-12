@@ -17,7 +17,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: FramebufferTexture.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class FramebufferTexture implements WWTexture
+public class FramebufferTexture : WWTexture
 {
     protected WWTexture sourceTexture;
     protected Sector sector;

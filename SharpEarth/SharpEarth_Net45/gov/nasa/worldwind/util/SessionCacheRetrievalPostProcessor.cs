@@ -21,7 +21,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: SessionCacheRetrievalPostProcessor.java 3086 2015-05-13 20:27:38Z dcollins $
  */
-public class SessionCacheRetrievalPostProcessor implements RetrievalPostProcessor
+public class SessionCacheRetrievalPostProcessor : RetrievalPostProcessor
 {
     protected String name;
     protected final SessionCache cache;

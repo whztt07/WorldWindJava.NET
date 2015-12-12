@@ -29,7 +29,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: BasicElevationModelFactory.java 2347 2014-09-24 23:37:03Z dcollins $
  */
-public class BasicElevationModelFactory extends BasicFactory
+public class BasicElevationModelFactory : BasicFactory
 {
     /**
      * Creates an elevation model from a general configuration source. The source can be one of the following: <ul>

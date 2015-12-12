@@ -16,7 +16,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: CompoundElevationModel.java 3417 2015-08-20 20:47:05Z tgaskins $
  */
-public class CompoundElevationModel extends AbstractElevationModel
+public class CompoundElevationModel : AbstractElevationModel
 {
     protected CopyOnWriteArrayList<ElevationModel> elevationModels = new CopyOnWriteArrayList<ElevationModel>();
 

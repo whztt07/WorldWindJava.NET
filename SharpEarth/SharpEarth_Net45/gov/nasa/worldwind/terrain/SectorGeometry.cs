@@ -22,7 +22,7 @@ namespace SharpEarth.terrain{
  *
  * @version $Id: SectorGeometry.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface SectorGeometry extends Renderable
+public interface SectorGeometry : Renderable
 {
     /**
      * Returns this sector geometry's extent.

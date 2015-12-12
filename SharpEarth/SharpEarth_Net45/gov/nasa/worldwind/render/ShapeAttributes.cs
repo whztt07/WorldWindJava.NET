@@ -18,7 +18,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: ShapeAttributes.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface ShapeAttributes extends Exportable
+public interface ShapeAttributes : Exportable
 {
     /**
      * Returns a new ShapeAttributes instance of the same type as this ShapeAttributes who's properties are configured

@@ -22,7 +22,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: WMSBasicElevationModel.java 2050 2014-06-09 18:52:26Z tgaskins $
  */
-public class WMSBasicElevationModel extends BasicElevationModel
+public class WMSBasicElevationModel : BasicElevationModel
 {
     private static final String[] formatOrderPreference = new String[]
         {
@@ -155,7 +155,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
     }
 
     // TODO: consolidate common code in WMSTiledImageLayer.URLBuilder and WMSBasicElevationModel.URLBuilder
-    protected static class URLBuilder implements TileUrlBuilder
+    protected static class URLBuilder : TileUrlBuilder
     {
         protected static final String MAX_VERSION = "1.3.0";
 
@@ -376,7 +376,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
     //********************  Composition  ***************************//
     //**************************************************************//
 
-    protected static class ElevationCompositionTile extends ElevationTile
+    protected static class ElevationCompositionTile : ElevationTile
     {
         private int width;
         private int height;
@@ -479,7 +479,7 @@ public class WMSBasicElevationModel extends BasicElevationModel
         retriever.call();
     }
 
-    protected static class CompositionRetrievalPostProcessor extends AbstractRetrievalPostProcessor
+    protected static class CompositionRetrievalPostProcessor : AbstractRetrievalPostProcessor
     {
         // Note: Requested data is never marked as absent because the caller may want to continually re-try retrieval
         protected File outFile;

@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaAbstractObject.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public abstract class ColladaAbstractObject extends AbstractXMLEventParser
+public abstract class ColladaAbstractObject : AbstractXMLEventParser
 {
     /**
      * Construct an instance.

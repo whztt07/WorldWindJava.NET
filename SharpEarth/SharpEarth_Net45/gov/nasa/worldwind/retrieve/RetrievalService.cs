@@ -11,7 +11,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: RetrievalService.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface RetrievalService extends WWObject
+public interface RetrievalService : WWObject
 {
     RetrievalFuture runRetriever(Retriever retriever);
 

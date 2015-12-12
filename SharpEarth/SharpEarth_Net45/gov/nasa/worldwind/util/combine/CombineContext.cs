@@ -32,13 +32,13 @@ namespace SharpEarth.util.combine{
  * @author dcollins
  * @version $Id: CombineContext.java 2412 2014-10-30 21:32:34Z dcollins $
  */
-public class CombineContext implements Disposable
+public class CombineContext : Disposable
 {
     /**
      * Implementation of GLUtessellatorCallback that forwards GLU tessellator callbacks to protected methods on
      * CombineContext.
      */
-    protected static class TessCallbackAdapter extends GLUtessellatorCallbackAdapter
+    protected static class TessCallbackAdapter : GLUtessellatorCallbackAdapter
     {
         /**
          * The CombineContext that receives forwarded GLU tessellator callbacks.

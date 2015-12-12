@@ -13,7 +13,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFTile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFTile implements ExtentHolder
+public class VPFTile : ExtentHolder
 {
     private int id;
     private String name;

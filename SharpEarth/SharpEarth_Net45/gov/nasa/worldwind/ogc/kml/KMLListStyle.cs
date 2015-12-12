@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLListStyle.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLListStyle extends KMLAbstractSubStyle
+public class KMLListStyle : KMLAbstractSubStyle
 {
     protected List<KMLItemIcon> itemIcons = new ArrayList<KMLItemIcon>();
 

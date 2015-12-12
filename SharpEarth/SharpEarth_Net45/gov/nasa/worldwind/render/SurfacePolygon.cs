@@ -28,7 +28,7 @@ namespace SharpEarth.render{
  * @version $Id: SurfacePolygon.java 3436 2015-10-28 17:43:24Z tgaskins $
  */
 @SuppressWarnings("unchecked")
-public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
+public class SurfacePolygon : AbstractSurfaceShape , Exportable
 {
     protected static class ShapeData
     {
@@ -39,7 +39,7 @@ public class SurfacePolygon extends AbstractSurfaceShape implements Exportable
         public IntBuffer outlineIndices;
     }
 
-    protected static class Vertex extends LatLon
+    protected static class Vertex : LatLon
     {
         public double u;
         public double v;

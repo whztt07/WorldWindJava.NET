@@ -21,7 +21,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: SurfaceQuad.java 2406 2014-10-29 23:39:29Z dcollins $
  */
-public class SurfaceQuad extends AbstractSurfaceShape implements Exportable
+public class SurfaceQuad : AbstractSurfaceShape , Exportable
 {
     protected LatLon center = LatLon.ZERO;
     protected double width;

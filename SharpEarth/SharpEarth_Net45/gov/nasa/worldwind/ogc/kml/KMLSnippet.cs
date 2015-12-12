@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLSnippet.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLSnippet extends KMLAbstractObject
+public class KMLSnippet : KMLAbstractObject
 {
     /**
      * Construct an instance.

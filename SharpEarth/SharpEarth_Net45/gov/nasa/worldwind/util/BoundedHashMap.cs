@@ -17,7 +17,7 @@ namespace SharpEarth.util{
  * @param <K> The map key type.
  * @param <V> The map value type.
  */
-public class BoundedHashMap<K, V> extends java.util.LinkedHashMap<K, V>
+public class BoundedHashMap<K, V> : java.util.LinkedHashMap<K, V>
 {
     protected static final int DEFAULT_CAPACITY = 16;
     protected static final float DEFAULT_LOAD_FACTOR = 0.75f;

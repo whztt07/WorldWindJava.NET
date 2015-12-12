@@ -20,7 +20,7 @@ namespace SharpEarth.retrieve{
  * @author tag
  * @version $Id: LocalRasterServerRetriever.java 2257 2014-08-22 18:02:19Z tgaskins $
  */
-public class LocalRasterServerRetriever extends WWObjectImpl implements Retriever
+public class LocalRasterServerRetriever : WWObjectImpl , Retriever
 {
     //    protected AVList parameters;
     protected RetrievalPostProcessor postProcessor;

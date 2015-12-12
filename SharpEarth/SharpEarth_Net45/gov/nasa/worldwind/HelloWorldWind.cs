@@ -20,7 +20,7 @@ public class HelloWorldWind
     // that the main can configure system properties prior to invoking Swing. This is
     // necessary for instance on OS X (Macs) so that the application name can be specified.
 
-    private static class AppFrame extends javax.swing.JFrame
+    private static class AppFrame : javax.swing.JFrame
     {
         public AppFrame()
         {

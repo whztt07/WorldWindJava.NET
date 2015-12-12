@@ -40,7 +40,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: Polygon.java 3431 2015-10-01 04:29:15Z dcollins $
  */
-public class Polygon extends AbstractShape
+public class Polygon : AbstractShape
 {
     // TODO: Merge texture coordinates into the vertex+normal buffer rather than specifying them in a separate buffer.
     // TODO: Tessellate polygon's interior to follow globe curvature when in ABSOLUTE altitude mode.
@@ -49,7 +49,7 @@ public class Polygon extends AbstractShape
      * This class holds globe-specific data for this shape. It's managed via the shape-data cache in {@link
      * SharpEarth.render.AbstractShape.AbstractShapeData}.
      */
-    protected static class ShapeData extends AbstractShapeData implements Iterable<BoundaryInfo>
+    protected static class ShapeData : AbstractShapeData , Iterable<BoundaryInfo>
     {
         /** This class holds the per-globe data for this shape. */
         protected List<BoundaryInfo> boundaries = new ArrayList<BoundaryInfo>();

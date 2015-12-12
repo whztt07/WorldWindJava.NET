@@ -20,7 +20,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFLibrary.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFLibrary extends AVListImpl
+public class VPFLibrary : AVListImpl
 {
     private VPFDatabase database;
     private VPFBoundingBox bounds;

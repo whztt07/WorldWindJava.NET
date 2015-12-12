@@ -21,7 +21,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: AbstractElevationModel.java 3420 2015-09-10 23:25:43Z tgaskins $
  */
-abstract public class AbstractElevationModel extends WWObjectImpl implements ElevationModel
+abstract public class AbstractElevationModel : WWObjectImpl , ElevationModel
 {
     protected FileStore dataFileStore = WorldWind.getDataFileStore();
     protected double missingDataFlag = -Double.MaxValue;

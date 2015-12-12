@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLCamera.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLCamera extends KMLAbstractView
+public class KMLCamera : KMLAbstractView
 {
     /**
      * Construct an instance.

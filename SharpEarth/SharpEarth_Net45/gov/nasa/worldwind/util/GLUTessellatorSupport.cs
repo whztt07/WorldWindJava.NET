@@ -149,7 +149,7 @@ public class GLUTessellatorSupport
         }
     }
 
-    protected static class OGLDrawPrimitivesCallback extends GLUtessellatorCallbackAdapter
+    protected static class OGLDrawPrimitivesCallback : GLUtessellatorCallbackAdapter
     {
         protected final GL2 gl;
 
@@ -188,7 +188,7 @@ public class GLUTessellatorSupport
     }
 
     /** Provides the callback class used to capture the shapes determined by the tessellator. */
-    public static class CollectIndexListsCallback extends GLUtessellatorCallbackAdapter
+    public static class CollectIndexListsCallback : GLUtessellatorCallbackAdapter
     {
         protected int numIndices;
         protected int currentType;
@@ -253,7 +253,7 @@ public class GLUTessellatorSupport
     }
 
     /** Provides the callback class used to capture triangle and line primitive indices determined by the tessellator. */
-    public static class CollectPrimitivesCallback extends GLUtessellatorCallbackAdapter
+    public static class CollectPrimitivesCallback : GLUtessellatorCallbackAdapter
     {
         protected List<Integer> triangles = new ArrayList<Integer>();
         protected List<Integer> lines = new ArrayList<Integer>();
@@ -391,7 +391,7 @@ public class GLUTessellatorSupport
      * passed to gluTessVertex must be a double array containing three elements - the x, y and z coordinates associated
      * with the vertex.
      */
-    public static class RecursiveCallback extends GLUtessellatorCallbackAdapter
+    public static class RecursiveCallback : GLUtessellatorCallbackAdapter
     {
         /**
          * The GLU tessellator that receives the tessellation results sent to this callback.

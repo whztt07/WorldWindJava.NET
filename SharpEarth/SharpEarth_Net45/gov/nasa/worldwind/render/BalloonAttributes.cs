@@ -18,7 +18,7 @@ namespace SharpEarth.render{
  * @version $Id: BalloonAttributes.java 1171 2013-02-11 21:45:02Z dcollins $
  * @see Balloon
  */
-public interface BalloonAttributes extends ShapeAttributes
+public interface BalloonAttributes : ShapeAttributes
 {
     /**
      * Indicates the width and height of the balloon's shape in the viewport. If the balloon's shape is

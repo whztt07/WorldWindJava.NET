@@ -506,7 +506,7 @@ public abstract class CompoundVecBuffer
     //********************  Iterator Implementations  **************//
     //**************************************************************//
 
-    protected class CompoundIterator<T> implements Iterator<T>
+    protected class CompoundIterator<T> : Iterator<T>
     {
         protected int subBuffer;
         protected Iterator<T> subIterator;
@@ -556,7 +556,7 @@ public abstract class CompoundVecBuffer
         }
     }
 
-    protected class ReverseCompoundIterator<T> extends CompoundIterator<T>
+    protected class ReverseCompoundIterator<T> : CompoundIterator<T>
     {
         public ReverseCompoundIterator(SubBufferIterable<T> subBufferIterable)
         {
@@ -581,7 +581,7 @@ public abstract class CompoundVecBuffer
         Iterator<T> reverseIterator(int index);
     }
 
-    protected class CoordIterable implements SubBufferIterable<double[]>
+    protected class CoordIterable : SubBufferIterable<double[]>
     {
         private int minCoordsPerVec;
 
@@ -601,7 +601,7 @@ public abstract class CompoundVecBuffer
         }
     }
 
-    protected class VectorIterable implements SubBufferIterable<Vec4>
+    protected class VectorIterable : SubBufferIterable<Vec4>
     {
         public Iterator<Vec4> iterator(int index)
         {
@@ -614,7 +614,7 @@ public abstract class CompoundVecBuffer
         }
     }
 
-    protected class LocationIterable implements SubBufferIterable<LatLon>
+    protected class LocationIterable : SubBufferIterable<LatLon>
     {
         public Iterator<LatLon> iterator(int index)
         {
@@ -627,7 +627,7 @@ public abstract class CompoundVecBuffer
         }
     }
 
-    protected class PositionIterable implements SubBufferIterable<Position>
+    protected class PositionIterable : SubBufferIterable<Position>
     {
         public Iterator<Position> iterator(int index)
         {
@@ -644,7 +644,7 @@ public abstract class CompoundVecBuffer
     //********************  Empty CompoundVecBuffer  ***************//
     //**************************************************************//
 
-    protected static class EmptyCompoundVecBuffer extends CompoundVecBuffer
+    protected static class EmptyCompoundVecBuffer : CompoundVecBuffer
     {
         protected int coordsPerVec;
 

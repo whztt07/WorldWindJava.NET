@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.kml.gx{
  * @author tag
  * @version $Id: GXFlyTo.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GXFlyTo extends GXAbstractTourPrimitive
+public class GXFlyTo : GXAbstractTourPrimitive
 {
     public GXFlyTo(String namespaceURI)
     {

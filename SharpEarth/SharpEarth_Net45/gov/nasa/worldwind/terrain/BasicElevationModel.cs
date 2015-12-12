@@ -50,7 +50,7 @@ namespace SharpEarth.terrain{
  * @author Tom Gaskins
  * @version $Id: BasicElevationModel.java 3425 2015-09-30 23:17:35Z dcollins $
  */
-public class BasicElevationModel extends AbstractElevationModel implements BulkRetrievable
+public class BasicElevationModel : AbstractElevationModel , BulkRetrievable
 {
     protected final LevelSet levels;
     protected final double minElevation;
@@ -404,7 +404,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         WorldWind.getTaskService().addTask(request);
     }
 
-    protected static class RequestTask implements Runnable
+    protected static class RequestTask : Runnable
     {
         protected final BasicElevationModel elevationModel;
         protected final TileKey tileKey;
@@ -877,7 +877,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         WorldWind.getRetrievalService().runRetriever(retriever, 0d);
     }
 
-    protected static class DownloadPostProcessor extends AbstractRetrievalPostProcessor
+    protected static class DownloadPostProcessor : AbstractRetrievalPostProcessor
     {
         protected final Tile tile;
         protected final BasicElevationModel elevationModel;
@@ -1633,7 +1633,7 @@ public class BasicElevationModel extends AbstractElevationModel implements BulkR
         return this.extremesLookupCache;
     }
 
-    protected static class ElevationTile extends SharpEarth.util.Tile implements Cacheable
+    protected static class ElevationTile : SharpEarth.util.Tile , Cacheable
     {
         protected BufferWrapper elevations; // the elevations themselves
         protected long updateTime = 0;

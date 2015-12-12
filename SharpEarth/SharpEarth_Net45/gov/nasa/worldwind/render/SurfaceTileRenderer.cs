@@ -20,7 +20,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: SurfaceTileRenderer.java 2288 2014-08-30 20:24:56Z dcollins $
  */
-public abstract class SurfaceTileRenderer implements Disposable
+public abstract class SurfaceTileRenderer : Disposable
 {
     private static final int DEFAULT_ALPHA_TEXTURE_SIZE = 1024;
 

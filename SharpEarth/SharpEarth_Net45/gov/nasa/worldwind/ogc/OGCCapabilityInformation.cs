@@ -19,7 +19,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCCapabilityInformation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-abstract public class OGCCapabilityInformation extends AbstractXMLEventParser
+abstract public class OGCCapabilityInformation : AbstractXMLEventParser
 {
     abstract protected bool isRequestName(XMLEventParserContext ctx, QName name);
 

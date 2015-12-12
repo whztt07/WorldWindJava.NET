@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.ows{
  * @author tag
  * @version $Id: OWSPhone.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class OWSPhone extends AbstractXMLEventParser
+public class OWSPhone : AbstractXMLEventParser
 {
     protected List<String> voices = new ArrayList<String>(1);
     protected List<String> faxes = new ArrayList<String>(1);

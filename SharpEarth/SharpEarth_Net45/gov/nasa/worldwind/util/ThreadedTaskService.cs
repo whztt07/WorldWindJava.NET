@@ -14,7 +14,7 @@ namespace SharpEarth.util{
  * @author Tom Gaskins
  * @version $Id: ThreadedTaskService.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ThreadedTaskService extends WWObjectImpl implements TaskService, Thread.UncaughtExceptionHandler
+public class ThreadedTaskService : WWObjectImpl , TaskService, Thread.UncaughtExceptionHandler
 {
     static final private int DEFAULT_CORE_POOL_SIZE = 1;
     static final private int DEFAULT_QUEUE_SIZE = 10;
@@ -54,7 +54,7 @@ public class ThreadedTaskService extends WWObjectImpl implements TaskService, Th
         Thread.currentThread().getThreadGroup().uncaughtException(thread, throwable);
     }
 
-    private class TaskExecutor extends ThreadPoolExecutor
+    private class TaskExecutor : ThreadPoolExecutor
     {
         private static final long THREAD_TIMEOUT = 2; // keep idle threads alive this many seconds
 

@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100Exception.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100Exception extends AbstractXMLEventParser
+public class WCS100Exception : AbstractXMLEventParser
 {
     protected List<String> formats = new ArrayList<String>(1);
 

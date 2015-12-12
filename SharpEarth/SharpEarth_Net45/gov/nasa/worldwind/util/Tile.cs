@@ -22,7 +22,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: Tile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class Tile implements Comparable<Tile>, Cacheable
+public class Tile : Comparable<Tile>, Cacheable
 {
     private final Sector sector;
     private final Level level;

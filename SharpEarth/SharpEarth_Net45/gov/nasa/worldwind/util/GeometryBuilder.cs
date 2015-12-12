@@ -5157,7 +5157,7 @@ public class GeometryBuilder
         return this.tessellatePolygon(pos, count, vertices, Vec4.UNIT_Z);
     }
 
-    private static class TessellatorCallback extends GLUtessellatorCallbackAdapter
+    private static class TessellatorCallback : GLUtessellatorCallbackAdapter
     {
         private GeometryBuilder gb;
         private int type;

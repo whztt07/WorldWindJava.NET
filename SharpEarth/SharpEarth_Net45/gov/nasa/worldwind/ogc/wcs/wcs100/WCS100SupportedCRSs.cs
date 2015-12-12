@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100SupportedCRSs.java 2062 2014-06-19 20:10:41Z tgaskins $
  */
-public class WCS100SupportedCRSs extends AbstractXMLEventParser
+public class WCS100SupportedCRSs : AbstractXMLEventParser
 {
     protected List<String> requestResponseCRSs = new ArrayList<String>(1);
     protected List<String> requestCRSs = new ArrayList<String>(1);

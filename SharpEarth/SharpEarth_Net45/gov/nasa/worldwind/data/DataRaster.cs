@@ -19,7 +19,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: DataRaster.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface DataRaster extends AVList, Disposable
+public interface DataRaster : AVList, Disposable
 {
     /**
      * Returns the raster's width in raster units.

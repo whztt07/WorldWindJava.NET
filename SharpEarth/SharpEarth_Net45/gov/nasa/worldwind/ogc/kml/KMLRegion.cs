@@ -73,7 +73,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLRegion.java 2029 2014-05-23 21:22:23Z pabercrombie $
  */
-public class KMLRegion extends KMLAbstractObject
+public class KMLRegion : KMLAbstractObject
 {
     /**
      * The default time in milliseconds a <code>RegionData</code> element may exist in this Region's
@@ -126,7 +126,7 @@ public class KMLRegion extends KMLAbstractObject
      * <code>clampToGround</code>, this list must contain five points: the model-coordinate points of the Region's four
      * corners and center point on the surface terrain.
      */
-    protected static class RegionData extends ShapeDataCache.ShapeDataCacheEntry
+    protected static class RegionData : ShapeDataCache.ShapeDataCacheEntry
     {
         /** Identifies the frame used to calculate this entry's values. Initially -1. */
         protected long frameNumber = -1;

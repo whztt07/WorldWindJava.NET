@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.gml{
  * @author tag
  * @version $Id: GMLGrid.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class GMLGrid extends AbstractXMLEventParser
+public class GMLGrid : AbstractXMLEventParser
 {
     public GMLGrid(String namespaceURI)
     {

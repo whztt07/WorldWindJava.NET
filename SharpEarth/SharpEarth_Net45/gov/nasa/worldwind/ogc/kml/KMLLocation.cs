@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLocation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLocation extends KMLAbstractObject
+public class KMLLocation : KMLAbstractObject
 {
     /**
      * Construct an instance.

@@ -16,7 +16,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: ContourList.java 2405 2014-10-29 23:33:08Z dcollins $
  */
-public class ContourList extends WWObjectImpl implements Combinable
+public class ContourList : WWObjectImpl , Combinable
 {
     protected ArrayList<Iterable<? extends LatLon>> contours = new ArrayList<Iterable<? extends LatLon>>();
     protected Sector sector;

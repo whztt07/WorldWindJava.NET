@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSLayerExtent.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSLayerExtent extends AbstractXMLEventParser
+public class WMSLayerExtent : AbstractXMLEventParser
 {
     protected String extent;
     protected String name;

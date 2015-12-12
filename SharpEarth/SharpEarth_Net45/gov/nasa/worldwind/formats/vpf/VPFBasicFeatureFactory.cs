@@ -15,7 +15,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFBasicFeatureFactory.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFBasicFeatureFactory implements VPFFeatureFactory
+public class VPFBasicFeatureFactory : VPFFeatureFactory
 {
     private VPFTile tile;
     private VPFPrimitiveData primitiveData;

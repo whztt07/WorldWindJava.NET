@@ -21,7 +21,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: SectorGeometryList.java 1537 2013-08-07 19:58:01Z dcollins $
  */
-public class SectorGeometryList extends ArrayList<SectorGeometry>
+public class SectorGeometryList : ArrayList<SectorGeometry>
 {
     /** The spanning sector of all sector geometries contained in this list. */
     protected Sector sector;

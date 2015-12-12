@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100HTTP.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100HTTP extends AbstractXMLEventParser
+public class WCS100HTTP : AbstractXMLEventParser
 {
     protected List<AttributesOnlyXMLEventParser> gets = new ArrayList<AttributesOnlyXMLEventParser>(1);
     protected List<AttributesOnlyXMLEventParser> posts = new ArrayList<AttributesOnlyXMLEventParser>(1);

@@ -39,13 +39,13 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: AbstractGeneralShape.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class AbstractGeneralShape extends AbstractShape
+public abstract class AbstractGeneralShape : AbstractShape
 {
     /**
      * This class holds globe-specific data for this shape. It's managed via the shape-data cache in {@link
      * SharpEarth.render.AbstractShape.AbstractShapeData}.
      */
-    protected static class ShapeData extends AbstractShapeData
+    protected static class ShapeData : AbstractShapeData
     {
         /**
          * Construct a cache entry for this shape.

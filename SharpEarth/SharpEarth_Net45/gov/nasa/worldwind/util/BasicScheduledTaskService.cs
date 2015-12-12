@@ -16,7 +16,7 @@ namespace SharpEarth.util{
  * @author pabercrombie
  * @version $Id: BasicScheduledTaskService.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicScheduledTaskService extends WWObjectImpl
+public class BasicScheduledTaskService : WWObjectImpl
     implements ScheduledTaskService, Thread.UncaughtExceptionHandler
 {
     /** Default thread pool size. */
@@ -66,7 +66,7 @@ public class BasicScheduledTaskService extends WWObjectImpl
     }
 
     /** Custom executor to run tasks. */
-    protected class ScheduledTaskExecutor extends ScheduledThreadPoolExecutor
+    protected class ScheduledTaskExecutor : ScheduledThreadPoolExecutor
     {
         protected ScheduledTaskExecutor(int poolSize)
         {

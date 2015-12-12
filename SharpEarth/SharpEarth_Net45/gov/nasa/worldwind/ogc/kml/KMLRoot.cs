@@ -31,7 +31,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLRoot.java 1951 2014-04-20 18:57:50Z tgaskins $
  */
-public class KMLRoot extends KMLAbstractObject implements KMLRenderable
+public class KMLRoot : KMLAbstractObject , KMLRenderable
 {
     /** Reference to the KMLDoc representing the KML or KMZ file. */
     protected KMLDoc kmlDoc;

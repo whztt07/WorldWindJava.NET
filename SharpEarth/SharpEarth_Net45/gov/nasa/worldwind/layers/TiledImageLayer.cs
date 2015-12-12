@@ -738,7 +738,7 @@ public abstract class TiledImageLayer : AbstractLayer
         return this.computeReferencePoint(dc);
     }
 
-    protected static class LevelComparer implements Comparator<TextureTile>
+    protected static class LevelComparer : Comparator<TextureTile>
     {
         public int compare(TextureTile ta, TextureTile tb)
         {
@@ -1478,7 +1478,7 @@ public abstract class TiledImageLayer : AbstractLayer
         return image;
     }
 
-    protected class CompositionRetrievalPostProcessor extends AbstractRetrievalPostProcessor
+    protected class CompositionRetrievalPostProcessor : AbstractRetrievalPostProcessor
     {
         protected TextureTile tile;
 

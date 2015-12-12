@@ -17,7 +17,7 @@ namespace SharpEarth.data{
  * @version $Id: DTEDRasterReader.java 3037 2015-04-17 23:08:47Z tgaskins $
  */
 
-public class DTEDRasterReader extends AbstractDataRasterReader
+public class DTEDRasterReader : AbstractDataRasterReader
 {
     protected static final String[] dtedMimeTypes = new String[] {
         "application/dted",

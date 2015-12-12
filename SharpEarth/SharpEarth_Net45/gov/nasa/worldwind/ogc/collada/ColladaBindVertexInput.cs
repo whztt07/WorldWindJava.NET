@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaBindVertexInput.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaBindVertexInput extends ColladaAbstractObject
+public class ColladaBindVertexInput : ColladaAbstractObject
 {
     /**
      * Construct an instance.

@@ -21,7 +21,7 @@ namespace SharpEarth.ogc.kml.io{
  * @author tag
  * @version $Id: KMZFile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMZFile implements KMLDoc
+public class KMZFile : KMLDoc
 {
     /** The {@link ZipFile} reference specified to the constructor. */
     protected ZipFile zipFile;

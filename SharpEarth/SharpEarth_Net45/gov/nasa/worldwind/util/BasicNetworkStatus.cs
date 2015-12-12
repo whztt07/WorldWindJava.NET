@@ -20,7 +20,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: BasicNetworkStatus.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicNetworkStatus extends AVListImpl implements NetworkStatus
+public class BasicNetworkStatus : AVListImpl , NetworkStatus
 {
     protected static final long DEFAULT_TRY_AGAIN_INTERVAL = (long) 60e3; // seconds
     protected static final int DEFAULT_ATTEMPT_LIMIT = 7; // number of unavailable events to declare host unavailable

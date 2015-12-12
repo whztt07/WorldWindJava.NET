@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.gml{
  * @author tag
  * @version $Id: GMLRectifiedGrid.java 2066 2014-06-20 20:41:46Z tgaskins $
  */
-public class GMLRectifiedGrid extends GMLGrid
+public class GMLRectifiedGrid : GMLGrid
 {
     protected List<String> axisNames = new ArrayList<String>(2);
     protected List<String> offsetVectors = new ArrayList<String>(2);

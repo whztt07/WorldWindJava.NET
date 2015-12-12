@@ -25,7 +25,7 @@ namespace SharpEarth.formats.tiff{
  * @author brownrigg
  * @version $Id: GeotiffReader.java 3289 2015-06-30 15:55:33Z tgaskins $
  */
-public class GeotiffReader implements Disposable
+public class GeotiffReader : Disposable
 {
     private TIFFReader tiffReader = null;
 

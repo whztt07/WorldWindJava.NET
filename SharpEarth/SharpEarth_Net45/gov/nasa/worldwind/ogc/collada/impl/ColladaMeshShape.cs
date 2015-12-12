@@ -35,13 +35,13 @@ namespace SharpEarth.ogc.collada.impl{
  * @author pabercrombie
  * @version $Id: ColladaMeshShape.java 2216 2014-08-11 20:29:24Z tgaskins $
  */
-public class ColladaMeshShape extends AbstractGeneralShape
+public class ColladaMeshShape : AbstractGeneralShape
 {
     /**
      * Class to represent an instance of the mesh to be drawn as an ordered renderable. We can't use the mesh itself as
      * the ordered renderable because it may be drawn multiple times with different transforms.
      */
-    public static class OrderedMeshShape implements OrderedRenderable
+    public static class OrderedMeshShape : OrderedRenderable
     {
         /** Shape to render. */
         protected ColladaMeshShape mesh;
@@ -84,7 +84,7 @@ public class ColladaMeshShape extends AbstractGeneralShape
      * This class holds globe-specific data for this shape. It's managed via the shape-data cache in {@link
      * SharpEarth.render.AbstractShape.AbstractShapeData}.
      */
-    protected static class ShapeData extends AbstractGeneralShape.ShapeData
+    protected static class ShapeData : AbstractGeneralShape.ShapeData
     {
         /**
          * Construct a cache entry for this shape.

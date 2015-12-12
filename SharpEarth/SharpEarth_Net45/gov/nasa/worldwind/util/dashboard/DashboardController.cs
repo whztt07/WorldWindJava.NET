@@ -17,7 +17,7 @@ namespace SharpEarth.util.dashboard{
  * @author tag
  * @version $Id: DashboardController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DashboardController implements MouseListener, Disposable
+public class DashboardController : MouseListener, Disposable
 {
     private DashboardDialog dialog;
     private Component component;

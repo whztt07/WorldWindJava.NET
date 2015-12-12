@@ -23,7 +23,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author pabercrombie
  * @version $Id: KMLGroundOverlayPolygonImpl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLGroundOverlayPolygonImpl extends Polygon implements KMLRenderable
+public class KMLGroundOverlayPolygonImpl : Polygon , KMLRenderable
 {
     protected final KMLGroundOverlay parent;
 

@@ -13,7 +13,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFFeatureTableFilter.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFFeatureTableFilter implements FileFilter
+public class VPFFeatureTableFilter : FileFilter
 {
     /** Creates a VPFFeatureTableFilter, but otherwise does nothing. */
     public VPFFeatureTableFilter()

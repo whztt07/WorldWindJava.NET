@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.gml{
  * @author tag
  * @version $Id: GMLLimits.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class GMLLimits extends AbstractXMLEventParser
+public class GMLLimits : AbstractXMLEventParser
 {
     protected List<GMLGridEnvelope> gridEnvelopes = new ArrayList<GMLGridEnvelope>(1);
 

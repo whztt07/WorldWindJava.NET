@@ -22,7 +22,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: OrbitViewInputHandler.java 2253 2014-08-22 16:33:46Z dcollins $
  */
-public class OrbitViewInputHandler extends BasicViewInputHandler
+public class OrbitViewInputHandler : BasicViewInputHandler
 {
     protected AnimationController gotoAnimControl = new AnimationController();
     protected AnimationController uiAnimControl = new AnimationController();
@@ -40,7 +40,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
     public static final String ORBITVIEW_RESET_ROLL = "gov.nasa.worldwind.ViewResetRoll";
 
     /** Action handler to reset roll. */
-    public class ResetRollActionListener extends ViewInputActionHandler
+    public class ResetRollActionListener : ViewInputActionHandler
     {
         @Override
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
@@ -871,7 +871,7 @@ public class OrbitViewInputHandler extends BasicViewInputHandler
      * If a call to {@link #setAngle(gov.nasa.worldwind.geom.Angle)} causes the view to collide with the surface, then
      * the call returns false indicating to the caller that the set operation was not entirely successful.
      */
-    protected static class CollisionAwarePitchAccessor implements PropertyAccessor.AngleAccessor
+    protected static class CollisionAwarePitchAccessor : PropertyAccessor.AngleAccessor
     {
         protected OrbitView orbitView;
 

@@ -10,7 +10,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100CoverageOffering.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100CoverageOffering extends WCS100CoverageOfferingBrief
+public class WCS100CoverageOffering : WCS100CoverageOfferingBrief
 {
     public WCS100CoverageOffering(String namespaceURI)
     {

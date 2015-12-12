@@ -16,7 +16,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: BILRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BILRasterReader extends AbstractDataRasterReader
+public class BILRasterReader : AbstractDataRasterReader
 {
     private static final String[] bilMimeTypes = new String[]
         {"image/bil", "application/bil", "application/bil16", "application/bil32"};

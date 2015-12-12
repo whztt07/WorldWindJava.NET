@@ -23,7 +23,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: BasicModel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicModel extends WWObjectImpl implements Model
+public class BasicModel : WWObjectImpl , Model
 {
     private Globe globe;
     private LayerList layers;

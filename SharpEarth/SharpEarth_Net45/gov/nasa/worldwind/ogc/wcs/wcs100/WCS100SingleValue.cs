@@ -15,7 +15,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100SingleValue.java 2066 2014-06-20 20:41:46Z tgaskins $
  */
-public class WCS100SingleValue extends AbstractXMLEventParser
+public class WCS100SingleValue : AbstractXMLEventParser
 {
     public WCS100SingleValue(String namespaceURI)
     {

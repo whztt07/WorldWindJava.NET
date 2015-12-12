@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.ows{
  * @author tag
  * @version $Id: OWSContactInfo.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class OWSContactInfo extends AbstractXMLEventParser
+public class OWSContactInfo : AbstractXMLEventParser
 {
     public OWSContactInfo(String namespaceURI)
     {

@@ -16,7 +16,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: DataConfigurationFilter.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DataConfigurationFilter implements java.io.FileFilter, FileStoreFilter
+public class DataConfigurationFilter : java.io.FileFilter, FileStoreFilter
 {
     /** Creates a DataConfigurationFilter, but otherwise does nothing. */
     public DataConfigurationFilter()

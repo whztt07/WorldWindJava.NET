@@ -20,7 +20,7 @@ namespace SharpEarth.render{
 
 
 /** Holds attributes for {@link SharpEarth.render.PointPlacemark}s. */
-public class PointPlacemarkAttributes implements Exportable
+public class PointPlacemarkAttributes : Exportable
 {
     protected String imageAddress;
     protected BufferedImage image;

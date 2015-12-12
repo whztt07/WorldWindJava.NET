@@ -15,7 +15,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: OrbitViewEyePointAnimator.java 2204 2014-08-07 23:35:03Z dcollins $
  */
-public class OrbitViewEyePointAnimator implements Animator
+public class OrbitViewEyePointAnimator : Animator
 {
     protected static final double STOP_DISTANCE = 0.1;
 

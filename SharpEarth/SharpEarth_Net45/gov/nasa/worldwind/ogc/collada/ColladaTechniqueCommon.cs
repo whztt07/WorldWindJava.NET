@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaTechniqueCommon.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaTechniqueCommon extends ColladaAbstractObject
+public class ColladaTechniqueCommon : ColladaAbstractObject
 {
     /** Materials contained by this technique. */
     protected List<ColladaInstanceMaterial> materials = new ArrayList<ColladaInstanceMaterial>();

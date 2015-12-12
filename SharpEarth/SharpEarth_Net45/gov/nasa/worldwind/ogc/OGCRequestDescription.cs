@@ -20,7 +20,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCRequestDescription.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCRequestDescription extends AbstractXMLEventParser
+public class OGCRequestDescription : AbstractXMLEventParser
 {
     protected QName FORMAT;
     protected QName DCPTYPE;

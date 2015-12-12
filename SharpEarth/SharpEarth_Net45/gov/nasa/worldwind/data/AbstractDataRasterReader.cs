@@ -18,7 +18,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: AbstractDataRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class AbstractDataRasterReader extends AVListImpl implements DataRasterReader
+public abstract class AbstractDataRasterReader : AVListImpl , DataRasterReader
 {
     protected abstract bool doCanRead(Object source, AVList parameters);
 

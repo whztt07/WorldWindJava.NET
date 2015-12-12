@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaScene.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public class ColladaScene extends ColladaAbstractObject implements ColladaRenderable
+public class ColladaScene : ColladaAbstractObject , ColladaRenderable
 {
     /** Flag to indicate that the scene has been fetched from the hash map. */
     protected bool sceneFetched = false;

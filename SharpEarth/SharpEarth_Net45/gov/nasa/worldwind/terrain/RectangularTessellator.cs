@@ -26,7 +26,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: RectangularTessellator.java 2922 2015-03-24 23:56:58Z tgaskins $
  */
-public class RectangularTessellator extends WWObjectImpl implements Tessellator
+public class RectangularTessellator : WWObjectImpl , Tessellator
 {
     protected static class RenderInfo
     {
@@ -145,7 +145,7 @@ public class RectangularTessellator extends WWObjectImpl implements Tessellator
         }
     }
 
-    protected static class RectTile implements SectorGeometry
+    protected static class RectTile : SectorGeometry
     {
         protected final RectangularTessellator tessellator; // not needed if not a static class
         protected final int level;

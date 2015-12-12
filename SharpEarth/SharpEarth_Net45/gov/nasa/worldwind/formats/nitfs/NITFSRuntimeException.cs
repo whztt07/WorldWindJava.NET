@@ -12,7 +12,7 @@ namespace SharpEarth.formats.nitfs{
  * @author Lado Garakanidze
  * @version $Id: NITFSRuntimeException.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public sealed class NITFSRuntimeException extends java.lang.RuntimeException
+public sealed class NITFSRuntimeException : java.lang.RuntimeException
 {
     public NITFSRuntimeException()
     {

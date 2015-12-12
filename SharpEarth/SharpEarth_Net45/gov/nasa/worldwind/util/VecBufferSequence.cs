@@ -18,7 +18,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: VecBufferSequence.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VecBufferSequence extends CompoundVecBuffer
+public class VecBufferSequence : CompoundVecBuffer
 {
     protected int vecCount;
     protected VecBuffer buffer;

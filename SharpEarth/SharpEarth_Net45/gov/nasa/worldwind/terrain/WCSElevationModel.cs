@@ -22,7 +22,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: WCSElevationModel.java 2154 2014-07-17 21:32:34Z pabercrombie $
  */
-public class WCSElevationModel extends BasicElevationModel
+public class WCSElevationModel : BasicElevationModel
 {
     public WCSElevationModel(Element domElement, AVList parameters)
     {
@@ -225,7 +225,7 @@ public class WCSElevationModel extends BasicElevationModel
         return parameters;
     }
 
-    protected static class URLBuilder implements TileUrlBuilder
+    protected static class URLBuilder : TileUrlBuilder
     {
         protected final String layerNames;
         private final String imageFormat;

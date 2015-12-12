@@ -1234,7 +1234,7 @@ public class MultiLineTextRenderer
      * Iterates through words from an HTML text line. Note that returned 'words' can contain html tags at any place,
      * before, inside or after the word.
      */
-    public static class WordIteratorHTML implements Iterator<String>
+    public static class WordIteratorHTML : Iterator<String>
     {
         protected ArrayList<String> words;
         protected int nextWord = -1;

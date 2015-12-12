@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author pabercrombie
  * @version $Id: KMLSurfaceImageImpl.java 1551 2013-08-17 18:00:09Z pabercrombie $
  */
-public class KMLSurfaceImageImpl extends SurfaceImage implements KMLRenderable
+public class KMLSurfaceImageImpl : SurfaceImage , KMLRenderable
 {
     protected KMLGroundOverlay parent;
 

@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml.gx{
  * @author tag
  * @version $Id: GXTour.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GXTour extends KMLAbstractFeature
+public class GXTour : KMLAbstractFeature
 {
     public GXTour(String namespaceURI)
     {

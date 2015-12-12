@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaAbstractGeometry.java 618 2012-06-01 17:35:11Z pabercrombie $
  */
-public abstract class ColladaAbstractGeometry extends ColladaAbstractObject
+public abstract class ColladaAbstractGeometry : ColladaAbstractObject
 {
     /**
      * Default semantic that identifies texture coordinates. Used the a file does not specify the semantic using a

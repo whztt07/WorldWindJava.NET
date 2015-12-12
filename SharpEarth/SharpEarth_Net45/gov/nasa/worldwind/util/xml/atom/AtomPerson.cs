@@ -12,7 +12,7 @@ namespace SharpEarth.util.xml.atom{
  * @author tag
  * @version $Id: AtomPerson.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AtomPerson extends AtomAbstractObject
+public class AtomPerson : AtomAbstractObject
 {
     public AtomPerson(String namespaceURI)
     {

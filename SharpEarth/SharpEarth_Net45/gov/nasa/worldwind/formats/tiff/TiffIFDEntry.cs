@@ -16,7 +16,7 @@ namespace SharpEarth.formats.tiff{
  * @author brownrigg
  * @version $Id: TiffIFDEntry.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class TiffIFDEntry implements Comparable<TiffIFDEntry> {
+public class TiffIFDEntry : Comparable<TiffIFDEntry> {
     private ByteBuffer data = null;
 
     public TiffIFDEntry(int tag, int type, long count, long valOffset) throws ArgumentException {

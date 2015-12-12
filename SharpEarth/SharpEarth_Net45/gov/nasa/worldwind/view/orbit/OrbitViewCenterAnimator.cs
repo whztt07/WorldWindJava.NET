@@ -16,7 +16,7 @@ namespace SharpEarth.view.orbit{
  * @author jym
  * @version $Id: OrbitViewCenterAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OrbitViewCenterAnimator extends MoveToPositionAnimator
+public class OrbitViewCenterAnimator : MoveToPositionAnimator
 {
     private BasicOrbitView orbitView;
     bool endCenterOnSurface;

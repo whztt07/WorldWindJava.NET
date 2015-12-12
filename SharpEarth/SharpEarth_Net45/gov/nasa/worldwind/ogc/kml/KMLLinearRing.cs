@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLinearRing.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLinearRing extends KMLLineString
+public class KMLLinearRing : KMLLineString
 {
     /**
      * Construct an instance.

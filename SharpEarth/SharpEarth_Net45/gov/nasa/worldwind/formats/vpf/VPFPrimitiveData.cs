@@ -20,7 +20,7 @@ public class VPFPrimitiveData
         VPFBoundingBox getBounds();
     }
 
-    public static class BasicPrimitiveInfo implements PrimitiveInfo
+    public static class BasicPrimitiveInfo : PrimitiveInfo
     {
         protected VPFBoundingBox bounds;
 
@@ -35,7 +35,7 @@ public class VPFPrimitiveData
         }
     }
 
-    public static class EdgeInfo extends BasicPrimitiveInfo
+    public static class EdgeInfo : BasicPrimitiveInfo
     {
         protected int edgeType;
         protected int startNode;
@@ -101,7 +101,7 @@ public class VPFPrimitiveData
         }
     }
 
-    public static class FaceInfo extends BasicPrimitiveInfo
+    public static class FaceInfo : BasicPrimitiveInfo
     {
         protected Ring outerRing;
         protected Ring[] innerRings;

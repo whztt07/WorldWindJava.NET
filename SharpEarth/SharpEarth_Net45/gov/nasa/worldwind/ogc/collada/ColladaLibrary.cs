@@ -20,7 +20,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaLibrary.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaLibrary<T> extends ColladaAbstractObject
+public class ColladaLibrary<T> : ColladaAbstractObject
 {
     /**
      * Local name of the elements in the library. This is determined from the name of the library element. For example,

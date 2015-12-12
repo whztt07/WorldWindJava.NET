@@ -34,7 +34,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: AbstractShape.java 3306 2015-07-08 22:00:14Z tgaskins $
  */
-public abstract class AbstractShape extends WWObjectImpl
+public abstract class AbstractShape : WWObjectImpl
     implements Highlightable, OrderedRenderable, Movable, Movable2, ExtentHolder, GeographicExtent, Exportable,
     Restorable, PreRenderable, Attributable
 {
@@ -226,7 +226,7 @@ public abstract class AbstractShape extends WWObjectImpl
     }
 
     /** Holds the globe-dependent data captured in this shape's data cache. */
-    protected static class AbstractShapeData extends ShapeDataCache.ShapeDataCacheEntry
+    protected static class AbstractShapeData : ShapeDataCache.ShapeDataCacheEntry
     {
         /** Identifies the frame used to calculate this entry's values. */
         protected long frameNumber = -1;

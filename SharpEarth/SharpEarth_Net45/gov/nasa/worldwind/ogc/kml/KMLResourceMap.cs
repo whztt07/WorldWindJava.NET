@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLResourceMap.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLResourceMap extends KMLAbstractObject
+public class KMLResourceMap : KMLAbstractObject
 {
     protected List<KMLAlias> aliases = new ArrayList<KMLAlias>();
 

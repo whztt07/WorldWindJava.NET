@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLBoundary.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLBoundary extends KMLAbstractObject
+public class KMLBoundary : KMLAbstractObject
 {
     /**
      * Construct an instance.

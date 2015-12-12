@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.kml.gx{
  * @author tag
  * @version $Id: GXParserContext.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GXParserContext extends BasicXMLEventParserContext
+public class GXParserContext : BasicXMLEventParserContext
 {
     protected static final String[] StringFields = new String[]
         {

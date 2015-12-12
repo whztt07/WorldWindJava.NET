@@ -18,7 +18,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: FBOTexture.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class FBOTexture extends FramebufferTexture
+public class FBOTexture : FramebufferTexture
 {
     public FBOTexture(WWTexture imageSource, Sector sector, List<LatLon> corners)
     {

@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.collada.io{
  * @author pabercrombie
  * @version $Id: ColladaFile.java 660 2012-06-26 16:13:11Z pabercrombie $
  */
-public class ColladaFile implements ColladaDoc
+public class ColladaFile : ColladaDoc
 {
     /** File from which COLLADA content is read. */
     protected File colladaFile;

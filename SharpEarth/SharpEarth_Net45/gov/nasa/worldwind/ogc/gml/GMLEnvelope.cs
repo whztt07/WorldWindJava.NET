@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.gml{
  * @author tag
  * @version $Id: GMLEnvelope.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class GMLEnvelope extends AbstractXMLEventParser
+public class GMLEnvelope : AbstractXMLEventParser
 {
     List<GMLPos> positions = new ArrayList<GMLPos>(2);
     List<String> timePositions = new ArrayList<String>(2);

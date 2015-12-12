@@ -13,7 +13,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: OrbitViewPropertyAccessor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
+public class OrbitViewPropertyAccessor : ViewPropertyAccessor
 {
     
     private OrbitViewPropertyAccessor()
@@ -42,7 +42,7 @@ public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
     // ============== Implementation ======================= //
     // ============== Implementation ======================= //
 
-    private static class CenterPositionAccessor implements PropertyAccessor.PositionAccessor
+    private static class CenterPositionAccessor : PropertyAccessor.PositionAccessor
     {
         private OrbitView orbitView;
         public CenterPositionAccessor(OrbitView view)
@@ -81,7 +81,7 @@ public class OrbitViewPropertyAccessor extends ViewPropertyAccessor
 
 
 
-    private static class ZoomAccessor implements PropertyAccessor.DoubleAccessor
+    private static class ZoomAccessor : PropertyAccessor.DoubleAccessor
     {
         OrbitView orbitView;
         public ZoomAccessor(OrbitView orbitView)

@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAlias.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLAlias extends KMLAbstractObject
+public class KMLAlias : KMLAbstractObject
 {
     /**
      * Construct an instance.

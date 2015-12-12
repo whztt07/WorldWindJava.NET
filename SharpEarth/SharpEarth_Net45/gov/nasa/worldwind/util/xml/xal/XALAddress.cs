@@ -10,7 +10,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALAddress.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALAddress extends XALAbstractObject
+public class XALAddress : XALAbstractObject
 {
     public XALAddress(String namespaceURI)
     {

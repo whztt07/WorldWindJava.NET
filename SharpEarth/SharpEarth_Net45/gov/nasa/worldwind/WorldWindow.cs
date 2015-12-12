@@ -22,7 +22,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: WorldWindow.java 2047 2014-06-06 22:48:33Z tgaskins $
  */
-public interface WorldWindow extends AVList
+public interface WorldWindow : AVList
 {
     /**
      * Sets the model to display in this window. If <code>null</code> is specified for the model, the current model, if

@@ -19,7 +19,7 @@ namespace SharpEarth.util{
  */
 public class ImageInterpolator
 {
-    protected static class Cell implements Cacheable
+    protected static class Cell : Cacheable
     {
         protected final int m0, m1, n0, n1;
         protected float minx, maxx, miny, maxy;

@@ -267,7 +267,7 @@ public class VPFTableReader
         void read(ByteBuffer byteBuffer);
     }
 
-    protected abstract static class AbstractDataReader implements RecordDataReader
+    protected abstract static class AbstractDataReader : RecordDataReader
     {
         protected VPFDataBuffer dataBuffer;
 
@@ -282,7 +282,7 @@ public class VPFTableReader
         }
     }
 
-    protected static class FixedLengthDataReader extends AbstractDataReader
+    protected static class FixedLengthDataReader : AbstractDataReader
     {
         protected int numElements;
 
@@ -298,7 +298,7 @@ public class VPFTableReader
         }
     }
 
-    protected static class VariableLengthDataReader extends AbstractDataReader
+    protected static class VariableLengthDataReader : AbstractDataReader
     {
         public VariableLengthDataReader(VPFDataBuffer dataBuffer)
         {

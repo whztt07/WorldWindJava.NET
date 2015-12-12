@@ -28,7 +28,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: ScreenImage.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
+public class ScreenImage : WWObjectImpl , Renderable, Exportable
 {
     protected Object imageSource;
     protected BasicWWTexture texture;
@@ -67,7 +67,7 @@ public class ScreenImage extends WWObjectImpl implements Renderable, Exportable
     protected double dy;
     protected Layer pickLayer;
 
-    protected class OrderedImage implements OrderedRenderable
+    protected class OrderedImage : OrderedRenderable
     {
         public double getDistanceFromEye()
         {

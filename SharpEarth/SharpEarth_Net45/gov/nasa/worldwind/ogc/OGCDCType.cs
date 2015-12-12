@@ -19,7 +19,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCDCType.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCDCType extends AbstractXMLEventParser
+public class OGCDCType : AbstractXMLEventParser
 {
     protected QName GET;
     protected QName POST;

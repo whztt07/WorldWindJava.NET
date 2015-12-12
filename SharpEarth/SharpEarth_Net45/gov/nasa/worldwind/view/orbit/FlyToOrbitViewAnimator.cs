@@ -16,7 +16,7 @@ namespace SharpEarth.view.orbit{
  * @author jym
  * @version $Id: FlyToOrbitViewAnimator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class FlyToOrbitViewAnimator extends CompoundAnimator
+public class FlyToOrbitViewAnimator : CompoundAnimator
 {
     int altitudeMode;
     PositionAnimator centerAnimator;
@@ -82,7 +82,7 @@ public class FlyToOrbitViewAnimator extends CompoundAnimator
         return (panAnimator);
     }
 
-    protected static class OnSurfacePositionAnimator extends PositionAnimator
+    protected static class OnSurfacePositionAnimator : PositionAnimator
     {
         Globe globe;
         int altitudeMode;

@@ -13,7 +13,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFBufferedRecordData.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFBufferedRecordData implements Iterable<VPFRecord>
+public class VPFBufferedRecordData : Iterable<VPFRecord>
 {
     protected static class RecordData
     {
@@ -204,7 +204,7 @@ public class VPFBufferedRecordData implements Iterable<VPFRecord>
     //********************  Record Implementation  *****************//
     //**************************************************************//
 
-    protected class RecordImpl implements VPFRecord
+    protected class RecordImpl : VPFRecord
     {
         protected final int id;
 

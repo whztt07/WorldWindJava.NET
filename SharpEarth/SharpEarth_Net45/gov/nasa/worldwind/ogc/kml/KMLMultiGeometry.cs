@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLMultiGeometry.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLMultiGeometry extends KMLAbstractGeometry
+public class KMLMultiGeometry : KMLAbstractGeometry
 {
     protected List<KMLAbstractGeometry> geometries = new ArrayList<KMLAbstractGeometry>();
 

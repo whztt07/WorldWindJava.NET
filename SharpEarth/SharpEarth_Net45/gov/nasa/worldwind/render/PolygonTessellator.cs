@@ -14,7 +14,7 @@ namespace SharpEarth.render{
  */
 public class PolygonTessellator
 {
-    protected static class TessCallbackAdapter extends GLUtessellatorCallbackAdapter
+    protected static class TessCallbackAdapter : GLUtessellatorCallbackAdapter
     {
         @Override
         public void beginData(int type, Object userData)

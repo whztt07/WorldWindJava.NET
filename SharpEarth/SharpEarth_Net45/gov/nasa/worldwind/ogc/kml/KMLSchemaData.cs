@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLSchemaData.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLSchemaData extends KMLAbstractObject
+public class KMLSchemaData : KMLAbstractObject
 {
     protected List<KMLSimpleData> simpleData = new ArrayList<KMLSimpleData>();
 

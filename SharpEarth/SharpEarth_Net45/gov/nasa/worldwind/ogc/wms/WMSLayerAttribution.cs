@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSLayerAttribution.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSLayerAttribution extends AbstractXMLEventParser
+public class WMSLayerAttribution : AbstractXMLEventParser
 {
     protected QName TITLE;
     protected QName ONLINE_RESOURCE;

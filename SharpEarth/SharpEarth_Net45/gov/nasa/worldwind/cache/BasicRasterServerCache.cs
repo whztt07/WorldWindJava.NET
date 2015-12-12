@@ -29,7 +29,7 @@ namespace SharpEarth.cache{
  * cached content will be released. This approach allows to use almost entire available heap memory to cache rasters and
  * release memory when more memory is needed to the application itself.
  */
-public class BasicRasterServerCache extends BasicMemoryCache
+public class BasicRasterServerCache : BasicMemoryCache
 {
     protected static final int DEFAULT_INACCESSIBLE_MEMORY_SIZE = 100 * 1024 * 1024;
     protected static final long DEFAULT_PRUNER_THREAD_TIMEOUT_MSEC = 5000L; // 20 secs = 20,000 milli-seconds
@@ -137,7 +137,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
         }
     }
 
-    private class MemoryMonitorThread implements Runnable
+    private class MemoryMonitorThread : Runnable
     {
         public void run()
         {
@@ -168,7 +168,7 @@ public class BasicRasterServerCache extends BasicMemoryCache
         }
     }
 
-    private class CachePrunerThread implements Runnable
+    private class CachePrunerThread : Runnable
     {
         public void run()
         {

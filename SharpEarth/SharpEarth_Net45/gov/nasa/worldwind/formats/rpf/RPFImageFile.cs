@@ -17,7 +17,7 @@ namespace SharpEarth.formats.rpf{
  * @author lado
  * @version $Id: RPFImageFile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RPFImageFile extends RPFFile
+public class RPFImageFile : RPFFile
 {
     private NITFSImageSegment imageSegment = null;
     private UserDefinedImageSubheader imageSubheader = null;

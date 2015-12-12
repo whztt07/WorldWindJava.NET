@@ -18,7 +18,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: ScreenCreditController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ScreenCreditController implements Renderable, SelectListener, Disposable
+public class ScreenCreditController : Renderable, SelectListener, Disposable
 {
     private int creditWidth = 32;
     private int creditHeight = 32;

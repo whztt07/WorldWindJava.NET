@@ -16,7 +16,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALAddressLines.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALAddressLines extends XALAbstractObject
+public class XALAddressLines : XALAbstractObject
 {
     protected List<XALAddressLine> addressLines;
 

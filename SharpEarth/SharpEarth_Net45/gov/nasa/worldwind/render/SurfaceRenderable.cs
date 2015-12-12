@@ -19,7 +19,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: SurfaceRenderable.java 2283 2014-08-30 15:58:43Z dcollins $
  */
-public interface SurfaceRenderable extends Renderable
+public interface SurfaceRenderable : Renderable
 {
     /**
      * Returns a list of sectors indicating the geographic region that bounds this renderable for the specified draw

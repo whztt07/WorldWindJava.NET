@@ -12,7 +12,7 @@ namespace SharpEarth.awt{
  * @author dcollins
  * @version $Id: KeyEventState.java 2193 2014-08-01 23:33:16Z dcollins $
  */
-public class KeyEventState implements KeyListener, MouseListener
+public class KeyEventState : KeyListener, MouseListener
 {
     protected static class InputState
     {

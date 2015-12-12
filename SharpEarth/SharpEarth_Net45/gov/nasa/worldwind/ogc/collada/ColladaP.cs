@@ -21,7 +21,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaP.java 662 2012-06-26 19:05:46Z pabercrombie $
  */
-public class ColladaP extends ColladaAbstractObject
+public class ColladaP : ColladaAbstractObject
 {
     /** Indices contained in this element. */
     protected int[] indices;

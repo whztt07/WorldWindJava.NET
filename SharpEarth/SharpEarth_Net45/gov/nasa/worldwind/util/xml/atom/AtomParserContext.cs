@@ -16,7 +16,7 @@ namespace SharpEarth.util.xml.atom{
  * @author tag
  * @version $Id: AtomParserContext.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AtomParserContext extends BasicXMLEventParserContext
+public class AtomParserContext : BasicXMLEventParserContext
 {
     protected static final String[] StringFields = new String[]
         {

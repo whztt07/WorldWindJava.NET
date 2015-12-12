@@ -9,7 +9,7 @@ namespace SharpEarth.formats.rpf{
  * @author dcollins
  * @version $Id: RPFFrameFilenameFormatException.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RPFFrameFilenameFormatException extends ArgumentException
+public class RPFFrameFilenameFormatException : ArgumentException
 {
     public RPFFrameFilenameFormatException()
     {

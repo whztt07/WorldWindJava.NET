@@ -29,7 +29,7 @@ namespace SharpEarth.render{
  * @author Tom Gaskins
  * @version $Id: DrawContextImpl.java 2281 2014-08-29 23:08:04Z dcollins $
  */
-public class DrawContextImpl extends WWObjectImpl implements DrawContext
+public class DrawContextImpl : WWObjectImpl , DrawContext
 {
     protected long frameTimestamp;
     protected GLContext glContext;

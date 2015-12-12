@@ -11,7 +11,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFSymbolKey.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFSymbolKey implements Comparable<VPFSymbolKey>
+public class VPFSymbolKey : Comparable<VPFSymbolKey>
 {
     public static final VPFSymbolKey UNKNOWN_SYMBOL_KEY = new VPFSymbolKey(-1);
 

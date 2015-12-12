@@ -13,7 +13,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100ResponsibleParty.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100ResponsibleParty extends AbstractXMLEventParser
+public class WCS100ResponsibleParty : AbstractXMLEventParser
 {
     public WCS100ResponsibleParty(String namespaceURI)
     {

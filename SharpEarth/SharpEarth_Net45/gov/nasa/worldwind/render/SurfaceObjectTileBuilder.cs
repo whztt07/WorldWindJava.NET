@@ -1324,7 +1324,7 @@ public class SurfaceObjectTileBuilder
      * mechanism to uniquely identify the tile's current state, including the state of each intersecting surface
      * object.
      */
-    protected static class SurfaceObjectTile extends TextureTile
+    protected static class SurfaceObjectTile : TextureTile
     {
         /** The sector that bounds the surface renderables intersecting the tile. */
         protected Sector objectSector;
@@ -1485,7 +1485,7 @@ public class SurfaceObjectTileBuilder
      * to the surface renderables themselves. Should the tile state key live longer than the surface renderables, the
      * state key does not prevent those objects from being reclaimed by the garbage collector.
      */
-    protected static class SurfaceObjectTileStateKey implements Cacheable
+    protected static class SurfaceObjectTileStateKey : Cacheable
     {
         protected final TileKey tileKey;
         protected final Object[] intersectingObjectKeys;

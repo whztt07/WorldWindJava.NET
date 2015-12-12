@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100SpatialDomain.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100SpatialDomain extends AbstractXMLEventParser
+public class WCS100SpatialDomain : AbstractXMLEventParser
 {
     protected List<GMLEnvelope> envelopes = new ArrayList<GMLEnvelope>(1);
     protected List<GMLRectifiedGrid> rectifiedGrids = new ArrayList<GMLRectifiedGrid>(1);

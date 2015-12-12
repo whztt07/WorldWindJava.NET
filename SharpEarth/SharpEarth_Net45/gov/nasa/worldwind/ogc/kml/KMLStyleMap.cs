@@ -20,7 +20,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLStyleMap.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLStyleMap extends KMLAbstractStyleSelector
+public class KMLStyleMap : KMLAbstractStyleSelector
 {
     protected List<KMLPair> pairs = new ArrayList<KMLPair>();
 

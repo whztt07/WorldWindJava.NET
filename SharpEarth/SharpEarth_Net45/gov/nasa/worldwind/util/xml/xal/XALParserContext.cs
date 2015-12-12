@@ -16,7 +16,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALParserContext.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALParserContext extends BasicXMLEventParserContext
+public class XALParserContext : BasicXMLEventParserContext
 {
     protected static final String[] StringFields = new String[]
         {

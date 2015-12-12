@@ -17,11 +17,11 @@ namespace SharpEarth.awt{
  */
 public class ViewInputAttributes
 {
-    public class DeviceModifierMap extends HashMap<Object, ArrayList>
+    public class DeviceModifierMap : HashMap<Object, ArrayList>
     {
     }
 
-    public class ActionAttributesList extends ArrayList<ActionAttributes>
+    public class ActionAttributesList : ArrayList<ActionAttributes>
     {
     }
 

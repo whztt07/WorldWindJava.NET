@@ -21,7 +21,7 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: LocalRasterServerLayer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class LocalRasterServerLayer extends BasicTiledImageLayer
+public class LocalRasterServerLayer : BasicTiledImageLayer
 {
     /**
      * Constructs a layer from a list of parameters describing the layer.

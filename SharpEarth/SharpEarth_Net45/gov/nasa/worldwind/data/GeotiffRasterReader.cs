@@ -15,7 +15,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: GeotiffRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GeotiffRasterReader extends AbstractDataRasterReader
+public class GeotiffRasterReader : AbstractDataRasterReader
 {
     private static final String[] geotiffMimeTypes = {"image/tiff", "image/geotiff"};
     private static final String[] geotiffSuffixes = {"tif", "tiff", "gtif", "tif.zip", "tiff.zip", "tif.gz", "tiff.gz"};

@@ -25,7 +25,7 @@ namespace SharpEarth{
  * @author tag
  * @version $Id: AbstractSceneController.java 2442 2014-11-19 22:50:42Z tgaskins $
  */
-public abstract class AbstractSceneController extends WWObjectImpl implements SceneController
+public abstract class AbstractSceneController : WWObjectImpl , SceneController
 {
     protected Model model;
     protected View view;

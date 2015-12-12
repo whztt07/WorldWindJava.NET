@@ -14,7 +14,7 @@ namespace SharpEarth.cache{
  * @author tag
  * @version $Id: BasicMemoryCacheSet.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicMemoryCacheSet implements MemoryCacheSet
+public class BasicMemoryCacheSet : MemoryCacheSet
 {
     private ConcurrentHashMap<String, MemoryCache> caches = new ConcurrentHashMap<String, MemoryCache>();
 

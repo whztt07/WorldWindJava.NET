@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLookAt.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLookAt extends KMLAbstractView
+public class KMLLookAt : KMLAbstractView
 {
     /**
      * Construct an instance.

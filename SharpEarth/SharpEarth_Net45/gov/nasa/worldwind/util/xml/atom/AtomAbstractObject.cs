@@ -12,7 +12,7 @@ namespace SharpEarth.util.xml.atom{
  * @author tag
  * @version $Id: AtomAbstractObject.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AtomAbstractObject extends AbstractXMLEventParser
+public class AtomAbstractObject : AbstractXMLEventParser
 {
     public AtomAbstractObject(String namespaceURI)
     {

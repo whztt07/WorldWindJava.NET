@@ -11,7 +11,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: OGLTextRenderer.java 2053 2014-06-10 20:16:57Z tgaskins $
  */
-public class OGLTextRenderer extends TextRenderer
+public class OGLTextRenderer : TextRenderer
 {
     // By default enable antialiasing, mipmapping, and smoothing, but disable fractional metrics and vertex arrays.
     // * For the common case where text is rendered without scaling at integral screen coordinates, smoothing and

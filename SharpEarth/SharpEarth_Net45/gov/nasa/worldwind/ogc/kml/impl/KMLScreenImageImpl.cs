@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author pabercrombie
  * @version $Id: KMLScreenImageImpl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLScreenImageImpl extends ScreenImage implements KMLRenderable
+public class KMLScreenImageImpl : ScreenImage , KMLRenderable
 {
     /** Size value that KML uses to indicate that the native image dimension should be maintained. */
     protected static final int KML_NATIVE_DIMENSION = -1;

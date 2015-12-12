@@ -26,9 +26,9 @@ namespace SharpEarth.cache{
  * @author tag
  * @version $Id: BasicGpuResourceCache.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicGpuResourceCache implements GpuResourceCache
+public class BasicGpuResourceCache : GpuResourceCache
 {
-    public static class CacheEntry implements Cacheable
+    public static class CacheEntry : Cacheable
     {
         protected final String resourceType;
         protected final Object resource;

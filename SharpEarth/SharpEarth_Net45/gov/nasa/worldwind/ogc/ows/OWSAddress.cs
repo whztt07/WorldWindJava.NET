@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.ows{
  * @author tag
  * @version $Id: OWSAddress.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class OWSAddress extends AbstractXMLEventParser
+public class OWSAddress : AbstractXMLEventParser
 {
     protected List<String> deliveryPoints = new ArrayList<String>(1);
     protected List<String> postalCodes = new ArrayList<String>(1);

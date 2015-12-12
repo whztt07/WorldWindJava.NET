@@ -15,7 +15,7 @@ namespace SharpEarth.data{
  * @author Lado Garakanidze
  * @version $Id: AbstractDataRaster.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class AbstractDataRaster extends AVListImpl implements DataRaster
+public abstract class AbstractDataRaster : AVListImpl , DataRaster
 {
     protected int width = 0;
     protected int height = 0;

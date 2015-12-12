@@ -29,7 +29,7 @@ namespace SharpEarth.util.measure{
  * @version $Id: LengthMeasurer.java 2261 2014-08-23 00:31:54Z tgaskins $
  * @see MeasureTool
  */
-public class LengthMeasurer implements MeasurableLength
+public class LengthMeasurer : MeasurableLength
 {
     private static final double DEFAULT_TERRAIN_SAMPLING_STEPS = 128; // number of samples when following terrain
     private static final double DEFAULT_MAX_SEGMENT_LENGTH = 100e3; // size above which segments are subdivided

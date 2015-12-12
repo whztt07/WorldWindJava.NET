@@ -26,7 +26,7 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: TextureTile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class TextureTile extends Tile implements SurfaceTile
+public class TextureTile : Tile , SurfaceTile
 {
     private volatile TextureData textureData; // if non-null, then must be converted to a Texture
     private TextureTile fallbackTile = null; // holds texture to use if own texture not available

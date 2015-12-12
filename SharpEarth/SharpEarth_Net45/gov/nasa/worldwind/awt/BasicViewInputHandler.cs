@@ -16,7 +16,7 @@ namespace SharpEarth.awt{
  * @author dcollins
  * @version $Id: BasicViewInputHandler.java 2251 2014-08-21 21:17:46Z dcollins $
  */
-public abstract class BasicViewInputHandler extends AbstractViewInputHandler
+public abstract class BasicViewInputHandler : AbstractViewInputHandler
 {
     protected abstract void onMoveTo(Position focalPosition,
         ViewInputAttributes.DeviceAttributes deviceAttributes,
@@ -40,7 +40,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     protected abstract void onResetHeadingPitchRoll(ViewInputAttributes.ActionAttributes actionAttribs);
 
-    public class RotateActionListener extends ViewInputActionHandler
+    public class RotateActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -84,7 +84,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
     }
 
-    public class HorizontalTransActionListener extends ViewInputActionHandler
+    public class HorizontalTransActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -130,7 +130,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     }
 
-    public class VerticalTransActionListener extends ViewInputActionHandler
+    public class VerticalTransActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -166,7 +166,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     }
 
-    public class RotateMouseActionListener extends ViewInputActionHandler
+    public class RotateMouseActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(KeyEventState keys, String target,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -256,7 +256,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
     }
 
-    public class HorizTransMouseActionListener extends ViewInputActionHandler
+    public class HorizTransMouseActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(
             KeyEventState keys, String target, ViewInputAttributes.ActionAttributes viewAction)
@@ -345,7 +345,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
     }
 
 
-    public class VertTransMouseActionListener extends ViewInputActionHandler
+    public class VertTransMouseActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
@@ -426,7 +426,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
     }
 
-    public class MoveToMouseActionListener extends ViewInputActionHandler
+    public class MoveToMouseActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
@@ -456,7 +456,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
     }
 
-    public class ResetHeadingActionListener extends ViewInputActionHandler
+    public class ResetHeadingActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -477,7 +477,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
 
     }
 
-    public class ResetHeadingPitchActionListener extends ViewInputActionHandler
+    public class ResetHeadingPitchActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -497,7 +497,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
         }
     }
 
-    public class StopViewActionListener extends ViewInputActionHandler
+    public class StopViewActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler, java.awt.event.KeyEvent event,
             ViewInputAttributes.ActionAttributes viewAction)
@@ -518,7 +518,7 @@ public abstract class BasicViewInputHandler extends AbstractViewInputHandler
        
     }
 
-    public class VertTransMouseWheelActionListener extends ViewInputActionHandler
+    public class VertTransMouseWheelActionListener : ViewInputActionHandler
     {
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
             java.awt.event.MouseWheelEvent mouseWheelEvent, ViewInputAttributes.ActionAttributes viewAction)

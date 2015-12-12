@@ -13,9 +13,9 @@ namespace SharpEarth.cache{
  * @author Eric Dalgliesh
  * @version $Id: BasicMemoryCache.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicMemoryCache implements MemoryCache
+public class BasicMemoryCache : MemoryCache
 {
-    protected static class CacheEntry implements Comparable<CacheEntry>
+    protected static class CacheEntry : Comparable<CacheEntry>
     {
         Object key;
         Object clientObject;

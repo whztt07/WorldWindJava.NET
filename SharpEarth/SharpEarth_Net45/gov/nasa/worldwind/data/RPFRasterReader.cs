@@ -15,7 +15,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: RPFRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RPFRasterReader extends AbstractDataRasterReader
+public class RPFRasterReader : AbstractDataRasterReader
 {
     public RPFRasterReader()
     {

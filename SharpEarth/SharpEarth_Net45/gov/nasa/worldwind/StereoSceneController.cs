@@ -17,7 +17,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: StereoSceneController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface StereoSceneController extends SceneController
+public interface StereoSceneController : SceneController
 {
     /**
      * Specifies the technique used to provide a stereo effect. Defined options are {@link

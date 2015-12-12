@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaInstanceMaterial.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaInstanceMaterial extends ColladaAbstractInstance<ColladaMaterial>
+public class ColladaInstanceMaterial : ColladaAbstractInstance<ColladaMaterial>
 {
     protected List<ColladaBindVertexInput> bindVertexInputs = new ArrayList<ColladaBindVertexInput>();
 

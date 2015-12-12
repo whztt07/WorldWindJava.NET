@@ -33,7 +33,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLNetworkLink.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChangeListener
+public class KMLNetworkLink : KMLAbstractContainer , PropertyChangeListener
 {
     /** Indicates the network resource referenced by this <code>KMLNetworkLink</code>. Initially <code>null</code>. */
     protected AtomicReference<KMLRoot> networkResource = new AtomicReference<KMLRoot>();
@@ -503,7 +503,7 @@ public class KMLNetworkLink extends KMLAbstractContainer implements PropertyChan
     }
 
     /** Attempts to find this network link resource file locally, and if that fails attempts to find it remotely. */
-    protected static class RequestTask implements Runnable
+    protected static class RequestTask : Runnable
     {
         /** The link associated with this request. */
         protected final KMLNetworkLink link;

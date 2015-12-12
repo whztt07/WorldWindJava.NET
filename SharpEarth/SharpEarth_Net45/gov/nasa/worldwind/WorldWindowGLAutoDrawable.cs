@@ -32,7 +32,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: WorldWindowGLAutoDrawable.java 2047 2014-06-06 22:48:33Z tgaskins $
  */
-public class WorldWindowGLAutoDrawable extends WorldWindowImpl implements WorldWindowGLDrawable, GLEventListener
+public class WorldWindowGLAutoDrawable : WorldWindowImpl , WorldWindowGLDrawable, GLEventListener
 {
     /**
      * Default time in milliseconds that the view must remain unchanged before the {@link View#VIEW_STOPPED} message is

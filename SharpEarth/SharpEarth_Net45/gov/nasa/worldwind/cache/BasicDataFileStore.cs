@@ -22,7 +22,7 @@ namespace SharpEarth.cache{
  * @author Tom Gaskins
  * @version $Id: BasicDataFileStore.java 1950 2014-04-20 18:52:47Z tgaskins $
  */
-public class BasicDataFileStore extends AbstractFileStore
+public class BasicDataFileStore : AbstractFileStore
 {
     /** The number of milliseconds to wait before a retrieval request for the same file can be reissued. */
     protected static final long TIMEOUT = (long) 5e3;
@@ -192,7 +192,7 @@ public class BasicDataFileStore extends AbstractFileStore
     }
 
     /** Holds information for entries in the cache database. */
-    protected static class DBEntry implements Cacheable
+    protected static class DBEntry : Cacheable
     {
         protected final static int NONE = 0;
         protected final static int PENDING = 1;
@@ -458,7 +458,7 @@ public class BasicDataFileStore extends AbstractFileStore
             WorldWind.getRetrievalService().runRetriever(retriever);
     }
 
-    protected class PostProcessor extends AbstractRetrievalPostProcessor
+    protected class PostProcessor : AbstractRetrievalPostProcessor
     {
         protected String address;
         protected URL retrievalUrl;

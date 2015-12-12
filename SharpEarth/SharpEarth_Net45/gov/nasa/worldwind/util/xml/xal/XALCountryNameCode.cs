@@ -10,7 +10,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALCountryNameCode.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALCountryNameCode extends XALAbstractObject
+public class XALCountryNameCode : XALAbstractObject
 {
     public XALCountryNameCode(String namespaceURI)
     {

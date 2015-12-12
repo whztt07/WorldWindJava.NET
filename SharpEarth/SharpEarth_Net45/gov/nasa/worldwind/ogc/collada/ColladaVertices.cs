@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaVertices.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaVertices extends ColladaAbstractObject
+public class ColladaVertices : ColladaAbstractObject
 {
     /** Inputs to the vertices element. */
     protected List<ColladaInput> inputs = new ArrayList<ColladaInput>();

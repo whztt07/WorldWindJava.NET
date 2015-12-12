@@ -12,7 +12,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: ScreenCredit.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface ScreenCredit extends Renderable
+public interface ScreenCredit : Renderable
 {
     void setViewport(Rectangle viewport);
 

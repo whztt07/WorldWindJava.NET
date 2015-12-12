@@ -26,7 +26,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author pabercrombie
  * @version $Id: KMLModelPlacemarkImpl.java 1838 2014-02-05 20:48:12Z dcollins $
  */
-public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable, ColladaResourceResolver
+public class KMLModelPlacemarkImpl : WWObjectImpl , KMLRenderable, ColladaResourceResolver
 {
     /** Model rendered by this class. */
     protected KMLModel model;
@@ -321,7 +321,7 @@ public class KMLModelPlacemarkImpl extends WWObjectImpl implements KMLRenderable
     }
 
     /** Attempts to find this model link resource file locally, and if that fails attempts to find it remotely. */
-    protected static class RequestTask implements Runnable
+    protected static class RequestTask : Runnable
     {
         /** The link associated with this request. */
         protected final KMLModelPlacemarkImpl placemark;

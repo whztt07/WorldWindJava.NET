@@ -9,7 +9,7 @@ namespace SharpEarth.formats.nitfs{
  * @author Lado Garakanidze
  * @version $Id: NITFSReservedExtensionSegment.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class NITFSReservedExtensionSegment extends NITFSSegment
+public class NITFSReservedExtensionSegment : NITFSSegment
 {
     public NITFSReservedExtensionSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength, int dataStartOffset, int dataLength)
     {

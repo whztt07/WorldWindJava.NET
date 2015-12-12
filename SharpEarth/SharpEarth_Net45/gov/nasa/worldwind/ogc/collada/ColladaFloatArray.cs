@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaFloatArray.java 662 2012-06-26 19:05:46Z pabercrombie $
  */
-public class ColladaFloatArray extends ColladaAbstractObject
+public class ColladaFloatArray : ColladaAbstractObject
 {
     /** Floats parsed from this element. */
     protected float[] floats;

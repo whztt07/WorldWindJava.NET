@@ -31,7 +31,7 @@ namespace SharpEarth.render{
  *
  * @version $Id: SurfaceImage.java 3419 2015-08-28 00:09:50Z dcollins $
  */
-public class SurfaceImage extends WWObjectImpl
+public class SurfaceImage : WWObjectImpl
     implements SurfaceTile, OrderedRenderable, PreRenderable, Movable, Disposable, Exportable
 {
     // TODO: Handle date-line spanning sectors

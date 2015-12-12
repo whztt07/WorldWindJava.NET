@@ -16,7 +16,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: OrbitViewLimits.java 2253 2014-08-22 16:33:46Z dcollins $
  */
-public interface OrbitViewLimits extends ViewPropertyLimits
+public interface OrbitViewLimits : ViewPropertyLimits
 {
     /**
      * Returns the Sector which limits the orbit view center latitude and longitude.

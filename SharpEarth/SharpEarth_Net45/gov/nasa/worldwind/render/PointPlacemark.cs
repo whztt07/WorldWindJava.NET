@@ -46,7 +46,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: PointPlacemark.java 3028 2015-04-17 00:10:19Z tgaskins $
  */
-public class PointPlacemark extends WWObjectImpl
+public class PointPlacemark : WWObjectImpl
     implements Renderable, Locatable, Movable, Highlightable, Exportable
 {
     /**
@@ -95,7 +95,7 @@ public class PointPlacemark extends WWObjectImpl
         defaultAttributes.setLabelScale(PointPlacemarkAttributes.DEFAULT_LABEL_SCALE);
     }
 
-    public class OrderedPlacemark implements OrderedRenderable, Declutterable
+    public class OrderedPlacemark : OrderedRenderable, Declutterable
     {
         protected Vec4 placePoint; // the Cartesian point corresponding to the placemark position
         protected Vec4 terrainPoint; // point on the terrain extruded from the placemark position.

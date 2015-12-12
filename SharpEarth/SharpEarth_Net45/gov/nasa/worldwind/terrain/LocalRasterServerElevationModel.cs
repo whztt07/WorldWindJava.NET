@@ -22,7 +22,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: LocalRasterServerElevationModel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class LocalRasterServerElevationModel extends BasicElevationModel
+public class LocalRasterServerElevationModel : BasicElevationModel
 {
     /**
      * Constructs an elevation model from a list of parameters describing the elevation model.

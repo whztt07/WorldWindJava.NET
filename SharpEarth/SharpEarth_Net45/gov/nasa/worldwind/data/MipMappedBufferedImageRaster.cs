@@ -12,7 +12,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: MipMappedBufferedImageRaster.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class MipMappedBufferedImageRaster extends BufferedImageRaster
+public class MipMappedBufferedImageRaster : BufferedImageRaster
 {
     protected BufferedImageRaster[] levelRasters;
 

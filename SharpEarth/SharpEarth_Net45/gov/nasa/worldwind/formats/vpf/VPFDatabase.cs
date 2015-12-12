@@ -20,7 +20,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFDatabase.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFDatabase extends AVListImpl
+public class VPFDatabase : AVListImpl
 {
     private String filePath;
     private Map<String, VPFLibrary> libraryMap = new HashMap<String, VPFLibrary>();

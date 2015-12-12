@@ -14,7 +14,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: GeographicSurfaceTileRenderer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GeographicSurfaceTileRenderer extends SurfaceTileRenderer
+public class GeographicSurfaceTileRenderer : SurfaceTileRenderer
 {
     private double sgWidth;
     private double sgHeight;

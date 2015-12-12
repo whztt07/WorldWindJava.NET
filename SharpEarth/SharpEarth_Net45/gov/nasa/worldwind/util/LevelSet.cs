@@ -16,7 +16,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: LevelSet.java 2060 2014-06-18 03:19:17Z tgaskins $
  */
-public class LevelSet extends WWObjectImpl
+public class LevelSet : WWObjectImpl
 {
     public static final class SectorResolution
     {

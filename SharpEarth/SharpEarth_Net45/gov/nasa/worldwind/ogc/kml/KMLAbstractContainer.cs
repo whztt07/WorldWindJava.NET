@@ -22,7 +22,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAbstractContainer.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLAbstractContainer extends KMLAbstractFeature
+public class KMLAbstractContainer : KMLAbstractFeature
 {
     protected ArrayList<KMLAbstractFeature> features = new ArrayList<KMLAbstractFeature>();
 

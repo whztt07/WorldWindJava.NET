@@ -123,7 +123,7 @@ namespace SharpEarth.render{
  * @see AnnotationAttributes
  * @see AnnotationRenderer
  */
-public abstract class AbstractAnnotation extends AVListImpl implements Annotation
+public abstract class AbstractAnnotation : AVListImpl , Annotation
 {
     protected bool alwaysOnTop;
     protected bool pickEnabled;

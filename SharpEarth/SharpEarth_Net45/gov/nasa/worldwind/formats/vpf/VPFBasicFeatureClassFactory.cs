@@ -15,7 +15,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFBasicFeatureClassFactory.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFBasicFeatureClassFactory implements VPFFeatureClassFactory
+public class VPFBasicFeatureClassFactory : VPFFeatureClassFactory
 {
     /** Constructs an instance of a VPFBasicCoverageFactory, but otherwise does nothing. */
     public VPFBasicFeatureClassFactory()

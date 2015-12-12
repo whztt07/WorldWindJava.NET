@@ -27,7 +27,7 @@ namespace SharpEarth.data{
  * @version $Id: GDALDataRaster.java 2678 2015-01-24 22:07:39Z tgaskins $
  */
 
-public class GDALDataRaster extends AbstractDataRaster implements Cacheable
+public class GDALDataRaster : AbstractDataRaster , Cacheable
 {
     protected Dataset dsVRT = null;
     protected SpatialReference srs;

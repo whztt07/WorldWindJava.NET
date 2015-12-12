@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaBindMaterial.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaBindMaterial extends ColladaAbstractObject
+public class ColladaBindMaterial : ColladaAbstractObject
 {
     /**
      * Construct an instance.

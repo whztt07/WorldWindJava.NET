@@ -19,7 +19,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: StringSetXMLEventParser.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public class StringSetXMLEventParser extends AbstractXMLEventParser implements Iterable<String>
+public class StringSetXMLEventParser : AbstractXMLEventParser , Iterable<String>
 {
     protected QName elementName;
     protected Set<String> strings = new HashSet<String>();

@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaInstanceNode.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public class ColladaInstanceNode extends ColladaAbstractInstance<ColladaNode> implements ColladaRenderable
+public class ColladaInstanceNode : ColladaAbstractInstance<ColladaNode> , ColladaRenderable
 {
     /**
      * Construct an instance.

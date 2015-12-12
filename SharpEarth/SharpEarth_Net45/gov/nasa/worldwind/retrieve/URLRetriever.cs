@@ -24,7 +24,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: URLRetriever.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class URLRetriever extends WWObjectImpl implements Retriever
+public abstract class URLRetriever : WWObjectImpl , Retriever
 {
     /**
      * Applications never need to use this constant. It provides compatibility with very old World Wind tile servers

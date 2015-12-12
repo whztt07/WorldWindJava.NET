@@ -15,7 +15,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: HTTPRetriever.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class HTTPRetriever extends URLRetriever
+public class HTTPRetriever : URLRetriever
 {
     private int responseCode;
     private String responseMessage;

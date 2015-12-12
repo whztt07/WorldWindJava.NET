@@ -13,7 +13,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaAbstractInstance.java 600 2012-05-17 22:57:25Z pabercrombie $
  */
-public abstract class ColladaAbstractInstance<T> extends ColladaAbstractObject
+public abstract class ColladaAbstractInstance<T> : ColladaAbstractObject
 {
     /** Resolved target of the link. */
     protected T instance;

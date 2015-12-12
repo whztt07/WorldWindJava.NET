@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaInstanceVisualScene.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public class ColladaInstanceVisualScene extends ColladaAbstractInstance<ColladaVisualScene> implements ColladaRenderable
+public class ColladaInstanceVisualScene : ColladaAbstractInstance<ColladaVisualScene> , ColladaRenderable
 {
     public ColladaInstanceVisualScene(String ns)
     {

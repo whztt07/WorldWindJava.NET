@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAbstractOverlay.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class KMLAbstractOverlay extends KMLAbstractFeature
+public abstract class KMLAbstractOverlay : KMLAbstractFeature
 {
     /**
      * Construct an instance.

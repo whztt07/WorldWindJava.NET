@@ -22,7 +22,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: BasicGLCapabilitiesChooser.java 1739 2013-12-04 03:38:19Z dcollins $
  */
-public class BasicGLCapabilitiesChooser extends DefaultGLCapabilitiesChooser
+public class BasicGLCapabilitiesChooser : DefaultGLCapabilitiesChooser
 {
     /** Constructs a new <code>BasicGLCapabilitiesChooser</code>, but otherwise does nothing. */
     public BasicGLCapabilitiesChooser()

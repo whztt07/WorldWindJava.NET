@@ -17,7 +17,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: BasicLightingModel.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicLightingModel implements LightingModel
+public class BasicLightingModel : LightingModel
 {
     protected OGLStackHandler lightingStackHandler = new OGLStackHandler();
     protected Vec4 lightDirection = new Vec4(1.0, 0.5, 1.0);

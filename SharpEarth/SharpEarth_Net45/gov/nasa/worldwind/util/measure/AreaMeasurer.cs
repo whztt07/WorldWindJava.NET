@@ -32,7 +32,7 @@ namespace SharpEarth.util.measure{
  * @see MeasureTool
  * @see LengthMeasurer
  */
-public class AreaMeasurer extends LengthMeasurer implements MeasurableArea
+public class AreaMeasurer : LengthMeasurer , MeasurableArea
 {
     private static final double DEFAULT_AREA_SAMPLING_STEPS = 32; // sampling grid max rows or cols
 

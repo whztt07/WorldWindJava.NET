@@ -19,7 +19,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: BasicOrbitView.java 2253 2014-08-22 16:33:46Z dcollins $
  */
-public class BasicOrbitView extends BasicView implements OrbitView
+public class BasicOrbitView : BasicView , OrbitView
 {
 
     protected Position center = Position.ZERO;

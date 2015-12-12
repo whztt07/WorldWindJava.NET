@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSLayerIdentifier.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSLayerIdentifier extends AbstractXMLEventParser
+public class WMSLayerIdentifier : AbstractXMLEventParser
 {
     protected String identifier;
     protected String authority;

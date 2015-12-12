@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLIconStyle.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLIconStyle extends KMLAbstractColorStyle
+public class KMLIconStyle : KMLAbstractColorStyle
 {
     /**
      * Construct an instance.

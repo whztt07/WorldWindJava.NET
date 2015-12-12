@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100Values.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100Values extends AbstractXMLEventParser
+public class WCS100Values : AbstractXMLEventParser
 {
     protected List<WCS100SingleValue> singleValues = new ArrayList<WCS100SingleValue>(1);
     private List<WCS100Interval> intervals = new ArrayList<WCS100Interval>(1);

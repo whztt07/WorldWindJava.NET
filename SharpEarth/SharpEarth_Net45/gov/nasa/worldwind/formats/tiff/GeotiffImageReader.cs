@@ -21,7 +21,7 @@ namespace SharpEarth.formats.tiff{
  * @author brownrigg
  * @version $Id: GeotiffImageReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GeotiffImageReader extends ImageReader
+public class GeotiffImageReader : ImageReader
 {
 
     public GeotiffImageReader(ImageReaderSpi provider)

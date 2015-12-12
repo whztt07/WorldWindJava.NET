@@ -27,7 +27,7 @@ namespace SharpEarth.render{
  * @see AbstractAnnotation
  * @see MultiLineTextRenderer
  */
-public class AnnotationAttributes implements Restorable
+public class AnnotationAttributes : Restorable
 {
     private static final AnnotationAttributes defaults = new AnnotationAttributes();
 

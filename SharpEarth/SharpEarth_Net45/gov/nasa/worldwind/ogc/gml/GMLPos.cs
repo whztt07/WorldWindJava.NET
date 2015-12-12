@@ -15,7 +15,7 @@ namespace SharpEarth.ogc.gml{
  * @author tag
  * @version $Id: GMLPos.java 2066 2014-06-20 20:41:46Z tgaskins $
  */
-public class GMLPos extends AbstractXMLEventParser
+public class GMLPos : AbstractXMLEventParser
 {
     public GMLPos(String namespaceURI)
     {

@@ -19,7 +19,7 @@ namespace SharpEarth.awt{
  * @author dcollins
  * @version $Id: AbstractViewInputHandler.java 2251 2014-08-21 21:17:46Z dcollins $
  */
-public abstract class AbstractViewInputHandler implements ViewInputHandler, java.beans.PropertyChangeListener
+public abstract class AbstractViewInputHandler : ViewInputHandler, java.beans.PropertyChangeListener
 {
     protected WorldWindow wwd;
     protected ViewInputAttributes attributes;

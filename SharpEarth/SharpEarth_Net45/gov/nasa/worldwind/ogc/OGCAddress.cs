@@ -18,7 +18,7 @@ namespace SharpEarth.ogc{
  * @author tag
  * @version $Id: OGCAddress.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OGCAddress extends AbstractXMLEventParser
+public class OGCAddress : AbstractXMLEventParser
 {
     protected QName ADDRESS_TYPE;
     protected QName ADDRESS;

@@ -27,7 +27,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: HighResolutionTerrain.java 3420 2015-09-10 23:25:43Z tgaskins $
  */
-public class HighResolutionTerrain extends WWObjectImpl implements Terrain
+public class HighResolutionTerrain : WWObjectImpl , Terrain
 {
     /** Holds a tile's geometry. It's heavyweight so cached when created to enable re-use. */
     protected static class RenderInfo

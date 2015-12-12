@@ -20,7 +20,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFCoverage.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFCoverage extends AVListImpl
+public class VPFCoverage : AVListImpl
 {
     private VPFLibrary library;
     private bool tiled;

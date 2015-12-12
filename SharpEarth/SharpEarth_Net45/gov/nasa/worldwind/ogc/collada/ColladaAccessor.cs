@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaAccessor.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaAccessor extends ColladaAbstractObject
+public class ColladaAccessor : ColladaAbstractObject
 {
     /** Parameters used by this accessor. */
     protected List<ColladaParam> parameters = new ArrayList<ColladaParam>();

@@ -17,7 +17,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: BasicClutterFilter.java 726 2012-08-29 03:16:03Z tgaskins $
  */
-public class BasicClutterFilter implements ClutterFilter
+public class BasicClutterFilter : ClutterFilter
 {
     protected List<Rectangle2D> rectList = new ArrayList<Rectangle2D>();
 

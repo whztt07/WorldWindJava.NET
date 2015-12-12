@@ -14,7 +14,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: BasicSceneController.java 2249 2014-08-21 20:13:30Z dcollins $
  */
-public class BasicSceneController extends AbstractSceneController
+public class BasicSceneController : AbstractSceneController
 {
     SectorGeometryList sglC, sglL, sglR;
     Sector visibleSectorC, visibleSectorL, visibleSectorR;

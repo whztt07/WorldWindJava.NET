@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLNetworkLinkControl.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLNetworkLinkControl extends AbstractXMLEventParser
+public class KMLNetworkLinkControl : AbstractXMLEventParser
 {
     public KMLNetworkLinkControl(String namespaceURI)
     {

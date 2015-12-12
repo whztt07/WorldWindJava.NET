@@ -22,7 +22,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: BasicShapeAttributes.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicShapeAttributes implements ShapeAttributes
+public class BasicShapeAttributes : ShapeAttributes
 {
     /** Indicates whether or not some of the shape's attributes are unresolved. Initially <code>false</code>. */
     protected bool unresolved;

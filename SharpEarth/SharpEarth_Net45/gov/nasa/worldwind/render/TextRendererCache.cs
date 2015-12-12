@@ -14,7 +14,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: TextRendererCache.java 2053 2014-06-10 20:16:57Z tgaskins $
  */
-public class TextRendererCache implements Disposable
+public class TextRendererCache : Disposable
 {
     public static class CacheKey
     {

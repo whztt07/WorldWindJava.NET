@@ -19,7 +19,7 @@ namespace SharpEarth.data{
  * @version $Id: GDALDataRasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
 
-public class GDALDataRasterReader extends AbstractDataRasterReader
+public class GDALDataRasterReader : AbstractDataRasterReader
 {
     // Extract list of mime types supported by GDAL
     protected static final String[] mimeTypes = new String[] {

@@ -25,7 +25,7 @@ namespace SharpEarth.data{
  * @author Lado Garakanidze
  * @version $Id: CachedDataRaster.java 3037 2015-04-17 23:08:47Z tgaskins $
  */
-public class CachedDataRaster extends AVListImpl implements DataRaster
+public class CachedDataRaster : AVListImpl , DataRaster
 {
     protected enum ErrorHandlerMode
     {
@@ -410,7 +410,7 @@ public class CachedDataRaster extends AVListImpl implements DataRaster
         }
     }
 
-    private static class CacheListener implements MemoryCache.CacheListener
+    private static class CacheListener : MemoryCache.CacheListener
     {
         private Object key;
 

@@ -14,7 +14,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: UnrecognizedXMLEventParser.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public class UnrecognizedXMLEventParser extends AbstractXMLEventParser
+public class UnrecognizedXMLEventParser : AbstractXMLEventParser
 {
     public UnrecognizedXMLEventParser()
     {

@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLVec2.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLVec2 extends KMLAbstractObject
+public class KMLVec2 : KMLAbstractObject
 {
     protected Double x;
     protected Double y;

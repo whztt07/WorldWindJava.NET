@@ -12,7 +12,7 @@ namespace SharpEarth.formats.rpf{
  * @author Lado Garakanidze
  * @version $Id: RPFUserDefinedHeaderSegment.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class RPFUserDefinedHeaderSegment extends NITFSUserDefinedHeaderSegment
+public class RPFUserDefinedHeaderSegment : NITFSUserDefinedHeaderSegment
 {
     private RPFFileComponents components;
 

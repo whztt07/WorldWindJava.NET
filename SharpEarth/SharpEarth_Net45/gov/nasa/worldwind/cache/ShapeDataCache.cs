@@ -25,9 +25,9 @@ namespace SharpEarth.cache{
  * @author tag
  * @version $Id: ShapeDataCache.java 2152 2014-07-16 00:00:33Z tgaskins $
  */
-public class ShapeDataCache implements Iterable<ShapeDataCache.ShapeDataCacheEntry>
+public class ShapeDataCache : Iterable<ShapeDataCache.ShapeDataCacheEntry>
 {
-    public static class ShapeDataCacheEntry extends AVListImpl
+    public static class ShapeDataCacheEntry : AVListImpl
     {
         /** Determines whether the cache entry has expired. */
         protected TimedExpirySupport timer;

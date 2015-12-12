@@ -30,7 +30,7 @@ namespace SharpEarth.data{
  * BasicRasterServer maintains a list of data sources and their properties in the BasicRasterServerCache and is used to
  * compose (mosaic) a data raster of the given region of interest from data sources.
  */
-public class BasicRasterServer extends WWObjectImpl implements RasterServer
+public class BasicRasterServer : WWObjectImpl , RasterServer
 {
     protected java.util.List<DataRaster> dataRasterList = new java.util.ArrayList<DataRaster>();
 

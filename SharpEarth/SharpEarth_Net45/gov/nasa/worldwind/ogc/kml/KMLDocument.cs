@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLDocument.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLDocument extends KMLAbstractContainer
+public class KMLDocument : KMLAbstractContainer
 {
     protected List<KMLSchema> schemas = new ArrayList<KMLSchema>();
 

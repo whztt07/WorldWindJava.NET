@@ -81,7 +81,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: Path.java 3032 2015-04-17 17:53:35Z dcollins $
  */
-public class Path extends AbstractShape
+public class Path : AbstractShape
 {
     /** The default interior color. */
     protected static final Material DEFAULT_INTERIOR_MATERIAL = Material.PINK;
@@ -133,7 +133,7 @@ public class Path extends AbstractShape
      * distinct globe that this shape encounters in calls to {@link AbstractShape#render(DrawContext)}. See {@link
      * AbstractShape}.
      */
-    protected static class PathData extends AbstractShapeData
+    protected static class PathData : AbstractShapeData
     {
         /** The positions formed from applying path type and terrain conformance. */
         protected ArrayList<Position> tessellatedPositions;
@@ -418,7 +418,7 @@ public class Path extends AbstractShape
      * PickedObject that specifies the picked Path. If a position point is picked, the PickedObject's AVList contains
      * the position and ordinal number of the picked position.
      */
-    protected static class PathPickSupport extends PickSupport
+    protected static class PathPickSupport : PickSupport
     {
         // TODO: Replace this subclass with usage of PickSupport.addPickableObjectRange.
         // TODO: Take care to retain the behavior in doResolvePick below that merges multiple picks from a single path.

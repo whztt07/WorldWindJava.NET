@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id$
  */
-public class ColladaLines extends ColladaAbstractGeometry
+public class ColladaLines : ColladaAbstractGeometry
 {
     /**
      * Construct an instance.

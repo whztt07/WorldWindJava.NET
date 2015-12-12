@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.kml.io{
  * @author tag
  * @version $Id: KMLInputStream.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLInputStream implements KMLDoc
+public class KMLInputStream : KMLDoc
 {
     /** The {@link InputStream} specified to the constructor. */
     protected InputStream inputStream;

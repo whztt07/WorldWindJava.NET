@@ -20,7 +20,7 @@ namespace SharpEarth.ogc.wms{
  * @author tag
  * @version $Id: WMSCapabilityInformation.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class WMSCapabilityInformation extends OGCCapabilityInformation
+public class WMSCapabilityInformation : OGCCapabilityInformation
 {
     private static final String[] rNames = new String[]
         {

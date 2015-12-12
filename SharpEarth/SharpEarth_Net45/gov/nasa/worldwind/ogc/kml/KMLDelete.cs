@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLDelete.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLDelete extends AbstractXMLEventParser implements KMLUpdateOperation
+public class KMLDelete : AbstractXMLEventParser , KMLUpdateOperation
 {
     protected List<KMLAbstractFeature> features = new ArrayList<KMLAbstractFeature>();
 

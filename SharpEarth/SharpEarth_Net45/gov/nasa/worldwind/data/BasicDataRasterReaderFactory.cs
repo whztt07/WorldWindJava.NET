@@ -30,7 +30,7 @@ namespace SharpEarth.data{
  * @author tag
  * @version $Id: BasicDataRasterReaderFactory.java 1511 2013-07-17 17:34:00Z dcollins $
  */
-public class BasicDataRasterReaderFactory implements DataRasterReaderFactory
+public class BasicDataRasterReaderFactory : DataRasterReaderFactory
 {
     /** The default list of readers. */
     protected DataRasterReader[] readers = new DataRasterReader[]

@@ -1096,7 +1096,7 @@ public class VecBuffer
     //********************  Iterators  *****************************//
     //**************************************************************//
 
-    protected class BasicIterator<T> implements Iterator<T>
+    protected class BasicIterator<T> : Iterator<T>
     {
         protected int position;
         protected final int size;
@@ -1134,7 +1134,7 @@ public class VecBuffer
         }
     }
 
-    protected class ReverseIterator<T> implements Iterator<T>
+    protected class ReverseIterator<T> : Iterator<T>
     {
         protected int position;
         protected ElementAccessor<T> accessor;
@@ -1175,7 +1175,7 @@ public class VecBuffer
         T getElement(int position);
     }
 
-    protected class CoordAccessor implements ElementAccessor<double[]>
+    protected class CoordAccessor : ElementAccessor<double[]>
     {
         private int numCoords;
 
@@ -1194,7 +1194,7 @@ public class VecBuffer
         }
     }
 
-    protected class VectorAccessor implements ElementAccessor<Vec4>
+    protected class VectorAccessor : ElementAccessor<Vec4>
     {
         public Vec4 getElement(int position)
         {
@@ -1202,7 +1202,7 @@ public class VecBuffer
         }
     }
 
-    protected class LocationAccessor implements ElementAccessor<LatLon>
+    protected class LocationAccessor : ElementAccessor<LatLon>
     {
         public LatLon getElement(int position)
         {
@@ -1210,7 +1210,7 @@ public class VecBuffer
         }
     }
 
-    protected class PositionAccessor implements ElementAccessor<Position>
+    protected class PositionAccessor : ElementAccessor<Position>
     {
         public Position getElement(int position)
         {

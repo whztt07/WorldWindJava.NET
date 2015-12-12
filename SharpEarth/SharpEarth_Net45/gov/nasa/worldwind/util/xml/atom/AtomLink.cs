@@ -18,7 +18,7 @@ namespace SharpEarth.util.xml.atom{
  * @author tag
  * @version $Id: AtomLink.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class AtomLink extends AtomAbstractObject
+public class AtomLink : AtomAbstractObject
 {
     public AtomLink(String namespaceURI)
     {

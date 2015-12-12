@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml.io{
  * @author tag
  * @version $Id: KMZInputStream.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMZInputStream implements KMLDoc
+public class KMZInputStream : KMLDoc
 {
     /** The zip stream created for the specified input stream. */
     protected ZipInputStream zipStream;

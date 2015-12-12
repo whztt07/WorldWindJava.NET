@@ -994,7 +994,7 @@ public class TextRenderer {
                                     int x, int y);
     }
 
-    private static class CharSequenceIterator implements CharacterIterator {
+    private static class CharSequenceIterator : CharacterIterator {
         CharSequence mSequence;
         int mLength;
         int mCurrentIndex;
@@ -1153,7 +1153,7 @@ public class TextRenderer {
         }
     }
 
-    class Manager implements BackingStoreManager {
+    class Manager : BackingStoreManager {
         private Graphics2D g;
 
         @Override
@@ -1336,7 +1336,7 @@ public class TextRenderer {
         }
     }
 
-    public static class DefaultRenderDelegate implements RenderDelegate {
+    public static class DefaultRenderDelegate : RenderDelegate {
         @Override
         public bool intensityOnly() {
             return true;
@@ -1914,7 +1914,7 @@ public class TextRenderer {
         }
     }
 
-    class DebugListener implements GLEventListener {
+    class DebugListener : GLEventListener {
         private GLU glu;
         private Frame frame;
 

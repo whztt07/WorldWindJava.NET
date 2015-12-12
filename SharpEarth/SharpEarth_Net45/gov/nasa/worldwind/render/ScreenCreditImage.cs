@@ -14,7 +14,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: ScreenCreditImage.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ScreenCreditImage extends ScreenImage implements ScreenCredit
+public class ScreenCreditImage : ScreenImage , ScreenCredit
 {
     private String name;
     private String link;

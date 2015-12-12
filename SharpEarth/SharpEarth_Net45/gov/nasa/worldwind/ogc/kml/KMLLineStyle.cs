@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLLineStyle.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLLineStyle extends KMLAbstractColorStyle
+public class KMLLineStyle : KMLAbstractColorStyle
 {
     public KMLLineStyle(String namespaceURI)
     {

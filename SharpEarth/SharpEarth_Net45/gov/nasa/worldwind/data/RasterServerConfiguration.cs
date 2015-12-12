@@ -21,9 +21,9 @@ namespace SharpEarth.data{
  * @author tag
  * @version $Id: RasterServerConfiguration.java 2813 2015-02-18 23:35:24Z tgaskins $
  */
-public class RasterServerConfiguration extends AbstractXMLEventParser
+public class RasterServerConfiguration : AbstractXMLEventParser
 {
-    protected static class Property extends AbstractXMLEventParser
+    protected static class Property : AbstractXMLEventParser
     {
         public Property(String namespaceURI)
         {
@@ -41,7 +41,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
         }
     }
 
-    protected static class RasterSector extends AbstractXMLEventParser
+    protected static class RasterSector : AbstractXMLEventParser
     {
         public RasterSector(String namespaceURI)
         {
@@ -68,7 +68,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
         }
     }
 
-    protected static class Corner extends AbstractXMLEventParser
+    protected static class Corner : AbstractXMLEventParser
     {
         public Corner(String namespaceURI)
         {
@@ -76,7 +76,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
         }
     }
 
-    public static class Source extends AbstractXMLEventParser
+    public static class Source : AbstractXMLEventParser
     {
         public Source(String namespaceURI)
         {
@@ -99,7 +99,7 @@ public class RasterServerConfiguration extends AbstractXMLEventParser
         }
     }
 
-    protected static class Sources extends AbstractXMLEventParser
+    protected static class Sources : AbstractXMLEventParser
     {
         protected ArrayList<Source> sources = new ArrayList<Source>();
 

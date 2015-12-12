@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id$
  */
-public class WCS100ContentMetadata extends AbstractXMLEventParser
+public class WCS100ContentMetadata : AbstractXMLEventParser
 {
     protected List<WCS100CoverageOfferingBrief> coverageOfferings = new ArrayList<WCS100CoverageOfferingBrief>(1);
 

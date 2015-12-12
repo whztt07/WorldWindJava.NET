@@ -19,7 +19,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: ImageIORasterReader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ImageIORasterReader extends AbstractDataRasterReader
+public class ImageIORasterReader : AbstractDataRasterReader
 {
     static
     {

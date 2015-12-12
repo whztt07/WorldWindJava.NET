@@ -16,7 +16,7 @@ namespace SharpEarth.formats.vpf{
  * @author Patrick Murris
  * @version $Id: VPFSymbolAttributes.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFSymbolAttributes extends BasicShapeAttributes
+public class VPFSymbolAttributes : BasicShapeAttributes
 {
     public static class LabelAttributes
     {

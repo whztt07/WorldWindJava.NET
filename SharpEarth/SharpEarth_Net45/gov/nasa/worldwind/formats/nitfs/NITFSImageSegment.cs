@@ -14,7 +14,7 @@ namespace SharpEarth.formats.nitfs{
  * @author Lado Garakanidze
  * @version $Id: NITFSImageSegment.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class NITFSImageSegment extends NITFSSegment
+public class NITFSImageSegment : NITFSSegment
 {
     public static final String[] SupportedFormats = { "CIB", "CADRG", "ADRG" };
     // [ nitf identification , security, structure fields]

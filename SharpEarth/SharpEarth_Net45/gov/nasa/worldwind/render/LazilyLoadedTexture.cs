@@ -35,7 +35,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: LazilyLoadedTexture.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class LazilyLoadedTexture extends AVListImpl implements WWTexture
+public class LazilyLoadedTexture : AVListImpl , WWTexture
 {
     /** The original image source specified at construction. */
     protected Object imageSource;
@@ -535,7 +535,7 @@ public class LazilyLoadedTexture extends AVListImpl implements WWTexture
     }
 
     /** Attempts to find this texture's image file locally, and if that fails attempts to find it remotely. */
-    protected static class RequestTask implements Runnable
+    protected static class RequestTask : Runnable
     {
         /** The BasicWWTexture associated with this request. */
         protected final LazilyLoadedTexture wwTexture;

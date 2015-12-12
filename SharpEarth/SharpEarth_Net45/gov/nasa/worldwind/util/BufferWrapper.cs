@@ -426,7 +426,7 @@ public abstract class BufferWrapper
     //********************  BufferWrapper Implementations  *********//
     //**************************************************************//
 
-    public abstract static class AbstractBufferWrapper<T extends Buffer> extends BufferWrapper
+    public abstract static class AbstractBufferWrapper<T : Buffer> : BufferWrapper
     {
         protected T buffer;
 
@@ -789,7 +789,7 @@ public abstract class BufferWrapper
         protected abstract bool doPutSubBuffer(int index, BufferWrapper buffer, int offset, int length);
     }
 
-    public static class ByteBufferWrapper extends BufferWrapper.AbstractBufferWrapper<ByteBuffer>
+    public static class ByteBufferWrapper : BufferWrapper.AbstractBufferWrapper<ByteBuffer>
     {
         public ByteBufferWrapper(ByteBuffer buffer)
         {
@@ -1010,7 +1010,7 @@ public abstract class BufferWrapper
         }
     }
 
-    public static class ShortBufferWrapper extends AbstractBufferWrapper<ShortBuffer>
+    public static class ShortBufferWrapper : AbstractBufferWrapper<ShortBuffer>
     {
         public ShortBufferWrapper(ShortBuffer buffer)
         {
@@ -1231,7 +1231,7 @@ public abstract class BufferWrapper
         }
     }
 
-    public static class IntBufferWrapper extends AbstractBufferWrapper<IntBuffer>
+    public static class IntBufferWrapper : AbstractBufferWrapper<IntBuffer>
     {
         public IntBufferWrapper(IntBuffer buffer)
         {
@@ -1452,7 +1452,7 @@ public abstract class BufferWrapper
         }
     }
 
-    public static class FloatBufferWrapper extends AbstractBufferWrapper<FloatBuffer>
+    public static class FloatBufferWrapper : AbstractBufferWrapper<FloatBuffer>
     {
         public FloatBufferWrapper(FloatBuffer buffer)
         {
@@ -1673,7 +1673,7 @@ public abstract class BufferWrapper
         }
     }
 
-    public static class DoubleBufferWrapper extends AbstractBufferWrapper<DoubleBuffer>
+    public static class DoubleBufferWrapper : AbstractBufferWrapper<DoubleBuffer>
     {
         public DoubleBufferWrapper(DoubleBuffer buffer)
         {
@@ -1900,7 +1900,7 @@ public abstract class BufferWrapper
 
     protected static final BufferWrapper EMPTY_BUFFER_WRAPPER = new EmptyBufferWrapper();
 
-    protected static class EmptyBufferWrapper extends BufferWrapper
+    protected static class EmptyBufferWrapper : BufferWrapper
     {
         public int length()
         {

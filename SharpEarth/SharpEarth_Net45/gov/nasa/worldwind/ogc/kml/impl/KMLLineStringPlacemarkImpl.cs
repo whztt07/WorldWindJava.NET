@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author tag
  * @version $Id: KMLLineStringPlacemarkImpl.java 2151 2014-07-15 17:12:46Z tgaskins $
  */
-public class KMLLineStringPlacemarkImpl extends Path implements KMLRenderable
+public class KMLLineStringPlacemarkImpl : Path , KMLRenderable
 {
     protected final KMLAbstractFeature parent;
     protected bool highlightAttributesResolved = false;

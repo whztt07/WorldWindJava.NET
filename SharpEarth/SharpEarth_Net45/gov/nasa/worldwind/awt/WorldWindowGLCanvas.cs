@@ -53,7 +53,7 @@ namespace SharpEarth.awt{
  * @author Tom Gaskins
  * @version $Id: WorldWindowGLCanvas.java 2924 2015-03-26 01:32:02Z tgaskins $
  */
-public class WorldWindowGLCanvas extends GLCanvas implements WorldWindow, PropertyChangeListener
+public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListener
 {
     /** The drawable to which {@link WorldWindow} methods are delegated. */
     protected final WorldWindowGLDrawable wwd; // WorldWindow interface delegates to wwd

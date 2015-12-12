@@ -17,7 +17,7 @@ namespace SharpEarth.ogc.collada{
  * @author jfb
  * @version $Id: ColladaParserContext.java 644 2012-06-14 20:07:17Z pabercrombie $
  */
-public class ColladaParserContext extends BasicXMLEventParserContext
+public class ColladaParserContext : BasicXMLEventParserContext
 {
     /** The key used to identify the coordinates parser in the parser context's parser map. */
     protected static QName COORDINATES = new QName("Coordinates");

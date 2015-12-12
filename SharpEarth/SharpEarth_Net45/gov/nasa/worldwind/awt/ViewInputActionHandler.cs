@@ -11,7 +11,7 @@ namespace SharpEarth.awt{
  * @author jym
  * @version $Id: ViewInputActionHandler.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class ViewInputActionHandler implements KeyInputActionHandler, MouseInputActionHandler
+public class ViewInputActionHandler : KeyInputActionHandler, MouseInputActionHandler
 {
     public bool inputActionPerformed(AbstractViewInputHandler inputHandler, KeyEventState keys, String target,
         ViewInputAttributes.ActionAttributes viewAction)

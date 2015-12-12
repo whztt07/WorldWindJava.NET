@@ -17,7 +17,7 @@ namespace SharpEarth.util.gdal{
  * @version $Id: GDALAbstractFileFilter.java 1171 2013-02-11 21:45:02Z dcollins $
  */
 
-abstract class GDALAbstractFileFilter implements java.io.FileFilter
+abstract class GDALAbstractFileFilter : java.io.FileFilter
 {
     protected HashSet<String> listFolders = new HashSet<String>();
     protected final String searchPattern;

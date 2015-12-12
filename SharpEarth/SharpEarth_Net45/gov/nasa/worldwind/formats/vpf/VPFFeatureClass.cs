@@ -13,7 +13,7 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFFeatureClass.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class VPFFeatureClass extends AVListImpl
+public class VPFFeatureClass : AVListImpl
 {
     protected VPFCoverage coverage;
     protected VPFFeatureClassSchema schema;

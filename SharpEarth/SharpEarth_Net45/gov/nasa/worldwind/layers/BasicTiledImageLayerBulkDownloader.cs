@@ -28,7 +28,7 @@ namespace SharpEarth.layers{
  * @author tag
  * @version $Id: BasicTiledImageLayerBulkDownloader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
+public class BasicTiledImageLayerBulkDownloader : BulkRetrievalThread
 {
     protected final static int MAX_TILE_COUNT_PER_REGION = 200;
     protected final static long DEFAULT_AVERAGE_FILE_SIZE = 350000L;
@@ -181,7 +181,7 @@ public class BasicTiledImageLayerBulkDownloader extends BulkRetrievalThread
         return new BulkDownloadPostProcessor(tile, this.layer, this.fileStore);
     }
 
-    protected class BulkDownloadPostProcessor extends BasicTiledImageLayer.DownloadPostProcessor
+    protected class BulkDownloadPostProcessor : BasicTiledImageLayer.DownloadPostProcessor
     {
         public BulkDownloadPostProcessor(TextureTile tile, BasicTiledImageLayer layer, FileStore fileStore)
         {

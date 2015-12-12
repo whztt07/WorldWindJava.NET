@@ -12,7 +12,7 @@ namespace SharpEarth.view.orbit{
  * @author dcollins
  * @version $Id: OrbitView.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface OrbitView extends View
+public interface OrbitView : View
 {
      /**
      * Returns whether the this <code>View</code> will detect collisions with other objects,

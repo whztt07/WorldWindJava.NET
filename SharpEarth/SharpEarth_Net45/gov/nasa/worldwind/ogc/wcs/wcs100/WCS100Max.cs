@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100Max.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100Max extends AbstractXMLEventParser
+public class WCS100Max : AbstractXMLEventParser
 {
     public WCS100Max(String namespaceURI)
     {

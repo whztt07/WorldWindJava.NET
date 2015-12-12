@@ -16,7 +16,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id: WCS100RequestDescription.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class WCS100RequestDescription extends AbstractXMLEventParser
+public class WCS100RequestDescription : AbstractXMLEventParser
 {
     protected String requestName;
     protected List<WCS100DCPType> dcpTypes = new ArrayList<WCS100DCPType>(2);

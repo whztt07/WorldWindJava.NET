@@ -20,7 +20,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: BasicRetrievalService.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public sealed class BasicRetrievalService extends WWObjectImpl
+public sealed class BasicRetrievalService : WWObjectImpl
     implements RetrievalService, Thread.UncaughtExceptionHandler
 {
     // These constants are last-ditch values in case Configuration lacks defaults
@@ -39,7 +39,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
     private int queueSize; // maximum queue size
 
     /** Encapsulates a single threaded retrieval as a {@link java.util.concurrent.FutureTask}. */
-    private static class RetrievalTask extends FutureTask<Retriever>
+    private static class RetrievalTask : FutureTask<Retriever>
         implements RetrievalFuture, Comparable<RetrievalTask>
     {
         private Retriever retriever;
@@ -140,7 +140,7 @@ public sealed class BasicRetrievalService extends WWObjectImpl
             thread.getName()));
     }
 
-    private class RetrievalExecutor extends ThreadPoolExecutor
+    private class RetrievalExecutor : ThreadPoolExecutor
     {
         private static final long THREAD_TIMEOUT = 2; // keep idle threads alive this many seconds
         private long staleRequestLimit; // reject requests older than this

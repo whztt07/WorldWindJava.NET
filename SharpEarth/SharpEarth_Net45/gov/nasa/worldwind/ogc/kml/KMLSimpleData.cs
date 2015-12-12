@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLSimpleData.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLSimpleData extends AbstractXMLEventParser
+public class KMLSimpleData : AbstractXMLEventParser
 {
     /**
      * Construct an instance.

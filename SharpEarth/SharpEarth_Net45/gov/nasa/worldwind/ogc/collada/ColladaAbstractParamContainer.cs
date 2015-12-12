@@ -14,7 +14,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaAbstractParamContainer.java 654 2012-06-25 04:15:52Z pabercrombie $
  */
-public class ColladaAbstractParamContainer extends ColladaAbstractObject
+public class ColladaAbstractParamContainer : ColladaAbstractObject
 {
     /** Named <i>newparam</i> elements in the container. */
     protected Map<String, ColladaNewParam> newParams;

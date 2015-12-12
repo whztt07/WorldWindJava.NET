@@ -18,7 +18,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: DeclutterableText.java 704 2012-07-21 03:16:21Z tgaskins $
  */
-public class DeclutterableText implements Declutterable
+public class DeclutterableText : Declutterable
 {
     protected GeographicText text;
     protected Vec4 point;

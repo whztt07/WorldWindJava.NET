@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author tag
  * @version $Id: KMLExtrudedPolygonImpl.java 2151 2014-07-15 17:12:46Z tgaskins $
  */
-public class KMLExtrudedPolygonImpl extends ExtrudedPolygon implements KMLRenderable
+public class KMLExtrudedPolygonImpl : ExtrudedPolygon , KMLRenderable
 {
     protected final KMLAbstractFeature parent;
     protected bool highlightAttributesResolved = false;

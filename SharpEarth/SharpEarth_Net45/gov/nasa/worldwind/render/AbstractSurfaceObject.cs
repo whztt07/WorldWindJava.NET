@@ -42,7 +42,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: AbstractSurfaceObject.java 3240 2015-06-22 23:38:49Z tgaskins $
  */
-public abstract class AbstractSurfaceObject extends WWObjectImpl implements SurfaceObject
+public abstract class AbstractSurfaceObject : WWObjectImpl , SurfaceObject
 {
     // Public interface properties.
     protected bool visible;
@@ -775,7 +775,7 @@ public abstract class AbstractSurfaceObject extends WWObjectImpl implements Surf
      * live longer than the surface object that created it, the StateKey does not prevent the object from being garbage
      * collected.
      */
-    protected static class SurfaceObjectStateKey implements Cacheable
+    protected static class SurfaceObjectStateKey : Cacheable
     {
         /** The SurfaceObject's unique ID. This is unique to all instances of SurfaceObject. */
         protected final long uniqueId;

@@ -17,7 +17,7 @@ namespace SharpEarth.util.xml{
  * @author tag
  * @version $Id: StringListXMLEventParser.java 2061 2014-06-19 19:59:40Z tgaskins $
  */
-public class StringListXMLEventParser extends AbstractXMLEventParser implements Iterable<String>
+public class StringListXMLEventParser : AbstractXMLEventParser , Iterable<String>
 {
     protected QName elementName;
     protected List<String> strings = new ArrayList<String>();

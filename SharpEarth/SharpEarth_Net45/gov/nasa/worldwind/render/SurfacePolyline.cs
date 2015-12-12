@@ -23,7 +23,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: SurfacePolyline.java 2406 2014-10-29 23:39:29Z dcollins $
  */
-public class SurfacePolyline extends AbstractSurfaceShape implements Exportable
+public class SurfacePolyline : AbstractSurfaceShape , Exportable
 {
     protected bool closed;
     protected Iterable<? extends LatLon> locations;

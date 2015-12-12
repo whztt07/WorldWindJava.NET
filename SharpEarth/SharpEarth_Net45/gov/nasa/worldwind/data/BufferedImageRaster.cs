@@ -21,7 +21,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: BufferedImageRaster.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BufferedImageRaster extends AbstractDataRaster implements Cacheable, Disposable
+public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
 {
     private java.awt.image.BufferedImage bufferedImage;
     private java.awt.Graphics2D g2d;

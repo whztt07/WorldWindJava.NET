@@ -19,7 +19,7 @@ namespace SharpEarth.retrieve{
  * @author Patrick Murris
  * @version $Id: BulkRetrievalThread.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class BulkRetrievalThread extends Thread
+public abstract class BulkRetrievalThread : Thread
 {
     protected int RETRIEVAL_SERVICE_POLL_DELAY = 1000;
 

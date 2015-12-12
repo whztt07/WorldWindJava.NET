@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml.io{
  * @author tag
  * @version $Id: KMLFile.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLFile implements KMLDoc
+public class KMLFile : KMLDoc
 {
     /** The {@link File} reference specified to the constructor. */
     protected File kmlFile;

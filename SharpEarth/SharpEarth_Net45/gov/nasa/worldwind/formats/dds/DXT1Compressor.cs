@@ -11,7 +11,7 @@ namespace SharpEarth.formats.dds{
  * @author dcollins
  * @version $Id: DXT1Compressor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class DXT1Compressor implements DXTCompressor
+public class DXT1Compressor : DXTCompressor
 {
     public DXT1Compressor()
     {

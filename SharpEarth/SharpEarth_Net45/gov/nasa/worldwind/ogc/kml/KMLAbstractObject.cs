@@ -19,7 +19,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLAbstractObject.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class KMLAbstractObject extends AbstractXMLEventParser implements MessageListener
+public abstract class KMLAbstractObject : AbstractXMLEventParser , MessageListener
 {
     public static final String MSG_BOX_CHANGED = "KMLAbstractObject.BoxChanged";
     public static final String MSG_GEOMETRY_CHANGED = "KMLAbstractObject.GeometryChanged";

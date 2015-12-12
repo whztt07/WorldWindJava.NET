@@ -15,7 +15,7 @@ namespace SharpEarth.data{
  * @author dcollins
  * @version $Id: BufferWrapperRaster.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BufferWrapperRaster extends AbstractDataRaster implements Cacheable, Disposable
+public class BufferWrapperRaster : AbstractDataRaster , Cacheable, Disposable
 {
     protected BufferWrapper buffer;
 

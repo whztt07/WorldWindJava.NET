@@ -12,7 +12,7 @@ namespace SharpEarth.ogc.wcs.wcs100{
  * @author tag
  * @version $Id$
  */
-public class WCS100MetadataLink extends AbstractXMLEventParser
+public class WCS100MetadataLink : AbstractXMLEventParser
 {
     public WCS100MetadataLink(String namespaceURI)
     {

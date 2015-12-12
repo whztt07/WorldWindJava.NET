@@ -28,7 +28,7 @@ namespace SharpEarth.ogc.collada{
  * @author pabercrombie
  * @version $Id: ColladaRoot.java 1696 2013-10-31 18:46:55Z tgaskins $
  */
-public class ColladaRoot extends ColladaAbstractObject implements ColladaRenderable, Highlightable
+public class ColladaRoot : ColladaAbstractObject , ColladaRenderable, Highlightable
 {
     /** Reference to the ColladaDoc representing the COLLADA file. */
     protected ColladaDoc colladaDoc;

@@ -14,7 +14,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: Declutterable.java 704 2012-07-21 03:16:21Z tgaskins $
  */
-public interface Declutterable extends OrderedRenderable
+public interface Declutterable : OrderedRenderable
 {
     /**
      * Indicates whether this object actually participates in decluttering.

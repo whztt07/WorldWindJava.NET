@@ -70,7 +70,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: ExtrudedPolygon.java 2111 2014-06-30 18:09:45Z tgaskins $
  */
-public class ExtrudedPolygon extends AbstractShape
+public class ExtrudedPolygon : AbstractShape
 {
     /** The default interior color for sides. */
     protected static final Material DEFAULT_SIDES_INTERIOR_MATERIAL = Material.LIGHT_GRAY;
@@ -89,7 +89,7 @@ public class ExtrudedPolygon extends AbstractShape
     }
 
     /** The <code>ShapeData</code> class holds globe-specific data for this shape. */
-    protected static class ShapeData extends AbstractShapeData implements Iterable<ExtrudedBoundaryInfo>
+    protected static class ShapeData : AbstractShapeData , Iterable<ExtrudedBoundaryInfo>
     {
         /** The boundary locations of the associated shape. Copied from that shape during construction. */
         protected List<ExtrudedBoundaryInfo> boundaries = new ArrayList<ExtrudedBoundaryInfo>();

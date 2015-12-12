@@ -32,7 +32,7 @@ namespace SharpEarth{
  * @author tag
  * @version $Id: StereoOptionSceneController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class StereoOptionSceneController extends BasicSceneController implements StereoSceneController
+public class StereoOptionSceneController : BasicSceneController , StereoSceneController
 {
     /**
      * The default focus angle. May be specified in the World Wind configuration file as the

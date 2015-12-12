@@ -11,7 +11,7 @@ namespace SharpEarth.retrieve{
  * @author Tom Gaskins
  * @version $Id: Retriever.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface Retriever extends WWObject, java.util.concurrent.Callable<Retriever>
+public interface Retriever : WWObject, java.util.concurrent.Callable<Retriever>
 {
     public final String RETRIEVER_STATE_NOT_STARTED = "gov.nasa.worldwind.RetrieverStatusNotStarted";
     public final String RETRIEVER_STATE_STARTED = "gov.nasa.worldwind.RetrieverStatusStarted";

@@ -13,7 +13,7 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: FileTree.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class FileTree implements Iterable<File>
+public class FileTree : Iterable<File>
 {
     private File root;
     private int mode = FILES_AND_DIRECTORIES;
@@ -88,7 +88,7 @@ public class FileTree implements Iterable<File>
         return result;
     }
 
-    private static class FileTreeIterator implements Iterator<File> {
+    private static class FileTreeIterator : Iterator<File> {
         private final Queue<File> dirs = new LinkedList<File>();
         private final Queue<File> files = new LinkedList<File>();
         private final FileFilter fileFilter;

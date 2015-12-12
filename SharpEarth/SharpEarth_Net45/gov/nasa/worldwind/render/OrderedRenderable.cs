@@ -9,7 +9,7 @@ namespace SharpEarth.render{
  * @author tag
  * @version $Id: OrderedRenderable.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface OrderedRenderable extends Renderable
+public interface OrderedRenderable : Renderable
 {
     /**
      * Returns the ordered renderable's distance from the current view's eye point. Intended to be used only to sort a

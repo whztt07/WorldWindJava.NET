@@ -14,12 +14,12 @@ namespace SharpEarth.formats.vpf{
  * @author dcollins
  * @version $Id: VPFBasicDataBufferFactory.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
+public abstract class VPFBasicDataBufferFactory : VPFDataBufferFactory
 {
     public static final short NO_VALUE_SHORT = -32768; // binary: 10000000 00000000
     public static final int NO_VALUE_INT = -2147483648; // binary: 10000000 00000000 00000000 00000000
 
-    public static class NullDataFactory extends VPFBasicDataBufferFactory
+    public static class NullDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -27,7 +27,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class DateTimeDataFactory extends VPFBasicDataBufferFactory
+    public static class DateTimeDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -35,7 +35,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class TripledIdDataFactory extends VPFBasicDataBufferFactory
+    public static class TripledIdDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -43,7 +43,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class TextDataFactory extends VPFBasicDataBufferFactory
+    public static class TextDataFactory : VPFBasicDataBufferFactory
     {
         protected String charsetName;
 
@@ -58,7 +58,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class ShortDataFactory extends VPFBasicDataBufferFactory
+    public static class ShortDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -67,7 +67,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class IntDataFactory extends VPFBasicDataBufferFactory
+    public static class IntDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -76,7 +76,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class FloatDataFactory extends VPFBasicDataBufferFactory
+    public static class FloatDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -85,7 +85,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class DoubleDataFactory extends VPFBasicDataBufferFactory
+    public static class DoubleDataFactory : VPFBasicDataBufferFactory
     {
         public VPFDataBuffer newDataBuffer(int numRows, int elementsPerRow)
         {
@@ -94,7 +94,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public abstract static class VecDataFactory extends VPFBasicDataBufferFactory
+    public abstract static class VecDataFactory : VPFBasicDataBufferFactory
     {
         protected int coordsPerElem;
 
@@ -104,7 +104,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class ShortVecDataFactory extends VecDataFactory
+    public static class ShortVecDataFactory : VecDataFactory
     {
         public ShortVecDataFactory(int coordsPerElem)
         {
@@ -120,7 +120,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class IntVecDataFactory extends VecDataFactory
+    public static class IntVecDataFactory : VecDataFactory
     {
         public IntVecDataFactory(int coordsPerElem)
         {
@@ -136,7 +136,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class FloatVecDataFactory extends VecDataFactory
+    public static class FloatVecDataFactory : VecDataFactory
     {
         public FloatVecDataFactory(int coordsPerElem)
         {
@@ -152,7 +152,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    public static class DoubleVecDataFactory extends VecDataFactory
+    public static class DoubleVecDataFactory : VecDataFactory
     {
         public DoubleVecDataFactory(int coordsPerElem)
         {
@@ -212,7 +212,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
     //********************  Null Data  *****************************//
     //**************************************************************//
 
-    protected static class NullDataBuffer implements VPFDataBuffer
+    protected static class NullDataBuffer : VPFDataBuffer
     {
         public Object get(int index)
         {
@@ -247,7 +247,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         Object read(ByteBuffer byteBuffer);
     }
 
-    protected static class GenericDataBuffer implements VPFDataBuffer
+    protected static class GenericDataBuffer : VPFDataBuffer
     {
         protected GenericReader reader;
         protected Object[] array;
@@ -296,7 +296,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
     //********************  Date/Time Data  ************************//
     //**************************************************************//
 
-    protected static class DateTimeReader implements GenericReader
+    protected static class DateTimeReader : GenericReader
     {
         protected TextReader textReader = new TextReader("US-ASCII");
 
@@ -354,7 +354,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
     //********************  Triplet ID Data  ***********************//
     //**************************************************************//
 
-    protected static class TripletIdReader implements GenericReader
+    protected static class TripletIdReader : GenericReader
     {
         public Object read(ByteBuffer byteBuffer)
         {
@@ -447,7 +447,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class TextDataBuffer implements VPFDataBuffer
+    protected static class TextDataBuffer : VPFDataBuffer
     {
         protected int elementsPerRow;
         protected TextReader reader;
@@ -524,7 +524,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         bool hasValue(BufferWrapper bufferWrapper, int index);
     }
 
-    protected static class ShortReader implements ScalarReader
+    protected static class ShortReader : ScalarReader
     {
         public double read(ByteBuffer byteBuffer)
         {
@@ -532,7 +532,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class IntReader implements ScalarReader
+    protected static class IntReader : ScalarReader
     {
         public double read(ByteBuffer byteBuffer)
         {
@@ -540,7 +540,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class FloatReader implements ScalarReader
+    protected static class FloatReader : ScalarReader
     {
         public double read(ByteBuffer byteBuffer)
         {
@@ -548,7 +548,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class DoubleReader implements ScalarReader
+    protected static class DoubleReader : ScalarReader
     {
         public double read(ByteBuffer byteBuffer)
         {
@@ -556,7 +556,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class ShortAccessor extends IntAccessor
+    protected static class ShortAccessor : IntAccessor
     {
         public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
@@ -565,7 +565,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class IntAccessor implements ScalarAccessor
+    protected static class IntAccessor : ScalarAccessor
     {
         public Object get(BufferWrapper bufferWrapper, int index)
         {
@@ -579,7 +579,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class FloatAccessor extends DoubleAccessor
+    protected static class FloatAccessor : DoubleAccessor
     {
         public bool hasValue(BufferWrapper bufferWrapper, int index)
         {
@@ -588,7 +588,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class DoubleAccessor implements ScalarAccessor
+    protected static class DoubleAccessor : ScalarAccessor
     {
         public Object get(BufferWrapper bufferWrapper, int index)
         {
@@ -602,7 +602,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class ScalarDataBuffer implements VPFDataBuffer
+    protected static class ScalarDataBuffer : VPFDataBuffer
     {
         protected ScalarReader reader;
         protected ScalarAccessor accessor;
@@ -658,7 +658,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         VecBuffer read(ByteBuffer byteBuffer, int length);
     }
 
-    protected abstract static class AbstractVecReader implements VecReader
+    protected abstract static class AbstractVecReader : VecReader
     {
         protected int coordsPerElem;
         protected int bytesPerCoord;
@@ -698,7 +698,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         protected abstract BufferWrapper doRead(ByteBuffer byteBuffer);
     }
 
-    protected static class ShortVecReader extends AbstractVecReader
+    protected static class ShortVecReader : AbstractVecReader
     {
         private short[] tmpBuffer;
 
@@ -748,7 +748,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class IntVecReader extends AbstractVecReader
+    protected static class IntVecReader : AbstractVecReader
     {
         private int[] tmpBuffer;
 
@@ -798,7 +798,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class FloatVecReader extends AbstractVecReader
+    protected static class FloatVecReader : AbstractVecReader
     {
         private float[] tmpBuffer;
 
@@ -848,7 +848,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class DoubleVecReader extends AbstractVecReader
+    protected static class DoubleVecReader : AbstractVecReader
     {
         private double[] tmpBuffer;
 
@@ -898,7 +898,7 @@ public abstract class VPFBasicDataBufferFactory implements VPFDataBufferFactory
         }
     }
 
-    protected static class VecDataBuffer implements VPFDataBuffer
+    protected static class VecDataBuffer : VPFDataBuffer
     {
         protected VecReader reader;
         protected VecBufferSequence buffer;

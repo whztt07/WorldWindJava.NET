@@ -16,7 +16,7 @@ namespace SharpEarth.util.xml.xal{
  * @author tag
  * @version $Id: XALCountry.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class XALCountry extends XALAbstractObject
+public class XALCountry : XALAbstractObject
 {
     protected List<XALAddressLine> addressLines;
     protected List<XALCountryNameCode> countryNameCodes;

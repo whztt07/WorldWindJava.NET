@@ -18,7 +18,7 @@ namespace SharpEarth.ogc.kml{
  * @author tag
  * @version $Id: KMLSchema.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class KMLSchema extends AbstractXMLEventParser
+public class KMLSchema : AbstractXMLEventParser
 {
     protected List<KMLSimpleField> simpleFields = new ArrayList<KMLSimpleField>();
 

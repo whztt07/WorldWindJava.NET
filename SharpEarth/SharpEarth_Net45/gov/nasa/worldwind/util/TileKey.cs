@@ -11,7 +11,7 @@ namespace SharpEarth.util{
  * @author tag
  * @version $Id: TileKey.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class TileKey implements Comparable<TileKey>
+public class TileKey : Comparable<TileKey>
 {
     private final int level;
     private final int row;

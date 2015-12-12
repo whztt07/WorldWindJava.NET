@@ -63,7 +63,7 @@ public class GDALUtils
         initialize();
     }
 
-    private static class GDALLibraryLoader implements gdal.LibraryLoader
+    private static class GDALLibraryLoader : gdal.LibraryLoader
     {
         public void load(String libName) throws UnsatisfiedLinkError
         {

@@ -28,7 +28,7 @@ namespace SharpEarth.render{
  *             When drawn on a 2D globe, this shape uses either a {@link SurfacePolyline} or {@link SurfacePolygon} to
  *             represent itself.
  */
-public class Polyline extends AVListImpl implements Renderable, OrderedRenderable, Movable, Restorable,
+public class Polyline : AVListImpl , Renderable, OrderedRenderable, Movable, Restorable,
     MeasurableLength, ExtentHolder, PreRenderable, Highlightable
 {
     public final static int GREAT_CIRCLE = WorldWind.GREAT_CIRCLE;

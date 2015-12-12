@@ -19,7 +19,7 @@ namespace SharpEarth{
  * @author Tom Gaskins
  * @version $Id: SceneController.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface SceneController extends WWObject, Disposable
+public interface SceneController : WWObject, Disposable
 {
     /**
      * Indicates the scene controller's model. This returns <code>null</code> if the scene controller has no model.

@@ -28,7 +28,7 @@ namespace SharpEarth.render{
  * @author dcollins
  * @version $Id: SurfaceObject.java 2283 2014-08-30 15:58:43Z dcollins $
  */
-public interface SurfaceObject extends OrderedRenderable, SurfaceRenderable, PreRenderable, AVList
+public interface SurfaceObject : OrderedRenderable, SurfaceRenderable, PreRenderable, AVList
 {
     /**
      * Indicates whether the surface object should be drawn during rendering.

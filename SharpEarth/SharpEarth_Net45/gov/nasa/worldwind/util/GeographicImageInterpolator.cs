@@ -18,14 +18,14 @@ namespace SharpEarth.util{
  * @author dcollins
  * @version $Id: GeographicImageInterpolator.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class GeographicImageInterpolator extends ImageInterpolator
+public class GeographicImageInterpolator : ImageInterpolator
 {
     /**
      * GeographicCell extends {@link SharpEarth.util.ImageInterpolator.Cell} to correctly handle image cells
      * which have geographic coordinates. Unlike its superclass, which works in Cartesian coordinates, GeographicCell
      * handles the singularities of geographic coordinates, such as image cells which cross the international dateline.
      */
-    protected static class GeographicCell extends Cell
+    protected static class GeographicCell : Cell
     {
         /** Denotes if the pixels in this geographic image cell crosses the international dateline. */
         protected bool crossesDateline;

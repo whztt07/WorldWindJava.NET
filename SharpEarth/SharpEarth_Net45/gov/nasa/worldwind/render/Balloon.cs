@@ -16,7 +16,7 @@ namespace SharpEarth.render{
  * @version $Id: Balloon.java 1171 2013-02-11 21:45:02Z dcollins $
  * @see BalloonAttributes
  */
-public interface Balloon extends Renderable, Highlightable, AVList
+public interface Balloon : Renderable, Highlightable, AVList
 {
     /**
      * Is the balloon always on top?

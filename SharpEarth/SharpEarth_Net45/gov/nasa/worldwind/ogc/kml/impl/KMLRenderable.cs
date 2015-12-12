@@ -15,7 +15,7 @@ namespace SharpEarth.ogc.kml.impl{
  * @author tag
  * @version $Id: KMLRenderable.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public interface KMLRenderable extends MessageListener
+public interface KMLRenderable : MessageListener
 {
     /**
      * Pre-render this element.

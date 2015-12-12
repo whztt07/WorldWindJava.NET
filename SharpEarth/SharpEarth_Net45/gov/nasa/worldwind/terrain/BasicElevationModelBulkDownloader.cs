@@ -28,7 +28,7 @@ namespace SharpEarth.terrain{
  * @author tag
  * @version $Id: BasicElevationModelBulkDownloader.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
+public class BasicElevationModelBulkDownloader : BulkRetrievalThread
 {
     protected final static int MAX_TILE_COUNT_PER_REGION = 200;
     protected final static long DEFAULT_AVERAGE_FILE_SIZE = 45000L;
@@ -179,7 +179,7 @@ public class BasicElevationModelBulkDownloader extends BulkRetrievalThread
         }
     }
 
-    protected class BulkDownloadPostProcessor extends BasicElevationModel.DownloadPostProcessor
+    protected class BulkDownloadPostProcessor : BasicElevationModel.DownloadPostProcessor
     {
         public BulkDownloadPostProcessor(Tile tile, BasicElevationModel elevationModel, FileStore fileStore)
         {
