@@ -3,8 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using javax.media.opengl.GL2;
 using java.util;
+using SharpEarth.java.util;
 
 namespace SharpEarth.util{
 

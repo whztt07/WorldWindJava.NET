@@ -14,6 +14,7 @@ using SharpEarth.avlist;
 using SharpEarth.animation;
 using java.awt;
 using java.lang;
+using SharpEarth.java.util;
 using SharpGL;
 
 namespace SharpEarth.view{
@@ -953,7 +954,7 @@ public class BasicView : WWObjectImpl, View
      *
      * @return the transformed coordinates
      */
-    public Vec4 project(Vec4 point, Matrix modelview, Matrix projection, java.awt.Rectangle viewport)
+    public Vec4 project(Vec4 point, Matrix modelview, Matrix projection, Rectangle viewport)
     {
         if (point == null)
         {
@@ -999,7 +1000,7 @@ public class BasicView : WWObjectImpl, View
      *
      * @return the unprojected point
      */
-    public Vec4 unProject(Vec4 windowPoint, Matrix modelview, Matrix projection, java.awt.Rectangle viewport)
+    public Vec4 unProject(Vec4 windowPoint, Matrix modelview, Matrix projection, Rectangle viewport)
     {
         if (windowPoint == null)
         {

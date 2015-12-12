@@ -5,14 +5,11 @@
  */
 
 using System;
+using java.awt;
 using SharpEarth.geom;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;
-using SharpEarth.geom.Vec4;
-using SharpEarth.geom.Position;
-using SharpEarth.geom.Matrix;
-using SharpEarth.geom.Angle;
 namespace SharpEarth.view.orbit{
 
 
@@ -230,9 +227,9 @@ public class OrbitViewCollisionSupport
     }
 
     private double computeViewHeightAboveSurface(DrawContext dc, Matrix modelviewInv,
-        Angle fieldOfView, java.awt.Rectangle viewport, double nearDistance)
+        Angle fieldOfView, Rectangle viewport, double nearDistance)
     {
-        double height = Double.PositiveInfinity;
+        double height = double.PositiveInfinity;
         if (dc != null && modelviewInv != null && fieldOfView != null && viewport != null && nearDistance >= 0)
         {
             Vec4 eyePoint = getEyePoint(modelviewInv);
@@ -294,7 +291,7 @@ public class OrbitViewCollisionSupport
         return modelviewInv != null ? Vec4.UNIT_W.transformBy4(modelviewInv) : null;
     }
 
-    private Vec4 getPointOnNearPlane(Matrix modelviewInv, Angle fieldOfView, java.awt.Rectangle viewport,
+    private Vec4 getPointOnNearPlane(Matrix modelviewInv, Angle fieldOfView, Rectangle viewport,
         double nearDistance)
     {
         if (modelviewInv != null && fieldOfView != null && viewport != null && nearDistance >= 0)

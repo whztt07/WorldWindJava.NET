@@ -4,6 +4,7 @@
  * All Rights Reserved.
  */
 
+using java.awt;
 using SharpEarth.animation;
 using SharpEarth.render;
 using SharpEarth.globes;
@@ -209,7 +210,7 @@ public interface View : WWObject, Restorable
      *
      * @return the Rectangle of the viewport.
      */
-    java.awt.Rectangle getViewport();
+    Rectangle getViewport();
 
     /**
      * Returns the near clipping plane distance, in eye coordinates.  Implementations of the <code>View</code> interface

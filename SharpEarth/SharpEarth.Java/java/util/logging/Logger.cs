@@ -14,12 +14,7 @@ namespace java.util.logging
       throw new NotImplementedException();
     }
 
-    public void log(object sEVERE, string v1, string v2)
-    {
-      throw new NotImplementedException();
-    }
-
-    internal void log( object server, string v1, Exception e )
+    public void log(params object[] parameters)
     {
       throw new NotImplementedException();
     }

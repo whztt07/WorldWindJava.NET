@@ -8,5 +8,12 @@ namespace java.awt
 {
   public class Point
   {
+    public double X;
+    public double Y;
+
+    public Point( double d, double d1 )
+    {
+      throw new NotImplementedException();
+    }
   }
 }

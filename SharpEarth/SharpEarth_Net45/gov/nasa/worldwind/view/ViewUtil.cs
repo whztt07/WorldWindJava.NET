@@ -5,16 +5,12 @@
  */
 
 using System;
-using System.Drawing;
 using java.awt;
-using javax.media.opengl.glu.gl2.GLUgl2;
-using javax.media.opengl.glu.GLU;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
-using SharpEarth;
 using java.lang;
 
 namespace SharpEarth.view{
@@ -517,7 +513,7 @@ public class ViewUtil
     }
 
     public static Line computeRayFromScreenPoint(View view, double x, double y,
-        Matrix modelview, Matrix projection, java.awt.Rectangle viewport)
+        Matrix modelview, Matrix projection, Rectangle viewport)
     {
         if (modelview == null || projection == null)
         {
@@ -556,7 +552,7 @@ public class ViewUtil
         return new Line(eye, b.subtract3(a).normalize3());
     }
 
-    public static double computePixelSizeAtDistance(double distance, Angle fieldOfView, java.awt.Rectangle viewport)
+    public static double computePixelSizeAtDistance(double distance, Angle fieldOfView, Rectangle viewport)
     {
         if (fieldOfView == null)
         {

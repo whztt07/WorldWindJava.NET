@@ -5,10 +5,9 @@
  */
 
 using System;
-using SharpEarth.view;
 using SharpEarth.util;
 using SharpEarth.geom;
-using SharpEarth;
+
 namespace SharpEarth.view.orbit{
 
 

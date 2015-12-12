@@ -3,6 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
 using SharpEarth.util;
 using SharpEarth.geom;
 using SharpEarth.animation;
@@ -20,10 +22,11 @@ public class OrbitViewCenterAnimator : MoveToPositionAnimator
 {
     private BasicOrbitView orbitView;
     bool endCenterOnSurface;
+
     public OrbitViewCenterAnimator(BasicOrbitView orbitView, Position startPosition, Position endPosition,
         double smoothing, PropertyAccessor.PositionAccessor propertyAccessor, bool endCenterOnSurface)
+      : base( startPosition, endPosition, smoothing, propertyAccessor )
     {
-        base(startPosition, endPosition, smoothing, propertyAccessor);
         this.endCenterOnSurface = endCenterOnSurface;
         this.orbitView = orbitView;
     }
@@ -44,28 +47,6 @@ public class OrbitViewCenterAnimator : MoveToPositionAnimator
                 Angle.mix(interpolant, curCenter.getLongitude(), this.end.getLongitude()),
                 (1 - interpolant) * curCenter.getElevation() + interpolant * this.end.getElevation());
         }
-        //TODO: What do we do about collisions?
-        /*
-        try
-        {
-            // Clear any previous collision state the view may have.
-            view.hadCollisions();
-            view.setEyePosition(nextCenter);
-            // If the change caused a collision, update the target center position with the
-            // elevation that resolved the collision.
-            if (view.hadCollisions())
-                this.eyePositionTarget = new Position(
-                        this.eyePositionTarget, view.getEyePosition().getElevation());
-            flagViewChanged();
-            setViewOutOfFocus(true);
-        }
-        catch (Exception e)
-        {
-            String message = Logging.getMessage("generic.ExceptionWhileChangingView");
-            Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
-            stopMoving = true;
-        }
-        */
 
         // If target is close, cancel future value changes.
         if (stopMoving)

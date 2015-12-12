@@ -6,13 +6,8 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using java.util;
-using java.awt.using SharpEarth.util;
-
-event;
-using java.awt.events;
-using SharpEarth.util;
-using SharpEarth.Configuration;
 namespace SharpEarth.awt{
 
 
@@ -23,7 +18,7 @@ namespace SharpEarth.awt{
  */
 public class ViewInputAttributes
 {
-    public class DeviceModifierMap : HashMap<Object, ArrayList>
+    public class DeviceModifierMap : Dictionary<object, ArrayList>
     {
     }
 
@@ -63,9 +58,9 @@ public class ViewInputAttributes
 
         public static class KeyAction
         {
-            public static final int KA_DIR_X = 0;
-            public static final int KA_DIR_Y = 1;
-            public static final int KA_DIR_Z = 2;
+            public static readonly int KA_DIR_X = 0;
+            public static readonly int KA_DIR_Y = 1;
+            public static readonly int KA_DIR_Z = 2;
 
             public int keyCode;
             public int sign;
@@ -89,7 +84,7 @@ public class ViewInputAttributes
             }
         }
 
-        public static final int NO_MODIFIER = 0;
+        public static readonly int NO_MODIFIER = 0;
         private double minValue;
         private double maxValue;
         private bool enableSmoothing;
@@ -341,51 +336,52 @@ public class ViewInputAttributes
         }
     }
 
-    public static final String VIEW_FOCUS = "gov.nasa.worldwind.ViewFocus";
-    public static final String VIEW_FOCUS_SLOW = "gov.nasa.worldwind.ViewFocusSlow";
-    public static final String VIEW_PAN = "gov.nasa.worldwind.ViewPan";
-    public static final String VIEW_PAN_SLOW = "gov.nasa.worldwind.ViewPanSlow";
-    public static final String VIEW_ROTATE = "gov.nasa.worldwind.ViewRotate";
-    public static final String VIEW_ROTATE_SHIFT = "gov.nasa.worldwind.ViewRotateShift";
-    public static final String VIEW_ROTATE_SLOW = "gov.nasa.worldwind.ViewRotateSlow";
-    public static final String VIEW_ZOOM = "gov.nasa.worldwind.ViewZoom";
-    public static final String VIEW_ZOOM_SLOW = "gov.nasa.worldwind.ViewZoomSlow";
-    public static final String DEVICE_KEYBOARD = "gov.nasa.worldwind.DeviceKeyboard";
-    public static final String DEVICE_MOUSE = "gov.nasa.worldwind.DeviceMouse";
-    public static final String DEVICE_MOUSE_WHEEL = "gov.nasa.worldwind.DeviceMouseWheel";
+    public static readonly string VIEW_FOCUS = "gov.nasa.worldwind.ViewFocus";
+    public static readonly string VIEW_FOCUS_SLOW = "gov.nasa.worldwind.ViewFocusSlow";
+    public static readonly string VIEW_PAN = "gov.nasa.worldwind.ViewPan";
+    public static readonly string VIEW_PAN_SLOW = "gov.nasa.worldwind.ViewPanSlow";
+    public static readonly string VIEW_ROTATE = "gov.nasa.worldwind.ViewRotate";
+    public static readonly string VIEW_ROTATE_SHIFT = "gov.nasa.worldwind.ViewRotateShift";
+    public static readonly string VIEW_ROTATE_SLOW = "gov.nasa.worldwind.ViewRotateSlow";
+    public static readonly string VIEW_ZOOM = "gov.nasa.worldwind.ViewZoom";
+    public static readonly string VIEW_ZOOM_SLOW = "gov.nasa.worldwind.ViewZoomSlow";
+    public static readonly string DEVICE_KEYBOARD = "gov.nasa.worldwind.DeviceKeyboard";
+    public static readonly string DEVICE_MOUSE = "gov.nasa.worldwind.DeviceMouse";
+    public static readonly string DEVICE_MOUSE_WHEEL = "gov.nasa.worldwind.DeviceMouseWheel";
 
-    public static final String DEVICE_KEYBOARD_MODS = "gov.nasa.worldwind.DeviceKeyboardMods";
-    public static final String DEVICE_MOUSE_MODS = "gov.nasa.worldwind.DeviceMouseMods";
-    public static final String DEVICE_MOUSE_WHEEL_MODS = "gov.nasa.worldwind.DeviceMouseWheelMods";
+    public static readonly string DEVICE_KEYBOARD_MODS = "gov.nasa.worldwind.DeviceKeyboardMods";
+    public static readonly string DEVICE_MOUSE_MODS = "gov.nasa.worldwind.DeviceMouseMods";
+    public static readonly string DEVICE_MOUSE_WHEEL_MODS = "gov.nasa.worldwind.DeviceMouseWheelMods";
 
     // Action keys
-    public static final String VIEW_MOVE_TO = "gov.nasa.worldwind.ViewMoveTo";
-    public static final String VIEW_MOVE_TO_SLOW = "gov.nasa.worldwind.MoveToSlow";
-    public static final String VIEW_HORIZONTAL_TRANSLATE = "gov.nasa.worldwind.ViewHorizTrans";
-    public static final String VIEW_HORIZONTAL_TRANSLATE_SLOW = "gov.nasa.worldwind.ViewHorizTransSlow";
-    public static final String VIEW_VERTICAL_TRANSLATE = "gov.nasa.worldwind.ViewVertTrans";
-    public static final String VIEW_VERTICAL_TRANSLATE_CTRL = "gov.nasa.worldwind.ViewVertTransCtrl";
-    public static final String VIEW_VERTICAL_TRANSLATE_SLOW = "gov.nasa.worldwind.ViewVertTransSlow";
-    public static final String VIEW_RESET_HEADING = "gov.nasa.worldwind.ViewResetHeading";
-    public static final String VIEW_RESET_HEADING_PITCH_ROLL = "gov.nasa.worldwind.ViewResetHeadingPitchRoll";
-    public static final String VIEW_STOP_VIEW = "gov.nasa.worldwind.ViewStopView";
+    public static readonly string VIEW_MOVE_TO = "gov.nasa.worldwind.ViewMoveTo";
+    public static readonly string VIEW_MOVE_TO_SLOW = "gov.nasa.worldwind.MoveToSlow";
+    public static readonly string VIEW_HORIZONTAL_TRANSLATE = "gov.nasa.worldwind.ViewHorizTrans";
+    public static readonly string VIEW_HORIZONTAL_TRANSLATE_SLOW = "gov.nasa.worldwind.ViewHorizTransSlow";
+    public static readonly string VIEW_VERTICAL_TRANSLATE = "gov.nasa.worldwind.ViewVertTrans";
+    public static readonly string VIEW_VERTICAL_TRANSLATE_CTRL = "gov.nasa.worldwind.ViewVertTransCtrl";
+    public static readonly string VIEW_VERTICAL_TRANSLATE_SLOW = "gov.nasa.worldwind.ViewVertTransSlow";
+    public static readonly string VIEW_RESET_HEADING = "gov.nasa.worldwind.ViewResetHeading";
+    public static readonly string VIEW_RESET_HEADING_PITCH_ROLL = "gov.nasa.worldwind.ViewResetHeadingPitchRoll";
+    public static readonly string VIEW_STOP_VIEW = "gov.nasa.worldwind.ViewStopView";
 
     // Action names for extensible view/navigation system
-    public static final String VIEW_HORIZONTAL_TRANS_KEYS = "gov.nasa.worldwind.ViewHorizTransKeys";
-    public static final String VIEW_VERTICAL_TRANS_KEYS_META = "gov.nasa.worldwind.ViewVertTransKeysMeta";
-    public static final String VIEW_VERTICAL_TRANS_KEYS_CTRL = "gov.nasa.worldwind.ViewVertTransKeysCTRL";
-    public static final String VIEW_VERTICAL_TRANS_KEYS = "gov.nasa.worldwind.ViewVertTransKeys";
-    public static final String VIEW_VERTICAL_TRANS_KEYS_SLOW_META = "gov.nasa.worldwind.ViewVertTransKeysMetaSlow";
-    public static final String VIEW_VERTICAL_TRANS_KEYS_SLOW_CTRL = "gov.nasa.worldwind.ViewVertTransKeysCtrlSlow";
-    public static final String VIEW_VERTICAL_TRANS_KEYS_SLOW = "gov.nasa.worldwind.ViewVertTransKeysSlow";
-    public static final String VIEW_ROTATE_KEYS = "gov.nasa.worldwind.ViewRotateKeys";
-    public static final String VIEW_ROTATE_KEYS_SHIFT = "gov.nasa.worldwind.ViewRotateKeysShift";
-    public static final String VIEW_ROTATE_KEYS_SHIFT_SLOW = "gov.nasa.worldwind.ViewRotateKeysShiftSlow";
-    public static final String VIEW_ROLL_KEYS = "gov.nasa.worldwind.ViewRollKeys";
+    public static readonly string VIEW_HORIZONTAL_TRANS_KEYS = "gov.nasa.worldwind.ViewHorizTransKeys";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS_META = "gov.nasa.worldwind.ViewVertTransKeysMeta";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS_CTRL = "gov.nasa.worldwind.ViewVertTransKeysCTRL";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS = "gov.nasa.worldwind.ViewVertTransKeys";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS_SLOW_META = "gov.nasa.worldwind.ViewVertTransKeysMetaSlow";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS_SLOW_CTRL = "gov.nasa.worldwind.ViewVertTransKeysCtrlSlow";
+    public static readonly string VIEW_VERTICAL_TRANS_KEYS_SLOW = "gov.nasa.worldwind.ViewVertTransKeysSlow";
+    public static readonly string VIEW_ROTATE_KEYS = "gov.nasa.worldwind.ViewRotateKeys";
+    public static readonly string VIEW_ROTATE_KEYS_SHIFT = "gov.nasa.worldwind.ViewRotateKeysShift";
+    public static readonly string VIEW_ROTATE_KEYS_SHIFT_SLOW = "gov.nasa.worldwind.ViewRotateKeysShiftSlow";
+    public static readonly string VIEW_ROLL_KEYS = "gov.nasa.worldwind.ViewRollKeys";
 
     // Reset Heading
-    private static final ActionAttributes.KeyAction DEFAULT_RESET_HEADING_KEY_ACT =
+    private static readonly ActionAttributes.KeyAction DEFAULT_RESET_HEADING_KEY_ACT =
         new ActionAttributes.KeyAction(KeyEvent.VK_N, ActionAttributes.KeyAction.KA_DIR_X, 1);
+
     public static final ActionAttributes.KeyAction[] resetHeadingEvents =
         {
             DEFAULT_RESET_HEADING_KEY_ACT
@@ -542,54 +538,55 @@ public class ViewInputAttributes
     private static final ActionAttributes.KeyAction DEFAULT_ROTATE_PITCHDOWN_KEY_PAGE_ACT =
         new ActionAttributes.KeyAction(KeyEvent.VK_PAGE_DOWN,
             ActionAttributes.KeyAction.KA_DIR_Y, 1);
-    public static final ActionAttributes.KeyAction[] rotationKeyEventsPage =
+
+    public static readonly ActionAttributes.KeyAction[] rotationKeyEventsPage =
         {
             DEFAULT_ROTATE_PITCHUP_KEY_PAGE_ACT,
             DEFAULT_ROTATE_PITCHDOWN_KEY_PAGE_ACT
         };
 
-    public static final bool DEFAULT_MOVE_TO_SMOOTHING_ENABLED = true;
-    public static final bool DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_ENABLED = true;
-    public static final bool DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_ENABLED = true;
-    public static final double DEFAULT_MOVE_TO_SMOOTHING_VALUE = 0.0; // [0, 1] smoothing value
-    public static final double DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_VALUE = 0.4; // [0, 1] smoothing value
-    public static final double DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_VALUE = 0.85; // [0, 1] smoothing value
+    public static readonly bool DEFAULT_MOVE_TO_SMOOTHING_ENABLED = true;
+    public static readonly bool DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_ENABLED = true;
+    public static readonly bool DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_ENABLED = true;
+    public static readonly double DEFAULT_MOVE_TO_SMOOTHING_VALUE = 0.0; // [0, 1] smoothing value
+    public static readonly double DEFAULT_HORIZONTAL_TRANSLATE_SMOOTHING_VALUE = 0.4; // [0, 1] smoothing value
+    public static readonly double DEFAULT_VERTICAL_TRANSLATE_SMOOTHING_VALUE = 0.85; // [0, 1] smoothing value
     // Keyboard/Action calibration values for extensible view/navigation support
-    public static final double DEFAULT_KEY_HORIZONTAL_TRANSLATE_MIN_VALUE = 0.000005; // Speed in degrees per frame
-    public static final double DEFAULT_KEY_HORIZONTAL_TRANSLATE_MAX_VALUE = 4.0; // Speed in degrees per frame
-    public static final double DEFAULT_KEY_VERTICAL_TRANSLATE_VALUE = 0.06; // Speed in log-meters per frame
+    public static readonly double DEFAULT_KEY_HORIZONTAL_TRANSLATE_MIN_VALUE = 0.000005; // Speed in degrees per frame
+    public static readonly double DEFAULT_KEY_HORIZONTAL_TRANSLATE_MAX_VALUE = 4.0; // Speed in degrees per frame
+    public static readonly double DEFAULT_KEY_VERTICAL_TRANSLATE_VALUE = 0.06; // Speed in log-meters per frame
     // Mouse/Action calibration values for extensible view/navigation support
-    public static final double DEFAULT_MOUSE_MOVE_TO_MIN_VALUE = 0.95; // [0, 1] smoothing value
-    public static final double DEFAULT_MOUSE_MOVE_TO_MAX_VALUE = 0.90; // [0, 1] smoothing value
-    public static final double DEFAULT_MOUSE_HORIZONTAL_TRANSLATE_MIN_VALUE = 0.00001;
+    public static readonly double DEFAULT_MOUSE_MOVE_TO_MIN_VALUE = 0.95; // [0, 1] smoothing value
+    public static readonly double DEFAULT_MOUSE_MOVE_TO_MAX_VALUE = 0.90; // [0, 1] smoothing value
+    public static readonly double DEFAULT_MOUSE_HORIZONTAL_TRANSLATE_MIN_VALUE = 0.00001;
         // Speed in degrees per mouse movement
-    public static final double DEFAULT_MOUSE_HORIZONTAL_TRANSLATE_MAX_VALUE = 0.2;
+    public static readonly double DEFAULT_MOUSE_HORIZONTAL_TRANSLATE_MAX_VALUE = 0.2;
         // Speed in degrees per mouse movement
-    public static final double DEFAULT_MOUSE_VERTICAL_TRANSLATE_VALUE = 0.003; // Speed in log-meters per mouse movement
+    public static readonly double DEFAULT_MOUSE_VERTICAL_TRANSLATE_VALUE = 0.003; // Speed in log-meters per mouse movement
     // MouseWheel/Action calibration values.
-    public static final double DEFAULT_MOUSE_WHEEL_VERTICAL_TRANSLATE_VALUE = 0.1;
+    public static readonly double DEFAULT_MOUSE_WHEEL_VERTICAL_TRANSLATE_VALUE = 0.1;
         // Speed in log-meters per wheel movement
-    public static final double DEFAULT_MOUSE_WHEEL_VERTICAL_TRANSLATE_VALUE_OSX = 0.01;
+    public static readonly double DEFAULT_MOUSE_WHEEL_VERTICAL_TRANSLATE_VALUE_OSX = 0.01;
         // Speed in log-meters per wheel movement
 
     // Device sensitivity defaults.
-    public static final double DEFAULT_KEY_SENSITIVITY = 1.0; // Scalar multiplier
-    public static final double DEFAULT_MOUSE_SENSITIVITY = 1.0; // Scalar multiplier
-    public static final double DEFAULT_MOUSE_WHEEL_SENSITIVITY = 1.0; // Scalar multiplier
-    public static final double DEFAULT_SLOW_VALUE = 0.25; // Scalar multiplier
+    public static readonly double DEFAULT_KEY_SENSITIVITY = 1.0; // Scalar multiplier
+    public static readonly double DEFAULT_MOUSE_SENSITIVITY = 1.0; // Scalar multiplier
+    public static readonly double DEFAULT_MOUSE_WHEEL_SENSITIVITY = 1.0; // Scalar multiplier
+    public static readonly double DEFAULT_SLOW_VALUE = 0.25; // Scalar multiplier
 
-    public static final bool DEFAULT_ROTATE_SMOOTHING_ENABLED = true;
-    public static final double DEFAULT_ROTATE_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
-    public static final bool DEFAULT_ROLL_SMOOTHING_ENABLED = true;
-    public static final double DEFAULT_ROLL_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
+    public static readonly bool DEFAULT_ROTATE_SMOOTHING_ENABLED = true;
+    public static readonly double DEFAULT_ROTATE_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
+    public static readonly bool DEFAULT_ROLL_SMOOTHING_ENABLED = true;
+    public static readonly double DEFAULT_ROLL_SMOOTHING_VALUE = 0.7; // [0, 1] smoothing value
 
     // Keyboard/Action calibration values.
-    public static final double DEFAULT_KEY_ROTATE_MIN_VALUE = 2.0; // Speed in degrees per frame
-    public static final double DEFAULT_KEY_ROTATE_MAX_VALUE = 2.2; // Speed in degrees per frame
-    public static final double DEFAULT_KEY_ROLL_MIN_VALUE = 2.0; // Speed in degrees per frame
-    public static final double DEFAULT_KEY_ROLL_MAX_VALUE = 2.2; // Speed in degrees per frame
-    public static final double DEFAULT_MOUSE_ROTATE_MIN_VALUE = 0.14; // Speed in degrees per mouse movement
-    public static final double DEFAULT_MOUSE_ROTATE_MAX_VALUE = 0.18; // Speed in degrees per mouse movement
+    public static readonly double DEFAULT_KEY_ROTATE_MIN_VALUE = 2.0; // Speed in degrees per frame
+    public static readonly double DEFAULT_KEY_ROTATE_MAX_VALUE = 2.2; // Speed in degrees per frame
+    public static readonly double DEFAULT_KEY_ROLL_MIN_VALUE = 2.0; // Speed in degrees per frame
+    public static readonly double DEFAULT_KEY_ROLL_MAX_VALUE = 2.2; // Speed in degrees per frame
+    public static readonly double DEFAULT_MOUSE_ROTATE_MIN_VALUE = 0.14; // Speed in degrees per mouse movement
+    public static readonly double DEFAULT_MOUSE_ROTATE_MAX_VALUE = 0.18; // Speed in degrees per mouse movement
 
     // Device attributes.
     private Map<Object, DeviceAttributes> deviceMap = new HashMap<Object, DeviceAttributes>();

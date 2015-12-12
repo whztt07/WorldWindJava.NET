@@ -5,11 +5,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using java.lang;
 using SharpEarth.geom;
 using SharpEarth.globes;
-using SharpEarth.java.lang;
 using SharpEarth.terrain;
 using SharpEarth.util;
 
