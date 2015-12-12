@@ -6,7 +6,7 @@
 
 using System;
 using SharpEarth.util;
-using SharpEarth.java;
+using java;
 
 namespace SharpEarth.animation{
 

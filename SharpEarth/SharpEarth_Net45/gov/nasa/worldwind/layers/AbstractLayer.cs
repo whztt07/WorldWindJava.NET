@@ -8,13 +8,13 @@ using SharpEarth.render;
 using SharpEarth.avlist;
 using SharpEarth.cache;
 using java.beans;
-using SharpEarth.java.lang;
+using java.lang;
 using SharpEarth.geom;
 using System.Drawing;
-using SharpEarth.java.org.w3c.dom;
+using java.org.w3c.dom;
 using System;
-using SharpEarth.javax.xml.xpath;
-using SharpEarth.java.awt;
+using javax.xml.xpath;
+using java.awt;
 
 namespace SharpEarth.layers
 {

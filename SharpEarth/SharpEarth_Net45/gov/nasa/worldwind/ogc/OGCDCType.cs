@@ -4,14 +4,13 @@
  * All Rights Reserved.
  */
 
-using java.util;
-using javax.xml.stream.events.XMLEvent;
-using javax.xml.stream.XMLStreamException;
-
+using javax.xml.stream.events;
 using SharpEarth.util.xml;
+using javax.xml.namespaces;
+using System;
+using System.Collections.Generic;
+
 namespace SharpEarth.ogc{
-
-
 
 /**
  * Parses an OGC DCPType element.
@@ -26,29 +25,28 @@ public class OGCDCType : AbstractXMLEventParser
     protected QName HTTP;
     protected QName ONLINE_RESOURCE;
 
-    public static class DCPInfo
+    public class DCPInfo
     {
-        protected String protocol;
-        protected String method;
-        protected OGCOnlineResource onlineResource;
+        public static String protocol;
+            public static String method;
+            public static OGCOnlineResource onlineResource;
 
-        public DCPInfo(String protocol)
+        public static void Initialize(String protocol)
         {
-            this.protocol = protocol;
+            protocol = protocol;
         }
     }
 
-    protected List<DCPInfo> protocols = new ArrayList<DCPInfo>(1);
+    protected List<DCPInfo> protocols = new List<DCPInfo>(1);
 
     public OGCDCType(String namespaceURI)
+        : base(namespaceURI)
     {
-        super(namespaceURI);
-
         this.initialize();
     }
 
-    @Override
-    public XMLEventParser allocate(XMLEventParserContext ctx, XMLEvent event)
+
+    public XMLEventParser allocate(XMLEventParserContext ctx, XMLEvent @event)
     {
         XMLEventParser defaultParser = null;
 

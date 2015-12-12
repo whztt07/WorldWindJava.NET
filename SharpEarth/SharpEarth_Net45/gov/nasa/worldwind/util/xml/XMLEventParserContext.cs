@@ -4,53 +4,55 @@
  * All Rights Reserved.
  */
 
+using System.Collections.Generic;
+using javax.xml.namespaces;
+using javax.xml.stream.events;
 using SharpEarth.avlist;
 
-namespace SharpEarth.util.xml {
-
-
-
+namespace SharpEarth.util.xml
+{
 /**
  * Provides services and resources used by XML @event parsers during @event reading and parsing.
  *
  * @author tag
  * @version $Id: XMLeventParserContext.java 1981 2014-05-08 03:59:04Z tgaskins $
  */
-public interface XMLeventParserContext : AVList
-  {
-    /**
+
+    public interface XMLeventParserContext : AVList
+    {
+        /**
      * Identifies the name of the parser handling unrecognized elements. Can be used to explicitly specify the context's
      * parser-table entry for unrecognized elements.
      */
-    // TODO what are we doing about strings in the interface?
-    //const string UNRECOGNIZED_ELEMENT_PARSER = "gov.nasa.worldwind.util.xml.UnknownElementParser";
+        // TODO what are we doing about strings in the interface?
+        //const string UNRECOGNIZED_ELEMENT_PARSER = "gov.nasa.worldwind.util.xml.UnknownElementParser";
 
-    /**
+        /**
      * Returns the @event reader associated with the context.
      *
      * @return the associated @event reader, or null if no reader is associated.
      */
-    javax.xml.stream.events.XMLEventReader geteventReader();
+        XMLEventReader geteventReader();
 
-    /**
+        /**
      * Returns a new parser for a specified @event.
      *
      * @param @event indicates the element name for which a parser is created.
      *
      * @return the new parser, or null if no parser has been registered for the specified @event's element name.
      */
-    XMLEventParser getParser(javax.xml.stream.events.XMLEvent @event);
+        XMLEventParser getParser(XMLEvent @event);
 
-    /**
+        /**
      * Returns a new parser for a specified element name.
      *
      * @param eventName indicates the element name for which a parser is created.
      *
      * @return the new parser, or null if no parser has been registered for the specified element name.
      */
-    XMLEventParser getParser(javax.xml.namespaces.QName eventName);
+        XMLEventParser getParser(QName eventName);
 
-    /**
+        /**
      * Determines whether an @event is a start @event for a specific @event type.
      *
      * @param @event       an @event identifying the @event type of interest.
@@ -58,9 +60,9 @@ public interface XMLeventParserContext : AVList
      *
      * @return true if the @event is a start @event for the named @event type.
      */
-    bool isStartElement(javax.xml.stream.events.XMLEvent @event, javax.xml.namespaces.QName elementName);
+        bool isStartElement(XMLEvent @event, QName elementName);
 
-    /**
+        /**
      * Determines whether an @event is a start @event for a specific @event type indicated by its local name.
      *
      * @param @event       an @event identifying the @event type of interest.
@@ -68,9 +70,9 @@ public interface XMLeventParserContext : AVList
      *
      * @return true if the @event is a start @event for the named @event type.
      */
-    bool isStartElement(javax.xml.stream.events.XMLEvent @event, string elementName);
+        bool isStartElement(XMLEvent @event, string elementName);
 
-    /**
+        /**
      * Determines whether an @event is the corresponding end element for a specified start @event.
      * <p/>
      * Note: Only the @event's element name and type are compared. The method returns true if the start and end events
@@ -81,71 +83,71 @@ public interface XMLeventParserContext : AVList
      *
      * @return true if the @event is the corresponding end @event to the specified start @event, otherwise false.
      */
-    bool isEndElement(javax.xml.stream.events.XMLEvent @event, javax.xml.stream.events.XMLEvent startElement);
+        bool isEndElement(XMLEvent @event, XMLEvent startElement);
 
-    /**
+        /**
      * Returns the text associated with the @event.
      *
      * @param @event the @event of interest.
      *
      * @return the @event's characters, or null if the @event is not a character @event.
      */
-    string getCharacters(javax.xml.stream.events.XMLEvent @event);
+        string getCharacters(XMLEvent @event);
 
-    /**
+        /**
      * Returns the default parser for a simple string.
      *
      * @return a string parser.
      */
-    StringXMLEventParser getStringParser();
+        StringXMLEventParser getStringParser();
 
-    /**
+        /**
      * Returns a parser for a simple double.
      *
      * @return a double parser.
      */
-    DoubleXMLEventParser getDoubleParser();
+        DoubleXMLEventParser getDoubleParser();
 
-    /**
+        /**
      * Returns the default parser for a simple boolean.
      *
      * @return a bool parser.
      */
-    BooleanXMLEventParser getBooleanParser();
+        BooleanXMLEventParser getBooleanParser();
 
-    /**
+        /**
      * Returns the default parser for a simple bool integer (0 or 1).
      *
      * @return a bool integer parser.
      */
-    BooleanIntegerXMLEventParser getBooleanIntegerParser();
+        BooleanIntegerXMLEventParser getBooleanIntegerParser();
 
-    /**
+        /**
      * Returns the default parser for a simple  integer.
      *
      * @return an integer parser.
      */
-    IntegerXMLEventParser getIntegerParser();
+        IntegerXMLEventParser getIntegerParser();
 
-    /**
+        /**
      * Registers a parser for a specified element name. A parser of the same type and namespace is returned when {@link
      * #getParser(javax.xml.stream.events.XMLEvent)} is called for the same element name.
      *
      * @param elementName the element name for which to return a parser.
      * @param parser      the parser to register.
      */
-    void registerParser(javax.xml.namespaces.QName elementName, XMLEventParser parser);
+        void registerParser(QName elementName, XMLEventParser parser);
 
-    /**
+        /**
      * Indicates whether the @event stream associated with this context contains another @event.
      *
      * @return true if the stream contains another @event, otherwise false.
      *
      * @see javax.xml.stream.XMLEventReader#hasNext()
      */
-    bool hasNext();
+        bool hasNext();
 
-    /**
+        /**
      * Returns the next @event in the @event stream associated with this context.
      *
      * @return the next @event,
@@ -153,18 +155,18 @@ public interface XMLeventParserContext : AVList
      * @throws XMLStreamException if there is an error with the underlying XML.
      * @see javax.xml.stream.XMLEventReader#nextevent()
      */
-    javax.xml.stream.events.XMLEvent nextevent();
+        XMLEvent nextevent();
 
-    /**
+        /**
      * Returns the context's default namespace URI.
      *
      * @return the context's default namespace URI.
      *
      * @see #setDefaultNamespaceURI(string)
      */
-    string getDefaultNamespaceURI();
+        string getDefaultNamespaceURI();
 
-    /**
+        /**
      * Specifies the context's default namespace URI. Must be called prior to initiating the parser table if this
      * context's parsers will be qualified for the default namespace.
      *
@@ -173,9 +175,9 @@ public interface XMLeventParserContext : AVList
      * @see #getDefaultNamespaceURI()
      * @see #isSameName(javax.xml.namespace.QName, javax.xml.namespace.QName)
      */
-    void setDefaultNamespaceURI(string defaultNamespaceURI);
+        void setDefaultNamespaceURI(string defaultNamespaceURI);
 
-    /**
+        /**
      * Determines whether two element names are the same.
      *
      * @param qa first element name
@@ -184,9 +186,9 @@ public interface XMLeventParserContext : AVList
      * @return true if both names have the same namespace (or no namespace) and local name, or if either name has no
      *         namespace but the namespace of the other is the context's default namespace.
      */
-    bool isSameName(javax.xml.namespaces.QName qa, javax.xml.namespaces.QName qb);
+        bool isSameName(QName qa, QName qb);
 
-    /**
+        /**
      * Create a parser for a specified @event's element name, if a parser for that name is registered with the context.
      *
      * @param @event         the @event whose element name identifies the parser to create.
@@ -194,18 +196,18 @@ public interface XMLeventParserContext : AVList
      *
      * @return a new parser, or the specified default parser if no parser has been registered for the element name.
      */
-    XMLEventParser allocate(javax.xml.stream.events.XMLEvent @event, XMLEventParser defaultParser);
+        XMLEventParser allocate(XMLEvent @event, XMLEventParser defaultParser);
 
-    /**
+        /**
      * Create a parser for a specified @event's element name, if a parser for that name is registered with the context.
      *
      * @param @event the @event whose element name identifies the parser to create.
      *
      * @return a new parser, or the specified default parser if no parser has been registered for the element name.
      */
-    XMLEventParser allocate(javax.xml.stream.events.XMLEvent @event);
+        XMLEventParser allocate(XMLEvent @event);
 
-    /**
+        /**
      * Determines whether two fully qualified attribute names are the same.
      *
      * @param qa the first attribute name.
@@ -213,24 +215,24 @@ public interface XMLeventParserContext : AVList
      *
      * @return true if the names are the same, otherwise false.
      */
-    bool isSameAttributeName(javax.xml.namespaces.QName qa, javax.xml.namespaces.QName qb);
+        bool isSameAttributeName(QName qa, QName qb);
 
-    /**
+        /**
      * Returns the table associating objects with their <i>id</i> attribute as specified in the object's KML file.
      *
      * @return the mapping table.
      */
-    System.Collections.Generic.IDictionary<string, object> getIdTable();
+        IDictionary<string, object> getIdTable();
 
-    /**
+        /**
      * Adds a mapping of an <i>id</i> attribute to its associated KML object.
      *
      * @param id the object id. If null, this method returns without creating a mapping.
      * @param o  the object to associate with the id.
      */
-    void addId(string id, object o);
+        void addId(string id, object o);
 
-    /**
+        /**
      * Resolves references to elements in the same KML file. Certain KML elements such as <i>styleUrl</i> may contain
      * references to other elements within the same KML file. (A leading "#" indicates a reference to an element within
      * the same file.) This method searches the elements in the file for these references and adds the object for the
@@ -247,9 +249,9 @@ public interface XMLeventParserContext : AVList
      * @deprecated Reference resolution is handled by parsers specific to a certain document type. For example, {@link
      *             SharpEarth.ogc.kml.KMLRoot} handles resolution of references in KML files.
      */
-    void resolveInternalReferences(string referenceName, string fieldName, AbstractXMLEventParser parser);
+        void resolveInternalReferences(string referenceName, string fieldName, AbstractXMLEventParser parser);
 
-    /**
+        /**
      * Specify the object to receive notifications, which are sent when exceptions occur during parsing and when
      * unrecognized element types are encountered. See {@link SharpEarth.util.xml.XMLParserNotification} for
      * more information.
@@ -258,63 +260,63 @@ public interface XMLeventParserContext : AVList
      *
      * @param listener the object to receive notification events.
      */
-    void setNotificationListener(XMLParserNotificationListener listener);
+        void setNotificationListener(XMLParserNotificationListener listener);
 
-    /**
+        /**
      * Indicates whether the specified namespace URI is the default namespace URI used by this parser context.
      *
      * @param namespaceURI the namespace URI to check.
      *
      * @return true if the specified namespace is the default namespace, otherwise false.
      */
-    bool isDefaultNamespace(string namespaceURI);
+        bool isDefaultNamespace(string namespaceURI);
 
-    /**
+        /**
      * Returns a parser to handle unrecognized elements. The default unrecognized @event parser is {@link
      * SharpEarth.util.xml.UnrecognizedXMLeventParser}.
      *
      * @return a parser to handle unrecognized elements.
      */
-    XMLEventParser getUnrecognizedElementParser();
+        XMLEventParser getUnrecognizedElementParser();
 
-    /**
+        /**
      * Add string list parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace    the namespace URI.
      * @param stringFields the string list parser names.
      */
-    void addStringParsers(string namespaces, string[] stringFields);
+        void addStringParsers(string namespaces, string[] stringFields);
 
-    /**
+        /**
      * Add double parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace    the namespace URI.
      * @param doubleFields the string parsers.
      */
-    void addDoubleParsers(string namespaces, string[] doubleFields);
+        void addDoubleParsers(string namespaces, string[] doubleFields);
 
-    /**
+        /**
      * Add integer parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace     the namespace URI.
      * @param integerFields the string parsers.
      */
-    void addIntegerParsers(string namespaces, string[] integerFields);
+        void addIntegerParsers(string namespaces, string[] integerFields);
 
-    /**
+        /**
      * Add bool parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace     the namespace URI.
      * @param booleanFields the string parsers.
      */
-    void addBooleanParsers(string namespaces, string[] booleanFields);
+        void addBooleanParsers(string namespaces, string[] booleanFields);
 
-    /**
+        /**
      * Add bool integer parsers for a list of element types and qualified for a specified namespace.
      *
      * @param namespace            the namespace URI.
      * @param booleanIntegerFields the string parser.
      */
-    void addBooleanIntegerParsers(string namespaces, string[] booleanIntegerFields);
-  }
+        void addBooleanIntegerParsers(string namespaces, string[] booleanIntegerFields);
+    }
 }

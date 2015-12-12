@@ -10,7 +10,6 @@ using java.io;
 using SharpEarth.geom;
 using SharpEarth.exception;
 using SharpEarth.avlist;
-using SharpEarth.java.io;
 
 namespace SharpEarth.util{
 

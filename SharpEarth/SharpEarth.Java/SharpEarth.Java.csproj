@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{244AE6A8-0BD0-45B1-BD16-5714D3DC188F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>a</RootNamespace>
+    <AssemblyName>SharpEarth.Java</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="javax\xml\namespace\QName.cs" />
+    <Compile Include="javax\xml\parsers\DocumentBuilder.cs" />
+    <Compile Include="javax\xml\parsers\DocumentBuilderFactory.cs" />
+    <Compile Include="javax\xml\parsers\ParserConfigurationException.cs" />
+    <Compile Include="javax\xml\stream\events\Attribute.cs" />
+    <Compile Include="javax\xml\stream\events\StartElement.cs" />
+    <Compile Include="javax\xml\stream\events\XMLEvent.cs" />
+    <Compile Include="javax\xml\stream\events\XMLEventReader.cs" />
+    <Compile Include="javax\xml\stream\XMLStreamException.cs" />
+    <Compile Include="javax\xml\transform\dom\DOMSource.cs" />
+    <Compile Include="javax\xml\transform\stream\StreamResult.cs" />
+    <Compile Include="javax\xml\transform\Transformer.cs" />
+    <Compile Include="javax\xml\transform\TransformerConfigurationException.cs" />
+    <Compile Include="javax\xml\transform\TransformerException.cs" />
+    <Compile Include="javax\xml\transform\TransformerFactory.cs" />
+    <Compile Include="javax\xml\xpath\XPath.cs" />
+    <Compile Include="javax\xml\xpath\XPathFactory.cs" />
+    <Compile Include="java\awt\Color.cs" />
+    <Compile Include="java\awt\events\KeyEvent.cs" />
+    <Compile Include="java\awt\events\KeyListener.cs" />
+    <Compile Include="java\awt\events\MouseEvent.cs" />
+    <Compile Include="java\awt\events\MouseListener.cs" />
+    <Compile Include="java\awt\events\MouseMotionListener.cs" />
+    <Compile Include="java\awt\events\MouseWheelEvent.cs" />
+    <Compile Include="java\awt\events\MouseWheelListener.cs" />
+    <Compile Include="java\awt\Point.cs" />
+    <Compile Include="java\awt\Rectangle.cs" />
+    <Compile Include="java\beans\PropertyChangeEvent.cs" />
+    <Compile Include="java\beans\PropertyChangeListener.cs" />
+    <Compile Include="java\beans\PropertyChangeSupport.cs" />
+    <Compile Include="java\io\File.cs" />
+    <Compile Include="java\io\InputStream.cs" />
+    <Compile Include="java\io\Serializable.cs" />
+    <Compile Include="java\io\StringWriter.cs" />
+    <Compile Include="java\lang\Class.cs" />
+    <Compile Include="java\lang\IllegalStateException.cs" />
+    <Compile Include="java\lang\NoSuchMethodException.cs" />
+    <Compile Include="java\net\URI.cs" />
+    <Compile Include="java\net\URISyntaxException.cs" />
+    <Compile Include="java\net\URL.cs" />
+    <Compile Include="java\nio\FloatBuffer.cs" />
+    <Compile Include="java\nio\IntBuffer.cs" />
+    <Compile Include="java\org\w3c\dom\Document.cs" />
+    <Compile Include="java\org\w3c\dom\Element.cs" />
+    <Compile Include="java\System.cs" />
+    <Compile Include="java\util\concurrent\Future.cs" />
+    <Compile Include="java\util\EventListener.cs" />
+    <Compile Include="java\util\EventObject.cs" />
+    <Compile Include="java\util\GL.cs" />
+    <Compile Include="java\util\GL2.cs" />
+    <Compile Include="java\util\Iterator.cs" />
+    <Compile Include="java\util\logging\Logger.cs" />
+    <Compile Include="org\xml\sax\InputSource.cs" />
+    <Compile Include="org\xml\sax\SAXException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

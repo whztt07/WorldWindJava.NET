@@ -8,13 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
-using java.util.Queue;
-using java.util.List;
 using java.util;
-using java.nio.FloatBuffer;
 using java.awt;
-using javax.media.opengl.glu.GLU;
-using javax.media.opengl;
 using SharpEarth.util;
 using SharpEarth.terrain;
 using SharpEarth.pick;
@@ -22,12 +17,7 @@ using SharpEarth.layers;
 using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.cache;
-using SharpEarth;
-using com.jogamp.opengl.util.texture.TextureCoords;
-using SharpEarth.cache;
-using SharpEarth.globes;
-using SharpEarth.java.nio;
-using SharpEarth.java.util;
+using java.nio;
 
 namespace SharpEarth.render{
 

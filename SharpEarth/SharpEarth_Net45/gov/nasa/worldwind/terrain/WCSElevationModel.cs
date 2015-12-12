@@ -15,7 +15,7 @@ using System.Xml.Linq;
 using System.Collections.Generic;
 using System.Security.Policy;
 using System.Text;
-using SharpEarth.java.net;
+using java.net;
 
 namespace SharpEarth.terrain{
 

@@ -15,8 +15,8 @@ using SharpEarth.layers;
 using SharpEarth.geom;
 using SharpEarth.exception;
 using SharpEarth.avlist;
-using SharpEarth.java.net;
-using SharpEarth.java.org.w3c.dom;
+using java.net;
+using java.org.w3c.dom;
 using System.Text;
 
 namespace SharpEarth.wms{

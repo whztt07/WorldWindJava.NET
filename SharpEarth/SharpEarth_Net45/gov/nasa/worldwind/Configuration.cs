@@ -17,8 +17,8 @@ using SharpEarth.util;
 using SharpEarth.geom.Angle;
 using SharpEarth.avlist;
 using SharpEarth.geom;
-using SharpEarth.java.org.w3c.dom;
-using SharpEarth.javax.xml.xpath;
+using java.org.w3c.dom;
+using javax.xml.xpath;
 
 namespace SharpEarth{
 

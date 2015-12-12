@@ -15,7 +15,7 @@ using SharpEarth.globes;
 using SharpEarth.geom;
 using SharpEarth.animation;
 using SharpEarth;
-using SharpEarth.java.lang;
+using java.lang;
 
 namespace SharpEarth.view{
 

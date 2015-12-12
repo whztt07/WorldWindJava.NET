@@ -4,7 +4,7 @@
  * All Rights Reserved.
  */
 using javax.media.opengl.GL2;
-using SharpEarth.java.util;
+using java.util;
 
 namespace SharpEarth.util{
 

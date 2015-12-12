@@ -4,9 +4,9 @@
  * All Rights Reserved.
  */
 
-using SharpEarth.java.util;
-using SharpEarth.javax.xml.namespaces;
-using SharpEarth.javax.xml.stream.events;
+using java.util;
+using javax.xml.namespaces;
+using javax.xml.stream.events;
 using SharpEarth.util;
 using SharpEarth.util.xml;
 using System.Text;

@@ -12,8 +12,8 @@ using SharpEarth.avlist;
 using SharpEarth;
 using System;
 using System.Collections.Generic;
-using SharpEarth.java.lang;
-using SharpEarth.java.org.w3c.dom;
+using java.lang;
+using java.org.w3c.dom;
 using SharpEarth.wms;
 
 namespace SharpEarth.layers{

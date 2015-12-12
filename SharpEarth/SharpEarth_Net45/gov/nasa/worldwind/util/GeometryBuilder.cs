@@ -6,14 +6,10 @@
 
 using System;
 using java.util;
-//using java.nio;
-//using javax.media.opengl.glu;
-//using javax.media.opengl.GL;
 using SharpEarth.terrain;
 using SharpEarth.globes;
 using SharpEarth.geom;
-using SharpEarth.java.nio;
-using SharpEarth.java.util;
+using java.nio;
 using SharpGL;
 
 //using com.jogamp.common.nio.Buffers;

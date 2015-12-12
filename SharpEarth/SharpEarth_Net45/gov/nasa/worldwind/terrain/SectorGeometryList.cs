@@ -9,9 +9,9 @@ using SharpEarth.render;
 using SharpEarth.pick;
 using SharpEarth.geom;
 using System.Collections.Generic;
-using SharpEarth.java.awt;
-using SharpEarth.java.lang;
-using SharpEarth.java.util;
+using java.awt;
+using java.lang;
+using java.util;
 
 namespace SharpEarth.terrain{
 

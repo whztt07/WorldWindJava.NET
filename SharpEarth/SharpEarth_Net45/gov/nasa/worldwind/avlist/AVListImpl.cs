@@ -14,7 +14,7 @@ using java.beans;
 using SharpEarth.util;
 using SharpEarth.exception;
 using SharpEarth.view.orbit;
-using SharpEarth.java.beans;
+using java.beans;
 
 namespace SharpEarth.avlist{
 

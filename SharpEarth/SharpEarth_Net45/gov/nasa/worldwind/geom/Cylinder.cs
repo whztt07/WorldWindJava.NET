@@ -9,7 +9,7 @@ using SharpEarth.render;
 using SharpEarth.globes;
 using SharpEarth;
 using System.Collections.Generic;
-using SharpEarth.java.util;
+using java.util;
 
 namespace SharpEarth.geom{
 

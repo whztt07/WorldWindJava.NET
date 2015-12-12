@@ -3,8 +3,8 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.java.nio;
-using SharpEarth.java.util;
+using java.nio;
+using java.util;
 using SharpEarth.util;
 using System;
 using System.Collections.Generic;
