@@ -15,7 +15,7 @@ class NITFSDataExtensionSegment extends NITFSSegment
         int headerStartOffset, int headerLength,
         int dataStartOffset, int dataLength)
     {
-        super(NITFSSegmentType.DATA_EXTENSION_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
+        base(NITFSSegmentType.DATA_EXTENSION_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
     }
 }
 }

@@ -3,7 +3,7 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.view.ViewPropertyLimits;
+using SharpEarth.view;
 using SharpEarth.geom;
 using SharpEarth;
 namespace SharpEarth.view.orbit{

@@ -416,12 +416,12 @@ public class BasicMemoryCache : MemoryCache
         {
             // clear doesn't throw any checked exceptions
             // but this is in case of an unchecked exception
-            // basically, we don't want to exit without calling super.finalize
+            // basically, we don't want to exit without calling base.finalize
             this.clear();
         }
         finally
         {
-            super.finalize();
+            base.finalize();
         }
     }
 }

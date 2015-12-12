@@ -13,7 +13,7 @@ class NITFSTextSegment extends NITFSSegment
 {
     public NITFSTextSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength, int dataStartOffset, int dataLength)
     {
-        super(NITFSSegmentType.TEXT_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
+        base(NITFSSegmentType.TEXT_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
 
         this.restoreBufferPosition();
     }

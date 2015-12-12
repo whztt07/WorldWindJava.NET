@@ -5,7 +5,7 @@
  */
 using SharpEarth.util;
 using SharpEarth.geom;
-using SharpEarth.animation.MoveToPositionAnimator;
+using SharpEarth.animation;
 namespace SharpEarth.view.orbit{
 
 
@@ -23,7 +23,7 @@ public class OrbitViewCenterAnimator : MoveToPositionAnimator
     public OrbitViewCenterAnimator(BasicOrbitView orbitView, Position startPosition, Position endPosition,
         double smoothing, PropertyAccessor.PositionAccessor propertyAccessor, bool endCenterOnSurface)
     {
-        super(startPosition, endPosition, smoothing, propertyAccessor);
+        base(startPosition, endPosition, smoothing, propertyAccessor);
         this.endCenterOnSurface = endCenterOnSurface;
         this.orbitView = orbitView;
     }
@@ -91,7 +91,7 @@ public class OrbitViewCenterAnimator : MoveToPositionAnimator
 
     public void stop()
     {
-        super.stop();
+        base.stop();
     }
 }
 }

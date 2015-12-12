@@ -31,7 +31,7 @@ public class DTEDRasterReader : AbstractDataRasterReader
 
     public DTEDRasterReader()
     {
-        super(dtedMimeTypes, dtedSuffixes);
+        base(dtedMimeTypes, dtedSuffixes);
     }
 
     @Override

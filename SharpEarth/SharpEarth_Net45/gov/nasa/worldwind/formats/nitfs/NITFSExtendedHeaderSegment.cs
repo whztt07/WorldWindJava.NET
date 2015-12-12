@@ -12,7 +12,7 @@ namespace SharpEarth.formats.nitfs{
 class NITFSExtendedHeaderSegment extends NITFSSegment {
     public NITFSExtendedHeaderSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength, int dataStartOffset, int dataLength)
     {
-        super(NITFSSegmentType.EXTENDED_HEADER_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
+        base(NITFSSegmentType.EXTENDED_HEADER_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
 
         this.restoreBufferPosition();
     }

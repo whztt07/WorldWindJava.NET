@@ -23,13 +23,13 @@ public class Color32 : Color24
      */
     public Color32()
     {
-        super();
+        base();
         this.a = 0;
     }
 
     public Color32(int a, int r, int g, int b)
     {
-        super(r, g, b);
+        base(r, g, b);
         this.a = a;
     }
 

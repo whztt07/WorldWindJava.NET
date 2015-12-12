@@ -61,7 +61,7 @@ public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListene
     /** Constructs a new <code>WorldWindowGLCanvas</code> on the default graphics device. */
     public WorldWindowGLCanvas()
     {
-        super(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), null);
+        base(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), null);
 
         try
         {
@@ -92,7 +92,7 @@ public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListene
      */
     public WorldWindowGLCanvas(WorldWindow shareWith)
     {
-        super(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), null);
+        base(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), null);
 
         if (shareWith != null)
             this.setSharedContext(shareWith.getContext());
@@ -131,7 +131,7 @@ public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListene
      */
     public WorldWindowGLCanvas(WorldWindow shareWith, java.awt.GraphicsDevice device)
     {
-        super(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), device);
+        base(Configuration.getRequiredGLCapabilities(), new BasicGLCapabilitiesChooser(), device);
 
         if (shareWith != null)
             this.setSharedContext(shareWith.getContext());
@@ -175,7 +175,7 @@ public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListene
     public WorldWindowGLCanvas(WorldWindow shareWith, java.awt.GraphicsDevice device,
         GLCapabilities capabilities, GLCapabilitiesChooser chooser)
     {
-        super(capabilities, chooser, device);
+        base(capabilities, chooser, device);
 
         if (shareWith != null)
             this.setSharedContext(shareWith.getContext());
@@ -407,35 +407,35 @@ public class WorldWindowGLCanvas : GLCanvas , WorldWindow, PropertyChangeListene
     @Override
     public synchronized void addPropertyChangeListener(PropertyChangeListener listener)
     {
-        super.addPropertyChangeListener(listener);
+        base.addPropertyChangeListener(listener);
         this.wwd.addPropertyChangeListener(listener);
     }
 
     @Override
     public synchronized void addPropertyChangeListener(String propertyName, PropertyChangeListener listener)
     {
-        super.addPropertyChangeListener(propertyName, listener);
+        base.addPropertyChangeListener(propertyName, listener);
         this.wwd.addPropertyChangeListener(propertyName, listener);
     }
 
     @Override
     public synchronized void removePropertyChangeListener(PropertyChangeListener listener)
     {
-        super.removePropertyChangeListener(listener);
+        base.removePropertyChangeListener(listener);
         this.wwd.removePropertyChangeListener(listener);
     }
 
     @Override
     public synchronized void removePropertyChangeListener(String propertyName, PropertyChangeListener listener)
     {
-        super.removePropertyChangeListener(propertyName, listener);
+        base.removePropertyChangeListener(propertyName, listener);
         this.wwd.removePropertyChangeListener(propertyName, listener);
     }
 
     @Override
     public void firePropertyChange(String propertyName, Object oldValue, Object newValue)
     {
-        super.firePropertyChange(propertyName, oldValue, newValue);
+        base.firePropertyChange(propertyName, oldValue, newValue);
     }
 
     public void firePropertyChange(PropertyChangeEvent propertyChangeEvent)

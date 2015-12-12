@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SharpGL;
 
 namespace SharpEarth.java.util
 {
-  internal class GL2
+  public class GL2 : OpenGL
   {
   }
 }

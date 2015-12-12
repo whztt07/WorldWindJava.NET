@@ -3,8 +3,14 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using System.Collections;
 using java.util;
-using java.awt.event;
+using java.awt.using SharpEarth.util;
+
+event;
+using java.awt.events;
 using SharpEarth.util;
 using SharpEarth.Configuration;
 namespace SharpEarth.awt{
@@ -25,7 +31,7 @@ public class ViewInputAttributes
     {
     }
 
-    public static class ActionAttributes
+    public class ActionAttributes
     {
         public KeyInputActionHandler getActionListener()
         {
@@ -73,7 +79,7 @@ public class ViewInputAttributes
             }
         }
 
-        public static class MouseAction
+        public class MouseAction
         {
             public int mouseButton;
 
@@ -257,7 +263,7 @@ public class ViewInputAttributes
         }
     }
 
-    public static class DeviceAttributes
+    public class DeviceAttributes
     {
         private double sensitivity;
 
@@ -270,7 +276,7 @@ public class ViewInputAttributes
         {
             if (attributes == null)
             {
-                String message = Logging.getMessage("nullValue.AttributesIsNull");
+                string message = Logging.getMessage("nullValue.AttributesIsNull");
                 Logging.logger().severe(message);
                 throw new ArgumentException(message);
             }

@@ -6,8 +6,8 @@
 
 using System;
 using SharpEarth.animation;
-using SharpEarth.util.PropertyAccessor;
-using SharpEarth.animation.MoveToDoubleAnimator;
+using SharpEarth.util;
+using SharpEarth.animation;
 using SharpEarth.util;
 
 namespace SharpEarth.view.orbit{
@@ -24,25 +24,25 @@ public class OrbitViewMoveToZoomAnimator  : MoveToDoubleAnimator
 
     OrbitViewMoveToZoomAnimator(BasicOrbitView orbitView, Double end, double smoothing,
         PropertyAccessor.DoubleAccessor propertyAccessor, bool endCenterOnSurface)
+      : base( end, smoothing, propertyAccessor )
     {
-        super(end, smoothing, propertyAccessor);
         this.orbitView = orbitView;
         this.endCenterOnSurface = endCenterOnSurface;
     }
 
     protected void setImpl(double interpolant)
     {
-       Double newValue = this.nextDouble(interpolant);
+       double? newValue = this.nextDouble(interpolant);
        if (newValue == null)
            return;
 
        this.propertyAccessor.setDouble(newValue);
     }
 
-    public Double nextDouble(double interpolant)
+    public double? nextDouble(double interpolant)
     {
-        double newValue = (1 - interpolant) * propertyAccessor.getDouble() + interpolant * this.end;
-        if (Math.Abs(newValue - propertyAccessor.getDouble()) < minEpsilon)
+        double newValue = (1 - interpolant) * propertyAccessor.getDouble().Value + interpolant * this.End;
+        if (Math.Abs(newValue - propertyAccessor.getDouble().Value) < minEpsilon)
         {
             this.stop();
             if (this.endCenterOnSurface)

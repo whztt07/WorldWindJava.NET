@@ -30,7 +30,7 @@ public class ImageIORasterReader : AbstractDataRasterReader
 
     public ImageIORasterReader(boolean generateMipMaps)
     {
-        super(javax.imageio.ImageIO.getReaderMIMETypes(), getImageIOReaderSuffixes());
+        base(javax.imageio.ImageIO.getReaderMIMETypes(), getImageIOReaderSuffixes());
         this.generateMipMaps = generateMipMaps;
     }
 

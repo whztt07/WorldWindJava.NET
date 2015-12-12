@@ -3,14 +3,21 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using javax.media.opengl.GL;
-using SharpEarth.view.BasicView;
+
+using System;
+using SharpEarth.view;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.geom;
-using SharpEarth.awt.ViewInputHandler;
+using SharpEarth.awt;
 using SharpEarth.avlist;
 using SharpEarth;
+using SharpEarth.awt;
+using SharpEarth.java.awt;
+using SharpEarth.java.lang;
+using SharpEarth.java.util;
+using SharpGL;
+
 namespace SharpEarth.view.orbit{
 
 
@@ -26,7 +33,7 @@ public class BasicOrbitView : BasicView , OrbitView
     protected double zoom;
     protected bool viewOutOfFocus;
     // Stateless helper classes.
-    protected final OrbitViewCollisionSupport collisionSupport = new OrbitViewCollisionSupport();
+    protected readonly OrbitViewCollisionSupport collisionSupport = new OrbitViewCollisionSupport();
 
     public BasicOrbitView()
     {
@@ -44,34 +51,34 @@ public class BasicOrbitView : BasicView , OrbitView
 
     protected void loadConfigurationValues()
     {
-        Double initLat = Configuration.getDoubleValue(AVKey.INITIAL_LATITUDE);
-        Double initLon = Configuration.getDoubleValue(AVKey.INITIAL_LONGITUDE);
+        double? initLat = Configuration.getDoubleValue(AVKey.INITIAL_LATITUDE);
+        double? initLon = Configuration.getDoubleValue(AVKey.INITIAL_LONGITUDE);
         double initElev = this.center.getElevation();
         // Set center latitude and longitude. Do not change center elevation.
         if (initLat != null && initLon != null)
-            setCenterPosition(Position.fromDegrees(initLat, initLon, initElev));
+            setCenterPosition(Position.fromDegrees(initLat.Value, initLon.Value, initElev));
             // Set only center latitude. Do not change center longitude or center elevation.
         else if (initLat != null)
-            setCenterPosition(Position.fromDegrees(initLat, this.center.getLongitude().degrees, initElev));
+            setCenterPosition(Position.fromDegrees(initLat.Value, this.center.getLongitude().degrees, initElev));
             // Set only center longitude. Do not center latitude or center elevation.
         else if (initLon != null)
-            setCenterPosition(Position.fromDegrees(this.center.getLatitude().degrees, initLon, initElev));
+            setCenterPosition(Position.fromDegrees(this.center.getLatitude().degrees, initLon.Value, initElev));
 
-        Double initHeading = Configuration.getDoubleValue(AVKey.INITIAL_HEADING);
+        double? initHeading = Configuration.getDoubleValue(AVKey.INITIAL_HEADING);
         if (initHeading != null)
-            setHeading(Angle.fromDegrees(initHeading));
+            setHeading(Angle.fromDegrees(initHeading.Value));
 
-        Double initPitch = Configuration.getDoubleValue(AVKey.INITIAL_PITCH);
+        double? initPitch = Configuration.getDoubleValue(AVKey.INITIAL_PITCH);
         if (initPitch != null)
-            setPitch(Angle.fromDegrees(initPitch));
+            setPitch(Angle.fromDegrees(initPitch.Value));
 
-        Double initAltitude = Configuration.getDoubleValue(AVKey.INITIAL_ALTITUDE);
+        double? initAltitude = Configuration.getDoubleValue(AVKey.INITIAL_ALTITUDE);
         if (initAltitude != null)
-            setZoom(initAltitude);
+            setZoom(initAltitude.Value);
 
-        Double initFov = Configuration.getDoubleValue(AVKey.FOV);
+        double? initFov = Configuration.getDoubleValue(AVKey.FOV);
         if (initFov != null)
-            setFieldOfView(Angle.fromDegrees(initFov));
+            setFieldOfView(Angle.fromDegrees(initFov.Value));
 
         this.setViewOutOfFocus(true);
     }
@@ -85,7 +92,7 @@ public class BasicOrbitView : BasicView , OrbitView
 
     protected void flagHadCollisions()
     {
-        this.hadCollisions = true;
+        this.HadCollisions = true;
     }
 
     public void stopMovementOnCenter()
@@ -331,8 +338,8 @@ public class BasicOrbitView : BasicView , OrbitView
         }
         catch (Exception e)
         {
-            String message = Logging.getMessage("generic.ExceptionWhileChangingView");
-            Logging.logger().log(java.util.logging.Level.SEVERE, message, e);
+            string message = Logging.getMessage("generic.ExceptionWhileChangingView");
+            Logging.logger().log(Level.SEVERE, message, e);
             // If updating the View's focus failed, raise the flag again.
             this.setViewOutOfFocus(true);
         }
@@ -466,7 +473,7 @@ public class BasicOrbitView : BasicView , OrbitView
                 Vec4 eyePoint = Vec4.UNIT_W.transformBy4(modelviewInv);
                 Vec4 forward = Vec4.UNIT_NEGATIVE_Z.transformBy4(modelviewInv);
                 Intersection[] intersections = this.dc.getSurfaceGeometry().intersect(new Line(eyePoint, forward));
-                if (intersections != null && intersections.length > 0)
+                if (intersections != null && intersections.Length > 0)
                 {
                     Vec4 viewportCenterPoint = intersections[0].getIntersectionPoint();
                     OrbitViewInputSupport.OrbitViewState modelCoords = OrbitViewInputSupport.computeOrbitViewState(
@@ -651,8 +658,9 @@ public class BasicOrbitView : BasicView , OrbitView
         //========== projection matrix state ==========//
         // Get the current OpenGL viewport state.
         int[] viewportArray = new int[4];
-        this.dc.getGL().glGetIntegerv(GL.GL_VIEWPORT, viewportArray, 0);
-        this.viewport = new java.awt.Rectangle(viewportArray[0], viewportArray[1], viewportArray[2], viewportArray[3]);
+      this.dc.getGL().gl2.GetInteger( OpenGL.GL_VIEWPORT, 0, viewportArray );
+//      this.dc.getGL().glGetIntegerv(OpenGL.GL_VIEWPORT, viewportArray, 0);
+        this.viewport = new Rectangle(viewportArray[0], viewportArray[1], viewportArray[2], viewportArray[3]);
         // Compute the current clip plane distances. The near distance depends on the far distance, so we must compute
         // the far distance first.
         this.farClipDistance = computeFarClipDistance();
@@ -729,7 +737,6 @@ public class BasicOrbitView : BasicView , OrbitView
             && modelCoords.getZoom() >= 0);
     }
 
-    @Override
     protected double computeHorizonDistance(Position eyePosition)
     {
         if (this.dc.is2DGlobe())
@@ -738,11 +745,10 @@ public class BasicOrbitView : BasicView , OrbitView
         }
         else
         {
-            return super.computeHorizonDistance(eyePosition);
+            return base.computeHorizonDistance(eyePosition);
         }
     }
 
-    @Override
     protected double computeFarDistance(Position eyePosition)
     {
         if (this.dc.is2DGlobe())
@@ -766,7 +772,7 @@ public class BasicOrbitView : BasicView , OrbitView
         }
         else
         {
-            return super.computeHorizonDistance(eyePosition);
+            return base.computeHorizonDistance(eyePosition);
         }
     }
 
@@ -776,7 +782,7 @@ public class BasicOrbitView : BasicView , OrbitView
 
     protected void doGetRestorableState(RestorableSupport rs, RestorableSupport.StateObject context)
     {
-        super.doGetRestorableState(rs, context);
+        base.doGetRestorableState(rs, context);
 
         if (this.getCenterPosition() != null)
         {
@@ -798,7 +804,7 @@ public class BasicOrbitView : BasicView , OrbitView
         // from previous versions of BasicOrbitView.
         this.legacyRestoreState(rs, context);
 
-        super.doRestoreState(rs, context);
+        base.doRestoreState(rs, context);
 
         // Restore the center property only if all parts are available.
         // We will not restore a partial center (for example, just latitude).

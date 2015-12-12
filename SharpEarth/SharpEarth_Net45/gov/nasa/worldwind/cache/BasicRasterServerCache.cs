@@ -50,7 +50,7 @@ public class BasicRasterServerCache : BasicMemoryCache
      */
     public BasicRasterServerCache()
     {
-        super(0L,
+        base(0L,
             Runtime.getRuntime().freeMemory() + Runtime.getRuntime().maxMemory() - Runtime.getRuntime().totalMemory());
 
         new Thread(new MemoryMonitorThread()).start();

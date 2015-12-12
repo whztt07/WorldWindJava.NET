@@ -16,36 +16,36 @@ public sealed class NITFSRuntimeException : java.lang.RuntimeException
 {
     public NITFSRuntimeException()
     {
-        super();
+        base();
     }
 
     public NITFSRuntimeException(String messageID)
     {
-        super(Logging.getMessage(messageID));
+        base(Logging.getMessage(messageID));
         log(this.getMessage());
     }
 
     public NITFSRuntimeException(String messageID, String parameters)
     {
-        super(Logging.getMessage(messageID) + parameters);
+        base(Logging.getMessage(messageID) + parameters);
         log(this.getMessage());
     }
 
     public NITFSRuntimeException(Throwable throwable)
     {
-        super(throwable);
+        base(throwable);
         log(this.getMessage());
     }
 
     public NITFSRuntimeException(String messageID, Throwable throwable)
     {
-        super(Logging.getMessage(messageID), throwable);
+        base(Logging.getMessage(messageID), throwable);
         log(this.getMessage());
     }
 
     public NITFSRuntimeException(String messageID, String parameters, Throwable throwable)
     {
-        super(Logging.getMessage(messageID) + parameters, throwable);
+        base(Logging.getMessage(messageID) + parameters, throwable);
         log(this.getMessage());
     }
 

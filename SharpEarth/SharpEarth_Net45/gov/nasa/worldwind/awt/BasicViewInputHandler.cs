@@ -647,7 +647,7 @@ public abstract class BasicViewInputHandler : AbstractViewInputHandler
 
     public void apply()
     {
-        super.apply();
+        base.apply();
     }
 
     //**************************************************************//
@@ -673,7 +673,7 @@ public abstract class BasicViewInputHandler : AbstractViewInputHandler
 
         if (!eventHandled)
         {
-            super.handleKeyPressed(e);    
+            base.handleKeyPressed(e);    
         }
 
 
@@ -702,7 +702,7 @@ public abstract class BasicViewInputHandler : AbstractViewInputHandler
 
         if (!eventHandled)
         {
-            super.handleMouseClicked(e);
+            base.handleMouseClicked(e);
         }
 
     }
@@ -726,7 +726,7 @@ public abstract class BasicViewInputHandler : AbstractViewInputHandler
 
         if (!eventHandled)
         {
-            super.handleMouseWheelMoved(e);
+            base.handleMouseWheelMoved(e);
         }
     }
 
@@ -943,7 +943,7 @@ public abstract class BasicViewInputHandler : AbstractViewInputHandler
 
     protected void handlePropertyChange(java.beans.PropertyChangeEvent e)
     {
-        super.handlePropertyChange(e);
+        base.handlePropertyChange(e);
 
             //noinspection StringEquality
         if (e.getPropertyName() == ViewContansts.VIEW_STOPPED)

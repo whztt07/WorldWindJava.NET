@@ -3,6 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
+
+using System;
+using SharpEarth.geom;
 using SharpEarth.util;
 using SharpEarth.render;
 using SharpEarth.globes;

@@ -3,9 +3,11 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using java.util.Date;
-using java.awt.event;
+
+using System;
+using System.ComponentModel;
 using java.awt;
+using java.awt.events;
 using SharpEarth.view;
 using SharpEarth.util;
 using SharpEarth.globes;
@@ -26,27 +28,27 @@ public class OrbitViewInputHandler : BasicViewInputHandler
 {
     protected AnimationController gotoAnimControl = new AnimationController();
     protected AnimationController uiAnimControl = new AnimationController();
-    protected static final String VIEW_ANIM_HEADING = "ViewAnimHeading";
-    protected static final String VIEW_ANIM_PITCH = "ViewAnimPitch";
-    protected static final String VIEW_ANIM_ROLL = "ViewAnimRoll";
-    protected static final String VIEW_ANIM_HEADING_PITCH = "ViewAnimHeadingPitch";
-    protected static final String VIEW_ANIM_POSITION = "ViewAnimPosition";
-    protected static final String VIEW_ANIM_CENTER = "ViewAnimCenter";
-    protected static final String VIEW_ANIM_ZOOM = "ViewAnimZoom";
-    protected static final String VIEW_ANIM_PAN = "ViewAnimPan";
-    protected static final String VIEW_ANIM_APP = "ViewAnimApp";
-    protected static final String VIEW_ANIM_EYE = "ViewAnimEye";
+    protected static readonly string VIEW_ANIM_HEADING = "ViewAnimHeading";
+    protected static readonly string VIEW_ANIM_PITCH = "ViewAnimPitch";
+    protected static readonly string VIEW_ANIM_ROLL = "ViewAnimRoll";
+    protected static readonly string VIEW_ANIM_HEADING_PITCH = "ViewAnimHeadingPitch";
+    protected static readonly string VIEW_ANIM_POSITION = "ViewAnimPosition";
+    protected static readonly string VIEW_ANIM_CENTER = "ViewAnimCenter";
+    protected static readonly string VIEW_ANIM_ZOOM = "ViewAnimZoom";
+    protected static readonly string VIEW_ANIM_PAN = "ViewAnimPan";
+    protected static readonly string VIEW_ANIM_APP = "ViewAnimApp";
+    protected static readonly string VIEW_ANIM_EYE = "ViewAnimEye";
 
-    public static final String ORBITVIEW_RESET_ROLL = "gov.nasa.worldwind.ViewResetRoll";
+    public static readonly string ORBITVIEW_RESET_ROLL = "gov.nasa.worldwind.ViewResetRoll";
 
     /** Action handler to reset roll. */
     public class ResetRollActionListener : ViewInputActionHandler
     {
-        @Override
         public bool inputActionPerformed(AbstractViewInputHandler inputHandler,
-            java.awt.event.MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction)
+            MouseEvent mouseEvent, ViewInputAttributes.ActionAttributes viewAction,
+            OrbitViewInputHandler viewInputHandler)
         {
-            onResetRoll(viewAction);
+            viewInputHandler.onResetRoll( viewAction);
             return true;
         }
     }
@@ -137,7 +139,6 @@ public class OrbitViewInputHandler : BasicViewInputHandler
         }
     }
 
-    @SuppressWarnings("UnusedParameters")
     protected void onMoveTo2D(Position focalPosition, ViewInputAttributes.DeviceAttributes deviceAttributes,
         ViewInputAttributes.ActionAttributes actionAttribs)
     {
@@ -292,7 +293,6 @@ public class OrbitViewInputHandler : BasicViewInputHandler
         }
     }
 
-    @SuppressWarnings("UnusedParameters")
     protected void onHorizontalTranslate2D(double forwardInput, double sideInput,
         double totalForwardInput, double totalSideInput,
         ViewInputAttributes.DeviceAttributes deviceAttributes,
@@ -360,7 +360,6 @@ public class OrbitViewInputHandler : BasicViewInputHandler
         }
     }
 
-    @Override
     protected void onResetHeading(ViewInputAttributes.ActionAttributes actionAttribs)
     {
         this.stopAllAnimators();
@@ -378,7 +377,6 @@ public class OrbitViewInputHandler : BasicViewInputHandler
      *
      * @param actionAttribs input that caused the change.
      */
-    @SuppressWarnings("UnusedParameters")
     protected void onResetRoll(ViewInputAttributes.ActionAttributes actionAttribs)
     {
         View view = this.getView();
@@ -511,7 +509,7 @@ public class OrbitViewInputHandler : BasicViewInputHandler
     @Override
     public void apply()
     {
-        super.apply();
+        base.apply();
 
         View view = this.getView();
         if (view == null)
@@ -544,7 +542,7 @@ public class OrbitViewInputHandler : BasicViewInputHandler
 
     protected void handlePropertyChange(java.beans.PropertyChangeEvent e)
     {
-        super.handlePropertyChange(e);
+        base.handlePropertyChange(e);
 
         //noinspection StringEquality
         if (e.getPropertyName() == OrbitViewContants.CENTER_STOPPED)
@@ -963,7 +961,7 @@ public class OrbitViewInputHandler : BasicViewInputHandler
             return (t);
         } else {
             // Any other view, use the base class scaling method
-            return(super.getScaleValueElevation(deviceAttributes, actionAttributes));
+            return(base.getScaleValueElevation(deviceAttributes, actionAttributes));
         }
     }
 

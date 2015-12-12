@@ -18,7 +18,7 @@ public class RPFUserDefinedHeaderSegment : NITFSUserDefinedHeaderSegment
 
     public RPFUserDefinedHeaderSegment(java.nio.ByteBuffer buffer)
     {
-        super(buffer);
+        base(buffer);
 
         if( RPFHeaderSection.DATA_TAG.Equals(this.dataTag) )
         {

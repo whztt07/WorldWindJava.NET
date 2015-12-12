@@ -21,7 +21,7 @@ public class BufferWrapperRaster : AbstractDataRaster , Cacheable, Disposable
 
     public BufferWrapperRaster(int width, int height, Sector sector, BufferWrapper buffer, AVList list)
     {
-        super(width, height, sector, list);
+        base(width, height, sector, list);
 
         if (buffer == null)
         {

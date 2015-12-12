@@ -69,7 +69,7 @@ public class GDALDataRaster : AbstractDataRaster , Cacheable
     public GDALDataRaster(Object source, bool quickReadingMode)
         throws ArgumentException, FileNotFoundException
     {
-        super();
+        base();
 
         File file = WWIO.getFileForLocalAddress(source);
         if (null == file)
@@ -260,7 +260,7 @@ public class GDALDataRaster : AbstractDataRaster , Cacheable
 
     public GDALDataRaster(Dataset ds) throws ArgumentException
     {
-        super();
+        base();
 
         if (null == ds)
         {
@@ -1044,7 +1044,7 @@ public class GDALDataRaster : AbstractDataRaster , Cacheable
         };
         WWUtil.copyValues(this, parameters, keysToCopy, false);
 
-        return super.getSubRaster(params);
+        return base.getSubRaster(params);
     }
 
     protected DataRaster doGetSubRaster(int roiWidth, int roiHeight, Sector roiSector, AVList roiParams)

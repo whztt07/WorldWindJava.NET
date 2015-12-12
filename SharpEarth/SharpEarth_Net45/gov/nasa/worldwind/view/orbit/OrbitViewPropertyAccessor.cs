@@ -5,140 +5,101 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using SharpEarth.geom;
-using SharpEarth.view.ViewPropertyAccessor;
-using SharpEarth.util.PropertyAccessor;
-using SharpEarth.geom.Position;
 using SharpEarth.util;
 
-namespace SharpEarth.view.orbit{
-
-
+namespace SharpEarth.view.orbit
+{
 /**
  * @author dcollins
  * @version $Id: OrbitViewPropertyAccessor.java 1171 2013-02-11 21:45:02Z dcollins $
  */
-public class OrbitViewPropertyAccessor : ViewPropertyAccessor
-{
-    
+  public class OrbitViewPropertyAccessor : ViewPropertyAccessor
+  {
     private OrbitViewPropertyAccessor()
     {
     }
 
-
-    public static PropertyAccessor.PositionAccessor createCenterPositionAccessor(OrbitView view)
+    public static PropertyAccessor.PositionAccessor createCenterPositionAccessor( OrbitView view )
     {
-        return new CenterPositionAccessor(view);
+      return new CenterPositionAccessor( view );
     }
 
-
-
-    public static PropertyAccessor.DoubleAccessor createZoomAccessor(OrbitView view)
+    public static PropertyAccessor.DoubleAccessor createZoomAccessor( OrbitView view )
     {
-        return new ZoomAccessor(view);
+      return new ZoomAccessor( view );
     }
-
-    //public static RotationAccessor createRotationAccessor()
-    //{
-    //    return new RotationAccessor();
-    //}
-
-    // ============== Implementation ======================= //
-    // ============== Implementation ======================= //
-    // ============== Implementation ======================= //
 
     private class CenterPositionAccessor : PropertyAccessor.PositionAccessor
     {
-        private OrbitView orbitView;
-        public CenterPositionAccessor(OrbitView view)
+      private readonly OrbitView orbitView;
+
+      public CenterPositionAccessor( OrbitView view )
+      {
+        orbitView = view;
+      }
+
+      public Position getPosition()
+      {
+        if ( orbitView == null )
+          return null;
+
+        return orbitView.getCenterPosition();
+      }
+
+      public bool setPosition( Position value )
+      {
+        //noinspection SimplifiableIfStatement
+        if ( orbitView == null || value == null )
+          return false;
+
+        try
         {
-            this.orbitView = view;
+          orbitView.setCenterPosition( value );
+          return true;
         }
-
-        public Position getPosition()
+        catch ( Exception e )
         {
-            if (this.orbitView == null)
-                return null;
-
-            return orbitView.getCenterPosition();
-
+          return false;
         }
-
-        public bool setPosition(Position value)
-        {
-             //noinspection SimplifiableIfStatement
-            if (this.orbitView == null || value == null)
-                return false;
-
-
-            try
-            {
-
-                this.orbitView.setCenterPosition(value);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
 
-
-
-    private static class ZoomAccessor : PropertyAccessor.DoubleAccessor
+    private class ZoomAccessor : PropertyAccessor.DoubleAccessor
     {
-        OrbitView orbitView;
-        public ZoomAccessor(OrbitView orbitView)
+      private readonly OrbitView orbitView;
+
+      public ZoomAccessor( OrbitView orbitView )
+      {
+        this.orbitView = orbitView;
+      }
+
+      public double? getDouble()
+      {
+        if ( orbitView == null )
+          return null;
+
+        return orbitView.getZoom();
+      }
+
+      public bool setDouble( double? value )
+      {
+        //noinspection SimplifiableIfStatement
+        if ( orbitView == null || value == null )
+          return false;
+
+        try
         {
-            this.orbitView = orbitView;
+          orbitView.setZoom( value.Value );
+          return true;
         }
-        public final Double getDouble()
+        catch ( Exception e )
         {
-            if (this.orbitView == null)
-                return null;
-
-            return this.orbitView.getZoom();
-
+          return false;
         }
-
-        public final bool setDouble(Double value)
-        {
-            //noinspection SimplifiableIfStatement
-            if (this.orbitView == null || value == null)
-                return false;
-
-            try
-            {
-                this.orbitView.setZoom(value);
-                return true;
-
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
+      }
     }
-
-    //private static class RotationAccessor implements QuaternionAccessor
-    //{
-    //    public final Quaternion getQuaternion(OrbitView orbitView)
-    //    {
-    //        if (orbitView == null)
-    //            return null;
-    //
-    //        return orbitView.getRotation();
-    //    }
-    //
-    //    public final bool setQuaternion(OrbitView orbitView, Quaternion value)
-    //    {
-    //        if (orbitView == null || value == null)
-    //            return false;
-    //
-    //        orbitView.setRotation(value);
-    //        return true;
-    //    }
-    //}
-}
+  }
 }

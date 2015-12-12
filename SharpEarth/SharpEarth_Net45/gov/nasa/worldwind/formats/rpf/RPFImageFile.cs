@@ -42,7 +42,7 @@ public class RPFImageFile : RPFFile
     
     private RPFImageFile(java.io.File rpfFile) throws java.io.IOException, NITFSRuntimeException
     {
-        super(rpfFile);
+        base(rpfFile);
 
         this.imageSegment = (NITFSImageSegment) this.getNITFSSegment(NITFSSegmentType.IMAGE_SEGMENT);
         this.validateRPFImage();

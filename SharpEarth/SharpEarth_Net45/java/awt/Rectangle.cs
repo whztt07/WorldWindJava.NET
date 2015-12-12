@@ -24,5 +24,20 @@ namespace SharpEarth.java.awt
       width = viewport.width;
       height = viewport.height;
     }
+
+    public Rectangle( int viewport, int i, int viewport1, int v8 )
+    {
+      throw new NotImplementedException();
+    }
+
+    public double getWidth()
+    {
+      throw new NotImplementedException();
+    }
+
+    public double getHeight()
+    {
+      throw new NotImplementedException();
+    }
   }
 }

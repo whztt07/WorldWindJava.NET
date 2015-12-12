@@ -23,7 +23,7 @@ public class ByteBufferRaster : BufferWrapperRaster
 
     public ByteBufferRaster(int width, int height, Sector sector, java.nio.ByteBuffer byteBuffer, AVList list)
     {
-        super(width, height, sector, BufferWrapper.wrap(byteBuffer, list), list);
+        base(width, height, sector, BufferWrapper.wrap(byteBuffer, list), list);
 
         this.byteBuffer = byteBuffer;
 

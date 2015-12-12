@@ -29,7 +29,7 @@ public class BILRasterReader : AbstractDataRasterReader
 
     public BILRasterReader()
     {
-        super(bilMimeTypes, bilSuffixes);
+        base(bilMimeTypes, bilSuffixes);
     }
 
     public bool isMapLargeFiles()
@@ -129,7 +129,7 @@ public class BILRasterReader : AbstractDataRasterReader
     {
         StringBuilder sb = new StringBuilder();
 
-        String message = super.validateMetadata(source, parameters);
+        String message = base.validateMetadata(source, parameters);
         if (message != null)
         {
             sb.append(message);

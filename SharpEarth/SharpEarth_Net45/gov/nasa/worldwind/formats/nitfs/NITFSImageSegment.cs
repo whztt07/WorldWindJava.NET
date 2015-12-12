@@ -127,7 +127,7 @@ public class NITFSImageSegment : NITFSSegment
 
     public NITFSImageSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength,int dataStartOffset, int dataLength)
     {
-        super(NITFSSegmentType.IMAGE_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
+        base(NITFSSegmentType.IMAGE_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
 
         int saveOffset = buffer.position();
 
@@ -168,7 +168,7 @@ public class NITFSImageSegment : NITFSSegment
         RPFLocationSection componentLocationTable = rpfComponents.componentLocationTable;
 
         int spatialDataSubsectionLocation = componentLocationTable.getSpatialDataSubsectionLocation();
-        super.buffer.position( spatialDataSubsectionLocation );
+        base.buffer.position( spatialDataSubsectionLocation );
 
         int band = 0; // for(int band = 0; band < rpfComponents.numOfSpectralBandTables;  band++)
         NITFSImageBand imageBand = this.imageBands[band];
@@ -198,7 +198,7 @@ public class NITFSImageSegment : NITFSSegment
                     }
                     else
                     {
-                        super.buffer.position( spatialDataSubsectionLocation + subFrameOffset );
+                        base.buffer.position( spatialDataSubsectionLocation + subFrameOffset );
                     }
                 }
 
@@ -206,7 +206,7 @@ public class NITFSImageSegment : NITFSSegment
                 {
                     int qy = blockY + row * 4;
 
-                    super.buffer.get(rowBytes, 0, rowSize);
+                    base.buffer.get(rowBytes, 0, rowSize);
 
                     // short[] codes = new short[(int) this.numOfImageCodesPerRow];
                     for (int i = 0, cidx = 0, bidx = 0; i < (int) this.numOfImageCodesPerRow / 2; i++)

@@ -3,7 +3,9 @@
  * National Aeronautics and Space Administration.
  * All Rights Reserved.
  */
-using SharpEarth.view.BasicViewPropertyLimits;
+
+using System;
+using SharpEarth.view;
 using SharpEarth.util;
 using SharpEarth.geom;
 using SharpEarth;
@@ -31,14 +33,12 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public Sector getCenterLocationLimits()
     {
         return this.centerLocationLimits;
     }
 
     /** {@inheritDoc} */
-    @Override
     public void setCenterLocationLimits(Sector sector)
     {
         if (sector == null)
@@ -52,14 +52,12 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public double[] getCenterElevationLimits()
     {
         return new double[] {this.minCenterElevation, this.maxCenterElevation};
     }
 
     /** {@inheritDoc} */
-    @Override
     public void setCenterElevationLimits(double minValue, double maxValue)
     {
         this.minCenterElevation = minValue;
@@ -67,14 +65,12 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public double[] getZoomLimits()
     {
         return new double[] {this.minZoom, this.maxZoom};
     }
 
     /** {@inheritDoc} */
-    @Override
     public void setZoomLimits(double minValue, double maxValue)
     {
         this.minZoom = minValue;
@@ -82,10 +78,9 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public void reset()
     {
-        super.reset();
+        base.reset();
 
         this.centerLocationLimits = Sector.FULL_SPHERE;
         this.minCenterElevation = -Double.MaxValue;
@@ -95,7 +90,6 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public Position limitCenterPosition(View view, Position position)
     {
         if (view == null)
@@ -121,7 +115,6 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
     }
 
     /** {@inheritDoc} */
-    @Override
     public double limitZoom(View view, double value)
     {
         if (view == null)
@@ -157,7 +150,6 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
      *             SharpEarth.geom.Position)}, {@link #limitHeading(gov.nasa.worldwind.View,
      *             SharpEarth.geom.Angle)}, etc.
      */
-    @SuppressWarnings("deprecation")
     public static void applyLimits(OrbitView view, OrbitViewLimits viewLimits)
     {
         if (view == null)
@@ -188,7 +180,6 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
      * @throws ArgumentException if any argument is null.
      * @deprecated Use {@link #limitCenterPosition(gov.nasa.worldwind.View, SharpEarth.geom.Position)} instead.
      */
-    @SuppressWarnings("deprecation")
     public static Position limitCenterPosition(Position position, OrbitViewLimits viewLimits)
     {
         if (position == null)
@@ -331,7 +322,7 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
 
     public void getRestorableState(RestorableSupport rs, RestorableSupport.StateObject context)
     {
-        super.getRestorableState(rs, context);
+        base.getRestorableState(rs, context);
 
         rs.addStateValueAsSector(context, "centerLocationLimits", this.centerLocationLimits);
         rs.addStateValueAsDouble(context, "minCenterElevation", this.minCenterElevation);
@@ -342,7 +333,7 @@ public class BasicOrbitViewLimits : BasicViewPropertyLimits , OrbitViewLimits
 
     public void restoreState(RestorableSupport rs, RestorableSupport.StateObject context)
     {
-        super.restoreState(rs, context);
+      base.restoreState(rs, context);
 
         Sector sector = rs.getStateValueAsSector(context, "centerLocationLimits");
         if (sector != null)

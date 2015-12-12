@@ -18,17 +18,17 @@ public class WWAbsentRequirementException : WWRuntimeException
 
     public WWAbsentRequirementException(String s)
     {
-        super(s);
+        base(s);
     }
 
     public WWAbsentRequirementException(String s, Throwable throwable)
     {
-        super(s, throwable);
+        base(s, throwable);
     }
 
     public WWAbsentRequirementException(Throwable throwable)
     {
-        super(throwable);
+        base(throwable);
     }
 }
 }

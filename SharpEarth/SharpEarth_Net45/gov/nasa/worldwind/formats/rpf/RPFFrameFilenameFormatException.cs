@@ -17,17 +17,17 @@ public class RPFFrameFilenameFormatException : ArgumentException
 
     public RPFFrameFilenameFormatException(String message)
     {
-        super(message);
+        base(message);
     }
 
     public RPFFrameFilenameFormatException(String message, Throwable cause)
     {
-        super(message, cause);
+        base(message, cause);
     }
 
     public RPFFrameFilenameFormatException(Throwable cause)
     {
-        super(cause);
+        base(cause);
     }
 }
 }

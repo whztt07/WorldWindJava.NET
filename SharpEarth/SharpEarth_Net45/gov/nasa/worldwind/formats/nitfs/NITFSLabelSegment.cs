@@ -13,7 +13,7 @@ class NITFSLabelSegment extends NITFSSegment
 {
     public NITFSLabelSegment(java.nio.ByteBuffer buffer, int headerStartOffset, int headerLength, int dataStartOffset, int dataLength)
     {
-        super(NITFSSegmentType.LABEL_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
+        base(NITFSSegmentType.LABEL_SEGMENT, buffer, headerStartOffset, headerLength, dataStartOffset, dataLength);
 
         this.restoreBufferPosition();
     }

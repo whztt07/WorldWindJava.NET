@@ -47,7 +47,7 @@ public class GDALDataRasterReader : AbstractDataRasterReader
 
     public GDALDataRasterReader()
     {
-        super("GDAL-based Data Raster Reader", mimeTypes, suffixes);
+        base("GDAL-based Data Raster Reader", mimeTypes, suffixes);
     }
 
     @Override

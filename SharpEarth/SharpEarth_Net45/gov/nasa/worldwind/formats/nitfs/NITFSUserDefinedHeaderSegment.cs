@@ -17,7 +17,7 @@ public abstract class NITFSUserDefinedHeaderSegment : NITFSSegment
 
     public NITFSUserDefinedHeaderSegment(java.nio.ByteBuffer buffer)
     {
-        super(NITFSSegmentType.USER_DEFINED_HEADER_SEGMENT, buffer, 0, 0, 0, 0);
+        base(NITFSSegmentType.USER_DEFINED_HEADER_SEGMENT, buffer, 0, 0, 0, 0);
 
         this.headerLength = Integer.parseInt(NITFSUtil.getString(buffer, 5));
         this.overflow = Integer.parseInt(NITFSUtil.getString(buffer, 3));

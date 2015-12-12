@@ -20,6 +20,11 @@ namespace java.util.logging
       throw new NotImplementedException();
     }
 
+    internal void log( object server, string v1, Exception e )
+    {
+      throw new NotImplementedException();
+    }
+
     public void warning( string v )
     {
       throw new NotImplementedException();

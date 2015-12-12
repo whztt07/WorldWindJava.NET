@@ -22,7 +22,7 @@ public class GeotiffRasterReader : AbstractDataRasterReader
 
     public GeotiffRasterReader()
     {
-        super(geotiffMimeTypes, geotiffSuffixes);
+        base(geotiffMimeTypes, geotiffSuffixes);
     }
 
     protected bool doCanRead(Object source, AVList parameters)

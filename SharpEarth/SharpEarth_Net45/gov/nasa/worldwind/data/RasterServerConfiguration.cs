@@ -26,7 +26,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
     {
         public Property(String namespaceURI)
         {
-            super(namespaceURI);
+            base(namespaceURI);
         }
 
         public String getName()
@@ -44,7 +44,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
     {
         public RasterSector(String namespaceURI)
         {
-            super(namespaceURI);
+            base(namespaceURI);
         }
 
         public Sector getSector()
@@ -71,7 +71,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
     {
         public Corner(String namespaceURI)
         {
-            super(namespaceURI);
+            base(namespaceURI);
         }
     }
 
@@ -79,7 +79,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
     {
         public Source(String namespaceURI)
         {
-            super(namespaceURI);
+            base(namespaceURI);
         }
 
         public String getPath()
@@ -104,7 +104,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
 
         public Sources(String namespaceURI)
         {
-            super(namespaceURI);
+            base(namespaceURI);
         }
 
         public ArrayList<Source> getSources()
@@ -122,7 +122,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
             }
             else
             {
-                super.doParseEventContent(ctx, event, args);
+                base.doParseEventContent(ctx, event, args);
             }
         }
     }
@@ -136,7 +136,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
 
     public RasterServerConfiguration(Object docSource)
     {
-        super(namespaceURI);
+        base(namespaceURI);
 
         this.eventReader = this.createReader(docSource);
 
@@ -207,7 +207,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
                 // Now register the parsers.
                 this.registerParsers(ctx);
 
-                super.parse(ctx, event, args);
+                base.parse(ctx, event, args);
                 return this;
             }
         }
@@ -225,7 +225,7 @@ public class RasterServerConfiguration : AbstractXMLEventParser
         }
         else
         {
-            super.doParseEventContent(ctx, event, args);
+            base.doParseEventContent(ctx, event, args);
         }
     }
 

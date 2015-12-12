@@ -33,7 +33,7 @@ public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
 
     public BufferedImageRaster(Sector sector, java.awt.image.BufferedImage bufferedImage, AVList list)
     {
-        super((null != bufferedImage) ? bufferedImage.getWidth() : 0,
+        base((null != bufferedImage) ? bufferedImage.getWidth() : 0,
             (null != bufferedImage) ? bufferedImage.getHeight() : 0,
             sector, list);
 
@@ -49,7 +49,7 @@ public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
 
     public BufferedImageRaster(int width, int height, int transparency, Sector sector)
     {
-        super(width, height, sector);
+        base(width, height, sector);
 
         if (width < 1)
         {
@@ -142,19 +142,6 @@ public class BufferedImageRaster : AbstractDataRaster , Cacheable, Disposable
         }
         return size;
     }
-
-//    public void finalize()
-//    {
-//        try
-//        {
-//            super.finalize();
-//            this.dispose();
-//        }
-//        catch (Throwable t)
-//        {
-//            Logging.logger().log(java.util.logging.Level.FINEST, t.getMessage(), t);
-//        }
-//    }
 
     public void dispose()
     {

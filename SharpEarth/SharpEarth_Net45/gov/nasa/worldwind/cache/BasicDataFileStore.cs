@@ -136,7 +136,7 @@ public class BasicDataFileStore : AbstractFileStore
     @Override
     protected void initialize(InputStream xmlConfigStream)
     {
-        super.initialize(xmlConfigStream);
+        base.initialize(xmlConfigStream);
 
         String s = Configuration.getStringValue(AVKey.CACHE_CONTENT_TYPES);
         if (s != null)
@@ -521,7 +521,7 @@ public class BasicDataFileStore : AbstractFileStore
         @Override
         protected bool saveBuffer() throws IOException
         {
-            bool tf = super.saveBuffer();
+            bool tf = base.saveBuffer();
             BasicDataFileStore.this.updateEntry(this.address, this.localFileUrl,
                 this.getRetriever().getExpirationTime());
             return tf;
@@ -530,7 +530,7 @@ public class BasicDataFileStore : AbstractFileStore
         @Override
         protected ByteBuffer handleSuccessfulRetrieval()
         {
-            ByteBuffer buffer = super.handleSuccessfulRetrieval();
+            ByteBuffer buffer = base.handleSuccessfulRetrieval();
 
             firePropertyChange(
                 new PropertyChangeEvent(BasicDataFileStore.this, AVKey.RETRIEVAL_STATE_SUCCESSFUL, this.retrievalUrl,

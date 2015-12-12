@@ -22,12 +22,12 @@ public abstract class AbstractDataRaster : AVListImpl , DataRaster
 
     protected AbstractDataRaster()
     {
-        super();
+        base();
     }
 
     protected AbstractDataRaster(int width, int height, Sector sector) throws ArgumentException
     {
-        super();
+        base();
 
         if (width < 0)
         {
@@ -125,7 +125,7 @@ public abstract class AbstractDataRaster : AVListImpl , DataRaster
                 return this;
             }
         }
-        return super.setValue(key, value);
+        return base.setValue(key, value);
     }
 
     protected java.awt.Rectangle computeClipRect(Sector clipSector, DataRaster clippedRaster)

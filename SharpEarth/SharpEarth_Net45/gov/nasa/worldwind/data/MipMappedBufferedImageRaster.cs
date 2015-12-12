@@ -24,7 +24,7 @@ public class MipMappedBufferedImageRaster : BufferedImageRaster
      */
     public MipMappedBufferedImageRaster(Sector sector, java.awt.image.BufferedImage image)
     {
-        super(sector, image);
+        base(sector, image);
 
         int maxLevel = ImageUtil.getMaxMipmapLevel(image.getWidth(), image.getHeight());
         java.awt.image.BufferedImage[] levelImages = ImageUtil.buildMipmaps(image,
@@ -45,7 +45,7 @@ public class MipMappedBufferedImageRaster : BufferedImageRaster
      */
     public MipMappedBufferedImageRaster(Sector sector, java.awt.image.BufferedImage[] images)
     {
-        super(sector, (null != images && images.length > 0) ? images[0] : null);
+        base(sector, (null != images && images.length > 0) ? images[0] : null);
 
         if (null == sector)
         {

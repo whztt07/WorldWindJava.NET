@@ -26,7 +26,7 @@ public class GeotiffImageReader : ImageReader
 
     public GeotiffImageReader(ImageReaderSpi provider)
     {
-        super(provider);
+        base(provider);
     }
 
     @Override
@@ -331,7 +331,7 @@ public class GeotiffImageReader : ImageReader
         if (this.theStream != null)
             return;
 
-        if (super.input == null || !(super.input is ImageInputStream))
+        if (base.input == null || !(base.input is ImageInputStream))
         {
             throw new IIOException(this.GetType().Name + ": null/invalid ImageInputStream");
         }

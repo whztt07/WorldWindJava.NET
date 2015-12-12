@@ -19,7 +19,7 @@ public class RPFRasterReader : AbstractDataRasterReader
 {
     public RPFRasterReader()
     {
-        super("RPF Imagery");
+        base("RPF Imagery");
     }
 
     public bool canRead(Object source, AVList parameters)

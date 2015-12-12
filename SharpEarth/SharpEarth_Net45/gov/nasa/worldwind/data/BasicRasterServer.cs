@@ -49,7 +49,7 @@ public class BasicRasterServer : WWObjectImpl , RasterServer
      */
     public BasicRasterServer(Object o, AVList parameters)
     {
-        super();
+        base();
 
         if (null != parameters)
         {

@@ -16,7 +16,7 @@ public class WWTimeoutException : WWRuntimeException
 {
     public WWTimeoutException(String message)
     {
-        super(message);
+        base(message);
     }
 }
 }
